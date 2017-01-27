@@ -1,0 +1,5 @@
+*carthage-bootstrap
+*xcarthage
+*.DS_Store
+Carthage/
+*xcuserdata/
