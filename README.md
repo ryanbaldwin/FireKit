@@ -1,3 +1,4 @@
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 # RealmSwiftFHIR
 RealmSwiftFHIR is an adaptation of [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR/), but which supports Realm. All FHIR `Resources` and `Elements` can be persisted to a Realm database via normal Realm means. Checkout the original Swift-FHIR project for more details.
