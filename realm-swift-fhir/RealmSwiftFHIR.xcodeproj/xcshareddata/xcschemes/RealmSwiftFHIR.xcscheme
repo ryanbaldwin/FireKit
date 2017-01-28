@@ -17,7 +17,7 @@
                BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
                BuildableName = "RealmSwiftFHIR.framework"
                BlueprintName = "RealmSwiftFHIR"
-               ReferencedContainer = "container:realm-swift-fhir.xcodeproj">
+               ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -35,7 +35,7 @@
                BlueprintIdentifier = "C2AF41ED1E37C4E300EE1AEE"
                BuildableName = "RealmSwiftFHIRTests.xctest"
                BlueprintName = "RealmSwiftFHIRTests"
-               ReferencedContainer = "container:realm-swift-fhir.xcodeproj">
+               ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -45,7 +45,7 @@
             BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
             BuildableName = "RealmSwiftFHIR.framework"
             BlueprintName = "RealmSwiftFHIR"
-            ReferencedContainer = "container:realm-swift-fhir.xcodeproj">
+            ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -67,7 +67,7 @@
             BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
             BuildableName = "RealmSwiftFHIR.framework"
             BlueprintName = "RealmSwiftFHIR"
-            ReferencedContainer = "container:realm-swift-fhir.xcodeproj">
+            ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -85,7 +85,7 @@
             BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
             BuildableName = "RealmSwiftFHIR.framework"
             BlueprintName = "RealmSwiftFHIR"
-            ReferencedContainer = "container:realm-swift-fhir.xcodeproj">
+            ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

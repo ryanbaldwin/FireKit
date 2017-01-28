@@ -3072,8 +3072,6 @@
 		C2AF430B1E37C7C300EE1AEE /* Cartfile.private */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.private; sourceTree = SOURCE_ROOT; };
 		C2AF430D1E37C96C00EE1AEE /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		C2AF430E1E37C96C00EE1AEE /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
-		C2AF43141E37CB7A00EE1AEE /* xcarthage */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = xcarthage; sourceTree = SOURCE_ROOT; };
-		C2AF43161E37CC0300EE1AEE /* carthage-bootstrap */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "carthage-bootstrap"; sourceTree = SOURCE_ROOT; };
 		C2AF43181E37CCBF00EE1AEE /* AccountTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AccountTests.swift; path = classes/AccountTests.swift; sourceTree = "<group>"; };
 		C2AF43191E37CCBF00EE1AEE /* AllergyIntoleranceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AllergyIntoleranceTests.swift; path = classes/AllergyIntoleranceTests.swift; sourceTree = "<group>"; };
 		C2AF431A1E37CCBF00EE1AEE /* AppointmentResponseTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppointmentResponseTests.swift; path = classes/AppointmentResponseTests.swift; sourceTree = "<group>"; };
@@ -5872,8 +5870,8 @@
 		C2AF41DB1E37C4E300EE1AEE = {
 			isa = PBXGroup;
 			children = (
-				C2AF41E71E37C4E300EE1AEE /* realm-swift-fhir */,
-				C2AF41F21E37C4E300EE1AEE /* realm-swift-fhirTests */,
+				C2AF41E71E37C4E300EE1AEE /* RealmSwiftFHIR */,
+				C2AF41F21E37C4E300EE1AEE /* RealmSwiftFHIRTests */,
 				C2AF41E61E37C4E300EE1AEE /* Products */,
 				C2AF43111E37C99B00EE1AEE /* Frameworks */,
 			);
@@ -5888,26 +5886,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C2AF41E71E37C4E300EE1AEE /* realm-swift-fhir */ = {
+		C2AF41E71E37C4E300EE1AEE /* RealmSwiftFHIR */ = {
 			isa = PBXGroup;
 			children = (
-				C2AF43161E37CC0300EE1AEE /* carthage-bootstrap */,
-				C2AF43141E37CB7A00EE1AEE /* xcarthage */,
 				C2AF430B1E37C7C300EE1AEE /* Cartfile.private */,
 				C2AF41FF1E37C50100EE1AEE /* models */,
 				C2AF41E81E37C4E300EE1AEE /* realm-swift-fhir.h */,
 				C2AF41E91E37C4E300EE1AEE /* Info.plist */,
 			);
+			name = RealmSwiftFHIR;
 			path = "realm-swift-fhir";
 			sourceTree = "<group>";
 		};
-		C2AF41F21E37C4E300EE1AEE /* realm-swift-fhirTests */ = {
+		C2AF41F21E37C4E300EE1AEE /* RealmSwiftFHIRTests */ = {
 			isa = PBXGroup;
 			children = (
 				C2AF58C11E37D59500EE1AEE /* fhir-parser */,
 				C2AF42001E37C58000EE1AEE /* models */,
 				C2AF41F51E37C4E300EE1AEE /* Info.plist */,
 			);
+			name = RealmSwiftFHIRTests;
 			path = "realm-swift-fhirTests";
 			sourceTree = "<group>";
 		};
@@ -8918,18 +8916,17 @@
 				TargetAttributes = {
 					C2AF41E41E37C4E300EE1AEE = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7365BP9627;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
 					C2AF41ED1E37C4E300EE1AEE = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 7365BP9627;
+						DevelopmentTeam = 54F2GBB767;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
-			buildConfigurationList = C2AF41DF1E37C4E300EE1AEE /* Build configuration list for PBXProject "realm-swift-fhir" */;
+			buildConfigurationList = C2AF41DF1E37C4E300EE1AEE /* Build configuration list for PBXProject "RealmSwiftFHIR" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -12021,7 +12018,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7365BP9627;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -12032,7 +12029,7 @@
 				INFOPLIST_FILE = "realm-swift-fhir/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ehealthinnovation.realm-swift-fhir";
+				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.RealmSwiftFHIR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -12046,7 +12043,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7365BP9627;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -12057,7 +12054,7 @@
 				INFOPLIST_FILE = "realm-swift-fhir/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.ehealthinnovation.realm-swift-fhir";
+				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.RealmSwiftFHIR;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -12068,7 +12065,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 7365BP9627;
+				DEVELOPMENT_TEAM = 54F2GBB767;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -12085,7 +12082,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				DEVELOPMENT_TEAM = 7365BP9627;
+				DEVELOPMENT_TEAM = 54F2GBB767;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -12101,7 +12098,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C2AF41DF1E37C4E300EE1AEE /* Build configuration list for PBXProject "realm-swift-fhir" */ = {
+		C2AF41DF1E37C4E300EE1AEE /* Build configuration list for PBXProject "RealmSwiftFHIR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2AF41F71E37C4E300EE1AEE /* Debug */,
