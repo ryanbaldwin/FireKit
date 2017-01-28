@@ -15,7 +15,7 @@ The current, and only version, of `RealmSmartFHIR` uses the [FHIR DSTU2 spec](ht
 This project currently supports Carthage, and I'll likely never support Cocoa-Pods because Cocoa-Pods, well, honestly, I hate Cocoa-Pods. 
 
 0. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-1. Add `github "ryanbaldwin/RealmSwiftFHIR" == 0.1` to your `Cartfile`
+1. Add `github "ryanbaldwin/RealmSwiftFHIR" == 0.1.0` to your `Cartfile`
 2. Do a quick `carthage update` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 3. Build a kick ass application
 4. Buy [Pascal Pfiffner](https://github.com/p2) a beer, because none of this is possible without his amazing work
