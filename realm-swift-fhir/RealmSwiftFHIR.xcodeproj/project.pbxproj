@@ -2934,7 +2934,7 @@
 		C2AF41E51E37C4E300EE1AEE /* RealmSwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealmSwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF41E81E37C4E300EE1AEE /* realm-swift-fhir.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "realm-swift-fhir.h"; sourceTree = "<group>"; };
 		C2AF41E91E37C4E300EE1AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C2AF41EE1E37C4E300EE1AEE /* RealmSwiftFHIRTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RealmSwiftFHIRTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C2AF41EE1E37C4E300EE1AEE /* RealmSwiftFHIR-iOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RealmSwiftFHIR-iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF41F51E37C4E300EE1AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C2AF42011E37C6D200EE1AEE /* Account.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Account.swift; path = classes/models/Account.swift; sourceTree = "<group>"; };
 		C2AF42021E37C6D200EE1AEE /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Address.swift; path = classes/models/Address.swift; sourceTree = "<group>"; };
@@ -5881,7 +5881,7 @@
 			isa = PBXGroup;
 			children = (
 				C2AF41E51E37C4E300EE1AEE /* RealmSwiftFHIR.framework */,
-				C2AF41EE1E37C4E300EE1AEE /* RealmSwiftFHIRTests.xctest */,
+				C2AF41EE1E37C4E300EE1AEE /* RealmSwiftFHIR-iOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -8867,9 +8867,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		C2AF41E41E37C4E300EE1AEE /* RealmSwiftFHIR */ = {
+		C2AF41E41E37C4E300EE1AEE /* RealmSwiftFHIR-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C2AF41F91E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIR" */;
+			buildConfigurationList = C2AF41F91E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIR-iOS" */;
 			buildPhases = (
 				C2AF41E01E37C4E300EE1AEE /* Sources */,
 				C2AF41E11E37C4E300EE1AEE /* Frameworks */,
@@ -8880,14 +8880,14 @@
 			);
 			dependencies = (
 			);
-			name = RealmSwiftFHIR;
+			name = "RealmSwiftFHIR-iOS";
 			productName = "realm-swift-fhir";
 			productReference = C2AF41E51E37C4E300EE1AEE /* RealmSwiftFHIR.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		C2AF41ED1E37C4E300EE1AEE /* RealmSwiftFHIRTests */ = {
+		C2AF41ED1E37C4E300EE1AEE /* RealmSwiftFHIR-iOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C2AF41FC1E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIRTests" */;
+			buildConfigurationList = C2AF41FC1E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIR-iOSTests" */;
 			buildPhases = (
 				C2AF41EA1E37C4E300EE1AEE /* Sources */,
 				C2AF41EB1E37C4E300EE1AEE /* Frameworks */,
@@ -8899,9 +8899,9 @@
 			dependencies = (
 				C2AF41F11E37C4E300EE1AEE /* PBXTargetDependency */,
 			);
-			name = RealmSwiftFHIRTests;
+			name = "RealmSwiftFHIR-iOSTests";
 			productName = "realm-swift-fhirTests";
-			productReference = C2AF41EE1E37C4E300EE1AEE /* RealmSwiftFHIRTests.xctest */;
+			productReference = C2AF41EE1E37C4E300EE1AEE /* RealmSwiftFHIR-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -8938,8 +8938,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C2AF41E41E37C4E300EE1AEE /* RealmSwiftFHIR */,
-				C2AF41ED1E37C4E300EE1AEE /* RealmSwiftFHIRTests */,
+				C2AF41E41E37C4E300EE1AEE /* RealmSwiftFHIR-iOS */,
+				C2AF41ED1E37C4E300EE1AEE /* RealmSwiftFHIR-iOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -11905,7 +11905,7 @@
 /* Begin PBXTargetDependency section */
 		C2AF41F11E37C4E300EE1AEE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C2AF41E41E37C4E300EE1AEE /* RealmSwiftFHIR */;
+			target = C2AF41E41E37C4E300EE1AEE /* RealmSwiftFHIR-iOS */;
 			targetProxy = C2AF41F01E37C4E300EE1AEE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -12030,7 +12030,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.RealmSwiftFHIR;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RealmSwiftFHIR;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -12055,7 +12055,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.RealmSwiftFHIR;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = RealmSwiftFHIR;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
 			};
@@ -12107,7 +12107,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C2AF41F91E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIR" */ = {
+		C2AF41F91E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIR-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2AF41FA1E37C4E300EE1AEE /* Debug */,
@@ -12116,7 +12116,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C2AF41FC1E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIRTests" */ = {
+		C2AF41FC1E37C4E300EE1AEE /* Build configuration list for PBXNativeTarget "RealmSwiftFHIR-iOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C2AF41FD1E37C4E300EE1AEE /* Debug */,
