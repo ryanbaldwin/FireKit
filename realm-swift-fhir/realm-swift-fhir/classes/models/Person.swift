@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,15 +21,25 @@ open class Person: DomainResource {
 	}
 
 	public let active = RealmOptional<Bool>()
+	
 	public let address = RealmSwift.List<Address>()
+	
 	public dynamic var birthDate: FHIRDate?
+	
 	public dynamic var gender: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let link = RealmSwift.List<PersonLink>()
+	
 	public dynamic var managingOrganization: Reference?
+	
 	public let name = RealmSwift.List<HumanName>()
+	
 	public dynamic var photo: Attachment?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -39,6 +49,7 @@ open class Person: DomainResource {
 				presentKeys.insert("active")
 				if let val = exist as? Bool {
 					self.active.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: type(of: exist)))
@@ -68,6 +79,7 @@ open class Person: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -187,7 +199,9 @@ open class PersonLink: BackboneElement {
 	}
 
 	public dynamic var assurance: String?
+	
 	public dynamic var target: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -203,6 +217,7 @@ open class PersonLink: BackboneElement {
 				presentKeys.insert("assurance")
 				if let val = exist as? String {
 					self.assurance = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assurance", wants: String.self, has: type(of: exist)))

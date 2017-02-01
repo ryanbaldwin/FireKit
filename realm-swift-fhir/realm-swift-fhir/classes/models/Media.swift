@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -20,17 +20,29 @@ open class Media: DomainResource {
 	}
 
 	public dynamic var content: Attachment?
+	
 	public dynamic var deviceName: String?
+	
 	public let duration = RealmOptional<Int>()
+	
 	public let frames = RealmOptional<Int>()
+	
 	public let height = RealmOptional<Int>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var operator_fhir: Reference?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var subtype: CodeableConcept?
+	
 	public dynamic var type: String?
+	
 	public dynamic var view: CodeableConcept?
+	
 	public let width = RealmOptional<Int>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -59,6 +71,7 @@ open class Media: DomainResource {
 				presentKeys.insert("deviceName")
 				if let val = exist as? String {
 					self.deviceName = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deviceName", wants: String.self, has: type(of: exist)))
@@ -68,6 +81,7 @@ open class Media: DomainResource {
 				presentKeys.insert("duration")
 				if let val = exist as? Int {
 					self.duration.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "duration", wants: Int.self, has: type(of: exist)))
@@ -77,6 +91,7 @@ open class Media: DomainResource {
 				presentKeys.insert("frames")
 				if let val = exist as? Int {
 					self.frames.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "frames", wants: Int.self, has: type(of: exist)))
@@ -86,6 +101,7 @@ open class Media: DomainResource {
 				presentKeys.insert("height")
 				if let val = exist as? Int {
 					self.height.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "height", wants: Int.self, has: type(of: exist)))
@@ -133,6 +149,7 @@ open class Media: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -154,6 +171,7 @@ open class Media: DomainResource {
 				presentKeys.insert("width")
 				if let val = exist as? Int {
 					self.width.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "width", wants: Int.self, has: type(of: exist)))

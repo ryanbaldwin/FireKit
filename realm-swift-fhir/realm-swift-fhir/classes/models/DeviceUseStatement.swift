@@ -2,7 +2,7 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,17 +22,29 @@ open class DeviceUseStatement: DomainResource {
 	}
 
 	public dynamic var bodySiteCodeableConcept: CodeableConcept?
+	
 	public dynamic var bodySiteReference: Reference?
+	
 	public dynamic var device: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let indication = RealmSwift.List<CodeableConcept>()
+	
 	public let notes = RealmSwift.List<RealmString>()
+	
 	public dynamic var recordedOn: DateTime?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var timingDateTime: DateTime?
+	
 	public dynamic var timingPeriod: Period?
+	
 	public dynamic var timingTiming: Timing?
+	
 	public dynamic var whenUsed: Period?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

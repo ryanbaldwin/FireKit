@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,8 +22,11 @@ open class ImmunizationRecommendation: DomainResource {
 	}
 
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var patient: Reference?
+	
 	public let recommendation = RealmSwift.List<ImmunizationRecommendationRecommendation>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -104,13 +107,21 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 	}
 
 	public dynamic var date: DateTime?
+	
 	public let dateCriterion = RealmSwift.List<ImmunizationRecommendationRecommendationDateCriterion>()
+	
 	public let doseNumber = RealmOptional<Int>()
+	
 	public dynamic var forecastStatus: CodeableConcept?
+	
 	public dynamic var protocol_fhir: ImmunizationRecommendationRecommendationProtocol?
+	
 	public let supportingImmunization = RealmSwift.List<Reference>()
+	
 	public let supportingPatientInformation = RealmSwift.List<Reference>()
+	
 	public dynamic var vaccineCode: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -151,6 +162,7 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 				presentKeys.insert("doseNumber")
 				if let val = exist as? Int {
 					self.doseNumber.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseNumber", wants: Int.self, has: type(of: exist)))
@@ -259,7 +271,9 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var value: DateTime?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -326,9 +340,13 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 	}
 
 	public dynamic var authority: Reference?
+	
 	public dynamic var description_fhir: String?
+	
 	public let doseSequence = RealmOptional<Int>()
+	
 	public dynamic var series: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -347,6 +365,7 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -356,6 +375,7 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 				presentKeys.insert("doseSequence")
 				if let val = exist as? Int {
 					self.doseSequence.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseSequence", wants: Int.self, has: type(of: exist)))
@@ -365,6 +385,7 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 				presentKeys.insert("series")
 				if let val = exist as? String {
 					self.series = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "series", wants: String.self, has: type(of: exist)))

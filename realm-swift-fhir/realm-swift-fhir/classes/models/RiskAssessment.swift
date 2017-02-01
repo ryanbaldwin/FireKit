@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,15 +21,25 @@ open class RiskAssessment: DomainResource {
 	}
 
 	public let basis = RealmSwift.List<Reference>()
+	
 	public dynamic var condition: Reference?
+	
 	public dynamic var date: DateTime?
+	
 	public dynamic var encounter: Reference?
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var method: CodeableConcept?
+	
 	public dynamic var mitigation: String?
+	
 	public dynamic var performer: Reference?
+	
 	public let prediction = RealmSwift.List<RiskAssessmentPrediction>()
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -95,6 +105,7 @@ open class RiskAssessment: DomainResource {
 				presentKeys.insert("mitigation")
 				if let val = exist as? String {
 					self.mitigation = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mitigation", wants: String.self, has: type(of: exist)))
@@ -183,13 +194,21 @@ open class RiskAssessmentPrediction: BackboneElement {
 	}
 
 	public dynamic var outcome: CodeableConcept?
+	
 	public dynamic var probabilityCodeableConcept: CodeableConcept?
+	
 	public dynamic var probabilityDecimal: RealmDecimal?
+	
 	public dynamic var probabilityRange: Range?
+	
 	public dynamic var rationale: String?
+	
 	public dynamic var relativeRisk: RealmDecimal?
+	
 	public dynamic var whenPeriod: Period?
+	
 	public dynamic var whenRange: Range?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -244,6 +263,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 				presentKeys.insert("rationale")
 				if let val = exist as? String {
 					self.rationale = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rationale", wants: String.self, has: type(of: exist)))

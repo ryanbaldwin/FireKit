@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,19 +21,33 @@ open class Coverage: DomainResource {
 	}
 
 	public dynamic var bin: Identifier?
+	
 	public let contract = RealmSwift.List<Reference>()
+	
 	public let dependent = RealmOptional<Int>()
+	
 	public dynamic var group: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var issuer: Reference?
+	
 	public dynamic var network: Identifier?
+	
 	public dynamic var period: Period?
+	
 	public dynamic var plan: String?
+	
 	public let sequence = RealmOptional<Int>()
+	
 	public dynamic var subPlan: String?
+	
 	public dynamic var subscriber: Reference?
+	
 	public dynamic var subscriberId: Identifier?
+	
 	public dynamic var type: Coding?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -63,6 +77,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("dependent")
 				if let val = exist as? Int {
 					self.dependent.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dependent", wants: Int.self, has: type(of: exist)))
@@ -72,6 +87,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("group")
 				if let val = exist as? String {
 					self.group = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: String.self, has: type(of: exist)))
@@ -119,6 +135,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("plan")
 				if let val = exist as? String {
 					self.plan = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "plan", wants: String.self, has: type(of: exist)))
@@ -128,6 +145,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -137,6 +155,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("subPlan")
 				if let val = exist as? String {
 					self.subPlan = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subPlan", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,20 +22,35 @@ open class CommunicationRequest: DomainResource {
 	}
 
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let medium = RealmSwift.List<CodeableConcept>()
+	
 	public let payload = RealmSwift.List<CommunicationRequestPayload>()
+	
 	public dynamic var priority: CodeableConcept?
+	
 	public let reason = RealmSwift.List<CodeableConcept>()
+	
 	public let recipient = RealmSwift.List<Reference>()
+	
 	public dynamic var requestedOn: DateTime?
+	
 	public dynamic var requester: Reference?
+	
 	public dynamic var scheduledDateTime: DateTime?
+	
 	public dynamic var scheduledPeriod: Period?
+	
 	public dynamic var sender: Reference?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -172,6 +187,7 @@ open class CommunicationRequest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -255,8 +271,11 @@ open class CommunicationRequestPayload: BackboneElement {
 	}
 
 	public dynamic var contentAttachment: Attachment?
+	
 	public dynamic var contentReference: Reference?
+	
 	public dynamic var contentString: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -292,6 +311,7 @@ open class CommunicationRequestPayload: BackboneElement {
 				presentKeys.insert("contentString")
 				if let val = exist as? String {
 					self.contentString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentString", wants: String.self, has: type(of: exist)))

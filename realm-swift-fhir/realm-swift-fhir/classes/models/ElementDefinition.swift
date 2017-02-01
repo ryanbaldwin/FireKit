@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,228 +21,451 @@ open class ElementDefinition: Element {
 	}
 
 	public let alias = RealmSwift.List<RealmString>()
+	
 	public dynamic var base: ElementDefinitionBase?
+	
 	public dynamic var binding: ElementDefinitionBinding?
+	
 	public let code = RealmSwift.List<Coding>()
+	
 	public dynamic var comments: String?
+	
 	public let condition = RealmSwift.List<RealmString>()
+	
 	public let constraint = RealmSwift.List<ElementDefinitionConstraint>()
+	
 	public dynamic var defaultValueAddress: Address?
+	
 	public dynamic var defaultValueAnnotation: Annotation?
+	
 	public dynamic var defaultValueAttachment: Attachment?
+	
 	public dynamic var defaultValueBase64Binary: Base64Binary?
+	
 	public let defaultValueBoolean = RealmOptional<Bool>()
+	
 	public dynamic var defaultValueCode: String?
+	
 	public dynamic var defaultValueCodeableConcept: CodeableConcept?
+	
 	public dynamic var defaultValueCoding: Coding?
+	
 	public dynamic var defaultValueContactPoint: ContactPoint?
+	
 	public dynamic var defaultValueDate: FHIRDate?
+	
 	public dynamic var defaultValueDateTime: DateTime?
+	
 	public dynamic var defaultValueDecimal: RealmDecimal?
+	
 	public dynamic var defaultValueHumanName: HumanName?
+	
 	public dynamic var defaultValueId: String?
+	
 	public dynamic var defaultValueIdentifier: Identifier?
+	
 	public dynamic var defaultValueInstant: Instant?
+	
 	public let defaultValueInteger = RealmOptional<Int>()
+	
 	public dynamic var defaultValueMarkdown: String?
+	
 	public dynamic var defaultValueMeta: Meta?
+	
 	public dynamic var defaultValueOid: String?
+	
 	public dynamic var defaultValuePeriod: Period?
+	
 	public let defaultValuePositiveInt = RealmOptional<Int>()
+	
 	public dynamic var defaultValueQuantity: Quantity?
+	
 	public dynamic var defaultValueRange: Range?
+	
 	public dynamic var defaultValueRatio: Ratio?
+	
 	public dynamic var defaultValueReference: Reference?
+	
 	public dynamic var defaultValueSampledData: SampledData?
+	
 	public dynamic var defaultValueSignature: Signature?
+	
 	public dynamic var defaultValueString: String?
+	
 	public dynamic var defaultValueTime: FHIRTime?
+	
 	public dynamic var defaultValueTiming: Timing?
+	
 	public let defaultValueUnsignedInt = RealmOptional<Int>()
+	
 	public dynamic var defaultValueUri: String?
+	
 	public dynamic var definition: String?
+	
 	public dynamic var exampleAddress: Address?
+	
 	public dynamic var exampleAnnotation: Annotation?
+	
 	public dynamic var exampleAttachment: Attachment?
+	
 	public dynamic var exampleBase64Binary: Base64Binary?
+	
 	public let exampleBoolean = RealmOptional<Bool>()
+	
 	public dynamic var exampleCode: String?
+	
 	public dynamic var exampleCodeableConcept: CodeableConcept?
+	
 	public dynamic var exampleCoding: Coding?
+	
 	public dynamic var exampleContactPoint: ContactPoint?
+	
 	public dynamic var exampleDate: FHIRDate?
+	
 	public dynamic var exampleDateTime: DateTime?
+	
 	public dynamic var exampleDecimal: RealmDecimal?
+	
 	public dynamic var exampleHumanName: HumanName?
+	
 	public dynamic var exampleId: String?
+	
 	public dynamic var exampleIdentifier: Identifier?
+	
 	public dynamic var exampleInstant: Instant?
+	
 	public let exampleInteger = RealmOptional<Int>()
+	
 	public dynamic var exampleMarkdown: String?
+	
 	public dynamic var exampleMeta: Meta?
+	
 	public dynamic var exampleOid: String?
+	
 	public dynamic var examplePeriod: Period?
+	
 	public let examplePositiveInt = RealmOptional<Int>()
+	
 	public dynamic var exampleQuantity: Quantity?
+	
 	public dynamic var exampleRange: Range?
+	
 	public dynamic var exampleRatio: Ratio?
+	
 	public dynamic var exampleReference: Reference?
+	
 	public dynamic var exampleSampledData: SampledData?
+	
 	public dynamic var exampleSignature: Signature?
+	
 	public dynamic var exampleString: String?
+	
 	public dynamic var exampleTime: FHIRTime?
+	
 	public dynamic var exampleTiming: Timing?
+	
 	public let exampleUnsignedInt = RealmOptional<Int>()
+	
 	public dynamic var exampleUri: String?
+	
 	public dynamic var fixedAddress: Address?
+	
 	public dynamic var fixedAnnotation: Annotation?
+	
 	public dynamic var fixedAttachment: Attachment?
+	
 	public dynamic var fixedBase64Binary: Base64Binary?
+	
 	public let fixedBoolean = RealmOptional<Bool>()
+	
 	public dynamic var fixedCode: String?
+	
 	public dynamic var fixedCodeableConcept: CodeableConcept?
+	
 	public dynamic var fixedCoding: Coding?
+	
 	public dynamic var fixedContactPoint: ContactPoint?
+	
 	public dynamic var fixedDate: FHIRDate?
+	
 	public dynamic var fixedDateTime: DateTime?
+	
 	public dynamic var fixedDecimal: RealmDecimal?
+	
 	public dynamic var fixedHumanName: HumanName?
+	
 	public dynamic var fixedId: String?
+	
 	public dynamic var fixedIdentifier: Identifier?
+	
 	public dynamic var fixedInstant: Instant?
+	
 	public let fixedInteger = RealmOptional<Int>()
+	
 	public dynamic var fixedMarkdown: String?
+	
 	public dynamic var fixedMeta: Meta?
+	
 	public dynamic var fixedOid: String?
+	
 	public dynamic var fixedPeriod: Period?
+	
 	public let fixedPositiveInt = RealmOptional<Int>()
+	
 	public dynamic var fixedQuantity: Quantity?
+	
 	public dynamic var fixedRange: Range?
+	
 	public dynamic var fixedRatio: Ratio?
+	
 	public dynamic var fixedReference: Reference?
+	
 	public dynamic var fixedSampledData: SampledData?
+	
 	public dynamic var fixedSignature: Signature?
+	
 	public dynamic var fixedString: String?
+	
 	public dynamic var fixedTime: FHIRTime?
+	
 	public dynamic var fixedTiming: Timing?
+	
 	public let fixedUnsignedInt = RealmOptional<Int>()
+	
 	public dynamic var fixedUri: String?
+	
 	public let isModifier = RealmOptional<Bool>()
+	
 	public let isSummary = RealmOptional<Bool>()
+	
 	public dynamic var label: String?
+	
 	public let mapping = RealmSwift.List<ElementDefinitionMapping>()
+	
 	public dynamic var max: String?
+	
 	public let maxLength = RealmOptional<Int>()
+	
 	public dynamic var maxValueAddress: Address?
+	
 	public dynamic var maxValueAnnotation: Annotation?
+	
 	public dynamic var maxValueAttachment: Attachment?
+	
 	public dynamic var maxValueBase64Binary: Base64Binary?
+	
 	public let maxValueBoolean = RealmOptional<Bool>()
+	
 	public dynamic var maxValueCode: String?
+	
 	public dynamic var maxValueCodeableConcept: CodeableConcept?
+	
 	public dynamic var maxValueCoding: Coding?
+	
 	public dynamic var maxValueContactPoint: ContactPoint?
+	
 	public dynamic var maxValueDate: FHIRDate?
+	
 	public dynamic var maxValueDateTime: DateTime?
+	
 	public dynamic var maxValueDecimal: RealmDecimal?
+	
 	public dynamic var maxValueHumanName: HumanName?
+	
 	public dynamic var maxValueId: String?
+	
 	public dynamic var maxValueIdentifier: Identifier?
+	
 	public dynamic var maxValueInstant: Instant?
+	
 	public let maxValueInteger = RealmOptional<Int>()
+	
 	public dynamic var maxValueMarkdown: String?
+	
 	public dynamic var maxValueMeta: Meta?
+	
 	public dynamic var maxValueOid: String?
+	
 	public dynamic var maxValuePeriod: Period?
+	
 	public let maxValuePositiveInt = RealmOptional<Int>()
+	
 	public dynamic var maxValueQuantity: Quantity?
+	
 	public dynamic var maxValueRange: Range?
+	
 	public dynamic var maxValueRatio: Ratio?
+	
 	public dynamic var maxValueReference: Reference?
+	
 	public dynamic var maxValueSampledData: SampledData?
+	
 	public dynamic var maxValueSignature: Signature?
+	
 	public dynamic var maxValueString: String?
+	
 	public dynamic var maxValueTime: FHIRTime?
+	
 	public dynamic var maxValueTiming: Timing?
+	
 	public let maxValueUnsignedInt = RealmOptional<Int>()
+	
 	public dynamic var maxValueUri: String?
+	
 	public dynamic var meaningWhenMissing: String?
+	
 	public let min = RealmOptional<Int>()
+	
 	public dynamic var minValueAddress: Address?
+	
 	public dynamic var minValueAnnotation: Annotation?
+	
 	public dynamic var minValueAttachment: Attachment?
+	
 	public dynamic var minValueBase64Binary: Base64Binary?
+	
 	public let minValueBoolean = RealmOptional<Bool>()
+	
 	public dynamic var minValueCode: String?
+	
 	public dynamic var minValueCodeableConcept: CodeableConcept?
+	
 	public dynamic var minValueCoding: Coding?
+	
 	public dynamic var minValueContactPoint: ContactPoint?
+	
 	public dynamic var minValueDate: FHIRDate?
+	
 	public dynamic var minValueDateTime: DateTime?
+	
 	public dynamic var minValueDecimal: RealmDecimal?
+	
 	public dynamic var minValueHumanName: HumanName?
+	
 	public dynamic var minValueId: String?
+	
 	public dynamic var minValueIdentifier: Identifier?
+	
 	public dynamic var minValueInstant: Instant?
+	
 	public let minValueInteger = RealmOptional<Int>()
+	
 	public dynamic var minValueMarkdown: String?
+	
 	public dynamic var minValueMeta: Meta?
+	
 	public dynamic var minValueOid: String?
+	
 	public dynamic var minValuePeriod: Period?
+	
 	public let minValuePositiveInt = RealmOptional<Int>()
+	
 	public dynamic var minValueQuantity: Quantity?
+	
 	public dynamic var minValueRange: Range?
+	
 	public dynamic var minValueRatio: Ratio?
+	
 	public dynamic var minValueReference: Reference?
+	
 	public dynamic var minValueSampledData: SampledData?
+	
 	public dynamic var minValueSignature: Signature?
+	
 	public dynamic var minValueString: String?
+	
 	public dynamic var minValueTime: FHIRTime?
+	
 	public dynamic var minValueTiming: Timing?
+	
 	public let minValueUnsignedInt = RealmOptional<Int>()
+	
 	public dynamic var minValueUri: String?
+	
 	public let mustSupport = RealmOptional<Bool>()
+	
 	public dynamic var name: String?
+	
 	public dynamic var nameReference: String?
+	
 	public dynamic var path: String?
+	
 	public dynamic var patternAddress: Address?
+	
 	public dynamic var patternAnnotation: Annotation?
+	
 	public dynamic var patternAttachment: Attachment?
+	
 	public dynamic var patternBase64Binary: Base64Binary?
+	
 	public let patternBoolean = RealmOptional<Bool>()
+	
 	public dynamic var patternCode: String?
+	
 	public dynamic var patternCodeableConcept: CodeableConcept?
+	
 	public dynamic var patternCoding: Coding?
+	
 	public dynamic var patternContactPoint: ContactPoint?
+	
 	public dynamic var patternDate: FHIRDate?
+	
 	public dynamic var patternDateTime: DateTime?
+	
 	public dynamic var patternDecimal: RealmDecimal?
+	
 	public dynamic var patternHumanName: HumanName?
+	
 	public dynamic var patternId: String?
+	
 	public dynamic var patternIdentifier: Identifier?
+	
 	public dynamic var patternInstant: Instant?
+	
 	public let patternInteger = RealmOptional<Int>()
+	
 	public dynamic var patternMarkdown: String?
+	
 	public dynamic var patternMeta: Meta?
+	
 	public dynamic var patternOid: String?
+	
 	public dynamic var patternPeriod: Period?
+	
 	public let patternPositiveInt = RealmOptional<Int>()
+	
 	public dynamic var patternQuantity: Quantity?
+	
 	public dynamic var patternRange: Range?
+	
 	public dynamic var patternRatio: Ratio?
+	
 	public dynamic var patternReference: Reference?
+	
 	public dynamic var patternSampledData: SampledData?
+	
 	public dynamic var patternSignature: Signature?
+	
 	public dynamic var patternString: String?
+	
 	public dynamic var patternTime: FHIRTime?
+	
 	public dynamic var patternTiming: Timing?
+	
 	public let patternUnsignedInt = RealmOptional<Int>()
+	
 	public dynamic var patternUri: String?
+	
 	public let representation = RealmSwift.List<RealmString>()
+	
 	public dynamic var requirements: String?
+	
 	public dynamic var short: String?
+	
 	public dynamic var slicing: ElementDefinitionSlicing?
+	
 	public let type = RealmSwift.List<ElementDefinitionType>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -296,6 +519,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("comments")
 				if let val = exist as? String {
 					self.comments = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -361,6 +585,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueBoolean")
 				if let val = exist as? Bool {
 					self.defaultValueBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -370,6 +595,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueCode")
 				if let val = exist as? String {
 					self.defaultValueCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueCode", wants: String.self, has: type(of: exist)))
@@ -442,6 +668,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueId")
 				if let val = exist as? String {
 					self.defaultValueId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueId", wants: String.self, has: type(of: exist)))
@@ -469,6 +696,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueInteger")
 				if let val = exist as? Int {
 					self.defaultValueInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueInteger", wants: Int.self, has: type(of: exist)))
@@ -478,6 +706,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueMarkdown")
 				if let val = exist as? String {
 					self.defaultValueMarkdown = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueMarkdown", wants: String.self, has: type(of: exist)))
@@ -496,6 +725,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueOid")
 				if let val = exist as? String {
 					self.defaultValueOid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueOid", wants: String.self, has: type(of: exist)))
@@ -514,6 +744,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValuePositiveInt")
 				if let val = exist as? Int {
 					self.defaultValuePositiveInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValuePositiveInt", wants: Int.self, has: type(of: exist)))
@@ -577,6 +808,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueString")
 				if let val = exist as? String {
 					self.defaultValueString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueString", wants: String.self, has: type(of: exist)))
@@ -604,6 +836,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueUnsignedInt")
 				if let val = exist as? Int {
 					self.defaultValueUnsignedInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -613,6 +846,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("defaultValueUri")
 				if let val = exist as? String {
 					self.defaultValueUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "defaultValueUri", wants: String.self, has: type(of: exist)))
@@ -622,6 +856,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("definition")
 				if let val = exist as? String {
 					self.definition = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: type(of: exist)))
@@ -667,6 +902,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleBoolean")
 				if let val = exist as? Bool {
 					self.exampleBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleBoolean", wants: Bool.self, has: type(of: exist)))
@@ -676,6 +912,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleCode")
 				if let val = exist as? String {
 					self.exampleCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleCode", wants: String.self, has: type(of: exist)))
@@ -748,6 +985,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleId")
 				if let val = exist as? String {
 					self.exampleId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleId", wants: String.self, has: type(of: exist)))
@@ -775,6 +1013,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleInteger")
 				if let val = exist as? Int {
 					self.exampleInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleInteger", wants: Int.self, has: type(of: exist)))
@@ -784,6 +1023,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleMarkdown")
 				if let val = exist as? String {
 					self.exampleMarkdown = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleMarkdown", wants: String.self, has: type(of: exist)))
@@ -802,6 +1042,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleOid")
 				if let val = exist as? String {
 					self.exampleOid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleOid", wants: String.self, has: type(of: exist)))
@@ -820,6 +1061,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("examplePositiveInt")
 				if let val = exist as? Int {
 					self.examplePositiveInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "examplePositiveInt", wants: Int.self, has: type(of: exist)))
@@ -883,6 +1125,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleString")
 				if let val = exist as? String {
 					self.exampleString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleString", wants: String.self, has: type(of: exist)))
@@ -910,6 +1153,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleUnsignedInt")
 				if let val = exist as? Int {
 					self.exampleUnsignedInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -919,6 +1163,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("exampleUri")
 				if let val = exist as? String {
 					self.exampleUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exampleUri", wants: String.self, has: type(of: exist)))
@@ -964,6 +1209,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedBoolean")
 				if let val = exist as? Bool {
 					self.fixedBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedBoolean", wants: Bool.self, has: type(of: exist)))
@@ -973,6 +1219,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedCode")
 				if let val = exist as? String {
 					self.fixedCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedCode", wants: String.self, has: type(of: exist)))
@@ -1045,6 +1292,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedId")
 				if let val = exist as? String {
 					self.fixedId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedId", wants: String.self, has: type(of: exist)))
@@ -1072,6 +1320,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedInteger")
 				if let val = exist as? Int {
 					self.fixedInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedInteger", wants: Int.self, has: type(of: exist)))
@@ -1081,6 +1330,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedMarkdown")
 				if let val = exist as? String {
 					self.fixedMarkdown = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedMarkdown", wants: String.self, has: type(of: exist)))
@@ -1099,6 +1349,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedOid")
 				if let val = exist as? String {
 					self.fixedOid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedOid", wants: String.self, has: type(of: exist)))
@@ -1117,6 +1368,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedPositiveInt")
 				if let val = exist as? Int {
 					self.fixedPositiveInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedPositiveInt", wants: Int.self, has: type(of: exist)))
@@ -1180,6 +1432,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedString")
 				if let val = exist as? String {
 					self.fixedString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedString", wants: String.self, has: type(of: exist)))
@@ -1207,6 +1460,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedUnsignedInt")
 				if let val = exist as? Int {
 					self.fixedUnsignedInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -1216,6 +1470,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("fixedUri")
 				if let val = exist as? String {
 					self.fixedUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fixedUri", wants: String.self, has: type(of: exist)))
@@ -1225,6 +1480,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("isModifier")
 				if let val = exist as? Bool {
 					self.isModifier.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "isModifier", wants: Bool.self, has: type(of: exist)))
@@ -1234,6 +1490,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("isSummary")
 				if let val = exist as? Bool {
 					self.isSummary.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "isSummary", wants: Bool.self, has: type(of: exist)))
@@ -1243,6 +1500,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("label")
 				if let val = exist as? String {
 					self.label = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "label", wants: String.self, has: type(of: exist)))
@@ -1263,6 +1521,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("max")
 				if let val = exist as? String {
 					self.max = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "max", wants: String.self, has: type(of: exist)))
@@ -1272,6 +1531,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxLength")
 				if let val = exist as? Int {
 					self.maxLength.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxLength", wants: Int.self, has: type(of: exist)))
@@ -1317,6 +1577,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueBoolean")
 				if let val = exist as? Bool {
 					self.maxValueBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -1326,6 +1587,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueCode")
 				if let val = exist as? String {
 					self.maxValueCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueCode", wants: String.self, has: type(of: exist)))
@@ -1398,6 +1660,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueId")
 				if let val = exist as? String {
 					self.maxValueId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueId", wants: String.self, has: type(of: exist)))
@@ -1425,6 +1688,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueInteger")
 				if let val = exist as? Int {
 					self.maxValueInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueInteger", wants: Int.self, has: type(of: exist)))
@@ -1434,6 +1698,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueMarkdown")
 				if let val = exist as? String {
 					self.maxValueMarkdown = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueMarkdown", wants: String.self, has: type(of: exist)))
@@ -1452,6 +1717,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueOid")
 				if let val = exist as? String {
 					self.maxValueOid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueOid", wants: String.self, has: type(of: exist)))
@@ -1470,6 +1736,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValuePositiveInt")
 				if let val = exist as? Int {
 					self.maxValuePositiveInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValuePositiveInt", wants: Int.self, has: type(of: exist)))
@@ -1533,6 +1800,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueString")
 				if let val = exist as? String {
 					self.maxValueString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueString", wants: String.self, has: type(of: exist)))
@@ -1560,6 +1828,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueUnsignedInt")
 				if let val = exist as? Int {
 					self.maxValueUnsignedInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -1569,6 +1838,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("maxValueUri")
 				if let val = exist as? String {
 					self.maxValueUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxValueUri", wants: String.self, has: type(of: exist)))
@@ -1578,6 +1848,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("meaningWhenMissing")
 				if let val = exist as? String {
 					self.meaningWhenMissing = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "meaningWhenMissing", wants: String.self, has: type(of: exist)))
@@ -1587,6 +1858,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("min")
 				if let val = exist as? Int {
 					self.min.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "min", wants: Int.self, has: type(of: exist)))
@@ -1632,6 +1904,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueBoolean")
 				if let val = exist as? Bool {
 					self.minValueBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -1641,6 +1914,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueCode")
 				if let val = exist as? String {
 					self.minValueCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueCode", wants: String.self, has: type(of: exist)))
@@ -1713,6 +1987,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueId")
 				if let val = exist as? String {
 					self.minValueId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueId", wants: String.self, has: type(of: exist)))
@@ -1740,6 +2015,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueInteger")
 				if let val = exist as? Int {
 					self.minValueInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueInteger", wants: Int.self, has: type(of: exist)))
@@ -1749,6 +2025,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueMarkdown")
 				if let val = exist as? String {
 					self.minValueMarkdown = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueMarkdown", wants: String.self, has: type(of: exist)))
@@ -1767,6 +2044,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueOid")
 				if let val = exist as? String {
 					self.minValueOid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueOid", wants: String.self, has: type(of: exist)))
@@ -1785,6 +2063,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValuePositiveInt")
 				if let val = exist as? Int {
 					self.minValuePositiveInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValuePositiveInt", wants: Int.self, has: type(of: exist)))
@@ -1848,6 +2127,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueString")
 				if let val = exist as? String {
 					self.minValueString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueString", wants: String.self, has: type(of: exist)))
@@ -1875,6 +2155,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueUnsignedInt")
 				if let val = exist as? Int {
 					self.minValueUnsignedInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -1884,6 +2165,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("minValueUri")
 				if let val = exist as? String {
 					self.minValueUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minValueUri", wants: String.self, has: type(of: exist)))
@@ -1893,6 +2175,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("mustSupport")
 				if let val = exist as? Bool {
 					self.mustSupport.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mustSupport", wants: Bool.self, has: type(of: exist)))
@@ -1902,6 +2185,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1911,6 +2195,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("nameReference")
 				if let val = exist as? String {
 					self.nameReference = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "nameReference", wants: String.self, has: type(of: exist)))
@@ -1920,6 +2205,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("path")
 				if let val = exist as? String {
 					self.path = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "path", wants: String.self, has: type(of: exist)))
@@ -1968,6 +2254,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternBoolean")
 				if let val = exist as? Bool {
 					self.patternBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternBoolean", wants: Bool.self, has: type(of: exist)))
@@ -1977,6 +2264,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternCode")
 				if let val = exist as? String {
 					self.patternCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternCode", wants: String.self, has: type(of: exist)))
@@ -2049,6 +2337,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternId")
 				if let val = exist as? String {
 					self.patternId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternId", wants: String.self, has: type(of: exist)))
@@ -2076,6 +2365,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternInteger")
 				if let val = exist as? Int {
 					self.patternInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternInteger", wants: Int.self, has: type(of: exist)))
@@ -2085,6 +2375,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternMarkdown")
 				if let val = exist as? String {
 					self.patternMarkdown = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternMarkdown", wants: String.self, has: type(of: exist)))
@@ -2103,6 +2394,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternOid")
 				if let val = exist as? String {
 					self.patternOid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternOid", wants: String.self, has: type(of: exist)))
@@ -2121,6 +2413,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternPositiveInt")
 				if let val = exist as? Int {
 					self.patternPositiveInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternPositiveInt", wants: Int.self, has: type(of: exist)))
@@ -2184,6 +2477,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternString")
 				if let val = exist as? String {
 					self.patternString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternString", wants: String.self, has: type(of: exist)))
@@ -2211,6 +2505,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternUnsignedInt")
 				if let val = exist as? Int {
 					self.patternUnsignedInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -2220,6 +2515,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("patternUri")
 				if let val = exist as? String {
 					self.patternUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patternUri", wants: String.self, has: type(of: exist)))
@@ -2238,6 +2534,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -2247,6 +2544,7 @@ open class ElementDefinition: Element {
 				presentKeys.insert("short")
 				if let val = exist as? String {
 					self.short = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "short", wants: String.self, has: type(of: exist)))
@@ -2968,8 +3266,11 @@ open class ElementDefinitionBase: Element {
 	}
 
 	public dynamic var max: String?
+	
 	public let min = RealmOptional<Int>()
+	
 	public dynamic var path: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -2987,6 +3288,7 @@ open class ElementDefinitionBase: Element {
 				presentKeys.insert("max")
 				if let val = exist as? String {
 					self.max = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "max", wants: String.self, has: type(of: exist)))
@@ -2999,6 +3301,7 @@ open class ElementDefinitionBase: Element {
 				presentKeys.insert("min")
 				if let val = exist as? Int {
 					self.min.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "min", wants: Int.self, has: type(of: exist)))
@@ -3011,6 +3314,7 @@ open class ElementDefinitionBase: Element {
 				presentKeys.insert("path")
 				if let val = exist as? String {
 					self.path = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "path", wants: String.self, has: type(of: exist)))
@@ -3052,9 +3356,13 @@ open class ElementDefinitionBinding: Element {
 	}
 
 	public dynamic var description_fhir: String?
+	
 	public dynamic var strength: String?
+	
 	public dynamic var valueSetReference: Reference?
+	
 	public dynamic var valueSetUri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -3070,6 +3378,7 @@ open class ElementDefinitionBinding: Element {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -3079,6 +3388,7 @@ open class ElementDefinitionBinding: Element {
 				presentKeys.insert("strength")
 				if let val = exist as? String {
 					self.strength = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "strength", wants: String.self, has: type(of: exist)))
@@ -3100,6 +3410,7 @@ open class ElementDefinitionBinding: Element {
 				presentKeys.insert("valueSetUri")
 				if let val = exist as? String {
 					self.valueSetUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSetUri", wants: String.self, has: type(of: exist)))
@@ -3142,10 +3453,15 @@ open class ElementDefinitionConstraint: Element {
 	}
 
 	public dynamic var human: String?
+	
 	public dynamic var key: String?
+	
 	public dynamic var requirements: String?
+	
 	public dynamic var severity: String?
+	
 	public dynamic var xpath: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -3164,6 +3480,7 @@ open class ElementDefinitionConstraint: Element {
 				presentKeys.insert("human")
 				if let val = exist as? String {
 					self.human = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "human", wants: String.self, has: type(of: exist)))
@@ -3176,6 +3493,7 @@ open class ElementDefinitionConstraint: Element {
 				presentKeys.insert("key")
 				if let val = exist as? String {
 					self.key = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "key", wants: String.self, has: type(of: exist)))
@@ -3188,6 +3506,7 @@ open class ElementDefinitionConstraint: Element {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -3197,6 +3516,7 @@ open class ElementDefinitionConstraint: Element {
 				presentKeys.insert("severity")
 				if let val = exist as? String {
 					self.severity = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: type(of: exist)))
@@ -3209,6 +3529,7 @@ open class ElementDefinitionConstraint: Element {
 				presentKeys.insert("xpath")
 				if let val = exist as? String {
 					self.xpath = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "xpath", wants: String.self, has: type(of: exist)))
@@ -3256,8 +3577,11 @@ open class ElementDefinitionMapping: Element {
 	}
 
 	public dynamic var identity: String?
+	
 	public dynamic var language: String?
+	
 	public dynamic var map: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -3274,6 +3598,7 @@ open class ElementDefinitionMapping: Element {
 				presentKeys.insert("identity")
 				if let val = exist as? String {
 					self.identity = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identity", wants: String.self, has: type(of: exist)))
@@ -3286,6 +3611,7 @@ open class ElementDefinitionMapping: Element {
 				presentKeys.insert("language")
 				if let val = exist as? String {
 					self.language = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
@@ -3295,6 +3621,7 @@ open class ElementDefinitionMapping: Element {
 				presentKeys.insert("map")
 				if let val = exist as? String {
 					self.map = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "map", wants: String.self, has: type(of: exist)))
@@ -3340,9 +3667,13 @@ open class ElementDefinitionSlicing: Element {
 	}
 
 	public dynamic var description_fhir: String?
+	
 	public let discriminator = RealmSwift.List<RealmString>()
+	
 	public let ordered = RealmOptional<Bool>()
+	
 	public dynamic var rules: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -3358,6 +3689,7 @@ open class ElementDefinitionSlicing: Element {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -3376,6 +3708,7 @@ open class ElementDefinitionSlicing: Element {
 				presentKeys.insert("ordered")
 				if let val = exist as? Bool {
 					self.ordered.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ordered", wants: Bool.self, has: type(of: exist)))
@@ -3385,6 +3718,7 @@ open class ElementDefinitionSlicing: Element {
 				presentKeys.insert("rules")
 				if let val = exist as? String {
 					self.rules = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rules", wants: String.self, has: type(of: exist)))
@@ -3429,8 +3763,11 @@ open class ElementDefinitionType: Element {
 	}
 
 	public let aggregation = RealmSwift.List<RealmString>()
+	
 	public dynamic var code: String?
+	
 	public let profile = RealmSwift.List<RealmString>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -3455,6 +3792,7 @@ open class ElementDefinitionType: Element {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -25,19 +25,33 @@ open class Composition: DomainResource {
 	}
 
 	public let attester = RealmSwift.List<CompositionAttester>()
+	
 	public let author = RealmSwift.List<Reference>()
+	
 	public dynamic var class_fhir: CodeableConcept?
+	
 	public dynamic var confidentiality: String?
+	
 	public dynamic var custodian: Reference?
+	
 	public dynamic var date: DateTime?
+	
 	public dynamic var encounter: Reference?
+	
 	public let event = RealmSwift.List<CompositionEvent>()
+	
 	public dynamic var identifier: Identifier?
+	
 	public let section = RealmSwift.List<CompositionSection>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var title: String?
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -92,6 +106,7 @@ open class Composition: DomainResource {
 				presentKeys.insert("confidentiality")
 				if let val = exist as? String {
 					self.confidentiality = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "confidentiality", wants: String.self, has: type(of: exist)))
@@ -162,6 +177,7 @@ open class Composition: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -186,6 +202,7 @@ open class Composition: DomainResource {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -272,8 +289,11 @@ open class CompositionAttester: BackboneElement {
 	}
 
 	public let mode = RealmSwift.List<RealmString>()
+	
 	public dynamic var party: Reference?
+	
 	public dynamic var time: DateTime?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -348,8 +368,11 @@ open class CompositionEvent: BackboneElement {
 	}
 
 	public let code = RealmSwift.List<CodeableConcept>()
+	
 	public let detail = RealmSwift.List<Reference>()
+	
 	public dynamic var period: Period?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -419,13 +442,21 @@ open class CompositionSection: BackboneElement {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var emptyReason: CodeableConcept?
+	
 	public let entry = RealmSwift.List<Reference>()
+	
 	public dynamic var mode: String?
+	
 	public dynamic var orderedBy: CodeableConcept?
+	
 	public let section = RealmSwift.List<CompositionSection>()
+	
 	public dynamic var text: Narrative?
+	
 	public dynamic var title: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -464,6 +495,7 @@ open class CompositionSection: BackboneElement {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -502,6 +534,7 @@ open class CompositionSection: BackboneElement {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))

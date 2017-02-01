@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -19,7 +19,9 @@ open class Reference: Element {
 	}
 
 	public dynamic var display: String?
+	
 	public dynamic var reference: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -29,6 +31,7 @@ open class Reference: Element {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
@@ -38,6 +41,7 @@ open class Reference: Element {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
 					self.reference = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: type(of: exist)))

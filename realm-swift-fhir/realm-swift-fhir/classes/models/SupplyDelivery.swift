@@ -2,7 +2,7 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,16 +21,27 @@ open class SupplyDelivery: DomainResource {
 	}
 
 	public dynamic var destination: Reference?
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var quantity: Quantity?
+	
 	public let receiver = RealmSwift.List<Reference>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var suppliedItem: Reference?
+	
 	public dynamic var supplier: Reference?
+	
 	public dynamic var time: DateTime?
+	
 	public dynamic var type: CodeableConcept?
+	
 	public dynamic var whenPrepared: Period?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -87,6 +98,7 @@ open class SupplyDelivery: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

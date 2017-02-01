@@ -2,7 +2,7 @@
 //  Flag.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Flag) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Flag) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,13 +21,21 @@ open class Flag: DomainResource {
 	}
 
 	public dynamic var author: Reference?
+	
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var period: Period?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -104,6 +112,7 @@ open class Flag: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

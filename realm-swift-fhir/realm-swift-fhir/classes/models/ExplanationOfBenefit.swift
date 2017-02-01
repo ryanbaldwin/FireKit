@@ -2,7 +2,7 @@
 //  ExplanationOfBenefit.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,15 +22,25 @@ open class ExplanationOfBenefit: DomainResource {
 	}
 
 	public dynamic var created: DateTime?
+	
 	public dynamic var disposition: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var organization: Reference?
+	
 	public dynamic var originalRuleset: Coding?
+	
 	public dynamic var outcome: String?
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var requestOrganization: Reference?
+	
 	public dynamic var requestProvider: Reference?
+	
 	public dynamic var ruleset: Coding?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -49,6 +59,7 @@ open class ExplanationOfBenefit: DomainResource {
 				presentKeys.insert("disposition")
 				if let val = exist as? String {
 					self.disposition = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -87,6 +98,7 @@ open class ExplanationOfBenefit: DomainResource {
 				presentKeys.insert("outcome")
 				if let val = exist as? String {
 					self.outcome = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: String.self, has: type(of: exist)))

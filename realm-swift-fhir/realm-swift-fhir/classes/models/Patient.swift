@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,24 +22,43 @@ open class Patient: DomainResource {
 	}
 
 	public let active = RealmOptional<Bool>()
+	
 	public let address = RealmSwift.List<Address>()
+	
 	public dynamic var animal: PatientAnimal?
+	
 	public dynamic var birthDate: FHIRDate?
+	
 	public let careProvider = RealmSwift.List<Reference>()
+	
 	public let communication = RealmSwift.List<PatientCommunication>()
+	
 	public let contact = RealmSwift.List<PatientContact>()
+	
 	public let deceasedBoolean = RealmOptional<Bool>()
+	
 	public dynamic var deceasedDateTime: DateTime?
+	
 	public dynamic var gender: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let link = RealmSwift.List<PatientLink>()
+	
 	public dynamic var managingOrganization: Reference?
+	
 	public dynamic var maritalStatus: CodeableConcept?
+	
 	public let multipleBirthBoolean = RealmOptional<Bool>()
+	
 	public let multipleBirthInteger = RealmOptional<Int>()
+	
 	public let name = RealmSwift.List<HumanName>()
+	
 	public let photo = RealmSwift.List<Attachment>()
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -49,6 +68,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("active")
 				if let val = exist as? Bool {
 					self.active.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: type(of: exist)))
@@ -120,6 +140,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("deceasedBoolean")
 				if let val = exist as? Bool {
 					self.deceasedBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedBoolean", wants: Bool.self, has: type(of: exist)))
@@ -138,6 +159,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -187,6 +209,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("multipleBirthBoolean")
 				if let val = exist as? Bool {
 					self.multipleBirthBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "multipleBirthBoolean", wants: Bool.self, has: type(of: exist)))
@@ -196,6 +219,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("multipleBirthInteger")
 				if let val = exist as? Int {
 					self.multipleBirthInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "multipleBirthInteger", wants: Int.self, has: type(of: exist)))
@@ -315,8 +339,11 @@ open class PatientAnimal: BackboneElement {
 	}
 
 	public dynamic var breed: CodeableConcept?
+	
 	public dynamic var genderStatus: CodeableConcept?
+	
 	public dynamic var species: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -391,7 +418,9 @@ open class PatientCommunication: BackboneElement {
 	}
 
 	public dynamic var language: CodeableConcept?
+	
 	public let preferred = RealmOptional<Bool>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -419,6 +448,7 @@ open class PatientCommunication: BackboneElement {
 				presentKeys.insert("preferred")
 				if let val = exist as? Bool {
 					self.preferred.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "preferred", wants: Bool.self, has: type(of: exist)))
@@ -452,12 +482,19 @@ open class PatientContact: BackboneElement {
 	}
 
 	public dynamic var address: Address?
+	
 	public dynamic var gender: String?
+	
 	public dynamic var name: HumanName?
+	
 	public dynamic var organization: Reference?
+	
 	public dynamic var period: Period?
+	
 	public let relationship = RealmSwift.List<CodeableConcept>()
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -476,6 +513,7 @@ open class PatientContact: BackboneElement {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -575,7 +613,9 @@ open class PatientLink: BackboneElement {
 	}
 
 	public dynamic var other: Reference?
+	
 	public dynamic var type: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -604,6 +644,7 @@ open class PatientLink: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))

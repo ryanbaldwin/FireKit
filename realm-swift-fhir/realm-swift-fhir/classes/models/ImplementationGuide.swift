@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,22 +22,39 @@ open class ImplementationGuide: DomainResource {
 	}
 
 	public let binary = RealmSwift.List<RealmString>()
+	
 	public let contact = RealmSwift.List<ImplementationGuideContact>()
+	
 	public dynamic var copyright: String?
+	
 	public dynamic var date: DateTime?
+	
 	public let dependency = RealmSwift.List<ImplementationGuideDependency>()
+	
 	public dynamic var description_fhir: String?
+	
 	public let experimental = RealmOptional<Bool>()
+	
 	public dynamic var fhirVersion: String?
+	
 	public let global = RealmSwift.List<ImplementationGuideGlobal>()
+	
 	public dynamic var name: String?
+	
 	public let package = RealmSwift.List<ImplementationGuidePackage>()
+	
 	public dynamic var page: ImplementationGuidePage?
+	
 	public dynamic var publisher: String?
+	
 	public dynamic var status: String?
+	
 	public dynamic var url: String?
+	
 	public let useContext = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var version: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -77,6 +94,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -106,6 +124,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -115,6 +134,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -124,6 +144,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("fhirVersion")
 				if let val = exist as? String {
 					self.fhirVersion = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fhirVersion", wants: String.self, has: type(of: exist)))
@@ -144,6 +165,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -182,6 +204,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -191,6 +214,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -203,6 +227,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -226,6 +251,7 @@ open class ImplementationGuide: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -306,7 +332,9 @@ open class ImplementationGuideContact: BackboneElement {
 	}
 
 	public dynamic var name: String?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -316,6 +344,7 @@ open class ImplementationGuideContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -363,7 +392,9 @@ open class ImplementationGuideDependency: BackboneElement {
 	}
 
 	public dynamic var type: String?
+	
 	public dynamic var uri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -380,6 +411,7 @@ open class ImplementationGuideDependency: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -392,6 +424,7 @@ open class ImplementationGuideDependency: BackboneElement {
 				presentKeys.insert("uri")
 				if let val = exist as? String {
 					self.uri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uri", wants: String.self, has: type(of: exist)))
@@ -430,7 +463,9 @@ open class ImplementationGuideGlobal: BackboneElement {
 	}
 
 	public dynamic var profile: Reference?
+	
 	public dynamic var type: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -459,6 +494,7 @@ open class ImplementationGuideGlobal: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -497,8 +533,11 @@ open class ImplementationGuidePackage: BackboneElement {
 	}
 
 	public dynamic var description_fhir: String?
+	
 	public dynamic var name: String?
+	
 	public let resource = RealmSwift.List<ImplementationGuidePackageResource>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -515,6 +554,7 @@ open class ImplementationGuidePackage: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -524,6 +564,7 @@ open class ImplementationGuidePackage: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -581,12 +622,19 @@ open class ImplementationGuidePackageResource: BackboneElement {
 	}
 
 	public dynamic var acronym: String?
+	
 	public dynamic var description_fhir: String?
+	
 	public dynamic var exampleFor: Reference?
+	
 	public dynamic var name: String?
+	
 	public dynamic var purpose: String?
+	
 	public dynamic var sourceReference: Reference?
+	
 	public dynamic var sourceUri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -604,6 +652,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 				presentKeys.insert("acronym")
 				if let val = exist as? String {
 					self.acronym = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "acronym", wants: String.self, has: type(of: exist)))
@@ -613,6 +662,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -631,6 +681,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -640,6 +691,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 				presentKeys.insert("purpose")
 				if let val = exist as? String {
 					self.purpose = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "purpose", wants: String.self, has: type(of: exist)))
@@ -661,6 +713,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
 				presentKeys.insert("sourceUri")
 				if let val = exist as? String {
 					self.sourceUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceUri", wants: String.self, has: type(of: exist)))
@@ -716,12 +769,19 @@ open class ImplementationGuidePage: BackboneElement {
 	}
 
 	public dynamic var format: String?
+	
 	public dynamic var kind: String?
+	
 	public dynamic var name: String?
+	
 	public let package = RealmSwift.List<RealmString>()
+	
 	public let page = RealmSwift.List<ImplementationGuidePage>()
+	
 	public dynamic var source: String?
+	
 	public let type = RealmSwift.List<RealmString>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -739,6 +799,7 @@ open class ImplementationGuidePage: BackboneElement {
 				presentKeys.insert("format")
 				if let val = exist as? String {
 					self.format = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "format", wants: String.self, has: type(of: exist)))
@@ -748,6 +809,7 @@ open class ImplementationGuidePage: BackboneElement {
 				presentKeys.insert("kind")
 				if let val = exist as? String {
 					self.kind = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -760,6 +822,7 @@ open class ImplementationGuidePage: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -792,6 +855,7 @@ open class ImplementationGuidePage: BackboneElement {
 				presentKeys.insert("source")
 				if let val = exist as? String {
 					self.source = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: String.self, has: type(of: exist)))

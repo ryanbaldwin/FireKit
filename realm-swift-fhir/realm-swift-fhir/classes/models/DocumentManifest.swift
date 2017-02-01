@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -19,17 +19,29 @@ open class DocumentManifest: DomainResource {
 	}
 
 	public let author = RealmSwift.List<Reference>()
+	
 	public let content = RealmSwift.List<DocumentManifestContent>()
+	
 	public dynamic var created: DateTime?
+	
 	public dynamic var description_fhir: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var masterIdentifier: Identifier?
+	
 	public let recipient = RealmSwift.List<Reference>()
+	
 	public let related = RealmSwift.List<DocumentManifestRelated>()
+	
 	public dynamic var source: String?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -80,6 +92,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -131,6 +144,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("source")
 				if let val = exist as? String {
 					self.source = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: String.self, has: type(of: exist)))
@@ -140,6 +154,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -226,7 +241,9 @@ open class DocumentManifestContent: BackboneElement {
 	}
 
 	public dynamic var pAttachment: Attachment?
+	
 	public dynamic var pReference: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -292,7 +309,9 @@ open class DocumentManifestRelated: BackboneElement {
 	}
 
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var ref: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

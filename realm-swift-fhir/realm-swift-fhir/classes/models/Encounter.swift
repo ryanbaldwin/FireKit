@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,24 +22,43 @@ open class Encounter: DomainResource {
 	}
 
 	public dynamic var appointment: Reference?
+	
 	public dynamic var class_fhir: String?
+	
 	public let episodeOfCare = RealmSwift.List<Reference>()
+	
 	public dynamic var hospitalization: EncounterHospitalization?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let incomingReferral = RealmSwift.List<Reference>()
+	
 	public let indication = RealmSwift.List<Reference>()
+	
 	public dynamic var length: Quantity?
+	
 	public let location = RealmSwift.List<EncounterLocation>()
+	
 	public dynamic var partOf: Reference?
+	
 	public let participant = RealmSwift.List<EncounterParticipant>()
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var period: Period?
+	
 	public dynamic var priority: CodeableConcept?
+	
 	public let reason = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var serviceProvider: Reference?
+	
 	public dynamic var status: String?
+	
 	public let statusHistory = RealmSwift.List<EncounterStatusHistory>()
+	
 	public let type = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -64,6 +83,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("class")
 				if let val = exist as? String {
 					self.class_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "class", wants: String.self, has: type(of: exist)))
@@ -213,6 +233,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -322,16 +343,27 @@ open class EncounterHospitalization: BackboneElement {
 	}
 
 	public dynamic var admitSource: CodeableConcept?
+	
 	public let admittingDiagnosis = RealmSwift.List<Reference>()
+	
 	public dynamic var destination: Reference?
+	
 	public let dietPreference = RealmSwift.List<CodeableConcept>()
+	
 	public let dischargeDiagnosis = RealmSwift.List<Reference>()
+	
 	public dynamic var dischargeDisposition: CodeableConcept?
+	
 	public dynamic var origin: Reference?
+	
 	public dynamic var preAdmissionIdentifier: Identifier?
+	
 	public dynamic var reAdmission: CodeableConcept?
+	
 	public let specialArrangement = RealmSwift.List<CodeableConcept>()
+	
 	public let specialCourtesy = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -503,8 +535,11 @@ open class EncounterLocation: BackboneElement {
 	}
 
 	public dynamic var location: Reference?
+	
 	public dynamic var period: Period?
+	
 	public dynamic var status: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -541,6 +576,7 @@ open class EncounterLocation: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -579,8 +615,11 @@ open class EncounterParticipant: BackboneElement {
 	}
 
 	public dynamic var individual: Reference?
+	
 	public dynamic var period: Period?
+	
 	public let type = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -649,7 +688,9 @@ open class EncounterStatusHistory: BackboneElement {
 	}
 
 	public dynamic var period: Period?
+	
 	public dynamic var status: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -678,6 +719,7 @@ open class EncounterStatusHistory: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,14 +22,23 @@ open class QuestionnaireResponse: DomainResource {
 	}
 
 	public dynamic var author: Reference?
+	
 	public dynamic var authored: DateTime?
+	
 	public dynamic var encounter: Reference?
+	
 	public dynamic var group: QuestionnaireResponseGroup?
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var questionnaire: Reference?
+	
 	public dynamic var source: Reference?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -108,6 +117,7 @@ open class QuestionnaireResponse: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -176,11 +186,17 @@ open class QuestionnaireResponseGroup: BackboneElement {
 	}
 
 	public let group = RealmSwift.List<QuestionnaireResponseGroup>()
+	
 	public dynamic var linkId: String?
+	
 	public let question = RealmSwift.List<QuestionnaireResponseGroupQuestion>()
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var text: String?
+	
 	public dynamic var title: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -201,6 +217,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("linkId")
 				if let val = exist as? String {
 					self.linkId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
@@ -230,6 +247,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -239,6 +257,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -286,8 +305,11 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 	}
 
 	public let answer = RealmSwift.List<QuestionnaireResponseGroupQuestionAnswer>()
+	
 	public dynamic var linkId: String?
+	
 	public dynamic var text: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -308,6 +330,7 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("linkId")
 				if let val = exist as? String {
 					self.linkId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
@@ -317,6 +340,7 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -355,19 +379,33 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 	}
 
 	public let group = RealmSwift.List<QuestionnaireResponseGroup>()
+	
 	public dynamic var valueAttachment: Attachment?
+	
 	public let valueBoolean = RealmOptional<Bool>()
+	
 	public dynamic var valueCoding: Coding?
+	
 	public dynamic var valueDate: FHIRDate?
+	
 	public dynamic var valueDateTime: DateTime?
+	
 	public dynamic var valueDecimal: RealmDecimal?
+	
 	public dynamic var valueInstant: Instant?
+	
 	public let valueInteger = RealmOptional<Int>()
+	
 	public dynamic var valueQuantity: Quantity?
+	
 	public dynamic var valueReference: Reference?
+	
 	public dynamic var valueString: String?
+	
 	public dynamic var valueTime: FHIRTime?
+	
 	public dynamic var valueUri: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -397,6 +435,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -451,6 +490,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
@@ -478,6 +518,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -496,6 +537,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
 					self.valueUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))

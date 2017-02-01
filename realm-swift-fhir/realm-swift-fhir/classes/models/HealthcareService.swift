@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -19,27 +19,49 @@ open class HealthcareService: DomainResource {
 	}
 
 	public let appointmentRequired = RealmOptional<Bool>()
+	
 	public dynamic var availabilityExceptions: String?
+	
 	public let availableTime = RealmSwift.List<HealthcareServiceAvailableTime>()
+	
 	public let characteristic = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var comment: String?
+	
 	public let coverageArea = RealmSwift.List<Reference>()
+	
 	public dynamic var eligibility: CodeableConcept?
+	
 	public dynamic var eligibilityNote: String?
+	
 	public dynamic var extraDetails: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var location: Reference?
+	
 	public let notAvailable = RealmSwift.List<HealthcareServiceNotAvailable>()
+	
 	public dynamic var photo: Attachment?
+	
 	public let programName = RealmSwift.List<RealmString>()
+	
 	public dynamic var providedBy: Reference?
+	
 	public dynamic var publicKey: String?
+	
 	public let referralMethod = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var serviceCategory: CodeableConcept?
+	
 	public dynamic var serviceName: String?
+	
 	public let serviceProvisionCode = RealmSwift.List<CodeableConcept>()
+	
 	public let serviceType = RealmSwift.List<HealthcareServiceServiceType>()
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -55,6 +77,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("appointmentRequired")
 				if let val = exist as? Bool {
 					self.appointmentRequired.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "appointmentRequired", wants: Bool.self, has: type(of: exist)))
@@ -64,6 +87,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("availabilityExceptions")
 				if let val = exist as? String {
 					self.availabilityExceptions = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availabilityExceptions", wants: String.self, has: type(of: exist)))
@@ -95,6 +119,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -124,6 +149,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("eligibilityNote")
 				if let val = exist as? String {
 					self.eligibilityNote = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "eligibilityNote", wants: String.self, has: type(of: exist)))
@@ -133,6 +159,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("extraDetails")
 				if let val = exist as? String {
 					self.extraDetails = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "extraDetails", wants: String.self, has: type(of: exist)))
@@ -203,6 +230,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("publicKey")
 				if let val = exist as? String {
 					self.publicKey = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publicKey", wants: String.self, has: type(of: exist)))
@@ -232,6 +260,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("serviceName")
 				if let val = exist as? String {
 					self.serviceName = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceName", wants: String.self, has: type(of: exist)))
@@ -360,9 +389,13 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 	}
 
 	public let allDay = RealmOptional<Bool>()
+	
 	public dynamic var availableEndTime: FHIRTime?
+	
 	public dynamic var availableStartTime: FHIRTime?
+	
 	public let daysOfWeek = RealmSwift.List<RealmString>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -372,6 +405,7 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 				presentKeys.insert("allDay")
 				if let val = exist as? Bool {
 					self.allDay.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "allDay", wants: Bool.self, has: type(of: exist)))
@@ -440,7 +474,9 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 	}
 
 	public dynamic var description_fhir: String?
+	
 	public dynamic var during: Period?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -456,6 +492,7 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -503,7 +540,9 @@ open class HealthcareServiceServiceType: BackboneElement {
 	}
 
 	public let specialty = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

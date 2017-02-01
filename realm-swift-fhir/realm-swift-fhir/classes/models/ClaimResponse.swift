@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,31 +21,57 @@ open class ClaimResponse: DomainResource {
 	}
 
 	public let addItem = RealmSwift.List<ClaimResponseAddItem>()
+	
 	public let coverage = RealmSwift.List<ClaimResponseCoverage>()
+	
 	public dynamic var created: DateTime?
+	
 	public dynamic var disposition: String?
+	
 	public let error = RealmSwift.List<ClaimResponseError>()
+	
 	public dynamic var form: Coding?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let item = RealmSwift.List<ClaimResponseItem>()
+	
 	public let note = RealmSwift.List<ClaimResponseNote>()
+	
 	public dynamic var organization: Reference?
+	
 	public dynamic var originalRuleset: Coding?
+	
 	public dynamic var outcome: String?
+	
 	public dynamic var payeeType: Coding?
+	
 	public dynamic var paymentAdjustment: Quantity?
+	
 	public dynamic var paymentAdjustmentReason: Coding?
+	
 	public dynamic var paymentAmount: Quantity?
+	
 	public dynamic var paymentDate: FHIRDate?
+	
 	public dynamic var paymentRef: Identifier?
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var requestOrganization: Reference?
+	
 	public dynamic var requestProvider: Reference?
+	
 	public dynamic var reserved: Coding?
+	
 	public dynamic var ruleset: Coding?
+	
 	public dynamic var totalBenefit: Quantity?
+	
 	public dynamic var totalCost: Quantity?
+	
 	public dynamic var unallocDeductable: Quantity?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -86,6 +112,7 @@ open class ClaimResponse: DomainResource {
 				presentKeys.insert("disposition")
 				if let val = exist as? String {
 					self.disposition = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -166,6 +193,7 @@ open class ClaimResponse: DomainResource {
 				presentKeys.insert("outcome")
 				if let val = exist as? String {
 					self.outcome = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: String.self, has: type(of: exist)))
@@ -399,11 +427,17 @@ open class ClaimResponseAddItem: BackboneElement {
 	}
 
 	public let adjudication = RealmSwift.List<ClaimResponseAddItemAdjudication>()
+	
 	public let detail = RealmSwift.List<ClaimResponseAddItemDetail>()
+	
 	public dynamic var fee: Quantity?
+	
 	public let noteNumberLinkId = RealmSwift.List<RealmInt>()
+	
 	public let sequenceLinkId = RealmSwift.List<RealmInt>()
+	
 	public dynamic var service: Coding?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -518,8 +552,11 @@ open class ClaimResponseAddItemAdjudication: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var code: Coding?
+	
 	public dynamic var value: RealmDecimal?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -594,8 +631,11 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 	}
 
 	public let adjudication = RealmSwift.List<ClaimResponseAddItemDetailAdjudication>()
+	
 	public dynamic var fee: Quantity?
+	
 	public dynamic var service: Coding?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -672,8 +712,11 @@ open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var code: Coding?
+	
 	public dynamic var value: RealmDecimal?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -748,13 +791,21 @@ open class ClaimResponseCoverage: BackboneElement {
 	}
 
 	public dynamic var businessArrangement: String?
+	
 	public dynamic var claimResponse: Reference?
+	
 	public dynamic var coverage: Reference?
+	
 	public let focal = RealmOptional<Bool>()
+	
 	public dynamic var originalRuleset: Coding?
+	
 	public let preAuthRef = RealmSwift.List<RealmString>()
+	
 	public dynamic var relationship: Coding?
+	
 	public let sequence = RealmOptional<Int>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -773,6 +824,7 @@ open class ClaimResponseCoverage: BackboneElement {
 				presentKeys.insert("businessArrangement")
 				if let val = exist as? String {
 					self.businessArrangement = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
@@ -803,6 +855,7 @@ open class ClaimResponseCoverage: BackboneElement {
 				presentKeys.insert("focal")
 				if let val = exist as? Bool {
 					self.focal.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "focal", wants: Bool.self, has: type(of: exist)))
@@ -845,6 +898,7 @@ open class ClaimResponseCoverage: BackboneElement {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -901,9 +955,13 @@ open class ClaimResponseError: BackboneElement {
 	}
 
 	public dynamic var code: Coding?
+	
 	public let detailSequenceLinkId = RealmOptional<Int>()
+	
 	public let sequenceLinkId = RealmOptional<Int>()
+	
 	public let subdetailSequenceLinkId = RealmOptional<Int>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -931,6 +989,7 @@ open class ClaimResponseError: BackboneElement {
 				presentKeys.insert("detailSequenceLinkId")
 				if let val = exist as? Int {
 					self.detailSequenceLinkId.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "detailSequenceLinkId", wants: Int.self, has: type(of: exist)))
@@ -940,6 +999,7 @@ open class ClaimResponseError: BackboneElement {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? Int {
 					self.sequenceLinkId.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Int.self, has: type(of: exist)))
@@ -949,6 +1009,7 @@ open class ClaimResponseError: BackboneElement {
 				presentKeys.insert("subdetailSequenceLinkId")
 				if let val = exist as? Int {
 					self.subdetailSequenceLinkId.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subdetailSequenceLinkId", wants: Int.self, has: type(of: exist)))
@@ -990,9 +1051,13 @@ open class ClaimResponseItem: BackboneElement {
 	}
 
 	public let adjudication = RealmSwift.List<ClaimResponseItemAdjudication>()
+	
 	public let detail = RealmSwift.List<ClaimResponseItemDetail>()
+	
 	public let noteNumber = RealmSwift.List<RealmInt>()
+	
 	public let sequenceLinkId = RealmOptional<Int>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1039,6 +1104,7 @@ open class ClaimResponseItem: BackboneElement {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? Int {
 					self.sequenceLinkId.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Int.self, has: type(of: exist)))
@@ -1083,8 +1149,11 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var code: Coding?
+	
 	public dynamic var value: RealmDecimal?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1159,8 +1228,11 @@ open class ClaimResponseItemDetail: BackboneElement {
 	}
 
 	public let adjudication = RealmSwift.List<ClaimResponseItemDetailAdjudication>()
+	
 	public let sequenceLinkId = RealmOptional<Int>()
+	
 	public let subDetail = RealmSwift.List<ClaimResponseItemDetailSubDetail>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1187,6 +1259,7 @@ open class ClaimResponseItemDetail: BackboneElement {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? Int {
 					self.sequenceLinkId.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Int.self, has: type(of: exist)))
@@ -1239,8 +1312,11 @@ open class ClaimResponseItemDetailAdjudication: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var code: Coding?
+	
 	public dynamic var value: RealmDecimal?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1315,7 +1391,9 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 	}
 
 	public let adjudication = RealmSwift.List<ClaimResponseItemDetailSubDetailAdjudication>()
+	
 	public let sequenceLinkId = RealmOptional<Int>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1342,6 +1420,7 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? Int {
 					self.sequenceLinkId.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Int.self, has: type(of: exist)))
@@ -1380,8 +1459,11 @@ open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var code: Coding?
+	
 	public dynamic var value: RealmDecimal?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -1456,8 +1538,11 @@ open class ClaimResponseNote: BackboneElement {
 	}
 
 	public let number = RealmOptional<Int>()
+	
 	public dynamic var text: String?
+	
 	public dynamic var type: Coding?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1467,6 +1552,7 @@ open class ClaimResponseNote: BackboneElement {
 				presentKeys.insert("number")
 				if let val = exist as? Int {
 					self.number.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "number", wants: Int.self, has: type(of: exist)))
@@ -1476,6 +1562,7 @@ open class ClaimResponseNote: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))

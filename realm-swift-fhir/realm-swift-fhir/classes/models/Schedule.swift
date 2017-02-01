@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -19,10 +19,15 @@ open class Schedule: DomainResource {
 	}
 
 	public dynamic var actor: Reference?
+	
 	public dynamic var comment: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var planningHorizon: Period?
+	
 	public let type = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -50,6 +55,7 @@ open class Schedule: DomainResource {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))

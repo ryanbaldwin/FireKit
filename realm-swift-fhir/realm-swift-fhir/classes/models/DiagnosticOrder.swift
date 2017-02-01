@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,17 +21,29 @@ open class DiagnosticOrder: DomainResource {
 	}
 
 	public dynamic var encounter: Reference?
+	
 	public let event = RealmSwift.List<DiagnosticOrderEvent>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let item = RealmSwift.List<DiagnosticOrderItem>()
+	
 	public let note = RealmSwift.List<Annotation>()
+	
 	public dynamic var orderer: Reference?
+	
 	public dynamic var priority: String?
+	
 	public let reason = RealmSwift.List<CodeableConcept>()
+	
 	public let specimen = RealmSwift.List<Reference>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public let supportingInformation = RealmSwift.List<Reference>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -109,6 +121,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("priority")
 				if let val = exist as? String {
 					self.priority = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: type(of: exist)))
@@ -140,6 +153,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -229,9 +243,13 @@ open class DiagnosticOrderEvent: BackboneElement {
 	}
 
 	public dynamic var actor: Reference?
+	
 	public dynamic var dateTime: DateTime?
+	
 	public dynamic var description_fhir: CodeableConcept?
+	
 	public dynamic var status: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -278,6 +296,7 @@ open class DiagnosticOrderEvent: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -323,10 +342,15 @@ open class DiagnosticOrderItem: BackboneElement {
 	}
 
 	public dynamic var bodySite: CodeableConcept?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public let event = RealmSwift.List<DiagnosticOrderEvent>()
+	
 	public let specimen = RealmSwift.List<Reference>()
+	
 	public dynamic var status: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -385,6 +409,7 @@ open class DiagnosticOrderItem: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

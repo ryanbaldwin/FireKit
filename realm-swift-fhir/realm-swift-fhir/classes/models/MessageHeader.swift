@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,16 +23,27 @@ open class MessageHeader: DomainResource {
 	}
 
 	public dynamic var author: Reference?
+	
 	public let data = RealmSwift.List<Reference>()
+	
 	public let destination = RealmSwift.List<MessageHeaderDestination>()
+	
 	public dynamic var enterer: Reference?
+	
 	public dynamic var event: Coding?
+	
 	public dynamic var reason: CodeableConcept?
+	
 	public dynamic var receiver: Reference?
+	
 	public dynamic var response: MessageHeaderResponse?
+	
 	public dynamic var responsible: Reference?
+	
 	public dynamic var source: MessageHeaderSource?
+	
 	public dynamic var timestamp: Instant?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -215,8 +226,11 @@ open class MessageHeaderDestination: BackboneElement {
 	}
 
 	public dynamic var endpoint: String?
+	
 	public dynamic var name: String?
+	
 	public dynamic var target: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -232,6 +246,7 @@ open class MessageHeaderDestination: BackboneElement {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
 					self.endpoint = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -244,6 +259,7 @@ open class MessageHeaderDestination: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -291,8 +307,11 @@ open class MessageHeaderResponse: BackboneElement {
 	}
 
 	public dynamic var code: String?
+	
 	public dynamic var details: Reference?
+	
 	public dynamic var identifier: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -309,6 +328,7 @@ open class MessageHeaderResponse: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -330,6 +350,7 @@ open class MessageHeaderResponse: BackboneElement {
 				presentKeys.insert("identifier")
 				if let val = exist as? String {
 					self.identifier = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: type(of: exist)))
@@ -371,10 +392,15 @@ open class MessageHeaderSource: BackboneElement {
 	}
 
 	public dynamic var contact: ContactPoint?
+	
 	public dynamic var endpoint: String?
+	
 	public dynamic var name: String?
+	
 	public dynamic var software: String?
+	
 	public dynamic var version: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -399,6 +425,7 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
 					self.endpoint = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -411,6 +438,7 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -420,6 +448,7 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("software")
 				if let val = exist as? String {
 					self.software = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "software", wants: String.self, has: type(of: exist)))
@@ -429,6 +458,7 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  Coding.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coding) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coding) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -19,10 +19,15 @@ open class Coding: Element {
 	}
 
 	public dynamic var code: String?
+	
 	public dynamic var display: String?
+	
 	public dynamic var system: String?
+	
 	public let userSelected = RealmOptional<Bool>()
+	
 	public dynamic var version: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -32,6 +37,7 @@ open class Coding: Element {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -41,6 +47,7 @@ open class Coding: Element {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
@@ -50,6 +57,7 @@ open class Coding: Element {
 				presentKeys.insert("system")
 				if let val = exist as? String {
 					self.system = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
@@ -59,6 +67,7 @@ open class Coding: Element {
 				presentKeys.insert("userSelected")
 				if let val = exist as? Bool {
 					self.userSelected.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "userSelected", wants: Bool.self, has: type(of: exist)))
@@ -68,6 +77,7 @@ open class Coding: Element {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))

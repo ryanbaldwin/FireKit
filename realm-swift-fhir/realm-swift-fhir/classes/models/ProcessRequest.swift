@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,21 +22,37 @@ open class ProcessRequest: DomainResource {
 	}
 
 	public dynamic var action: String?
+	
 	public dynamic var created: DateTime?
+	
 	public let exclude = RealmSwift.List<RealmString>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let include = RealmSwift.List<RealmString>()
+	
 	public let item = RealmSwift.List<ProcessRequestItem>()
+	
 	public let nullify = RealmOptional<Bool>()
+	
 	public dynamic var organization: Reference?
+	
 	public dynamic var originalRuleset: Coding?
+	
 	public dynamic var period: Period?
+	
 	public dynamic var provider: Reference?
+	
 	public dynamic var reference: String?
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var response: Reference?
+	
 	public dynamic var ruleset: Coding?
+	
 	public dynamic var target: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -52,6 +68,7 @@ open class ProcessRequest: DomainResource {
 				presentKeys.insert("action")
 				if let val = exist as? String {
 					self.action = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "action", wants: String.self, has: type(of: exist)))
@@ -113,6 +130,7 @@ open class ProcessRequest: DomainResource {
 				presentKeys.insert("nullify")
 				if let val = exist as? Bool {
 					self.nullify.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "nullify", wants: Bool.self, has: type(of: exist)))
@@ -158,6 +176,7 @@ open class ProcessRequest: DomainResource {
 				presentKeys.insert("reference")
 				if let val = exist as? String {
 					self.reference = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: type(of: exist)))
@@ -271,6 +290,7 @@ open class ProcessRequestItem: BackboneElement {
 	}
 
 	public let sequenceLinkId = RealmOptional<Int>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -286,6 +306,7 @@ open class ProcessRequestItem: BackboneElement {
 				presentKeys.insert("sequenceLinkId")
 				if let val = exist as? Int {
 					self.sequenceLinkId.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequenceLinkId", wants: Int.self, has: type(of: exist)))

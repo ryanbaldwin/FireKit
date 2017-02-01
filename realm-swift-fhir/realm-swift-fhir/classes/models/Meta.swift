@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,10 +22,15 @@ open class Meta: Element {
 	}
 
 	public dynamic var lastUpdated: Instant?
+	
 	public let profile = RealmSwift.List<RealmString>()
+	
 	public let security = RealmSwift.List<Coding>()
+	
 	public let tag = RealmSwift.List<Coding>()
+	
 	public dynamic var versionId: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -75,6 +80,7 @@ open class Meta: Element {
 				presentKeys.insert("versionId")
 				if let val = exist as? String {
 					self.versionId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "versionId", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,15 +22,25 @@ open class Address: Element {
 	}
 
 	public dynamic var city: String?
+	
 	public dynamic var country: String?
+	
 	public dynamic var district: String?
+	
 	public let line = RealmSwift.List<RealmString>()
+	
 	public dynamic var period: Period?
+	
 	public dynamic var postalCode: String?
+	
 	public dynamic var state: String?
+	
 	public dynamic var text: String?
+	
 	public dynamic var type: String?
+	
 	public dynamic var use: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -40,6 +50,7 @@ open class Address: Element {
 				presentKeys.insert("city")
 				if let val = exist as? String {
 					self.city = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "city", wants: String.self, has: type(of: exist)))
@@ -49,6 +60,7 @@ open class Address: Element {
 				presentKeys.insert("country")
 				if let val = exist as? String {
 					self.country = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "country", wants: String.self, has: type(of: exist)))
@@ -58,6 +70,7 @@ open class Address: Element {
 				presentKeys.insert("district")
 				if let val = exist as? String {
 					self.district = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "district", wants: String.self, has: type(of: exist)))
@@ -85,6 +98,7 @@ open class Address: Element {
 				presentKeys.insert("postalCode")
 				if let val = exist as? String {
 					self.postalCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "postalCode", wants: String.self, has: type(of: exist)))
@@ -94,6 +108,7 @@ open class Address: Element {
 				presentKeys.insert("state")
 				if let val = exist as? String {
 					self.state = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "state", wants: String.self, has: type(of: exist)))
@@ -103,6 +118,7 @@ open class Address: Element {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -112,6 +128,7 @@ open class Address: Element {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -121,6 +138,7 @@ open class Address: Element {
 				presentKeys.insert("use")
 				if let val = exist as? String {
 					self.use = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))

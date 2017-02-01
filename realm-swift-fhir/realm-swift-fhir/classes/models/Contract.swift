@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,24 +21,43 @@ open class Contract: DomainResource {
 	}
 
 	public let action = RealmSwift.List<CodeableConcept>()
+	
 	public let actionReason = RealmSwift.List<CodeableConcept>()
+	
 	public let actor = RealmSwift.List<ContractActor>()
+	
 	public dynamic var applies: Period?
+	
 	public let authority = RealmSwift.List<Reference>()
+	
 	public dynamic var bindingAttachment: Attachment?
+	
 	public dynamic var bindingReference: Reference?
+	
 	public let domain = RealmSwift.List<Reference>()
+	
 	public let friendly = RealmSwift.List<ContractFriendly>()
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var issued: DateTime?
+	
 	public let legal = RealmSwift.List<ContractLegal>()
+	
 	public let rule = RealmSwift.List<ContractRule>()
+	
 	public let signer = RealmSwift.List<ContractSigner>()
+	
 	public let subType = RealmSwift.List<CodeableConcept>()
+	
 	public let subject = RealmSwift.List<Reference>()
+	
 	public let term = RealmSwift.List<ContractTerm>()
+	
 	public dynamic var type: CodeableConcept?
+	
 	public let valuedItem = RealmSwift.List<ContractValuedItem>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -322,7 +341,9 @@ open class ContractActor: BackboneElement {
 	}
 
 	public dynamic var entity: Reference?
+	
 	public let role = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -390,7 +411,9 @@ open class ContractFriendly: BackboneElement {
 	}
 
 	public dynamic var contentAttachment: Attachment?
+	
 	public dynamic var contentReference: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -456,7 +479,9 @@ open class ContractLegal: BackboneElement {
 	}
 
 	public dynamic var contentAttachment: Attachment?
+	
 	public dynamic var contentReference: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -522,7 +547,9 @@ open class ContractRule: BackboneElement {
 	}
 
 	public dynamic var contentAttachment: Attachment?
+	
 	public dynamic var contentReference: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -588,8 +615,11 @@ open class ContractSigner: BackboneElement {
 	}
 
 	public dynamic var party: Reference?
+	
 	public dynamic var signature: String?
+	
 	public dynamic var type: Coding?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -619,6 +649,7 @@ open class ContractSigner: BackboneElement {
 				presentKeys.insert("signature")
 				if let val = exist as? String {
 					self.signature = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "signature", wants: String.self, has: type(of: exist)))
@@ -672,17 +703,29 @@ open class ContractTerm: BackboneElement {
 	}
 
 	public let action = RealmSwift.List<CodeableConcept>()
+	
 	public let actionReason = RealmSwift.List<CodeableConcept>()
+	
 	public let actor = RealmSwift.List<ContractTermActor>()
+	
 	public dynamic var applies: Period?
+	
 	public let group = RealmSwift.List<ContractTerm>()
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var issued: DateTime?
+	
 	public dynamic var subType: CodeableConcept?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var text: String?
+	
 	public dynamic var type: CodeableConcept?
+	
 	public let valuedItem = RealmSwift.List<ContractTermValuedItem>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -781,6 +824,7 @@ open class ContractTerm: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -866,7 +910,9 @@ open class ContractTermActor: BackboneElement {
 	}
 
 	public dynamic var entity: Reference?
+	
 	public let role = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -931,14 +977,23 @@ open class ContractTermValuedItem: BackboneElement {
 	}
 
 	public dynamic var effectiveTime: DateTime?
+	
 	public dynamic var entityCodeableConcept: CodeableConcept?
+	
 	public dynamic var entityReference: Reference?
+	
 	public dynamic var factor: RealmDecimal?
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var net: Quantity?
+	
 	public dynamic var points: RealmDecimal?
+	
 	public dynamic var quantity: Quantity?
+	
 	public dynamic var unitPrice: Quantity?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1076,14 +1131,23 @@ open class ContractValuedItem: BackboneElement {
 	}
 
 	public dynamic var effectiveTime: DateTime?
+	
 	public dynamic var entityCodeableConcept: CodeableConcept?
+	
 	public dynamic var entityReference: Reference?
+	
 	public dynamic var factor: RealmDecimal?
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var net: Quantity?
+	
 	public dynamic var points: RealmDecimal?
+	
 	public dynamic var quantity: Quantity?
+	
 	public dynamic var unitPrice: Quantity?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

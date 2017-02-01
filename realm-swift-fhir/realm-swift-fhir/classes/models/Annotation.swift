@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,9 +21,13 @@ open class Annotation: Element {
 	}
 
 	public dynamic var authorReference: Reference?
+	
 	public dynamic var authorString: String?
+	
 	public dynamic var text: String?
+	
 	public dynamic var time: DateTime?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -48,6 +52,7 @@ open class Annotation: Element {
 				presentKeys.insert("authorString")
 				if let val = exist as? String {
 					self.authorString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "authorString", wants: String.self, has: type(of: exist)))
@@ -57,6 +62,7 @@ open class Annotation: Element {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))

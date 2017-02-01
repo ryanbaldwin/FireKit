@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,21 +22,37 @@ open class Goal: DomainResource {
 	}
 
 	public let addresses = RealmSwift.List<Reference>()
+	
 	public dynamic var author: Reference?
+	
 	public let category = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var description_fhir: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let note = RealmSwift.List<Annotation>()
+	
 	public let outcome = RealmSwift.List<GoalOutcome>()
+	
 	public dynamic var priority: CodeableConcept?
+	
 	public dynamic var startCodeableConcept: CodeableConcept?
+	
 	public dynamic var startDate: FHIRDate?
+	
 	public dynamic var status: String?
+	
 	public dynamic var statusDate: FHIRDate?
+	
 	public dynamic var statusReason: CodeableConcept?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var targetDate: FHIRDate?
+	
 	public dynamic var targetQuantity: Quantity?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -84,6 +100,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -156,6 +173,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -281,7 +299,9 @@ open class GoalOutcome: BackboneElement {
 	}
 
 	public dynamic var resultCodeableConcept: CodeableConcept?
+	
 	public dynamic var resultReference: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

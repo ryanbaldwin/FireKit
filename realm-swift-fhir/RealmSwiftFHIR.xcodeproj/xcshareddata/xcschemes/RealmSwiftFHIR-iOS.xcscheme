@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
-               BuildableName = "RealmSwiftFHIR-iOS.framework"
+               BuildableName = "RealmSwiftFHIR.framework"
                BlueprintName = "RealmSwiftFHIR-iOS"
                ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
-            BuildableName = "RealmSwiftFHIR-iOS.framework"
+            BuildableName = "RealmSwiftFHIR.framework"
             BlueprintName = "RealmSwiftFHIR-iOS"
             ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
-            BuildableName = "RealmSwiftFHIR-iOS.framework"
+            BuildableName = "RealmSwiftFHIR.framework"
             BlueprintName = "RealmSwiftFHIR-iOS"
             ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
-            BuildableName = "RealmSwiftFHIR-iOS.framework"
+            BuildableName = "RealmSwiftFHIR.framework"
             BlueprintName = "RealmSwiftFHIR-iOS"
             ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
          </BuildableReference>

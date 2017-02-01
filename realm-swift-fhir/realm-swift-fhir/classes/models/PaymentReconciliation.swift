@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,20 +21,35 @@ open class PaymentReconciliation: DomainResource {
 	}
 
 	public dynamic var created: DateTime?
+	
 	public let detail = RealmSwift.List<PaymentReconciliationDetail>()
+	
 	public dynamic var disposition: String?
+	
 	public dynamic var form: Coding?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let note = RealmSwift.List<PaymentReconciliationNote>()
+	
 	public dynamic var organization: Reference?
+	
 	public dynamic var originalRuleset: Coding?
+	
 	public dynamic var outcome: String?
+	
 	public dynamic var period: Period?
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var requestOrganization: Reference?
+	
 	public dynamic var requestProvider: Reference?
+	
 	public dynamic var ruleset: Coding?
+	
 	public dynamic var total: Quantity?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -70,6 +85,7 @@ open class PaymentReconciliation: DomainResource {
 				presentKeys.insert("disposition")
 				if let val = exist as? String {
 					self.disposition = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -128,6 +144,7 @@ open class PaymentReconciliation: DomainResource {
 				presentKeys.insert("outcome")
 				if let val = exist as? String {
 					self.outcome = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: String.self, has: type(of: exist)))
@@ -259,12 +276,19 @@ open class PaymentReconciliationDetail: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var date: FHIRDate?
+	
 	public dynamic var payee: Reference?
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var responce: Reference?
+	
 	public dynamic var submitter: Reference?
+	
 	public dynamic var type: Coding?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -387,7 +411,9 @@ open class PaymentReconciliationNote: BackboneElement {
 	}
 
 	public dynamic var text: String?
+	
 	public dynamic var type: Coding?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -397,6 +423,7 @@ open class PaymentReconciliationNote: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))

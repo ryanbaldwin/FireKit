@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,30 +22,55 @@ open class StructureDefinition: DomainResource {
 	}
 
 	public let abstract = RealmOptional<Bool>()
+	
 	public dynamic var base: String?
+	
 	public let code = RealmSwift.List<Coding>()
+	
 	public dynamic var constrainedType: String?
+	
 	public let contact = RealmSwift.List<StructureDefinitionContact>()
+	
 	public let context = RealmSwift.List<RealmString>()
+	
 	public dynamic var contextType: String?
+	
 	public dynamic var copyright: String?
+	
 	public dynamic var date: DateTime?
+	
 	public dynamic var description_fhir: String?
+	
 	public dynamic var differential: StructureDefinitionDifferential?
+	
 	public dynamic var display: String?
+	
 	public let experimental = RealmOptional<Bool>()
+	
 	public dynamic var fhirVersion: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var kind: String?
+	
 	public let mapping = RealmSwift.List<StructureDefinitionMapping>()
+	
 	public dynamic var name: String?
+	
 	public dynamic var publisher: String?
+	
 	public dynamic var requirements: String?
+	
 	public dynamic var snapshot: StructureDefinitionSnapshot?
+	
 	public dynamic var status: String?
+	
 	public dynamic var url: String?
+	
 	public let useContext = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var version: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -65,6 +90,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("abstract")
 				if let val = exist as? Bool {
 					self.abstract.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: type(of: exist)))
@@ -77,6 +103,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("base")
 				if let val = exist as? String {
 					self.base = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "base", wants: String.self, has: type(of: exist)))
@@ -97,6 +124,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("constrainedType")
 				if let val = exist as? String {
 					self.constrainedType = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "constrainedType", wants: String.self, has: type(of: exist)))
@@ -126,6 +154,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("contextType")
 				if let val = exist as? String {
 					self.contextType = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contextType", wants: String.self, has: type(of: exist)))
@@ -135,6 +164,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -153,6 +183,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -171,6 +202,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
@@ -180,6 +212,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -189,6 +222,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("fhirVersion")
 				if let val = exist as? String {
 					self.fhirVersion = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fhirVersion", wants: String.self, has: type(of: exist)))
@@ -209,6 +243,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("kind")
 				if let val = exist as? String {
 					self.kind = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -232,6 +267,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -244,6 +280,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -253,6 +290,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -271,6 +309,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -283,6 +322,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -306,6 +346,7 @@ open class StructureDefinition: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -410,7 +451,9 @@ open class StructureDefinitionContact: BackboneElement {
 	}
 
 	public dynamic var name: String?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -420,6 +463,7 @@ open class StructureDefinitionContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -467,6 +511,7 @@ open class StructureDefinitionDifferential: BackboneElement {
 	}
 
 	public let element = RealmSwift.List<ElementDefinition>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -519,9 +564,13 @@ open class StructureDefinitionMapping: BackboneElement {
 	}
 
 	public dynamic var comments: String?
+	
 	public dynamic var identity: String?
+	
 	public dynamic var name: String?
+	
 	public dynamic var uri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -537,6 +586,7 @@ open class StructureDefinitionMapping: BackboneElement {
 				presentKeys.insert("comments")
 				if let val = exist as? String {
 					self.comments = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -546,6 +596,7 @@ open class StructureDefinitionMapping: BackboneElement {
 				presentKeys.insert("identity")
 				if let val = exist as? String {
 					self.identity = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identity", wants: String.self, has: type(of: exist)))
@@ -558,6 +609,7 @@ open class StructureDefinitionMapping: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -567,6 +619,7 @@ open class StructureDefinitionMapping: BackboneElement {
 				presentKeys.insert("uri")
 				if let val = exist as? String {
 					self.uri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uri", wants: String.self, has: type(of: exist)))
@@ -609,6 +662,7 @@ open class StructureDefinitionSnapshot: BackboneElement {
 	}
 
 	public let element = RealmSwift.List<ElementDefinition>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

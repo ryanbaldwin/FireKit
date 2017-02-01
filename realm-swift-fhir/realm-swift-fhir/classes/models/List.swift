@@ -2,7 +2,7 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,18 +21,31 @@ open class List: DomainResource {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var date: DateTime?
+	
 	public dynamic var emptyReason: CodeableConcept?
+	
 	public dynamic var encounter: Reference?
+	
 	public let entry = RealmSwift.List<ListEntry>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var mode: String?
+	
 	public dynamic var note: String?
+	
 	public dynamic var orderedBy: CodeableConcept?
+	
 	public dynamic var source: Reference?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var title: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -107,6 +120,7 @@ open class List: DomainResource {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -119,6 +133,7 @@ open class List: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? String {
 					self.note = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: String.self, has: type(of: exist)))
@@ -146,6 +161,7 @@ open class List: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -167,6 +183,7 @@ open class List: DomainResource {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -235,9 +252,13 @@ open class ListEntry: BackboneElement {
 	}
 
 	public dynamic var date: DateTime?
+	
 	public let deleted = RealmOptional<Bool>()
+	
 	public dynamic var flag: CodeableConcept?
+	
 	public dynamic var item: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -262,6 +283,7 @@ open class ListEntry: BackboneElement {
 				presentKeys.insert("deleted")
 				if let val = exist as? Bool {
 					self.deleted.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deleted", wants: Bool.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,15 +21,25 @@ open class EnrollmentRequest: DomainResource {
 	}
 
 	public dynamic var coverage: Reference?
+	
 	public dynamic var created: DateTime?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var organization: Reference?
+	
 	public dynamic var originalRuleset: Coding?
+	
 	public dynamic var provider: Reference?
+	
 	public dynamic var relationship: Coding?
+	
 	public dynamic var ruleset: Coding?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var target: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Extension) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Extension) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,39 +21,73 @@ open class Extension: Element {
 	}
 
 	public dynamic var url: String?
+	
 	public dynamic var valueAddress: Address?
+	
 	public dynamic var valueAnnotation: Annotation?
+	
 	public dynamic var valueAttachment: Attachment?
+	
 	public dynamic var valueBase64Binary: Base64Binary?
+	
 	public let valueBoolean = RealmOptional<Bool>()
+	
 	public dynamic var valueCode: String?
+	
 	public dynamic var valueCodeableConcept: CodeableConcept?
+	
 	public dynamic var valueCoding: Coding?
+	
 	public dynamic var valueContactPoint: ContactPoint?
+	
 	public dynamic var valueDate: FHIRDate?
+	
 	public dynamic var valueDateTime: DateTime?
+	
 	public dynamic var valueDecimal: RealmDecimal?
+	
 	public dynamic var valueHumanName: HumanName?
+	
 	public dynamic var valueId: String?
+	
 	public dynamic var valueIdentifier: Identifier?
+	
 	public dynamic var valueInstant: Instant?
+	
 	public let valueInteger = RealmOptional<Int>()
+	
 	public dynamic var valueMarkdown: String?
+	
 	public dynamic var valueMeta: Meta?
+	
 	public dynamic var valueOid: String?
+	
 	public dynamic var valuePeriod: Period?
+	
 	public let valuePositiveInt = RealmOptional<Int>()
+	
 	public dynamic var valueQuantity: Quantity?
+	
 	public dynamic var valueRange: Range?
+	
 	public dynamic var valueRatio: Ratio?
+	
 	public dynamic var valueReference: Reference?
+	
 	public dynamic var valueSampledData: SampledData?
+	
 	public dynamic var valueSignature: Signature?
+	
 	public dynamic var valueString: String?
+	
 	public dynamic var valueTime: FHIRTime?
+	
 	public dynamic var valueTiming: Timing?
+	
 	public let valueUnsignedInt = RealmOptional<Int>()
+	
 	public dynamic var valueUri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -69,6 +103,7 @@ open class Extension: Element {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -117,6 +152,7 @@ open class Extension: Element {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -126,6 +162,7 @@ open class Extension: Element {
 				presentKeys.insert("valueCode")
 				if let val = exist as? String {
 					self.valueCode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -198,6 +235,7 @@ open class Extension: Element {
 				presentKeys.insert("valueId")
 				if let val = exist as? String {
 					self.valueId = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -225,6 +263,7 @@ open class Extension: Element {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
@@ -234,6 +273,7 @@ open class Extension: Element {
 				presentKeys.insert("valueMarkdown")
 				if let val = exist as? String {
 					self.valueMarkdown = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
@@ -252,6 +292,7 @@ open class Extension: Element {
 				presentKeys.insert("valueOid")
 				if let val = exist as? String {
 					self.valueOid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueOid", wants: String.self, has: type(of: exist)))
@@ -270,6 +311,7 @@ open class Extension: Element {
 				presentKeys.insert("valuePositiveInt")
 				if let val = exist as? Int {
 					self.valuePositiveInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valuePositiveInt", wants: Int.self, has: type(of: exist)))
@@ -333,6 +375,7 @@ open class Extension: Element {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -360,6 +403,7 @@ open class Extension: Element {
 				presentKeys.insert("valueUnsignedInt")
 				if let val = exist as? Int {
 					self.valueUnsignedInt.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -369,6 +413,7 @@ open class Extension: Element {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
 					self.valueUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))

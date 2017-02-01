@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,9 +21,13 @@ open class DomainResource: Resource {
 	}
 
 	public let contained = RealmSwift.List<ContainedResource>()
+	
 	public let extension_fhir = RealmSwift.List<Extension>()
+	
 	public let modifierExtension = RealmSwift.List<Extension>()
+	
 	public dynamic var text: Narrative?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

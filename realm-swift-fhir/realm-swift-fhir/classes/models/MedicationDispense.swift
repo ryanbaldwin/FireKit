@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,22 +23,39 @@ open class MedicationDispense: DomainResource {
 	}
 
 	public let authorizingPrescription = RealmSwift.List<Reference>()
+	
 	public dynamic var daysSupply: Quantity?
+	
 	public dynamic var destination: Reference?
+	
 	public dynamic var dispenser: Reference?
+	
 	public let dosageInstruction = RealmSwift.List<MedicationDispenseDosageInstruction>()
+	
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var medicationCodeableConcept: CodeableConcept?
+	
 	public dynamic var medicationReference: Reference?
+	
 	public dynamic var note: String?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var quantity: Quantity?
+	
 	public let receiver = RealmSwift.List<Reference>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var substitution: MedicationDispenseSubstitution?
+	
 	public dynamic var type: CodeableConcept?
+	
 	public dynamic var whenHandedOver: DateTime?
+	
 	public dynamic var whenPrepared: DateTime?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -131,6 +148,7 @@ open class MedicationDispense: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? String {
 					self.note = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: String.self, has: type(of: exist)))
@@ -169,6 +187,7 @@ open class MedicationDispense: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -290,19 +309,33 @@ open class MedicationDispenseDosageInstruction: BackboneElement {
 	}
 
 	public dynamic var additionalInstructions: CodeableConcept?
+	
 	public let asNeededBoolean = RealmOptional<Bool>()
+	
 	public dynamic var asNeededCodeableConcept: CodeableConcept?
+	
 	public dynamic var doseQuantity: Quantity?
+	
 	public dynamic var doseRange: Range?
+	
 	public dynamic var maxDosePerPeriod: Ratio?
+	
 	public dynamic var method: CodeableConcept?
+	
 	public dynamic var rateRange: Range?
+	
 	public dynamic var rateRatio: Ratio?
+	
 	public dynamic var route: CodeableConcept?
+	
 	public dynamic var siteCodeableConcept: CodeableConcept?
+	
 	public dynamic var siteReference: Reference?
+	
 	public dynamic var text: String?
+	
 	public dynamic var timing: Timing?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -321,6 +354,7 @@ open class MedicationDispenseDosageInstruction: BackboneElement {
 				presentKeys.insert("asNeededBoolean")
 				if let val = exist as? Bool {
 					self.asNeededBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "asNeededBoolean", wants: Bool.self, has: type(of: exist)))
@@ -420,6 +454,7 @@ open class MedicationDispenseDosageInstruction: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -502,8 +537,11 @@ open class MedicationDispenseSubstitution: BackboneElement {
 	}
 
 	public let reason = RealmSwift.List<CodeableConcept>()
+	
 	public let responsibleParty = RealmSwift.List<Reference>()
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

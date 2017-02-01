@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -20,13 +20,17 @@ open class Resource: FHIRAbstractResource {
 		get { return "Resource" }
 	}
 
-	public dynamic var id = UUID().uuidString
+	public dynamic var id: String?
+	public dynamic var pk = UUID().uuidString
 	override open static func primaryKey() -> String? {
-		return "id"
+		return "pk"
 	}
 	public dynamic var implicitRules: String?
+	
 	public dynamic var language: String?
+	
 	public dynamic var meta: Meta?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -36,6 +40,7 @@ open class Resource: FHIRAbstractResource {
 				presentKeys.insert("id")
 				if let val = exist as? String {
 					self.id = val
+					self.pk = val
 				}
 				else {
 					errors.append(FHIRJSONError(key: "id", wants: String.self, has: type(of: exist)))
@@ -45,6 +50,7 @@ open class Resource: FHIRAbstractResource {
 				presentKeys.insert("implicitRules")
 				if let val = exist as? String {
 					self.implicitRules = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "implicitRules", wants: String.self, has: type(of: exist)))
@@ -54,6 +60,7 @@ open class Resource: FHIRAbstractResource {
 				presentKeys.insert("language")
 				if let val = exist as? String {
 					self.language = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
@@ -75,7 +82,9 @@ open class Resource: FHIRAbstractResource {
 	override open func asJSON() -> FHIRJSON {
 		var json = super.asJSON()
 		
+		if let id = self.id {
 			json["id"] = id.asJSON()
+		}
 		if let implicitRules = self.implicitRules {
 			json["implicitRules"] = implicitRules.asJSON()
 		}

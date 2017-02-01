@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -19,13 +19,21 @@ open class Slot: DomainResource {
 	}
 
 	public dynamic var comment: String?
+	
 	public dynamic var end: Instant?
+	
 	public dynamic var freeBusyType: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let overbooked = RealmOptional<Bool>()
+	
 	public dynamic var schedule: Reference?
+	
 	public dynamic var start: Instant?
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -44,6 +52,7 @@ open class Slot: DomainResource {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -65,6 +74,7 @@ open class Slot: DomainResource {
 				presentKeys.insert("freeBusyType")
 				if let val = exist as? String {
 					self.freeBusyType = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "freeBusyType", wants: String.self, has: type(of: exist)))
@@ -88,6 +98,7 @@ open class Slot: DomainResource {
 				presentKeys.insert("overbooked")
 				if let val = exist as? Bool {
 					self.overbooked.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "overbooked", wants: Bool.self, has: type(of: exist)))
