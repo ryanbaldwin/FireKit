@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,17 +22,29 @@ open class Location: DomainResource {
 	}
 
 	public dynamic var address: Address?
+	
 	public dynamic var description_fhir: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var managingOrganization: Reference?
+	
 	public dynamic var mode: String?
+	
 	public dynamic var name: String?
+	
 	public dynamic var partOf: Reference?
+	
 	public dynamic var physicalType: CodeableConcept?
+	
 	public dynamic var position: LocationPosition?
+	
 	public dynamic var status: String?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -51,6 +63,7 @@ open class Location: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -80,6 +93,7 @@ open class Location: DomainResource {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -89,6 +103,7 @@ open class Location: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -125,6 +140,7 @@ open class Location: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -211,8 +227,11 @@ open class LocationPosition: BackboneElement {
 	}
 
 	public dynamic var altitude: RealmDecimal?
+	
 	public dynamic var latitude: RealmDecimal?
+	
 	public dynamic var longitude: RealmDecimal?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -19,12 +19,19 @@ open class OrderResponse: DomainResource {
 	}
 
 	public dynamic var date: DateTime?
+	
 	public dynamic var description_fhir: String?
+	
 	public let fulfillment = RealmSwift.List<Reference>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var orderStatus: String?
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var who: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -50,6 +57,7 @@ open class OrderResponse: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -81,6 +89,7 @@ open class OrderResponse: DomainResource {
 				presentKeys.insert("orderStatus")
 				if let val = exist as? String {
 					self.orderStatus = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderStatus", wants: String.self, has: type(of: exist)))

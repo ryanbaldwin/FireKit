@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,13 +23,21 @@ open class Group: DomainResource {
 	}
 
 	public let actual = RealmOptional<Bool>()
+	
 	public let characteristic = RealmSwift.List<GroupCharacteristic>()
+	
 	public dynamic var code: CodeableConcept?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let member = RealmSwift.List<GroupMember>()
+	
 	public dynamic var name: String?
+	
 	public let quantity = RealmOptional<Int>()
+	
 	public dynamic var type: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -46,6 +54,7 @@ open class Group: DomainResource {
 				presentKeys.insert("actual")
 				if let val = exist as? Bool {
 					self.actual.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actual", wants: Bool.self, has: type(of: exist)))
@@ -100,6 +109,7 @@ open class Group: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -109,6 +119,7 @@ open class Group: DomainResource {
 				presentKeys.insert("quantity")
 				if let val = exist as? Int {
 					self.quantity.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: Int.self, has: type(of: exist)))
@@ -118,6 +129,7 @@ open class Group: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -174,12 +186,19 @@ open class GroupCharacteristic: BackboneElement {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public let exclude = RealmOptional<Bool>()
+	
 	public dynamic var period: Period?
+	
 	public let valueBoolean = RealmOptional<Bool>()
+	
 	public dynamic var valueCodeableConcept: CodeableConcept?
+	
 	public dynamic var valueQuantity: Quantity?
+	
 	public dynamic var valueRange: Range?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -212,6 +231,7 @@ open class GroupCharacteristic: BackboneElement {
 				presentKeys.insert("exclude")
 				if let val = exist as? Bool {
 					self.exclude.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exclude", wants: Bool.self, has: type(of: exist)))
@@ -233,6 +253,7 @@ open class GroupCharacteristic: BackboneElement {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -315,8 +336,11 @@ open class GroupMember: BackboneElement {
 	}
 
 	public dynamic var entity: Reference?
+	
 	public let inactive = RealmOptional<Bool>()
+	
 	public dynamic var period: Period?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -344,6 +368,7 @@ open class GroupMember: BackboneElement {
 				presentKeys.insert("inactive")
 				if let val = exist as? Bool {
 					self.inactive.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "inactive", wants: Bool.self, has: type(of: exist)))

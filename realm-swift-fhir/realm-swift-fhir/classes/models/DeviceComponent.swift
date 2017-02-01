@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,15 +22,25 @@ open class DeviceComponent: DomainResource {
 	}
 
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var languageCode: CodeableConcept?
+	
 	public dynamic var lastSystemChange: Instant?
+	
 	public dynamic var measurementPrinciple: String?
+	
 	public let operationalStatus = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var parameterGroup: CodeableConcept?
+	
 	public dynamic var parent: Reference?
+	
 	public let productionSpecification = RealmSwift.List<DeviceComponentProductionSpecification>()
+	
 	public dynamic var source: Reference?
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -81,6 +91,7 @@ open class DeviceComponent: DomainResource {
 				presentKeys.insert("measurementPrinciple")
 				if let val = exist as? String {
 					self.measurementPrinciple = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "measurementPrinciple", wants: String.self, has: type(of: exist)))
@@ -201,8 +212,11 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 	}
 
 	public dynamic var componentId: Identifier?
+	
 	public dynamic var productionSpec: String?
+	
 	public dynamic var specType: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -221,6 +235,7 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 				presentKeys.insert("productionSpec")
 				if let val = exist as? String {
 					self.productionSpec = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "productionSpec", wants: String.self, has: type(of: exist)))

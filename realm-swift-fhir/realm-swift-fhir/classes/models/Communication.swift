@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,18 +22,31 @@ open class Communication: DomainResource {
 	}
 
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let medium = RealmSwift.List<CodeableConcept>()
+	
 	public let payload = RealmSwift.List<CommunicationPayload>()
+	
 	public let reason = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var received: DateTime?
+	
 	public let recipient = RealmSwift.List<Reference>()
+	
 	public dynamic var requestDetail: Reference?
+	
 	public dynamic var sender: Reference?
+	
 	public dynamic var sent: DateTime?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -152,6 +165,7 @@ open class Communication: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -229,8 +243,11 @@ open class CommunicationPayload: BackboneElement {
 	}
 
 	public dynamic var contentAttachment: Attachment?
+	
 	public dynamic var contentReference: Reference?
+	
 	public dynamic var contentString: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -266,6 +283,7 @@ open class CommunicationPayload: BackboneElement {
 				presentKeys.insert("contentString")
 				if let val = exist as? String {
 					self.contentString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentString", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,24 +22,43 @@ open class OperationDefinition: DomainResource {
 	}
 
 	public dynamic var base: Reference?
+	
 	public dynamic var code: String?
+	
 	public let contact = RealmSwift.List<OperationDefinitionContact>()
+	
 	public dynamic var date: DateTime?
+	
 	public dynamic var description_fhir: String?
+	
 	public let experimental = RealmOptional<Bool>()
+	
 	public let idempotent = RealmOptional<Bool>()
+	
 	public let instance = RealmOptional<Bool>()
+	
 	public dynamic var kind: String?
+	
 	public dynamic var name: String?
+	
 	public dynamic var notes: String?
+	
 	public let parameter = RealmSwift.List<OperationDefinitionParameter>()
+	
 	public dynamic var publisher: String?
+	
 	public dynamic var requirements: String?
+	
 	public dynamic var status: String?
+	
 	public let system = RealmOptional<Bool>()
+	
 	public let type = RealmSwift.List<RealmString>()
+	
 	public dynamic var url: String?
+	
 	public dynamic var version: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -69,6 +88,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -101,6 +121,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -110,6 +131,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -119,6 +141,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("idempotent")
 				if let val = exist as? Bool {
 					self.idempotent.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "idempotent", wants: Bool.self, has: type(of: exist)))
@@ -128,6 +151,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("instance")
 				if let val = exist as? Bool {
 					self.instance.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "instance", wants: Bool.self, has: type(of: exist)))
@@ -140,6 +164,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("kind")
 				if let val = exist as? String {
 					self.kind = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -152,6 +177,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -164,6 +190,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("notes")
 				if let val = exist as? String {
 					self.notes = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: type(of: exist)))
@@ -184,6 +211,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -193,6 +221,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -202,6 +231,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -214,6 +244,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("system")
 				if let val = exist as? Bool {
 					self.system.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: Bool.self, has: type(of: exist)))
@@ -235,6 +266,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -244,6 +276,7 @@ open class OperationDefinition: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -330,7 +363,9 @@ open class OperationDefinitionContact: BackboneElement {
 	}
 
 	public dynamic var name: String?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -340,6 +375,7 @@ open class OperationDefinitionContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -386,14 +422,23 @@ open class OperationDefinitionParameter: BackboneElement {
 	}
 
 	public dynamic var binding: OperationDefinitionParameterBinding?
+	
 	public dynamic var documentation: String?
+	
 	public dynamic var max: String?
+	
 	public let min = RealmOptional<Int>()
+	
 	public dynamic var name: String?
+	
 	public let part = RealmSwift.List<OperationDefinitionParameter>()
+	
 	public dynamic var profile: Reference?
+	
 	public dynamic var type: String?
+	
 	public dynamic var use: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -421,6 +466,7 @@ open class OperationDefinitionParameter: BackboneElement {
 				presentKeys.insert("documentation")
 				if let val = exist as? String {
 					self.documentation = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "documentation", wants: String.self, has: type(of: exist)))
@@ -430,6 +476,7 @@ open class OperationDefinitionParameter: BackboneElement {
 				presentKeys.insert("max")
 				if let val = exist as? String {
 					self.max = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "max", wants: String.self, has: type(of: exist)))
@@ -442,6 +489,7 @@ open class OperationDefinitionParameter: BackboneElement {
 				presentKeys.insert("min")
 				if let val = exist as? Int {
 					self.min.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "min", wants: Int.self, has: type(of: exist)))
@@ -454,6 +502,7 @@ open class OperationDefinitionParameter: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -486,6 +535,7 @@ open class OperationDefinitionParameter: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -495,6 +545,7 @@ open class OperationDefinitionParameter: BackboneElement {
 				presentKeys.insert("use")
 				if let val = exist as? String {
 					self.use = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))
@@ -554,8 +605,11 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 	}
 
 	public dynamic var strength: String?
+	
 	public dynamic var valueSetReference: Reference?
+	
 	public dynamic var valueSetUri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -573,6 +627,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 				presentKeys.insert("strength")
 				if let val = exist as? String {
 					self.strength = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "strength", wants: String.self, has: type(of: exist)))
@@ -594,6 +649,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 				presentKeys.insert("valueSetUri")
 				if let val = exist as? String {
 					self.valueSetUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSetUri", wants: String.self, has: type(of: exist)))

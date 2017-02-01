@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,15 +22,25 @@ open class PaymentNotice: DomainResource {
 	}
 
 	public dynamic var created: DateTime?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var organization: Reference?
+	
 	public dynamic var originalRuleset: Coding?
+	
 	public dynamic var paymentStatus: Coding?
+	
 	public dynamic var provider: Reference?
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var response: Reference?
+	
 	public dynamic var ruleset: Coding?
+	
 	public dynamic var target: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

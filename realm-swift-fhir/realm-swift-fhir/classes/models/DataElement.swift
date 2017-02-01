@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,19 +21,33 @@ open class DataElement: DomainResource {
 	}
 
 	public let contact = RealmSwift.List<DataElementContact>()
+	
 	public dynamic var copyright: String?
+	
 	public dynamic var date: DateTime?
+	
 	public let element = RealmSwift.List<ElementDefinition>()
+	
 	public let experimental = RealmOptional<Bool>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let mapping = RealmSwift.List<DataElementMapping>()
+	
 	public dynamic var name: String?
+	
 	public dynamic var publisher: String?
+	
 	public dynamic var status: String?
+	
 	public dynamic var stringency: String?
+	
 	public dynamic var url: String?
+	
 	public let useContext = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var version: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -61,6 +75,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -93,6 +108,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -124,6 +140,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -133,6 +150,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -142,6 +160,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -154,6 +173,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("stringency")
 				if let val = exist as? String {
 					self.stringency = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "stringency", wants: String.self, has: type(of: exist)))
@@ -163,6 +183,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -183,6 +204,7 @@ open class DataElement: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -254,7 +276,9 @@ open class DataElementContact: BackboneElement {
 	}
 
 	public dynamic var name: String?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -264,6 +288,7 @@ open class DataElementContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -311,9 +336,13 @@ open class DataElementMapping: BackboneElement {
 	}
 
 	public dynamic var comments: String?
+	
 	public dynamic var identity: String?
+	
 	public dynamic var name: String?
+	
 	public dynamic var uri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -329,6 +358,7 @@ open class DataElementMapping: BackboneElement {
 				presentKeys.insert("comments")
 				if let val = exist as? String {
 					self.comments = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -338,6 +368,7 @@ open class DataElementMapping: BackboneElement {
 				presentKeys.insert("identity")
 				if let val = exist as? String {
 					self.identity = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identity", wants: String.self, has: type(of: exist)))
@@ -350,6 +381,7 @@ open class DataElementMapping: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -359,6 +391,7 @@ open class DataElementMapping: BackboneElement {
 				presentKeys.insert("uri")
 				if let val = exist as? String {
 					self.uri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uri", wants: String.self, has: type(of: exist)))

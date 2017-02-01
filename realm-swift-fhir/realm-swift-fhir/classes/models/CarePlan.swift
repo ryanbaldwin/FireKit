@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,21 +22,37 @@ open class CarePlan: DomainResource {
 	}
 
 	public let activity = RealmSwift.List<CarePlanActivity>()
+	
 	public let addresses = RealmSwift.List<Reference>()
+	
 	public let author = RealmSwift.List<Reference>()
+	
 	public let category = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var context: Reference?
+	
 	public dynamic var description_fhir: String?
+	
 	public let goal = RealmSwift.List<Reference>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var modified: DateTime?
+	
 	public dynamic var note: Annotation?
+	
 	public let participant = RealmSwift.List<CarePlanParticipant>()
+	
 	public dynamic var period: Period?
+	
 	public let relatedPlan = RealmSwift.List<CarePlanRelatedPlan>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public let support = RealmSwift.List<Reference>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -105,6 +121,7 @@ open class CarePlan: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -185,6 +202,7 @@ open class CarePlan: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -286,9 +304,13 @@ open class CarePlanActivity: BackboneElement {
 	}
 
 	public let actionResulting = RealmSwift.List<Reference>()
+	
 	public dynamic var detail: CarePlanActivityDetail?
+	
 	public let progress = RealmSwift.List<Annotation>()
+	
 	public dynamic var reference: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -371,23 +393,41 @@ open class CarePlanActivityDetail: BackboneElement {
 	}
 
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var dailyAmount: Quantity?
+	
 	public dynamic var description_fhir: String?
+	
 	public let goal = RealmSwift.List<Reference>()
+	
 	public dynamic var location: Reference?
+	
 	public let performer = RealmSwift.List<Reference>()
+	
 	public dynamic var productCodeableConcept: CodeableConcept?
+	
 	public dynamic var productReference: Reference?
+	
 	public let prohibited = RealmOptional<Bool>()
+	
 	public dynamic var quantity: Quantity?
+	
 	public let reasonCode = RealmSwift.List<CodeableConcept>()
+	
 	public let reasonReference = RealmSwift.List<Reference>()
+	
 	public dynamic var scheduledPeriod: Period?
+	
 	public dynamic var scheduledString: String?
+	
 	public dynamic var scheduledTiming: Timing?
+	
 	public dynamic var status: String?
+	
 	public dynamic var statusReason: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -430,6 +470,7 @@ open class CarePlanActivityDetail: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -488,6 +529,7 @@ open class CarePlanActivityDetail: BackboneElement {
 				presentKeys.insert("prohibited")
 				if let val = exist as? Bool {
 					self.prohibited.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "prohibited", wants: Bool.self, has: type(of: exist)))
@@ -540,6 +582,7 @@ open class CarePlanActivityDetail: BackboneElement {
 				presentKeys.insert("scheduledString")
 				if let val = exist as? String {
 					self.scheduledString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "scheduledString", wants: String.self, has: type(of: exist)))
@@ -558,6 +601,7 @@ open class CarePlanActivityDetail: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -650,7 +694,9 @@ open class CarePlanParticipant: BackboneElement {
 	}
 
 	public dynamic var member: Reference?
+	
 	public dynamic var role: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -704,7 +750,9 @@ open class CarePlanRelatedPlan: BackboneElement {
 	}
 
 	public dynamic var code: String?
+	
 	public dynamic var plan: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -720,6 +768,7 @@ open class CarePlanRelatedPlan: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))

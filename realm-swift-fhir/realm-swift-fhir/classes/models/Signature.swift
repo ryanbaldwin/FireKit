@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,11 +23,17 @@ open class Signature: Element {
 	}
 
 	public dynamic var blob: Base64Binary?
+	
 	public dynamic var contentType: String?
+	
 	public let type = RealmSwift.List<Coding>()
+	
 	public dynamic var when: Instant?
+	
 	public dynamic var whoReference: Reference?
+	
 	public dynamic var whoUri: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -60,6 +66,7 @@ open class Signature: Element {
 				presentKeys.insert("contentType")
 				if let val = exist as? String {
 					self.contentType = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -107,6 +114,7 @@ open class Signature: Element {
 				presentKeys.insert("whoUri")
 				if let val = exist as? String {
 					self.whoUri = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "whoUri", wants: String.self, has: type(of: exist)))

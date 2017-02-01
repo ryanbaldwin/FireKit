@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,17 +21,29 @@ open class NutritionOrder: DomainResource {
 	}
 
 	public let allergyIntolerance = RealmSwift.List<Reference>()
+	
 	public dynamic var dateTime: DateTime?
+	
 	public dynamic var encounter: Reference?
+	
 	public dynamic var enteralFormula: NutritionOrderEnteralFormula?
+	
 	public let excludeFoodModifier = RealmSwift.List<CodeableConcept>()
+	
 	public let foodPreferenceModifier = RealmSwift.List<CodeableConcept>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var oralDiet: NutritionOrderOralDiet?
+	
 	public dynamic var orderer: Reference?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var status: String?
+	
 	public let supplement = RealmSwift.List<NutritionOrderSupplement>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -152,6 +164,7 @@ open class NutritionOrder: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -229,14 +242,23 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 	}
 
 	public dynamic var additiveProductName: String?
+	
 	public dynamic var additiveType: CodeableConcept?
+	
 	public let administration = RealmSwift.List<NutritionOrderEnteralFormulaAdministration>()
+	
 	public dynamic var administrationInstruction: String?
+	
 	public dynamic var baseFormulaProductName: String?
+	
 	public dynamic var baseFormulaType: CodeableConcept?
+	
 	public dynamic var caloricDensity: Quantity?
+	
 	public dynamic var maxVolumeToDeliver: Quantity?
+	
 	public dynamic var routeofAdministration: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -246,6 +268,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 				presentKeys.insert("additiveProductName")
 				if let val = exist as? String {
 					self.additiveProductName = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "additiveProductName", wants: String.self, has: type(of: exist)))
@@ -275,6 +298,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 				presentKeys.insert("administrationInstruction")
 				if let val = exist as? String {
 					self.administrationInstruction = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "administrationInstruction", wants: String.self, has: type(of: exist)))
@@ -284,6 +308,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 				presentKeys.insert("baseFormulaProductName")
 				if let val = exist as? String {
 					self.baseFormulaProductName = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "baseFormulaProductName", wants: String.self, has: type(of: exist)))
@@ -378,9 +403,13 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 	}
 
 	public dynamic var quantity: Quantity?
+	
 	public dynamic var rateQuantity: Quantity?
+	
 	public dynamic var rateRatio: Ratio?
+	
 	public dynamic var schedule: Timing?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -458,11 +487,17 @@ open class NutritionOrderOralDiet: BackboneElement {
 	}
 
 	public let fluidConsistencyType = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var instruction: String?
+	
 	public let nutrient = RealmSwift.List<NutritionOrderOralDietNutrient>()
+	
 	public let schedule = RealmSwift.List<Timing>()
+	
 	public let texture = RealmSwift.List<NutritionOrderOralDietTexture>()
+	
 	public let type = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -483,6 +518,7 @@ open class NutritionOrderOralDiet: BackboneElement {
 				presentKeys.insert("instruction")
 				if let val = exist as? String {
 					self.instruction = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "instruction", wants: String.self, has: type(of: exist)))
@@ -574,7 +610,9 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var modifier: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -629,7 +667,9 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 	}
 
 	public dynamic var foodType: CodeableConcept?
+	
 	public dynamic var modifier: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -683,10 +723,15 @@ open class NutritionOrderSupplement: BackboneElement {
 	}
 
 	public dynamic var instruction: String?
+	
 	public dynamic var productName: String?
+	
 	public dynamic var quantity: Quantity?
+	
 	public let schedule = RealmSwift.List<Timing>()
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -696,6 +741,7 @@ open class NutritionOrderSupplement: BackboneElement {
 				presentKeys.insert("instruction")
 				if let val = exist as? String {
 					self.instruction = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "instruction", wants: String.self, has: type(of: exist)))
@@ -705,6 +751,7 @@ open class NutritionOrderSupplement: BackboneElement {
 				presentKeys.insert("productName")
 				if let val = exist as? String {
 					self.productName = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "productName", wants: String.self, has: type(of: exist)))

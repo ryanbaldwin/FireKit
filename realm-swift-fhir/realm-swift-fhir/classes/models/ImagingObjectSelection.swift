@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -27,12 +27,19 @@ open class ImagingObjectSelection: DomainResource {
 	}
 
 	public dynamic var author: Reference?
+	
 	public dynamic var authoringTime: DateTime?
+	
 	public dynamic var description_fhir: String?
+	
 	public dynamic var patient: Reference?
+	
 	public let study = RealmSwift.List<ImagingObjectSelectionStudy>()
+	
 	public dynamic var title: CodeableConcept?
+	
 	public dynamic var uid: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -69,6 +76,7 @@ open class ImagingObjectSelection: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -116,6 +124,7 @@ open class ImagingObjectSelection: DomainResource {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
 					self.uid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -169,9 +178,13 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 	}
 
 	public dynamic var imagingStudy: Reference?
+	
 	public let series = RealmSwift.List<ImagingObjectSelectionStudySeries>()
+	
 	public dynamic var uid: String?
+	
 	public dynamic var url: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -211,6 +224,7 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
 					self.uid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -223,6 +237,7 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -264,8 +279,11 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 	}
 
 	public let instance = RealmSwift.List<ImagingObjectSelectionStudySeriesInstance>()
+	
 	public dynamic var uid: String?
+	
 	public dynamic var url: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -295,6 +313,7 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
 					self.uid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -304,6 +323,7 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -342,9 +362,13 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	}
 
 	public let frames = RealmSwift.List<ImagingObjectSelectionStudySeriesInstanceFrames>()
+	
 	public dynamic var sopClass: String?
+	
 	public dynamic var uid: String?
+	
 	public dynamic var url: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -373,6 +397,7 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 				presentKeys.insert("sopClass")
 				if let val = exist as? String {
 					self.sopClass = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sopClass", wants: String.self, has: type(of: exist)))
@@ -385,6 +410,7 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
 					self.uid = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -397,6 +423,7 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -441,7 +468,9 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 	}
 
 	public let frameNumbers = RealmSwift.List<RealmInt>()
+	
 	public dynamic var url: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -470,6 +499,7 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,21 +22,37 @@ open class ReferralRequest: DomainResource {
 	}
 
 	public dynamic var date: DateTime?
+	
 	public dynamic var dateSent: DateTime?
+	
 	public dynamic var description_fhir: String?
+	
 	public dynamic var encounter: Reference?
+	
 	public dynamic var fulfillmentTime: Period?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var priority: CodeableConcept?
+	
 	public dynamic var reason: CodeableConcept?
+	
 	public let recipient = RealmSwift.List<Reference>()
+	
 	public dynamic var requester: Reference?
+	
 	public let serviceRequested = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var specialty: CodeableConcept?
+	
 	public dynamic var status: String?
+	
 	public let supportingInformation = RealmSwift.List<Reference>()
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -70,6 +86,7 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -175,6 +192,7 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -25,21 +25,37 @@ open class Device: DomainResource {
 	}
 
 	public let contact = RealmSwift.List<ContactPoint>()
+	
 	public dynamic var expiry: DateTime?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var location: Reference?
+	
 	public dynamic var lotNumber: String?
+	
 	public dynamic var manufactureDate: DateTime?
+	
 	public dynamic var manufacturer: String?
+	
 	public dynamic var model: String?
+	
 	public let note = RealmSwift.List<Annotation>()
+	
 	public dynamic var owner: Reference?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var status: String?
+	
 	public dynamic var type: CodeableConcept?
+	
 	public dynamic var udi: String?
+	
 	public dynamic var url: String?
+	
 	public dynamic var version: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -95,6 +111,7 @@ open class Device: DomainResource {
 				presentKeys.insert("lotNumber")
 				if let val = exist as? String {
 					self.lotNumber = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "lotNumber", wants: String.self, has: type(of: exist)))
@@ -113,6 +130,7 @@ open class Device: DomainResource {
 				presentKeys.insert("manufacturer")
 				if let val = exist as? String {
 					self.manufacturer = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "manufacturer", wants: String.self, has: type(of: exist)))
@@ -122,6 +140,7 @@ open class Device: DomainResource {
 				presentKeys.insert("model")
 				if let val = exist as? String {
 					self.model = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "model", wants: String.self, has: type(of: exist)))
@@ -160,6 +179,7 @@ open class Device: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -181,6 +201,7 @@ open class Device: DomainResource {
 				presentKeys.insert("udi")
 				if let val = exist as? String {
 					self.udi = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "udi", wants: String.self, has: type(of: exist)))
@@ -190,6 +211,7 @@ open class Device: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -199,6 +221,7 @@ open class Device: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,6 +21,7 @@ open class OperationOutcome: DomainResource {
 	}
 
 	public let issue = RealmSwift.List<OperationOutcomeIssue>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -73,10 +74,15 @@ open class OperationOutcomeIssue: BackboneElement {
 	}
 
 	public dynamic var code: String?
+	
 	public dynamic var details: CodeableConcept?
+	
 	public dynamic var diagnostics: String?
+	
 	public let location = RealmSwift.List<RealmString>()
+	
 	public dynamic var severity: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -93,6 +99,7 @@ open class OperationOutcomeIssue: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -114,6 +121,7 @@ open class OperationOutcomeIssue: BackboneElement {
 				presentKeys.insert("diagnostics")
 				if let val = exist as? String {
 					self.diagnostics = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "diagnostics", wants: String.self, has: type(of: exist)))
@@ -132,6 +140,7 @@ open class OperationOutcomeIssue: BackboneElement {
 				presentKeys.insert("severity")
 				if let val = exist as? String {
 					self.severity = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: type(of: exist)))

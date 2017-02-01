@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,13 +21,21 @@ open class VisionPrescription: DomainResource {
 	}
 
 	public dynamic var dateWritten: DateTime?
+	
 	public let dispense = RealmSwift.List<VisionPrescriptionDispense>()
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var prescriber: Reference?
+	
 	public dynamic var reasonCodeableConcept: CodeableConcept?
+	
 	public dynamic var reasonReference: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -157,20 +165,35 @@ open class VisionPrescriptionDispense: BackboneElement {
 	}
 
 	public dynamic var add: RealmDecimal?
+	
 	public let axis = RealmOptional<Int>()
+	
 	public dynamic var backCurve: RealmDecimal?
+	
 	public dynamic var base: String?
+	
 	public dynamic var brand: String?
+	
 	public dynamic var color: String?
+	
 	public dynamic var cylinder: RealmDecimal?
+	
 	public dynamic var diameter: RealmDecimal?
+	
 	public dynamic var duration: Quantity?
+	
 	public dynamic var eye: String?
+	
 	public dynamic var notes: String?
+	
 	public dynamic var power: RealmDecimal?
+	
 	public dynamic var prism: RealmDecimal?
+	
 	public dynamic var product: Coding?
+	
 	public dynamic var sphere: RealmDecimal?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -195,6 +218,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 				presentKeys.insert("axis")
 				if let val = exist as? Int {
 					self.axis.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "axis", wants: Int.self, has: type(of: exist)))
@@ -213,6 +237,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 				presentKeys.insert("base")
 				if let val = exist as? String {
 					self.base = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "base", wants: String.self, has: type(of: exist)))
@@ -222,6 +247,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 				presentKeys.insert("brand")
 				if let val = exist as? String {
 					self.brand = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "brand", wants: String.self, has: type(of: exist)))
@@ -231,6 +257,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 				presentKeys.insert("color")
 				if let val = exist as? String {
 					self.color = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "color", wants: String.self, has: type(of: exist)))
@@ -267,6 +294,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 				presentKeys.insert("eye")
 				if let val = exist as? String {
 					self.eye = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "eye", wants: String.self, has: type(of: exist)))
@@ -276,6 +304,7 @@ open class VisionPrescriptionDispense: BackboneElement {
 				presentKeys.insert("notes")
 				if let val = exist as? String {
 					self.notes = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: type(of: exist)))

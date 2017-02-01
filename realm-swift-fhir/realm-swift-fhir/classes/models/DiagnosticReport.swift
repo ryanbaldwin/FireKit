@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -25,23 +25,41 @@ open class DiagnosticReport: DomainResource {
 	}
 
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public let codedDiagnosis = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var conclusion: String?
+	
 	public dynamic var effectiveDateTime: DateTime?
+	
 	public dynamic var effectivePeriod: Period?
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let image = RealmSwift.List<DiagnosticReportImage>()
+	
 	public let imagingStudy = RealmSwift.List<Reference>()
+	
 	public dynamic var issued: Instant?
+	
 	public dynamic var performer: Reference?
+	
 	public let presentedForm = RealmSwift.List<Attachment>()
+	
 	public let request = RealmSwift.List<Reference>()
+	
 	public let result = RealmSwift.List<Reference>()
+	
 	public let specimen = RealmSwift.List<Reference>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -95,6 +113,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("conclusion")
 				if let val = exist as? String {
 					self.conclusion = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "conclusion", wants: String.self, has: type(of: exist)))
@@ -232,6 +251,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -336,7 +356,9 @@ open class DiagnosticReportImage: BackboneElement {
 	}
 
 	public dynamic var comment: String?
+	
 	public dynamic var link: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -352,6 +374,7 @@ open class DiagnosticReportImage: BackboneElement {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))

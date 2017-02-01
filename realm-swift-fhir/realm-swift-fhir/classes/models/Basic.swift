@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,10 +22,15 @@ open class Basic: DomainResource {
 	}
 
 	public dynamic var author: Reference?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var created: FHIRDate?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

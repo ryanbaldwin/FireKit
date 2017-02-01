@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,15 +21,25 @@ open class Specimen: DomainResource {
 	}
 
 	public dynamic var accessionIdentifier: Identifier?
+	
 	public dynamic var collection: SpecimenCollection?
+	
 	public let container = RealmSwift.List<SpecimenContainer>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let parent = RealmSwift.List<Reference>()
+	
 	public dynamic var receivedTime: DateTime?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public let treatment = RealmSwift.List<SpecimenTreatment>()
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -105,6 +115,7 @@ open class Specimen: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -196,12 +207,19 @@ open class SpecimenCollection: BackboneElement {
 	}
 
 	public dynamic var bodySite: CodeableConcept?
+	
 	public dynamic var collectedDateTime: DateTime?
+	
 	public dynamic var collectedPeriod: Period?
+	
 	public dynamic var collector: Reference?
+	
 	public let comment = RealmSwift.List<RealmString>()
+	
 	public dynamic var method: CodeableConcept?
+	
 	public dynamic var quantity: Quantity?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -316,12 +334,19 @@ open class SpecimenContainer: BackboneElement {
 	}
 
 	public dynamic var additiveCodeableConcept: CodeableConcept?
+	
 	public dynamic var additiveReference: Reference?
+	
 	public dynamic var capacity: Quantity?
+	
 	public dynamic var description_fhir: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var specimenQuantity: Quantity?
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -358,6 +383,7 @@ open class SpecimenContainer: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -437,8 +463,11 @@ open class SpecimenTreatment: BackboneElement {
 	}
 
 	public let additive = RealmSwift.List<Reference>()
+	
 	public dynamic var description_fhir: String?
+	
 	public dynamic var procedure: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -459,6 +488,7 @@ open class SpecimenTreatment: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,22 +21,39 @@ open class DocumentReference: DomainResource {
 	}
 
 	public dynamic var authenticator: Reference?
+	
 	public let author = RealmSwift.List<Reference>()
+	
 	public dynamic var class_fhir: CodeableConcept?
+	
 	public let content = RealmSwift.List<DocumentReferenceContent>()
+	
 	public dynamic var context: DocumentReferenceContext?
+	
 	public dynamic var created: DateTime?
+	
 	public dynamic var custodian: Reference?
+	
 	public dynamic var description_fhir: String?
+	
 	public dynamic var docStatus: CodeableConcept?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var indexed: Instant?
+	
 	public dynamic var masterIdentifier: Identifier?
+	
 	public let relatesTo = RealmSwift.List<DocumentReferenceRelatesTo>()
+	
 	public let securityLabel = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -125,6 +142,7 @@ open class DocumentReference: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -197,6 +215,7 @@ open class DocumentReference: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -301,7 +320,9 @@ open class DocumentReferenceContent: BackboneElement {
 	}
 
 	public dynamic var attachment: Attachment?
+	
 	public let format = RealmSwift.List<Coding>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -366,12 +387,19 @@ open class DocumentReferenceContext: BackboneElement {
 	}
 
 	public dynamic var encounter: Reference?
+	
 	public let event = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var facilityType: CodeableConcept?
+	
 	public dynamic var period: Period?
+	
 	public dynamic var practiceSetting: CodeableConcept?
+	
 	public let related = RealmSwift.List<DocumentReferenceContextRelated>()
+	
 	public dynamic var sourcePatientInfo: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -489,7 +517,9 @@ open class DocumentReferenceContextRelated: BackboneElement {
 	}
 
 	public dynamic var identifier: Identifier?
+	
 	public dynamic var ref: Reference?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -543,7 +573,9 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 	}
 
 	public dynamic var code: String?
+	
 	public dynamic var target: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -560,6 +592,7 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))

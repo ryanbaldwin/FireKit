@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,16 +23,27 @@ open class EpisodeOfCare: DomainResource {
 	}
 
 	public dynamic var careManager: Reference?
+	
 	public let careTeam = RealmSwift.List<EpisodeOfCareCareTeam>()
+	
 	public let condition = RealmSwift.List<Reference>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var managingOrganization: Reference?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var period: Period?
+	
 	public let referralRequest = RealmSwift.List<Reference>()
+	
 	public dynamic var status: String?
+	
 	public let statusHistory = RealmSwift.List<EpisodeOfCareStatusHistory>()
+	
 	public let type = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -132,6 +143,7 @@ open class EpisodeOfCare: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -219,8 +231,11 @@ open class EpisodeOfCareCareTeam: BackboneElement {
 	}
 
 	public dynamic var member: Reference?
+	
 	public dynamic var period: Period?
+	
 	public let role = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -289,7 +304,9 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 	}
 
 	public dynamic var period: Period?
+	
 	public dynamic var status: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -318,6 +335,7 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

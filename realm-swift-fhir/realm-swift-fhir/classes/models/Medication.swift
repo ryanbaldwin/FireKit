@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,10 +22,15 @@ open class Medication: DomainResource {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public let isBrand = RealmOptional<Bool>()
+	
 	public dynamic var manufacturer: Reference?
+	
 	public dynamic var package: MedicationPackage?
+	
 	public dynamic var product: MedicationProduct?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -44,6 +49,7 @@ open class Medication: DomainResource {
 				presentKeys.insert("isBrand")
 				if let val = exist as? Bool {
 					self.isBrand.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "isBrand", wants: Bool.self, has: type(of: exist)))
@@ -115,7 +121,9 @@ open class MedicationPackage: BackboneElement {
 	}
 
 	public dynamic var container: CodeableConcept?
+	
 	public let content = RealmSwift.List<MedicationPackageContent>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -171,7 +179,9 @@ open class MedicationPackageContent: BackboneElement {
 	}
 
 	public dynamic var amount: Quantity?
+	
 	public dynamic var item: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -234,8 +244,11 @@ open class MedicationProduct: BackboneElement {
 	}
 
 	public let batch = RealmSwift.List<MedicationProductBatch>()
+	
 	public dynamic var form: CodeableConcept?
+	
 	public let ingredient = RealmSwift.List<MedicationProductIngredient>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -305,7 +318,9 @@ open class MedicationProductBatch: BackboneElement {
 	}
 
 	public dynamic var expirationDate: DateTime?
+	
 	public dynamic var lotNumber: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -324,6 +339,7 @@ open class MedicationProductBatch: BackboneElement {
 				presentKeys.insert("lotNumber")
 				if let val = exist as? String {
 					self.lotNumber = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "lotNumber", wants: String.self, has: type(of: exist)))
@@ -359,7 +375,9 @@ open class MedicationProductIngredient: BackboneElement {
 	}
 
 	public dynamic var amount: Ratio?
+	
 	public dynamic var item: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */

@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,35 +21,65 @@ open class Observation: DomainResource {
 	}
 
 	public dynamic var bodySite: CodeableConcept?
+	
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var comments: String?
+	
 	public let component = RealmSwift.List<ObservationComponent>()
+	
 	public dynamic var dataAbsentReason: CodeableConcept?
+	
 	public dynamic var device: Reference?
+	
 	public dynamic var effectiveDateTime: DateTime?
+	
 	public dynamic var effectivePeriod: Period?
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var interpretation: CodeableConcept?
+	
 	public dynamic var issued: Instant?
+	
 	public dynamic var method: CodeableConcept?
+	
 	public let performer = RealmSwift.List<Reference>()
+	
 	public let referenceRange = RealmSwift.List<ObservationReferenceRange>()
+	
 	public let related = RealmSwift.List<ObservationRelated>()
+	
 	public dynamic var specimen: Reference?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var valueAttachment: Attachment?
+	
 	public dynamic var valueCodeableConcept: CodeableConcept?
+	
 	public dynamic var valueDateTime: DateTime?
+	
 	public dynamic var valuePeriod: Period?
+	
 	public dynamic var valueQuantity: Quantity?
+	
 	public dynamic var valueRange: Range?
+	
 	public dynamic var valueRatio: Ratio?
+	
 	public dynamic var valueSampledData: SampledData?
+	
 	public dynamic var valueString: String?
+	
 	public dynamic var valueTime: FHIRTime?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -96,6 +126,7 @@ open class Observation: DomainResource {
 				presentKeys.insert("comments")
 				if let val = exist as? String {
 					self.comments = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -241,6 +272,7 @@ open class Observation: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -334,6 +366,7 @@ open class Observation: DomainResource {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -464,18 +497,31 @@ open class ObservationComponent: BackboneElement {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var dataAbsentReason: CodeableConcept?
+	
 	public let referenceRange = RealmSwift.List<ObservationReferenceRange>()
+	
 	public dynamic var valueAttachment: Attachment?
+	
 	public dynamic var valueCodeableConcept: CodeableConcept?
+	
 	public dynamic var valueDateTime: DateTime?
+	
 	public dynamic var valuePeriod: Period?
+	
 	public dynamic var valueQuantity: Quantity?
+	
 	public dynamic var valueRange: Range?
+	
 	public dynamic var valueRatio: Ratio?
+	
 	public dynamic var valueSampledData: SampledData?
+	
 	public dynamic var valueString: String?
+	
 	public dynamic var valueTime: FHIRTime?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -595,6 +641,7 @@ open class ObservationComponent: BackboneElement {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -672,10 +719,15 @@ open class ObservationReferenceRange: BackboneElement {
 	}
 
 	public dynamic var age: Range?
+	
 	public dynamic var high: Quantity?
+	
 	public dynamic var low: Quantity?
+	
 	public dynamic var meaning: CodeableConcept?
+	
 	public dynamic var text: String?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -721,6 +773,7 @@ open class ObservationReferenceRange: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -766,7 +819,9 @@ open class ObservationRelated: BackboneElement {
 	}
 
 	public dynamic var target: Reference?
+	
 	public dynamic var type: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -794,6 +849,7 @@ open class ObservationRelated: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))

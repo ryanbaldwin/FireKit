@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,25 +22,45 @@ open class FamilyMemberHistory: DomainResource {
 	}
 
 	public dynamic var ageQuantity: Quantity?
+	
 	public dynamic var ageRange: Range?
+	
 	public dynamic var ageString: String?
+	
 	public dynamic var bornDate: FHIRDate?
+	
 	public dynamic var bornPeriod: Period?
+	
 	public dynamic var bornString: String?
+	
 	public let condition = RealmSwift.List<FamilyMemberHistoryCondition>()
+	
 	public dynamic var date: DateTime?
+	
 	public let deceasedBoolean = RealmOptional<Bool>()
+	
 	public dynamic var deceasedDate: FHIRDate?
+	
 	public dynamic var deceasedQuantity: Quantity?
+	
 	public dynamic var deceasedRange: Range?
+	
 	public dynamic var deceasedString: String?
+	
 	public dynamic var gender: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var name: String?
+	
 	public dynamic var note: Annotation?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var relationship: CodeableConcept?
+	
 	public dynamic var status: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -76,6 +96,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("ageString")
 				if let val = exist as? String {
 					self.ageString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ageString", wants: String.self, has: type(of: exist)))
@@ -103,6 +124,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("bornString")
 				if let val = exist as? String {
 					self.bornString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bornString", wants: String.self, has: type(of: exist)))
@@ -132,6 +154,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("deceasedBoolean")
 				if let val = exist as? Bool {
 					self.deceasedBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedBoolean", wants: Bool.self, has: type(of: exist)))
@@ -168,6 +191,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("deceasedString")
 				if let val = exist as? String {
 					self.deceasedString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedString", wants: String.self, has: type(of: exist)))
@@ -177,6 +201,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -197,6 +222,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -239,6 +265,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -333,12 +360,19 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var note: Annotation?
+	
 	public dynamic var onsetPeriod: Period?
+	
 	public dynamic var onsetQuantity: Quantity?
+	
 	public dynamic var onsetRange: Range?
+	
 	public dynamic var onsetString: String?
+	
 	public dynamic var outcome: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -402,6 +436,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 				presentKeys.insert("onsetString")
 				if let val = exist as? String {
 					self.onsetString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetString", wants: String.self, has: type(of: exist)))

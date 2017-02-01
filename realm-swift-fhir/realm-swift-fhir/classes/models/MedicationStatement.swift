@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -34,21 +34,37 @@ open class MedicationStatement: DomainResource {
 	}
 
 	public dynamic var dateAsserted: DateTime?
+	
 	public let dosage = RealmSwift.List<MedicationStatementDosage>()
+	
 	public dynamic var effectiveDateTime: DateTime?
+	
 	public dynamic var effectivePeriod: Period?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var informationSource: Reference?
+	
 	public dynamic var medicationCodeableConcept: CodeableConcept?
+	
 	public dynamic var medicationReference: Reference?
+	
 	public dynamic var note: String?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var reasonForUseCodeableConcept: CodeableConcept?
+	
 	public dynamic var reasonForUseReference: Reference?
+	
 	public let reasonNotTaken = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var status: String?
+	
 	public let supportingInformation = RealmSwift.List<Reference>()
+	
 	public let wasNotTaken = RealmOptional<Bool>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -143,6 +159,7 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? String {
 					self.note = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: String.self, has: type(of: exist)))
@@ -193,6 +210,7 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -216,6 +234,7 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("wasNotTaken")
 				if let val = exist as? Bool {
 					self.wasNotTaken.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "wasNotTaken", wants: Bool.self, has: type(of: exist)))
@@ -298,18 +317,31 @@ open class MedicationStatementDosage: BackboneElement {
 	}
 
 	public let asNeededBoolean = RealmOptional<Bool>()
+	
 	public dynamic var asNeededCodeableConcept: CodeableConcept?
+	
 	public dynamic var maxDosePerPeriod: Ratio?
+	
 	public dynamic var method: CodeableConcept?
+	
 	public dynamic var quantityQuantity: Quantity?
+	
 	public dynamic var quantityRange: Range?
+	
 	public dynamic var rateRange: Range?
+	
 	public dynamic var rateRatio: Ratio?
+	
 	public dynamic var route: CodeableConcept?
+	
 	public dynamic var siteCodeableConcept: CodeableConcept?
+	
 	public dynamic var siteReference: Reference?
+	
 	public dynamic var text: String?
+	
 	public dynamic var timing: Timing?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -319,6 +351,7 @@ open class MedicationStatementDosage: BackboneElement {
 				presentKeys.insert("asNeededBoolean")
 				if let val = exist as? Bool {
 					self.asNeededBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "asNeededBoolean", wants: Bool.self, has: type(of: exist)))
@@ -418,6 +451,7 @@ open class MedicationStatementDosage: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))

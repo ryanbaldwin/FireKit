@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,15 +22,25 @@ open class RelatedPerson: DomainResource {
 	}
 
 	public let address = RealmSwift.List<Address>()
+	
 	public dynamic var birthDate: FHIRDate?
+	
 	public dynamic var gender: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var name: HumanName?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var period: Period?
+	
 	public let photo = RealmSwift.List<Attachment>()
+	
 	public dynamic var relationship: CodeableConcept?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -66,6 +76,7 @@ open class RelatedPerson: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))

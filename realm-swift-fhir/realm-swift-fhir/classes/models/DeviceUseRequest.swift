@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,21 +22,37 @@ open class DeviceUseRequest: DomainResource {
 	}
 
 	public dynamic var bodySiteCodeableConcept: CodeableConcept?
+	
 	public dynamic var bodySiteReference: Reference?
+	
 	public dynamic var device: Reference?
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let indication = RealmSwift.List<CodeableConcept>()
+	
 	public let notes = RealmSwift.List<RealmString>()
+	
 	public dynamic var orderedOn: DateTime?
+	
 	public dynamic var priority: String?
+	
 	public let prnReason = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var recordedOn: DateTime?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public dynamic var timingDateTime: DateTime?
+	
 	public dynamic var timingPeriod: Period?
+	
 	public dynamic var timingTiming: Timing?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -132,6 +148,7 @@ open class DeviceUseRequest: DomainResource {
 				presentKeys.insert("priority")
 				if let val = exist as? String {
 					self.priority = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: type(of: exist)))
@@ -161,6 +178,7 @@ open class DeviceUseRequest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

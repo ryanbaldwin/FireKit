@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,26 +23,47 @@ open class Immunization: DomainResource {
 	}
 
 	public dynamic var date: DateTime?
+	
 	public dynamic var doseQuantity: Quantity?
+	
 	public dynamic var encounter: Reference?
+	
 	public dynamic var expirationDate: FHIRDate?
+	
 	public dynamic var explanation: ImmunizationExplanation?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var location: Reference?
+	
 	public dynamic var lotNumber: String?
+	
 	public dynamic var manufacturer: Reference?
+	
 	public let note = RealmSwift.List<Annotation>()
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var performer: Reference?
+	
 	public let reaction = RealmSwift.List<ImmunizationReaction>()
+	
 	public let reported = RealmOptional<Bool>()
+	
 	public dynamic var requester: Reference?
+	
 	public dynamic var route: CodeableConcept?
+	
 	public dynamic var site: CodeableConcept?
+	
 	public dynamic var status: String?
+	
 	public let vaccinationProtocol = RealmSwift.List<ImmunizationVaccinationProtocol>()
+	
 	public dynamic var vaccineCode: CodeableConcept?
+	
 	public let wasNotGiven = RealmOptional<Bool>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -127,6 +148,7 @@ open class Immunization: DomainResource {
 				presentKeys.insert("lotNumber")
 				if let val = exist as? String {
 					self.lotNumber = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "lotNumber", wants: String.self, has: type(of: exist)))
@@ -188,6 +210,7 @@ open class Immunization: DomainResource {
 				presentKeys.insert("reported")
 				if let val = exist as? Bool {
 					self.reported.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reported", wants: Bool.self, has: type(of: exist)))
@@ -227,6 +250,7 @@ open class Immunization: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -262,6 +286,7 @@ open class Immunization: DomainResource {
 				presentKeys.insert("wasNotGiven")
 				if let val = exist as? Bool {
 					self.wasNotGiven.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "wasNotGiven", wants: Bool.self, has: type(of: exist)))
@@ -357,7 +382,9 @@ open class ImmunizationExplanation: BackboneElement {
 	}
 
 	public let reason = RealmSwift.List<CodeableConcept>()
+	
 	public let reasonNotGiven = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -415,8 +442,11 @@ open class ImmunizationReaction: BackboneElement {
 	}
 
 	public dynamic var date: DateTime?
+	
 	public dynamic var detail: Reference?
+	
 	public let reported = RealmOptional<Bool>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -444,6 +474,7 @@ open class ImmunizationReaction: BackboneElement {
 				presentKeys.insert("reported")
 				if let val = exist as? Bool {
 					self.reported.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reported", wants: Bool.self, has: type(of: exist)))
@@ -482,13 +513,21 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 	}
 
 	public dynamic var authority: Reference?
+	
 	public dynamic var description_fhir: String?
+	
 	public let doseSequence = RealmOptional<Int>()
+	
 	public dynamic var doseStatus: CodeableConcept?
+	
 	public dynamic var doseStatusReason: CodeableConcept?
+	
 	public dynamic var series: String?
+	
 	public let seriesDoses = RealmOptional<Int>()
+	
 	public let targetDisease = RealmSwift.List<CodeableConcept>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -515,6 +554,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -524,6 +564,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 				presentKeys.insert("doseSequence")
 				if let val = exist as? Int {
 					self.doseSequence.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseSequence", wants: Int.self, has: type(of: exist)))
@@ -557,6 +598,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 				presentKeys.insert("series")
 				if let val = exist as? String {
 					self.series = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "series", wants: String.self, has: type(of: exist)))
@@ -566,6 +608,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 				presentKeys.insert("seriesDoses")
 				if let val = exist as? Int {
 					self.seriesDoses.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "seriesDoses", wants: Int.self, has: type(of: exist)))

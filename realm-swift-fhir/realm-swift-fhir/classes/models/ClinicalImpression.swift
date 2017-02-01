@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -25,23 +25,41 @@ open class ClinicalImpression: DomainResource {
 	}
 
 	public let action = RealmSwift.List<Reference>()
+	
 	public dynamic var assessor: Reference?
+	
 	public dynamic var date: DateTime?
+	
 	public dynamic var description_fhir: String?
+	
 	public let finding = RealmSwift.List<ClinicalImpressionFinding>()
+	
 	public let investigations = RealmSwift.List<ClinicalImpressionInvestigations>()
+	
 	public dynamic var patient: Reference?
+	
 	public let plan = RealmSwift.List<Reference>()
+	
 	public dynamic var previous: Reference?
+	
 	public let problem = RealmSwift.List<Reference>()
+	
 	public dynamic var prognosis: String?
+	
 	public dynamic var protocol_fhir: String?
+	
 	public let resolved = RealmSwift.List<CodeableConcept>()
+	
 	public let ruledOut = RealmSwift.List<ClinicalImpressionRuledOut>()
+	
 	public dynamic var status: String?
+	
 	public dynamic var summary: String?
+	
 	public dynamic var triggerCodeableConcept: CodeableConcept?
+	
 	public dynamic var triggerReference: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -87,6 +105,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -161,6 +180,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("prognosis")
 				if let val = exist as? String {
 					self.prognosis = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "prognosis", wants: String.self, has: type(of: exist)))
@@ -170,6 +190,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("protocol")
 				if let val = exist as? String {
 					self.protocol_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "protocol", wants: String.self, has: type(of: exist)))
@@ -201,6 +222,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -213,6 +235,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("summary")
 				if let val = exist as? String {
 					self.summary = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "summary", wants: String.self, has: type(of: exist)))
@@ -314,7 +337,9 @@ open class ClinicalImpressionFinding: BackboneElement {
 	}
 
 	public dynamic var cause: String?
+	
 	public dynamic var item: CodeableConcept?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -330,6 +355,7 @@ open class ClinicalImpressionFinding: BackboneElement {
 				presentKeys.insert("cause")
 				if let val = exist as? String {
 					self.cause = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "cause", wants: String.self, has: type(of: exist)))
@@ -379,7 +405,9 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public let item = RealmSwift.List<Reference>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -442,7 +470,9 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 	}
 
 	public dynamic var item: CodeableConcept?
+	
 	public dynamic var reason: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -470,6 +500,7 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 				presentKeys.insert("reason")
 				if let val = exist as? String {
 					self.reason = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: String.self, has: type(of: exist)))

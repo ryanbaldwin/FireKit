@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -21,23 +21,41 @@ open class ProcedureRequest: DomainResource {
 	}
 
 	public let asNeededBoolean = RealmOptional<Bool>()
+	
 	public dynamic var asNeededCodeableConcept: CodeableConcept?
+	
 	public let bodySite = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var encounter: Reference?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let notes = RealmSwift.List<Annotation>()
+	
 	public dynamic var orderedOn: DateTime?
+	
 	public dynamic var orderer: Reference?
+	
 	public dynamic var performer: Reference?
+	
 	public dynamic var priority: String?
+	
 	public dynamic var reasonCodeableConcept: CodeableConcept?
+	
 	public dynamic var reasonReference: Reference?
+	
 	public dynamic var scheduledDateTime: DateTime?
+	
 	public dynamic var scheduledPeriod: Period?
+	
 	public dynamic var scheduledTiming: Timing?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -54,6 +72,7 @@ open class ProcedureRequest: DomainResource {
 				presentKeys.insert("asNeededBoolean")
 				if let val = exist as? Bool {
 					self.asNeededBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "asNeededBoolean", wants: Bool.self, has: type(of: exist)))
@@ -153,6 +172,7 @@ open class ProcedureRequest: DomainResource {
 				presentKeys.insert("priority")
 				if let val = exist as? String {
 					self.priority = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: type(of: exist)))
@@ -207,6 +227,7 @@ open class ProcedureRequest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,13 +23,21 @@ open class Organization: DomainResource {
 	}
 
 	public let active = RealmOptional<Bool>()
+	
 	public let address = RealmSwift.List<Address>()
+	
 	public let contact = RealmSwift.List<OrganizationContact>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var name: String?
+	
 	public dynamic var partOf: Reference?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 	public dynamic var type: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -39,6 +47,7 @@ open class Organization: DomainResource {
 				presentKeys.insert("active")
 				if let val = exist as? Bool {
 					self.active.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: type(of: exist)))
@@ -81,6 +90,7 @@ open class Organization: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -161,9 +171,13 @@ open class OrganizationContact: BackboneElement {
 	}
 
 	public dynamic var address: Address?
+	
 	public dynamic var name: HumanName?
+	
 	public dynamic var purpose: CodeableConcept?
+	
 	public let telecom = RealmSwift.List<ContactPoint>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

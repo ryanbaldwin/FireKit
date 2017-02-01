@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -23,30 +23,55 @@ open class Condition: DomainResource {
 	}
 
 	public let abatementBoolean = RealmOptional<Bool>()
+	
 	public dynamic var abatementDateTime: DateTime?
+	
 	public dynamic var abatementPeriod: Period?
+	
 	public dynamic var abatementQuantity: Quantity?
+	
 	public dynamic var abatementRange: Range?
+	
 	public dynamic var abatementString: String?
+	
 	public dynamic var asserter: Reference?
+	
 	public let bodySite = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var clinicalStatus: String?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var dateRecorded: FHIRDate?
+	
 	public dynamic var encounter: Reference?
+	
 	public let evidence = RealmSwift.List<ConditionEvidence>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var notes: String?
+	
 	public dynamic var onsetDateTime: DateTime?
+	
 	public dynamic var onsetPeriod: Period?
+	
 	public dynamic var onsetQuantity: Quantity?
+	
 	public dynamic var onsetRange: Range?
+	
 	public dynamic var onsetString: String?
+	
 	public dynamic var patient: Reference?
+	
 	public dynamic var severity: CodeableConcept?
+	
 	public dynamic var stage: ConditionStage?
+	
 	public dynamic var verificationStatus: String?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -64,6 +89,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("abatementBoolean")
 				if let val = exist as? Bool {
 					self.abatementBoolean.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementBoolean", wants: Bool.self, has: type(of: exist)))
@@ -109,6 +135,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("abatementString")
 				if let val = exist as? String {
 					self.abatementString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementString", wants: String.self, has: type(of: exist)))
@@ -147,6 +174,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("clinicalStatus")
 				if let val = exist as? String {
 					self.clinicalStatus = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "clinicalStatus", wants: String.self, has: type(of: exist)))
@@ -208,6 +236,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("notes")
 				if let val = exist as? String {
 					self.notes = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: type(of: exist)))
@@ -253,6 +282,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("onsetString")
 				if let val = exist as? String {
 					self.onsetString = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetString", wants: String.self, has: type(of: exist)))
@@ -292,6 +322,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("verificationStatus")
 				if let val = exist as? String {
 					self.verificationStatus = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "verificationStatus", wants: String.self, has: type(of: exist)))
@@ -399,7 +430,9 @@ open class ConditionEvidence: BackboneElement {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public let detail = RealmSwift.List<Reference>()
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -455,7 +488,9 @@ open class ConditionStage: BackboneElement {
 	}
 
 	public let assessment = RealmSwift.List<Reference>()
+	
 	public dynamic var summary: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

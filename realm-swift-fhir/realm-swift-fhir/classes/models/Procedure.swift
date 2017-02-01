@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,28 +22,51 @@ open class Procedure: DomainResource {
 	}
 
 	public let bodySite = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var category: CodeableConcept?
+	
 	public dynamic var code: CodeableConcept?
+	
 	public let complication = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var encounter: Reference?
+	
 	public let focalDevice = RealmSwift.List<ProcedureFocalDevice>()
+	
 	public let followUp = RealmSwift.List<CodeableConcept>()
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public dynamic var location: Reference?
+	
 	public let notPerformed = RealmOptional<Bool>()
+	
 	public let notes = RealmSwift.List<Annotation>()
+	
 	public dynamic var outcome: CodeableConcept?
+	
 	public dynamic var performedDateTime: DateTime?
+	
 	public dynamic var performedPeriod: Period?
+	
 	public let performer = RealmSwift.List<ProcedurePerformer>()
+	
 	public dynamic var reasonCodeableConcept: CodeableConcept?
+	
 	public let reasonNotPerformed = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var reasonReference: Reference?
+	
 	public let report = RealmSwift.List<Reference>()
+	
 	public dynamic var request: Reference?
+	
 	public dynamic var status: String?
+	
 	public dynamic var subject: Reference?
+	
 	public let used = RealmSwift.List<Reference>()
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -155,6 +178,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("notPerformed")
 				if let val = exist as? Bool {
 					self.notPerformed.value = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notPerformed", wants: Bool.self, has: type(of: exist)))
@@ -262,6 +286,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -387,7 +412,9 @@ open class ProcedureFocalDevice: BackboneElement {
 	}
 
 	public dynamic var action: CodeableConcept?
+	
 	public dynamic var manipulated: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -450,7 +477,9 @@ open class ProcedurePerformer: BackboneElement {
 	}
 
 	public dynamic var actor: Reference?
+	
 	public dynamic var role: CodeableConcept?
+	
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

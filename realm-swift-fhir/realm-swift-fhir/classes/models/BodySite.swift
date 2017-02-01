@@ -2,7 +2,7 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-01-27.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-02-01.
 //  2017, SMART Health IT.
 //
 
@@ -22,11 +22,17 @@ open class BodySite: DomainResource {
 	}
 
 	public dynamic var code: CodeableConcept?
+	
 	public dynamic var description_fhir: String?
+	
 	public let identifier = RealmSwift.List<Identifier>()
+	
 	public let image = RealmSwift.List<Attachment>()
+	
 	public let modifier = RealmSwift.List<CodeableConcept>()
+	
 	public dynamic var patient: Reference?
+	
 
 	
 	/** Convenience initializer, taking all required properties as arguments. */
@@ -51,6 +57,7 @@ open class BodySite: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
+					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
