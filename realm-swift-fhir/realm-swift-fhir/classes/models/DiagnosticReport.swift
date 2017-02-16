@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -80,7 +80,11 @@ open class DiagnosticReport: DomainResource {
 			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.category = CodeableConcept(json: val, owner: self)
+					if let category = self.category {
+                        errors.append(contentsOf: category.populate(from: val) ?? [])
+                    } else {
+                        self.category = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
@@ -89,7 +93,11 @@ open class DiagnosticReport: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					if let code = self.code {
+                        errors.append(contentsOf: code.populate(from: val) ?? [])
+                    } else {
+                        self.code = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -102,6 +110,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("codedDiagnosis")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.codedDiagnosis) }
 						self.codedDiagnosis.append(objectsIn: vals)
 					}
 				}
@@ -113,7 +122,6 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("conclusion")
 				if let val = exist as? String {
 					self.conclusion = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "conclusion", wants: String.self, has: type(of: exist)))
@@ -131,7 +139,11 @@ open class DiagnosticReport: DomainResource {
 			if let exist = js["effectivePeriod"] {
 				presentKeys.insert("effectivePeriod")
 				if let val = exist as? FHIRJSON {
-					self.effectivePeriod = Period(json: val, owner: self)
+					if let effectivePeriod = self.effectivePeriod {
+                        errors.append(contentsOf: effectivePeriod.populate(from: val) ?? [])
+                    } else {
+                        self.effectivePeriod = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "effectivePeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -140,7 +152,11 @@ open class DiagnosticReport: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					if let encounter = self.encounter {
+                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
+                    } else {
+                        self.encounter = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -150,6 +166,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -161,6 +178,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("image")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = DiagnosticReportImage.instantiate(fromArray: val, owner: self) as? [DiagnosticReportImage] {
+						if let realm = self.realm { realm.delete(self.image) }
 						self.image.append(objectsIn: vals)
 					}
 				}
@@ -172,6 +190,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("imagingStudy")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.imagingStudy) }
 						self.imagingStudy.append(objectsIn: vals)
 					}
 				}
@@ -194,7 +213,11 @@ open class DiagnosticReport: DomainResource {
 			if let exist = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? FHIRJSON {
-					self.performer = Reference(json: val, owner: self)
+					if let performer = self.performer {
+                        errors.append(contentsOf: performer.populate(from: val) ?? [])
+                    } else {
+                        self.performer = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -207,6 +230,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("presentedForm")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment] {
+						if let realm = self.realm { realm.delete(self.presentedForm) }
 						self.presentedForm.append(objectsIn: vals)
 					}
 				}
@@ -218,6 +242,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("request")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.request) }
 						self.request.append(objectsIn: vals)
 					}
 				}
@@ -229,6 +254,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("result")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.result) }
 						self.result.append(objectsIn: vals)
 					}
 				}
@@ -240,6 +266,7 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("specimen")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.specimen) }
 						self.specimen.append(objectsIn: vals)
 					}
 				}
@@ -251,7 +278,6 @@ open class DiagnosticReport: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -263,7 +289,11 @@ open class DiagnosticReport: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					if let subject = self.subject {
+                        errors.append(contentsOf: subject.populate(from: val) ?? [])
+                    } else {
+                        self.subject = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -374,7 +404,6 @@ open class DiagnosticReportImage: BackboneElement {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -383,7 +412,11 @@ open class DiagnosticReportImage: BackboneElement {
 			if let exist = js["link"] {
 				presentKeys.insert("link")
 				if let val = exist as? FHIRJSON {
-					self.link = Reference(json: val, owner: self)
+					if let link = self.link {
+                        errors.append(contentsOf: link.populate(from: val) ?? [])
+                    } else {
+                        self.link = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "link", wants: FHIRJSON.self, has: type(of: exist)))

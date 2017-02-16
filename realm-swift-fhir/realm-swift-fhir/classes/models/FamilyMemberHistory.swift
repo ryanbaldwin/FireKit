@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -77,7 +77,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["ageQuantity"] {
 				presentKeys.insert("ageQuantity")
 				if let val = exist as? FHIRJSON {
-					self.ageQuantity = Quantity(json: val, owner: self)
+					if let ageQuantity = self.ageQuantity {
+                        errors.append(contentsOf: ageQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.ageQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ageQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -86,7 +90,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["ageRange"] {
 				presentKeys.insert("ageRange")
 				if let val = exist as? FHIRJSON {
-					self.ageRange = Range(json: val, owner: self)
+					if let ageRange = self.ageRange {
+                        errors.append(contentsOf: ageRange.populate(from: val) ?? [])
+                    } else {
+                        self.ageRange = Range(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ageRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -96,7 +104,6 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("ageString")
 				if let val = exist as? String {
 					self.ageString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ageString", wants: String.self, has: type(of: exist)))
@@ -114,7 +121,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["bornPeriod"] {
 				presentKeys.insert("bornPeriod")
 				if let val = exist as? FHIRJSON {
-					self.bornPeriod = Period(json: val, owner: self)
+					if let bornPeriod = self.bornPeriod {
+                        errors.append(contentsOf: bornPeriod.populate(from: val) ?? [])
+                    } else {
+                        self.bornPeriod = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bornPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -124,7 +135,6 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("bornString")
 				if let val = exist as? String {
 					self.bornString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bornString", wants: String.self, has: type(of: exist)))
@@ -134,6 +144,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("condition")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = FamilyMemberHistoryCondition.instantiate(fromArray: val, owner: self) as? [FamilyMemberHistoryCondition] {
+						if let realm = self.realm { realm.delete(self.condition) }
 						self.condition.append(objectsIn: vals)
 					}
 				}
@@ -154,7 +165,6 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("deceasedBoolean")
 				if let val = exist as? Bool {
 					self.deceasedBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedBoolean", wants: Bool.self, has: type(of: exist)))
@@ -172,7 +182,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["deceasedQuantity"] {
 				presentKeys.insert("deceasedQuantity")
 				if let val = exist as? FHIRJSON {
-					self.deceasedQuantity = Quantity(json: val, owner: self)
+					if let deceasedQuantity = self.deceasedQuantity {
+                        errors.append(contentsOf: deceasedQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.deceasedQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -181,7 +195,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["deceasedRange"] {
 				presentKeys.insert("deceasedRange")
 				if let val = exist as? FHIRJSON {
-					self.deceasedRange = Range(json: val, owner: self)
+					if let deceasedRange = self.deceasedRange {
+                        errors.append(contentsOf: deceasedRange.populate(from: val) ?? [])
+                    } else {
+                        self.deceasedRange = Range(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -191,7 +209,6 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("deceasedString")
 				if let val = exist as? String {
 					self.deceasedString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedString", wants: String.self, has: type(of: exist)))
@@ -201,7 +218,6 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -211,6 +227,7 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -222,7 +239,6 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -231,7 +247,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["note"] {
 				presentKeys.insert("note")
 				if let val = exist as? FHIRJSON {
-					self.note = Annotation(json: val, owner: self)
+					if let note = self.note {
+                        errors.append(contentsOf: note.populate(from: val) ?? [])
+                    } else {
+                        self.note = Annotation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: type(of: exist)))
@@ -240,7 +260,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					if let patient = self.patient {
+                        errors.append(contentsOf: patient.populate(from: val) ?? [])
+                    } else {
+                        self.patient = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -252,7 +276,11 @@ open class FamilyMemberHistory: DomainResource {
 			if let exist = js["relationship"] {
 				presentKeys.insert("relationship")
 				if let val = exist as? FHIRJSON {
-					self.relationship = CodeableConcept(json: val, owner: self)
+					if let relationship = self.relationship {
+                        errors.append(contentsOf: relationship.populate(from: val) ?? [])
+                    } else {
+                        self.relationship = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relationship", wants: FHIRJSON.self, has: type(of: exist)))
@@ -265,7 +293,6 @@ open class FamilyMemberHistory: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -387,7 +414,11 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					if let code = self.code {
+                        errors.append(contentsOf: code.populate(from: val) ?? [])
+                    } else {
+                        self.code = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -399,7 +430,11 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 			if let exist = js["note"] {
 				presentKeys.insert("note")
 				if let val = exist as? FHIRJSON {
-					self.note = Annotation(json: val, owner: self)
+					if let note = self.note {
+                        errors.append(contentsOf: note.populate(from: val) ?? [])
+                    } else {
+                        self.note = Annotation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: type(of: exist)))
@@ -408,7 +443,11 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 			if let exist = js["onsetPeriod"] {
 				presentKeys.insert("onsetPeriod")
 				if let val = exist as? FHIRJSON {
-					self.onsetPeriod = Period(json: val, owner: self)
+					if let onsetPeriod = self.onsetPeriod {
+                        errors.append(contentsOf: onsetPeriod.populate(from: val) ?? [])
+                    } else {
+                        self.onsetPeriod = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -417,7 +456,11 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 			if let exist = js["onsetQuantity"] {
 				presentKeys.insert("onsetQuantity")
 				if let val = exist as? FHIRJSON {
-					self.onsetQuantity = Quantity(json: val, owner: self)
+					if let onsetQuantity = self.onsetQuantity {
+                        errors.append(contentsOf: onsetQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.onsetQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -426,7 +469,11 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 			if let exist = js["onsetRange"] {
 				presentKeys.insert("onsetRange")
 				if let val = exist as? FHIRJSON {
-					self.onsetRange = Range(json: val, owner: self)
+					if let onsetRange = self.onsetRange {
+                        errors.append(contentsOf: onsetRange.populate(from: val) ?? [])
+                    } else {
+                        self.onsetRange = Range(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -436,7 +483,6 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 				presentKeys.insert("onsetString")
 				if let val = exist as? String {
 					self.onsetString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetString", wants: String.self, has: type(of: exist)))
@@ -445,7 +491,11 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 			if let exist = js["outcome"] {
 				presentKeys.insert("outcome")
 				if let val = exist as? FHIRJSON {
-					self.outcome = CodeableConcept(json: val, owner: self)
+					if let outcome = self.outcome {
+                        errors.append(contentsOf: outcome.populate(from: val) ?? [])
+                    } else {
+                        self.outcome = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: type(of: exist)))

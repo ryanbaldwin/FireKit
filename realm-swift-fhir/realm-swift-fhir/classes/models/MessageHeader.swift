@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -60,7 +60,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
-					self.author = Reference(json: val, owner: self)
+					if let author = self.author {
+                        errors.append(contentsOf: author.populate(from: val) ?? [])
+                    } else {
+                        self.author = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
@@ -70,6 +74,7 @@ open class MessageHeader: DomainResource {
 				presentKeys.insert("data")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.data) }
 						self.data.append(objectsIn: vals)
 					}
 				}
@@ -81,6 +86,7 @@ open class MessageHeader: DomainResource {
 				presentKeys.insert("destination")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = MessageHeaderDestination.instantiate(fromArray: val, owner: self) as? [MessageHeaderDestination] {
+						if let realm = self.realm { realm.delete(self.destination) }
 						self.destination.append(objectsIn: vals)
 					}
 				}
@@ -91,7 +97,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["enterer"] {
 				presentKeys.insert("enterer")
 				if let val = exist as? FHIRJSON {
-					self.enterer = Reference(json: val, owner: self)
+					if let enterer = self.enterer {
+                        errors.append(contentsOf: enterer.populate(from: val) ?? [])
+                    } else {
+                        self.enterer = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "enterer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -100,7 +110,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? FHIRJSON {
-					self.event = Coding(json: val, owner: self)
+					if let event = self.event {
+                        errors.append(contentsOf: event.populate(from: val) ?? [])
+                    } else {
+                        self.event = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "event", wants: FHIRJSON.self, has: type(of: exist)))
@@ -112,7 +126,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
-					self.reason = CodeableConcept(json: val, owner: self)
+					if let reason = self.reason {
+                        errors.append(contentsOf: reason.populate(from: val) ?? [])
+                    } else {
+                        self.reason = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,7 +139,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["receiver"] {
 				presentKeys.insert("receiver")
 				if let val = exist as? FHIRJSON {
-					self.receiver = Reference(json: val, owner: self)
+					if let receiver = self.receiver {
+                        errors.append(contentsOf: receiver.populate(from: val) ?? [])
+                    } else {
+                        self.receiver = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "receiver", wants: FHIRJSON.self, has: type(of: exist)))
@@ -130,7 +152,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["response"] {
 				presentKeys.insert("response")
 				if let val = exist as? FHIRJSON {
-					self.response = MessageHeaderResponse(json: val, owner: self)
+					if let response = self.response {
+                        errors.append(contentsOf: response.populate(from: val) ?? [])
+                    } else {
+                        self.response = MessageHeaderResponse(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
@@ -139,7 +165,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["responsible"] {
 				presentKeys.insert("responsible")
 				if let val = exist as? FHIRJSON {
-					self.responsible = Reference(json: val, owner: self)
+					if let responsible = self.responsible {
+                        errors.append(contentsOf: responsible.populate(from: val) ?? [])
+                    } else {
+                        self.responsible = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "responsible", wants: FHIRJSON.self, has: type(of: exist)))
@@ -148,7 +178,11 @@ open class MessageHeader: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					self.source = MessageHeaderSource(json: val, owner: self)
+					if let source = self.source {
+                        errors.append(contentsOf: source.populate(from: val) ?? [])
+                    } else {
+                        self.source = MessageHeaderSource(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -246,7 +280,6 @@ open class MessageHeaderDestination: BackboneElement {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
 					self.endpoint = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -259,7 +292,6 @@ open class MessageHeaderDestination: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -268,7 +300,11 @@ open class MessageHeaderDestination: BackboneElement {
 			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
+					if let target = self.target {
+                        errors.append(contentsOf: target.populate(from: val) ?? [])
+                    } else {
+                        self.target = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))
@@ -328,7 +364,6 @@ open class MessageHeaderResponse: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -340,7 +375,11 @@ open class MessageHeaderResponse: BackboneElement {
 			if let exist = js["details"] {
 				presentKeys.insert("details")
 				if let val = exist as? FHIRJSON {
-					self.details = Reference(json: val, owner: self)
+					if let details = self.details {
+                        errors.append(contentsOf: details.populate(from: val) ?? [])
+                    } else {
+                        self.details = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "details", wants: FHIRJSON.self, has: type(of: exist)))
@@ -350,7 +389,6 @@ open class MessageHeaderResponse: BackboneElement {
 				presentKeys.insert("identifier")
 				if let val = exist as? String {
 					self.identifier = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: type(of: exist)))
@@ -415,7 +453,11 @@ open class MessageHeaderSource: BackboneElement {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? FHIRJSON {
-					self.contact = ContactPoint(json: val, owner: self)
+					if let contact = self.contact {
+                        errors.append(contentsOf: contact.populate(from: val) ?? [])
+                    } else {
+                        self.contact = ContactPoint(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: FHIRJSON.self, has: type(of: exist)))
@@ -425,7 +467,6 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
 					self.endpoint = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -438,7 +479,6 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -448,7 +488,6 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("software")
 				if let val = exist as? String {
 					self.software = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "software", wants: String.self, has: type(of: exist)))
@@ -458,7 +497,6 @@ open class MessageHeaderSource: BackboneElement {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))

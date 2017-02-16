@@ -2,7 +2,7 @@
 //  Ratio.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -32,7 +32,11 @@ open class Ratio: Element {
 			if let exist = js["denominator"] {
 				presentKeys.insert("denominator")
 				if let val = exist as? FHIRJSON {
-					self.denominator = Quantity(json: val, owner: self)
+					if let denominator = self.denominator {
+                        errors.append(contentsOf: denominator.populate(from: val) ?? [])
+                    } else {
+                        self.denominator = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "denominator", wants: FHIRJSON.self, has: type(of: exist)))
@@ -41,7 +45,11 @@ open class Ratio: Element {
 			if let exist = js["numerator"] {
 				presentKeys.insert("numerator")
 				if let val = exist as? FHIRJSON {
-					self.numerator = Quantity(json: val, owner: self)
+					if let numerator = self.numerator {
+                        errors.append(contentsOf: numerator.populate(from: val) ?? [])
+                    } else {
+                        self.numerator = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "numerator", wants: FHIRJSON.self, has: type(of: exist)))

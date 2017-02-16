@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["coverage"] {
 				presentKeys.insert("coverage")
 				if let val = exist as? FHIRJSON {
-					self.coverage = Reference(json: val, owner: self)
+					if let coverage = self.coverage {
+                        errors.append(contentsOf: coverage.populate(from: val) ?? [])
+                    } else {
+                        self.coverage = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "coverage", wants: FHIRJSON.self, has: type(of: exist)))
@@ -78,6 +82,7 @@ open class EnrollmentRequest: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -88,7 +93,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["organization"] {
 				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					if let organization = self.organization {
+                        errors.append(contentsOf: organization.populate(from: val) ?? [])
+                    } else {
+                        self.organization = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -97,7 +106,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["originalRuleset"] {
 				presentKeys.insert("originalRuleset")
 				if let val = exist as? FHIRJSON {
-					self.originalRuleset = Coding(json: val, owner: self)
+					if let originalRuleset = self.originalRuleset {
+                        errors.append(contentsOf: originalRuleset.populate(from: val) ?? [])
+                    } else {
+                        self.originalRuleset = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -106,7 +119,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["provider"] {
 				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.provider = Reference(json: val, owner: self)
+					if let provider = self.provider {
+                        errors.append(contentsOf: provider.populate(from: val) ?? [])
+                    } else {
+                        self.provider = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
@@ -115,7 +132,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["relationship"] {
 				presentKeys.insert("relationship")
 				if let val = exist as? FHIRJSON {
-					self.relationship = Coding(json: val, owner: self)
+					if let relationship = self.relationship {
+                        errors.append(contentsOf: relationship.populate(from: val) ?? [])
+                    } else {
+                        self.relationship = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relationship", wants: FHIRJSON.self, has: type(of: exist)))
@@ -127,7 +148,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["ruleset"] {
 				presentKeys.insert("ruleset")
 				if let val = exist as? FHIRJSON {
-					self.ruleset = Coding(json: val, owner: self)
+					if let ruleset = self.ruleset {
+                        errors.append(contentsOf: ruleset.populate(from: val) ?? [])
+                    } else {
+                        self.ruleset = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -136,7 +161,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					if let subject = self.subject {
+                        errors.append(contentsOf: subject.populate(from: val) ?? [])
+                    } else {
+                        self.subject = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -148,7 +177,11 @@ open class EnrollmentRequest: DomainResource {
 			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
+					if let target = self.target {
+                        errors.append(contentsOf: target.populate(from: val) ?? [])
+                    } else {
+                        self.target = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))

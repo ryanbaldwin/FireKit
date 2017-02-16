@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -36,6 +36,7 @@ open class DomainResource: Resource {
 			if let exist = js["contained"] {
 				presentKeys.insert("contained")
 				if let val = exist as? [FHIRJSON] {
+					// 'Resource' == prop.class_name
 					self.contained.append(objectsIn: val.map({ return ContainedResource(json: $0, owner: self)}))
 				}
 				else {
@@ -46,6 +47,7 @@ open class DomainResource: Resource {
 				presentKeys.insert("extension")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Extension.instantiate(fromArray: val, owner: self) as? [Extension] {
+						if let realm = self.realm { realm.delete(self.extension_fhir) }
 						self.extension_fhir.append(objectsIn: vals)
 					}
 				}
@@ -57,6 +59,7 @@ open class DomainResource: Resource {
 				presentKeys.insert("modifierExtension")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Extension.instantiate(fromArray: val, owner: self) as? [Extension] {
+						if let realm = self.realm { realm.delete(self.modifierExtension) }
 						self.modifierExtension.append(objectsIn: vals)
 					}
 				}
@@ -67,7 +70,11 @@ open class DomainResource: Resource {
 			if let exist = js["text"] {
 				presentKeys.insert("text")
 				if let val = exist as? FHIRJSON {
-					self.text = Narrative(json: val, owner: self)
+					if let text = self.text {
+                        errors.append(contentsOf: text.populate(from: val) ?? [])
+                    } else {
+                        self.text = Narrative(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: FHIRJSON.self, has: type(of: exist)))

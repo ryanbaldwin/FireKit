@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -52,7 +52,6 @@ open class Binary: Resource {
 				presentKeys.insert("contentType")
 				if let val = exist as? String {
 					self.contentType = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))

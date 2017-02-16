@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -52,7 +52,6 @@ open class Slot: DomainResource {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -74,7 +73,6 @@ open class Slot: DomainResource {
 				presentKeys.insert("freeBusyType")
 				if let val = exist as? String {
 					self.freeBusyType = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "freeBusyType", wants: String.self, has: type(of: exist)))
@@ -87,6 +85,7 @@ open class Slot: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -98,7 +97,6 @@ open class Slot: DomainResource {
 				presentKeys.insert("overbooked")
 				if let val = exist as? Bool {
 					self.overbooked.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "overbooked", wants: Bool.self, has: type(of: exist)))
@@ -107,7 +105,11 @@ open class Slot: DomainResource {
 			if let exist = js["schedule"] {
 				presentKeys.insert("schedule")
 				if let val = exist as? FHIRJSON {
-					self.schedule = Reference(json: val, owner: self)
+					if let schedule = self.schedule {
+                        errors.append(contentsOf: schedule.populate(from: val) ?? [])
+                    } else {
+                        self.schedule = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "schedule", wants: FHIRJSON.self, has: type(of: exist)))
@@ -131,7 +133,11 @@ open class Slot: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

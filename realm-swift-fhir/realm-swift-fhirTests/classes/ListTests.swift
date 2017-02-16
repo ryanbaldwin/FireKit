@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.List?
 		do {
 			instance = try runList1()
-			try runList1(instance!.asJSON()) 			
+			try runList1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.List
+			XCTAssertNotNil(copy)
+			try runList1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -43,22 +46,39 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testListRealm1(instance: RealmSwiftFHIR.List) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runList1(realm.objects(RealmSwiftFHIR.List.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.List.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.List()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.List.self).count)
 	}
 	
 	@discardableResult
@@ -88,7 +108,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.List?
 		do {
 			instance = try runList2()
-			try runList2(instance!.asJSON()) 			
+			try runList2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.List
+			XCTAssertNotNil(copy)
+			try runList2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -98,22 +121,39 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testListRealm2(instance: RealmSwiftFHIR.List) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runList2(realm.objects(RealmSwiftFHIR.List.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.List.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.List()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.List.self).count)
 	}
 	
 	@discardableResult
@@ -143,7 +183,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.List?
 		do {
 			instance = try runList3()
-			try runList3(instance!.asJSON()) 			
+			try runList3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.List
+			XCTAssertNotNil(copy)
+			try runList3(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -153,22 +196,39 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testListRealm3(instance: RealmSwiftFHIR.List) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runList3(realm.objects(RealmSwiftFHIR.List.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.List.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.List()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.List.self).count)
 	}
 	
 	@discardableResult
@@ -197,7 +257,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.List?
 		do {
 			instance = try runList4()
-			try runList4(instance!.asJSON()) 			
+			try runList4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.List
+			XCTAssertNotNil(copy)
+			try runList4(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -207,22 +270,39 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testListRealm4(instance: RealmSwiftFHIR.List) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runList4(realm.objects(RealmSwiftFHIR.List.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.List.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.List()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.List.self).count)
 	}
 	
 	@discardableResult
@@ -267,7 +347,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.List?
 		do {
 			instance = try runList5()
-			try runList5(instance!.asJSON()) 			
+			try runList5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.List
+			XCTAssertNotNil(copy)
+			try runList5(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -277,22 +360,39 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testListRealm5(instance: RealmSwiftFHIR.List) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runList5(realm.objects(RealmSwiftFHIR.List.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.List.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.List()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.List.self).count)
 	}
 	
 	@discardableResult
@@ -333,7 +433,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.List?
 		do {
 			instance = try runList6()
-			try runList6(instance!.asJSON()) 			
+			try runList6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.List
+			XCTAssertNotNil(copy)
+			try runList6(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -343,22 +446,39 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testListRealm6(instance: RealmSwiftFHIR.List) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runList6(realm.objects(RealmSwiftFHIR.List.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.List.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.List()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.List.self).count)
 	}
 	
 	@discardableResult
@@ -393,7 +513,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.List?
 		do {
 			instance = try runList7()
-			try runList7(instance!.asJSON()) 			
+			try runList7(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.List
+			XCTAssertNotNil(copy)
+			try runList7(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -403,22 +526,39 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testListRealm7(instance: RealmSwiftFHIR.List) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runList7(realm.objects(RealmSwiftFHIR.List.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.List.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.List()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList7(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.List.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runList7(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.List.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.List.self).count)
 	}
 	
 	@discardableResult

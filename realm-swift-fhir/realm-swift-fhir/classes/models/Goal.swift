@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -69,6 +69,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("addresses")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.addresses) }
 						self.addresses.append(objectsIn: vals)
 					}
 				}
@@ -79,7 +80,11 @@ open class Goal: DomainResource {
 			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
-					self.author = Reference(json: val, owner: self)
+					if let author = self.author {
+                        errors.append(contentsOf: author.populate(from: val) ?? [])
+                    } else {
+                        self.author = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
@@ -89,6 +94,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("category")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.category) }
 						self.category.append(objectsIn: vals)
 					}
 				}
@@ -100,7 +106,6 @@ open class Goal: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -113,6 +118,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -124,6 +130,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation] {
+						if let realm = self.realm { realm.delete(self.note) }
 						self.note.append(objectsIn: vals)
 					}
 				}
@@ -135,6 +142,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("outcome")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = GoalOutcome.instantiate(fromArray: val, owner: self) as? [GoalOutcome] {
+						if let realm = self.realm { realm.delete(self.outcome) }
 						self.outcome.append(objectsIn: vals)
 					}
 				}
@@ -145,7 +153,11 @@ open class Goal: DomainResource {
 			if let exist = js["priority"] {
 				presentKeys.insert("priority")
 				if let val = exist as? FHIRJSON {
-					self.priority = CodeableConcept(json: val, owner: self)
+					if let priority = self.priority {
+                        errors.append(contentsOf: priority.populate(from: val) ?? [])
+                    } else {
+                        self.priority = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -154,7 +166,11 @@ open class Goal: DomainResource {
 			if let exist = js["startCodeableConcept"] {
 				presentKeys.insert("startCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.startCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let startCodeableConcept = self.startCodeableConcept {
+                        errors.append(contentsOf: startCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.startCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "startCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,7 +189,6 @@ open class Goal: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -194,7 +209,11 @@ open class Goal: DomainResource {
 			if let exist = js["statusReason"] {
 				presentKeys.insert("statusReason")
 				if let val = exist as? FHIRJSON {
-					self.statusReason = CodeableConcept(json: val, owner: self)
+					if let statusReason = self.statusReason {
+                        errors.append(contentsOf: statusReason.populate(from: val) ?? [])
+                    } else {
+                        self.statusReason = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "statusReason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -203,7 +222,11 @@ open class Goal: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					if let subject = self.subject {
+                        errors.append(contentsOf: subject.populate(from: val) ?? [])
+                    } else {
+                        self.subject = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -221,7 +244,11 @@ open class Goal: DomainResource {
 			if let exist = js["targetQuantity"] {
 				presentKeys.insert("targetQuantity")
 				if let val = exist as? FHIRJSON {
-					self.targetQuantity = Quantity(json: val, owner: self)
+					if let targetQuantity = self.targetQuantity {
+                        errors.append(contentsOf: targetQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.targetQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -310,7 +337,11 @@ open class GoalOutcome: BackboneElement {
 			if let exist = js["resultCodeableConcept"] {
 				presentKeys.insert("resultCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.resultCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let resultCodeableConcept = self.resultCodeableConcept {
+                        errors.append(contentsOf: resultCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.resultCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resultCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -319,7 +350,11 @@ open class GoalOutcome: BackboneElement {
 			if let exist = js["resultReference"] {
 				presentKeys.insert("resultReference")
 				if let val = exist as? FHIRJSON {
-					self.resultReference = Reference(json: val, owner: self)
+					if let resultReference = self.resultReference {
+                        errors.append(contentsOf: resultReference.populate(from: val) ?? [])
+                    } else {
+                        self.resultReference = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resultReference", wants: FHIRJSON.self, has: type(of: exist)))

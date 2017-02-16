@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder1()
-			try runNutritionOrder1(instance!.asJSON()) 			
+			try runNutritionOrder1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -43,22 +46,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm1(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder1(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -122,7 +142,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder2()
-			try runNutritionOrder2(instance!.asJSON()) 			
+			try runNutritionOrder2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -132,22 +155,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm2(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder2(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -200,7 +240,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder3()
-			try runNutritionOrder3(instance!.asJSON()) 			
+			try runNutritionOrder3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder3(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -210,22 +253,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm3(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder3(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -277,7 +337,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder4()
-			try runNutritionOrder4(instance!.asJSON()) 			
+			try runNutritionOrder4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder4(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -287,22 +350,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm4(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder4(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -351,7 +431,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder5()
-			try runNutritionOrder5(instance!.asJSON()) 			
+			try runNutritionOrder5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder5(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -361,22 +444,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm5(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder5(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -439,7 +539,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder6()
-			try runNutritionOrder6(instance!.asJSON()) 			
+			try runNutritionOrder6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder6(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -449,22 +552,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm6(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder6(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -522,7 +642,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder7()
-			try runNutritionOrder7(instance!.asJSON()) 			
+			try runNutritionOrder7(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder7(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -532,22 +655,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm7(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder7(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder7(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder7(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -607,7 +747,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder8()
-			try runNutritionOrder8(instance!.asJSON()) 			
+			try runNutritionOrder8(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder8(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -617,22 +760,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm8(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder8(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder8(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder8(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -688,7 +848,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder9()
-			try runNutritionOrder9(instance!.asJSON()) 			
+			try runNutritionOrder9(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder9(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -698,22 +861,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm9(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder9(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder9(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder9(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult
@@ -755,7 +935,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NutritionOrder?
 		do {
 			instance = try runNutritionOrder10()
-			try runNutritionOrder10(instance!.asJSON()) 			
+			try runNutritionOrder10(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
+			XCTAssertNotNil(copy)
+			try runNutritionOrder10(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -765,22 +948,39 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testNutritionOrderRealm10(instance: RealmSwiftFHIR.NutritionOrder) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNutritionOrder10(realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NutritionOrder.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NutritionOrder()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder10(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NutritionOrder.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNutritionOrder10(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NutritionOrder.self).count)
 	}
 	
 	@discardableResult

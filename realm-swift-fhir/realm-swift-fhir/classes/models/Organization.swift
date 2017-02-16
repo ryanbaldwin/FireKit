@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -47,7 +47,6 @@ open class Organization: DomainResource {
 				presentKeys.insert("active")
 				if let val = exist as? Bool {
 					self.active.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: type(of: exist)))
@@ -57,6 +56,7 @@ open class Organization: DomainResource {
 				presentKeys.insert("address")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Address.instantiate(fromArray: val, owner: self) as? [Address] {
+						if let realm = self.realm { realm.delete(self.address) }
 						self.address.append(objectsIn: vals)
 					}
 				}
@@ -68,6 +68,7 @@ open class Organization: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = OrganizationContact.instantiate(fromArray: val, owner: self) as? [OrganizationContact] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -79,6 +80,7 @@ open class Organization: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -90,7 +92,6 @@ open class Organization: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -99,7 +100,11 @@ open class Organization: DomainResource {
 			if let exist = js["partOf"] {
 				presentKeys.insert("partOf")
 				if let val = exist as? FHIRJSON {
-					self.partOf = Reference(json: val, owner: self)
+					if let partOf = self.partOf {
+                        errors.append(contentsOf: partOf.populate(from: val) ?? [])
+                    } else {
+                        self.partOf = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "partOf", wants: FHIRJSON.self, has: type(of: exist)))
@@ -109,6 +114,7 @@ open class Organization: DomainResource {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -119,7 +125,11 @@ open class Organization: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -186,7 +196,11 @@ open class OrganizationContact: BackboneElement {
 			if let exist = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? FHIRJSON {
-					self.address = Address(json: val, owner: self)
+					if let address = self.address {
+                        errors.append(contentsOf: address.populate(from: val) ?? [])
+                    } else {
+                        self.address = Address(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: type(of: exist)))
@@ -195,7 +209,11 @@ open class OrganizationContact: BackboneElement {
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? FHIRJSON {
-					self.name = HumanName(json: val, owner: self)
+					if let name = self.name {
+                        errors.append(contentsOf: name.populate(from: val) ?? [])
+                    } else {
+                        self.name = HumanName(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: type(of: exist)))
@@ -204,7 +222,11 @@ open class OrganizationContact: BackboneElement {
 			if let exist = js["purpose"] {
 				presentKeys.insert("purpose")
 				if let val = exist as? FHIRJSON {
-					self.purpose = CodeableConcept(json: val, owner: self)
+					if let purpose = self.purpose {
+                        errors.append(contentsOf: purpose.populate(from: val) ?? [])
+                    } else {
+                        self.purpose = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "purpose", wants: FHIRJSON.self, has: type(of: exist)))
@@ -214,6 +236,7 @@ open class OrganizationContact: BackboneElement {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}

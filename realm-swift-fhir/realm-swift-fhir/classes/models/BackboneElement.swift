@@ -2,7 +2,7 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -31,6 +31,7 @@ open class BackboneElement: Element {
 				presentKeys.insert("modifierExtension")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Extension.instantiate(fromArray: val, owner: self) as? [Extension] {
+						if let realm = self.realm { realm.delete(self.modifierExtension) }
 						self.modifierExtension.append(objectsIn: vals)
 					}
 				}

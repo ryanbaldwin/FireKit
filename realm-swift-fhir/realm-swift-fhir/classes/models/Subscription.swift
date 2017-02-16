@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,11 @@ open class Subscription: DomainResource {
 			if let exist = js["channel"] {
 				presentKeys.insert("channel")
 				if let val = exist as? FHIRJSON {
-					self.channel = SubscriptionChannel(json: val, owner: self)
+					if let channel = self.channel {
+                        errors.append(contentsOf: channel.populate(from: val) ?? [])
+                    } else {
+                        self.channel = SubscriptionChannel(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "channel", wants: FHIRJSON.self, has: type(of: exist)))
@@ -69,6 +73,7 @@ open class Subscription: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -80,7 +85,6 @@ open class Subscription: DomainResource {
 				presentKeys.insert("criteria")
 				if let val = exist as? String {
 					self.criteria = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "criteria", wants: String.self, has: type(of: exist)))
@@ -102,7 +106,6 @@ open class Subscription: DomainResource {
 				presentKeys.insert("error")
 				if let val = exist as? String {
 					self.error = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "error", wants: String.self, has: type(of: exist)))
@@ -112,7 +115,6 @@ open class Subscription: DomainResource {
 				presentKeys.insert("reason")
 				if let val = exist as? String {
 					self.reason = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: String.self, has: type(of: exist)))
@@ -125,7 +127,6 @@ open class Subscription: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -138,6 +139,7 @@ open class Subscription: DomainResource {
 				presentKeys.insert("tag")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.tag) }
 						self.tag.append(objectsIn: vals)
 					}
 				}
@@ -216,7 +218,6 @@ open class SubscriptionChannel: BackboneElement {
 				presentKeys.insert("endpoint")
 				if let val = exist as? String {
 					self.endpoint = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "endpoint", wants: String.self, has: type(of: exist)))
@@ -226,7 +227,6 @@ open class SubscriptionChannel: BackboneElement {
 				presentKeys.insert("header")
 				if let val = exist as? String {
 					self.header = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "header", wants: String.self, has: type(of: exist)))
@@ -236,7 +236,6 @@ open class SubscriptionChannel: BackboneElement {
 				presentKeys.insert("payload")
 				if let val = exist as? String {
 					self.payload = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "payload", wants: String.self, has: type(of: exist)))
@@ -249,7 +248,6 @@ open class SubscriptionChannel: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))

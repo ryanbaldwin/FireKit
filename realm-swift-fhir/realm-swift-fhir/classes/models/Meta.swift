@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -58,6 +58,7 @@ open class Meta: Element {
 				presentKeys.insert("security")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.security) }
 						self.security.append(objectsIn: vals)
 					}
 				}
@@ -69,6 +70,7 @@ open class Meta: Element {
 				presentKeys.insert("tag")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.tag) }
 						self.tag.append(objectsIn: vals)
 					}
 				}
@@ -80,7 +82,6 @@ open class Meta: Element {
 				presentKeys.insert("versionId")
 				if let val = exist as? String {
 					self.versionId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "versionId", wants: String.self, has: type(of: exist)))

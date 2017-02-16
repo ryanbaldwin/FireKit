@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -58,7 +58,11 @@ open class Media: DomainResource {
 			if let exist = js["content"] {
 				presentKeys.insert("content")
 				if let val = exist as? FHIRJSON {
-					self.content = Attachment(json: val, owner: self)
+					if let content = self.content {
+                        errors.append(contentsOf: content.populate(from: val) ?? [])
+                    } else {
+                        self.content = Attachment(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "content", wants: FHIRJSON.self, has: type(of: exist)))
@@ -71,7 +75,6 @@ open class Media: DomainResource {
 				presentKeys.insert("deviceName")
 				if let val = exist as? String {
 					self.deviceName = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deviceName", wants: String.self, has: type(of: exist)))
@@ -81,7 +84,6 @@ open class Media: DomainResource {
 				presentKeys.insert("duration")
 				if let val = exist as? Int {
 					self.duration.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "duration", wants: Int.self, has: type(of: exist)))
@@ -91,7 +93,6 @@ open class Media: DomainResource {
 				presentKeys.insert("frames")
 				if let val = exist as? Int {
 					self.frames.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "frames", wants: Int.self, has: type(of: exist)))
@@ -101,7 +102,6 @@ open class Media: DomainResource {
 				presentKeys.insert("height")
 				if let val = exist as? Int {
 					self.height.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "height", wants: Int.self, has: type(of: exist)))
@@ -111,6 +111,7 @@ open class Media: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -121,7 +122,11 @@ open class Media: DomainResource {
 			if let exist = js["operator"] {
 				presentKeys.insert("operator")
 				if let val = exist as? FHIRJSON {
-					self.operator_fhir = Reference(json: val, owner: self)
+					if let operator_fhir = self.operator_fhir {
+                        errors.append(contentsOf: operator_fhir.populate(from: val) ?? [])
+                    } else {
+                        self.operator_fhir = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operator", wants: FHIRJSON.self, has: type(of: exist)))
@@ -130,7 +135,11 @@ open class Media: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					if let subject = self.subject {
+                        errors.append(contentsOf: subject.populate(from: val) ?? [])
+                    } else {
+                        self.subject = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -139,7 +148,11 @@ open class Media: DomainResource {
 			if let exist = js["subtype"] {
 				presentKeys.insert("subtype")
 				if let val = exist as? FHIRJSON {
-					self.subtype = CodeableConcept(json: val, owner: self)
+					if let subtype = self.subtype {
+                        errors.append(contentsOf: subtype.populate(from: val) ?? [])
+                    } else {
+                        self.subtype = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subtype", wants: FHIRJSON.self, has: type(of: exist)))
@@ -149,7 +162,6 @@ open class Media: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -161,7 +173,11 @@ open class Media: DomainResource {
 			if let exist = js["view"] {
 				presentKeys.insert("view")
 				if let val = exist as? FHIRJSON {
-					self.view = CodeableConcept(json: val, owner: self)
+					if let view = self.view {
+                        errors.append(contentsOf: view.populate(from: val) ?? [])
+                    } else {
+                        self.view = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "view", wants: FHIRJSON.self, has: type(of: exist)))
@@ -171,7 +187,6 @@ open class Media: DomainResource {
 				presentKeys.insert("width")
 				if let val = exist as? Int {
 					self.width.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "width", wants: Int.self, has: type(of: exist)))

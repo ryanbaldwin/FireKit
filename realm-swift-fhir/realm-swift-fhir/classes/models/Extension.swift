@@ -2,7 +2,7 @@
 //  Extension.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Extension) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Extension) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -103,7 +103,6 @@ open class Extension: Element {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -115,7 +114,11 @@ open class Extension: Element {
 			if let exist = js["valueAddress"] {
 				presentKeys.insert("valueAddress")
 				if let val = exist as? FHIRJSON {
-					self.valueAddress = Address(json: val, owner: self)
+					if let valueAddress = self.valueAddress {
+                        errors.append(contentsOf: valueAddress.populate(from: val) ?? [])
+                    } else {
+                        self.valueAddress = Address(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAddress", wants: FHIRJSON.self, has: type(of: exist)))
@@ -124,7 +127,11 @@ open class Extension: Element {
 			if let exist = js["valueAnnotation"] {
 				presentKeys.insert("valueAnnotation")
 				if let val = exist as? FHIRJSON {
-					self.valueAnnotation = Annotation(json: val, owner: self)
+					if let valueAnnotation = self.valueAnnotation {
+                        errors.append(contentsOf: valueAnnotation.populate(from: val) ?? [])
+                    } else {
+                        self.valueAnnotation = Annotation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAnnotation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -133,7 +140,11 @@ open class Extension: Element {
 			if let exist = js["valueAttachment"] {
 				presentKeys.insert("valueAttachment")
 				if let val = exist as? FHIRJSON {
-					self.valueAttachment = Attachment(json: val, owner: self)
+					if let valueAttachment = self.valueAttachment {
+                        errors.append(contentsOf: valueAttachment.populate(from: val) ?? [])
+                    } else {
+                        self.valueAttachment = Attachment(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -152,7 +163,6 @@ open class Extension: Element {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -162,7 +172,6 @@ open class Extension: Element {
 				presentKeys.insert("valueCode")
 				if let val = exist as? String {
 					self.valueCode = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -171,7 +180,11 @@ open class Extension: Element {
 			if let exist = js["valueCodeableConcept"] {
 				presentKeys.insert("valueCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let valueCodeableConcept = self.valueCodeableConcept {
+                        errors.append(contentsOf: valueCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -180,7 +193,11 @@ open class Extension: Element {
 			if let exist = js["valueCoding"] {
 				presentKeys.insert("valueCoding")
 				if let val = exist as? FHIRJSON {
-					self.valueCoding = Coding(json: val, owner: self)
+					if let valueCoding = self.valueCoding {
+                        errors.append(contentsOf: valueCoding.populate(from: val) ?? [])
+                    } else {
+                        self.valueCoding = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCoding", wants: FHIRJSON.self, has: type(of: exist)))
@@ -189,7 +206,11 @@ open class Extension: Element {
 			if let exist = js["valueContactPoint"] {
 				presentKeys.insert("valueContactPoint")
 				if let val = exist as? FHIRJSON {
-					self.valueContactPoint = ContactPoint(json: val, owner: self)
+					if let valueContactPoint = self.valueContactPoint {
+                        errors.append(contentsOf: valueContactPoint.populate(from: val) ?? [])
+                    } else {
+                        self.valueContactPoint = ContactPoint(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueContactPoint", wants: FHIRJSON.self, has: type(of: exist)))
@@ -225,7 +246,11 @@ open class Extension: Element {
 			if let exist = js["valueHumanName"] {
 				presentKeys.insert("valueHumanName")
 				if let val = exist as? FHIRJSON {
-					self.valueHumanName = HumanName(json: val, owner: self)
+					if let valueHumanName = self.valueHumanName {
+                        errors.append(contentsOf: valueHumanName.populate(from: val) ?? [])
+                    } else {
+                        self.valueHumanName = HumanName(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueHumanName", wants: FHIRJSON.self, has: type(of: exist)))
@@ -235,7 +260,6 @@ open class Extension: Element {
 				presentKeys.insert("valueId")
 				if let val = exist as? String {
 					self.valueId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueId", wants: String.self, has: type(of: exist)))
@@ -244,7 +268,11 @@ open class Extension: Element {
 			if let exist = js["valueIdentifier"] {
 				presentKeys.insert("valueIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.valueIdentifier = Identifier(json: val, owner: self)
+					if let valueIdentifier = self.valueIdentifier {
+                        errors.append(contentsOf: valueIdentifier.populate(from: val) ?? [])
+                    } else {
+                        self.valueIdentifier = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -263,7 +291,6 @@ open class Extension: Element {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
@@ -273,7 +300,6 @@ open class Extension: Element {
 				presentKeys.insert("valueMarkdown")
 				if let val = exist as? String {
 					self.valueMarkdown = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueMarkdown", wants: String.self, has: type(of: exist)))
@@ -282,7 +308,11 @@ open class Extension: Element {
 			if let exist = js["valueMeta"] {
 				presentKeys.insert("valueMeta")
 				if let val = exist as? FHIRJSON {
-					self.valueMeta = Meta(json: val, owner: self)
+					if let valueMeta = self.valueMeta {
+                        errors.append(contentsOf: valueMeta.populate(from: val) ?? [])
+                    } else {
+                        self.valueMeta = Meta(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueMeta", wants: FHIRJSON.self, has: type(of: exist)))
@@ -292,7 +322,6 @@ open class Extension: Element {
 				presentKeys.insert("valueOid")
 				if let val = exist as? String {
 					self.valueOid = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueOid", wants: String.self, has: type(of: exist)))
@@ -301,7 +330,11 @@ open class Extension: Element {
 			if let exist = js["valuePeriod"] {
 				presentKeys.insert("valuePeriod")
 				if let val = exist as? FHIRJSON {
-					self.valuePeriod = Period(json: val, owner: self)
+					if let valuePeriod = self.valuePeriod {
+                        errors.append(contentsOf: valuePeriod.populate(from: val) ?? [])
+                    } else {
+                        self.valuePeriod = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valuePeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -311,7 +344,6 @@ open class Extension: Element {
 				presentKeys.insert("valuePositiveInt")
 				if let val = exist as? Int {
 					self.valuePositiveInt.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valuePositiveInt", wants: Int.self, has: type(of: exist)))
@@ -320,7 +352,11 @@ open class Extension: Element {
 			if let exist = js["valueQuantity"] {
 				presentKeys.insert("valueQuantity")
 				if let val = exist as? FHIRJSON {
-					self.valueQuantity = Quantity(json: val, owner: self)
+					if let valueQuantity = self.valueQuantity {
+                        errors.append(contentsOf: valueQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.valueQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -329,7 +365,11 @@ open class Extension: Element {
 			if let exist = js["valueRange"] {
 				presentKeys.insert("valueRange")
 				if let val = exist as? FHIRJSON {
-					self.valueRange = Range(json: val, owner: self)
+					if let valueRange = self.valueRange {
+                        errors.append(contentsOf: valueRange.populate(from: val) ?? [])
+                    } else {
+                        self.valueRange = Range(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -338,7 +378,11 @@ open class Extension: Element {
 			if let exist = js["valueRatio"] {
 				presentKeys.insert("valueRatio")
 				if let val = exist as? FHIRJSON {
-					self.valueRatio = Ratio(json: val, owner: self)
+					if let valueRatio = self.valueRatio {
+                        errors.append(contentsOf: valueRatio.populate(from: val) ?? [])
+                    } else {
+                        self.valueRatio = Ratio(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueRatio", wants: FHIRJSON.self, has: type(of: exist)))
@@ -347,7 +391,11 @@ open class Extension: Element {
 			if let exist = js["valueReference"] {
 				presentKeys.insert("valueReference")
 				if let val = exist as? FHIRJSON {
-					self.valueReference = Reference(json: val, owner: self)
+					if let valueReference = self.valueReference {
+                        errors.append(contentsOf: valueReference.populate(from: val) ?? [])
+                    } else {
+                        self.valueReference = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -356,7 +404,11 @@ open class Extension: Element {
 			if let exist = js["valueSampledData"] {
 				presentKeys.insert("valueSampledData")
 				if let val = exist as? FHIRJSON {
-					self.valueSampledData = SampledData(json: val, owner: self)
+					if let valueSampledData = self.valueSampledData {
+                        errors.append(contentsOf: valueSampledData.populate(from: val) ?? [])
+                    } else {
+                        self.valueSampledData = SampledData(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSampledData", wants: FHIRJSON.self, has: type(of: exist)))
@@ -365,7 +417,11 @@ open class Extension: Element {
 			if let exist = js["valueSignature"] {
 				presentKeys.insert("valueSignature")
 				if let val = exist as? FHIRJSON {
-					self.valueSignature = Signature(json: val, owner: self)
+					if let valueSignature = self.valueSignature {
+                        errors.append(contentsOf: valueSignature.populate(from: val) ?? [])
+                    } else {
+                        self.valueSignature = Signature(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSignature", wants: FHIRJSON.self, has: type(of: exist)))
@@ -375,7 +431,6 @@ open class Extension: Element {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -393,7 +448,11 @@ open class Extension: Element {
 			if let exist = js["valueTiming"] {
 				presentKeys.insert("valueTiming")
 				if let val = exist as? FHIRJSON {
-					self.valueTiming = Timing(json: val, owner: self)
+					if let valueTiming = self.valueTiming {
+                        errors.append(contentsOf: valueTiming.populate(from: val) ?? [])
+                    } else {
+                        self.valueTiming = Timing(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueTiming", wants: FHIRJSON.self, has: type(of: exist)))
@@ -403,7 +462,6 @@ open class Extension: Element {
 				presentKeys.insert("valueUnsignedInt")
 				if let val = exist as? Int {
 					self.valueUnsignedInt.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUnsignedInt", wants: Int.self, has: type(of: exist)))
@@ -413,7 +471,6 @@ open class Extension: Element {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
 					self.valueUri = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))

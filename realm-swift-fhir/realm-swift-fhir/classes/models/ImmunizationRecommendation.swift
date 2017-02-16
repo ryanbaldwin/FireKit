@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -43,6 +43,7 @@ open class ImmunizationRecommendation: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -53,7 +54,11 @@ open class ImmunizationRecommendation: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					if let patient = self.patient {
+                        errors.append(contentsOf: patient.populate(from: val) ?? [])
+                    } else {
+                        self.patient = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -66,6 +71,7 @@ open class ImmunizationRecommendation: DomainResource {
 				presentKeys.insert("recommendation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ImmunizationRecommendationRecommendation.instantiate(fromArray: val, owner: self) as? [ImmunizationRecommendationRecommendation] {
+						if let realm = self.realm { realm.delete(self.recommendation) }
 						self.recommendation.append(objectsIn: vals)
 					}
 				}
@@ -151,6 +157,7 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 				presentKeys.insert("dateCriterion")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ImmunizationRecommendationRecommendationDateCriterion.instantiate(fromArray: val, owner: self) as? [ImmunizationRecommendationRecommendationDateCriterion] {
+						if let realm = self.realm { realm.delete(self.dateCriterion) }
 						self.dateCriterion.append(objectsIn: vals)
 					}
 				}
@@ -162,7 +169,6 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 				presentKeys.insert("doseNumber")
 				if let val = exist as? Int {
 					self.doseNumber.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseNumber", wants: Int.self, has: type(of: exist)))
@@ -171,7 +177,11 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 			if let exist = js["forecastStatus"] {
 				presentKeys.insert("forecastStatus")
 				if let val = exist as? FHIRJSON {
-					self.forecastStatus = CodeableConcept(json: val, owner: self)
+					if let forecastStatus = self.forecastStatus {
+                        errors.append(contentsOf: forecastStatus.populate(from: val) ?? [])
+                    } else {
+                        self.forecastStatus = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "forecastStatus", wants: FHIRJSON.self, has: type(of: exist)))
@@ -183,7 +193,11 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 			if let exist = js["protocol"] {
 				presentKeys.insert("protocol")
 				if let val = exist as? FHIRJSON {
-					self.protocol_fhir = ImmunizationRecommendationRecommendationProtocol(json: val, owner: self)
+					if let protocol_fhir = self.protocol_fhir {
+                        errors.append(contentsOf: protocol_fhir.populate(from: val) ?? [])
+                    } else {
+                        self.protocol_fhir = ImmunizationRecommendationRecommendationProtocol(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "protocol", wants: FHIRJSON.self, has: type(of: exist)))
@@ -193,6 +207,7 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 				presentKeys.insert("supportingImmunization")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.supportingImmunization) }
 						self.supportingImmunization.append(objectsIn: vals)
 					}
 				}
@@ -204,6 +219,7 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 				presentKeys.insert("supportingPatientInformation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.supportingPatientInformation) }
 						self.supportingPatientInformation.append(objectsIn: vals)
 					}
 				}
@@ -214,7 +230,11 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 			if let exist = js["vaccineCode"] {
 				presentKeys.insert("vaccineCode")
 				if let val = exist as? FHIRJSON {
-					self.vaccineCode = CodeableConcept(json: val, owner: self)
+					if let vaccineCode = self.vaccineCode {
+                        errors.append(contentsOf: vaccineCode.populate(from: val) ?? [])
+                    } else {
+                        self.vaccineCode = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "vaccineCode", wants: FHIRJSON.self, has: type(of: exist)))
@@ -289,7 +309,11 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					if let code = self.code {
+                        errors.append(contentsOf: code.populate(from: val) ?? [])
+                    } else {
+                        self.code = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -355,7 +379,11 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 			if let exist = js["authority"] {
 				presentKeys.insert("authority")
 				if let val = exist as? FHIRJSON {
-					self.authority = Reference(json: val, owner: self)
+					if let authority = self.authority {
+                        errors.append(contentsOf: authority.populate(from: val) ?? [])
+                    } else {
+                        self.authority = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "authority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -365,7 +393,6 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -375,7 +402,6 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 				presentKeys.insert("doseSequence")
 				if let val = exist as? Int {
 					self.doseSequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseSequence", wants: Int.self, has: type(of: exist)))
@@ -385,7 +411,6 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 				presentKeys.insert("series")
 				if let val = exist as? String {
 					self.series = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "series", wants: String.self, has: type(of: exist)))

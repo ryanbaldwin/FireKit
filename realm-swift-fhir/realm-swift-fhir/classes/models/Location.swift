@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -53,7 +53,11 @@ open class Location: DomainResource {
 			if let exist = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? FHIRJSON {
-					self.address = Address(json: val, owner: self)
+					if let address = self.address {
+                        errors.append(contentsOf: address.populate(from: val) ?? [])
+                    } else {
+                        self.address = Address(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: type(of: exist)))
@@ -63,7 +67,6 @@ open class Location: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -73,6 +76,7 @@ open class Location: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -83,7 +87,11 @@ open class Location: DomainResource {
 			if let exist = js["managingOrganization"] {
 				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
-					self.managingOrganization = Reference(json: val, owner: self)
+					if let managingOrganization = self.managingOrganization {
+                        errors.append(contentsOf: managingOrganization.populate(from: val) ?? [])
+                    } else {
+                        self.managingOrganization = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -93,7 +101,6 @@ open class Location: DomainResource {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -103,7 +110,6 @@ open class Location: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -112,7 +118,11 @@ open class Location: DomainResource {
 			if let exist = js["partOf"] {
 				presentKeys.insert("partOf")
 				if let val = exist as? FHIRJSON {
-					self.partOf = Reference(json: val, owner: self)
+					if let partOf = self.partOf {
+                        errors.append(contentsOf: partOf.populate(from: val) ?? [])
+                    } else {
+                        self.partOf = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "partOf", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,7 +131,11 @@ open class Location: DomainResource {
 			if let exist = js["physicalType"] {
 				presentKeys.insert("physicalType")
 				if let val = exist as? FHIRJSON {
-					self.physicalType = CodeableConcept(json: val, owner: self)
+					if let physicalType = self.physicalType {
+                        errors.append(contentsOf: physicalType.populate(from: val) ?? [])
+                    } else {
+                        self.physicalType = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "physicalType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -130,7 +144,11 @@ open class Location: DomainResource {
 			if let exist = js["position"] {
 				presentKeys.insert("position")
 				if let val = exist as? FHIRJSON {
-					self.position = LocationPosition(json: val, owner: self)
+					if let position = self.position {
+                        errors.append(contentsOf: position.populate(from: val) ?? [])
+                    } else {
+                        self.position = LocationPosition(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "position", wants: FHIRJSON.self, has: type(of: exist)))
@@ -140,7 +158,6 @@ open class Location: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -150,6 +167,7 @@ open class Location: DomainResource {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -160,7 +178,11 @@ open class Location: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -53,7 +53,6 @@ open class SampledData: Element {
 				presentKeys.insert("data")
 				if let val = exist as? String {
 					self.data = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "data", wants: String.self, has: type(of: exist)))
@@ -66,7 +65,6 @@ open class SampledData: Element {
 				presentKeys.insert("dimensions")
 				if let val = exist as? Int {
 					self.dimensions.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dimensions", wants: Int.self, has: type(of: exist)))
@@ -96,7 +94,11 @@ open class SampledData: Element {
 			if let exist = js["origin"] {
 				presentKeys.insert("origin")
 				if let val = exist as? FHIRJSON {
-					self.origin = Quantity(json: val, owner: self)
+					if let origin = self.origin {
+                        errors.append(contentsOf: origin.populate(from: val) ?? [])
+                    } else {
+                        self.origin = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "origin", wants: FHIRJSON.self, has: type(of: exist)))

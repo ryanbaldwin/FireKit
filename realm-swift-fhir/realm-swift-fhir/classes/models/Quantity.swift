@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -40,7 +40,6 @@ open class Quantity: Element {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -50,7 +49,6 @@ open class Quantity: Element {
 				presentKeys.insert("comparator")
 				if let val = exist as? String {
 					self.comparator = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comparator", wants: String.self, has: type(of: exist)))
@@ -60,7 +58,6 @@ open class Quantity: Element {
 				presentKeys.insert("system")
 				if let val = exist as? String {
 					self.system = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
@@ -70,7 +67,6 @@ open class Quantity: Element {
 				presentKeys.insert("unit")
 				if let val = exist as? String {
 					self.unit = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unit", wants: String.self, has: type(of: exist)))

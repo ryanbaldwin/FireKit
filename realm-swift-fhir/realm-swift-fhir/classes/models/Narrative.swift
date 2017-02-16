@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -38,7 +38,6 @@ open class Narrative: Element {
 				presentKeys.insert("div")
 				if let val = exist as? String {
 					self.div = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "div", wants: String.self, has: type(of: exist)))
@@ -51,7 +50,6 @@ open class Narrative: Element {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

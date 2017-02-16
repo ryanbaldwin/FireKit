@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Media?
 		do {
 			instance = try runMedia1()
-			try runMedia1(instance!.asJSON()) 			
+			try runMedia1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Media
+			XCTAssertNotNil(copy)
+			try runMedia1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
@@ -43,22 +46,39 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testMediaRealm1(instance: RealmSwiftFHIR.Media) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedia1(realm.objects(RealmSwiftFHIR.Media.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Media.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Media.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Media()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Media.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedia1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Media.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedia1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Media.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Media.self).count)
 	}
 	
 	@discardableResult
@@ -101,7 +121,10 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Media?
 		do {
 			instance = try runMedia2()
-			try runMedia2(instance!.asJSON()) 			
+			try runMedia2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Media
+			XCTAssertNotNil(copy)
+			try runMedia2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
@@ -111,22 +134,39 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testMediaRealm2(instance: RealmSwiftFHIR.Media) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedia2(realm.objects(RealmSwiftFHIR.Media.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Media.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Media.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Media()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Media.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedia2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Media.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedia2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Media.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Media.self).count)
 	}
 	
 	@discardableResult
@@ -151,7 +191,10 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Media?
 		do {
 			instance = try runMedia3()
-			try runMedia3(instance!.asJSON()) 			
+			try runMedia3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Media
+			XCTAssertNotNil(copy)
+			try runMedia3(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
@@ -161,22 +204,39 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testMediaRealm3(instance: RealmSwiftFHIR.Media) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedia3(realm.objects(RealmSwiftFHIR.Media.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Media.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Media.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Media()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Media.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedia3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Media.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedia3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Media.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Media.self).count)
 	}
 	
 	@discardableResult

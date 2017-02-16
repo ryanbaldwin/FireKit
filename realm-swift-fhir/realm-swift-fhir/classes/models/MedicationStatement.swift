@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -92,6 +92,7 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("dosage")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = MedicationStatementDosage.instantiate(fromArray: val, owner: self) as? [MedicationStatementDosage] {
+						if let realm = self.realm { realm.delete(self.dosage) }
 						self.dosage.append(objectsIn: vals)
 					}
 				}
@@ -111,7 +112,11 @@ open class MedicationStatement: DomainResource {
 			if let exist = js["effectivePeriod"] {
 				presentKeys.insert("effectivePeriod")
 				if let val = exist as? FHIRJSON {
-					self.effectivePeriod = Period(json: val, owner: self)
+					if let effectivePeriod = self.effectivePeriod {
+                        errors.append(contentsOf: effectivePeriod.populate(from: val) ?? [])
+                    } else {
+                        self.effectivePeriod = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "effectivePeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,6 +126,7 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -131,7 +137,11 @@ open class MedicationStatement: DomainResource {
 			if let exist = js["informationSource"] {
 				presentKeys.insert("informationSource")
 				if let val = exist as? FHIRJSON {
-					self.informationSource = Reference(json: val, owner: self)
+					if let informationSource = self.informationSource {
+                        errors.append(contentsOf: informationSource.populate(from: val) ?? [])
+                    } else {
+                        self.informationSource = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "informationSource", wants: FHIRJSON.self, has: type(of: exist)))
@@ -140,7 +150,11 @@ open class MedicationStatement: DomainResource {
 			if let exist = js["medicationCodeableConcept"] {
 				presentKeys.insert("medicationCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.medicationCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let medicationCodeableConcept = self.medicationCodeableConcept {
+                        errors.append(contentsOf: medicationCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.medicationCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "medicationCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -149,7 +163,11 @@ open class MedicationStatement: DomainResource {
 			if let exist = js["medicationReference"] {
 				presentKeys.insert("medicationReference")
 				if let val = exist as? FHIRJSON {
-					self.medicationReference = Reference(json: val, owner: self)
+					if let medicationReference = self.medicationReference {
+                        errors.append(contentsOf: medicationReference.populate(from: val) ?? [])
+                    } else {
+                        self.medicationReference = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "medicationReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -159,7 +177,6 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? String {
 					self.note = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: String.self, has: type(of: exist)))
@@ -168,7 +185,11 @@ open class MedicationStatement: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					if let patient = self.patient {
+                        errors.append(contentsOf: patient.populate(from: val) ?? [])
+                    } else {
+                        self.patient = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -180,7 +201,11 @@ open class MedicationStatement: DomainResource {
 			if let exist = js["reasonForUseCodeableConcept"] {
 				presentKeys.insert("reasonForUseCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.reasonForUseCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let reasonForUseCodeableConcept = self.reasonForUseCodeableConcept {
+                        errors.append(contentsOf: reasonForUseCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.reasonForUseCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonForUseCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -189,7 +214,11 @@ open class MedicationStatement: DomainResource {
 			if let exist = js["reasonForUseReference"] {
 				presentKeys.insert("reasonForUseReference")
 				if let val = exist as? FHIRJSON {
-					self.reasonForUseReference = Reference(json: val, owner: self)
+					if let reasonForUseReference = self.reasonForUseReference {
+                        errors.append(contentsOf: reasonForUseReference.populate(from: val) ?? [])
+                    } else {
+                        self.reasonForUseReference = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonForUseReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -199,6 +228,7 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("reasonNotTaken")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.reasonNotTaken) }
 						self.reasonNotTaken.append(objectsIn: vals)
 					}
 				}
@@ -210,7 +240,6 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -223,6 +252,7 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("supportingInformation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.supportingInformation) }
 						self.supportingInformation.append(objectsIn: vals)
 					}
 				}
@@ -234,7 +264,6 @@ open class MedicationStatement: DomainResource {
 				presentKeys.insert("wasNotTaken")
 				if let val = exist as? Bool {
 					self.wasNotTaken.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "wasNotTaken", wants: Bool.self, has: type(of: exist)))
@@ -351,7 +380,6 @@ open class MedicationStatementDosage: BackboneElement {
 				presentKeys.insert("asNeededBoolean")
 				if let val = exist as? Bool {
 					self.asNeededBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "asNeededBoolean", wants: Bool.self, has: type(of: exist)))
@@ -360,7 +388,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["asNeededCodeableConcept"] {
 				presentKeys.insert("asNeededCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let asNeededCodeableConcept = self.asNeededCodeableConcept {
+                        errors.append(contentsOf: asNeededCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "asNeededCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -369,7 +401,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["maxDosePerPeriod"] {
 				presentKeys.insert("maxDosePerPeriod")
 				if let val = exist as? FHIRJSON {
-					self.maxDosePerPeriod = Ratio(json: val, owner: self)
+					if let maxDosePerPeriod = self.maxDosePerPeriod {
+                        errors.append(contentsOf: maxDosePerPeriod.populate(from: val) ?? [])
+                    } else {
+                        self.maxDosePerPeriod = Ratio(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxDosePerPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -378,7 +414,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["method"] {
 				presentKeys.insert("method")
 				if let val = exist as? FHIRJSON {
-					self.method = CodeableConcept(json: val, owner: self)
+					if let method = self.method {
+                        errors.append(contentsOf: method.populate(from: val) ?? [])
+                    } else {
+                        self.method = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: type(of: exist)))
@@ -387,7 +427,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["quantityQuantity"] {
 				presentKeys.insert("quantityQuantity")
 				if let val = exist as? FHIRJSON {
-					self.quantityQuantity = Quantity(json: val, owner: self)
+					if let quantityQuantity = self.quantityQuantity {
+                        errors.append(contentsOf: quantityQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.quantityQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantityQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -396,7 +440,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["quantityRange"] {
 				presentKeys.insert("quantityRange")
 				if let val = exist as? FHIRJSON {
-					self.quantityRange = Range(json: val, owner: self)
+					if let quantityRange = self.quantityRange {
+                        errors.append(contentsOf: quantityRange.populate(from: val) ?? [])
+                    } else {
+                        self.quantityRange = Range(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantityRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -405,7 +453,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["rateRange"] {
 				presentKeys.insert("rateRange")
 				if let val = exist as? FHIRJSON {
-					self.rateRange = Range(json: val, owner: self)
+					if let rateRange = self.rateRange {
+                        errors.append(contentsOf: rateRange.populate(from: val) ?? [])
+                    } else {
+                        self.rateRange = Range(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rateRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -414,7 +466,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["rateRatio"] {
 				presentKeys.insert("rateRatio")
 				if let val = exist as? FHIRJSON {
-					self.rateRatio = Ratio(json: val, owner: self)
+					if let rateRatio = self.rateRatio {
+                        errors.append(contentsOf: rateRatio.populate(from: val) ?? [])
+                    } else {
+                        self.rateRatio = Ratio(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rateRatio", wants: FHIRJSON.self, has: type(of: exist)))
@@ -423,7 +479,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["route"] {
 				presentKeys.insert("route")
 				if let val = exist as? FHIRJSON {
-					self.route = CodeableConcept(json: val, owner: self)
+					if let route = self.route {
+                        errors.append(contentsOf: route.populate(from: val) ?? [])
+                    } else {
+                        self.route = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "route", wants: FHIRJSON.self, has: type(of: exist)))
@@ -432,7 +492,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["siteCodeableConcept"] {
 				presentKeys.insert("siteCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let siteCodeableConcept = self.siteCodeableConcept {
+                        errors.append(contentsOf: siteCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.siteCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "siteCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -441,7 +505,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["siteReference"] {
 				presentKeys.insert("siteReference")
 				if let val = exist as? FHIRJSON {
-					self.siteReference = Reference(json: val, owner: self)
+					if let siteReference = self.siteReference {
+                        errors.append(contentsOf: siteReference.populate(from: val) ?? [])
+                    } else {
+                        self.siteReference = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "siteReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -451,7 +519,6 @@ open class MedicationStatementDosage: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -460,7 +527,11 @@ open class MedicationStatementDosage: BackboneElement {
 			if let exist = js["timing"] {
 				presentKeys.insert("timing")
 				if let val = exist as? FHIRJSON {
-					self.timing = Timing(json: val, owner: self)
+					if let timing = self.timing {
+                        errors.append(contentsOf: timing.populate(from: val) ?? [])
+                    } else {
+                        self.timing = Timing(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "timing", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -76,6 +76,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.action) }
 						self.action.append(objectsIn: vals)
 					}
 				}
@@ -86,7 +87,11 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["assessor"] {
 				presentKeys.insert("assessor")
 				if let val = exist as? FHIRJSON {
-					self.assessor = Reference(json: val, owner: self)
+					if let assessor = self.assessor {
+                        errors.append(contentsOf: assessor.populate(from: val) ?? [])
+                    } else {
+                        self.assessor = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assessor", wants: FHIRJSON.self, has: type(of: exist)))
@@ -105,7 +110,6 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -115,6 +119,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("finding")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClinicalImpressionFinding.instantiate(fromArray: val, owner: self) as? [ClinicalImpressionFinding] {
+						if let realm = self.realm { realm.delete(self.finding) }
 						self.finding.append(objectsIn: vals)
 					}
 				}
@@ -126,6 +131,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("investigations")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClinicalImpressionInvestigations.instantiate(fromArray: val, owner: self) as? [ClinicalImpressionInvestigations] {
+						if let realm = self.realm { realm.delete(self.investigations) }
 						self.investigations.append(objectsIn: vals)
 					}
 				}
@@ -136,7 +142,11 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					if let patient = self.patient {
+                        errors.append(contentsOf: patient.populate(from: val) ?? [])
+                    } else {
+                        self.patient = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -149,6 +159,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("plan")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.plan) }
 						self.plan.append(objectsIn: vals)
 					}
 				}
@@ -159,7 +170,11 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["previous"] {
 				presentKeys.insert("previous")
 				if let val = exist as? FHIRJSON {
-					self.previous = Reference(json: val, owner: self)
+					if let previous = self.previous {
+                        errors.append(contentsOf: previous.populate(from: val) ?? [])
+                    } else {
+                        self.previous = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "previous", wants: FHIRJSON.self, has: type(of: exist)))
@@ -169,6 +184,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("problem")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.problem) }
 						self.problem.append(objectsIn: vals)
 					}
 				}
@@ -180,7 +196,6 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("prognosis")
 				if let val = exist as? String {
 					self.prognosis = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "prognosis", wants: String.self, has: type(of: exist)))
@@ -190,7 +205,6 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("protocol")
 				if let val = exist as? String {
 					self.protocol_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "protocol", wants: String.self, has: type(of: exist)))
@@ -200,6 +214,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("resolved")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.resolved) }
 						self.resolved.append(objectsIn: vals)
 					}
 				}
@@ -211,6 +226,7 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("ruledOut")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClinicalImpressionRuledOut.instantiate(fromArray: val, owner: self) as? [ClinicalImpressionRuledOut] {
+						if let realm = self.realm { realm.delete(self.ruledOut) }
 						self.ruledOut.append(objectsIn: vals)
 					}
 				}
@@ -222,7 +238,6 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -235,7 +250,6 @@ open class ClinicalImpression: DomainResource {
 				presentKeys.insert("summary")
 				if let val = exist as? String {
 					self.summary = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "summary", wants: String.self, has: type(of: exist)))
@@ -244,7 +258,11 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["triggerCodeableConcept"] {
 				presentKeys.insert("triggerCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.triggerCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let triggerCodeableConcept = self.triggerCodeableConcept {
+                        errors.append(contentsOf: triggerCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.triggerCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "triggerCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -253,7 +271,11 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["triggerReference"] {
 				presentKeys.insert("triggerReference")
 				if let val = exist as? FHIRJSON {
-					self.triggerReference = Reference(json: val, owner: self)
+					if let triggerReference = self.triggerReference {
+                        errors.append(contentsOf: triggerReference.populate(from: val) ?? [])
+                    } else {
+                        self.triggerReference = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "triggerReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -355,7 +377,6 @@ open class ClinicalImpressionFinding: BackboneElement {
 				presentKeys.insert("cause")
 				if let val = exist as? String {
 					self.cause = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "cause", wants: String.self, has: type(of: exist)))
@@ -364,7 +385,11 @@ open class ClinicalImpressionFinding: BackboneElement {
 			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? FHIRJSON {
-					self.item = CodeableConcept(json: val, owner: self)
+					if let item = self.item {
+                        errors.append(contentsOf: item.populate(from: val) ?? [])
+                    } else {
+                        self.item = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: FHIRJSON.self, has: type(of: exist)))
@@ -422,7 +447,11 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					if let code = self.code {
+                        errors.append(contentsOf: code.populate(from: val) ?? [])
+                    } else {
+                        self.code = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -435,6 +464,7 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.item) }
 						self.item.append(objectsIn: vals)
 					}
 				}
@@ -487,7 +517,11 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? FHIRJSON {
-					self.item = CodeableConcept(json: val, owner: self)
+					if let item = self.item {
+                        errors.append(contentsOf: item.populate(from: val) ?? [])
+                    } else {
+                        self.item = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: FHIRJSON.self, has: type(of: exist)))
@@ -500,7 +534,6 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 				presentKeys.insert("reason")
 				if let val = exist as? String {
 					self.reason = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: String.self, has: type(of: exist)))

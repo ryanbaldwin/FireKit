@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -65,7 +65,6 @@ open class AllergyIntolerance: DomainResource {
 				presentKeys.insert("category")
 				if let val = exist as? String {
 					self.category = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: String.self, has: type(of: exist)))
@@ -75,7 +74,6 @@ open class AllergyIntolerance: DomainResource {
 				presentKeys.insert("criticality")
 				if let val = exist as? String {
 					self.criticality = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "criticality", wants: String.self, has: type(of: exist)))
@@ -85,6 +83,7 @@ open class AllergyIntolerance: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -104,7 +103,11 @@ open class AllergyIntolerance: DomainResource {
 			if let exist = js["note"] {
 				presentKeys.insert("note")
 				if let val = exist as? FHIRJSON {
-					self.note = Annotation(json: val, owner: self)
+					if let note = self.note {
+                        errors.append(contentsOf: note.populate(from: val) ?? [])
+                    } else {
+                        self.note = Annotation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: type(of: exist)))
@@ -122,7 +125,11 @@ open class AllergyIntolerance: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					if let patient = self.patient {
+                        errors.append(contentsOf: patient.populate(from: val) ?? [])
+                    } else {
+                        self.patient = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -135,6 +142,7 @@ open class AllergyIntolerance: DomainResource {
 				presentKeys.insert("reaction")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = AllergyIntoleranceReaction.instantiate(fromArray: val, owner: self) as? [AllergyIntoleranceReaction] {
+						if let realm = self.realm { realm.delete(self.reaction) }
 						self.reaction.append(objectsIn: vals)
 					}
 				}
@@ -154,7 +162,11 @@ open class AllergyIntolerance: DomainResource {
 			if let exist = js["recorder"] {
 				presentKeys.insert("recorder")
 				if let val = exist as? FHIRJSON {
-					self.recorder = Reference(json: val, owner: self)
+					if let recorder = self.recorder {
+                        errors.append(contentsOf: recorder.populate(from: val) ?? [])
+                    } else {
+                        self.recorder = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "recorder", wants: FHIRJSON.self, has: type(of: exist)))
@@ -163,7 +175,11 @@ open class AllergyIntolerance: DomainResource {
 			if let exist = js["reporter"] {
 				presentKeys.insert("reporter")
 				if let val = exist as? FHIRJSON {
-					self.reporter = Reference(json: val, owner: self)
+					if let reporter = self.reporter {
+                        errors.append(contentsOf: reporter.populate(from: val) ?? [])
+                    } else {
+                        self.reporter = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reporter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,7 +189,6 @@ open class AllergyIntolerance: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -182,7 +197,11 @@ open class AllergyIntolerance: DomainResource {
 			if let exist = js["substance"] {
 				presentKeys.insert("substance")
 				if let val = exist as? FHIRJSON {
-					self.substance = CodeableConcept(json: val, owner: self)
+					if let substance = self.substance {
+                        errors.append(contentsOf: substance.populate(from: val) ?? [])
+                    } else {
+                        self.substance = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))
@@ -195,7 +214,6 @@ open class AllergyIntolerance: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -297,7 +315,6 @@ open class AllergyIntoleranceReaction: BackboneElement {
 				presentKeys.insert("certainty")
 				if let val = exist as? String {
 					self.certainty = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "certainty", wants: String.self, has: type(of: exist)))
@@ -307,7 +324,6 @@ open class AllergyIntoleranceReaction: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -316,7 +332,11 @@ open class AllergyIntoleranceReaction: BackboneElement {
 			if let exist = js["exposureRoute"] {
 				presentKeys.insert("exposureRoute")
 				if let val = exist as? FHIRJSON {
-					self.exposureRoute = CodeableConcept(json: val, owner: self)
+					if let exposureRoute = self.exposureRoute {
+                        errors.append(contentsOf: exposureRoute.populate(from: val) ?? [])
+                    } else {
+                        self.exposureRoute = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exposureRoute", wants: FHIRJSON.self, has: type(of: exist)))
@@ -326,6 +346,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
 				presentKeys.insert("manifestation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.manifestation) }
 						self.manifestation.append(objectsIn: vals)
 					}
 				}
@@ -339,7 +360,11 @@ open class AllergyIntoleranceReaction: BackboneElement {
 			if let exist = js["note"] {
 				presentKeys.insert("note")
 				if let val = exist as? FHIRJSON {
-					self.note = Annotation(json: val, owner: self)
+					if let note = self.note {
+                        errors.append(contentsOf: note.populate(from: val) ?? [])
+                    } else {
+                        self.note = Annotation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: type(of: exist)))
@@ -358,7 +383,6 @@ open class AllergyIntoleranceReaction: BackboneElement {
 				presentKeys.insert("severity")
 				if let val = exist as? String {
 					self.severity = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: type(of: exist)))
@@ -367,7 +391,11 @@ open class AllergyIntoleranceReaction: BackboneElement {
 			if let exist = js["substance"] {
 				presentKeys.insert("substance")
 				if let val = exist as? FHIRJSON {
-					self.substance = CodeableConcept(json: val, owner: self)
+					if let substance = self.substance {
+                        errors.append(contentsOf: substance.populate(from: val) ?? [])
+                    } else {
+                        self.substance = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))

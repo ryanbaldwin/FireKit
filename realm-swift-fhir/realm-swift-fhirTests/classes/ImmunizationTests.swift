@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Immunization?
 		do {
 			instance = try runImmunization1()
-			try runImmunization1(instance!.asJSON()) 			
+			try runImmunization1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Immunization
+			XCTAssertNotNil(copy)
+			try runImmunization1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Immunization successfully, but threw")
@@ -43,22 +46,39 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testImmunizationRealm1(instance: RealmSwiftFHIR.Immunization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runImmunization1(realm.objects(RealmSwiftFHIR.Immunization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Immunization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Immunization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Immunization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Immunization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runImmunization1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Immunization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runImmunization1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Immunization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Immunization.self).count)
 	}
 	
 	@discardableResult
@@ -86,7 +106,10 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Immunization?
 		do {
 			instance = try runImmunization2()
-			try runImmunization2(instance!.asJSON()) 			
+			try runImmunization2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Immunization
+			XCTAssertNotNil(copy)
+			try runImmunization2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Immunization successfully, but threw")
@@ -96,22 +119,39 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testImmunizationRealm2(instance: RealmSwiftFHIR.Immunization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runImmunization2(realm.objects(RealmSwiftFHIR.Immunization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Immunization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Immunization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Immunization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Immunization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runImmunization2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Immunization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runImmunization2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Immunization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Immunization.self).count)
 	}
 	
 	@discardableResult

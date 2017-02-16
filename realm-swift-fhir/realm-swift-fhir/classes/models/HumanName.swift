@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -60,7 +60,11 @@ open class HumanName: Element {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -88,7 +92,6 @@ open class HumanName: Element {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -98,7 +101,6 @@ open class HumanName: Element {
 				presentKeys.insert("use")
 				if let val = exist as? String {
 					self.use = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))

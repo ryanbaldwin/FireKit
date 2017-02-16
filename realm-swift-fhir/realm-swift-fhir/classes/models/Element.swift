@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -24,9 +24,9 @@ open class Element: FHIRAbstractBase {
 	
 	public dynamic var id: String?
 	public dynamic var pk = UUID().uuidString
-	override open static func primaryKey() -> String? {
-		return "pk"
-	}
+		override open static func primaryKey() -> String? {
+			return "pk"
+		}
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -36,6 +36,7 @@ open class Element: FHIRAbstractBase {
 				presentKeys.insert("extension")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Extension.instantiate(fromArray: val, owner: self) as? [Extension] {
+						if let realm = self.realm { realm.delete(self.extension_fhir) }
 						self.extension_fhir.append(objectsIn: vals)
 					}
 				}
@@ -47,7 +48,6 @@ open class Element: FHIRAbstractBase {
 				presentKeys.insert("id")
 				if let val = exist as? String {
 					self.id = val
-					self.pk = val
 				}
 				else {
 					errors.append(FHIRJSONError(key: "id", wants: String.self, has: type(of: exist)))

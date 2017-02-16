@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure1()
-			try runProcedure1(instance!.asJSON()) 			
+			try runProcedure1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -43,22 +46,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm1(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure1(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult
@@ -92,7 +112,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure2()
-			try runProcedure2(instance!.asJSON()) 			
+			try runProcedure2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -102,22 +125,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm2(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure2(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult
@@ -157,7 +197,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure3()
-			try runProcedure3(instance!.asJSON()) 			
+			try runProcedure3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure3(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -167,22 +210,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm3(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure3(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult
@@ -222,7 +282,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure4()
-			try runProcedure4(instance!.asJSON()) 			
+			try runProcedure4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure4(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -232,22 +295,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm4(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure4(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult
@@ -287,7 +367,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure5()
-			try runProcedure5(instance!.asJSON()) 			
+			try runProcedure5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure5(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -297,22 +380,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm5(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure5(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult
@@ -352,7 +452,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure6()
-			try runProcedure6(instance!.asJSON()) 			
+			try runProcedure6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure6(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -362,22 +465,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm6(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure6(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult
@@ -414,7 +534,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure7()
-			try runProcedure7(instance!.asJSON()) 			
+			try runProcedure7(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure7(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -424,22 +547,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm7(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure7(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure7(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure7(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult
@@ -471,7 +611,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Procedure?
 		do {
 			instance = try runProcedure8()
-			try runProcedure8(instance!.asJSON()) 			
+			try runProcedure8(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
+			XCTAssertNotNil(copy)
+			try runProcedure8(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -481,22 +624,39 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testProcedureRealm8(instance: RealmSwiftFHIR.Procedure) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runProcedure8(realm.objects(RealmSwiftFHIR.Procedure.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Procedure.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Procedure()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure8(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Procedure.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runProcedure8(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Procedure.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Procedure.self).count)
 	}
 	
 	@discardableResult

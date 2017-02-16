@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,11 @@ open class Coverage: DomainResource {
 			if let exist = js["bin"] {
 				presentKeys.insert("bin")
 				if let val = exist as? FHIRJSON {
-					self.bin = Identifier(json: val, owner: self)
+					if let bin = self.bin {
+                        errors.append(contentsOf: bin.populate(from: val) ?? [])
+                    } else {
+                        self.bin = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bin", wants: FHIRJSON.self, has: type(of: exist)))
@@ -66,6 +70,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("contract")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.contract) }
 						self.contract.append(objectsIn: vals)
 					}
 				}
@@ -77,7 +82,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("dependent")
 				if let val = exist as? Int {
 					self.dependent.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dependent", wants: Int.self, has: type(of: exist)))
@@ -87,7 +91,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("group")
 				if let val = exist as? String {
 					self.group = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: String.self, has: type(of: exist)))
@@ -97,6 +100,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -107,7 +111,11 @@ open class Coverage: DomainResource {
 			if let exist = js["issuer"] {
 				presentKeys.insert("issuer")
 				if let val = exist as? FHIRJSON {
-					self.issuer = Reference(json: val, owner: self)
+					if let issuer = self.issuer {
+                        errors.append(contentsOf: issuer.populate(from: val) ?? [])
+                    } else {
+                        self.issuer = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "issuer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -116,7 +124,11 @@ open class Coverage: DomainResource {
 			if let exist = js["network"] {
 				presentKeys.insert("network")
 				if let val = exist as? FHIRJSON {
-					self.network = Identifier(json: val, owner: self)
+					if let network = self.network {
+                        errors.append(contentsOf: network.populate(from: val) ?? [])
+                    } else {
+                        self.network = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "network", wants: FHIRJSON.self, has: type(of: exist)))
@@ -125,7 +137,11 @@ open class Coverage: DomainResource {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -135,7 +151,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("plan")
 				if let val = exist as? String {
 					self.plan = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "plan", wants: String.self, has: type(of: exist)))
@@ -145,7 +160,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -155,7 +169,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("subPlan")
 				if let val = exist as? String {
 					self.subPlan = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subPlan", wants: String.self, has: type(of: exist)))
@@ -164,7 +177,11 @@ open class Coverage: DomainResource {
 			if let exist = js["subscriber"] {
 				presentKeys.insert("subscriber")
 				if let val = exist as? FHIRJSON {
-					self.subscriber = Reference(json: val, owner: self)
+					if let subscriber = self.subscriber {
+                        errors.append(contentsOf: subscriber.populate(from: val) ?? [])
+                    } else {
+                        self.subscriber = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subscriber", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,7 +190,11 @@ open class Coverage: DomainResource {
 			if let exist = js["subscriberId"] {
 				presentKeys.insert("subscriberId")
 				if let val = exist as? FHIRJSON {
-					self.subscriberId = Identifier(json: val, owner: self)
+					if let subscriberId = self.subscriberId {
+                        errors.append(contentsOf: subscriberId.populate(from: val) ?? [])
+                    } else {
+                        self.subscriberId = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subscriberId", wants: FHIRJSON.self, has: type(of: exist)))
@@ -182,7 +203,11 @@ open class Coverage: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Subscription?
 		do {
 			instance = try runSubscription1()
-			try runSubscription1(instance!.asJSON()) 			
+			try runSubscription1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Subscription
+			XCTAssertNotNil(copy)
+			try runSubscription1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
@@ -43,22 +46,39 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testSubscriptionRealm1(instance: RealmSwiftFHIR.Subscription) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runSubscription1(realm.objects(RealmSwiftFHIR.Subscription.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Subscription.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Subscription.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Subscription()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Subscription.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runSubscription1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Subscription.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runSubscription1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Subscription.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Subscription.self).count)
 	}
 	
 	@discardableResult
@@ -89,7 +109,10 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Subscription?
 		do {
 			instance = try runSubscription2()
-			try runSubscription2(instance!.asJSON()) 			
+			try runSubscription2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Subscription
+			XCTAssertNotNil(copy)
+			try runSubscription2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
@@ -99,22 +122,39 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testSubscriptionRealm2(instance: RealmSwiftFHIR.Subscription) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runSubscription2(realm.objects(RealmSwiftFHIR.Subscription.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Subscription.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Subscription.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Subscription()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Subscription.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runSubscription2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Subscription.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runSubscription2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Subscription.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Subscription.self).count)
 	}
 	
 	@discardableResult

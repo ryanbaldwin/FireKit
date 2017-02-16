@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -42,7 +42,11 @@ open class Schedule: DomainResource {
 			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					self.actor = Reference(json: val, owner: self)
+					if let actor = self.actor {
+                        errors.append(contentsOf: actor.populate(from: val) ?? [])
+                    } else {
+                        self.actor = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
@@ -55,7 +59,6 @@ open class Schedule: DomainResource {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -65,6 +68,7 @@ open class Schedule: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -75,7 +79,11 @@ open class Schedule: DomainResource {
 			if let exist = js["planningHorizon"] {
 				presentKeys.insert("planningHorizon")
 				if let val = exist as? FHIRJSON {
-					self.planningHorizon = Period(json: val, owner: self)
+					if let planningHorizon = self.planningHorizon {
+                        errors.append(contentsOf: planningHorizon.populate(from: val) ?? [])
+                    } else {
+                        self.planningHorizon = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "planningHorizon", wants: FHIRJSON.self, has: type(of: exist)))
@@ -85,6 +93,7 @@ open class Schedule: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.type) }
 						self.type.append(objectsIn: vals)
 					}
 				}

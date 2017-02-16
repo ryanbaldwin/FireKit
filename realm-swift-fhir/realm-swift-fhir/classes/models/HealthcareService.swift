@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -77,7 +77,6 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("appointmentRequired")
 				if let val = exist as? Bool {
 					self.appointmentRequired.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "appointmentRequired", wants: Bool.self, has: type(of: exist)))
@@ -87,7 +86,6 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("availabilityExceptions")
 				if let val = exist as? String {
 					self.availabilityExceptions = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availabilityExceptions", wants: String.self, has: type(of: exist)))
@@ -97,6 +95,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("availableTime")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = HealthcareServiceAvailableTime.instantiate(fromArray: val, owner: self) as? [HealthcareServiceAvailableTime] {
+						if let realm = self.realm { realm.delete(self.availableTime) }
 						self.availableTime.append(objectsIn: vals)
 					}
 				}
@@ -108,6 +107,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("characteristic")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.characteristic) }
 						self.characteristic.append(objectsIn: vals)
 					}
 				}
@@ -119,7 +119,6 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -129,6 +128,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("coverageArea")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.coverageArea) }
 						self.coverageArea.append(objectsIn: vals)
 					}
 				}
@@ -139,7 +139,11 @@ open class HealthcareService: DomainResource {
 			if let exist = js["eligibility"] {
 				presentKeys.insert("eligibility")
 				if let val = exist as? FHIRJSON {
-					self.eligibility = CodeableConcept(json: val, owner: self)
+					if let eligibility = self.eligibility {
+                        errors.append(contentsOf: eligibility.populate(from: val) ?? [])
+                    } else {
+                        self.eligibility = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "eligibility", wants: FHIRJSON.self, has: type(of: exist)))
@@ -149,7 +153,6 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("eligibilityNote")
 				if let val = exist as? String {
 					self.eligibilityNote = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "eligibilityNote", wants: String.self, has: type(of: exist)))
@@ -159,7 +162,6 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("extraDetails")
 				if let val = exist as? String {
 					self.extraDetails = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "extraDetails", wants: String.self, has: type(of: exist)))
@@ -169,6 +171,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -179,7 +182,11 @@ open class HealthcareService: DomainResource {
 			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
-					self.location = Reference(json: val, owner: self)
+					if let location = self.location {
+                        errors.append(contentsOf: location.populate(from: val) ?? [])
+                    } else {
+                        self.location = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
@@ -192,6 +199,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("notAvailable")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = HealthcareServiceNotAvailable.instantiate(fromArray: val, owner: self) as? [HealthcareServiceNotAvailable] {
+						if let realm = self.realm { realm.delete(self.notAvailable) }
 						self.notAvailable.append(objectsIn: vals)
 					}
 				}
@@ -202,7 +210,11 @@ open class HealthcareService: DomainResource {
 			if let exist = js["photo"] {
 				presentKeys.insert("photo")
 				if let val = exist as? FHIRJSON {
-					self.photo = Attachment(json: val, owner: self)
+					if let photo = self.photo {
+                        errors.append(contentsOf: photo.populate(from: val) ?? [])
+                    } else {
+                        self.photo = Attachment(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "photo", wants: FHIRJSON.self, has: type(of: exist)))
@@ -220,7 +232,11 @@ open class HealthcareService: DomainResource {
 			if let exist = js["providedBy"] {
 				presentKeys.insert("providedBy")
 				if let val = exist as? FHIRJSON {
-					self.providedBy = Reference(json: val, owner: self)
+					if let providedBy = self.providedBy {
+                        errors.append(contentsOf: providedBy.populate(from: val) ?? [])
+                    } else {
+                        self.providedBy = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "providedBy", wants: FHIRJSON.self, has: type(of: exist)))
@@ -230,7 +246,6 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("publicKey")
 				if let val = exist as? String {
 					self.publicKey = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publicKey", wants: String.self, has: type(of: exist)))
@@ -240,6 +255,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("referralMethod")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.referralMethod) }
 						self.referralMethod.append(objectsIn: vals)
 					}
 				}
@@ -250,7 +266,11 @@ open class HealthcareService: DomainResource {
 			if let exist = js["serviceCategory"] {
 				presentKeys.insert("serviceCategory")
 				if let val = exist as? FHIRJSON {
-					self.serviceCategory = CodeableConcept(json: val, owner: self)
+					if let serviceCategory = self.serviceCategory {
+                        errors.append(contentsOf: serviceCategory.populate(from: val) ?? [])
+                    } else {
+                        self.serviceCategory = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceCategory", wants: FHIRJSON.self, has: type(of: exist)))
@@ -260,7 +280,6 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("serviceName")
 				if let val = exist as? String {
 					self.serviceName = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceName", wants: String.self, has: type(of: exist)))
@@ -270,6 +289,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("serviceProvisionCode")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.serviceProvisionCode) }
 						self.serviceProvisionCode.append(objectsIn: vals)
 					}
 				}
@@ -281,6 +301,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("serviceType")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = HealthcareServiceServiceType.instantiate(fromArray: val, owner: self) as? [HealthcareServiceServiceType] {
+						if let realm = self.realm { realm.delete(self.serviceType) }
 						self.serviceType.append(objectsIn: vals)
 					}
 				}
@@ -292,6 +313,7 @@ open class HealthcareService: DomainResource {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -405,7 +427,6 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 				presentKeys.insert("allDay")
 				if let val = exist as? Bool {
 					self.allDay.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "allDay", wants: Bool.self, has: type(of: exist)))
@@ -492,7 +513,6 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -504,7 +524,11 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 			if let exist = js["during"] {
 				presentKeys.insert("during")
 				if let val = exist as? FHIRJSON {
-					self.during = Period(json: val, owner: self)
+					if let during = self.during {
+                        errors.append(contentsOf: during.populate(from: val) ?? [])
+                    } else {
+                        self.during = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "during", wants: FHIRJSON.self, has: type(of: exist)))
@@ -558,6 +582,7 @@ open class HealthcareServiceServiceType: BackboneElement {
 				presentKeys.insert("specialty")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.specialty) }
 						self.specialty.append(objectsIn: vals)
 					}
 				}
@@ -568,7 +593,11 @@ open class HealthcareServiceServiceType: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

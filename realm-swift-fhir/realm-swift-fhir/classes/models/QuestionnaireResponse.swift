@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -53,7 +53,11 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
-					self.author = Reference(json: val, owner: self)
+					if let author = self.author {
+                        errors.append(contentsOf: author.populate(from: val) ?? [])
+                    } else {
+                        self.author = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
@@ -71,7 +75,11 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					if let encounter = self.encounter {
+                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
+                    } else {
+                        self.encounter = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -80,7 +88,11 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? FHIRJSON {
-					self.group = QuestionnaireResponseGroup(json: val, owner: self)
+					if let group = self.group {
+                        errors.append(contentsOf: group.populate(from: val) ?? [])
+                    } else {
+                        self.group = QuestionnaireResponseGroup(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: FHIRJSON.self, has: type(of: exist)))
@@ -89,7 +101,11 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					if let identifier = self.identifier {
+                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
+                    } else {
+                        self.identifier = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -98,7 +114,11 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["questionnaire"] {
 				presentKeys.insert("questionnaire")
 				if let val = exist as? FHIRJSON {
-					self.questionnaire = Reference(json: val, owner: self)
+					if let questionnaire = self.questionnaire {
+                        errors.append(contentsOf: questionnaire.populate(from: val) ?? [])
+                    } else {
+                        self.questionnaire = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "questionnaire", wants: FHIRJSON.self, has: type(of: exist)))
@@ -107,7 +127,11 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					self.source = Reference(json: val, owner: self)
+					if let source = self.source {
+                        errors.append(contentsOf: source.populate(from: val) ?? [])
+                    } else {
+                        self.source = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -117,7 +141,6 @@ open class QuestionnaireResponse: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -129,7 +152,11 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					if let subject = self.subject {
+                        errors.append(contentsOf: subject.populate(from: val) ?? [])
+                    } else {
+                        self.subject = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -206,6 +233,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroup.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroup] {
+						if let realm = self.realm { realm.delete(self.group) }
 						self.group.append(objectsIn: vals)
 					}
 				}
@@ -217,7 +245,6 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("linkId")
 				if let val = exist as? String {
 					self.linkId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
@@ -227,6 +254,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("question")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroupQuestion.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroupQuestion] {
+						if let realm = self.realm { realm.delete(self.question) }
 						self.question.append(objectsIn: vals)
 					}
 				}
@@ -237,7 +265,11 @@ open class QuestionnaireResponseGroup: BackboneElement {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					if let subject = self.subject {
+                        errors.append(contentsOf: subject.populate(from: val) ?? [])
+                    } else {
+                        self.subject = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -247,7 +279,6 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -257,7 +288,6 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -319,6 +349,7 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("answer")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroupQuestionAnswer.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroupQuestionAnswer] {
+						if let realm = self.realm { realm.delete(self.answer) }
 						self.answer.append(objectsIn: vals)
 					}
 				}
@@ -330,7 +361,6 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("linkId")
 				if let val = exist as? String {
 					self.linkId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
@@ -340,7 +370,6 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -415,6 +444,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroup.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroup] {
+						if let realm = self.realm { realm.delete(self.group) }
 						self.group.append(objectsIn: vals)
 					}
 				}
@@ -425,7 +455,11 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueAttachment"] {
 				presentKeys.insert("valueAttachment")
 				if let val = exist as? FHIRJSON {
-					self.valueAttachment = Attachment(json: val, owner: self)
+					if let valueAttachment = self.valueAttachment {
+                        errors.append(contentsOf: valueAttachment.populate(from: val) ?? [])
+                    } else {
+                        self.valueAttachment = Attachment(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -435,7 +469,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -444,7 +477,11 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueCoding"] {
 				presentKeys.insert("valueCoding")
 				if let val = exist as? FHIRJSON {
-					self.valueCoding = Coding(json: val, owner: self)
+					if let valueCoding = self.valueCoding {
+                        errors.append(contentsOf: valueCoding.populate(from: val) ?? [])
+                    } else {
+                        self.valueCoding = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCoding", wants: FHIRJSON.self, has: type(of: exist)))
@@ -490,7 +527,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
@@ -499,7 +535,11 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueQuantity"] {
 				presentKeys.insert("valueQuantity")
 				if let val = exist as? FHIRJSON {
-					self.valueQuantity = Quantity(json: val, owner: self)
+					if let valueQuantity = self.valueQuantity {
+                        errors.append(contentsOf: valueQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.valueQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -508,7 +548,11 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueReference"] {
 				presentKeys.insert("valueReference")
 				if let val = exist as? FHIRJSON {
-					self.valueReference = Reference(json: val, owner: self)
+					if let valueReference = self.valueReference {
+                        errors.append(contentsOf: valueReference.populate(from: val) ?? [])
+                    } else {
+                        self.valueReference = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -518,7 +562,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -537,7 +580,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
 					self.valueUri = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))

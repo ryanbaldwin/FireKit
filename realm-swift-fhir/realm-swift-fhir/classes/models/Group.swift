@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -54,7 +54,6 @@ open class Group: DomainResource {
 				presentKeys.insert("actual")
 				if let val = exist as? Bool {
 					self.actual.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actual", wants: Bool.self, has: type(of: exist)))
@@ -67,6 +66,7 @@ open class Group: DomainResource {
 				presentKeys.insert("characteristic")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = GroupCharacteristic.instantiate(fromArray: val, owner: self) as? [GroupCharacteristic] {
+						if let realm = self.realm { realm.delete(self.characteristic) }
 						self.characteristic.append(objectsIn: vals)
 					}
 				}
@@ -77,7 +77,11 @@ open class Group: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					if let code = self.code {
+                        errors.append(contentsOf: code.populate(from: val) ?? [])
+                    } else {
+                        self.code = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -87,6 +91,7 @@ open class Group: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -98,6 +103,7 @@ open class Group: DomainResource {
 				presentKeys.insert("member")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = GroupMember.instantiate(fromArray: val, owner: self) as? [GroupMember] {
+						if let realm = self.realm { realm.delete(self.member) }
 						self.member.append(objectsIn: vals)
 					}
 				}
@@ -109,7 +115,6 @@ open class Group: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -119,7 +124,6 @@ open class Group: DomainResource {
 				presentKeys.insert("quantity")
 				if let val = exist as? Int {
 					self.quantity.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: Int.self, has: type(of: exist)))
@@ -129,7 +133,6 @@ open class Group: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -218,7 +221,11 @@ open class GroupCharacteristic: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					if let code = self.code {
+                        errors.append(contentsOf: code.populate(from: val) ?? [])
+                    } else {
+                        self.code = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -231,7 +238,6 @@ open class GroupCharacteristic: BackboneElement {
 				presentKeys.insert("exclude")
 				if let val = exist as? Bool {
 					self.exclude.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "exclude", wants: Bool.self, has: type(of: exist)))
@@ -243,7 +249,11 @@ open class GroupCharacteristic: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -253,7 +263,6 @@ open class GroupCharacteristic: BackboneElement {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -262,7 +271,11 @@ open class GroupCharacteristic: BackboneElement {
 			if let exist = js["valueCodeableConcept"] {
 				presentKeys.insert("valueCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
+					if let valueCodeableConcept = self.valueCodeableConcept {
+                        errors.append(contentsOf: valueCodeableConcept.populate(from: val) ?? [])
+                    } else {
+                        self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -271,7 +284,11 @@ open class GroupCharacteristic: BackboneElement {
 			if let exist = js["valueQuantity"] {
 				presentKeys.insert("valueQuantity")
 				if let val = exist as? FHIRJSON {
-					self.valueQuantity = Quantity(json: val, owner: self)
+					if let valueQuantity = self.valueQuantity {
+                        errors.append(contentsOf: valueQuantity.populate(from: val) ?? [])
+                    } else {
+                        self.valueQuantity = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -280,7 +297,11 @@ open class GroupCharacteristic: BackboneElement {
 			if let exist = js["valueRange"] {
 				presentKeys.insert("valueRange")
 				if let val = exist as? FHIRJSON {
-					self.valueRange = Range(json: val, owner: self)
+					if let valueRange = self.valueRange {
+                        errors.append(contentsOf: valueRange.populate(from: val) ?? [])
+                    } else {
+                        self.valueRange = Range(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -355,7 +376,11 @@ open class GroupMember: BackboneElement {
 			if let exist = js["entity"] {
 				presentKeys.insert("entity")
 				if let val = exist as? FHIRJSON {
-					self.entity = Reference(json: val, owner: self)
+					if let entity = self.entity {
+                        errors.append(contentsOf: entity.populate(from: val) ?? [])
+                    } else {
+                        self.entity = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -368,7 +393,6 @@ open class GroupMember: BackboneElement {
 				presentKeys.insert("inactive")
 				if let val = exist as? Bool {
 					self.inactive.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "inactive", wants: Bool.self, has: type(of: exist)))
@@ -377,7 +401,11 @@ open class GroupMember: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))

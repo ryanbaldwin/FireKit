@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Location?
 		do {
 			instance = try runLocation1()
-			try runLocation1(instance!.asJSON()) 			
+			try runLocation1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Location
+			XCTAssertNotNil(copy)
+			try runLocation1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -43,22 +46,39 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testLocationRealm1(instance: RealmSwiftFHIR.Location) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runLocation1(realm.objects(RealmSwiftFHIR.Location.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Location.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Location()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Location.self).count)
 	}
 	
 	@discardableResult
@@ -90,7 +110,10 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Location?
 		do {
 			instance = try runLocation2()
-			try runLocation2(instance!.asJSON()) 			
+			try runLocation2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Location
+			XCTAssertNotNil(copy)
+			try runLocation2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -100,22 +123,39 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testLocationRealm2(instance: RealmSwiftFHIR.Location) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runLocation2(realm.objects(RealmSwiftFHIR.Location.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Location.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Location()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Location.self).count)
 	}
 	
 	@discardableResult
@@ -155,7 +195,10 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Location?
 		do {
 			instance = try runLocation3()
-			try runLocation3(instance!.asJSON()) 			
+			try runLocation3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Location
+			XCTAssertNotNil(copy)
+			try runLocation3(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -165,22 +208,39 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testLocationRealm3(instance: RealmSwiftFHIR.Location) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runLocation3(realm.objects(RealmSwiftFHIR.Location.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Location.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Location()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Location.self).count)
 	}
 	
 	@discardableResult
@@ -209,7 +269,10 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Location?
 		do {
 			instance = try runLocation4()
-			try runLocation4(instance!.asJSON()) 			
+			try runLocation4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Location
+			XCTAssertNotNil(copy)
+			try runLocation4(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -219,22 +282,39 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testLocationRealm4(instance: RealmSwiftFHIR.Location) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runLocation4(realm.objects(RealmSwiftFHIR.Location.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Location.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Location()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Location.self).count)
 	}
 	
 	@discardableResult
@@ -267,7 +347,10 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Location?
 		do {
 			instance = try runLocation5()
-			try runLocation5(instance!.asJSON()) 			
+			try runLocation5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Location
+			XCTAssertNotNil(copy)
+			try runLocation5(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -277,22 +360,39 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testLocationRealm5(instance: RealmSwiftFHIR.Location) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runLocation5(realm.objects(RealmSwiftFHIR.Location.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Location.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Location()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Location.self).count)
 	}
 	
 	@discardableResult
@@ -320,7 +420,10 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Location?
 		do {
 			instance = try runLocation6()
-			try runLocation6(instance!.asJSON()) 			
+			try runLocation6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Location
+			XCTAssertNotNil(copy)
+			try runLocation6(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -330,22 +433,39 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testLocationRealm6(instance: RealmSwiftFHIR.Location) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runLocation6(realm.objects(RealmSwiftFHIR.Location.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Location.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Location()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Location.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runLocation6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Location.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Location.self).count)
 	}
 	
 	@discardableResult

@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -73,7 +73,11 @@ open class Encounter: DomainResource {
 			if let exist = js["appointment"] {
 				presentKeys.insert("appointment")
 				if let val = exist as? FHIRJSON {
-					self.appointment = Reference(json: val, owner: self)
+					if let appointment = self.appointment {
+                        errors.append(contentsOf: appointment.populate(from: val) ?? [])
+                    } else {
+                        self.appointment = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "appointment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -83,7 +87,6 @@ open class Encounter: DomainResource {
 				presentKeys.insert("class")
 				if let val = exist as? String {
 					self.class_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "class", wants: String.self, has: type(of: exist)))
@@ -93,6 +96,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("episodeOfCare")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.episodeOfCare) }
 						self.episodeOfCare.append(objectsIn: vals)
 					}
 				}
@@ -103,7 +107,11 @@ open class Encounter: DomainResource {
 			if let exist = js["hospitalization"] {
 				presentKeys.insert("hospitalization")
 				if let val = exist as? FHIRJSON {
-					self.hospitalization = EncounterHospitalization(json: val, owner: self)
+					if let hospitalization = self.hospitalization {
+                        errors.append(contentsOf: hospitalization.populate(from: val) ?? [])
+                    } else {
+                        self.hospitalization = EncounterHospitalization(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "hospitalization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -113,6 +121,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -124,6 +133,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("incomingReferral")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.incomingReferral) }
 						self.incomingReferral.append(objectsIn: vals)
 					}
 				}
@@ -135,6 +145,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("indication")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.indication) }
 						self.indication.append(objectsIn: vals)
 					}
 				}
@@ -145,7 +156,11 @@ open class Encounter: DomainResource {
 			if let exist = js["length"] {
 				presentKeys.insert("length")
 				if let val = exist as? FHIRJSON {
-					self.length = Quantity(json: val, owner: self)
+					if let length = self.length {
+                        errors.append(contentsOf: length.populate(from: val) ?? [])
+                    } else {
+                        self.length = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "length", wants: FHIRJSON.self, has: type(of: exist)))
@@ -155,6 +170,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("location")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = EncounterLocation.instantiate(fromArray: val, owner: self) as? [EncounterLocation] {
+						if let realm = self.realm { realm.delete(self.location) }
 						self.location.append(objectsIn: vals)
 					}
 				}
@@ -165,7 +181,11 @@ open class Encounter: DomainResource {
 			if let exist = js["partOf"] {
 				presentKeys.insert("partOf")
 				if let val = exist as? FHIRJSON {
-					self.partOf = Reference(json: val, owner: self)
+					if let partOf = self.partOf {
+                        errors.append(contentsOf: partOf.populate(from: val) ?? [])
+                    } else {
+                        self.partOf = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "partOf", wants: FHIRJSON.self, has: type(of: exist)))
@@ -175,6 +195,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("participant")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = EncounterParticipant.instantiate(fromArray: val, owner: self) as? [EncounterParticipant] {
+						if let realm = self.realm { realm.delete(self.participant) }
 						self.participant.append(objectsIn: vals)
 					}
 				}
@@ -185,7 +206,11 @@ open class Encounter: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					if let patient = self.patient {
+                        errors.append(contentsOf: patient.populate(from: val) ?? [])
+                    } else {
+                        self.patient = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -194,7 +219,11 @@ open class Encounter: DomainResource {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -203,7 +232,11 @@ open class Encounter: DomainResource {
 			if let exist = js["priority"] {
 				presentKeys.insert("priority")
 				if let val = exist as? FHIRJSON {
-					self.priority = CodeableConcept(json: val, owner: self)
+					if let priority = self.priority {
+                        errors.append(contentsOf: priority.populate(from: val) ?? [])
+                    } else {
+                        self.priority = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -213,6 +246,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("reason")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.reason) }
 						self.reason.append(objectsIn: vals)
 					}
 				}
@@ -223,7 +257,11 @@ open class Encounter: DomainResource {
 			if let exist = js["serviceProvider"] {
 				presentKeys.insert("serviceProvider")
 				if let val = exist as? FHIRJSON {
-					self.serviceProvider = Reference(json: val, owner: self)
+					if let serviceProvider = self.serviceProvider {
+                        errors.append(contentsOf: serviceProvider.populate(from: val) ?? [])
+                    } else {
+                        self.serviceProvider = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceProvider", wants: FHIRJSON.self, has: type(of: exist)))
@@ -233,7 +271,6 @@ open class Encounter: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -246,6 +283,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("statusHistory")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = EncounterStatusHistory.instantiate(fromArray: val, owner: self) as? [EncounterStatusHistory] {
+						if let realm = self.realm { realm.delete(self.statusHistory) }
 						self.statusHistory.append(objectsIn: vals)
 					}
 				}
@@ -257,6 +295,7 @@ open class Encounter: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.type) }
 						self.type.append(objectsIn: vals)
 					}
 				}
@@ -372,7 +411,11 @@ open class EncounterHospitalization: BackboneElement {
 			if let exist = js["admitSource"] {
 				presentKeys.insert("admitSource")
 				if let val = exist as? FHIRJSON {
-					self.admitSource = CodeableConcept(json: val, owner: self)
+					if let admitSource = self.admitSource {
+                        errors.append(contentsOf: admitSource.populate(from: val) ?? [])
+                    } else {
+                        self.admitSource = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "admitSource", wants: FHIRJSON.self, has: type(of: exist)))
@@ -382,6 +425,7 @@ open class EncounterHospitalization: BackboneElement {
 				presentKeys.insert("admittingDiagnosis")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.admittingDiagnosis) }
 						self.admittingDiagnosis.append(objectsIn: vals)
 					}
 				}
@@ -392,7 +436,11 @@ open class EncounterHospitalization: BackboneElement {
 			if let exist = js["destination"] {
 				presentKeys.insert("destination")
 				if let val = exist as? FHIRJSON {
-					self.destination = Reference(json: val, owner: self)
+					if let destination = self.destination {
+                        errors.append(contentsOf: destination.populate(from: val) ?? [])
+                    } else {
+                        self.destination = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "destination", wants: FHIRJSON.self, has: type(of: exist)))
@@ -402,6 +450,7 @@ open class EncounterHospitalization: BackboneElement {
 				presentKeys.insert("dietPreference")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.dietPreference) }
 						self.dietPreference.append(objectsIn: vals)
 					}
 				}
@@ -413,6 +462,7 @@ open class EncounterHospitalization: BackboneElement {
 				presentKeys.insert("dischargeDiagnosis")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.dischargeDiagnosis) }
 						self.dischargeDiagnosis.append(objectsIn: vals)
 					}
 				}
@@ -423,7 +473,11 @@ open class EncounterHospitalization: BackboneElement {
 			if let exist = js["dischargeDisposition"] {
 				presentKeys.insert("dischargeDisposition")
 				if let val = exist as? FHIRJSON {
-					self.dischargeDisposition = CodeableConcept(json: val, owner: self)
+					if let dischargeDisposition = self.dischargeDisposition {
+                        errors.append(contentsOf: dischargeDisposition.populate(from: val) ?? [])
+                    } else {
+                        self.dischargeDisposition = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dischargeDisposition", wants: FHIRJSON.self, has: type(of: exist)))
@@ -432,7 +486,11 @@ open class EncounterHospitalization: BackboneElement {
 			if let exist = js["origin"] {
 				presentKeys.insert("origin")
 				if let val = exist as? FHIRJSON {
-					self.origin = Reference(json: val, owner: self)
+					if let origin = self.origin {
+                        errors.append(contentsOf: origin.populate(from: val) ?? [])
+                    } else {
+                        self.origin = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "origin", wants: FHIRJSON.self, has: type(of: exist)))
@@ -441,7 +499,11 @@ open class EncounterHospitalization: BackboneElement {
 			if let exist = js["preAdmissionIdentifier"] {
 				presentKeys.insert("preAdmissionIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.preAdmissionIdentifier = Identifier(json: val, owner: self)
+					if let preAdmissionIdentifier = self.preAdmissionIdentifier {
+                        errors.append(contentsOf: preAdmissionIdentifier.populate(from: val) ?? [])
+                    } else {
+                        self.preAdmissionIdentifier = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "preAdmissionIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -450,7 +512,11 @@ open class EncounterHospitalization: BackboneElement {
 			if let exist = js["reAdmission"] {
 				presentKeys.insert("reAdmission")
 				if let val = exist as? FHIRJSON {
-					self.reAdmission = CodeableConcept(json: val, owner: self)
+					if let reAdmission = self.reAdmission {
+                        errors.append(contentsOf: reAdmission.populate(from: val) ?? [])
+                    } else {
+                        self.reAdmission = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reAdmission", wants: FHIRJSON.self, has: type(of: exist)))
@@ -460,6 +526,7 @@ open class EncounterHospitalization: BackboneElement {
 				presentKeys.insert("specialArrangement")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.specialArrangement) }
 						self.specialArrangement.append(objectsIn: vals)
 					}
 				}
@@ -471,6 +538,7 @@ open class EncounterHospitalization: BackboneElement {
 				presentKeys.insert("specialCourtesy")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.specialCourtesy) }
 						self.specialCourtesy.append(objectsIn: vals)
 					}
 				}
@@ -554,7 +622,11 @@ open class EncounterLocation: BackboneElement {
 			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
-					self.location = Reference(json: val, owner: self)
+					if let location = self.location {
+                        errors.append(contentsOf: location.populate(from: val) ?? [])
+                    } else {
+                        self.location = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
@@ -566,7 +638,11 @@ open class EncounterLocation: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -576,7 +652,6 @@ open class EncounterLocation: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -628,7 +703,11 @@ open class EncounterParticipant: BackboneElement {
 			if let exist = js["individual"] {
 				presentKeys.insert("individual")
 				if let val = exist as? FHIRJSON {
-					self.individual = Reference(json: val, owner: self)
+					if let individual = self.individual {
+                        errors.append(contentsOf: individual.populate(from: val) ?? [])
+                    } else {
+                        self.individual = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "individual", wants: FHIRJSON.self, has: type(of: exist)))
@@ -637,7 +716,11 @@ open class EncounterParticipant: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -647,6 +730,7 @@ open class EncounterParticipant: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.type) }
 						self.type.append(objectsIn: vals)
 					}
 				}
@@ -706,7 +790,11 @@ open class EncounterStatusHistory: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -719,7 +807,6 @@ open class EncounterStatusHistory: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

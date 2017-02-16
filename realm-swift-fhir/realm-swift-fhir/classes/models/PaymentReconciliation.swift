@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -74,6 +74,7 @@ open class PaymentReconciliation: DomainResource {
 				presentKeys.insert("detail")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = PaymentReconciliationDetail.instantiate(fromArray: val, owner: self) as? [PaymentReconciliationDetail] {
+						if let realm = self.realm { realm.delete(self.detail) }
 						self.detail.append(objectsIn: vals)
 					}
 				}
@@ -85,7 +86,6 @@ open class PaymentReconciliation: DomainResource {
 				presentKeys.insert("disposition")
 				if let val = exist as? String {
 					self.disposition = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "disposition", wants: String.self, has: type(of: exist)))
@@ -94,7 +94,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["form"] {
 				presentKeys.insert("form")
 				if let val = exist as? FHIRJSON {
-					self.form = Coding(json: val, owner: self)
+					if let form = self.form {
+                        errors.append(contentsOf: form.populate(from: val) ?? [])
+                    } else {
+                        self.form = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "form", wants: FHIRJSON.self, has: type(of: exist)))
@@ -104,6 +108,7 @@ open class PaymentReconciliation: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -115,6 +120,7 @@ open class PaymentReconciliation: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = PaymentReconciliationNote.instantiate(fromArray: val, owner: self) as? [PaymentReconciliationNote] {
+						if let realm = self.realm { realm.delete(self.note) }
 						self.note.append(objectsIn: vals)
 					}
 				}
@@ -125,7 +131,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["organization"] {
 				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					if let organization = self.organization {
+                        errors.append(contentsOf: organization.populate(from: val) ?? [])
+                    } else {
+                        self.organization = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -134,7 +144,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["originalRuleset"] {
 				presentKeys.insert("originalRuleset")
 				if let val = exist as? FHIRJSON {
-					self.originalRuleset = Coding(json: val, owner: self)
+					if let originalRuleset = self.originalRuleset {
+                        errors.append(contentsOf: originalRuleset.populate(from: val) ?? [])
+                    } else {
+                        self.originalRuleset = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -144,7 +158,6 @@ open class PaymentReconciliation: DomainResource {
 				presentKeys.insert("outcome")
 				if let val = exist as? String {
 					self.outcome = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: String.self, has: type(of: exist)))
@@ -153,7 +166,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -162,7 +179,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.request = Reference(json: val, owner: self)
+					if let request = self.request {
+                        errors.append(contentsOf: request.populate(from: val) ?? [])
+                    } else {
+                        self.request = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -171,7 +192,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["requestOrganization"] {
 				presentKeys.insert("requestOrganization")
 				if let val = exist as? FHIRJSON {
-					self.requestOrganization = Reference(json: val, owner: self)
+					if let requestOrganization = self.requestOrganization {
+                        errors.append(contentsOf: requestOrganization.populate(from: val) ?? [])
+                    } else {
+                        self.requestOrganization = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requestOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -180,7 +205,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["requestProvider"] {
 				presentKeys.insert("requestProvider")
 				if let val = exist as? FHIRJSON {
-					self.requestProvider = Reference(json: val, owner: self)
+					if let requestProvider = self.requestProvider {
+                        errors.append(contentsOf: requestProvider.populate(from: val) ?? [])
+                    } else {
+                        self.requestProvider = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requestProvider", wants: FHIRJSON.self, has: type(of: exist)))
@@ -189,7 +218,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["ruleset"] {
 				presentKeys.insert("ruleset")
 				if let val = exist as? FHIRJSON {
-					self.ruleset = Coding(json: val, owner: self)
+					if let ruleset = self.ruleset {
+                        errors.append(contentsOf: ruleset.populate(from: val) ?? [])
+                    } else {
+                        self.ruleset = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -198,7 +231,11 @@ open class PaymentReconciliation: DomainResource {
 			if let exist = js["total"] {
 				presentKeys.insert("total")
 				if let val = exist as? FHIRJSON {
-					self.total = Quantity(json: val, owner: self)
+					if let total = self.total {
+                        errors.append(contentsOf: total.populate(from: val) ?? [])
+                    } else {
+                        self.total = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "total", wants: FHIRJSON.self, has: type(of: exist)))
@@ -303,7 +340,11 @@ open class PaymentReconciliationDetail: BackboneElement {
 			if let exist = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Quantity(json: val, owner: self)
+					if let amount = self.amount {
+                        errors.append(contentsOf: amount.populate(from: val) ?? [])
+                    } else {
+                        self.amount = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: type(of: exist)))
@@ -321,7 +362,11 @@ open class PaymentReconciliationDetail: BackboneElement {
 			if let exist = js["payee"] {
 				presentKeys.insert("payee")
 				if let val = exist as? FHIRJSON {
-					self.payee = Reference(json: val, owner: self)
+					if let payee = self.payee {
+                        errors.append(contentsOf: payee.populate(from: val) ?? [])
+                    } else {
+                        self.payee = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "payee", wants: FHIRJSON.self, has: type(of: exist)))
@@ -330,7 +375,11 @@ open class PaymentReconciliationDetail: BackboneElement {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.request = Reference(json: val, owner: self)
+					if let request = self.request {
+                        errors.append(contentsOf: request.populate(from: val) ?? [])
+                    } else {
+                        self.request = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -339,7 +388,11 @@ open class PaymentReconciliationDetail: BackboneElement {
 			if let exist = js["responce"] {
 				presentKeys.insert("responce")
 				if let val = exist as? FHIRJSON {
-					self.responce = Reference(json: val, owner: self)
+					if let responce = self.responce {
+                        errors.append(contentsOf: responce.populate(from: val) ?? [])
+                    } else {
+                        self.responce = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "responce", wants: FHIRJSON.self, has: type(of: exist)))
@@ -348,7 +401,11 @@ open class PaymentReconciliationDetail: BackboneElement {
 			if let exist = js["submitter"] {
 				presentKeys.insert("submitter")
 				if let val = exist as? FHIRJSON {
-					self.submitter = Reference(json: val, owner: self)
+					if let submitter = self.submitter {
+                        errors.append(contentsOf: submitter.populate(from: val) ?? [])
+                    } else {
+                        self.submitter = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "submitter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -357,7 +414,11 @@ open class PaymentReconciliationDetail: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -423,7 +484,6 @@ open class PaymentReconciliationNote: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -432,7 +492,11 @@ open class PaymentReconciliationNote: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

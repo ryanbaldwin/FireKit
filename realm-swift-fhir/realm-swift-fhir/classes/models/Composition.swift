@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -72,6 +72,7 @@ open class Composition: DomainResource {
 				presentKeys.insert("attester")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CompositionAttester.instantiate(fromArray: val, owner: self) as? [CompositionAttester] {
+						if let realm = self.realm { realm.delete(self.attester) }
 						self.attester.append(objectsIn: vals)
 					}
 				}
@@ -83,6 +84,7 @@ open class Composition: DomainResource {
 				presentKeys.insert("author")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.author) }
 						self.author.append(objectsIn: vals)
 					}
 				}
@@ -96,7 +98,11 @@ open class Composition: DomainResource {
 			if let exist = js["class"] {
 				presentKeys.insert("class")
 				if let val = exist as? FHIRJSON {
-					self.class_fhir = CodeableConcept(json: val, owner: self)
+					if let class_fhir = self.class_fhir {
+                        errors.append(contentsOf: class_fhir.populate(from: val) ?? [])
+                    } else {
+                        self.class_fhir = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
@@ -106,7 +112,6 @@ open class Composition: DomainResource {
 				presentKeys.insert("confidentiality")
 				if let val = exist as? String {
 					self.confidentiality = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "confidentiality", wants: String.self, has: type(of: exist)))
@@ -115,7 +120,11 @@ open class Composition: DomainResource {
 			if let exist = js["custodian"] {
 				presentKeys.insert("custodian")
 				if let val = exist as? FHIRJSON {
-					self.custodian = Reference(json: val, owner: self)
+					if let custodian = self.custodian {
+                        errors.append(contentsOf: custodian.populate(from: val) ?? [])
+                    } else {
+                        self.custodian = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "custodian", wants: FHIRJSON.self, has: type(of: exist)))
@@ -136,7 +145,11 @@ open class Composition: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					if let encounter = self.encounter {
+                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
+                    } else {
+                        self.encounter = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -146,6 +159,7 @@ open class Composition: DomainResource {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CompositionEvent.instantiate(fromArray: val, owner: self) as? [CompositionEvent] {
+						if let realm = self.realm { realm.delete(self.event) }
 						self.event.append(objectsIn: vals)
 					}
 				}
@@ -156,7 +170,11 @@ open class Composition: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					if let identifier = self.identifier {
+                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
+                    } else {
+                        self.identifier = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -166,6 +184,7 @@ open class Composition: DomainResource {
 				presentKeys.insert("section")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CompositionSection.instantiate(fromArray: val, owner: self) as? [CompositionSection] {
+						if let realm = self.realm { realm.delete(self.section) }
 						self.section.append(objectsIn: vals)
 					}
 				}
@@ -177,7 +196,6 @@ open class Composition: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -189,7 +207,11 @@ open class Composition: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					if let subject = self.subject {
+                        errors.append(contentsOf: subject.populate(from: val) ?? [])
+                    } else {
+                        self.subject = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -202,7 +224,6 @@ open class Composition: DomainResource {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -214,7 +235,11 @@ open class Composition: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -320,7 +345,11 @@ open class CompositionAttester: BackboneElement {
 			if let exist = js["party"] {
 				presentKeys.insert("party")
 				if let val = exist as? FHIRJSON {
-					self.party = Reference(json: val, owner: self)
+					if let party = self.party {
+                        errors.append(contentsOf: party.populate(from: val) ?? [])
+                    } else {
+                        self.party = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "party", wants: FHIRJSON.self, has: type(of: exist)))
@@ -382,6 +411,7 @@ open class CompositionEvent: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.code) }
 						self.code.append(objectsIn: vals)
 					}
 				}
@@ -393,6 +423,7 @@ open class CompositionEvent: BackboneElement {
 				presentKeys.insert("detail")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.detail) }
 						self.detail.append(objectsIn: vals)
 					}
 				}
@@ -403,7 +434,11 @@ open class CompositionEvent: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -465,7 +500,11 @@ open class CompositionSection: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					if let code = self.code {
+                        errors.append(contentsOf: code.populate(from: val) ?? [])
+                    } else {
+                        self.code = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -474,7 +513,11 @@ open class CompositionSection: BackboneElement {
 			if let exist = js["emptyReason"] {
 				presentKeys.insert("emptyReason")
 				if let val = exist as? FHIRJSON {
-					self.emptyReason = CodeableConcept(json: val, owner: self)
+					if let emptyReason = self.emptyReason {
+                        errors.append(contentsOf: emptyReason.populate(from: val) ?? [])
+                    } else {
+                        self.emptyReason = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "emptyReason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -484,6 +527,7 @@ open class CompositionSection: BackboneElement {
 				presentKeys.insert("entry")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.entry) }
 						self.entry.append(objectsIn: vals)
 					}
 				}
@@ -495,7 +539,6 @@ open class CompositionSection: BackboneElement {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -504,7 +547,11 @@ open class CompositionSection: BackboneElement {
 			if let exist = js["orderedBy"] {
 				presentKeys.insert("orderedBy")
 				if let val = exist as? FHIRJSON {
-					self.orderedBy = CodeableConcept(json: val, owner: self)
+					if let orderedBy = self.orderedBy {
+                        errors.append(contentsOf: orderedBy.populate(from: val) ?? [])
+                    } else {
+                        self.orderedBy = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderedBy", wants: FHIRJSON.self, has: type(of: exist)))
@@ -514,6 +561,7 @@ open class CompositionSection: BackboneElement {
 				presentKeys.insert("section")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CompositionSection.instantiate(fromArray: val, owner: self) as? [CompositionSection] {
+						if let realm = self.realm { realm.delete(self.section) }
 						self.section.append(objectsIn: vals)
 					}
 				}
@@ -524,7 +572,11 @@ open class CompositionSection: BackboneElement {
 			if let exist = js["text"] {
 				presentKeys.insert("text")
 				if let val = exist as? FHIRJSON {
-					self.text = Narrative(json: val, owner: self)
+					if let text = self.text {
+                        errors.append(contentsOf: text.populate(from: val) ?? [])
+                    } else {
+                        self.text = Narrative(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: FHIRJSON.self, has: type(of: exist)))
@@ -534,7 +586,6 @@ open class CompositionSection: BackboneElement {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))

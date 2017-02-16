@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -22,9 +22,9 @@ open class Resource: FHIRAbstractResource {
 
 	public dynamic var id: String?
 	public dynamic var pk = UUID().uuidString
-	override open static func primaryKey() -> String? {
-		return "pk"
-	}
+		override open static func primaryKey() -> String? {
+			return "pk"
+		}
 	public dynamic var implicitRules: String?
 	
 	public dynamic var language: String?
@@ -40,7 +40,6 @@ open class Resource: FHIRAbstractResource {
 				presentKeys.insert("id")
 				if let val = exist as? String {
 					self.id = val
-					self.pk = val
 				}
 				else {
 					errors.append(FHIRJSONError(key: "id", wants: String.self, has: type(of: exist)))
@@ -50,7 +49,6 @@ open class Resource: FHIRAbstractResource {
 				presentKeys.insert("implicitRules")
 				if let val = exist as? String {
 					self.implicitRules = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "implicitRules", wants: String.self, has: type(of: exist)))
@@ -60,7 +58,6 @@ open class Resource: FHIRAbstractResource {
 				presentKeys.insert("language")
 				if let val = exist as? String {
 					self.language = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
@@ -69,7 +66,11 @@ open class Resource: FHIRAbstractResource {
 			if let exist = js["meta"] {
 				presentKeys.insert("meta")
 				if let val = exist as? FHIRJSON {
-					self.meta = Meta(json: val, owner: self)
+					if let meta = self.meta {
+                        errors.append(contentsOf: meta.populate(from: val) ?? [])
+                    } else {
+                        self.meta = Meta(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "meta", wants: FHIRJSON.self, has: type(of: exist)))

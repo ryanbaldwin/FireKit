@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -80,6 +80,7 @@ open class TestScript: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptContact.instantiate(fromArray: val, owner: self) as? [TestScriptContact] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -91,7 +92,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -110,7 +110,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -120,7 +119,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -130,6 +128,7 @@ open class TestScript: DomainResource {
 				presentKeys.insert("fixture")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptFixture.instantiate(fromArray: val, owner: self) as? [TestScriptFixture] {
+						if let realm = self.realm { realm.delete(self.fixture) }
 						self.fixture.append(objectsIn: vals)
 					}
 				}
@@ -140,7 +139,11 @@ open class TestScript: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					if let identifier = self.identifier {
+                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
+                    } else {
+                        self.identifier = Identifier(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -149,7 +152,11 @@ open class TestScript: DomainResource {
 			if let exist = js["metadata"] {
 				presentKeys.insert("metadata")
 				if let val = exist as? FHIRJSON {
-					self.metadata = TestScriptMetadata(json: val, owner: self)
+					if let metadata = self.metadata {
+                        errors.append(contentsOf: metadata.populate(from: val) ?? [])
+                    } else {
+                        self.metadata = TestScriptMetadata(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: type(of: exist)))
@@ -159,7 +166,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("multiserver")
 				if let val = exist as? Bool {
 					self.multiserver.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "multiserver", wants: Bool.self, has: type(of: exist)))
@@ -169,7 +175,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -182,6 +187,7 @@ open class TestScript: DomainResource {
 				presentKeys.insert("profile")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.profile) }
 						self.profile.append(objectsIn: vals)
 					}
 				}
@@ -193,7 +199,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -203,7 +208,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -212,7 +216,11 @@ open class TestScript: DomainResource {
 			if let exist = js["setup"] {
 				presentKeys.insert("setup")
 				if let val = exist as? FHIRJSON {
-					self.setup = TestScriptSetup(json: val, owner: self)
+					if let setup = self.setup {
+                        errors.append(contentsOf: setup.populate(from: val) ?? [])
+                    } else {
+                        self.setup = TestScriptSetup(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "setup", wants: FHIRJSON.self, has: type(of: exist)))
@@ -222,7 +230,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -234,7 +241,11 @@ open class TestScript: DomainResource {
 			if let exist = js["teardown"] {
 				presentKeys.insert("teardown")
 				if let val = exist as? FHIRJSON {
-					self.teardown = TestScriptTeardown(json: val, owner: self)
+					if let teardown = self.teardown {
+                        errors.append(contentsOf: teardown.populate(from: val) ?? [])
+                    } else {
+                        self.teardown = TestScriptTeardown(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "teardown", wants: FHIRJSON.self, has: type(of: exist)))
@@ -244,6 +255,7 @@ open class TestScript: DomainResource {
 				presentKeys.insert("test")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptTest.instantiate(fromArray: val, owner: self) as? [TestScriptTest] {
+						if let realm = self.realm { realm.delete(self.test) }
 						self.test.append(objectsIn: vals)
 					}
 				}
@@ -255,7 +267,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -268,6 +279,7 @@ open class TestScript: DomainResource {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.useContext) }
 						self.useContext.append(objectsIn: vals)
 					}
 				}
@@ -279,6 +291,7 @@ open class TestScript: DomainResource {
 				presentKeys.insert("variable")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptVariable.instantiate(fromArray: val, owner: self) as? [TestScriptVariable] {
+						if let realm = self.realm { realm.delete(self.variable) }
 						self.variable.append(objectsIn: vals)
 					}
 				}
@@ -290,7 +303,6 @@ open class TestScript: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -395,7 +407,6 @@ open class TestScriptContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -405,6 +416,7 @@ open class TestScriptContact: BackboneElement {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -456,7 +468,6 @@ open class TestScriptFixture: BackboneElement {
 				presentKeys.insert("autocreate")
 				if let val = exist as? Bool {
 					self.autocreate.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "autocreate", wants: Bool.self, has: type(of: exist)))
@@ -466,7 +477,6 @@ open class TestScriptFixture: BackboneElement {
 				presentKeys.insert("autodelete")
 				if let val = exist as? Bool {
 					self.autodelete.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "autodelete", wants: Bool.self, has: type(of: exist)))
@@ -475,7 +485,11 @@ open class TestScriptFixture: BackboneElement {
 			if let exist = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? FHIRJSON {
-					self.resource = Reference(json: val, owner: self)
+					if let resource = self.resource {
+                        errors.append(contentsOf: resource.populate(from: val) ?? [])
+                    } else {
+                        self.resource = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
@@ -532,6 +546,7 @@ open class TestScriptMetadata: BackboneElement {
 				presentKeys.insert("capability")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptMetadataCapability.instantiate(fromArray: val, owner: self) as? [TestScriptMetadataCapability] {
+						if let realm = self.realm { realm.delete(self.capability) }
 						self.capability.append(objectsIn: vals)
 					}
 				}
@@ -546,6 +561,7 @@ open class TestScriptMetadata: BackboneElement {
 				presentKeys.insert("link")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptMetadataLink.instantiate(fromArray: val, owner: self) as? [TestScriptMetadataLink] {
+						if let realm = self.realm { realm.delete(self.link) }
 						self.link.append(objectsIn: vals)
 					}
 				}
@@ -608,7 +624,11 @@ open class TestScriptMetadataCapability: BackboneElement {
 			if let exist = js["conformance"] {
 				presentKeys.insert("conformance")
 				if let val = exist as? FHIRJSON {
-					self.conformance = Reference(json: val, owner: self)
+					if let conformance = self.conformance {
+                        errors.append(contentsOf: conformance.populate(from: val) ?? [])
+                    } else {
+                        self.conformance = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "conformance", wants: FHIRJSON.self, has: type(of: exist)))
@@ -621,7 +641,6 @@ open class TestScriptMetadataCapability: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -631,7 +650,6 @@ open class TestScriptMetadataCapability: BackboneElement {
 				presentKeys.insert("destination")
 				if let val = exist as? Int {
 					self.destination.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "destination", wants: Int.self, has: type(of: exist)))
@@ -650,7 +668,6 @@ open class TestScriptMetadataCapability: BackboneElement {
 				presentKeys.insert("required")
 				if let val = exist as? Bool {
 					self.required.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "required", wants: Bool.self, has: type(of: exist)))
@@ -660,7 +677,6 @@ open class TestScriptMetadataCapability: BackboneElement {
 				presentKeys.insert("validated")
 				if let val = exist as? Bool {
 					self.validated.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "validated", wants: Bool.self, has: type(of: exist)))
@@ -726,7 +742,6 @@ open class TestScriptMetadataLink: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -736,7 +751,6 @@ open class TestScriptMetadataLink: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -791,6 +805,7 @@ open class TestScriptSetup: BackboneElement {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptSetupAction.instantiate(fromArray: val, owner: self) as? [TestScriptSetupAction] {
+						if let realm = self.realm { realm.delete(self.action) }
 						self.action.append(objectsIn: vals)
 					}
 				}
@@ -804,7 +819,11 @@ open class TestScriptSetup: BackboneElement {
 			if let exist = js["metadata"] {
 				presentKeys.insert("metadata")
 				if let val = exist as? FHIRJSON {
-					self.metadata = TestScriptMetadata(json: val, owner: self)
+					if let metadata = self.metadata {
+                        errors.append(contentsOf: metadata.populate(from: val) ?? [])
+                    } else {
+                        self.metadata = TestScriptMetadata(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: type(of: exist)))
@@ -851,7 +870,11 @@ open class TestScriptSetupAction: BackboneElement {
 			if let exist = js["assert"] {
 				presentKeys.insert("assert")
 				if let val = exist as? FHIRJSON {
-					self.assert = TestScriptSetupActionAssert(json: val, owner: self)
+					if let assert = self.assert {
+                        errors.append(contentsOf: assert.populate(from: val) ?? [])
+                    } else {
+                        self.assert = TestScriptSetupActionAssert(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assert", wants: FHIRJSON.self, has: type(of: exist)))
@@ -860,7 +883,11 @@ open class TestScriptSetupAction: BackboneElement {
 			if let exist = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? FHIRJSON {
-					self.operation = TestScriptSetupActionOperation(json: val, owner: self)
+					if let operation = self.operation {
+                        errors.append(contentsOf: operation.populate(from: val) ?? [])
+                    } else {
+                        self.operation = TestScriptSetupActionOperation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -940,7 +967,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("compareToSourceId")
 				if let val = exist as? String {
 					self.compareToSourceId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "compareToSourceId", wants: String.self, has: type(of: exist)))
@@ -950,7 +976,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("compareToSourcePath")
 				if let val = exist as? String {
 					self.compareToSourcePath = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "compareToSourcePath", wants: String.self, has: type(of: exist)))
@@ -960,7 +985,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("contentType")
 				if let val = exist as? String {
 					self.contentType = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -970,7 +994,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -980,7 +1003,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("direction")
 				if let val = exist as? String {
 					self.direction = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "direction", wants: String.self, has: type(of: exist)))
@@ -990,7 +1012,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("headerField")
 				if let val = exist as? String {
 					self.headerField = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "headerField", wants: String.self, has: type(of: exist)))
@@ -1000,7 +1021,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("label")
 				if let val = exist as? String {
 					self.label = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "label", wants: String.self, has: type(of: exist)))
@@ -1010,7 +1030,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("minimumId")
 				if let val = exist as? String {
 					self.minimumId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "minimumId", wants: String.self, has: type(of: exist)))
@@ -1020,7 +1039,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("navigationLinks")
 				if let val = exist as? Bool {
 					self.navigationLinks.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "navigationLinks", wants: Bool.self, has: type(of: exist)))
@@ -1030,7 +1048,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("operator")
 				if let val = exist as? String {
 					self.operator_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operator", wants: String.self, has: type(of: exist)))
@@ -1040,7 +1057,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("path")
 				if let val = exist as? String {
 					self.path = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "path", wants: String.self, has: type(of: exist)))
@@ -1050,7 +1066,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("resource")
 				if let val = exist as? String {
 					self.resource = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: String.self, has: type(of: exist)))
@@ -1060,7 +1075,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("response")
 				if let val = exist as? String {
 					self.response = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "response", wants: String.self, has: type(of: exist)))
@@ -1070,7 +1084,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("responseCode")
 				if let val = exist as? String {
 					self.responseCode = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "responseCode", wants: String.self, has: type(of: exist)))
@@ -1080,7 +1093,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("sourceId")
 				if let val = exist as? String {
 					self.sourceId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceId", wants: String.self, has: type(of: exist)))
@@ -1090,7 +1102,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("validateProfileId")
 				if let val = exist as? String {
 					self.validateProfileId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "validateProfileId", wants: String.self, has: type(of: exist)))
@@ -1100,7 +1111,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("value")
 				if let val = exist as? String {
 					self.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
@@ -1110,7 +1120,6 @@ open class TestScriptSetupActionAssert: BackboneElement {
 				presentKeys.insert("warningOnly")
 				if let val = exist as? Bool {
 					self.warningOnly.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "warningOnly", wants: Bool.self, has: type(of: exist)))
@@ -1230,7 +1239,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("accept")
 				if let val = exist as? String {
 					self.accept = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "accept", wants: String.self, has: type(of: exist)))
@@ -1240,7 +1248,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("contentType")
 				if let val = exist as? String {
 					self.contentType = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -1250,7 +1257,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -1260,7 +1266,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("destination")
 				if let val = exist as? Int {
 					self.destination.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "destination", wants: Int.self, has: type(of: exist)))
@@ -1270,7 +1275,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("encodeRequestUrl")
 				if let val = exist as? Bool {
 					self.encodeRequestUrl.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encodeRequestUrl", wants: Bool.self, has: type(of: exist)))
@@ -1280,7 +1284,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("label")
 				if let val = exist as? String {
 					self.label = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "label", wants: String.self, has: type(of: exist)))
@@ -1290,7 +1293,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("params")
 				if let val = exist as? String {
 					self.params = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "params", wants: String.self, has: type(of: exist)))
@@ -1300,6 +1302,7 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("requestHeader")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptSetupActionOperationRequestHeader.instantiate(fromArray: val, owner: self) as? [TestScriptSetupActionOperationRequestHeader] {
+						if let realm = self.realm { realm.delete(self.requestHeader) }
 						self.requestHeader.append(objectsIn: vals)
 					}
 				}
@@ -1311,7 +1314,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("resource")
 				if let val = exist as? String {
 					self.resource = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: String.self, has: type(of: exist)))
@@ -1321,7 +1323,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("responseId")
 				if let val = exist as? String {
 					self.responseId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "responseId", wants: String.self, has: type(of: exist)))
@@ -1331,7 +1332,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("sourceId")
 				if let val = exist as? String {
 					self.sourceId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceId", wants: String.self, has: type(of: exist)))
@@ -1341,7 +1341,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("targetId")
 				if let val = exist as? String {
 					self.targetId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetId", wants: String.self, has: type(of: exist)))
@@ -1350,7 +1349,11 @@ open class TestScriptSetupActionOperation: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					if let type = self.type {
+                        errors.append(contentsOf: type.populate(from: val) ?? [])
+                    } else {
+                        self.type = Coding(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1360,7 +1363,6 @@ open class TestScriptSetupActionOperation: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -1451,7 +1453,6 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 				presentKeys.insert("field")
 				if let val = exist as? String {
 					self.field = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "field", wants: String.self, has: type(of: exist)))
@@ -1464,7 +1465,6 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 				presentKeys.insert("value")
 				if let val = exist as? String {
 					self.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
@@ -1519,6 +1519,7 @@ open class TestScriptTeardown: BackboneElement {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptTeardownAction.instantiate(fromArray: val, owner: self) as? [TestScriptTeardownAction] {
+						if let realm = self.realm { realm.delete(self.action) }
 						self.action.append(objectsIn: vals)
 					}
 				}
@@ -1565,7 +1566,11 @@ open class TestScriptTeardownAction: BackboneElement {
 			if let exist = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? FHIRJSON {
-					self.operation = TestScriptSetupActionOperation(json: val, owner: self)
+					if let operation = self.operation {
+                        errors.append(contentsOf: operation.populate(from: val) ?? [])
+                    } else {
+                        self.operation = TestScriptSetupActionOperation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1618,6 +1623,7 @@ open class TestScriptTest: BackboneElement {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = TestScriptTestAction.instantiate(fromArray: val, owner: self) as? [TestScriptTestAction] {
+						if let realm = self.realm { realm.delete(self.action) }
 						self.action.append(objectsIn: vals)
 					}
 				}
@@ -1632,7 +1638,6 @@ open class TestScriptTest: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -1641,7 +1646,11 @@ open class TestScriptTest: BackboneElement {
 			if let exist = js["metadata"] {
 				presentKeys.insert("metadata")
 				if let val = exist as? FHIRJSON {
-					self.metadata = TestScriptMetadata(json: val, owner: self)
+					if let metadata = self.metadata {
+                        errors.append(contentsOf: metadata.populate(from: val) ?? [])
+                    } else {
+                        self.metadata = TestScriptMetadata(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1651,7 +1660,6 @@ open class TestScriptTest: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1704,7 +1712,11 @@ open class TestScriptTestAction: BackboneElement {
 			if let exist = js["assert"] {
 				presentKeys.insert("assert")
 				if let val = exist as? FHIRJSON {
-					self.assert = TestScriptSetupActionAssert(json: val, owner: self)
+					if let assert = self.assert {
+                        errors.append(contentsOf: assert.populate(from: val) ?? [])
+                    } else {
+                        self.assert = TestScriptSetupActionAssert(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assert", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1713,7 +1725,11 @@ open class TestScriptTestAction: BackboneElement {
 			if let exist = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? FHIRJSON {
-					self.operation = TestScriptSetupActionOperation(json: val, owner: self)
+					if let operation = self.operation {
+                        errors.append(contentsOf: operation.populate(from: val) ?? [])
+                    } else {
+                        self.operation = TestScriptSetupActionOperation(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1771,7 +1787,6 @@ open class TestScriptVariable: BackboneElement {
 				presentKeys.insert("headerField")
 				if let val = exist as? String {
 					self.headerField = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "headerField", wants: String.self, has: type(of: exist)))
@@ -1781,7 +1796,6 @@ open class TestScriptVariable: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1794,7 +1808,6 @@ open class TestScriptVariable: BackboneElement {
 				presentKeys.insert("path")
 				if let val = exist as? String {
 					self.path = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "path", wants: String.self, has: type(of: exist)))
@@ -1804,7 +1817,6 @@ open class TestScriptVariable: BackboneElement {
 				presentKeys.insert("sourceId")
 				if let val = exist as? String {
 					self.sourceId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceId", wants: String.self, has: type(of: exist)))

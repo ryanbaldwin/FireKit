@@ -2,7 +2,7 @@
 //  Range.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -32,7 +32,11 @@ open class Range: Element {
 			if let exist = js["high"] {
 				presentKeys.insert("high")
 				if let val = exist as? FHIRJSON {
-					self.high = Quantity(json: val, owner: self)
+					if let high = self.high {
+                        errors.append(contentsOf: high.populate(from: val) ?? [])
+                    } else {
+                        self.high = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "high", wants: FHIRJSON.self, has: type(of: exist)))
@@ -41,7 +45,11 @@ open class Range: Element {
 			if let exist = js["low"] {
 				presentKeys.insert("low")
 				if let val = exist as? FHIRJSON {
-					self.low = Quantity(json: val, owner: self)
+					if let low = self.low {
+                        errors.append(contentsOf: low.populate(from: val) ?? [])
+                    } else {
+                        self.low = Quantity(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "low", wants: FHIRJSON.self, has: type(of: exist)))

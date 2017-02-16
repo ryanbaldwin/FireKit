@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.QuestionnaireResponse?
 		do {
 			instance = try runQuestionnaireResponse1()
-			try runQuestionnaireResponse1(instance!.asJSON()) 			
+			try runQuestionnaireResponse1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
+			XCTAssertNotNil(copy)
+			try runQuestionnaireResponse1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -43,22 +46,39 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testQuestionnaireResponseRealm1(instance: RealmSwiftFHIR.QuestionnaireResponse) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runQuestionnaireResponse1(realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.QuestionnaireResponse()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
 	}
 	
 	@discardableResult
@@ -118,7 +138,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.QuestionnaireResponse?
 		do {
 			instance = try runQuestionnaireResponse2()
-			try runQuestionnaireResponse2(instance!.asJSON()) 			
+			try runQuestionnaireResponse2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
+			XCTAssertNotNil(copy)
+			try runQuestionnaireResponse2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -128,22 +151,39 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testQuestionnaireResponseRealm2(instance: RealmSwiftFHIR.QuestionnaireResponse) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runQuestionnaireResponse2(realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.QuestionnaireResponse()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
 	}
 	
 	@discardableResult
@@ -193,7 +233,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.QuestionnaireResponse?
 		do {
 			instance = try runQuestionnaireResponse3()
-			try runQuestionnaireResponse3(instance!.asJSON()) 			
+			try runQuestionnaireResponse3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
+			XCTAssertNotNil(copy)
+			try runQuestionnaireResponse3(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -203,22 +246,39 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testQuestionnaireResponseRealm3(instance: RealmSwiftFHIR.QuestionnaireResponse) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runQuestionnaireResponse3(realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.QuestionnaireResponse()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
 	}
 	
 	@discardableResult
@@ -261,7 +321,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.QuestionnaireResponse?
 		do {
 			instance = try runQuestionnaireResponse4()
-			try runQuestionnaireResponse4(instance!.asJSON()) 			
+			try runQuestionnaireResponse4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
+			XCTAssertNotNil(copy)
+			try runQuestionnaireResponse4(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -271,22 +334,39 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testQuestionnaireResponseRealm4(instance: RealmSwiftFHIR.QuestionnaireResponse) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runQuestionnaireResponse4(realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.QuestionnaireResponse()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.QuestionnaireResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runQuestionnaireResponse4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.QuestionnaireResponse.self).count)
 	}
 	
 	@discardableResult

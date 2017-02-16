@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.RelatedPerson?
 		do {
 			instance = try runRelatedPerson1()
-			try runRelatedPerson1(instance!.asJSON()) 			
+			try runRelatedPerson1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
+			XCTAssertNotNil(copy)
+			try runRelatedPerson1(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -43,22 +46,39 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testRelatedPersonRealm1(instance: RealmSwiftFHIR.RelatedPerson) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runRelatedPerson1(realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.RelatedPerson()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
 	}
 	
 	@discardableResult
@@ -92,7 +112,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.RelatedPerson?
 		do {
 			instance = try runRelatedPerson2()
-			try runRelatedPerson2(instance!.asJSON()) 			
+			try runRelatedPerson2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
+			XCTAssertNotNil(copy)
+			try runRelatedPerson2(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -102,22 +125,39 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testRelatedPersonRealm2(instance: RealmSwiftFHIR.RelatedPerson) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runRelatedPerson2(realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.RelatedPerson()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
 	}
 	
 	@discardableResult
@@ -147,7 +187,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.RelatedPerson?
 		do {
 			instance = try runRelatedPerson3()
-			try runRelatedPerson3(instance!.asJSON()) 			
+			try runRelatedPerson3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
+			XCTAssertNotNil(copy)
+			try runRelatedPerson3(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -157,22 +200,39 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testRelatedPersonRealm3(instance: RealmSwiftFHIR.RelatedPerson) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runRelatedPerson3(realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.RelatedPerson()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
 	}
 	
 	@discardableResult
@@ -208,7 +268,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.RelatedPerson?
 		do {
 			instance = try runRelatedPerson4()
-			try runRelatedPerson4(instance!.asJSON()) 			
+			try runRelatedPerson4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
+			XCTAssertNotNil(copy)
+			try runRelatedPerson4(copy!.asJSON())
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -218,22 +281,39 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func testRelatedPersonRealm4(instance: RealmSwiftFHIR.RelatedPerson) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runRelatedPerson4(realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.RelatedPerson.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.RelatedPerson()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.RelatedPerson.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runRelatedPerson4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.RelatedPerson.self).count)
 	}
 	
 	@discardableResult

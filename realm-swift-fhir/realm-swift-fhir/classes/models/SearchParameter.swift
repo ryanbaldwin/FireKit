@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -70,7 +70,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("base")
 				if let val = exist as? String {
 					self.base = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "base", wants: String.self, has: type(of: exist)))
@@ -83,7 +82,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -96,6 +94,7 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = SearchParameterContact.instantiate(fromArray: val, owner: self) as? [SearchParameterContact] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -116,7 +115,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -129,7 +127,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -139,7 +136,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -152,7 +148,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -162,7 +157,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -172,7 +166,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -191,7 +184,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -204,7 +196,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -217,7 +208,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("xpath")
 				if let val = exist as? String {
 					self.xpath = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "xpath", wants: String.self, has: type(of: exist)))
@@ -227,7 +217,6 @@ open class SearchParameter: DomainResource {
 				presentKeys.insert("xpathUsage")
 				if let val = exist as? String {
 					self.xpathUsage = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "xpathUsage", wants: String.self, has: type(of: exist)))
@@ -314,7 +303,6 @@ open class SearchParameterContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -324,6 +312,7 @@ open class SearchParameterContact: BackboneElement {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}

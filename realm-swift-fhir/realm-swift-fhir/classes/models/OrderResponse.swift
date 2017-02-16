@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -57,7 +57,6 @@ open class OrderResponse: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -67,6 +66,7 @@ open class OrderResponse: DomainResource {
 				presentKeys.insert("fulfillment")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.fulfillment) }
 						self.fulfillment.append(objectsIn: vals)
 					}
 				}
@@ -78,6 +78,7 @@ open class OrderResponse: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -89,7 +90,6 @@ open class OrderResponse: DomainResource {
 				presentKeys.insert("orderStatus")
 				if let val = exist as? String {
 					self.orderStatus = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderStatus", wants: String.self, has: type(of: exist)))
@@ -101,7 +101,11 @@ open class OrderResponse: DomainResource {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.request = Reference(json: val, owner: self)
+					if let request = self.request {
+                        errors.append(contentsOf: request.populate(from: val) ?? [])
+                    } else {
+                        self.request = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -113,7 +117,11 @@ open class OrderResponse: DomainResource {
 			if let exist = js["who"] {
 				presentKeys.insert("who")
 				if let val = exist as? FHIRJSON {
-					self.who = Reference(json: val, owner: self)
+					if let who = self.who {
+                        errors.append(contentsOf: who.populate(from: val) ?? [])
+                    } else {
+                        self.who = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "who", wants: FHIRJSON.self, has: type(of: exist)))

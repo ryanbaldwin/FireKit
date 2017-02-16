@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-02-16.
 //  2017, SMART Health IT.
 //
 
@@ -56,6 +56,7 @@ open class RelatedPerson: DomainResource {
 				presentKeys.insert("address")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Address.instantiate(fromArray: val, owner: self) as? [Address] {
+						if let realm = self.realm { realm.delete(self.address) }
 						self.address.append(objectsIn: vals)
 					}
 				}
@@ -76,7 +77,6 @@ open class RelatedPerson: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -86,6 +86,7 @@ open class RelatedPerson: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -96,7 +97,11 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? FHIRJSON {
-					self.name = HumanName(json: val, owner: self)
+					if let name = self.name {
+                        errors.append(contentsOf: name.populate(from: val) ?? [])
+                    } else {
+                        self.name = HumanName(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: type(of: exist)))
@@ -105,7 +110,11 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					if let patient = self.patient {
+                        errors.append(contentsOf: patient.populate(from: val) ?? [])
+                    } else {
+                        self.patient = Reference(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -117,7 +126,11 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					if let period = self.period {
+                        errors.append(contentsOf: period.populate(from: val) ?? [])
+                    } else {
+                        self.period = Period(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -127,6 +140,7 @@ open class RelatedPerson: DomainResource {
 				presentKeys.insert("photo")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment] {
+						if let realm = self.realm { realm.delete(self.photo) }
 						self.photo.append(objectsIn: vals)
 					}
 				}
@@ -137,7 +151,11 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["relationship"] {
 				presentKeys.insert("relationship")
 				if let val = exist as? FHIRJSON {
-					self.relationship = CodeableConcept(json: val, owner: self)
+					if let relationship = self.relationship {
+                        errors.append(contentsOf: relationship.populate(from: val) ?? [])
+                    } else {
+                        self.relationship = CodeableConcept(json: val, owner: self)
+                    }
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relationship", wants: FHIRJSON.self, has: type(of: exist)))
@@ -147,6 +165,7 @@ open class RelatedPerson: DomainResource {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
