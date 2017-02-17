@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,39 +22,97 @@ open class ProcedureRequest: DomainResource {
 
 	public let asNeededBoolean = RealmOptional<Bool>()
 	
-	public dynamic var asNeededCodeableConcept: CodeableConcept?
+	public dynamic var asNeededCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(asNeededCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.asNeededCodeableConcept, val: asNeededCodeableConcept)
+			}
 	
 	public let bodySite = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
 	public let notes = RealmSwift.List<Annotation>()
 	
-	public dynamic var orderedOn: DateTime?
+	public dynamic var orderedOn: DateTime?						
+		
+		
 	
-	public dynamic var orderer: Reference?
+	public dynamic var orderer: Reference?						
+		
+		
+			public func upsert(orderer: Reference?) {
+				upsert(prop: &self.orderer, val: orderer)
+			}
 	
-	public dynamic var performer: Reference?
+	public dynamic var performer: Reference?						
+		
+		
+			public func upsert(performer: Reference?) {
+				upsert(prop: &self.performer, val: performer)
+			}
 	
-	public dynamic var priority: String?
+	public dynamic var priority: String?						
+		
+		
 	
-	public dynamic var reasonCodeableConcept: CodeableConcept?
+	public dynamic var reasonCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(reasonCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
+			}
 	
-	public dynamic var reasonReference: Reference?
+	public dynamic var reasonReference: Reference?						
+		
+		
+			public func upsert(reasonReference: Reference?) {
+				upsert(prop: &self.reasonReference, val: reasonReference)
+			}
 	
-	public dynamic var scheduledDateTime: DateTime?
+	public dynamic var scheduledDateTime: DateTime?						
+		
+		
 	
-	public dynamic var scheduledPeriod: Period?
+	public dynamic var scheduledPeriod: Period?						
+		
+		
+			public func upsert(scheduledPeriod: Period?) {
+				upsert(prop: &self.scheduledPeriod, val: scheduledPeriod)
+			}
 	
-	public dynamic var scheduledTiming: Timing?
+	public dynamic var scheduledTiming: Timing?						
+		
+		
+			public func upsert(scheduledTiming: Timing?) {
+				upsert(prop: &self.scheduledTiming, val: scheduledTiming)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 
 	
@@ -80,11 +138,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["asNeededCodeableConcept"] {
 				presentKeys.insert("asNeededCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let asNeededCodeableConcept = self.asNeededCodeableConcept {
-                        errors.append(contentsOf: asNeededCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.asNeededCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(asNeededCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "asNeededCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -105,11 +159,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					if let code = self.code {
-                        errors.append(contentsOf: code.populate(from: val) ?? [])
-                    } else {
-                        self.code = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,11 +171,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					if let encounter = self.encounter {
-                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
-                    } else {
-                        self.encounter = Reference(json: val, owner: self)
-                    }
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -167,11 +213,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["orderer"] {
 				presentKeys.insert("orderer")
 				if let val = exist as? FHIRJSON {
-					if let orderer = self.orderer {
-                        errors.append(contentsOf: orderer.populate(from: val) ?? [])
-                    } else {
-                        self.orderer = Reference(json: val, owner: self)
-                    }
+					upsert(orderer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -180,11 +222,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? FHIRJSON {
-					if let performer = self.performer {
-                        errors.append(contentsOf: performer.populate(from: val) ?? [])
-                    } else {
-                        self.performer = Reference(json: val, owner: self)
-                    }
+					upsert(performer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -202,11 +240,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["reasonCodeableConcept"] {
 				presentKeys.insert("reasonCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let reasonCodeableConcept = self.reasonCodeableConcept {
-                        errors.append(contentsOf: reasonCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(reasonCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -215,11 +249,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
 				if let val = exist as? FHIRJSON {
-					if let reasonReference = self.reasonReference {
-                        errors.append(contentsOf: reasonReference.populate(from: val) ?? [])
-                    } else {
-                        self.reasonReference = Reference(json: val, owner: self)
-                    }
+					upsert(reasonReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -237,11 +267,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["scheduledPeriod"] {
 				presentKeys.insert("scheduledPeriod")
 				if let val = exist as? FHIRJSON {
-					if let scheduledPeriod = self.scheduledPeriod {
-                        errors.append(contentsOf: scheduledPeriod.populate(from: val) ?? [])
-                    } else {
-                        self.scheduledPeriod = Period(json: val, owner: self)
-                    }
+					upsert(scheduledPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "scheduledPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -250,11 +276,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["scheduledTiming"] {
 				presentKeys.insert("scheduledTiming")
 				if let val = exist as? FHIRJSON {
-					if let scheduledTiming = self.scheduledTiming {
-                        errors.append(contentsOf: scheduledTiming.populate(from: val) ?? [])
-                    } else {
-                        self.scheduledTiming = Timing(json: val, owner: self)
-                    }
+					upsert(scheduledTiming: Timing(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "scheduledTiming", wants: FHIRJSON.self, has: type(of: exist)))
@@ -272,11 +294,7 @@ open class ProcedureRequest: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					if let subject = self.subject {
-                        errors.append(contentsOf: subject.populate(from: val) ?? [])
-                    } else {
-                        self.subject = Reference(json: val, owner: self)
-                    }
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation1(copy!.asJSON())
+			try runObservation1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -44,6 +44,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm1(instance: instance!)
 	}
+
+    func testObservation1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm1(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -138,7 +158,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation2(copy!.asJSON())
+			try runObservation2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -146,6 +166,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm2(instance: instance!)
 	}
+
+    func testObservation2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm2(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -236,7 +276,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation3(copy!.asJSON())
+			try runObservation3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -244,6 +284,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm3(instance: instance!)
 	}
+
+    func testObservation3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm3(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -320,7 +380,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation4(copy!.asJSON())
+			try runObservation4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -328,6 +388,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm4(instance: instance!)
 	}
+
+    func testObservation4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm4(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -406,7 +486,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation5(copy!.asJSON())
+			try runObservation5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -414,6 +494,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm5(instance: instance!)
 	}
+
+    func testObservation5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm5(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -490,7 +590,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation6(copy!.asJSON())
+			try runObservation6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -498,6 +598,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm6(instance: instance!)
 	}
+
+    func testObservation6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm6(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -574,7 +694,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation7(copy!.asJSON())
+			try runObservation7(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -582,6 +702,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm7(instance: instance!)
 	}
+
+    func testObservation7RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation7()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm7(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -664,7 +804,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation8(copy!.asJSON())
+			try runObservation8(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -672,6 +812,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm8(instance: instance!)
 	}
+
+    func testObservation8RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation8()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm8(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -762,7 +922,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation9(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation9(copy!.asJSON())
+			try runObservation9(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -770,6 +930,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm9(instance: instance!)
 	}
+
+    func testObservation9RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation9()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm9(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -857,7 +1037,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			try runObservation10(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Observation
 			XCTAssertNotNil(copy)
-			try runObservation10(copy!.asJSON())
+			try runObservation10(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
@@ -865,6 +1045,26 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 
 		testObservationRealm10(instance: instance!)
 	}
+
+    func testObservation10RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Observation = try runObservation10()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Observation)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Observation's PKs, but threw: \(error)")
+        }
+    }
 
 	func testObservationRealm10(instance: RealmSwiftFHIR.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

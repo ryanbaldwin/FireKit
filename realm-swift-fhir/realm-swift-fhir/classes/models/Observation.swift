@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,33 +20,84 @@ open class Observation: DomainResource {
 		get { return "Observation" }
 	}
 
-	public dynamic var bodySite: CodeableConcept?
+	public dynamic var bodySite: CodeableConcept?						
+		
+		
+			public func upsert(bodySite: CodeableConcept?) {
+				upsert(prop: &self.bodySite, val: bodySite)
+			}
 	
-	public dynamic var category: CodeableConcept?
+	public dynamic var category: CodeableConcept?						
+		
+		
+			public func upsert(category: CodeableConcept?) {
+				upsert(prop: &self.category, val: category)
+			}
 	
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var comments: String?
+	public dynamic var comments: String?						
+		
+		
 	
 	public let component = RealmSwift.List<ObservationComponent>()
 	
-	public dynamic var dataAbsentReason: CodeableConcept?
+	public dynamic var dataAbsentReason: CodeableConcept?						
+		
+		
+			public func upsert(dataAbsentReason: CodeableConcept?) {
+				upsert(prop: &self.dataAbsentReason, val: dataAbsentReason)
+			}
 	
-	public dynamic var device: Reference?
+	public dynamic var device: Reference?						
+		
+		
+			public func upsert(device: Reference?) {
+				upsert(prop: &self.device, val: device)
+			}
 	
-	public dynamic var effectiveDateTime: DateTime?
+	public dynamic var effectiveDateTime: DateTime?						
+		
+		
 	
-	public dynamic var effectivePeriod: Period?
+	public dynamic var effectivePeriod: Period?						
+		
+		
+			public func upsert(effectivePeriod: Period?) {
+				upsert(prop: &self.effectivePeriod, val: effectivePeriod)
+			}
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var interpretation: CodeableConcept?
+	public dynamic var interpretation: CodeableConcept?						
+		
+		
+			public func upsert(interpretation: CodeableConcept?) {
+				upsert(prop: &self.interpretation, val: interpretation)
+			}
 	
-	public dynamic var issued: Instant?
+	public dynamic var issued: Instant?						
+		
+		
 	
-	public dynamic var method: CodeableConcept?
+	public dynamic var method: CodeableConcept?						
+		
+		
+			public func upsert(method: CodeableConcept?) {
+				upsert(prop: &self.method, val: method)
+			}
 	
 	public let performer = RealmSwift.List<Reference>()
 	
@@ -54,31 +105,84 @@ open class Observation: DomainResource {
 	
 	public let related = RealmSwift.List<ObservationRelated>()
 	
-	public dynamic var specimen: Reference?
+	public dynamic var specimen: Reference?						
+		
+		
+			public func upsert(specimen: Reference?) {
+				upsert(prop: &self.specimen, val: specimen)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var valueAttachment: Attachment?
+	public dynamic var valueAttachment: Attachment?						
+		
+		
+			public func upsert(valueAttachment: Attachment?) {
+				upsert(prop: &self.valueAttachment, val: valueAttachment)
+			}
 	
-	public dynamic var valueCodeableConcept: CodeableConcept?
+	public dynamic var valueCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(valueCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
+			}
 	
-	public dynamic var valueDateTime: DateTime?
+	public dynamic var valueDateTime: DateTime?						
+		
+		
 	
-	public dynamic var valuePeriod: Period?
+	public dynamic var valuePeriod: Period?						
+		
+		
+			public func upsert(valuePeriod: Period?) {
+				upsert(prop: &self.valuePeriod, val: valuePeriod)
+			}
 	
-	public dynamic var valueQuantity: Quantity?
+	public dynamic var valueQuantity: Quantity?						
+		
+		
+			public func upsert(valueQuantity: Quantity?) {
+				upsert(prop: &self.valueQuantity, val: valueQuantity)
+			}
 	
-	public dynamic var valueRange: Range?
+	public dynamic var valueRange: Range?						
+		
+		
+			public func upsert(valueRange: Range?) {
+				upsert(prop: &self.valueRange, val: valueRange)
+			}
 	
-	public dynamic var valueRatio: Ratio?
+	public dynamic var valueRatio: Ratio?						
+		
+		
+			public func upsert(valueRatio: Ratio?) {
+				upsert(prop: &self.valueRatio, val: valueRatio)
+			}
 	
-	public dynamic var valueSampledData: SampledData?
+	public dynamic var valueSampledData: SampledData?						
+		
+		
+			public func upsert(valueSampledData: SampledData?) {
+				upsert(prop: &self.valueSampledData, val: valueSampledData)
+			}
 	
-	public dynamic var valueString: String?
+	public dynamic var valueString: String?						
+		
+		
 	
-	public dynamic var valueTime: FHIRTime?
+	public dynamic var valueTime: FHIRTime?						
+		
+		
 	
 
 	
@@ -95,11 +199,7 @@ open class Observation: DomainResource {
 			if let exist = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? FHIRJSON {
-					if let bodySite = self.bodySite {
-                        errors.append(contentsOf: bodySite.populate(from: val) ?? [])
-                    } else {
-                        self.bodySite = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(bodySite: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: type(of: exist)))
@@ -108,11 +208,7 @@ open class Observation: DomainResource {
 			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					if let category = self.category {
-                        errors.append(contentsOf: category.populate(from: val) ?? [])
-                    } else {
-                        self.category = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(category: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,11 +217,7 @@ open class Observation: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					if let code = self.code {
-                        errors.append(contentsOf: code.populate(from: val) ?? [])
-                    } else {
-                        self.code = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -158,11 +250,7 @@ open class Observation: DomainResource {
 			if let exist = js["dataAbsentReason"] {
 				presentKeys.insert("dataAbsentReason")
 				if let val = exist as? FHIRJSON {
-					if let dataAbsentReason = self.dataAbsentReason {
-                        errors.append(contentsOf: dataAbsentReason.populate(from: val) ?? [])
-                    } else {
-                        self.dataAbsentReason = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(dataAbsentReason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dataAbsentReason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -171,11 +259,7 @@ open class Observation: DomainResource {
 			if let exist = js["device"] {
 				presentKeys.insert("device")
 				if let val = exist as? FHIRJSON {
-					if let device = self.device {
-                        errors.append(contentsOf: device.populate(from: val) ?? [])
-                    } else {
-                        self.device = Reference(json: val, owner: self)
-                    }
+					upsert(device: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: type(of: exist)))
@@ -193,11 +277,7 @@ open class Observation: DomainResource {
 			if let exist = js["effectivePeriod"] {
 				presentKeys.insert("effectivePeriod")
 				if let val = exist as? FHIRJSON {
-					if let effectivePeriod = self.effectivePeriod {
-                        errors.append(contentsOf: effectivePeriod.populate(from: val) ?? [])
-                    } else {
-                        self.effectivePeriod = Period(json: val, owner: self)
-                    }
+					upsert(effectivePeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "effectivePeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -206,11 +286,7 @@ open class Observation: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					if let encounter = self.encounter {
-                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
-                    } else {
-                        self.encounter = Reference(json: val, owner: self)
-                    }
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -231,11 +307,7 @@ open class Observation: DomainResource {
 			if let exist = js["interpretation"] {
 				presentKeys.insert("interpretation")
 				if let val = exist as? FHIRJSON {
-					if let interpretation = self.interpretation {
-                        errors.append(contentsOf: interpretation.populate(from: val) ?? [])
-                    } else {
-                        self.interpretation = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(interpretation: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "interpretation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -253,11 +325,7 @@ open class Observation: DomainResource {
 			if let exist = js["method"] {
 				presentKeys.insert("method")
 				if let val = exist as? FHIRJSON {
-					if let method = self.method {
-                        errors.append(contentsOf: method.populate(from: val) ?? [])
-                    } else {
-                        self.method = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(method: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: type(of: exist)))
@@ -302,11 +370,7 @@ open class Observation: DomainResource {
 			if let exist = js["specimen"] {
 				presentKeys.insert("specimen")
 				if let val = exist as? FHIRJSON {
-					if let specimen = self.specimen {
-                        errors.append(contentsOf: specimen.populate(from: val) ?? [])
-                    } else {
-                        self.specimen = Reference(json: val, owner: self)
-                    }
+					upsert(specimen: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "specimen", wants: FHIRJSON.self, has: type(of: exist)))
@@ -327,11 +391,7 @@ open class Observation: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					if let subject = self.subject {
-                        errors.append(contentsOf: subject.populate(from: val) ?? [])
-                    } else {
-                        self.subject = Reference(json: val, owner: self)
-                    }
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -340,11 +400,7 @@ open class Observation: DomainResource {
 			if let exist = js["valueAttachment"] {
 				presentKeys.insert("valueAttachment")
 				if let val = exist as? FHIRJSON {
-					if let valueAttachment = self.valueAttachment {
-                        errors.append(contentsOf: valueAttachment.populate(from: val) ?? [])
-                    } else {
-                        self.valueAttachment = Attachment(json: val, owner: self)
-                    }
+					upsert(valueAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -353,11 +409,7 @@ open class Observation: DomainResource {
 			if let exist = js["valueCodeableConcept"] {
 				presentKeys.insert("valueCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let valueCodeableConcept = self.valueCodeableConcept {
-                        errors.append(contentsOf: valueCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(valueCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -375,11 +427,7 @@ open class Observation: DomainResource {
 			if let exist = js["valuePeriod"] {
 				presentKeys.insert("valuePeriod")
 				if let val = exist as? FHIRJSON {
-					if let valuePeriod = self.valuePeriod {
-                        errors.append(contentsOf: valuePeriod.populate(from: val) ?? [])
-                    } else {
-                        self.valuePeriod = Period(json: val, owner: self)
-                    }
+					upsert(valuePeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valuePeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -388,11 +436,7 @@ open class Observation: DomainResource {
 			if let exist = js["valueQuantity"] {
 				presentKeys.insert("valueQuantity")
 				if let val = exist as? FHIRJSON {
-					if let valueQuantity = self.valueQuantity {
-                        errors.append(contentsOf: valueQuantity.populate(from: val) ?? [])
-                    } else {
-                        self.valueQuantity = Quantity(json: val, owner: self)
-                    }
+					upsert(valueQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -401,11 +445,7 @@ open class Observation: DomainResource {
 			if let exist = js["valueRange"] {
 				presentKeys.insert("valueRange")
 				if let val = exist as? FHIRJSON {
-					if let valueRange = self.valueRange {
-                        errors.append(contentsOf: valueRange.populate(from: val) ?? [])
-                    } else {
-                        self.valueRange = Range(json: val, owner: self)
-                    }
+					upsert(valueRange: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -414,11 +454,7 @@ open class Observation: DomainResource {
 			if let exist = js["valueRatio"] {
 				presentKeys.insert("valueRatio")
 				if let val = exist as? FHIRJSON {
-					if let valueRatio = self.valueRatio {
-                        errors.append(contentsOf: valueRatio.populate(from: val) ?? [])
-                    } else {
-                        self.valueRatio = Ratio(json: val, owner: self)
-                    }
+					upsert(valueRatio: Ratio(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueRatio", wants: FHIRJSON.self, has: type(of: exist)))
@@ -427,11 +463,7 @@ open class Observation: DomainResource {
 			if let exist = js["valueSampledData"] {
 				presentKeys.insert("valueSampledData")
 				if let val = exist as? FHIRJSON {
-					if let valueSampledData = self.valueSampledData {
-                        errors.append(contentsOf: valueSampledData.populate(from: val) ?? [])
-                    } else {
-                        self.valueSampledData = SampledData(json: val, owner: self)
-                    }
+					upsert(valueSampledData: SampledData(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSampledData", wants: FHIRJSON.self, has: type(of: exist)))
@@ -570,31 +602,82 @@ open class ObservationComponent: BackboneElement {
 		get { return "ObservationComponent" }
 	}
 
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var dataAbsentReason: CodeableConcept?
+	public dynamic var dataAbsentReason: CodeableConcept?						
+		
+		
+			public func upsert(dataAbsentReason: CodeableConcept?) {
+				upsert(prop: &self.dataAbsentReason, val: dataAbsentReason)
+			}
 	
 	public let referenceRange = RealmSwift.List<ObservationReferenceRange>()
 	
-	public dynamic var valueAttachment: Attachment?
+	public dynamic var valueAttachment: Attachment?						
+		
+		
+			public func upsert(valueAttachment: Attachment?) {
+				upsert(prop: &self.valueAttachment, val: valueAttachment)
+			}
 	
-	public dynamic var valueCodeableConcept: CodeableConcept?
+	public dynamic var valueCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(valueCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
+			}
 	
-	public dynamic var valueDateTime: DateTime?
+	public dynamic var valueDateTime: DateTime?						
+		
+		
 	
-	public dynamic var valuePeriod: Period?
+	public dynamic var valuePeriod: Period?						
+		
+		
+			public func upsert(valuePeriod: Period?) {
+				upsert(prop: &self.valuePeriod, val: valuePeriod)
+			}
 	
-	public dynamic var valueQuantity: Quantity?
+	public dynamic var valueQuantity: Quantity?						
+		
+		
+			public func upsert(valueQuantity: Quantity?) {
+				upsert(prop: &self.valueQuantity, val: valueQuantity)
+			}
 	
-	public dynamic var valueRange: Range?
+	public dynamic var valueRange: Range?						
+		
+		
+			public func upsert(valueRange: Range?) {
+				upsert(prop: &self.valueRange, val: valueRange)
+			}
 	
-	public dynamic var valueRatio: Ratio?
+	public dynamic var valueRatio: Ratio?						
+		
+		
+			public func upsert(valueRatio: Ratio?) {
+				upsert(prop: &self.valueRatio, val: valueRatio)
+			}
 	
-	public dynamic var valueSampledData: SampledData?
+	public dynamic var valueSampledData: SampledData?						
+		
+		
+			public func upsert(valueSampledData: SampledData?) {
+				upsert(prop: &self.valueSampledData, val: valueSampledData)
+			}
 	
-	public dynamic var valueString: String?
+	public dynamic var valueString: String?						
+		
+		
 	
-	public dynamic var valueTime: FHIRTime?
+	public dynamic var valueTime: FHIRTime?						
+		
+		
 	
 
 	
@@ -610,11 +693,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					if let code = self.code {
-                        errors.append(contentsOf: code.populate(from: val) ?? [])
-                    } else {
-                        self.code = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -626,11 +705,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["dataAbsentReason"] {
 				presentKeys.insert("dataAbsentReason")
 				if let val = exist as? FHIRJSON {
-					if let dataAbsentReason = self.dataAbsentReason {
-                        errors.append(contentsOf: dataAbsentReason.populate(from: val) ?? [])
-                    } else {
-                        self.dataAbsentReason = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(dataAbsentReason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dataAbsentReason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -651,11 +726,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["valueAttachment"] {
 				presentKeys.insert("valueAttachment")
 				if let val = exist as? FHIRJSON {
-					if let valueAttachment = self.valueAttachment {
-                        errors.append(contentsOf: valueAttachment.populate(from: val) ?? [])
-                    } else {
-                        self.valueAttachment = Attachment(json: val, owner: self)
-                    }
+					upsert(valueAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -664,11 +735,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["valueCodeableConcept"] {
 				presentKeys.insert("valueCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let valueCodeableConcept = self.valueCodeableConcept {
-                        errors.append(contentsOf: valueCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.valueCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(valueCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -686,11 +753,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["valuePeriod"] {
 				presentKeys.insert("valuePeriod")
 				if let val = exist as? FHIRJSON {
-					if let valuePeriod = self.valuePeriod {
-                        errors.append(contentsOf: valuePeriod.populate(from: val) ?? [])
-                    } else {
-                        self.valuePeriod = Period(json: val, owner: self)
-                    }
+					upsert(valuePeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valuePeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -699,11 +762,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["valueQuantity"] {
 				presentKeys.insert("valueQuantity")
 				if let val = exist as? FHIRJSON {
-					if let valueQuantity = self.valueQuantity {
-                        errors.append(contentsOf: valueQuantity.populate(from: val) ?? [])
-                    } else {
-                        self.valueQuantity = Quantity(json: val, owner: self)
-                    }
+					upsert(valueQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -712,11 +771,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["valueRange"] {
 				presentKeys.insert("valueRange")
 				if let val = exist as? FHIRJSON {
-					if let valueRange = self.valueRange {
-                        errors.append(contentsOf: valueRange.populate(from: val) ?? [])
-                    } else {
-                        self.valueRange = Range(json: val, owner: self)
-                    }
+					upsert(valueRange: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -725,11 +780,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["valueRatio"] {
 				presentKeys.insert("valueRatio")
 				if let val = exist as? FHIRJSON {
-					if let valueRatio = self.valueRatio {
-                        errors.append(contentsOf: valueRatio.populate(from: val) ?? [])
-                    } else {
-                        self.valueRatio = Ratio(json: val, owner: self)
-                    }
+					upsert(valueRatio: Ratio(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueRatio", wants: FHIRJSON.self, has: type(of: exist)))
@@ -738,11 +789,7 @@ open class ObservationComponent: BackboneElement {
 			if let exist = js["valueSampledData"] {
 				presentKeys.insert("valueSampledData")
 				if let val = exist as? FHIRJSON {
-					if let valueSampledData = self.valueSampledData {
-                        errors.append(contentsOf: valueSampledData.populate(from: val) ?? [])
-                    } else {
-                        self.valueSampledData = SampledData(json: val, owner: self)
-                    }
+					upsert(valueSampledData: SampledData(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSampledData", wants: FHIRJSON.self, has: type(of: exist)))
@@ -828,15 +875,37 @@ open class ObservationReferenceRange: BackboneElement {
 		get { return "ObservationReferenceRange" }
 	}
 
-	public dynamic var age: Range?
+	public dynamic var age: Range?						
+		
+		
+			public func upsert(age: Range?) {
+				upsert(prop: &self.age, val: age)
+			}
 	
-	public dynamic var high: Quantity?
+	public dynamic var high: Quantity?						
+		
+		
+			public func upsert(high: Quantity?) {
+				upsert(prop: &self.high, val: high)
+			}
 	
-	public dynamic var low: Quantity?
+	public dynamic var low: Quantity?						
+		
+		
+			public func upsert(low: Quantity?) {
+				upsert(prop: &self.low, val: low)
+			}
 	
-	public dynamic var meaning: CodeableConcept?
+	public dynamic var meaning: CodeableConcept?						
+		
+		
+			public func upsert(meaning: CodeableConcept?) {
+				upsert(prop: &self.meaning, val: meaning)
+			}
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
 
 	
@@ -846,11 +915,7 @@ open class ObservationReferenceRange: BackboneElement {
 			if let exist = js["age"] {
 				presentKeys.insert("age")
 				if let val = exist as? FHIRJSON {
-					if let age = self.age {
-                        errors.append(contentsOf: age.populate(from: val) ?? [])
-                    } else {
-                        self.age = Range(json: val, owner: self)
-                    }
+					upsert(age: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "age", wants: FHIRJSON.self, has: type(of: exist)))
@@ -859,11 +924,7 @@ open class ObservationReferenceRange: BackboneElement {
 			if let exist = js["high"] {
 				presentKeys.insert("high")
 				if let val = exist as? FHIRJSON {
-					if let high = self.high {
-                        errors.append(contentsOf: high.populate(from: val) ?? [])
-                    } else {
-                        self.high = Quantity(json: val, owner: self)
-                    }
+					upsert(high: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "high", wants: FHIRJSON.self, has: type(of: exist)))
@@ -872,11 +933,7 @@ open class ObservationReferenceRange: BackboneElement {
 			if let exist = js["low"] {
 				presentKeys.insert("low")
 				if let val = exist as? FHIRJSON {
-					if let low = self.low {
-                        errors.append(contentsOf: low.populate(from: val) ?? [])
-                    } else {
-                        self.low = Quantity(json: val, owner: self)
-                    }
+					upsert(low: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "low", wants: FHIRJSON.self, has: type(of: exist)))
@@ -885,11 +942,7 @@ open class ObservationReferenceRange: BackboneElement {
 			if let exist = js["meaning"] {
 				presentKeys.insert("meaning")
 				if let val = exist as? FHIRJSON {
-					if let meaning = self.meaning {
-                        errors.append(contentsOf: meaning.populate(from: val) ?? [])
-                    } else {
-                        self.meaning = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(meaning: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "meaning", wants: FHIRJSON.self, has: type(of: exist)))
@@ -943,9 +996,16 @@ open class ObservationRelated: BackboneElement {
 		get { return "ObservationRelated" }
 	}
 
-	public dynamic var target: Reference?
+	public dynamic var target: Reference?						
+		
+		
+			public func upsert(target: Reference?) {
+				upsert(prop: &self.target, val: target)
+			}
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	
@@ -961,11 +1021,7 @@ open class ObservationRelated: BackboneElement {
 			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					if let target = self.target {
-                        errors.append(contentsOf: target.populate(from: val) ?? [])
-                    } else {
-                        self.target = Reference(json: val, owner: self)
-                    }
+					upsert(target: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))

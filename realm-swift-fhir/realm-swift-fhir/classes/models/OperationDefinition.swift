@@ -2,7 +2,7 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,15 +21,26 @@ open class OperationDefinition: DomainResource {
 		get { return "OperationDefinition" }
 	}
 
-	public dynamic var base: Reference?
+	public dynamic var base: Reference?						
+		
+		
+			public func upsert(base: Reference?) {
+				upsert(prop: &self.base, val: base)
+			}
 	
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let contact = RealmSwift.List<OperationDefinitionContact>()
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let experimental = RealmOptional<Bool>()
 	
@@ -37,27 +48,43 @@ open class OperationDefinition: DomainResource {
 	
 	public let instance = RealmOptional<Bool>()
 	
-	public dynamic var kind: String?
+	public dynamic var kind: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var notes: String?
+	public dynamic var notes: String?						
+		
+		
 	
 	public let parameter = RealmSwift.List<OperationDefinitionParameter>()
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let system = RealmOptional<Bool>()
 	
 	public let type = RealmSwift.List<RealmString>()
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -78,11 +105,7 @@ open class OperationDefinition: DomainResource {
 			if let exist = js["base"] {
 				presentKeys.insert("base")
 				if let val = exist as? FHIRJSON {
-					if let base = self.base {
-                        errors.append(contentsOf: base.populate(from: val) ?? [])
-                    } else {
-                        self.base = Reference(json: val, owner: self)
-                    }
+					upsert(base: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "base", wants: FHIRJSON.self, has: type(of: exist)))
@@ -354,7 +377,9 @@ open class OperationDefinitionContact: BackboneElement {
 		get { return "OperationDefinitionContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -413,23 +438,43 @@ open class OperationDefinitionParameter: BackboneElement {
 		get { return "OperationDefinitionParameter" }
 	}
 
-	public dynamic var binding: OperationDefinitionParameterBinding?
+	public dynamic var binding: OperationDefinitionParameterBinding?						
+		
+		
+			public func upsert(binding: OperationDefinitionParameterBinding?) {
+				upsert(prop: &self.binding, val: binding)
+			}
 	
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
-	public dynamic var max: String?
+	public dynamic var max: String?						
+		
+		
 	
 	public let min = RealmOptional<Int>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let part = RealmSwift.List<OperationDefinitionParameter>()
 	
-	public dynamic var profile: Reference?
+	public dynamic var profile: Reference?						
+		
+		
+			public func upsert(profile: Reference?) {
+				upsert(prop: &self.profile, val: profile)
+			}
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var use: String?
+	public dynamic var use: String?						
+		
+		
 	
 
 	
@@ -448,11 +493,7 @@ open class OperationDefinitionParameter: BackboneElement {
 			if let exist = js["binding"] {
 				presentKeys.insert("binding")
 				if let val = exist as? FHIRJSON {
-					if let binding = self.binding {
-                        errors.append(contentsOf: binding.populate(from: val) ?? [])
-                    } else {
-                        self.binding = OperationDefinitionParameterBinding(json: val, owner: self)
-                    }
+					upsert(binding: OperationDefinitionParameterBinding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "binding", wants: FHIRJSON.self, has: type(of: exist)))
@@ -518,11 +559,7 @@ open class OperationDefinitionParameter: BackboneElement {
 			if let exist = js["profile"] {
 				presentKeys.insert("profile")
 				if let val = exist as? FHIRJSON {
-					if let profile = self.profile {
-                        errors.append(contentsOf: profile.populate(from: val) ?? [])
-                    } else {
-                        self.profile = Reference(json: val, owner: self)
-                    }
+					upsert(profile: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: type(of: exist)))
@@ -599,11 +636,20 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		get { return "OperationDefinitionParameterBinding" }
 	}
 
-	public dynamic var strength: String?
+	public dynamic var strength: String?						
+		
+		
 	
-	public dynamic var valueSetReference: Reference?
+	public dynamic var valueSetReference: Reference?						
+		
+		
+			public func upsert(valueSetReference: Reference?) {
+				upsert(prop: &self.valueSetReference, val: valueSetReference)
+			}
 	
-	public dynamic var valueSetUri: String?
+	public dynamic var valueSetUri: String?						
+		
+		
 	
 
 	
@@ -633,11 +679,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 			if let exist = js["valueSetReference"] {
 				presentKeys.insert("valueSetReference")
 				if let val = exist as? FHIRJSON {
-					if let valueSetReference = self.valueSetReference {
-                        errors.append(contentsOf: valueSetReference.populate(from: val) ?? [])
-                    } else {
-                        self.valueSetReference = Reference(json: val, owner: self)
-                    }
+					upsert(valueSetReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueSetReference", wants: FHIRJSON.self, has: type(of: exist)))

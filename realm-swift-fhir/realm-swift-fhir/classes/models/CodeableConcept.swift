@@ -2,7 +2,7 @@
 //  CodeableConcept.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,7 +22,9 @@ open class CodeableConcept: Element {
 
 	public let coding = RealmSwift.List<Coding>()
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
 
 	

@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,7 +22,12 @@ open class EpisodeOfCare: DomainResource {
 		get { return "EpisodeOfCare" }
 	}
 
-	public dynamic var careManager: Reference?
+	public dynamic var careManager: Reference?						
+		
+		
+			public func upsert(careManager: Reference?) {
+				upsert(prop: &self.careManager, val: careManager)
+			}
 	
 	public let careTeam = RealmSwift.List<EpisodeOfCareCareTeam>()
 	
@@ -30,15 +35,32 @@ open class EpisodeOfCare: DomainResource {
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var managingOrganization: Reference?
+	public dynamic var managingOrganization: Reference?						
+		
+		
+			public func upsert(managingOrganization: Reference?) {
+				upsert(prop: &self.managingOrganization, val: managingOrganization)
+			}
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 	public let referralRequest = RealmSwift.List<Reference>()
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let statusHistory = RealmSwift.List<EpisodeOfCareStatusHistory>()
 	
@@ -59,11 +81,7 @@ open class EpisodeOfCare: DomainResource {
 			if let exist = js["careManager"] {
 				presentKeys.insert("careManager")
 				if let val = exist as? FHIRJSON {
-					if let careManager = self.careManager {
-                        errors.append(contentsOf: careManager.populate(from: val) ?? [])
-                    } else {
-                        self.careManager = Reference(json: val, owner: self)
-                    }
+					upsert(careManager: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "careManager", wants: FHIRJSON.self, has: type(of: exist)))
@@ -108,11 +126,7 @@ open class EpisodeOfCare: DomainResource {
 			if let exist = js["managingOrganization"] {
 				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
-					if let managingOrganization = self.managingOrganization {
-                        errors.append(contentsOf: managingOrganization.populate(from: val) ?? [])
-                    } else {
-                        self.managingOrganization = Reference(json: val, owner: self)
-                    }
+					upsert(managingOrganization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,11 +135,7 @@ open class EpisodeOfCare: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					if let patient = self.patient {
-                        errors.append(contentsOf: patient.populate(from: val) ?? [])
-                    } else {
-                        self.patient = Reference(json: val, owner: self)
-                    }
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -137,11 +147,7 @@ open class EpisodeOfCare: DomainResource {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -251,9 +257,19 @@ open class EpisodeOfCareCareTeam: BackboneElement {
 		get { return "EpisodeOfCareCareTeam" }
 	}
 
-	public dynamic var member: Reference?
+	public dynamic var member: Reference?						
+		
+		
+			public func upsert(member: Reference?) {
+				upsert(prop: &self.member, val: member)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 	public let role = RealmSwift.List<CodeableConcept>()
 	
@@ -265,11 +281,7 @@ open class EpisodeOfCareCareTeam: BackboneElement {
 			if let exist = js["member"] {
 				presentKeys.insert("member")
 				if let val = exist as? FHIRJSON {
-					if let member = self.member {
-                        errors.append(contentsOf: member.populate(from: val) ?? [])
-                    } else {
-                        self.member = Reference(json: val, owner: self)
-                    }
+					upsert(member: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "member", wants: FHIRJSON.self, has: type(of: exist)))
@@ -278,11 +290,7 @@ open class EpisodeOfCareCareTeam: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -333,9 +341,16 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 		get { return "EpisodeOfCareStatusHistory" }
 	}
 
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 
 	
@@ -352,11 +367,7 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))

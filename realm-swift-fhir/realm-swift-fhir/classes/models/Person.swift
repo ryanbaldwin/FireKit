@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -24,19 +24,33 @@ open class Person: DomainResource {
 	
 	public let address = RealmSwift.List<Address>()
 	
-	public dynamic var birthDate: FHIRDate?
+	public dynamic var birthDate: FHIRDate?						
+		
+		
 	
-	public dynamic var gender: String?
+	public dynamic var gender: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
 	public let link = RealmSwift.List<PersonLink>()
 	
-	public dynamic var managingOrganization: Reference?
+	public dynamic var managingOrganization: Reference?						
+		
+		
+			public func upsert(managingOrganization: Reference?) {
+				upsert(prop: &self.managingOrganization, val: managingOrganization)
+			}
 	
 	public let name = RealmSwift.List<HumanName>()
 	
-	public dynamic var photo: Attachment?
+	public dynamic var photo: Attachment?						
+		
+		
+			public func upsert(photo: Attachment?) {
+				upsert(prop: &self.photo, val: photo)
+			}
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -111,11 +125,7 @@ open class Person: DomainResource {
 			if let exist = js["managingOrganization"] {
 				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
-					if let managingOrganization = self.managingOrganization {
-                        errors.append(contentsOf: managingOrganization.populate(from: val) ?? [])
-                    } else {
-                        self.managingOrganization = Reference(json: val, owner: self)
-                    }
+					upsert(managingOrganization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -136,11 +146,7 @@ open class Person: DomainResource {
 			if let exist = js["photo"] {
 				presentKeys.insert("photo")
 				if let val = exist as? FHIRJSON {
-					if let photo = self.photo {
-                        errors.append(contentsOf: photo.populate(from: val) ?? [])
-                    } else {
-                        self.photo = Attachment(json: val, owner: self)
-                    }
+					upsert(photo: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "photo", wants: FHIRJSON.self, has: type(of: exist)))
@@ -209,9 +215,16 @@ open class PersonLink: BackboneElement {
 		get { return "PersonLink" }
 	}
 
-	public dynamic var assurance: String?
+	public dynamic var assurance: String?						
+		
+		
 	
-	public dynamic var target: Reference?
+	public dynamic var target: Reference?						
+		
+		
+			public func upsert(target: Reference?) {
+				upsert(prop: &self.target, val: target)
+			}
 	
 
 	
@@ -236,11 +249,7 @@ open class PersonLink: BackboneElement {
 			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					if let target = self.target {
-                        errors.append(contentsOf: target.populate(from: val) ?? [])
-                    } else {
-                        self.target = Reference(json: val, owner: self)
-                    }
+					upsert(target: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))

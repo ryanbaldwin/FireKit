@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
 			try runOperationDefinition1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.OperationDefinition
 			XCTAssertNotNil(copy)
-			try runOperationDefinition1(copy!.asJSON())
+			try runOperationDefinition1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test OperationDefinition successfully, but threw")
@@ -44,6 +44,26 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
 
 		testOperationDefinitionRealm1(instance: instance!)
 	}
+
+    func testOperationDefinition1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.OperationDefinition = try runOperationDefinition1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.OperationDefinition)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OperationDefinition's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOperationDefinitionRealm1(instance: RealmSwiftFHIR.OperationDefinition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

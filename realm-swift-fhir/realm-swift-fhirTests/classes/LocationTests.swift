@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			try runLocation1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Location
 			XCTAssertNotNil(copy)
-			try runLocation1(copy!.asJSON())
+			try runLocation1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -44,6 +44,26 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 
 		testLocationRealm1(instance: instance!)
 	}
+
+    func testLocation1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Location = try runLocation1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Location)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Location's PKs, but threw: \(error)")
+        }
+    }
 
 	func testLocationRealm1(instance: RealmSwiftFHIR.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -113,7 +133,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			try runLocation2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Location
 			XCTAssertNotNil(copy)
-			try runLocation2(copy!.asJSON())
+			try runLocation2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -121,6 +141,26 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 
 		testLocationRealm2(instance: instance!)
 	}
+
+    func testLocation2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Location = try runLocation2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Location)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Location's PKs, but threw: \(error)")
+        }
+    }
 
 	func testLocationRealm2(instance: RealmSwiftFHIR.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -198,7 +238,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			try runLocation3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Location
 			XCTAssertNotNil(copy)
-			try runLocation3(copy!.asJSON())
+			try runLocation3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -206,6 +246,26 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 
 		testLocationRealm3(instance: instance!)
 	}
+
+    func testLocation3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Location = try runLocation3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Location)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Location's PKs, but threw: \(error)")
+        }
+    }
 
 	func testLocationRealm3(instance: RealmSwiftFHIR.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -272,7 +332,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			try runLocation4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Location
 			XCTAssertNotNil(copy)
-			try runLocation4(copy!.asJSON())
+			try runLocation4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -280,6 +340,26 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 
 		testLocationRealm4(instance: instance!)
 	}
+
+    func testLocation4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Location = try runLocation4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Location)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Location's PKs, but threw: \(error)")
+        }
+    }
 
 	func testLocationRealm4(instance: RealmSwiftFHIR.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -350,7 +430,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			try runLocation5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Location
 			XCTAssertNotNil(copy)
-			try runLocation5(copy!.asJSON())
+			try runLocation5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -358,6 +438,26 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 
 		testLocationRealm5(instance: instance!)
 	}
+
+    func testLocation5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Location = try runLocation5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Location)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Location's PKs, but threw: \(error)")
+        }
+    }
 
 	func testLocationRealm5(instance: RealmSwiftFHIR.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -423,7 +523,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			try runLocation6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Location
 			XCTAssertNotNil(copy)
-			try runLocation6(copy!.asJSON())
+			try runLocation6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
@@ -431,6 +531,26 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 
 		testLocationRealm6(instance: instance!)
 	}
+
+    func testLocation6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Location = try runLocation6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Location)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Location's PKs, but threw: \(error)")
+        }
+    }
 
 	func testLocationRealm6(instance: RealmSwiftFHIR.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

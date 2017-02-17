@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,27 +23,53 @@ open class NamingSystem: DomainResource {
 
 	public let contact = RealmSwift.List<NamingSystemContact>()
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var kind: String?
+	public dynamic var kind: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var replacedBy: Reference?
+	public dynamic var replacedBy: Reference?						
+		
+		
+			public func upsert(replacedBy: Reference?) {
+				upsert(prop: &self.replacedBy, val: replacedBy)
+			}
 	
-	public dynamic var responsible: String?
+	public dynamic var responsible: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 	public let uniqueId = RealmSwift.List<NamingSystemUniqueId>()
 	
-	public dynamic var usage: String?
+	public dynamic var usage: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
@@ -131,11 +157,7 @@ open class NamingSystem: DomainResource {
 			if let exist = js["replacedBy"] {
 				presentKeys.insert("replacedBy")
 				if let val = exist as? FHIRJSON {
-					if let replacedBy = self.replacedBy {
-                        errors.append(contentsOf: replacedBy.populate(from: val) ?? [])
-                    } else {
-                        self.replacedBy = Reference(json: val, owner: self)
-                    }
+					upsert(replacedBy: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "replacedBy", wants: FHIRJSON.self, has: type(of: exist)))
@@ -165,11 +187,7 @@ open class NamingSystem: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -273,7 +291,9 @@ open class NamingSystemContact: BackboneElement {
 		get { return "NamingSystemContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -332,13 +352,22 @@ open class NamingSystemUniqueId: BackboneElement {
 		get { return "NamingSystemUniqueId" }
 	}
 
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 	public let preferred = RealmOptional<Bool>()
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -355,11 +384,7 @@ open class NamingSystemUniqueId: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  DocumentReferenceTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
 			try runDocumentReference1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.DocumentReference
 			XCTAssertNotNil(copy)
-			try runDocumentReference1(copy!.asJSON())
+			try runDocumentReference1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test DocumentReference successfully, but threw")
@@ -44,6 +44,26 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
 
 		testDocumentReferenceRealm1(instance: instance!)
 	}
+
+    func testDocumentReference1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.DocumentReference = try runDocumentReference1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.DocumentReference)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DocumentReference's PKs, but threw: \(error)")
+        }
+    }
 
 	func testDocumentReferenceRealm1(instance: RealmSwiftFHIR.DocumentReference) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

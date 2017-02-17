@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,16 +20,27 @@ open class Resource: FHIRAbstractResource {
 		get { return "Resource" }
 	}
 
-	public dynamic var id: String?
+	public dynamic var id: String?						
+		
+		
 	public dynamic var pk = UUID().uuidString
 		override open static func primaryKey() -> String? {
 			return "pk"
 		}
-	public dynamic var implicitRules: String?
+	public dynamic var implicitRules: String?						
+		
+		
 	
-	public dynamic var language: String?
+	public dynamic var language: String?						
+		
+		
 	
-	public dynamic var meta: Meta?
+	public dynamic var meta: Meta?						
+		
+		
+			public func upsert(meta: Meta?) {
+				upsert(prop: &self.meta, val: meta)
+			}
 	
 
 	
@@ -66,11 +77,7 @@ open class Resource: FHIRAbstractResource {
 			if let exist = js["meta"] {
 				presentKeys.insert("meta")
 				if let val = exist as? FHIRJSON {
-					if let meta = self.meta {
-                        errors.append(contentsOf: meta.populate(from: val) ?? [])
-                    } else {
-                        self.meta = Meta(json: val, owner: self)
-                    }
+					upsert(meta: Meta(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "meta", wants: FHIRJSON.self, has: type(of: exist)))

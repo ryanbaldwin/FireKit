@@ -2,7 +2,7 @@
 //  ProcedureRequestTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedureRequest1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcedureRequest
 			XCTAssertNotNil(copy)
-			try runProcedureRequest1(copy!.asJSON())
+			try runProcedureRequest1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw")
@@ -44,6 +44,26 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
 
 		testProcedureRequestRealm1(instance: instance!)
 	}
+
+    func testProcedureRequest1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.ProcedureRequest = try runProcedureRequest1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.ProcedureRequest)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ProcedureRequest's PKs, but threw: \(error)")
+        }
+    }
 
 	func testProcedureRequestRealm1(instance: RealmSwiftFHIR.ProcedureRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

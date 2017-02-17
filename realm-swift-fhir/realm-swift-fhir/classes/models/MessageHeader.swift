@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,27 +22,69 @@ open class MessageHeader: DomainResource {
 		get { return "MessageHeader" }
 	}
 
-	public dynamic var author: Reference?
+	public dynamic var author: Reference?						
+		
+		
+			public func upsert(author: Reference?) {
+				upsert(prop: &self.author, val: author)
+			}
 	
 	public let data = RealmSwift.List<Reference>()
 	
 	public let destination = RealmSwift.List<MessageHeaderDestination>()
 	
-	public dynamic var enterer: Reference?
+	public dynamic var enterer: Reference?						
+		
+		
+			public func upsert(enterer: Reference?) {
+				upsert(prop: &self.enterer, val: enterer)
+			}
 	
-	public dynamic var event: Coding?
+	public dynamic var event: Coding?						
+		
+		
+			public func upsert(event: Coding?) {
+				upsert(prop: &self.event, val: event)
+			}
 	
-	public dynamic var reason: CodeableConcept?
+	public dynamic var reason: CodeableConcept?						
+		
+		
+			public func upsert(reason: CodeableConcept?) {
+				upsert(prop: &self.reason, val: reason)
+			}
 	
-	public dynamic var receiver: Reference?
+	public dynamic var receiver: Reference?						
+		
+		
+			public func upsert(receiver: Reference?) {
+				upsert(prop: &self.receiver, val: receiver)
+			}
 	
-	public dynamic var response: MessageHeaderResponse?
+	public dynamic var response: MessageHeaderResponse?						
+		
+		
+			public func upsert(response: MessageHeaderResponse?) {
+				upsert(prop: &self.response, val: response)
+			}
 	
-	public dynamic var responsible: Reference?
+	public dynamic var responsible: Reference?						
+		
+		
+			public func upsert(responsible: Reference?) {
+				upsert(prop: &self.responsible, val: responsible)
+			}
 	
-	public dynamic var source: MessageHeaderSource?
+	public dynamic var source: MessageHeaderSource?						
+		
+		
+			public func upsert(source: MessageHeaderSource?) {
+				upsert(prop: &self.source, val: source)
+			}
 	
-	public dynamic var timestamp: Instant?
+	public dynamic var timestamp: Instant?						
+		
+		
 	
 
 	
@@ -60,11 +102,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
-					if let author = self.author {
-                        errors.append(contentsOf: author.populate(from: val) ?? [])
-                    } else {
-                        self.author = Reference(json: val, owner: self)
-                    }
+					upsert(author: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
@@ -97,11 +135,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["enterer"] {
 				presentKeys.insert("enterer")
 				if let val = exist as? FHIRJSON {
-					if let enterer = self.enterer {
-                        errors.append(contentsOf: enterer.populate(from: val) ?? [])
-                    } else {
-                        self.enterer = Reference(json: val, owner: self)
-                    }
+					upsert(enterer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "enterer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -110,11 +144,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? FHIRJSON {
-					if let event = self.event {
-                        errors.append(contentsOf: event.populate(from: val) ?? [])
-                    } else {
-                        self.event = Coding(json: val, owner: self)
-                    }
+					upsert(event: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "event", wants: FHIRJSON.self, has: type(of: exist)))
@@ -126,11 +156,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
-					if let reason = self.reason {
-                        errors.append(contentsOf: reason.populate(from: val) ?? [])
-                    } else {
-                        self.reason = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(reason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -139,11 +165,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["receiver"] {
 				presentKeys.insert("receiver")
 				if let val = exist as? FHIRJSON {
-					if let receiver = self.receiver {
-                        errors.append(contentsOf: receiver.populate(from: val) ?? [])
-                    } else {
-                        self.receiver = Reference(json: val, owner: self)
-                    }
+					upsert(receiver: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "receiver", wants: FHIRJSON.self, has: type(of: exist)))
@@ -152,11 +174,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["response"] {
 				presentKeys.insert("response")
 				if let val = exist as? FHIRJSON {
-					if let response = self.response {
-                        errors.append(contentsOf: response.populate(from: val) ?? [])
-                    } else {
-                        self.response = MessageHeaderResponse(json: val, owner: self)
-                    }
+					upsert(response: MessageHeaderResponse(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
@@ -165,11 +183,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["responsible"] {
 				presentKeys.insert("responsible")
 				if let val = exist as? FHIRJSON {
-					if let responsible = self.responsible {
-                        errors.append(contentsOf: responsible.populate(from: val) ?? [])
-                    } else {
-                        self.responsible = Reference(json: val, owner: self)
-                    }
+					upsert(responsible: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "responsible", wants: FHIRJSON.self, has: type(of: exist)))
@@ -178,11 +192,7 @@ open class MessageHeader: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					if let source = self.source {
-                        errors.append(contentsOf: source.populate(from: val) ?? [])
-                    } else {
-                        self.source = MessageHeaderSource(json: val, owner: self)
-                    }
+					upsert(source: MessageHeaderSource(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -259,11 +269,20 @@ open class MessageHeaderDestination: BackboneElement {
 		get { return "MessageHeaderDestination" }
 	}
 
-	public dynamic var endpoint: String?
+	public dynamic var endpoint: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var target: Reference?
+	public dynamic var target: Reference?						
+		
+		
+			public func upsert(target: Reference?) {
+				upsert(prop: &self.target, val: target)
+			}
 	
 
 	
@@ -300,11 +319,7 @@ open class MessageHeaderDestination: BackboneElement {
 			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					if let target = self.target {
-                        errors.append(contentsOf: target.populate(from: val) ?? [])
-                    } else {
-                        self.target = Reference(json: val, owner: self)
-                    }
+					upsert(target: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))
@@ -342,11 +357,20 @@ open class MessageHeaderResponse: BackboneElement {
 		get { return "MessageHeaderResponse" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var details: Reference?
+	public dynamic var details: Reference?						
+		
+		
+			public func upsert(details: Reference?) {
+				upsert(prop: &self.details, val: details)
+			}
 	
-	public dynamic var identifier: String?
+	public dynamic var identifier: String?						
+		
+		
 	
 
 	
@@ -375,11 +399,7 @@ open class MessageHeaderResponse: BackboneElement {
 			if let exist = js["details"] {
 				presentKeys.insert("details")
 				if let val = exist as? FHIRJSON {
-					if let details = self.details {
-                        errors.append(contentsOf: details.populate(from: val) ?? [])
-                    } else {
-                        self.details = Reference(json: val, owner: self)
-                    }
+					upsert(details: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "details", wants: FHIRJSON.self, has: type(of: exist)))
@@ -429,15 +449,28 @@ open class MessageHeaderSource: BackboneElement {
 		get { return "MessageHeaderSource" }
 	}
 
-	public dynamic var contact: ContactPoint?
+	public dynamic var contact: ContactPoint?						
+		
+		
+			public func upsert(contact: ContactPoint?) {
+				upsert(prop: &self.contact, val: contact)
+			}
 	
-	public dynamic var endpoint: String?
+	public dynamic var endpoint: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var software: String?
+	public dynamic var software: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -453,11 +486,7 @@ open class MessageHeaderSource: BackboneElement {
 			if let exist = js["contact"] {
 				presentKeys.insert("contact")
 				if let val = exist as? FHIRJSON {
-					if let contact = self.contact {
-                        errors.append(contentsOf: contact.populate(from: val) ?? [])
-                    } else {
-                        self.contact = ContactPoint(json: val, owner: self)
-                    }
+					upsert(contact: ContactPoint(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contact", wants: FHIRJSON.self, has: type(of: exist)))

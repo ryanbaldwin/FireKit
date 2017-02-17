@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,39 +20,87 @@ open class DocumentReference: DomainResource {
 		get { return "DocumentReference" }
 	}
 
-	public dynamic var authenticator: Reference?
+	public dynamic var authenticator: Reference?						
+		
+		
+			public func upsert(authenticator: Reference?) {
+				upsert(prop: &self.authenticator, val: authenticator)
+			}
 	
 	public let author = RealmSwift.List<Reference>()
 	
-	public dynamic var class_fhir: CodeableConcept?
+	public dynamic var class_fhir: CodeableConcept?						
+		
+		
+			public func upsert(class_fhir: CodeableConcept?) {
+				upsert(prop: &self.class_fhir, val: class_fhir)
+			}
 	
 	public let content = RealmSwift.List<DocumentReferenceContent>()
 	
-	public dynamic var context: DocumentReferenceContext?
+	public dynamic var context: DocumentReferenceContext?						
+		
+		
+			public func upsert(context: DocumentReferenceContext?) {
+				upsert(prop: &self.context, val: context)
+			}
 	
-	public dynamic var created: DateTime?
+	public dynamic var created: DateTime?						
+		
+		
 	
-	public dynamic var custodian: Reference?
+	public dynamic var custodian: Reference?						
+		
+		
+			public func upsert(custodian: Reference?) {
+				upsert(prop: &self.custodian, val: custodian)
+			}
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var docStatus: CodeableConcept?
+	public dynamic var docStatus: CodeableConcept?						
+		
+		
+			public func upsert(docStatus: CodeableConcept?) {
+				upsert(prop: &self.docStatus, val: docStatus)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var indexed: Instant?
+	public dynamic var indexed: Instant?						
+		
+		
 	
-	public dynamic var masterIdentifier: Identifier?
+	public dynamic var masterIdentifier: Identifier?						
+		
+		
+			public func upsert(masterIdentifier: Identifier?) {
+				upsert(prop: &self.masterIdentifier, val: masterIdentifier)
+			}
 	
 	public let relatesTo = RealmSwift.List<DocumentReferenceRelatesTo>()
 	
 	public let securityLabel = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -71,11 +119,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["authenticator"] {
 				presentKeys.insert("authenticator")
 				if let val = exist as? FHIRJSON {
-					if let authenticator = self.authenticator {
-                        errors.append(contentsOf: authenticator.populate(from: val) ?? [])
-                    } else {
-                        self.authenticator = Reference(json: val, owner: self)
-                    }
+					upsert(authenticator: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "authenticator", wants: FHIRJSON.self, has: type(of: exist)))
@@ -96,11 +140,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["class"] {
 				presentKeys.insert("class")
 				if let val = exist as? FHIRJSON {
-					if let class_fhir = self.class_fhir {
-                        errors.append(contentsOf: class_fhir.populate(from: val) ?? [])
-                    } else {
-                        self.class_fhir = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(class_fhir: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "class", wants: FHIRJSON.self, has: type(of: exist)))
@@ -124,11 +164,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["context"] {
 				presentKeys.insert("context")
 				if let val = exist as? FHIRJSON {
-					if let context = self.context {
-                        errors.append(contentsOf: context.populate(from: val) ?? [])
-                    } else {
-                        self.context = DocumentReferenceContext(json: val, owner: self)
-                    }
+					upsert(context: DocumentReferenceContext(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "context", wants: FHIRJSON.self, has: type(of: exist)))
@@ -146,11 +182,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["custodian"] {
 				presentKeys.insert("custodian")
 				if let val = exist as? FHIRJSON {
-					if let custodian = self.custodian {
-                        errors.append(contentsOf: custodian.populate(from: val) ?? [])
-                    } else {
-                        self.custodian = Reference(json: val, owner: self)
-                    }
+					upsert(custodian: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "custodian", wants: FHIRJSON.self, has: type(of: exist)))
@@ -168,11 +200,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["docStatus"] {
 				presentKeys.insert("docStatus")
 				if let val = exist as? FHIRJSON {
-					if let docStatus = self.docStatus {
-                        errors.append(contentsOf: docStatus.populate(from: val) ?? [])
-                    } else {
-                        self.docStatus = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(docStatus: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "docStatus", wants: FHIRJSON.self, has: type(of: exist)))
@@ -205,11 +233,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["masterIdentifier"] {
 				presentKeys.insert("masterIdentifier")
 				if let val = exist as? FHIRJSON {
-					if let masterIdentifier = self.masterIdentifier {
-                        errors.append(contentsOf: masterIdentifier.populate(from: val) ?? [])
-                    } else {
-                        self.masterIdentifier = Identifier(json: val, owner: self)
-                    }
+					upsert(masterIdentifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "masterIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -254,11 +278,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					if let subject = self.subject {
-                        errors.append(contentsOf: subject.populate(from: val) ?? [])
-                    } else {
-                        self.subject = Reference(json: val, owner: self)
-                    }
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -267,11 +287,7 @@ open class DocumentReference: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -354,7 +370,12 @@ open class DocumentReferenceContent: BackboneElement {
 		get { return "DocumentReferenceContent" }
 	}
 
-	public dynamic var attachment: Attachment?
+	public dynamic var attachment: Attachment?						
+		
+		
+			public func upsert(attachment: Attachment?) {
+				upsert(prop: &self.attachment, val: attachment)
+			}
 	
 	public let format = RealmSwift.List<Coding>()
 	
@@ -372,11 +393,7 @@ open class DocumentReferenceContent: BackboneElement {
 			if let exist = js["attachment"] {
 				presentKeys.insert("attachment")
 				if let val = exist as? FHIRJSON {
-					if let attachment = self.attachment {
-                        errors.append(contentsOf: attachment.populate(from: val) ?? [])
-                    } else {
-                        self.attachment = Attachment(json: val, owner: self)
-                    }
+					upsert(attachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "attachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -426,19 +443,44 @@ open class DocumentReferenceContext: BackboneElement {
 		get { return "DocumentReferenceContext" }
 	}
 
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let event = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var facilityType: CodeableConcept?
+	public dynamic var facilityType: CodeableConcept?						
+		
+		
+			public func upsert(facilityType: CodeableConcept?) {
+				upsert(prop: &self.facilityType, val: facilityType)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
-	public dynamic var practiceSetting: CodeableConcept?
+	public dynamic var practiceSetting: CodeableConcept?						
+		
+		
+			public func upsert(practiceSetting: CodeableConcept?) {
+				upsert(prop: &self.practiceSetting, val: practiceSetting)
+			}
 	
 	public let related = RealmSwift.List<DocumentReferenceContextRelated>()
 	
-	public dynamic var sourcePatientInfo: Reference?
+	public dynamic var sourcePatientInfo: Reference?						
+		
+		
+			public func upsert(sourcePatientInfo: Reference?) {
+				upsert(prop: &self.sourcePatientInfo, val: sourcePatientInfo)
+			}
 	
 
 	
@@ -448,11 +490,7 @@ open class DocumentReferenceContext: BackboneElement {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					if let encounter = self.encounter {
-                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
-                    } else {
-                        self.encounter = Reference(json: val, owner: self)
-                    }
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -473,11 +511,7 @@ open class DocumentReferenceContext: BackboneElement {
 			if let exist = js["facilityType"] {
 				presentKeys.insert("facilityType")
 				if let val = exist as? FHIRJSON {
-					if let facilityType = self.facilityType {
-                        errors.append(contentsOf: facilityType.populate(from: val) ?? [])
-                    } else {
-                        self.facilityType = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(facilityType: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "facilityType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -486,11 +520,7 @@ open class DocumentReferenceContext: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -499,11 +529,7 @@ open class DocumentReferenceContext: BackboneElement {
 			if let exist = js["practiceSetting"] {
 				presentKeys.insert("practiceSetting")
 				if let val = exist as? FHIRJSON {
-					if let practiceSetting = self.practiceSetting {
-                        errors.append(contentsOf: practiceSetting.populate(from: val) ?? [])
-                    } else {
-                        self.practiceSetting = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(practiceSetting: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "practiceSetting", wants: FHIRJSON.self, has: type(of: exist)))
@@ -524,11 +550,7 @@ open class DocumentReferenceContext: BackboneElement {
 			if let exist = js["sourcePatientInfo"] {
 				presentKeys.insert("sourcePatientInfo")
 				if let val = exist as? FHIRJSON {
-					if let sourcePatientInfo = self.sourcePatientInfo {
-                        errors.append(contentsOf: sourcePatientInfo.populate(from: val) ?? [])
-                    } else {
-                        self.sourcePatientInfo = Reference(json: val, owner: self)
-                    }
+					upsert(sourcePatientInfo: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourcePatientInfo", wants: FHIRJSON.self, has: type(of: exist)))
@@ -578,9 +600,19 @@ open class DocumentReferenceContextRelated: BackboneElement {
 		get { return "DocumentReferenceContextRelated" }
 	}
 
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var ref: Reference?
+	public dynamic var ref: Reference?						
+		
+		
+			public func upsert(ref: Reference?) {
+				upsert(prop: &self.ref, val: ref)
+			}
 	
 
 	
@@ -590,11 +622,7 @@ open class DocumentReferenceContextRelated: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -603,11 +631,7 @@ open class DocumentReferenceContextRelated: BackboneElement {
 			if let exist = js["ref"] {
 				presentKeys.insert("ref")
 				if let val = exist as? FHIRJSON {
-					if let ref = self.ref {
-                        errors.append(contentsOf: ref.populate(from: val) ?? [])
-                    } else {
-                        self.ref = Reference(json: val, owner: self)
-                    }
+					upsert(ref: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ref", wants: FHIRJSON.self, has: type(of: exist)))
@@ -642,9 +666,16 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 		get { return "DocumentReferenceRelatesTo" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var target: Reference?
+	public dynamic var target: Reference?						
+		
+		
+			public func upsert(target: Reference?) {
+				upsert(prop: &self.target, val: target)
+			}
 	
 
 	
@@ -673,11 +704,7 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					if let target = self.target {
-                        errors.append(contentsOf: target.populate(from: val) ?? [])
-                    } else {
-                        self.target = Reference(json: val, owner: self)
-                    }
+					upsert(target: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))

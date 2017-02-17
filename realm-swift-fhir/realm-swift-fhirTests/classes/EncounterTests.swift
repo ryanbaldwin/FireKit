@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter1(copy!.asJSON())
+			try runEncounter1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -44,6 +44,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm1(instance: instance!)
 	}
+
+    func testEncounter1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm1(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -131,7 +151,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter2(copy!.asJSON())
+			try runEncounter2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -139,6 +159,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm2(instance: instance!)
 	}
+
+    func testEncounter2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm2(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -226,7 +266,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter3(copy!.asJSON())
+			try runEncounter3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -234,6 +274,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm3(instance: instance!)
 	}
+
+    func testEncounter3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm3(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -322,7 +382,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter4(copy!.asJSON())
+			try runEncounter4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -330,6 +390,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm4(instance: instance!)
 	}
+
+    func testEncounter4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm4(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -399,7 +479,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter5(copy!.asJSON())
+			try runEncounter5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -407,6 +487,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm5(instance: instance!)
 	}
+
+    func testEncounter5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm5(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -486,7 +586,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter6(copy!.asJSON())
+			try runEncounter6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -494,6 +594,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm6(instance: instance!)
 	}
+
+    func testEncounter6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm6(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -572,7 +692,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter7(copy!.asJSON())
+			try runEncounter7(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -580,6 +700,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm7(instance: instance!)
 	}
+
+    func testEncounter7RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter7()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm7(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -650,7 +790,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter8(copy!.asJSON())
+			try runEncounter8(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -658,6 +798,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm8(instance: instance!)
 	}
+
+    func testEncounter8RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter8()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm8(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -722,7 +882,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter9(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter9(copy!.asJSON())
+			try runEncounter9(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -730,6 +890,26 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 
 		testEncounterRealm9(instance: instance!)
 	}
+
+    func testEncounter9RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter9()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
 
 	func testEncounterRealm9(instance: RealmSwiftFHIR.Encounter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

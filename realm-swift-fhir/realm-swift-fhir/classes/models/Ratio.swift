@@ -2,7 +2,7 @@
 //  Ratio.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,9 +20,19 @@ open class Ratio: Element {
 		get { return "Ratio" }
 	}
 
-	public dynamic var denominator: Quantity?
+	public dynamic var denominator: Quantity?						
+		
+		
+			public func upsert(denominator: Quantity?) {
+				upsert(prop: &self.denominator, val: denominator)
+			}
 	
-	public dynamic var numerator: Quantity?
+	public dynamic var numerator: Quantity?						
+		
+		
+			public func upsert(numerator: Quantity?) {
+				upsert(prop: &self.numerator, val: numerator)
+			}
 	
 
 	
@@ -32,11 +42,7 @@ open class Ratio: Element {
 			if let exist = js["denominator"] {
 				presentKeys.insert("denominator")
 				if let val = exist as? FHIRJSON {
-					if let denominator = self.denominator {
-                        errors.append(contentsOf: denominator.populate(from: val) ?? [])
-                    } else {
-                        self.denominator = Quantity(json: val, owner: self)
-                    }
+					upsert(denominator: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "denominator", wants: FHIRJSON.self, has: type(of: exist)))
@@ -45,11 +51,7 @@ open class Ratio: Element {
 			if let exist = js["numerator"] {
 				presentKeys.insert("numerator")
 				if let val = exist as? FHIRJSON {
-					if let numerator = self.numerator {
-                        errors.append(contentsOf: numerator.populate(from: val) ?? [])
-                    } else {
-                        self.numerator = Quantity(json: val, owner: self)
-                    }
+					upsert(numerator: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "numerator", wants: FHIRJSON.self, has: type(of: exist)))

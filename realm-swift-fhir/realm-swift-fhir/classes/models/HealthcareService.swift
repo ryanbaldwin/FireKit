@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,41 +20,78 @@ open class HealthcareService: DomainResource {
 
 	public let appointmentRequired = RealmOptional<Bool>()
 	
-	public dynamic var availabilityExceptions: String?
+	public dynamic var availabilityExceptions: String?						
+		
+		
 	
 	public let availableTime = RealmSwift.List<HealthcareServiceAvailableTime>()
 	
 	public let characteristic = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var comment: String?
+	public dynamic var comment: String?						
+		
+		
 	
 	public let coverageArea = RealmSwift.List<Reference>()
 	
-	public dynamic var eligibility: CodeableConcept?
+	public dynamic var eligibility: CodeableConcept?						
+		
+		
+			public func upsert(eligibility: CodeableConcept?) {
+				upsert(prop: &self.eligibility, val: eligibility)
+			}
 	
-	public dynamic var eligibilityNote: String?
+	public dynamic var eligibilityNote: String?						
+		
+		
 	
-	public dynamic var extraDetails: String?
+	public dynamic var extraDetails: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var location: Reference?
+	public dynamic var location: Reference?						
+		
+		
+			public func upsert(location: Reference?) {
+				upsert(prop: &self.location, val: location)
+			}
 	
 	public let notAvailable = RealmSwift.List<HealthcareServiceNotAvailable>()
 	
-	public dynamic var photo: Attachment?
+	public dynamic var photo: Attachment?						
+		
+		
+			public func upsert(photo: Attachment?) {
+				upsert(prop: &self.photo, val: photo)
+			}
 	
 	public let programName = RealmSwift.List<RealmString>()
 	
-	public dynamic var providedBy: Reference?
+	public dynamic var providedBy: Reference?						
+		
+		
+			public func upsert(providedBy: Reference?) {
+				upsert(prop: &self.providedBy, val: providedBy)
+			}
 	
-	public dynamic var publicKey: String?
+	public dynamic var publicKey: String?						
+		
+		
 	
 	public let referralMethod = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var serviceCategory: CodeableConcept?
+	public dynamic var serviceCategory: CodeableConcept?						
+		
+		
+			public func upsert(serviceCategory: CodeableConcept?) {
+				upsert(prop: &self.serviceCategory, val: serviceCategory)
+			}
 	
-	public dynamic var serviceName: String?
+	public dynamic var serviceName: String?						
+		
+		
 	
 	public let serviceProvisionCode = RealmSwift.List<CodeableConcept>()
 	
@@ -139,11 +176,7 @@ open class HealthcareService: DomainResource {
 			if let exist = js["eligibility"] {
 				presentKeys.insert("eligibility")
 				if let val = exist as? FHIRJSON {
-					if let eligibility = self.eligibility {
-                        errors.append(contentsOf: eligibility.populate(from: val) ?? [])
-                    } else {
-                        self.eligibility = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(eligibility: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "eligibility", wants: FHIRJSON.self, has: type(of: exist)))
@@ -182,11 +215,7 @@ open class HealthcareService: DomainResource {
 			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
-					if let location = self.location {
-                        errors.append(contentsOf: location.populate(from: val) ?? [])
-                    } else {
-                        self.location = Reference(json: val, owner: self)
-                    }
+					upsert(location: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
@@ -210,11 +239,7 @@ open class HealthcareService: DomainResource {
 			if let exist = js["photo"] {
 				presentKeys.insert("photo")
 				if let val = exist as? FHIRJSON {
-					if let photo = self.photo {
-                        errors.append(contentsOf: photo.populate(from: val) ?? [])
-                    } else {
-                        self.photo = Attachment(json: val, owner: self)
-                    }
+					upsert(photo: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "photo", wants: FHIRJSON.self, has: type(of: exist)))
@@ -232,11 +257,7 @@ open class HealthcareService: DomainResource {
 			if let exist = js["providedBy"] {
 				presentKeys.insert("providedBy")
 				if let val = exist as? FHIRJSON {
-					if let providedBy = self.providedBy {
-                        errors.append(contentsOf: providedBy.populate(from: val) ?? [])
-                    } else {
-                        self.providedBy = Reference(json: val, owner: self)
-                    }
+					upsert(providedBy: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "providedBy", wants: FHIRJSON.self, has: type(of: exist)))
@@ -266,11 +287,7 @@ open class HealthcareService: DomainResource {
 			if let exist = js["serviceCategory"] {
 				presentKeys.insert("serviceCategory")
 				if let val = exist as? FHIRJSON {
-					if let serviceCategory = self.serviceCategory {
-                        errors.append(contentsOf: serviceCategory.populate(from: val) ?? [])
-                    } else {
-                        self.serviceCategory = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(serviceCategory: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "serviceCategory", wants: FHIRJSON.self, has: type(of: exist)))
@@ -412,9 +429,13 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 
 	public let allDay = RealmOptional<Bool>()
 	
-	public dynamic var availableEndTime: FHIRTime?
+	public dynamic var availableEndTime: FHIRTime?						
+		
+		
 	
-	public dynamic var availableStartTime: FHIRTime?
+	public dynamic var availableStartTime: FHIRTime?						
+		
+		
 	
 	public let daysOfWeek = RealmSwift.List<RealmString>()
 	
@@ -494,9 +515,16 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 		get { return "HealthcareServiceNotAvailable" }
 	}
 
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var during: Period?
+	public dynamic var during: Period?						
+		
+		
+			public func upsert(during: Period?) {
+				upsert(prop: &self.during, val: during)
+			}
 	
 
 	
@@ -524,11 +552,7 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 			if let exist = js["during"] {
 				presentKeys.insert("during")
 				if let val = exist as? FHIRJSON {
-					if let during = self.during {
-                        errors.append(contentsOf: during.populate(from: val) ?? [])
-                    } else {
-                        self.during = Period(json: val, owner: self)
-                    }
+					upsert(during: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "during", wants: FHIRJSON.self, has: type(of: exist)))
@@ -565,7 +589,12 @@ open class HealthcareServiceServiceType: BackboneElement {
 
 	public let specialty = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -593,11 +622,7 @@ open class HealthcareServiceServiceType: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

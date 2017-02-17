@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
 			try runStructureDefinition1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.StructureDefinition
 			XCTAssertNotNil(copy)
-			try runStructureDefinition1(copy!.asJSON())
+			try runStructureDefinition1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw")
@@ -44,6 +44,26 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
 
 		testStructureDefinitionRealm1(instance: instance!)
 	}
+
+    func testStructureDefinition1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.StructureDefinition = try runStructureDefinition1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.StructureDefinition)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test StructureDefinition's PKs, but threw: \(error)")
+        }
+    }
 
 	func testStructureDefinitionRealm1(instance: RealmSwiftFHIR.StructureDefinition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

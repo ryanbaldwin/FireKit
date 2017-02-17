@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,7 +22,9 @@ open class Element: FHIRAbstractBase {
 
 	public let extension_fhir = RealmSwift.List<Extension>()
 	
-	public dynamic var id: String?
+	public dynamic var id: String?						
+		
+		
 	public dynamic var pk = UUID().uuidString
 		override open static func primaryKey() -> String? {
 			return "pk"

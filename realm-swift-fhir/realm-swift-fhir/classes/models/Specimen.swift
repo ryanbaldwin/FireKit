@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,9 +20,19 @@ open class Specimen: DomainResource {
 		get { return "Specimen" }
 	}
 
-	public dynamic var accessionIdentifier: Identifier?
+	public dynamic var accessionIdentifier: Identifier?						
+		
+		
+			public func upsert(accessionIdentifier: Identifier?) {
+				upsert(prop: &self.accessionIdentifier, val: accessionIdentifier)
+			}
 	
-	public dynamic var collection: SpecimenCollection?
+	public dynamic var collection: SpecimenCollection?						
+		
+		
+			public func upsert(collection: SpecimenCollection?) {
+				upsert(prop: &self.collection, val: collection)
+			}
 	
 	public let container = RealmSwift.List<SpecimenContainer>()
 	
@@ -30,15 +40,29 @@ open class Specimen: DomainResource {
 	
 	public let parent = RealmSwift.List<Reference>()
 	
-	public dynamic var receivedTime: DateTime?
+	public dynamic var receivedTime: DateTime?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 	public let treatment = RealmSwift.List<SpecimenTreatment>()
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -54,11 +78,7 @@ open class Specimen: DomainResource {
 			if let exist = js["accessionIdentifier"] {
 				presentKeys.insert("accessionIdentifier")
 				if let val = exist as? FHIRJSON {
-					if let accessionIdentifier = self.accessionIdentifier {
-                        errors.append(contentsOf: accessionIdentifier.populate(from: val) ?? [])
-                    } else {
-                        self.accessionIdentifier = Identifier(json: val, owner: self)
-                    }
+					upsert(accessionIdentifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "accessionIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -67,11 +87,7 @@ open class Specimen: DomainResource {
 			if let exist = js["collection"] {
 				presentKeys.insert("collection")
 				if let val = exist as? FHIRJSON {
-					if let collection = self.collection {
-                        errors.append(contentsOf: collection.populate(from: val) ?? [])
-                    } else {
-                        self.collection = SpecimenCollection(json: val, owner: self)
-                    }
+					upsert(collection: SpecimenCollection(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "collection", wants: FHIRJSON.self, has: type(of: exist)))
@@ -134,11 +150,7 @@ open class Specimen: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					if let subject = self.subject {
-                        errors.append(contentsOf: subject.populate(from: val) ?? [])
-                    } else {
-                        self.subject = Reference(json: val, owner: self)
-                    }
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -162,11 +174,7 @@ open class Specimen: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -225,19 +233,46 @@ open class SpecimenCollection: BackboneElement {
 		get { return "SpecimenCollection" }
 	}
 
-	public dynamic var bodySite: CodeableConcept?
+	public dynamic var bodySite: CodeableConcept?						
+		
+		
+			public func upsert(bodySite: CodeableConcept?) {
+				upsert(prop: &self.bodySite, val: bodySite)
+			}
 	
-	public dynamic var collectedDateTime: DateTime?
+	public dynamic var collectedDateTime: DateTime?						
+		
+		
 	
-	public dynamic var collectedPeriod: Period?
+	public dynamic var collectedPeriod: Period?						
+		
+		
+			public func upsert(collectedPeriod: Period?) {
+				upsert(prop: &self.collectedPeriod, val: collectedPeriod)
+			}
 	
-	public dynamic var collector: Reference?
+	public dynamic var collector: Reference?						
+		
+		
+			public func upsert(collector: Reference?) {
+				upsert(prop: &self.collector, val: collector)
+			}
 	
 	public let comment = RealmSwift.List<RealmString>()
 	
-	public dynamic var method: CodeableConcept?
+	public dynamic var method: CodeableConcept?						
+		
+		
+			public func upsert(method: CodeableConcept?) {
+				upsert(prop: &self.method, val: method)
+			}
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
 
 	
@@ -247,11 +282,7 @@ open class SpecimenCollection: BackboneElement {
 			if let exist = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? FHIRJSON {
-					if let bodySite = self.bodySite {
-                        errors.append(contentsOf: bodySite.populate(from: val) ?? [])
-                    } else {
-                        self.bodySite = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(bodySite: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: type(of: exist)))
@@ -269,11 +300,7 @@ open class SpecimenCollection: BackboneElement {
 			if let exist = js["collectedPeriod"] {
 				presentKeys.insert("collectedPeriod")
 				if let val = exist as? FHIRJSON {
-					if let collectedPeriod = self.collectedPeriod {
-                        errors.append(contentsOf: collectedPeriod.populate(from: val) ?? [])
-                    } else {
-                        self.collectedPeriod = Period(json: val, owner: self)
-                    }
+					upsert(collectedPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "collectedPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -282,11 +309,7 @@ open class SpecimenCollection: BackboneElement {
 			if let exist = js["collector"] {
 				presentKeys.insert("collector")
 				if let val = exist as? FHIRJSON {
-					if let collector = self.collector {
-                        errors.append(contentsOf: collector.populate(from: val) ?? [])
-                    } else {
-                        self.collector = Reference(json: val, owner: self)
-                    }
+					upsert(collector: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "collector", wants: FHIRJSON.self, has: type(of: exist)))
@@ -304,11 +327,7 @@ open class SpecimenCollection: BackboneElement {
 			if let exist = js["method"] {
 				presentKeys.insert("method")
 				if let val = exist as? FHIRJSON {
-					if let method = self.method {
-                        errors.append(contentsOf: method.populate(from: val) ?? [])
-                    } else {
-                        self.method = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(method: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: type(of: exist)))
@@ -317,11 +336,7 @@ open class SpecimenCollection: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					if let quantity = self.quantity {
-                        errors.append(contentsOf: quantity.populate(from: val) ?? [])
-                    } else {
-                        self.quantity = Quantity(json: val, owner: self)
-                    }
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -372,19 +387,46 @@ open class SpecimenContainer: BackboneElement {
 		get { return "SpecimenContainer" }
 	}
 
-	public dynamic var additiveCodeableConcept: CodeableConcept?
+	public dynamic var additiveCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(additiveCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.additiveCodeableConcept, val: additiveCodeableConcept)
+			}
 	
-	public dynamic var additiveReference: Reference?
+	public dynamic var additiveReference: Reference?						
+		
+		
+			public func upsert(additiveReference: Reference?) {
+				upsert(prop: &self.additiveReference, val: additiveReference)
+			}
 	
-	public dynamic var capacity: Quantity?
+	public dynamic var capacity: Quantity?						
+		
+		
+			public func upsert(capacity: Quantity?) {
+				upsert(prop: &self.capacity, val: capacity)
+			}
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var specimenQuantity: Quantity?
+	public dynamic var specimenQuantity: Quantity?						
+		
+		
+			public func upsert(specimenQuantity: Quantity?) {
+				upsert(prop: &self.specimenQuantity, val: specimenQuantity)
+			}
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -394,11 +436,7 @@ open class SpecimenContainer: BackboneElement {
 			if let exist = js["additiveCodeableConcept"] {
 				presentKeys.insert("additiveCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let additiveCodeableConcept = self.additiveCodeableConcept {
-                        errors.append(contentsOf: additiveCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.additiveCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(additiveCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "additiveCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -407,11 +445,7 @@ open class SpecimenContainer: BackboneElement {
 			if let exist = js["additiveReference"] {
 				presentKeys.insert("additiveReference")
 				if let val = exist as? FHIRJSON {
-					if let additiveReference = self.additiveReference {
-                        errors.append(contentsOf: additiveReference.populate(from: val) ?? [])
-                    } else {
-                        self.additiveReference = Reference(json: val, owner: self)
-                    }
+					upsert(additiveReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "additiveReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -420,11 +454,7 @@ open class SpecimenContainer: BackboneElement {
 			if let exist = js["capacity"] {
 				presentKeys.insert("capacity")
 				if let val = exist as? FHIRJSON {
-					if let capacity = self.capacity {
-                        errors.append(contentsOf: capacity.populate(from: val) ?? [])
-                    } else {
-                        self.capacity = Quantity(json: val, owner: self)
-                    }
+					upsert(capacity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "capacity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -454,11 +484,7 @@ open class SpecimenContainer: BackboneElement {
 			if let exist = js["specimenQuantity"] {
 				presentKeys.insert("specimenQuantity")
 				if let val = exist as? FHIRJSON {
-					if let specimenQuantity = self.specimenQuantity {
-                        errors.append(contentsOf: specimenQuantity.populate(from: val) ?? [])
-                    } else {
-                        self.specimenQuantity = Quantity(json: val, owner: self)
-                    }
+					upsert(specimenQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "specimenQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -467,11 +493,7 @@ open class SpecimenContainer: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -523,9 +545,16 @@ open class SpecimenTreatment: BackboneElement {
 
 	public let additive = RealmSwift.List<Reference>()
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var procedure: CodeableConcept?
+	public dynamic var procedure: CodeableConcept?						
+		
+		
+			public func upsert(procedure: CodeableConcept?) {
+				upsert(prop: &self.procedure, val: procedure)
+			}
 	
 
 	
@@ -556,11 +585,7 @@ open class SpecimenTreatment: BackboneElement {
 			if let exist = js["procedure"] {
 				presentKeys.insert("procedure")
 				if let val = exist as? FHIRJSON {
-					if let procedure = self.procedure {
-                        errors.append(contentsOf: procedure.populate(from: val) ?? [])
-                    } else {
-                        self.procedure = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(procedure: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "procedure", wants: FHIRJSON.self, has: type(of: exist)))

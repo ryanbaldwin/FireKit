@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,19 +23,34 @@ open class Subscription: DomainResource {
 		get { return "Subscription" }
 	}
 
-	public dynamic var channel: SubscriptionChannel?
+	public dynamic var channel: SubscriptionChannel?						
+		
+		
+			public func upsert(channel: SubscriptionChannel?) {
+				upsert(prop: &self.channel, val: channel)
+			}
 	
 	public let contact = RealmSwift.List<ContactPoint>()
 	
-	public dynamic var criteria: String?
+	public dynamic var criteria: String?						
+		
+		
 	
-	public dynamic var end: Instant?
+	public dynamic var end: Instant?						
+		
+		
 	
-	public dynamic var error: String?
+	public dynamic var error: String?						
+		
+		
 	
-	public dynamic var reason: String?
+	public dynamic var reason: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let tag = RealmSwift.List<Coding>()
 	
@@ -56,11 +71,7 @@ open class Subscription: DomainResource {
 			if let exist = js["channel"] {
 				presentKeys.insert("channel")
 				if let val = exist as? FHIRJSON {
-					if let channel = self.channel {
-                        errors.append(contentsOf: channel.populate(from: val) ?? [])
-                    } else {
-                        self.channel = SubscriptionChannel(json: val, owner: self)
-                    }
+					upsert(channel: SubscriptionChannel(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "channel", wants: FHIRJSON.self, has: type(of: exist)))
@@ -194,13 +205,21 @@ open class SubscriptionChannel: BackboneElement {
 		get { return "SubscriptionChannel" }
 	}
 
-	public dynamic var endpoint: String?
+	public dynamic var endpoint: String?						
+		
+		
 	
-	public dynamic var header: String?
+	public dynamic var header: String?						
+		
+		
 	
-	public dynamic var payload: String?
+	public dynamic var payload: String?						
+		
+		
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	

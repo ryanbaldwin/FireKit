@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,13 +20,24 @@ open class Annotation: Element {
 		get { return "Annotation" }
 	}
 
-	public dynamic var authorReference: Reference?
+	public dynamic var authorReference: Reference?						
+		
+		
+			public func upsert(authorReference: Reference?) {
+				upsert(prop: &self.authorReference, val: authorReference)
+			}
 	
-	public dynamic var authorString: String?
+	public dynamic var authorString: String?						
+		
+		
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
-	public dynamic var time: DateTime?
+	public dynamic var time: DateTime?						
+		
+		
 	
 
 	
@@ -42,11 +53,7 @@ open class Annotation: Element {
 			if let exist = js["authorReference"] {
 				presentKeys.insert("authorReference")
 				if let val = exist as? FHIRJSON {
-					if let authorReference = self.authorReference {
-                        errors.append(contentsOf: authorReference.populate(from: val) ?? [])
-                    } else {
-                        self.authorReference = Reference(json: val, owner: self)
-                    }
+					upsert(authorReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "authorReference", wants: FHIRJSON.self, has: type(of: exist)))

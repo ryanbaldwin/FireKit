@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -26,35 +26,73 @@ open class Device: DomainResource {
 
 	public let contact = RealmSwift.List<ContactPoint>()
 	
-	public dynamic var expiry: DateTime?
+	public dynamic var expiry: DateTime?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var location: Reference?
+	public dynamic var location: Reference?						
+		
+		
+			public func upsert(location: Reference?) {
+				upsert(prop: &self.location, val: location)
+			}
 	
-	public dynamic var lotNumber: String?
+	public dynamic var lotNumber: String?						
+		
+		
 	
-	public dynamic var manufactureDate: DateTime?
+	public dynamic var manufactureDate: DateTime?						
+		
+		
 	
-	public dynamic var manufacturer: String?
+	public dynamic var manufacturer: String?						
+		
+		
 	
-	public dynamic var model: String?
+	public dynamic var model: String?						
+		
+		
 	
 	public let note = RealmSwift.List<Annotation>()
 	
-	public dynamic var owner: Reference?
+	public dynamic var owner: Reference?						
+		
+		
+			public func upsert(owner: Reference?) {
+				upsert(prop: &self.owner, val: owner)
+			}
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var udi: String?
+	public dynamic var udi: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -103,11 +141,7 @@ open class Device: DomainResource {
 			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
-					if let location = self.location {
-                        errors.append(contentsOf: location.populate(from: val) ?? [])
-                    } else {
-                        self.location = Reference(json: val, owner: self)
-                    }
+					upsert(location: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
@@ -164,11 +198,7 @@ open class Device: DomainResource {
 			if let exist = js["owner"] {
 				presentKeys.insert("owner")
 				if let val = exist as? FHIRJSON {
-					if let owner = self.owner {
-                        errors.append(contentsOf: owner.populate(from: val) ?? [])
-                    } else {
-                        self.owner = Reference(json: val, owner: self)
-                    }
+					upsert(owner: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "owner", wants: FHIRJSON.self, has: type(of: exist)))
@@ -177,11 +207,7 @@ open class Device: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					if let patient = self.patient {
-                        errors.append(contentsOf: patient.populate(from: val) ?? [])
-                    } else {
-                        self.patient = Reference(json: val, owner: self)
-                    }
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -199,11 +225,7 @@ open class Device: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

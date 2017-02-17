@@ -2,7 +2,7 @@
 //  DeviceUseRequestTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runDeviceUseRequest1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.DeviceUseRequest
 			XCTAssertNotNil(copy)
-			try runDeviceUseRequest1(copy!.asJSON())
+			try runDeviceUseRequest1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest successfully, but threw")
@@ -44,6 +44,26 @@ class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {
 
 		testDeviceUseRequestRealm1(instance: instance!)
 	}
+
+    func testDeviceUseRequest1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.DeviceUseRequest = try runDeviceUseRequest1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.DeviceUseRequest)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest's PKs, but threw: \(error)")
+        }
+    }
 
 	func testDeviceUseRequestRealm1(instance: RealmSwiftFHIR.DeviceUseRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

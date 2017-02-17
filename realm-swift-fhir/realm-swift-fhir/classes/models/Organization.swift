@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -30,13 +30,25 @@ open class Organization: DomainResource {
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var partOf: Reference?
+	public dynamic var partOf: Reference?						
+		
+		
+			public func upsert(partOf: Reference?) {
+				upsert(prop: &self.partOf, val: partOf)
+			}
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -100,11 +112,7 @@ open class Organization: DomainResource {
 			if let exist = js["partOf"] {
 				presentKeys.insert("partOf")
 				if let val = exist as? FHIRJSON {
-					if let partOf = self.partOf {
-                        errors.append(contentsOf: partOf.populate(from: val) ?? [])
-                    } else {
-                        self.partOf = Reference(json: val, owner: self)
-                    }
+					upsert(partOf: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "partOf", wants: FHIRJSON.self, has: type(of: exist)))
@@ -125,11 +133,7 @@ open class Organization: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -180,11 +184,26 @@ open class OrganizationContact: BackboneElement {
 		get { return "OrganizationContact" }
 	}
 
-	public dynamic var address: Address?
+	public dynamic var address: Address?						
+		
+		
+			public func upsert(address: Address?) {
+				upsert(prop: &self.address, val: address)
+			}
 	
-	public dynamic var name: HumanName?
+	public dynamic var name: HumanName?						
+		
+		
+			public func upsert(name: HumanName?) {
+				upsert(prop: &self.name, val: name)
+			}
 	
-	public dynamic var purpose: CodeableConcept?
+	public dynamic var purpose: CodeableConcept?						
+		
+		
+			public func upsert(purpose: CodeableConcept?) {
+				upsert(prop: &self.purpose, val: purpose)
+			}
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -196,11 +215,7 @@ open class OrganizationContact: BackboneElement {
 			if let exist = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? FHIRJSON {
-					if let address = self.address {
-                        errors.append(contentsOf: address.populate(from: val) ?? [])
-                    } else {
-                        self.address = Address(json: val, owner: self)
-                    }
+					upsert(address: Address(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: type(of: exist)))
@@ -209,11 +224,7 @@ open class OrganizationContact: BackboneElement {
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? FHIRJSON {
-					if let name = self.name {
-                        errors.append(contentsOf: name.populate(from: val) ?? [])
-                    } else {
-                        self.name = HumanName(json: val, owner: self)
-                    }
+					upsert(name: HumanName(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: type(of: exist)))
@@ -222,11 +233,7 @@ open class OrganizationContact: BackboneElement {
 			if let exist = js["purpose"] {
 				presentKeys.insert("purpose")
 				if let val = exist as? FHIRJSON {
-					if let purpose = self.purpose {
-                        errors.append(contentsOf: purpose.populate(from: val) ?? [])
-                    } else {
-                        self.purpose = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(purpose: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "purpose", wants: FHIRJSON.self, has: type(of: exist)))

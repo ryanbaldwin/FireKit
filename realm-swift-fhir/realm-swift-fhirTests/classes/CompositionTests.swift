@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class CompositionTests: XCTestCase, RealmPersistenceTesting {
 			try runComposition1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Composition
 			XCTAssertNotNil(copy)
-			try runComposition1(copy!.asJSON())
+			try runComposition1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Composition successfully, but threw")
@@ -44,6 +44,26 @@ class CompositionTests: XCTestCase, RealmPersistenceTesting {
 
 		testCompositionRealm1(instance: instance!)
 	}
+
+    func testComposition1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Composition = try runComposition1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Composition)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Composition's PKs, but threw: \(error)")
+        }
+    }
 
 	func testCompositionRealm1(instance: RealmSwiftFHIR.Composition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

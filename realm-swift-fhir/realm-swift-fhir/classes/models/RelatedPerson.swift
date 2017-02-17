@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,21 +23,45 @@ open class RelatedPerson: DomainResource {
 
 	public let address = RealmSwift.List<Address>()
 	
-	public dynamic var birthDate: FHIRDate?
+	public dynamic var birthDate: FHIRDate?						
+		
+		
 	
-	public dynamic var gender: String?
+	public dynamic var gender: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var name: HumanName?
+	public dynamic var name: HumanName?						
+		
+		
+			public func upsert(name: HumanName?) {
+				upsert(prop: &self.name, val: name)
+			}
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 	public let photo = RealmSwift.List<Attachment>()
 	
-	public dynamic var relationship: CodeableConcept?
+	public dynamic var relationship: CodeableConcept?						
+		
+		
+			public func upsert(relationship: CodeableConcept?) {
+				upsert(prop: &self.relationship, val: relationship)
+			}
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -97,11 +121,7 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? FHIRJSON {
-					if let name = self.name {
-                        errors.append(contentsOf: name.populate(from: val) ?? [])
-                    } else {
-                        self.name = HumanName(json: val, owner: self)
-                    }
+					upsert(name: HumanName(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: type(of: exist)))
@@ -110,11 +130,7 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					if let patient = self.patient {
-                        errors.append(contentsOf: patient.populate(from: val) ?? [])
-                    } else {
-                        self.patient = Reference(json: val, owner: self)
-                    }
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -126,11 +142,7 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -151,11 +163,7 @@ open class RelatedPerson: DomainResource {
 			if let exist = js["relationship"] {
 				presentKeys.insert("relationship")
 				if let val = exist as? FHIRJSON {
-					if let relationship = self.relationship {
-                        errors.append(contentsOf: relationship.populate(from: val) ?? [])
-                    } else {
-                        self.relationship = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(relationship: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relationship", wants: FHIRJSON.self, has: type(of: exist)))

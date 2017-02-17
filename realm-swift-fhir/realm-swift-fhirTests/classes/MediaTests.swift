@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 			try runMedia1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Media
 			XCTAssertNotNil(copy)
-			try runMedia1(copy!.asJSON())
+			try runMedia1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
@@ -44,6 +44,26 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 
 		testMediaRealm1(instance: instance!)
 	}
+
+    func testMedia1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Media = try runMedia1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Media)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Media's PKs, but threw: \(error)")
+        }
+    }
 
 	func testMediaRealm1(instance: RealmSwiftFHIR.Media) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -124,7 +144,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 			try runMedia2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Media
 			XCTAssertNotNil(copy)
-			try runMedia2(copy!.asJSON())
+			try runMedia2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
@@ -132,6 +152,26 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 
 		testMediaRealm2(instance: instance!)
 	}
+
+    func testMedia2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Media = try runMedia2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Media)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Media's PKs, but threw: \(error)")
+        }
+    }
 
 	func testMediaRealm2(instance: RealmSwiftFHIR.Media) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -194,7 +234,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 			try runMedia3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Media
 			XCTAssertNotNil(copy)
-			try runMedia3(copy!.asJSON())
+			try runMedia3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
@@ -202,6 +242,26 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 
 		testMediaRealm3(instance: instance!)
 	}
+
+    func testMedia3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Media = try runMedia3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Media)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Media's PKs, but threw: \(error)")
+        }
+    }
 
 	func testMediaRealm3(instance: RealmSwiftFHIR.Media) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

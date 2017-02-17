@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,45 +22,108 @@ open class Immunization: DomainResource {
 		get { return "Immunization" }
 	}
 
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var doseQuantity: Quantity?
+	public dynamic var doseQuantity: Quantity?						
+		
+		
+			public func upsert(doseQuantity: Quantity?) {
+				upsert(prop: &self.doseQuantity, val: doseQuantity)
+			}
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
-	public dynamic var expirationDate: FHIRDate?
+	public dynamic var expirationDate: FHIRDate?						
+		
+		
 	
-	public dynamic var explanation: ImmunizationExplanation?
+	public dynamic var explanation: ImmunizationExplanation?						
+		
+		
+			public func upsert(explanation: ImmunizationExplanation?) {
+				upsert(prop: &self.explanation, val: explanation)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var location: Reference?
+	public dynamic var location: Reference?						
+		
+		
+			public func upsert(location: Reference?) {
+				upsert(prop: &self.location, val: location)
+			}
 	
-	public dynamic var lotNumber: String?
+	public dynamic var lotNumber: String?						
+		
+		
 	
-	public dynamic var manufacturer: Reference?
+	public dynamic var manufacturer: Reference?						
+		
+		
+			public func upsert(manufacturer: Reference?) {
+				upsert(prop: &self.manufacturer, val: manufacturer)
+			}
 	
 	public let note = RealmSwift.List<Annotation>()
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var performer: Reference?
+	public dynamic var performer: Reference?						
+		
+		
+			public func upsert(performer: Reference?) {
+				upsert(prop: &self.performer, val: performer)
+			}
 	
 	public let reaction = RealmSwift.List<ImmunizationReaction>()
 	
 	public let reported = RealmOptional<Bool>()
 	
-	public dynamic var requester: Reference?
+	public dynamic var requester: Reference?						
+		
+		
+			public func upsert(requester: Reference?) {
+				upsert(prop: &self.requester, val: requester)
+			}
 	
-	public dynamic var route: CodeableConcept?
+	public dynamic var route: CodeableConcept?						
+		
+		
+			public func upsert(route: CodeableConcept?) {
+				upsert(prop: &self.route, val: route)
+			}
 	
-	public dynamic var site: CodeableConcept?
+	public dynamic var site: CodeableConcept?						
+		
+		
+			public func upsert(site: CodeableConcept?) {
+				upsert(prop: &self.site, val: site)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let vaccinationProtocol = RealmSwift.List<ImmunizationVaccinationProtocol>()
 	
-	public dynamic var vaccineCode: CodeableConcept?
+	public dynamic var vaccineCode: CodeableConcept?						
+		
+		
+			public func upsert(vaccineCode: CodeableConcept?) {
+				upsert(prop: &self.vaccineCode, val: vaccineCode)
+			}
 	
 	public let wasNotGiven = RealmOptional<Bool>()
 	
@@ -91,11 +154,7 @@ open class Immunization: DomainResource {
 			if let exist = js["doseQuantity"] {
 				presentKeys.insert("doseQuantity")
 				if let val = exist as? FHIRJSON {
-					if let doseQuantity = self.doseQuantity {
-                        errors.append(contentsOf: doseQuantity.populate(from: val) ?? [])
-                    } else {
-                        self.doseQuantity = Quantity(json: val, owner: self)
-                    }
+					upsert(doseQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -104,11 +163,7 @@ open class Immunization: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					if let encounter = self.encounter {
-                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
-                    } else {
-                        self.encounter = Reference(json: val, owner: self)
-                    }
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -126,11 +181,7 @@ open class Immunization: DomainResource {
 			if let exist = js["explanation"] {
 				presentKeys.insert("explanation")
 				if let val = exist as? FHIRJSON {
-					if let explanation = self.explanation {
-                        errors.append(contentsOf: explanation.populate(from: val) ?? [])
-                    } else {
-                        self.explanation = ImmunizationExplanation(json: val, owner: self)
-                    }
+					upsert(explanation: ImmunizationExplanation(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "explanation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -151,11 +202,7 @@ open class Immunization: DomainResource {
 			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
-					if let location = self.location {
-                        errors.append(contentsOf: location.populate(from: val) ?? [])
-                    } else {
-                        self.location = Reference(json: val, owner: self)
-                    }
+					upsert(location: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,11 +220,7 @@ open class Immunization: DomainResource {
 			if let exist = js["manufacturer"] {
 				presentKeys.insert("manufacturer")
 				if let val = exist as? FHIRJSON {
-					if let manufacturer = self.manufacturer {
-                        errors.append(contentsOf: manufacturer.populate(from: val) ?? [])
-                    } else {
-                        self.manufacturer = Reference(json: val, owner: self)
-                    }
+					upsert(manufacturer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "manufacturer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -198,11 +241,7 @@ open class Immunization: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					if let patient = self.patient {
-                        errors.append(contentsOf: patient.populate(from: val) ?? [])
-                    } else {
-                        self.patient = Reference(json: val, owner: self)
-                    }
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -214,11 +253,7 @@ open class Immunization: DomainResource {
 			if let exist = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? FHIRJSON {
-					if let performer = self.performer {
-                        errors.append(contentsOf: performer.populate(from: val) ?? [])
-                    } else {
-                        self.performer = Reference(json: val, owner: self)
-                    }
+					upsert(performer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -251,11 +286,7 @@ open class Immunization: DomainResource {
 			if let exist = js["requester"] {
 				presentKeys.insert("requester")
 				if let val = exist as? FHIRJSON {
-					if let requester = self.requester {
-                        errors.append(contentsOf: requester.populate(from: val) ?? [])
-                    } else {
-                        self.requester = Reference(json: val, owner: self)
-                    }
+					upsert(requester: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requester", wants: FHIRJSON.self, has: type(of: exist)))
@@ -264,11 +295,7 @@ open class Immunization: DomainResource {
 			if let exist = js["route"] {
 				presentKeys.insert("route")
 				if let val = exist as? FHIRJSON {
-					if let route = self.route {
-                        errors.append(contentsOf: route.populate(from: val) ?? [])
-                    } else {
-                        self.route = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(route: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "route", wants: FHIRJSON.self, has: type(of: exist)))
@@ -277,11 +304,7 @@ open class Immunization: DomainResource {
 			if let exist = js["site"] {
 				presentKeys.insert("site")
 				if let val = exist as? FHIRJSON {
-					if let site = self.site {
-                        errors.append(contentsOf: site.populate(from: val) ?? [])
-                    } else {
-                        self.site = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(site: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "site", wants: FHIRJSON.self, has: type(of: exist)))
@@ -314,11 +337,7 @@ open class Immunization: DomainResource {
 			if let exist = js["vaccineCode"] {
 				presentKeys.insert("vaccineCode")
 				if let val = exist as? FHIRJSON {
-					if let vaccineCode = self.vaccineCode {
-                        errors.append(contentsOf: vaccineCode.populate(from: val) ?? [])
-                    } else {
-                        self.vaccineCode = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(vaccineCode: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "vaccineCode", wants: FHIRJSON.self, has: type(of: exist)))
@@ -487,9 +506,16 @@ open class ImmunizationReaction: BackboneElement {
 		get { return "ImmunizationReaction" }
 	}
 
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var detail: Reference?
+	public dynamic var detail: Reference?						
+		
+		
+			public func upsert(detail: Reference?) {
+				upsert(prop: &self.detail, val: detail)
+			}
 	
 	public let reported = RealmOptional<Bool>()
 	
@@ -510,11 +536,7 @@ open class ImmunizationReaction: BackboneElement {
 			if let exist = js["detail"] {
 				presentKeys.insert("detail")
 				if let val = exist as? FHIRJSON {
-					if let detail = self.detail {
-                        errors.append(contentsOf: detail.populate(from: val) ?? [])
-                    } else {
-                        self.detail = Reference(json: val, owner: self)
-                    }
+					upsert(detail: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "detail", wants: FHIRJSON.self, has: type(of: exist)))
@@ -561,17 +583,36 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		get { return "ImmunizationVaccinationProtocol" }
 	}
 
-	public dynamic var authority: Reference?
+	public dynamic var authority: Reference?						
+		
+		
+			public func upsert(authority: Reference?) {
+				upsert(prop: &self.authority, val: authority)
+			}
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let doseSequence = RealmOptional<Int>()
 	
-	public dynamic var doseStatus: CodeableConcept?
+	public dynamic var doseStatus: CodeableConcept?						
+		
+		
+			public func upsert(doseStatus: CodeableConcept?) {
+				upsert(prop: &self.doseStatus, val: doseStatus)
+			}
 	
-	public dynamic var doseStatusReason: CodeableConcept?
+	public dynamic var doseStatusReason: CodeableConcept?						
+		
+		
+			public func upsert(doseStatusReason: CodeableConcept?) {
+				upsert(prop: &self.doseStatusReason, val: doseStatusReason)
+			}
 	
-	public dynamic var series: String?
+	public dynamic var series: String?						
+		
+		
 	
 	public let seriesDoses = RealmOptional<Int>()
 	
@@ -593,11 +634,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 			if let exist = js["authority"] {
 				presentKeys.insert("authority")
 				if let val = exist as? FHIRJSON {
-					if let authority = self.authority {
-                        errors.append(contentsOf: authority.populate(from: val) ?? [])
-                    } else {
-                        self.authority = Reference(json: val, owner: self)
-                    }
+					upsert(authority: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "authority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -627,11 +664,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 			if let exist = js["doseStatus"] {
 				presentKeys.insert("doseStatus")
 				if let val = exist as? FHIRJSON {
-					if let doseStatus = self.doseStatus {
-                        errors.append(contentsOf: doseStatus.populate(from: val) ?? [])
-                    } else {
-                        self.doseStatus = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(doseStatus: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseStatus", wants: FHIRJSON.self, has: type(of: exist)))
@@ -643,11 +676,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 			if let exist = js["doseStatusReason"] {
 				presentKeys.insert("doseStatusReason")
 				if let val = exist as? FHIRJSON {
-					if let doseStatusReason = self.doseStatusReason {
-                        errors.append(contentsOf: doseStatusReason.populate(from: val) ?? [])
-                    } else {
-                        self.doseStatusReason = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(doseStatusReason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "doseStatusReason", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,7 +21,9 @@ open class Meta: Element {
 		get { return "Meta" }
 	}
 
-	public dynamic var lastUpdated: Instant?
+	public dynamic var lastUpdated: Instant?						
+		
+		
 	
 	public let profile = RealmSwift.List<RealmString>()
 	
@@ -29,7 +31,9 @@ open class Meta: Element {
 	
 	public let tag = RealmSwift.List<Coding>()
 	
-	public dynamic var versionId: String?
+	public dynamic var versionId: String?						
+		
+		
 	
 
 	

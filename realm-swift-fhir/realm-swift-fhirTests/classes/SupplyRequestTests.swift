@@ -2,7 +2,7 @@
 //  SupplyRequestTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runSupplyRequest1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.SupplyRequest
 			XCTAssertNotNil(copy)
-			try runSupplyRequest1(copy!.asJSON())
+			try runSupplyRequest1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test SupplyRequest successfully, but threw")
@@ -44,6 +44,26 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 
 		testSupplyRequestRealm1(instance: instance!)
 	}
+
+    func testSupplyRequest1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.SupplyRequest = try runSupplyRequest1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.SupplyRequest)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test SupplyRequest's PKs, but threw: \(error)")
+        }
+    }
 
 	func testSupplyRequestRealm1(instance: RealmSwiftFHIR.SupplyRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

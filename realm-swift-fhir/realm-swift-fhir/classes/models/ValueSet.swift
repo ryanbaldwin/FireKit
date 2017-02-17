@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,43 +20,83 @@ open class ValueSet: DomainResource {
 		get { return "ValueSet" }
 	}
 
-	public dynamic var codeSystem: ValueSetCodeSystem?
+	public dynamic var codeSystem: ValueSetCodeSystem?						
+		
+		
+			public func upsert(codeSystem: ValueSetCodeSystem?) {
+				upsert(prop: &self.codeSystem, val: codeSystem)
+			}
 	
-	public dynamic var compose: ValueSetCompose?
+	public dynamic var compose: ValueSetCompose?						
+		
+		
+			public func upsert(compose: ValueSetCompose?) {
+				upsert(prop: &self.compose, val: compose)
+			}
 	
 	public let contact = RealmSwift.List<ValueSetContact>()
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var expansion: ValueSetExpansion?
+	public dynamic var expansion: ValueSetExpansion?						
+		
+		
+			public func upsert(expansion: ValueSetExpansion?) {
+				upsert(prop: &self.expansion, val: expansion)
+			}
 	
 	public let experimental = RealmOptional<Bool>()
 	
 	public let extensible = RealmOptional<Bool>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
 	public let immutable = RealmOptional<Bool>()
 	
-	public dynamic var lockedDate: FHIRDate?
+	public dynamic var lockedDate: FHIRDate?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -72,11 +112,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["codeSystem"] {
 				presentKeys.insert("codeSystem")
 				if let val = exist as? FHIRJSON {
-					if let codeSystem = self.codeSystem {
-                        errors.append(contentsOf: codeSystem.populate(from: val) ?? [])
-                    } else {
-                        self.codeSystem = ValueSetCodeSystem(json: val, owner: self)
-                    }
+					upsert(codeSystem: ValueSetCodeSystem(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeSystem", wants: FHIRJSON.self, has: type(of: exist)))
@@ -85,11 +121,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["compose"] {
 				presentKeys.insert("compose")
 				if let val = exist as? FHIRJSON {
-					if let compose = self.compose {
-                        errors.append(contentsOf: compose.populate(from: val) ?? [])
-                    } else {
-                        self.compose = ValueSetCompose(json: val, owner: self)
-                    }
+					upsert(compose: ValueSetCompose(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "compose", wants: FHIRJSON.self, has: type(of: exist)))
@@ -137,11 +169,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["expansion"] {
 				presentKeys.insert("expansion")
 				if let val = exist as? FHIRJSON {
-					if let expansion = self.expansion {
-                        errors.append(contentsOf: expansion.populate(from: val) ?? [])
-                    } else {
-                        self.expansion = ValueSetExpansion(json: val, owner: self)
-                    }
+					upsert(expansion: ValueSetExpansion(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "expansion", wants: FHIRJSON.self, has: type(of: exist)))
@@ -168,11 +196,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -350,9 +374,13 @@ open class ValueSetCodeSystem: BackboneElement {
 	
 	public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -449,15 +477,21 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 
 	public let abstract = RealmOptional<Bool>()
 	
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
 	
-	public dynamic var definition: String?
+	public dynamic var definition: String?						
+		
+		
 	
 	public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
 	
-	public dynamic var display: String?
+	public dynamic var display: String?						
+		
+		
 	
 
 	
@@ -575,11 +609,20 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 		get { return "ValueSetCodeSystemConceptDesignation" }
 	}
 
-	public dynamic var language: String?
+	public dynamic var language: String?						
+		
+		
 	
-	public dynamic var use: Coding?
+	public dynamic var use: Coding?						
+		
+		
+			public func upsert(use: Coding?) {
+				upsert(prop: &self.use, val: use)
+			}
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -604,11 +647,7 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 			if let exist = js["use"] {
 				presentKeys.insert("use")
 				if let val = exist as? FHIRJSON {
-					if let use = self.use {
-                        errors.append(contentsOf: use.populate(from: val) ?? [])
-                    } else {
-                        self.use = Coding(json: val, owner: self)
-                    }
+					upsert(use: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "use", wants: FHIRJSON.self, has: type(of: exist)))
@@ -737,9 +776,13 @@ open class ValueSetComposeInclude: BackboneElement {
 	
 	public let filter = RealmSwift.List<ValueSetComposeIncludeFilter>()
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -832,11 +875,15 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		get { return "ValueSetComposeIncludeConcept" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
 	
-	public dynamic var display: String?
+	public dynamic var display: String?						
+		
+		
 	
 
 	
@@ -915,11 +962,17 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		get { return "ValueSetComposeIncludeFilter" }
 	}
 
-	public dynamic var op: String?
+	public dynamic var op: String?						
+		
+		
 	
-	public dynamic var property: String?
+	public dynamic var property: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -1002,7 +1055,9 @@ open class ValueSetContact: BackboneElement {
 		get { return "ValueSetContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -1064,13 +1119,17 @@ open class ValueSetExpansion: BackboneElement {
 
 	public let contains = RealmSwift.List<ValueSetExpansionContains>()
 	
-	public dynamic var identifier: String?
+	public dynamic var identifier: String?						
+		
+		
 	
 	public let offset = RealmOptional<Int>()
 	
 	public let parameter = RealmSwift.List<ValueSetExpansionParameter>()
 	
-	public dynamic var timestamp: DateTime?
+	public dynamic var timestamp: DateTime?						
+		
+		
 	
 	public let total = RealmOptional<Int>()
 	
@@ -1195,15 +1254,23 @@ open class ValueSetExpansionContains: BackboneElement {
 
 	public let abstract = RealmOptional<Bool>()
 	
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let contains = RealmSwift.List<ValueSetExpansionContains>()
 	
-	public dynamic var display: String?
+	public dynamic var display: String?						
+		
+		
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -1309,19 +1376,29 @@ open class ValueSetExpansionParameter: BackboneElement {
 		get { return "ValueSetExpansionParameter" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let valueBoolean = RealmOptional<Bool>()
 	
-	public dynamic var valueCode: String?
+	public dynamic var valueCode: String?						
+		
+		
 	
-	public dynamic var valueDecimal: RealmDecimal?
+	public dynamic var valueDecimal: RealmDecimal?						
+		
+		
 	
 	public let valueInteger = RealmOptional<Int>()
 	
-	public dynamic var valueString: String?
+	public dynamic var valueString: String?						
+		
+		
 	
-	public dynamic var valueUri: String?
+	public dynamic var valueUri: String?						
+		
+		
 	
 
 	

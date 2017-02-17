@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 			try runDataElement1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.DataElement
 			XCTAssertNotNil(copy)
-			try runDataElement1(copy!.asJSON())
+			try runDataElement1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
@@ -44,6 +44,26 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 
 		testDataElementRealm1(instance: instance!)
 	}
+
+    func testDataElement1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.DataElement = try runDataElement1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.DataElement)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DataElement's PKs, but threw: \(error)")
+        }
+    }
 
 	func testDataElementRealm1(instance: RealmSwiftFHIR.DataElement) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -140,7 +160,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 			try runDataElement2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.DataElement
 			XCTAssertNotNil(copy)
-			try runDataElement2(copy!.asJSON())
+			try runDataElement2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
@@ -148,6 +168,26 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 
 		testDataElementRealm2(instance: instance!)
 	}
+
+    func testDataElement2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.DataElement = try runDataElement2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.DataElement)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DataElement's PKs, but threw: \(error)")
+        }
+    }
 
 	func testDataElementRealm2(instance: RealmSwiftFHIR.DataElement) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

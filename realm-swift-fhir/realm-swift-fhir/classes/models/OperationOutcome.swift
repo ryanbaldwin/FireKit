@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -74,15 +74,26 @@ open class OperationOutcomeIssue: BackboneElement {
 		get { return "OperationOutcomeIssue" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var details: CodeableConcept?
+	public dynamic var details: CodeableConcept?						
+		
+		
+			public func upsert(details: CodeableConcept?) {
+				upsert(prop: &self.details, val: details)
+			}
 	
-	public dynamic var diagnostics: String?
+	public dynamic var diagnostics: String?						
+		
+		
 	
 	public let location = RealmSwift.List<RealmString>()
 	
-	public dynamic var severity: String?
+	public dynamic var severity: String?						
+		
+		
 	
 
 	
@@ -111,11 +122,7 @@ open class OperationOutcomeIssue: BackboneElement {
 			if let exist = js["details"] {
 				presentKeys.insert("details")
 				if let val = exist as? FHIRJSON {
-					if let details = self.details {
-                        errors.append(contentsOf: details.populate(from: val) ?? [])
-                    } else {
-                        self.details = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(details: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "details", wants: FHIRJSON.self, has: type(of: exist)))

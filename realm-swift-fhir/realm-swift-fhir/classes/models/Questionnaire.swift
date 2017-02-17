@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,21 +21,34 @@ open class Questionnaire: DomainResource {
 		get { return "Questionnaire" }
 	}
 
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var group: QuestionnaireGroup?
+	public dynamic var group: QuestionnaireGroup?						
+		
+		
+			public func upsert(group: QuestionnaireGroup?) {
+				upsert(prop: &self.group, val: group)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let subjectType = RealmSwift.List<RealmString>()
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -61,11 +74,7 @@ open class Questionnaire: DomainResource {
 			if let exist = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? FHIRJSON {
-					if let group = self.group {
-                        errors.append(contentsOf: group.populate(from: val) ?? [])
-                    } else {
-                        self.group = QuestionnaireGroup(json: val, owner: self)
-                    }
+					upsert(group: QuestionnaireGroup(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: FHIRJSON.self, has: type(of: exist)))
@@ -188,7 +197,9 @@ open class QuestionnaireGroup: BackboneElement {
 	
 	public let group = RealmSwift.List<QuestionnaireGroup>()
 	
-	public dynamic var linkId: String?
+	public dynamic var linkId: String?						
+		
+		
 	
 	public let question = RealmSwift.List<QuestionnaireGroupQuestion>()
 	
@@ -196,9 +207,13 @@ open class QuestionnaireGroup: BackboneElement {
 	
 	public let required = RealmOptional<Bool>()
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
-	public dynamic var title: String?
+	public dynamic var title: String?						
+		
+		
 	
 
 	
@@ -337,19 +352,30 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 	
 	public let group = RealmSwift.List<QuestionnaireGroup>()
 	
-	public dynamic var linkId: String?
+	public dynamic var linkId: String?						
+		
+		
 	
 	public let option = RealmSwift.List<Coding>()
 	
-	public dynamic var options: Reference?
+	public dynamic var options: Reference?						
+		
+		
+			public func upsert(options: Reference?) {
+				upsert(prop: &self.options, val: options)
+			}
 	
 	public let repeats = RealmOptional<Bool>()
 	
 	public let required = RealmOptional<Bool>()
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	
@@ -404,11 +430,7 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 			if let exist = js["options"] {
 				presentKeys.insert("options")
 				if let val = exist as? FHIRJSON {
-					if let options = self.options {
-                        errors.append(contentsOf: options.populate(from: val) ?? [])
-                    } else {
-                        self.options = Reference(json: val, owner: self)
-                    }
+					upsert(options: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "options", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -18,13 +18,25 @@ open class Schedule: DomainResource {
 		get { return "Schedule" }
 	}
 
-	public dynamic var actor: Reference?
+	public dynamic var actor: Reference?						
+		
+		
+			public func upsert(actor: Reference?) {
+				upsert(prop: &self.actor, val: actor)
+			}
 	
-	public dynamic var comment: String?
+	public dynamic var comment: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var planningHorizon: Period?
+	public dynamic var planningHorizon: Period?						
+		
+		
+			public func upsert(planningHorizon: Period?) {
+				upsert(prop: &self.planningHorizon, val: planningHorizon)
+			}
 	
 	public let type = RealmSwift.List<CodeableConcept>()
 	
@@ -42,11 +54,7 @@ open class Schedule: DomainResource {
 			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					if let actor = self.actor {
-                        errors.append(contentsOf: actor.populate(from: val) ?? [])
-                    } else {
-                        self.actor = Reference(json: val, owner: self)
-                    }
+					upsert(actor: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
@@ -79,11 +87,7 @@ open class Schedule: DomainResource {
 			if let exist = js["planningHorizon"] {
 				presentKeys.insert("planningHorizon")
 				if let val = exist as? FHIRJSON {
-					if let planningHorizon = self.planningHorizon {
-                        errors.append(contentsOf: planningHorizon.populate(from: val) ?? [])
-                    } else {
-                        self.planningHorizon = Period(json: val, owner: self)
-                    }
+					upsert(planningHorizon: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "planningHorizon", wants: FHIRJSON.self, has: type(of: exist)))

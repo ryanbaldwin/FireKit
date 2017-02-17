@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 			try runOrder1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Order
 			XCTAssertNotNil(copy)
-			try runOrder1(copy!.asJSON())
+			try runOrder1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw")
@@ -44,6 +44,26 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 
 		testOrderRealm1(instance: instance!)
 	}
+
+    func testOrder1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Order = try runOrder1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Order)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Order's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOrderRealm1(instance: RealmSwiftFHIR.Order) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -109,7 +129,7 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 			try runOrder2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Order
 			XCTAssertNotNil(copy)
-			try runOrder2(copy!.asJSON())
+			try runOrder2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw")
@@ -117,6 +137,26 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 
 		testOrderRealm2(instance: instance!)
 	}
+
+    func testOrder2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Order = try runOrder2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Order)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Order's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOrderRealm2(instance: RealmSwiftFHIR.Order) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

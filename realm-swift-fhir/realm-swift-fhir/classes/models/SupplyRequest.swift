@@ -2,7 +2,7 @@
 //  SupplyRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,27 +20,71 @@ open class SupplyRequest: DomainResource {
 		get { return "SupplyRequest" }
 	}
 
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var kind: CodeableConcept?
+	public dynamic var kind: CodeableConcept?						
+		
+		
+			public func upsert(kind: CodeableConcept?) {
+				upsert(prop: &self.kind, val: kind)
+			}
 	
-	public dynamic var orderedItem: Reference?
+	public dynamic var orderedItem: Reference?						
+		
+		
+			public func upsert(orderedItem: Reference?) {
+				upsert(prop: &self.orderedItem, val: orderedItem)
+			}
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var reasonCodeableConcept: CodeableConcept?
+	public dynamic var reasonCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(reasonCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
+			}
 	
-	public dynamic var reasonReference: Reference?
+	public dynamic var reasonReference: Reference?						
+		
+		
+			public func upsert(reasonReference: Reference?) {
+				upsert(prop: &self.reasonReference, val: reasonReference)
+			}
 	
-	public dynamic var source: Reference?
+	public dynamic var source: Reference?						
+		
+		
+			public func upsert(source: Reference?) {
+				upsert(prop: &self.source, val: source)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let supplier = RealmSwift.List<Reference>()
 	
-	public dynamic var when: SupplyRequestWhen?
+	public dynamic var when: SupplyRequestWhen?						
+		
+		
+			public func upsert(when: SupplyRequestWhen?) {
+				upsert(prop: &self.when, val: when)
+			}
 	
 
 	
@@ -59,11 +103,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -72,11 +112,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["kind"] {
 				presentKeys.insert("kind")
 				if let val = exist as? FHIRJSON {
-					if let kind = self.kind {
-                        errors.append(contentsOf: kind.populate(from: val) ?? [])
-                    } else {
-                        self.kind = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(kind: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "kind", wants: FHIRJSON.self, has: type(of: exist)))
@@ -85,11 +121,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["orderedItem"] {
 				presentKeys.insert("orderedItem")
 				if let val = exist as? FHIRJSON {
-					if let orderedItem = self.orderedItem {
-                        errors.append(contentsOf: orderedItem.populate(from: val) ?? [])
-                    } else {
-                        self.orderedItem = Reference(json: val, owner: self)
-                    }
+					upsert(orderedItem: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderedItem", wants: FHIRJSON.self, has: type(of: exist)))
@@ -98,11 +130,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					if let patient = self.patient {
-                        errors.append(contentsOf: patient.populate(from: val) ?? [])
-                    } else {
-                        self.patient = Reference(json: val, owner: self)
-                    }
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -111,11 +139,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["reasonCodeableConcept"] {
 				presentKeys.insert("reasonCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let reasonCodeableConcept = self.reasonCodeableConcept {
-                        errors.append(contentsOf: reasonCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(reasonCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -124,11 +148,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
 				if let val = exist as? FHIRJSON {
-					if let reasonReference = self.reasonReference {
-                        errors.append(contentsOf: reasonReference.populate(from: val) ?? [])
-                    } else {
-                        self.reasonReference = Reference(json: val, owner: self)
-                    }
+					upsert(reasonReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -137,11 +157,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					if let source = self.source {
-                        errors.append(contentsOf: source.populate(from: val) ?? [])
-                    } else {
-                        self.source = Reference(json: val, owner: self)
-                    }
+					upsert(source: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -171,11 +187,7 @@ open class SupplyRequest: DomainResource {
 			if let exist = js["when"] {
 				presentKeys.insert("when")
 				if let val = exist as? FHIRJSON {
-					if let when = self.when {
-                        errors.append(contentsOf: when.populate(from: val) ?? [])
-                    } else {
-                        self.when = SupplyRequestWhen(json: val, owner: self)
-                    }
+					upsert(when: SupplyRequestWhen(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "when", wants: FHIRJSON.self, has: type(of: exist)))
@@ -235,9 +247,19 @@ open class SupplyRequestWhen: BackboneElement {
 		get { return "SupplyRequestWhen" }
 	}
 
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var schedule: Timing?
+	public dynamic var schedule: Timing?						
+		
+		
+			public func upsert(schedule: Timing?) {
+				upsert(prop: &self.schedule, val: schedule)
+			}
 	
 
 	
@@ -247,11 +269,7 @@ open class SupplyRequestWhen: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					if let code = self.code {
-                        errors.append(contentsOf: code.populate(from: val) ?? [])
-                    } else {
-                        self.code = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -260,11 +278,7 @@ open class SupplyRequestWhen: BackboneElement {
 			if let exist = js["schedule"] {
 				presentKeys.insert("schedule")
 				if let val = exist as? FHIRJSON {
-					if let schedule = self.schedule {
-                        errors.append(contentsOf: schedule.populate(from: val) ?? [])
-                    } else {
-                        self.schedule = Timing(json: val, owner: self)
-                    }
+					upsert(schedule: Timing(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "schedule", wants: FHIRJSON.self, has: type(of: exist)))

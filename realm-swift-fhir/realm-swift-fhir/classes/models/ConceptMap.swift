@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,39 +23,76 @@ open class ConceptMap: DomainResource {
 
 	public let contact = RealmSwift.List<ConceptMapContact>()
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let element = RealmSwift.List<ConceptMapElement>()
 	
 	public let experimental = RealmOptional<Bool>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var sourceReference: Reference?
+	public dynamic var sourceReference: Reference?						
+		
+		
+			public func upsert(sourceReference: Reference?) {
+				upsert(prop: &self.sourceReference, val: sourceReference)
+			}
 	
-	public dynamic var sourceUri: String?
+	public dynamic var sourceUri: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var targetReference: Reference?
+	public dynamic var targetReference: Reference?						
+		
+		
+			public func upsert(targetReference: Reference?) {
+				upsert(prop: &self.targetReference, val: targetReference)
+			}
 	
-	public dynamic var targetUri: String?
+	public dynamic var targetUri: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -135,11 +172,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -175,11 +208,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["sourceReference"] {
 				presentKeys.insert("sourceReference")
 				if let val = exist as? FHIRJSON {
-					if let sourceReference = self.sourceReference {
-                        errors.append(contentsOf: sourceReference.populate(from: val) ?? [])
-                    } else {
-                        self.sourceReference = Reference(json: val, owner: self)
-                    }
+					upsert(sourceReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -209,11 +238,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["targetReference"] {
 				presentKeys.insert("targetReference")
 				if let val = exist as? FHIRJSON {
-					if let targetReference = self.targetReference {
-                        errors.append(contentsOf: targetReference.populate(from: val) ?? [])
-                    } else {
-                        self.targetReference = Reference(json: val, owner: self)
-                    }
+					upsert(targetReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -343,7 +368,9 @@ open class ConceptMapContact: BackboneElement {
 		get { return "ConceptMapContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -402,9 +429,13 @@ open class ConceptMapElement: BackboneElement {
 		get { return "ConceptMapElement" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var codeSystem: String?
+	public dynamic var codeSystem: String?						
+		
+		
 	
 	public let target = RealmSwift.List<ConceptMapElementTarget>()
 	
@@ -475,15 +506,23 @@ open class ConceptMapElementTarget: BackboneElement {
 		get { return "ConceptMapElementTarget" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var codeSystem: String?
+	public dynamic var codeSystem: String?						
+		
+		
 	
-	public dynamic var comments: String?
+	public dynamic var comments: String?						
+		
+		
 	
 	public let dependsOn = RealmSwift.List<ConceptMapElementTargetDependsOn>()
 	
-	public dynamic var equivalence: String?
+	public dynamic var equivalence: String?						
+		
+		
 	
 	public let product = RealmSwift.List<ConceptMapElementTargetDependsOn>()
 	
@@ -603,11 +642,17 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 		get { return "ConceptMapElementTargetDependsOn" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var codeSystem: String?
+	public dynamic var codeSystem: String?						
+		
+		
 	
-	public dynamic var element: String?
+	public dynamic var element: String?						
+		
+		
 	
 
 	

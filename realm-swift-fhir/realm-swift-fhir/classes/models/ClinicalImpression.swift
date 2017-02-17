@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -26,39 +26,76 @@ open class ClinicalImpression: DomainResource {
 
 	public let action = RealmSwift.List<Reference>()
 	
-	public dynamic var assessor: Reference?
+	public dynamic var assessor: Reference?						
+		
+		
+			public func upsert(assessor: Reference?) {
+				upsert(prop: &self.assessor, val: assessor)
+			}
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let finding = RealmSwift.List<ClinicalImpressionFinding>()
 	
 	public let investigations = RealmSwift.List<ClinicalImpressionInvestigations>()
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
 	public let plan = RealmSwift.List<Reference>()
 	
-	public dynamic var previous: Reference?
+	public dynamic var previous: Reference?						
+		
+		
+			public func upsert(previous: Reference?) {
+				upsert(prop: &self.previous, val: previous)
+			}
 	
 	public let problem = RealmSwift.List<Reference>()
 	
-	public dynamic var prognosis: String?
+	public dynamic var prognosis: String?						
+		
+		
 	
-	public dynamic var protocol_fhir: String?
+	public dynamic var protocol_fhir: String?						
+		
+		
 	
 	public let resolved = RealmSwift.List<CodeableConcept>()
 	
 	public let ruledOut = RealmSwift.List<ClinicalImpressionRuledOut>()
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var summary: String?
+	public dynamic var summary: String?						
+		
+		
 	
-	public dynamic var triggerCodeableConcept: CodeableConcept?
+	public dynamic var triggerCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(triggerCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.triggerCodeableConcept, val: triggerCodeableConcept)
+			}
 	
-	public dynamic var triggerReference: Reference?
+	public dynamic var triggerReference: Reference?						
+		
+		
+			public func upsert(triggerReference: Reference?) {
+				upsert(prop: &self.triggerReference, val: triggerReference)
+			}
 	
 
 	
@@ -87,11 +124,7 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["assessor"] {
 				presentKeys.insert("assessor")
 				if let val = exist as? FHIRJSON {
-					if let assessor = self.assessor {
-                        errors.append(contentsOf: assessor.populate(from: val) ?? [])
-                    } else {
-                        self.assessor = Reference(json: val, owner: self)
-                    }
+					upsert(assessor: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assessor", wants: FHIRJSON.self, has: type(of: exist)))
@@ -142,11 +175,7 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					if let patient = self.patient {
-                        errors.append(contentsOf: patient.populate(from: val) ?? [])
-                    } else {
-                        self.patient = Reference(json: val, owner: self)
-                    }
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -170,11 +199,7 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["previous"] {
 				presentKeys.insert("previous")
 				if let val = exist as? FHIRJSON {
-					if let previous = self.previous {
-                        errors.append(contentsOf: previous.populate(from: val) ?? [])
-                    } else {
-                        self.previous = Reference(json: val, owner: self)
-                    }
+					upsert(previous: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "previous", wants: FHIRJSON.self, has: type(of: exist)))
@@ -258,11 +283,7 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["triggerCodeableConcept"] {
 				presentKeys.insert("triggerCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let triggerCodeableConcept = self.triggerCodeableConcept {
-                        errors.append(contentsOf: triggerCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.triggerCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(triggerCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "triggerCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -271,11 +292,7 @@ open class ClinicalImpression: DomainResource {
 			if let exist = js["triggerReference"] {
 				presentKeys.insert("triggerReference")
 				if let val = exist as? FHIRJSON {
-					if let triggerReference = self.triggerReference {
-                        errors.append(contentsOf: triggerReference.populate(from: val) ?? [])
-                    } else {
-                        self.triggerReference = Reference(json: val, owner: self)
-                    }
+					upsert(triggerReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "triggerReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -358,9 +375,16 @@ open class ClinicalImpressionFinding: BackboneElement {
 		get { return "ClinicalImpressionFinding" }
 	}
 
-	public dynamic var cause: String?
+	public dynamic var cause: String?						
+		
+		
 	
-	public dynamic var item: CodeableConcept?
+	public dynamic var item: CodeableConcept?						
+		
+		
+			public func upsert(item: CodeableConcept?) {
+				upsert(prop: &self.item, val: item)
+			}
 	
 
 	
@@ -385,11 +409,7 @@ open class ClinicalImpressionFinding: BackboneElement {
 			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? FHIRJSON {
-					if let item = self.item {
-                        errors.append(contentsOf: item.populate(from: val) ?? [])
-                    } else {
-                        self.item = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(item: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: FHIRJSON.self, has: type(of: exist)))
@@ -429,7 +449,12 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 		get { return "ClinicalImpressionInvestigations" }
 	}
 
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
 	public let item = RealmSwift.List<Reference>()
 	
@@ -447,11 +472,7 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					if let code = self.code {
-                        errors.append(contentsOf: code.populate(from: val) ?? [])
-                    } else {
-                        self.code = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -499,9 +520,16 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 		get { return "ClinicalImpressionRuledOut" }
 	}
 
-	public dynamic var item: CodeableConcept?
+	public dynamic var item: CodeableConcept?						
+		
+		
+			public func upsert(item: CodeableConcept?) {
+				upsert(prop: &self.item, val: item)
+			}
 	
-	public dynamic var reason: String?
+	public dynamic var reason: String?						
+		
+		
 	
 
 	
@@ -517,11 +545,7 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? FHIRJSON {
-					if let item = self.item {
-                        errors.append(contentsOf: item.populate(from: val) ?? [])
-                    } else {
-                        self.item = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(item: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: FHIRJSON.self, has: type(of: exist)))

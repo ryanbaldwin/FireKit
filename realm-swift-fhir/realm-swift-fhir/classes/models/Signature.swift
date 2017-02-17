@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,17 +22,30 @@ open class Signature: Element {
 		get { return "Signature" }
 	}
 
-	public dynamic var blob: Base64Binary?
+	public dynamic var blob: Base64Binary?						
+		
+		
 	
-	public dynamic var contentType: String?
+	public dynamic var contentType: String?						
+		
+		
 	
 	public let type = RealmSwift.List<Coding>()
 	
-	public dynamic var when: Instant?
+	public dynamic var when: Instant?						
+		
+		
 	
-	public dynamic var whoReference: Reference?
+	public dynamic var whoReference: Reference?						
+		
+		
+			public func upsert(whoReference: Reference?) {
+				upsert(prop: &self.whoReference, val: whoReference)
+			}
 	
-	public dynamic var whoUri: String?
+	public dynamic var whoUri: String?						
+		
+		
 	
 
 	
@@ -104,11 +117,7 @@ open class Signature: Element {
 			if let exist = js["whoReference"] {
 				presentKeys.insert("whoReference")
 				if let val = exist as? FHIRJSON {
-					if let whoReference = self.whoReference {
-                        errors.append(contentsOf: whoReference.populate(from: val) ?? [])
-                    } else {
-                        self.whoReference = Reference(json: val, owner: self)
-                    }
+					upsert(whoReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "whoReference", wants: FHIRJSON.self, has: type(of: exist)))

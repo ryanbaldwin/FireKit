@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 			try runNamingSystem1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NamingSystem
 			XCTAssertNotNil(copy)
-			try runNamingSystem1(copy!.asJSON())
+			try runNamingSystem1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
@@ -44,6 +44,26 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 
 		testNamingSystemRealm1(instance: instance!)
 	}
+
+    func testNamingSystem1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.NamingSystem = try runNamingSystem1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.NamingSystem)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test NamingSystem's PKs, but threw: \(error)")
+        }
+    }
 
 	func testNamingSystemRealm1(instance: RealmSwiftFHIR.NamingSystem) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -122,7 +142,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 			try runNamingSystem2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NamingSystem
 			XCTAssertNotNil(copy)
-			try runNamingSystem2(copy!.asJSON())
+			try runNamingSystem2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
@@ -130,6 +150,26 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 
 		testNamingSystemRealm2(instance: instance!)
 	}
+
+    func testNamingSystem2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.NamingSystem = try runNamingSystem2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.NamingSystem)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test NamingSystem's PKs, but threw: \(error)")
+        }
+    }
 
 	func testNamingSystemRealm2(instance: RealmSwiftFHIR.NamingSystem) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -194,7 +234,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 			try runNamingSystem3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NamingSystem
 			XCTAssertNotNil(copy)
-			try runNamingSystem3(copy!.asJSON())
+			try runNamingSystem3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
@@ -202,6 +242,26 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 
 		testNamingSystemRealm3(instance: instance!)
 	}
+
+    func testNamingSystem3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.NamingSystem = try runNamingSystem3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.NamingSystem)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test NamingSystem's PKs, but threw: \(error)")
+        }
+    }
 
 	func testNamingSystemRealm3(instance: RealmSwiftFHIR.NamingSystem) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

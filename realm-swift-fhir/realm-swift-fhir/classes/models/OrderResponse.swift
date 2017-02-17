@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -18,19 +18,35 @@ open class OrderResponse: DomainResource {
 		get { return "OrderResponse" }
 	}
 
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let fulfillment = RealmSwift.List<Reference>()
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var orderStatus: String?
+	public dynamic var orderStatus: String?						
+		
+		
 	
-	public dynamic var request: Reference?
+	public dynamic var request: Reference?						
+		
+		
+			public func upsert(request: Reference?) {
+				upsert(prop: &self.request, val: request)
+			}
 	
-	public dynamic var who: Reference?
+	public dynamic var who: Reference?						
+		
+		
+			public func upsert(who: Reference?) {
+				upsert(prop: &self.who, val: who)
+			}
 	
 
 	
@@ -101,11 +117,7 @@ open class OrderResponse: DomainResource {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					if let request = self.request {
-                        errors.append(contentsOf: request.populate(from: val) ?? [])
-                    } else {
-                        self.request = Reference(json: val, owner: self)
-                    }
+					upsert(request: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -117,11 +129,7 @@ open class OrderResponse: DomainResource {
 			if let exist = js["who"] {
 				presentKeys.insert("who")
 				if let val = exist as? FHIRJSON {
-					if let who = self.who {
-                        errors.append(contentsOf: who.populate(from: val) ?? [])
-                    } else {
-                        self.who = Reference(json: val, owner: self)
-                    }
+					upsert(who: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "who", wants: FHIRJSON.self, has: type(of: exist)))

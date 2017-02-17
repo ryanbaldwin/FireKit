@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,35 +20,59 @@ open class SearchParameter: DomainResource {
 		get { return "SearchParameter" }
 	}
 
-	public dynamic var base: String?
+	public dynamic var base: String?						
+		
+		
 	
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let contact = RealmSwift.List<SearchParameterContact>()
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let experimental = RealmOptional<Bool>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let target = RealmSwift.List<RealmString>()
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
-	public dynamic var xpath: String?
+	public dynamic var xpath: String?						
+		
+		
 	
-	public dynamic var xpathUsage: String?
+	public dynamic var xpathUsage: String?						
+		
+		
 	
 
 	
@@ -290,7 +314,9 @@ open class SearchParameterContact: BackboneElement {
 		get { return "SearchParameterContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	

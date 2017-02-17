@@ -2,7 +2,7 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,31 +20,75 @@ open class ProcessResponse: DomainResource {
 		get { return "ProcessResponse" }
 	}
 
-	public dynamic var created: DateTime?
+	public dynamic var created: DateTime?						
+		
+		
 	
-	public dynamic var disposition: String?
+	public dynamic var disposition: String?						
+		
+		
 	
 	public let error = RealmSwift.List<Coding>()
 	
-	public dynamic var form: Coding?
+	public dynamic var form: Coding?						
+		
+		
+			public func upsert(form: Coding?) {
+				upsert(prop: &self.form, val: form)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
 	public let notes = RealmSwift.List<ProcessResponseNotes>()
 	
-	public dynamic var organization: Reference?
+	public dynamic var organization: Reference?						
+		
+		
+			public func upsert(organization: Reference?) {
+				upsert(prop: &self.organization, val: organization)
+			}
 	
-	public dynamic var originalRuleset: Coding?
+	public dynamic var originalRuleset: Coding?						
+		
+		
+			public func upsert(originalRuleset: Coding?) {
+				upsert(prop: &self.originalRuleset, val: originalRuleset)
+			}
 	
-	public dynamic var outcome: Coding?
+	public dynamic var outcome: Coding?						
+		
+		
+			public func upsert(outcome: Coding?) {
+				upsert(prop: &self.outcome, val: outcome)
+			}
 	
-	public dynamic var request: Reference?
+	public dynamic var request: Reference?						
+		
+		
+			public func upsert(request: Reference?) {
+				upsert(prop: &self.request, val: request)
+			}
 	
-	public dynamic var requestOrganization: Reference?
+	public dynamic var requestOrganization: Reference?						
+		
+		
+			public func upsert(requestOrganization: Reference?) {
+				upsert(prop: &self.requestOrganization, val: requestOrganization)
+			}
 	
-	public dynamic var requestProvider: Reference?
+	public dynamic var requestProvider: Reference?						
+		
+		
+			public func upsert(requestProvider: Reference?) {
+				upsert(prop: &self.requestProvider, val: requestProvider)
+			}
 	
-	public dynamic var ruleset: Coding?
+	public dynamic var ruleset: Coding?						
+		
+		
+			public func upsert(ruleset: Coding?) {
+				upsert(prop: &self.ruleset, val: ruleset)
+			}
 	
 
 	
@@ -84,11 +128,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["form"] {
 				presentKeys.insert("form")
 				if let val = exist as? FHIRJSON {
-					if let form = self.form {
-                        errors.append(contentsOf: form.populate(from: val) ?? [])
-                    } else {
-                        self.form = Coding(json: val, owner: self)
-                    }
+					upsert(form: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "form", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,11 +161,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["organization"] {
 				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					if let organization = self.organization {
-                        errors.append(contentsOf: organization.populate(from: val) ?? [])
-                    } else {
-                        self.organization = Reference(json: val, owner: self)
-                    }
+					upsert(organization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -134,11 +170,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["originalRuleset"] {
 				presentKeys.insert("originalRuleset")
 				if let val = exist as? FHIRJSON {
-					if let originalRuleset = self.originalRuleset {
-                        errors.append(contentsOf: originalRuleset.populate(from: val) ?? [])
-                    } else {
-                        self.originalRuleset = Coding(json: val, owner: self)
-                    }
+					upsert(originalRuleset: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -147,11 +179,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["outcome"] {
 				presentKeys.insert("outcome")
 				if let val = exist as? FHIRJSON {
-					if let outcome = self.outcome {
-                        errors.append(contentsOf: outcome.populate(from: val) ?? [])
-                    } else {
-                        self.outcome = Coding(json: val, owner: self)
-                    }
+					upsert(outcome: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: type(of: exist)))
@@ -160,11 +188,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					if let request = self.request {
-                        errors.append(contentsOf: request.populate(from: val) ?? [])
-                    } else {
-                        self.request = Reference(json: val, owner: self)
-                    }
+					upsert(request: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,11 +197,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["requestOrganization"] {
 				presentKeys.insert("requestOrganization")
 				if let val = exist as? FHIRJSON {
-					if let requestOrganization = self.requestOrganization {
-                        errors.append(contentsOf: requestOrganization.populate(from: val) ?? [])
-                    } else {
-                        self.requestOrganization = Reference(json: val, owner: self)
-                    }
+					upsert(requestOrganization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requestOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -186,11 +206,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["requestProvider"] {
 				presentKeys.insert("requestProvider")
 				if let val = exist as? FHIRJSON {
-					if let requestProvider = self.requestProvider {
-                        errors.append(contentsOf: requestProvider.populate(from: val) ?? [])
-                    } else {
-                        self.requestProvider = Reference(json: val, owner: self)
-                    }
+					upsert(requestProvider: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requestProvider", wants: FHIRJSON.self, has: type(of: exist)))
@@ -199,11 +215,7 @@ open class ProcessResponse: DomainResource {
 			if let exist = js["ruleset"] {
 				presentKeys.insert("ruleset")
 				if let val = exist as? FHIRJSON {
-					if let ruleset = self.ruleset {
-                        errors.append(contentsOf: ruleset.populate(from: val) ?? [])
-                    } else {
-                        self.ruleset = Coding(json: val, owner: self)
-                    }
+					upsert(ruleset: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -271,9 +283,16 @@ open class ProcessResponseNotes: BackboneElement {
 		get { return "ProcessResponseNotes" }
 	}
 
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -292,11 +311,7 @@ open class ProcessResponseNotes: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = Coding(json: val, owner: self)
-                    }
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

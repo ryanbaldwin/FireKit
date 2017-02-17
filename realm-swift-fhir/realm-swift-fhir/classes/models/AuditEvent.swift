@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,13 +21,23 @@ open class AuditEvent: DomainResource {
 		get { return "AuditEvent" }
 	}
 
-	public dynamic var event: AuditEventEvent?
+	public dynamic var event: AuditEventEvent?						
+		
+		
+			public func upsert(event: AuditEventEvent?) {
+				upsert(prop: &self.event, val: event)
+			}
 	
 	public let object = RealmSwift.List<AuditEventObject>()
 	
 	public let participant = RealmSwift.List<AuditEventParticipant>()
 	
-	public dynamic var source: AuditEventSource?
+	public dynamic var source: AuditEventSource?						
+		
+		
+			public func upsert(source: AuditEventSource?) {
+				upsert(prop: &self.source, val: source)
+			}
 	
 
 	
@@ -45,11 +55,7 @@ open class AuditEvent: DomainResource {
 			if let exist = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? FHIRJSON {
-					if let event = self.event {
-                        errors.append(contentsOf: event.populate(from: val) ?? [])
-                    } else {
-                        self.event = AuditEventEvent(json: val, owner: self)
-                    }
+					upsert(event: AuditEventEvent(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "event", wants: FHIRJSON.self, has: type(of: exist)))
@@ -88,11 +94,7 @@ open class AuditEvent: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					if let source = self.source {
-                        errors.append(contentsOf: source.populate(from: val) ?? [])
-                    } else {
-                        self.source = AuditEventSource(json: val, owner: self)
-                    }
+					upsert(source: AuditEventSource(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -136,19 +138,32 @@ open class AuditEventEvent: BackboneElement {
 		get { return "AuditEventEvent" }
 	}
 
-	public dynamic var action: String?
+	public dynamic var action: String?						
+		
+		
 	
-	public dynamic var dateTime: Instant?
+	public dynamic var dateTime: Instant?						
+		
+		
 	
-	public dynamic var outcome: String?
+	public dynamic var outcome: String?						
+		
+		
 	
-	public dynamic var outcomeDesc: String?
+	public dynamic var outcomeDesc: String?						
+		
+		
 	
 	public let purposeOfEvent = RealmSwift.List<Coding>()
 	
 	public let subtype = RealmSwift.List<Coding>()
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -228,11 +243,7 @@ open class AuditEventEvent: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = Coding(json: val, owner: self)
-                    }
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -283,25 +294,56 @@ open class AuditEventObject: BackboneElement {
 		get { return "AuditEventObject" }
 	}
 
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let detail = RealmSwift.List<AuditEventObjectDetail>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var lifecycle: Coding?
+	public dynamic var lifecycle: Coding?						
+		
+		
+			public func upsert(lifecycle: Coding?) {
+				upsert(prop: &self.lifecycle, val: lifecycle)
+			}
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var query: Base64Binary?
+	public dynamic var query: Base64Binary?						
+		
+		
 	
-	public dynamic var reference: Reference?
+	public dynamic var reference: Reference?						
+		
+		
+			public func upsert(reference: Reference?) {
+				upsert(prop: &self.reference, val: reference)
+			}
 	
-	public dynamic var role: Coding?
+	public dynamic var role: Coding?						
+		
+		
+			public func upsert(role: Coding?) {
+				upsert(prop: &self.role, val: role)
+			}
 	
 	public let securityLabel = RealmSwift.List<Coding>()
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -332,11 +374,7 @@ open class AuditEventObject: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -345,11 +383,7 @@ open class AuditEventObject: BackboneElement {
 			if let exist = js["lifecycle"] {
 				presentKeys.insert("lifecycle")
 				if let val = exist as? FHIRJSON {
-					if let lifecycle = self.lifecycle {
-                        errors.append(contentsOf: lifecycle.populate(from: val) ?? [])
-                    } else {
-                        self.lifecycle = Coding(json: val, owner: self)
-                    }
+					upsert(lifecycle: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "lifecycle", wants: FHIRJSON.self, has: type(of: exist)))
@@ -376,11 +410,7 @@ open class AuditEventObject: BackboneElement {
 			if let exist = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? FHIRJSON {
-					if let reference = self.reference {
-                        errors.append(contentsOf: reference.populate(from: val) ?? [])
-                    } else {
-                        self.reference = Reference(json: val, owner: self)
-                    }
+					upsert(reference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -389,11 +419,7 @@ open class AuditEventObject: BackboneElement {
 			if let exist = js["role"] {
 				presentKeys.insert("role")
 				if let val = exist as? FHIRJSON {
-					if let role = self.role {
-                        errors.append(contentsOf: role.populate(from: val) ?? [])
-                    } else {
-                        self.role = Coding(json: val, owner: self)
-                    }
+					upsert(role: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: type(of: exist)))
@@ -414,11 +440,7 @@ open class AuditEventObject: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = Coding(json: val, owner: self)
-                    }
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -475,9 +497,13 @@ open class AuditEventObjectDetail: BackboneElement {
 		get { return "AuditEventObjectDetail" }
 	}
 
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var value: Base64Binary?
+	public dynamic var value: Base64Binary?						
+		
+		
 	
 
 	
@@ -542,27 +568,56 @@ open class AuditEventParticipant: BackboneElement {
 		get { return "AuditEventParticipant" }
 	}
 
-	public dynamic var altId: String?
+	public dynamic var altId: String?						
+		
+		
 	
-	public dynamic var location: Reference?
+	public dynamic var location: Reference?						
+		
+		
+			public func upsert(location: Reference?) {
+				upsert(prop: &self.location, val: location)
+			}
 	
-	public dynamic var media: Coding?
+	public dynamic var media: Coding?						
+		
+		
+			public func upsert(media: Coding?) {
+				upsert(prop: &self.media, val: media)
+			}
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var network: AuditEventParticipantNetwork?
+	public dynamic var network: AuditEventParticipantNetwork?						
+		
+		
+			public func upsert(network: AuditEventParticipantNetwork?) {
+				upsert(prop: &self.network, val: network)
+			}
 	
 	public let policy = RealmSwift.List<RealmString>()
 	
 	public let purposeOfUse = RealmSwift.List<Coding>()
 	
-	public dynamic var reference: Reference?
+	public dynamic var reference: Reference?						
+		
+		
+			public func upsert(reference: Reference?) {
+				upsert(prop: &self.reference, val: reference)
+			}
 	
 	public let requestor = RealmOptional<Bool>()
 	
 	public let role = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var userId: Identifier?
+	public dynamic var userId: Identifier?						
+		
+		
+			public func upsert(userId: Identifier?) {
+				upsert(prop: &self.userId, val: userId)
+			}
 	
 
 	
@@ -587,11 +642,7 @@ open class AuditEventParticipant: BackboneElement {
 			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
-					if let location = self.location {
-                        errors.append(contentsOf: location.populate(from: val) ?? [])
-                    } else {
-                        self.location = Reference(json: val, owner: self)
-                    }
+					upsert(location: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
@@ -600,11 +651,7 @@ open class AuditEventParticipant: BackboneElement {
 			if let exist = js["media"] {
 				presentKeys.insert("media")
 				if let val = exist as? FHIRJSON {
-					if let media = self.media {
-                        errors.append(contentsOf: media.populate(from: val) ?? [])
-                    } else {
-                        self.media = Coding(json: val, owner: self)
-                    }
+					upsert(media: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "media", wants: FHIRJSON.self, has: type(of: exist)))
@@ -622,11 +669,7 @@ open class AuditEventParticipant: BackboneElement {
 			if let exist = js["network"] {
 				presentKeys.insert("network")
 				if let val = exist as? FHIRJSON {
-					if let network = self.network {
-                        errors.append(contentsOf: network.populate(from: val) ?? [])
-                    } else {
-                        self.network = AuditEventParticipantNetwork(json: val, owner: self)
-                    }
+					upsert(network: AuditEventParticipantNetwork(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "network", wants: FHIRJSON.self, has: type(of: exist)))
@@ -656,11 +699,7 @@ open class AuditEventParticipant: BackboneElement {
 			if let exist = js["reference"] {
 				presentKeys.insert("reference")
 				if let val = exist as? FHIRJSON {
-					if let reference = self.reference {
-                        errors.append(contentsOf: reference.populate(from: val) ?? [])
-                    } else {
-                        self.reference = Reference(json: val, owner: self)
-                    }
+					upsert(reference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -693,11 +732,7 @@ open class AuditEventParticipant: BackboneElement {
 			if let exist = js["userId"] {
 				presentKeys.insert("userId")
 				if let val = exist as? FHIRJSON {
-					if let userId = self.userId {
-                        errors.append(contentsOf: userId.populate(from: val) ?? [])
-                    } else {
-                        self.userId = Identifier(json: val, owner: self)
-                    }
+					upsert(userId: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "userId", wants: FHIRJSON.self, has: type(of: exist)))
@@ -759,9 +794,13 @@ open class AuditEventParticipantNetwork: BackboneElement {
 		get { return "AuditEventParticipantNetwork" }
 	}
 
-	public dynamic var address: String?
+	public dynamic var address: String?						
+		
+		
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	
@@ -813,9 +852,16 @@ open class AuditEventSource: BackboneElement {
 		get { return "AuditEventSource" }
 	}
 
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var site: String?
+	public dynamic var site: String?						
+		
+		
 	
 	public let type = RealmSwift.List<Coding>()
 	
@@ -833,11 +879,7 @@ open class AuditEventSource: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))

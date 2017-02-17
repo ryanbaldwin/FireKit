@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -19,11 +19,17 @@ open class Appointment: DomainResource {
 		get { return "Appointment" }
 	}
 
-	public dynamic var comment: String?
+	public dynamic var comment: String?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var end: Instant?
+	public dynamic var end: Instant?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
@@ -33,15 +39,29 @@ open class Appointment: DomainResource {
 	
 	public let priority = RealmOptional<Int>()
 	
-	public dynamic var reason: CodeableConcept?
+	public dynamic var reason: CodeableConcept?						
+		
+		
+			public func upsert(reason: CodeableConcept?) {
+				upsert(prop: &self.reason, val: reason)
+			}
 	
 	public let slot = RealmSwift.List<Reference>()
 	
-	public dynamic var start: Instant?
+	public dynamic var start: Instant?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -130,11 +150,7 @@ open class Appointment: DomainResource {
 			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
-					if let reason = self.reason {
-                        errors.append(contentsOf: reason.populate(from: val) ?? [])
-                    } else {
-                        self.reason = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(reason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -176,11 +192,7 @@ open class Appointment: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -245,11 +257,20 @@ open class AppointmentParticipant: BackboneElement {
 		get { return "AppointmentParticipant" }
 	}
 
-	public dynamic var actor: Reference?
+	public dynamic var actor: Reference?						
+		
+		
+			public func upsert(actor: Reference?) {
+				upsert(prop: &self.actor, val: actor)
+			}
 	
-	public dynamic var required: String?
+	public dynamic var required: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let type = RealmSwift.List<CodeableConcept>()
 	
@@ -267,11 +288,7 @@ open class AppointmentParticipant: BackboneElement {
 			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					if let actor = self.actor {
-                        errors.append(contentsOf: actor.populate(from: val) ?? [])
-                    } else {
-                        self.actor = Reference(json: val, owner: self)
-                    }
+					upsert(actor: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))

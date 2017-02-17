@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,9 +22,13 @@ open class DataElement: DomainResource {
 
 	public let contact = RealmSwift.List<DataElementContact>()
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
 	public let element = RealmSwift.List<ElementDefinition>()
 	
@@ -34,19 +38,31 @@ open class DataElement: DomainResource {
 	
 	public let mapping = RealmSwift.List<DataElementMapping>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var stringency: String?
+	public dynamic var stringency: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -272,7 +288,9 @@ open class DataElementContact: BackboneElement {
 		get { return "DataElementContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -332,13 +350,21 @@ open class DataElementMapping: BackboneElement {
 		get { return "DataElementMapping" }
 	}
 
-	public dynamic var comments: String?
+	public dynamic var comments: String?						
+		
+		
 	
-	public dynamic var identity: String?
+	public dynamic var identity: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var uri: String?
+	public dynamic var uri: String?						
+		
+		
 	
 
 	

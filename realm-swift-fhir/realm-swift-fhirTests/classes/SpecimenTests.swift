@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 			try runSpecimen1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Specimen
 			XCTAssertNotNil(copy)
-			try runSpecimen1(copy!.asJSON())
+			try runSpecimen1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
@@ -44,6 +44,26 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 
 		testSpecimenRealm1(instance: instance!)
 	}
+
+    func testSpecimen1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Specimen = try runSpecimen1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Specimen)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Specimen's PKs, but threw: \(error)")
+        }
+    }
 
 	func testSpecimenRealm1(instance: RealmSwiftFHIR.Specimen) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -112,7 +132,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 			try runSpecimen2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Specimen
 			XCTAssertNotNil(copy)
-			try runSpecimen2(copy!.asJSON())
+			try runSpecimen2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
@@ -120,6 +140,26 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 
 		testSpecimenRealm2(instance: instance!)
 	}
+
+    func testSpecimen2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Specimen = try runSpecimen2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Specimen)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Specimen's PKs, but threw: \(error)")
+        }
+    }
 
 	func testSpecimenRealm2(instance: RealmSwiftFHIR.Specimen) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -192,7 +232,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 			try runSpecimen3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Specimen
 			XCTAssertNotNil(copy)
-			try runSpecimen3(copy!.asJSON())
+			try runSpecimen3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
@@ -200,6 +240,26 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 
 		testSpecimenRealm3(instance: instance!)
 	}
+
+    func testSpecimen3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Specimen = try runSpecimen3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Specimen)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Specimen's PKs, but threw: \(error)")
+        }
+    }
 
 	func testSpecimenRealm3(instance: RealmSwiftFHIR.Specimen) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

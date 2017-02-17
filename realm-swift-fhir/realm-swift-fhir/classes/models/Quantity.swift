@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,15 +21,25 @@ open class Quantity: Element {
 		get { return "Quantity" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var comparator: String?
+	public dynamic var comparator: String?						
+		
+		
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var unit: String?
+	public dynamic var unit: String?						
+		
+		
 	
-	public dynamic var value: RealmDecimal?
+	public dynamic var value: RealmDecimal?						
+		
+		
 	
 
 	

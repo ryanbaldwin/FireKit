@@ -202,5 +202,37 @@ open class FHIRAbstractBase: Object {
 		}
 		return nil
 	}
+
+	// MARK: - Realm Element convenience method
+	func upsert<T: Element>(prop: inout T?, val: T?) {
+	    guard let val = val else {
+	        prop = nil
+	        return
+	    }
+	    
+	    if prop?.realm != nil {
+	        _ = prop?.populate(from: val.asJSON())
+	    } else if val.realm != nil {
+	        prop = (val.copy() as! T)
+	    } else {
+	        prop = val
+	    }
+	}
+
+	// ugh, this is so lame.
+	func upsert<T: Resource>(prop: inout T?, val: T?) {
+	    guard let val = val else {
+	        prop = nil
+	        return
+	    }
+	    
+	    if prop?.realm != nil {
+	        _ = prop?.populate(from: val.asJSON())
+	    } else if val.realm != nil {
+	        prop = (val.copy() as! T)
+	    } else {
+	        prop = val
+	    }
+	}
 }
 

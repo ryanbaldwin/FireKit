@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,23 +22,57 @@ open class RiskAssessment: DomainResource {
 
 	public let basis = RealmSwift.List<Reference>()
 	
-	public dynamic var condition: Reference?
+	public dynamic var condition: Reference?						
+		
+		
+			public func upsert(condition: Reference?) {
+				upsert(prop: &self.condition, val: condition)
+			}
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var method: CodeableConcept?
+	public dynamic var method: CodeableConcept?						
+		
+		
+			public func upsert(method: CodeableConcept?) {
+				upsert(prop: &self.method, val: method)
+			}
 	
-	public dynamic var mitigation: String?
+	public dynamic var mitigation: String?						
+		
+		
 	
-	public dynamic var performer: Reference?
+	public dynamic var performer: Reference?						
+		
+		
+			public func upsert(performer: Reference?) {
+				upsert(prop: &self.performer, val: performer)
+			}
 	
 	public let prediction = RealmSwift.List<RiskAssessmentPrediction>()
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 
 	
@@ -60,11 +94,7 @@ open class RiskAssessment: DomainResource {
 			if let exist = js["condition"] {
 				presentKeys.insert("condition")
 				if let val = exist as? FHIRJSON {
-					if let condition = self.condition {
-                        errors.append(contentsOf: condition.populate(from: val) ?? [])
-                    } else {
-                        self.condition = Reference(json: val, owner: self)
-                    }
+					upsert(condition: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "condition", wants: FHIRJSON.self, has: type(of: exist)))
@@ -82,11 +112,7 @@ open class RiskAssessment: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					if let encounter = self.encounter {
-                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
-                    } else {
-                        self.encounter = Reference(json: val, owner: self)
-                    }
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -95,11 +121,7 @@ open class RiskAssessment: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -108,11 +130,7 @@ open class RiskAssessment: DomainResource {
 			if let exist = js["method"] {
 				presentKeys.insert("method")
 				if let val = exist as? FHIRJSON {
-					if let method = self.method {
-                        errors.append(contentsOf: method.populate(from: val) ?? [])
-                    } else {
-                        self.method = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(method: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "method", wants: FHIRJSON.self, has: type(of: exist)))
@@ -130,11 +148,7 @@ open class RiskAssessment: DomainResource {
 			if let exist = js["performer"] {
 				presentKeys.insert("performer")
 				if let val = exist as? FHIRJSON {
-					if let performer = self.performer {
-                        errors.append(contentsOf: performer.populate(from: val) ?? [])
-                    } else {
-                        self.performer = Reference(json: val, owner: self)
-                    }
+					upsert(performer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -155,11 +169,7 @@ open class RiskAssessment: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					if let subject = self.subject {
-                        errors.append(contentsOf: subject.populate(from: val) ?? [])
-                    } else {
-                        self.subject = Reference(json: val, owner: self)
-                    }
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -218,21 +228,52 @@ open class RiskAssessmentPrediction: BackboneElement {
 		get { return "RiskAssessmentPrediction" }
 	}
 
-	public dynamic var outcome: CodeableConcept?
+	public dynamic var outcome: CodeableConcept?						
+		
+		
+			public func upsert(outcome: CodeableConcept?) {
+				upsert(prop: &self.outcome, val: outcome)
+			}
 	
-	public dynamic var probabilityCodeableConcept: CodeableConcept?
+	public dynamic var probabilityCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(probabilityCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.probabilityCodeableConcept, val: probabilityCodeableConcept)
+			}
 	
-	public dynamic var probabilityDecimal: RealmDecimal?
+	public dynamic var probabilityDecimal: RealmDecimal?						
+		
+		
 	
-	public dynamic var probabilityRange: Range?
+	public dynamic var probabilityRange: Range?						
+		
+		
+			public func upsert(probabilityRange: Range?) {
+				upsert(prop: &self.probabilityRange, val: probabilityRange)
+			}
 	
-	public dynamic var rationale: String?
+	public dynamic var rationale: String?						
+		
+		
 	
-	public dynamic var relativeRisk: RealmDecimal?
+	public dynamic var relativeRisk: RealmDecimal?						
+		
+		
 	
-	public dynamic var whenPeriod: Period?
+	public dynamic var whenPeriod: Period?						
+		
+		
+			public func upsert(whenPeriod: Period?) {
+				upsert(prop: &self.whenPeriod, val: whenPeriod)
+			}
 	
-	public dynamic var whenRange: Range?
+	public dynamic var whenRange: Range?						
+		
+		
+			public func upsert(whenRange: Range?) {
+				upsert(prop: &self.whenRange, val: whenRange)
+			}
 	
 
 	
@@ -248,11 +289,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 			if let exist = js["outcome"] {
 				presentKeys.insert("outcome")
 				if let val = exist as? FHIRJSON {
-					if let outcome = self.outcome {
-                        errors.append(contentsOf: outcome.populate(from: val) ?? [])
-                    } else {
-                        self.outcome = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(outcome: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: type(of: exist)))
@@ -264,11 +301,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 			if let exist = js["probabilityCodeableConcept"] {
 				presentKeys.insert("probabilityCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					if let probabilityCodeableConcept = self.probabilityCodeableConcept {
-                        errors.append(contentsOf: probabilityCodeableConcept.populate(from: val) ?? [])
-                    } else {
-                        self.probabilityCodeableConcept = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(probabilityCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "probabilityCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -286,11 +319,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 			if let exist = js["probabilityRange"] {
 				presentKeys.insert("probabilityRange")
 				if let val = exist as? FHIRJSON {
-					if let probabilityRange = self.probabilityRange {
-                        errors.append(contentsOf: probabilityRange.populate(from: val) ?? [])
-                    } else {
-                        self.probabilityRange = Range(json: val, owner: self)
-                    }
+					upsert(probabilityRange: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "probabilityRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -317,11 +346,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 			if let exist = js["whenPeriod"] {
 				presentKeys.insert("whenPeriod")
 				if let val = exist as? FHIRJSON {
-					if let whenPeriod = self.whenPeriod {
-                        errors.append(contentsOf: whenPeriod.populate(from: val) ?? [])
-                    } else {
-                        self.whenPeriod = Period(json: val, owner: self)
-                    }
+					upsert(whenPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "whenPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -330,11 +355,7 @@ open class RiskAssessmentPrediction: BackboneElement {
 			if let exist = js["whenRange"] {
 				presentKeys.insert("whenRange")
 				if let val = exist as? FHIRJSON {
-					if let whenRange = self.whenRange {
-                        errors.append(contentsOf: whenRange.populate(from: val) ?? [])
-                    } else {
-                        self.whenRange = Range(json: val, owner: self)
-                    }
+					upsert(whenRange: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "whenRange", wants: FHIRJSON.self, has: type(of: exist)))

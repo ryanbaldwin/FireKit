@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,19 +21,34 @@ open class SampledData: Element {
 		get { return "SampledData" }
 	}
 
-	public dynamic var data: String?
+	public dynamic var data: String?						
+		
+		
 	
 	public let dimensions = RealmOptional<Int>()
 	
-	public dynamic var factor: RealmDecimal?
+	public dynamic var factor: RealmDecimal?						
+		
+		
 	
-	public dynamic var lowerLimit: RealmDecimal?
+	public dynamic var lowerLimit: RealmDecimal?						
+		
+		
 	
-	public dynamic var origin: Quantity?
+	public dynamic var origin: Quantity?						
+		
+		
+			public func upsert(origin: Quantity?) {
+				upsert(prop: &self.origin, val: origin)
+			}
 	
-	public dynamic var period: RealmDecimal?
+	public dynamic var period: RealmDecimal?						
+		
+		
 	
-	public dynamic var upperLimit: RealmDecimal?
+	public dynamic var upperLimit: RealmDecimal?						
+		
+		
 	
 
 	
@@ -94,11 +109,7 @@ open class SampledData: Element {
 			if let exist = js["origin"] {
 				presentKeys.insert("origin")
 				if let val = exist as? FHIRJSON {
-					if let origin = self.origin {
-                        errors.append(contentsOf: origin.populate(from: val) ?? [])
-                    } else {
-                        self.origin = Quantity(json: val, owner: self)
-                    }
+					upsert(origin: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "origin", wants: FHIRJSON.self, has: type(of: exist)))

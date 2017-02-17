@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,47 +21,81 @@ open class Conformance: DomainResource {
 		get { return "Conformance" }
 	}
 
-	public dynamic var acceptUnknown: String?
+	public dynamic var acceptUnknown: String?						
+		
+		
 	
 	public let contact = RealmSwift.List<ConformanceContact>()
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let document = RealmSwift.List<ConformanceDocument>()
 	
 	public let experimental = RealmOptional<Bool>()
 	
-	public dynamic var fhirVersion: String?
+	public dynamic var fhirVersion: String?						
+		
+		
 	
 	public let format = RealmSwift.List<RealmString>()
 	
-	public dynamic var implementation: ConformanceImplementation?
+	public dynamic var implementation: ConformanceImplementation?						
+		
+		
+			public func upsert(implementation: ConformanceImplementation?) {
+				upsert(prop: &self.implementation, val: implementation)
+			}
 	
-	public dynamic var kind: String?
+	public dynamic var kind: String?						
+		
+		
 	
 	public let messaging = RealmSwift.List<ConformanceMessaging>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let profile = RealmSwift.List<Reference>()
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
 	public let rest = RealmSwift.List<ConformanceRest>()
 	
-	public dynamic var software: ConformanceSoftware?
+	public dynamic var software: ConformanceSoftware?						
+		
+		
+			public func upsert(software: ConformanceSoftware?) {
+				upsert(prop: &self.software, val: software)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -180,11 +214,7 @@ open class Conformance: DomainResource {
 			if let exist = js["implementation"] {
 				presentKeys.insert("implementation")
 				if let val = exist as? FHIRJSON {
-					if let implementation = self.implementation {
-                        errors.append(contentsOf: implementation.populate(from: val) ?? [])
-                    } else {
-                        self.implementation = ConformanceImplementation(json: val, owner: self)
-                    }
+					upsert(implementation: ConformanceImplementation(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "implementation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -268,11 +298,7 @@ open class Conformance: DomainResource {
 			if let exist = js["software"] {
 				presentKeys.insert("software")
 				if let val = exist as? FHIRJSON {
-					if let software = self.software {
-                        errors.append(contentsOf: software.populate(from: val) ?? [])
-                    } else {
-                        self.software = ConformanceSoftware(json: val, owner: self)
-                    }
+					upsert(software: ConformanceSoftware(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "software", wants: FHIRJSON.self, has: type(of: exist)))
@@ -391,7 +417,9 @@ open class ConformanceContact: BackboneElement {
 		get { return "ConformanceContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -450,11 +478,20 @@ open class ConformanceDocument: BackboneElement {
 		get { return "ConformanceDocument" }
 	}
 
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
-	public dynamic var mode: String?
+	public dynamic var mode: String?						
+		
+		
 	
-	public dynamic var profile: Reference?
+	public dynamic var profile: Reference?						
+		
+		
+			public func upsert(profile: Reference?) {
+				upsert(prop: &self.profile, val: profile)
+			}
 	
 
 	
@@ -492,11 +529,7 @@ open class ConformanceDocument: BackboneElement {
 			if let exist = js["profile"] {
 				presentKeys.insert("profile")
 				if let val = exist as? FHIRJSON {
-					if let profile = self.profile {
-                        errors.append(contentsOf: profile.populate(from: val) ?? [])
-                    } else {
-                        self.profile = Reference(json: val, owner: self)
-                    }
+					upsert(profile: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: type(of: exist)))
@@ -538,9 +571,13 @@ open class ConformanceImplementation: BackboneElement {
 		get { return "ConformanceImplementation" }
 	}
 
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -603,7 +640,9 @@ open class ConformanceMessaging: BackboneElement {
 		get { return "ConformanceMessaging" }
 	}
 
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
 	public let endpoint = RealmSwift.List<ConformanceMessagingEndpoint>()
 	
@@ -702,9 +741,16 @@ open class ConformanceMessagingEndpoint: BackboneElement {
 		get { return "ConformanceMessagingEndpoint" }
 	}
 
-	public dynamic var address: String?
+	public dynamic var address: String?						
+		
+		
 	
-	public dynamic var protocol_fhir: Coding?
+	public dynamic var protocol_fhir: Coding?						
+		
+		
+			public func upsert(protocol_fhir: Coding?) {
+				upsert(prop: &self.protocol_fhir, val: protocol_fhir)
+			}
 	
 
 	
@@ -733,11 +779,7 @@ open class ConformanceMessagingEndpoint: BackboneElement {
 			if let exist = js["protocol"] {
 				presentKeys.insert("protocol")
 				if let val = exist as? FHIRJSON {
-					if let protocol_fhir = self.protocol_fhir {
-                        errors.append(contentsOf: protocol_fhir.populate(from: val) ?? [])
-                    } else {
-                        self.protocol_fhir = Coding(json: val, owner: self)
-                    }
+					upsert(protocol_fhir: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "protocol", wants: FHIRJSON.self, has: type(of: exist)))
@@ -775,19 +817,42 @@ open class ConformanceMessagingEvent: BackboneElement {
 		get { return "ConformanceMessagingEvent" }
 	}
 
-	public dynamic var category: String?
+	public dynamic var category: String?						
+		
+		
 	
-	public dynamic var code: Coding?
+	public dynamic var code: Coding?						
+		
+		
+			public func upsert(code: Coding?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
-	public dynamic var focus: String?
+	public dynamic var focus: String?						
+		
+		
 	
-	public dynamic var mode: String?
+	public dynamic var mode: String?						
+		
+		
 	
-	public dynamic var request: Reference?
+	public dynamic var request: Reference?						
+		
+		
+			public func upsert(request: Reference?) {
+				upsert(prop: &self.request, val: request)
+			}
 	
-	public dynamic var response: Reference?
+	public dynamic var response: Reference?						
+		
+		
+			public func upsert(response: Reference?) {
+				upsert(prop: &self.response, val: response)
+			}
 	
 
 	
@@ -816,11 +881,7 @@ open class ConformanceMessagingEvent: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					if let code = self.code {
-                        errors.append(contentsOf: code.populate(from: val) ?? [])
-                    } else {
-                        self.code = Coding(json: val, owner: self)
-                    }
+					upsert(code: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -865,11 +926,7 @@ open class ConformanceMessagingEvent: BackboneElement {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					if let request = self.request {
-                        errors.append(contentsOf: request.populate(from: val) ?? [])
-                    } else {
-                        self.request = Reference(json: val, owner: self)
-                    }
+					upsert(request: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -881,11 +938,7 @@ open class ConformanceMessagingEvent: BackboneElement {
 			if let exist = js["response"] {
 				presentKeys.insert("response")
 				if let val = exist as? FHIRJSON {
-					if let response = self.response {
-                        errors.append(contentsOf: response.populate(from: val) ?? [])
-                    } else {
-                        self.response = Reference(json: val, owner: self)
-                    }
+					upsert(response: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
@@ -940,11 +993,15 @@ open class ConformanceRest: BackboneElement {
 
 	public let compartment = RealmSwift.List<RealmString>()
 	
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
 	public let interaction = RealmSwift.List<ConformanceRestInteraction>()
 	
-	public dynamic var mode: String?
+	public dynamic var mode: String?						
+		
+		
 	
 	public let operation = RealmSwift.List<ConformanceRestOperation>()
 	
@@ -952,9 +1009,16 @@ open class ConformanceRest: BackboneElement {
 	
 	public let searchParam = RealmSwift.List<ConformanceRestResourceSearchParam>()
 	
-	public dynamic var security: ConformanceRestSecurity?
+	public dynamic var security: ConformanceRestSecurity?						
+		
+		
+			public func upsert(security: ConformanceRestSecurity?) {
+				upsert(prop: &self.security, val: security)
+			}
 	
-	public dynamic var transactionMode: String?
+	public dynamic var transactionMode: String?						
+		
+		
 	
 
 	
@@ -1052,11 +1116,7 @@ open class ConformanceRest: BackboneElement {
 			if let exist = js["security"] {
 				presentKeys.insert("security")
 				if let val = exist as? FHIRJSON {
-					if let security = self.security {
-                        errors.append(contentsOf: security.populate(from: val) ?? [])
-                    } else {
-                        self.security = ConformanceRestSecurity(json: val, owner: self)
-                    }
+					upsert(security: ConformanceRestSecurity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "security", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1121,9 +1181,13 @@ open class ConformanceRestInteraction: BackboneElement {
 		get { return "ConformanceRestInteraction" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
 
 	
@@ -1186,9 +1250,16 @@ open class ConformanceRestOperation: BackboneElement {
 		get { return "ConformanceRestOperation" }
 	}
 
-	public dynamic var definition: Reference?
+	public dynamic var definition: Reference?						
+		
+		
+			public func upsert(definition: Reference?) {
+				upsert(prop: &self.definition, val: definition)
+			}
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 
 	
@@ -1205,11 +1276,7 @@ open class ConformanceRestOperation: BackboneElement {
 			if let exist = js["definition"] {
 				presentKeys.insert("definition")
 				if let val = exist as? FHIRJSON {
-					if let definition = self.definition {
-                        errors.append(contentsOf: definition.populate(from: val) ?? [])
-                    } else {
-                        self.definition = Reference(json: val, owner: self)
-                    }
+					upsert(definition: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "definition", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1261,13 +1328,20 @@ open class ConformanceRestResource: BackboneElement {
 
 	public let conditionalCreate = RealmOptional<Bool>()
 	
-	public dynamic var conditionalDelete: String?
+	public dynamic var conditionalDelete: String?						
+		
+		
 	
 	public let conditionalUpdate = RealmOptional<Bool>()
 	
 	public let interaction = RealmSwift.List<ConformanceRestResourceInteraction>()
 	
-	public dynamic var profile: Reference?
+	public dynamic var profile: Reference?						
+		
+		
+			public func upsert(profile: Reference?) {
+				upsert(prop: &self.profile, val: profile)
+			}
 	
 	public let readHistory = RealmOptional<Bool>()
 	
@@ -1277,11 +1351,15 @@ open class ConformanceRestResource: BackboneElement {
 	
 	public let searchRevInclude = RealmSwift.List<RealmString>()
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 	public let updateCreate = RealmOptional<Bool>()
 	
-	public dynamic var versioning: String?
+	public dynamic var versioning: String?						
+		
+		
 	
 
 	
@@ -1340,11 +1418,7 @@ open class ConformanceRestResource: BackboneElement {
 			if let exist = js["profile"] {
 				presentKeys.insert("profile")
 				if let val = exist as? FHIRJSON {
-					if let profile = self.profile {
-                        errors.append(contentsOf: profile.populate(from: val) ?? [])
-                    } else {
-                        self.profile = Reference(json: val, owner: self)
-                    }
+					upsert(profile: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "profile", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1478,9 +1552,13 @@ open class ConformanceRestResourceInteraction: BackboneElement {
 		get { return "ConformanceRestResourceInteraction" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
 
 	
@@ -1546,17 +1624,25 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 
 	public let chain = RealmSwift.List<RealmString>()
 	
-	public dynamic var definition: String?
+	public dynamic var definition: String?						
+		
+		
 	
-	public dynamic var documentation: String?
+	public dynamic var documentation: String?						
+		
+		
 	
 	public let modifier = RealmSwift.List<RealmString>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let target = RealmSwift.List<RealmString>()
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	
@@ -1687,7 +1773,9 @@ open class ConformanceRestSecurity: BackboneElement {
 	
 	public let cors = RealmOptional<Bool>()
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let service = RealmSwift.List<CodeableConcept>()
 	
@@ -1771,9 +1859,13 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
 		get { return "ConformanceRestSecurityCertificate" }
 	}
 
-	public dynamic var blob: Base64Binary?
+	public dynamic var blob: Base64Binary?						
+		
+		
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	
@@ -1828,11 +1920,17 @@ open class ConformanceSoftware: BackboneElement {
 		get { return "ConformanceSoftware" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var releaseDate: DateTime?
+	public dynamic var releaseDate: DateTime?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	

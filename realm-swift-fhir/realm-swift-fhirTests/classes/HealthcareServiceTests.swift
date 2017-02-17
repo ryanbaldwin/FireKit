@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
 			try runHealthcareService1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.HealthcareService
 			XCTAssertNotNil(copy)
-			try runHealthcareService1(copy!.asJSON())
+			try runHealthcareService1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test HealthcareService successfully, but threw")
@@ -44,6 +44,26 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
 
 		testHealthcareServiceRealm1(instance: instance!)
 	}
+
+    func testHealthcareService1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.HealthcareService = try runHealthcareService1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.HealthcareService)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test HealthcareService's PKs, but threw: \(error)")
+        }
+    }
 
 	func testHealthcareServiceRealm1(instance: RealmSwiftFHIR.HealthcareService) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

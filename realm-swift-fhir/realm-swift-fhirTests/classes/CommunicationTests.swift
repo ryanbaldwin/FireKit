@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
 			try runCommunication1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Communication
 			XCTAssertNotNil(copy)
-			try runCommunication1(copy!.asJSON())
+			try runCommunication1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Communication successfully, but threw")
@@ -44,6 +44,26 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
 
 		testCommunicationRealm1(instance: instance!)
 	}
+
+    func testCommunication1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Communication = try runCommunication1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Communication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Communication's PKs, but threw: \(error)")
+        }
+    }
 
 	func testCommunicationRealm1(instance: RealmSwiftFHIR.Communication) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

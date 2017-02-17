@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -18,21 +18,39 @@ open class AppointmentResponse: DomainResource {
 		get { return "AppointmentResponse" }
 	}
 
-	public dynamic var actor: Reference?
+	public dynamic var actor: Reference?						
+		
+		
+			public func upsert(actor: Reference?) {
+				upsert(prop: &self.actor, val: actor)
+			}
 	
-	public dynamic var appointment: Reference?
+	public dynamic var appointment: Reference?						
+		
+		
+			public func upsert(appointment: Reference?) {
+				upsert(prop: &self.appointment, val: appointment)
+			}
 	
-	public dynamic var comment: String?
+	public dynamic var comment: String?						
+		
+		
 	
-	public dynamic var end: Instant?
+	public dynamic var end: Instant?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var participantStatus: String?
+	public dynamic var participantStatus: String?						
+		
+		
 	
 	public let participantType = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var start: Instant?
+	public dynamic var start: Instant?						
+		
+		
 	
 
 	
@@ -49,11 +67,7 @@ open class AppointmentResponse: DomainResource {
 			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					if let actor = self.actor {
-                        errors.append(contentsOf: actor.populate(from: val) ?? [])
-                    } else {
-                        self.actor = Reference(json: val, owner: self)
-                    }
+					upsert(actor: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
@@ -62,11 +76,7 @@ open class AppointmentResponse: DomainResource {
 			if let exist = js["appointment"] {
 				presentKeys.insert("appointment")
 				if let val = exist as? FHIRJSON {
-					if let appointment = self.appointment {
-                        errors.append(contentsOf: appointment.populate(from: val) ?? [])
-                    } else {
-                        self.appointment = Reference(json: val, owner: self)
-                    }
+					upsert(appointment: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "appointment", wants: FHIRJSON.self, has: type(of: exist)))

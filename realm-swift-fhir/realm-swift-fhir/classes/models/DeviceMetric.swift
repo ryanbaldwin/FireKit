@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,23 +22,59 @@ open class DeviceMetric: DomainResource {
 
 	public let calibration = RealmSwift.List<DeviceMetricCalibration>()
 	
-	public dynamic var category: String?
+	public dynamic var category: String?						
+		
+		
 	
-	public dynamic var color: String?
+	public dynamic var color: String?						
+		
+		
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var measurementPeriod: Timing?
+	public dynamic var measurementPeriod: Timing?						
+		
+		
+			public func upsert(measurementPeriod: Timing?) {
+				upsert(prop: &self.measurementPeriod, val: measurementPeriod)
+			}
 	
-	public dynamic var operationalStatus: String?
+	public dynamic var operationalStatus: String?						
+		
+		
 	
-	public dynamic var parent: Reference?
+	public dynamic var parent: Reference?						
+		
+		
+			public func upsert(parent: Reference?) {
+				upsert(prop: &self.parent, val: parent)
+			}
 	
-	public dynamic var source: Reference?
+	public dynamic var source: Reference?						
+		
+		
+			public func upsert(source: Reference?) {
+				upsert(prop: &self.source, val: source)
+			}
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var unit: CodeableConcept?
+	public dynamic var unit: CodeableConcept?						
+		
+		
+			public func upsert(unit: CodeableConcept?) {
+				upsert(prop: &self.unit, val: unit)
+			}
 	
 
 	
@@ -89,11 +125,7 @@ open class DeviceMetric: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -105,11 +137,7 @@ open class DeviceMetric: DomainResource {
 			if let exist = js["measurementPeriod"] {
 				presentKeys.insert("measurementPeriod")
 				if let val = exist as? FHIRJSON {
-					if let measurementPeriod = self.measurementPeriod {
-                        errors.append(contentsOf: measurementPeriod.populate(from: val) ?? [])
-                    } else {
-                        self.measurementPeriod = Timing(json: val, owner: self)
-                    }
+					upsert(measurementPeriod: Timing(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "measurementPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -127,11 +155,7 @@ open class DeviceMetric: DomainResource {
 			if let exist = js["parent"] {
 				presentKeys.insert("parent")
 				if let val = exist as? FHIRJSON {
-					if let parent = self.parent {
-                        errors.append(contentsOf: parent.populate(from: val) ?? [])
-                    } else {
-                        self.parent = Reference(json: val, owner: self)
-                    }
+					upsert(parent: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: type(of: exist)))
@@ -140,11 +164,7 @@ open class DeviceMetric: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					if let source = self.source {
-                        errors.append(contentsOf: source.populate(from: val) ?? [])
-                    } else {
-                        self.source = Reference(json: val, owner: self)
-                    }
+					upsert(source: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -153,11 +173,7 @@ open class DeviceMetric: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -169,11 +185,7 @@ open class DeviceMetric: DomainResource {
 			if let exist = js["unit"] {
 				presentKeys.insert("unit")
 				if let val = exist as? FHIRJSON {
-					if let unit = self.unit {
-                        errors.append(contentsOf: unit.populate(from: val) ?? [])
-                    } else {
-                        self.unit = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(unit: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unit", wants: FHIRJSON.self, has: type(of: exist)))
@@ -230,11 +242,17 @@ open class DeviceMetricCalibration: BackboneElement {
 		get { return "DeviceMetricCalibration" }
 	}
 
-	public dynamic var state: String?
+	public dynamic var state: String?						
+		
+		
 	
-	public dynamic var time: Instant?
+	public dynamic var time: Instant?						
+		
+		
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	

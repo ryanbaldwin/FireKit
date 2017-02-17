@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,17 +20,38 @@ open class Identifier: Element {
 		get { return "Identifier" }
 	}
 
-	public dynamic var assigner: Reference?
+	public dynamic var assigner: Reference?						
+		
+		
+			public func upsert(assigner: Reference?) {
+				upsert(prop: &self.assigner, val: assigner)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var use: String?
+	public dynamic var use: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -40,11 +61,7 @@ open class Identifier: Element {
 			if let exist = js["assigner"] {
 				presentKeys.insert("assigner")
 				if let val = exist as? FHIRJSON {
-					if let assigner = self.assigner {
-                        errors.append(contentsOf: assigner.populate(from: val) ?? [])
-                    } else {
-                        self.assigner = Reference(json: val, owner: self)
-                    }
+					upsert(assigner: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assigner", wants: FHIRJSON.self, has: type(of: exist)))
@@ -53,11 +70,7 @@ open class Identifier: Element {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -75,11 +88,7 @@ open class Identifier: Element {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

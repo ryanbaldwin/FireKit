@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			try runOperationOutcome1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.OperationOutcome
 			XCTAssertNotNil(copy)
-			try runOperationOutcome1(copy!.asJSON())
+			try runOperationOutcome1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
@@ -44,6 +44,26 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
 		testOperationOutcomeRealm1(instance: instance!)
 	}
+
+    func testOperationOutcome1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.OperationOutcome = try runOperationOutcome1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.OperationOutcome)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OperationOutcome's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOperationOutcomeRealm1(instance: RealmSwiftFHIR.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -102,7 +122,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			try runOperationOutcome2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.OperationOutcome
 			XCTAssertNotNil(copy)
-			try runOperationOutcome2(copy!.asJSON())
+			try runOperationOutcome2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
@@ -110,6 +130,26 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
 		testOperationOutcomeRealm2(instance: instance!)
 	}
+
+    func testOperationOutcome2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.OperationOutcome = try runOperationOutcome2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.OperationOutcome)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OperationOutcome's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOperationOutcomeRealm2(instance: RealmSwiftFHIR.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -171,7 +211,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			try runOperationOutcome3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.OperationOutcome
 			XCTAssertNotNil(copy)
-			try runOperationOutcome3(copy!.asJSON())
+			try runOperationOutcome3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
@@ -179,6 +219,26 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
 		testOperationOutcomeRealm3(instance: instance!)
 	}
+
+    func testOperationOutcome3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.OperationOutcome = try runOperationOutcome3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.OperationOutcome)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OperationOutcome's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOperationOutcomeRealm3(instance: RealmSwiftFHIR.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -237,7 +297,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			try runOperationOutcome4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.OperationOutcome
 			XCTAssertNotNil(copy)
-			try runOperationOutcome4(copy!.asJSON())
+			try runOperationOutcome4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
@@ -245,6 +305,26 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
 		testOperationOutcomeRealm4(instance: instance!)
 	}
+
+    func testOperationOutcome4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.OperationOutcome = try runOperationOutcome4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.OperationOutcome)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OperationOutcome's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOperationOutcomeRealm4(instance: RealmSwiftFHIR.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -304,7 +384,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			try runOperationOutcome5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.OperationOutcome
 			XCTAssertNotNil(copy)
-			try runOperationOutcome5(copy!.asJSON())
+			try runOperationOutcome5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
@@ -312,6 +392,26 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
 		testOperationOutcomeRealm5(instance: instance!)
 	}
+
+    func testOperationOutcome5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.OperationOutcome = try runOperationOutcome5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.OperationOutcome)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OperationOutcome's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOperationOutcomeRealm5(instance: RealmSwiftFHIR.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -371,7 +471,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			try runOperationOutcome6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.OperationOutcome
 			XCTAssertNotNil(copy)
-			try runOperationOutcome6(copy!.asJSON())
+			try runOperationOutcome6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
@@ -379,6 +479,26 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
 		testOperationOutcomeRealm6(instance: instance!)
 	}
+
+    func testOperationOutcome6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.OperationOutcome = try runOperationOutcome6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.OperationOutcome)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OperationOutcome's PKs, but threw: \(error)")
+        }
+    }
 
 	func testOperationOutcomeRealm6(instance: RealmSwiftFHIR.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

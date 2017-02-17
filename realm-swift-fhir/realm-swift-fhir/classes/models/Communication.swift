@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,9 +21,19 @@ open class Communication: DomainResource {
 		get { return "Communication" }
 	}
 
-	public dynamic var category: CodeableConcept?
+	public dynamic var category: CodeableConcept?						
+		
+		
+			public func upsert(category: CodeableConcept?) {
+				upsert(prop: &self.category, val: category)
+			}
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
@@ -33,19 +43,40 @@ open class Communication: DomainResource {
 	
 	public let reason = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var received: DateTime?
+	public dynamic var received: DateTime?						
+		
+		
 	
 	public let recipient = RealmSwift.List<Reference>()
 	
-	public dynamic var requestDetail: Reference?
+	public dynamic var requestDetail: Reference?						
+		
+		
+			public func upsert(requestDetail: Reference?) {
+				upsert(prop: &self.requestDetail, val: requestDetail)
+			}
 	
-	public dynamic var sender: Reference?
+	public dynamic var sender: Reference?						
+		
+		
+			public func upsert(sender: Reference?) {
+				upsert(prop: &self.sender, val: sender)
+			}
 	
-	public dynamic var sent: DateTime?
+	public dynamic var sent: DateTime?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 
 	
@@ -55,11 +86,7 @@ open class Communication: DomainResource {
 			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					if let category = self.category {
-                        errors.append(contentsOf: category.populate(from: val) ?? [])
-                    } else {
-                        self.category = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(category: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
@@ -68,11 +95,7 @@ open class Communication: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					if let encounter = self.encounter {
-                        errors.append(contentsOf: encounter.populate(from: val) ?? [])
-                    } else {
-                        self.encounter = Reference(json: val, owner: self)
-                    }
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -150,11 +173,7 @@ open class Communication: DomainResource {
 			if let exist = js["requestDetail"] {
 				presentKeys.insert("requestDetail")
 				if let val = exist as? FHIRJSON {
-					if let requestDetail = self.requestDetail {
-                        errors.append(contentsOf: requestDetail.populate(from: val) ?? [])
-                    } else {
-                        self.requestDetail = Reference(json: val, owner: self)
-                    }
+					upsert(requestDetail: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requestDetail", wants: FHIRJSON.self, has: type(of: exist)))
@@ -163,11 +182,7 @@ open class Communication: DomainResource {
 			if let exist = js["sender"] {
 				presentKeys.insert("sender")
 				if let val = exist as? FHIRJSON {
-					if let sender = self.sender {
-                        errors.append(contentsOf: sender.populate(from: val) ?? [])
-                    } else {
-                        self.sender = Reference(json: val, owner: self)
-                    }
+					upsert(sender: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sender", wants: FHIRJSON.self, has: type(of: exist)))
@@ -194,11 +209,7 @@ open class Communication: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					if let subject = self.subject {
-                        errors.append(contentsOf: subject.populate(from: val) ?? [])
-                    } else {
-                        self.subject = Reference(json: val, owner: self)
-                    }
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -266,11 +277,23 @@ open class CommunicationPayload: BackboneElement {
 		get { return "CommunicationPayload" }
 	}
 
-	public dynamic var contentAttachment: Attachment?
+	public dynamic var contentAttachment: Attachment?						
+		
+		
+			public func upsert(contentAttachment: Attachment?) {
+				upsert(prop: &self.contentAttachment, val: contentAttachment)
+			}
 	
-	public dynamic var contentReference: Reference?
+	public dynamic var contentReference: Reference?						
+		
+		
+			public func upsert(contentReference: Reference?) {
+				upsert(prop: &self.contentReference, val: contentReference)
+			}
 	
-	public dynamic var contentString: String?
+	public dynamic var contentString: String?						
+		
+		
 	
 
 	
@@ -288,11 +311,7 @@ open class CommunicationPayload: BackboneElement {
 			if let exist = js["contentAttachment"] {
 				presentKeys.insert("contentAttachment")
 				if let val = exist as? FHIRJSON {
-					if let contentAttachment = self.contentAttachment {
-                        errors.append(contentsOf: contentAttachment.populate(from: val) ?? [])
-                    } else {
-                        self.contentAttachment = Attachment(json: val, owner: self)
-                    }
+					upsert(contentAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -301,11 +320,7 @@ open class CommunicationPayload: BackboneElement {
 			if let exist = js["contentReference"] {
 				presentKeys.insert("contentReference")
 				if let val = exist as? FHIRJSON {
-					if let contentReference = self.contentReference {
-                        errors.append(contentsOf: contentReference.populate(from: val) ?? [])
-                    } else {
-                        self.contentReference = Reference(json: val, owner: self)
-                    }
+					upsert(contentReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 			try runGroup1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Group
 			XCTAssertNotNil(copy)
-			try runGroup1(copy!.asJSON())
+			try runGroup1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
@@ -44,6 +44,26 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 
 		testGroupRealm1(instance: instance!)
 	}
+
+    func testGroup1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Group = try runGroup1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Group)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Group's PKs, but threw: \(error)")
+        }
+    }
 
 	func testGroupRealm1(instance: RealmSwiftFHIR.Group) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -109,7 +129,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 			try runGroup2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Group
 			XCTAssertNotNil(copy)
-			try runGroup2(copy!.asJSON())
+			try runGroup2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
@@ -117,6 +137,26 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 
 		testGroupRealm2(instance: instance!)
 	}
+
+    func testGroup2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Group = try runGroup2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Group)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Group's PKs, but threw: \(error)")
+        }
+    }
 
 	func testGroupRealm2(instance: RealmSwiftFHIR.Group) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

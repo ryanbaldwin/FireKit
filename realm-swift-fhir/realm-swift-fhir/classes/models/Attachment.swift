@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,21 +20,35 @@ open class Attachment: Element {
 		get { return "Attachment" }
 	}
 
-	public dynamic var contentType: String?
+	public dynamic var contentType: String?						
+		
+		
 	
-	public dynamic var creation: DateTime?
+	public dynamic var creation: DateTime?						
+		
+		
 	
-	public dynamic var data: Base64Binary?
+	public dynamic var data: Base64Binary?						
+		
+		
 	
-	public dynamic var hash_fhir: Base64Binary?
+	public dynamic var hash_fhir: Base64Binary?						
+		
+		
 	
-	public dynamic var language: String?
+	public dynamic var language: String?						
+		
+		
 	
 	public let size = RealmOptional<Int>()
 	
-	public dynamic var title: String?
+	public dynamic var title: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	

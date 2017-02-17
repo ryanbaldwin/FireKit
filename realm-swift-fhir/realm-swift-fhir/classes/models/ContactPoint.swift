@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,15 +21,26 @@ open class ContactPoint: Element {
 		get { return "ContactPoint" }
 	}
 
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 	public let rank = RealmOptional<Int>()
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var use: String?
+	public dynamic var use: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -39,11 +50,7 @@ open class ContactPoint: Element {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					if let period = self.period {
-                        errors.append(contentsOf: period.populate(from: val) ?? [])
-                    } else {
-                        self.period = Period(json: val, owner: self)
-                    }
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))

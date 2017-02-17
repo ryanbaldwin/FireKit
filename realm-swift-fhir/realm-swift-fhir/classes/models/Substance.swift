@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,9 +20,16 @@ open class Substance: DomainResource {
 
 	public let category = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
@@ -56,11 +63,7 @@ open class Substance: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					if let code = self.code {
-                        errors.append(contentsOf: code.populate(from: val) ?? [])
-                    } else {
-                        self.code = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -155,9 +158,19 @@ open class SubstanceIngredient: BackboneElement {
 		get { return "SubstanceIngredient" }
 	}
 
-	public dynamic var quantity: Ratio?
+	public dynamic var quantity: Ratio?						
+		
+		
+			public func upsert(quantity: Ratio?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
-	public dynamic var substance: Reference?
+	public dynamic var substance: Reference?						
+		
+		
+			public func upsert(substance: Reference?) {
+				upsert(prop: &self.substance, val: substance)
+			}
 	
 
 	
@@ -173,11 +186,7 @@ open class SubstanceIngredient: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					if let quantity = self.quantity {
-                        errors.append(contentsOf: quantity.populate(from: val) ?? [])
-                    } else {
-                        self.quantity = Ratio(json: val, owner: self)
-                    }
+					upsert(quantity: Ratio(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -186,11 +195,7 @@ open class SubstanceIngredient: BackboneElement {
 			if let exist = js["substance"] {
 				presentKeys.insert("substance")
 				if let val = exist as? FHIRJSON {
-					if let substance = self.substance {
-                        errors.append(contentsOf: substance.populate(from: val) ?? [])
-                    } else {
-                        self.substance = Reference(json: val, owner: self)
-                    }
+					upsert(substance: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))
@@ -229,11 +234,23 @@ open class SubstanceInstance: BackboneElement {
 		get { return "SubstanceInstance" }
 	}
 
-	public dynamic var expiry: DateTime?
+	public dynamic var expiry: DateTime?						
+		
+		
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
 
 	
@@ -252,11 +269,7 @@ open class SubstanceInstance: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -265,11 +278,7 @@ open class SubstanceInstance: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					if let quantity = self.quantity {
-                        errors.append(contentsOf: quantity.populate(from: val) ?? [])
-                    } else {
-                        self.quantity = Quantity(json: val, owner: self)
-                    }
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))

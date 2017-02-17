@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -19,9 +19,16 @@ open class Media: DomainResource {
 		get { return "Media" }
 	}
 
-	public dynamic var content: Attachment?
+	public dynamic var content: Attachment?						
+		
+		
+			public func upsert(content: Attachment?) {
+				upsert(prop: &self.content, val: content)
+			}
 	
-	public dynamic var deviceName: String?
+	public dynamic var deviceName: String?						
+		
+		
 	
 	public let duration = RealmOptional<Int>()
 	
@@ -31,15 +38,37 @@ open class Media: DomainResource {
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var operator_fhir: Reference?
+	public dynamic var operator_fhir: Reference?						
+		
+		
+			public func upsert(operator_fhir: Reference?) {
+				upsert(prop: &self.operator_fhir, val: operator_fhir)
+			}
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var subtype: CodeableConcept?
+	public dynamic var subtype: CodeableConcept?						
+		
+		
+			public func upsert(subtype: CodeableConcept?) {
+				upsert(prop: &self.subtype, val: subtype)
+			}
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var view: CodeableConcept?
+	public dynamic var view: CodeableConcept?						
+		
+		
+			public func upsert(view: CodeableConcept?) {
+				upsert(prop: &self.view, val: view)
+			}
 	
 	public let width = RealmOptional<Int>()
 	
@@ -58,11 +87,7 @@ open class Media: DomainResource {
 			if let exist = js["content"] {
 				presentKeys.insert("content")
 				if let val = exist as? FHIRJSON {
-					if let content = self.content {
-                        errors.append(contentsOf: content.populate(from: val) ?? [])
-                    } else {
-                        self.content = Attachment(json: val, owner: self)
-                    }
+					upsert(content: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "content", wants: FHIRJSON.self, has: type(of: exist)))
@@ -122,11 +147,7 @@ open class Media: DomainResource {
 			if let exist = js["operator"] {
 				presentKeys.insert("operator")
 				if let val = exist as? FHIRJSON {
-					if let operator_fhir = self.operator_fhir {
-                        errors.append(contentsOf: operator_fhir.populate(from: val) ?? [])
-                    } else {
-                        self.operator_fhir = Reference(json: val, owner: self)
-                    }
+					upsert(operator_fhir: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operator", wants: FHIRJSON.self, has: type(of: exist)))
@@ -135,11 +156,7 @@ open class Media: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					if let subject = self.subject {
-                        errors.append(contentsOf: subject.populate(from: val) ?? [])
-                    } else {
-                        self.subject = Reference(json: val, owner: self)
-                    }
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -148,11 +165,7 @@ open class Media: DomainResource {
 			if let exist = js["subtype"] {
 				presentKeys.insert("subtype")
 				if let val = exist as? FHIRJSON {
-					if let subtype = self.subtype {
-                        errors.append(contentsOf: subtype.populate(from: val) ?? [])
-                    } else {
-                        self.subtype = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(subtype: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subtype", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,11 +186,7 @@ open class Media: DomainResource {
 			if let exist = js["view"] {
 				presentKeys.insert("view")
 				if let val = exist as? FHIRJSON {
-					if let view = self.view {
-                        errors.append(contentsOf: view.populate(from: val) ?? [])
-                    } else {
-                        self.view = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(view: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "view", wants: FHIRJSON.self, has: type(of: exist)))

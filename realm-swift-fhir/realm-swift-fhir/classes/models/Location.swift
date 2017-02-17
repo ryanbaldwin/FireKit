@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,29 +21,67 @@ open class Location: DomainResource {
 		get { return "Location" }
 	}
 
-	public dynamic var address: Address?
+	public dynamic var address: Address?						
+		
+		
+			public func upsert(address: Address?) {
+				upsert(prop: &self.address, val: address)
+			}
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var managingOrganization: Reference?
+	public dynamic var managingOrganization: Reference?						
+		
+		
+			public func upsert(managingOrganization: Reference?) {
+				upsert(prop: &self.managingOrganization, val: managingOrganization)
+			}
 	
-	public dynamic var mode: String?
+	public dynamic var mode: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var partOf: Reference?
+	public dynamic var partOf: Reference?						
+		
+		
+			public func upsert(partOf: Reference?) {
+				upsert(prop: &self.partOf, val: partOf)
+			}
 	
-	public dynamic var physicalType: CodeableConcept?
+	public dynamic var physicalType: CodeableConcept?						
+		
+		
+			public func upsert(physicalType: CodeableConcept?) {
+				upsert(prop: &self.physicalType, val: physicalType)
+			}
 	
-	public dynamic var position: LocationPosition?
+	public dynamic var position: LocationPosition?						
+		
+		
+			public func upsert(position: LocationPosition?) {
+				upsert(prop: &self.position, val: position)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -53,11 +91,7 @@ open class Location: DomainResource {
 			if let exist = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? FHIRJSON {
-					if let address = self.address {
-                        errors.append(contentsOf: address.populate(from: val) ?? [])
-                    } else {
-                        self.address = Address(json: val, owner: self)
-                    }
+					upsert(address: Address(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: type(of: exist)))
@@ -87,11 +121,7 @@ open class Location: DomainResource {
 			if let exist = js["managingOrganization"] {
 				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
-					if let managingOrganization = self.managingOrganization {
-                        errors.append(contentsOf: managingOrganization.populate(from: val) ?? [])
-                    } else {
-                        self.managingOrganization = Reference(json: val, owner: self)
-                    }
+					upsert(managingOrganization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -118,11 +148,7 @@ open class Location: DomainResource {
 			if let exist = js["partOf"] {
 				presentKeys.insert("partOf")
 				if let val = exist as? FHIRJSON {
-					if let partOf = self.partOf {
-                        errors.append(contentsOf: partOf.populate(from: val) ?? [])
-                    } else {
-                        self.partOf = Reference(json: val, owner: self)
-                    }
+					upsert(partOf: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "partOf", wants: FHIRJSON.self, has: type(of: exist)))
@@ -131,11 +157,7 @@ open class Location: DomainResource {
 			if let exist = js["physicalType"] {
 				presentKeys.insert("physicalType")
 				if let val = exist as? FHIRJSON {
-					if let physicalType = self.physicalType {
-                        errors.append(contentsOf: physicalType.populate(from: val) ?? [])
-                    } else {
-                        self.physicalType = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(physicalType: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "physicalType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -144,11 +166,7 @@ open class Location: DomainResource {
 			if let exist = js["position"] {
 				presentKeys.insert("position")
 				if let val = exist as? FHIRJSON {
-					if let position = self.position {
-                        errors.append(contentsOf: position.populate(from: val) ?? [])
-                    } else {
-                        self.position = LocationPosition(json: val, owner: self)
-                    }
+					upsert(position: LocationPosition(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "position", wants: FHIRJSON.self, has: type(of: exist)))
@@ -178,11 +196,7 @@ open class Location: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = CodeableConcept(json: val, owner: self)
-                    }
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -248,11 +262,17 @@ open class LocationPosition: BackboneElement {
 		get { return "LocationPosition" }
 	}
 
-	public dynamic var altitude: RealmDecimal?
+	public dynamic var altitude: RealmDecimal?						
+		
+		
 	
-	public dynamic var latitude: RealmDecimal?
+	public dynamic var latitude: RealmDecimal?						
+		
+		
 	
-	public dynamic var longitude: RealmDecimal?
+	public dynamic var longitude: RealmDecimal?						
+		
+		
 	
 
 	

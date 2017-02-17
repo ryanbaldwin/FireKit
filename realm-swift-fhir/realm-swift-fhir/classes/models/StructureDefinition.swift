@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,53 +23,93 @@ open class StructureDefinition: DomainResource {
 
 	public let abstract = RealmOptional<Bool>()
 	
-	public dynamic var base: String?
+	public dynamic var base: String?						
+		
+		
 	
 	public let code = RealmSwift.List<Coding>()
 	
-	public dynamic var constrainedType: String?
+	public dynamic var constrainedType: String?						
+		
+		
 	
 	public let contact = RealmSwift.List<StructureDefinitionContact>()
 	
 	public let context = RealmSwift.List<RealmString>()
 	
-	public dynamic var contextType: String?
+	public dynamic var contextType: String?						
+		
+		
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var differential: StructureDefinitionDifferential?
+	public dynamic var differential: StructureDefinitionDifferential?						
+		
+		
+			public func upsert(differential: StructureDefinitionDifferential?) {
+				upsert(prop: &self.differential, val: differential)
+			}
 	
-	public dynamic var display: String?
+	public dynamic var display: String?						
+		
+		
 	
 	public let experimental = RealmOptional<Bool>()
 	
-	public dynamic var fhirVersion: String?
+	public dynamic var fhirVersion: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var kind: String?
+	public dynamic var kind: String?						
+		
+		
 	
 	public let mapping = RealmSwift.List<StructureDefinitionMapping>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var snapshot: StructureDefinitionSnapshot?
+	public dynamic var snapshot: StructureDefinitionSnapshot?						
+		
+		
+			public func upsert(snapshot: StructureDefinitionSnapshot?) {
+				upsert(prop: &self.snapshot, val: snapshot)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -188,11 +228,7 @@ open class StructureDefinition: DomainResource {
 			if let exist = js["differential"] {
 				presentKeys.insert("differential")
 				if let val = exist as? FHIRJSON {
-					if let differential = self.differential {
-                        errors.append(contentsOf: differential.populate(from: val) ?? [])
-                    } else {
-                        self.differential = StructureDefinitionDifferential(json: val, owner: self)
-                    }
+					upsert(differential: StructureDefinitionDifferential(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "differential", wants: FHIRJSON.self, has: type(of: exist)))
@@ -294,11 +330,7 @@ open class StructureDefinition: DomainResource {
 			if let exist = js["snapshot"] {
 				presentKeys.insert("snapshot")
 				if let val = exist as? FHIRJSON {
-					if let snapshot = self.snapshot {
-                        errors.append(contentsOf: snapshot.populate(from: val) ?? [])
-                    } else {
-                        self.snapshot = StructureDefinitionSnapshot(json: val, owner: self)
-                    }
+					upsert(snapshot: StructureDefinitionSnapshot(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "snapshot", wants: FHIRJSON.self, has: type(of: exist)))
@@ -447,7 +479,9 @@ open class StructureDefinitionContact: BackboneElement {
 		get { return "StructureDefinitionContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -561,13 +595,21 @@ open class StructureDefinitionMapping: BackboneElement {
 		get { return "StructureDefinitionMapping" }
 	}
 
-	public dynamic var comments: String?
+	public dynamic var comments: String?						
+		
+		
 	
-	public dynamic var identity: String?
+	public dynamic var identity: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var uri: String?
+	public dynamic var uri: String?						
+		
+		
 	
 
 	

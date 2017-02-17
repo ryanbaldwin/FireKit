@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			try runValueSet1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ValueSet
 			XCTAssertNotNil(copy)
-			try runValueSet1(copy!.asJSON())
+			try runValueSet1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
@@ -44,6 +44,26 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 
 		testValueSetRealm1(instance: instance!)
 	}
+
+    func testValueSet1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.ValueSet = try runValueSet1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.ValueSet)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ValueSet's PKs, but threw: \(error)")
+        }
+    }
 
 	func testValueSetRealm1(instance: RealmSwiftFHIR.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -157,7 +177,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			try runValueSet2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ValueSet
 			XCTAssertNotNil(copy)
-			try runValueSet2(copy!.asJSON())
+			try runValueSet2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
@@ -165,6 +185,26 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 
 		testValueSetRealm2(instance: instance!)
 	}
+
+    func testValueSet2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.ValueSet = try runValueSet2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.ValueSet)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ValueSet's PKs, but threw: \(error)")
+        }
+    }
 
 	func testValueSetRealm2(instance: RealmSwiftFHIR.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -254,7 +294,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			try runValueSet3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ValueSet
 			XCTAssertNotNil(copy)
-			try runValueSet3(copy!.asJSON())
+			try runValueSet3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
@@ -262,6 +302,26 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 
 		testValueSetRealm3(instance: instance!)
 	}
+
+    func testValueSet3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.ValueSet = try runValueSet3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.ValueSet)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ValueSet's PKs, but threw: \(error)")
+        }
+    }
 
 	func testValueSetRealm3(instance: RealmSwiftFHIR.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -337,7 +397,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			try runValueSet4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ValueSet
 			XCTAssertNotNil(copy)
-			try runValueSet4(copy!.asJSON())
+			try runValueSet4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
@@ -345,6 +405,26 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 
 		testValueSetRealm4(instance: instance!)
 	}
+
+    func testValueSet4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.ValueSet = try runValueSet4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.ValueSet)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ValueSet's PKs, but threw: \(error)")
+        }
+    }
 
 	func testValueSetRealm4(instance: RealmSwiftFHIR.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -418,7 +498,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			try runValueSet5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ValueSet
 			XCTAssertNotNil(copy)
-			try runValueSet5(copy!.asJSON())
+			try runValueSet5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
@@ -426,6 +506,26 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 
 		testValueSetRealm5(instance: instance!)
 	}
+
+    func testValueSet5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.ValueSet = try runValueSet5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.ValueSet)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ValueSet's PKs, but threw: \(error)")
+        }
+    }
 
 	func testValueSetRealm5(instance: RealmSwiftFHIR.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
@@ -505,7 +605,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			try runValueSet6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ValueSet
 			XCTAssertNotNil(copy)
-			try runValueSet6(copy!.asJSON())
+			try runValueSet6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
@@ -513,6 +613,26 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 
 		testValueSetRealm6(instance: instance!)
 	}
+
+    func testValueSet6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.ValueSet = try runValueSet6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.ValueSet)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ValueSet's PKs, but threw: \(error)")
+        }
+    }
 
 	func testValueSetRealm6(instance: RealmSwiftFHIR.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 

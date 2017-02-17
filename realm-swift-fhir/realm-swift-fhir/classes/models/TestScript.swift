@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-16.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,45 +23,83 @@ open class TestScript: DomainResource {
 
 	public let contact = RealmSwift.List<TestScriptContact>()
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let experimental = RealmOptional<Bool>()
 	
 	public let fixture = RealmSwift.List<TestScriptFixture>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var metadata: TestScriptMetadata?
+	public dynamic var metadata: TestScriptMetadata?						
+		
+		
+			public func upsert(metadata: TestScriptMetadata?) {
+				upsert(prop: &self.metadata, val: metadata)
+			}
 	
 	public let multiserver = RealmOptional<Bool>()
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let profile = RealmSwift.List<Reference>()
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var setup: TestScriptSetup?
+	public dynamic var setup: TestScriptSetup?						
+		
+		
+			public func upsert(setup: TestScriptSetup?) {
+				upsert(prop: &self.setup, val: setup)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var teardown: TestScriptTeardown?
+	public dynamic var teardown: TestScriptTeardown?						
+		
+		
+			public func upsert(teardown: TestScriptTeardown?) {
+				upsert(prop: &self.teardown, val: teardown)
+			}
 	
 	public let test = RealmSwift.List<TestScriptTest>()
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
 	public let variable = RealmSwift.List<TestScriptVariable>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -139,11 +177,7 @@ open class TestScript: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					if let identifier = self.identifier {
-                        errors.append(contentsOf: identifier.populate(from: val) ?? [])
-                    } else {
-                        self.identifier = Identifier(json: val, owner: self)
-                    }
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -152,11 +186,7 @@ open class TestScript: DomainResource {
 			if let exist = js["metadata"] {
 				presentKeys.insert("metadata")
 				if let val = exist as? FHIRJSON {
-					if let metadata = self.metadata {
-                        errors.append(contentsOf: metadata.populate(from: val) ?? [])
-                    } else {
-                        self.metadata = TestScriptMetadata(json: val, owner: self)
-                    }
+					upsert(metadata: TestScriptMetadata(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: type(of: exist)))
@@ -216,11 +246,7 @@ open class TestScript: DomainResource {
 			if let exist = js["setup"] {
 				presentKeys.insert("setup")
 				if let val = exist as? FHIRJSON {
-					if let setup = self.setup {
-                        errors.append(contentsOf: setup.populate(from: val) ?? [])
-                    } else {
-                        self.setup = TestScriptSetup(json: val, owner: self)
-                    }
+					upsert(setup: TestScriptSetup(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "setup", wants: FHIRJSON.self, has: type(of: exist)))
@@ -241,11 +267,7 @@ open class TestScript: DomainResource {
 			if let exist = js["teardown"] {
 				presentKeys.insert("teardown")
 				if let val = exist as? FHIRJSON {
-					if let teardown = self.teardown {
-                        errors.append(contentsOf: teardown.populate(from: val) ?? [])
-                    } else {
-                        self.teardown = TestScriptTeardown(json: val, owner: self)
-                    }
+					upsert(teardown: TestScriptTeardown(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "teardown", wants: FHIRJSON.self, has: type(of: exist)))
@@ -394,7 +416,9 @@ open class TestScriptContact: BackboneElement {
 		get { return "TestScriptContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -457,7 +481,12 @@ open class TestScriptFixture: BackboneElement {
 	
 	public let autodelete = RealmOptional<Bool>()
 	
-	public dynamic var resource: Reference?
+	public dynamic var resource: Reference?						
+		
+		
+			public func upsert(resource: Reference?) {
+				upsert(prop: &self.resource, val: resource)
+			}
 	
 
 	
@@ -485,11 +514,7 @@ open class TestScriptFixture: BackboneElement {
 			if let exist = js["resource"] {
 				presentKeys.insert("resource")
 				if let val = exist as? FHIRJSON {
-					if let resource = self.resource {
-                        errors.append(contentsOf: resource.populate(from: val) ?? [])
-                    } else {
-                        self.resource = Reference(json: val, owner: self)
-                    }
+					upsert(resource: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
@@ -598,9 +623,16 @@ open class TestScriptMetadataCapability: BackboneElement {
 		get { return "TestScriptMetadataCapability" }
 	}
 
-	public dynamic var conformance: Reference?
+	public dynamic var conformance: Reference?						
+		
+		
+			public func upsert(conformance: Reference?) {
+				upsert(prop: &self.conformance, val: conformance)
+			}
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let destination = RealmOptional<Int>()
 	
@@ -624,11 +656,7 @@ open class TestScriptMetadataCapability: BackboneElement {
 			if let exist = js["conformance"] {
 				presentKeys.insert("conformance")
 				if let val = exist as? FHIRJSON {
-					if let conformance = self.conformance {
-                        errors.append(contentsOf: conformance.populate(from: val) ?? [])
-                    } else {
-                        self.conformance = Reference(json: val, owner: self)
-                    }
+					upsert(conformance: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "conformance", wants: FHIRJSON.self, has: type(of: exist)))
@@ -723,9 +751,13 @@ open class TestScriptMetadataLink: BackboneElement {
 		get { return "TestScriptMetadataLink" }
 	}
 
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -788,7 +820,12 @@ open class TestScriptSetup: BackboneElement {
 
 	public let action = RealmSwift.List<TestScriptSetupAction>()
 	
-	public dynamic var metadata: TestScriptMetadata?
+	public dynamic var metadata: TestScriptMetadata?						
+		
+		
+			public func upsert(metadata: TestScriptMetadata?) {
+				upsert(prop: &self.metadata, val: metadata)
+			}
 	
 
 	
@@ -819,11 +856,7 @@ open class TestScriptSetup: BackboneElement {
 			if let exist = js["metadata"] {
 				presentKeys.insert("metadata")
 				if let val = exist as? FHIRJSON {
-					if let metadata = self.metadata {
-                        errors.append(contentsOf: metadata.populate(from: val) ?? [])
-                    } else {
-                        self.metadata = TestScriptMetadata(json: val, owner: self)
-                    }
+					upsert(metadata: TestScriptMetadata(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: type(of: exist)))
@@ -858,9 +891,19 @@ open class TestScriptSetupAction: BackboneElement {
 		get { return "TestScriptSetupAction" }
 	}
 
-	public dynamic var assert: TestScriptSetupActionAssert?
+	public dynamic var assert: TestScriptSetupActionAssert?						
+		
+		
+			public func upsert(assert: TestScriptSetupActionAssert?) {
+				upsert(prop: &self.assert, val: assert)
+			}
 	
-	public dynamic var operation: TestScriptSetupActionOperation?
+	public dynamic var operation: TestScriptSetupActionOperation?						
+		
+		
+			public func upsert(operation: TestScriptSetupActionOperation?) {
+				upsert(prop: &self.operation, val: operation)
+			}
 	
 
 	
@@ -870,11 +913,7 @@ open class TestScriptSetupAction: BackboneElement {
 			if let exist = js["assert"] {
 				presentKeys.insert("assert")
 				if let val = exist as? FHIRJSON {
-					if let assert = self.assert {
-                        errors.append(contentsOf: assert.populate(from: val) ?? [])
-                    } else {
-                        self.assert = TestScriptSetupActionAssert(json: val, owner: self)
-                    }
+					upsert(assert: TestScriptSetupActionAssert(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assert", wants: FHIRJSON.self, has: type(of: exist)))
@@ -883,11 +922,7 @@ open class TestScriptSetupAction: BackboneElement {
 			if let exist = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? FHIRJSON {
-					if let operation = self.operation {
-                        errors.append(contentsOf: operation.populate(from: val) ?? [])
-                    } else {
-                        self.operation = TestScriptSetupActionOperation(json: val, owner: self)
-                    }
+					upsert(operation: TestScriptSetupActionOperation(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -922,39 +957,71 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		get { return "TestScriptSetupActionAssert" }
 	}
 
-	public dynamic var compareToSourceId: String?
+	public dynamic var compareToSourceId: String?						
+		
+		
 	
-	public dynamic var compareToSourcePath: String?
+	public dynamic var compareToSourcePath: String?						
+		
+		
 	
-	public dynamic var contentType: String?
+	public dynamic var contentType: String?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var direction: String?
+	public dynamic var direction: String?						
+		
+		
 	
-	public dynamic var headerField: String?
+	public dynamic var headerField: String?						
+		
+		
 	
-	public dynamic var label: String?
+	public dynamic var label: String?						
+		
+		
 	
-	public dynamic var minimumId: String?
+	public dynamic var minimumId: String?						
+		
+		
 	
 	public let navigationLinks = RealmOptional<Bool>()
 	
-	public dynamic var operator_fhir: String?
+	public dynamic var operator_fhir: String?						
+		
+		
 	
-	public dynamic var path: String?
+	public dynamic var path: String?						
+		
+		
 	
-	public dynamic var resource: String?
+	public dynamic var resource: String?						
+		
+		
 	
-	public dynamic var response: String?
+	public dynamic var response: String?						
+		
+		
 	
-	public dynamic var responseCode: String?
+	public dynamic var responseCode: String?						
+		
+		
 	
-	public dynamic var sourceId: String?
+	public dynamic var sourceId: String?						
+		
+		
 	
-	public dynamic var validateProfileId: String?
+	public dynamic var validateProfileId: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 	public let warningOnly = RealmOptional<Bool>()
 	
@@ -1202,33 +1269,58 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		get { return "TestScriptSetupActionOperation" }
 	}
 
-	public dynamic var accept: String?
+	public dynamic var accept: String?						
+		
+		
 	
-	public dynamic var contentType: String?
+	public dynamic var contentType: String?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let destination = RealmOptional<Int>()
 	
 	public let encodeRequestUrl = RealmOptional<Bool>()
 	
-	public dynamic var label: String?
+	public dynamic var label: String?						
+		
+		
 	
-	public dynamic var params: String?
+	public dynamic var params: String?						
+		
+		
 	
 	public let requestHeader = RealmSwift.List<TestScriptSetupActionOperationRequestHeader>()
 	
-	public dynamic var resource: String?
+	public dynamic var resource: String?						
+		
+		
 	
-	public dynamic var responseId: String?
+	public dynamic var responseId: String?						
+		
+		
 	
-	public dynamic var sourceId: String?
+	public dynamic var sourceId: String?						
+		
+		
 	
-	public dynamic var targetId: String?
+	public dynamic var targetId: String?						
+		
+		
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -1349,11 +1441,7 @@ open class TestScriptSetupActionOperation: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					if let type = self.type {
-                        errors.append(contentsOf: type.populate(from: val) ?? [])
-                    } else {
-                        self.type = Coding(json: val, owner: self)
-                    }
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1433,9 +1521,13 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 		get { return "TestScriptSetupActionOperationRequestHeader" }
 	}
 
-	public dynamic var field: String?
+	public dynamic var field: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -1556,7 +1648,12 @@ open class TestScriptTeardownAction: BackboneElement {
 		get { return "TestScriptTeardownAction" }
 	}
 
-	public dynamic var operation: TestScriptSetupActionOperation?
+	public dynamic var operation: TestScriptSetupActionOperation?						
+		
+		
+			public func upsert(operation: TestScriptSetupActionOperation?) {
+				upsert(prop: &self.operation, val: operation)
+			}
 	
 
 	
@@ -1566,11 +1663,7 @@ open class TestScriptTeardownAction: BackboneElement {
 			if let exist = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? FHIRJSON {
-					if let operation = self.operation {
-                        errors.append(contentsOf: operation.populate(from: val) ?? [])
-                    } else {
-                        self.operation = TestScriptSetupActionOperation(json: val, owner: self)
-                    }
+					upsert(operation: TestScriptSetupActionOperation(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1602,11 +1695,20 @@ open class TestScriptTest: BackboneElement {
 
 	public let action = RealmSwift.List<TestScriptTestAction>()
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var metadata: TestScriptMetadata?
+	public dynamic var metadata: TestScriptMetadata?						
+		
+		
+			public func upsert(metadata: TestScriptMetadata?) {
+				upsert(prop: &self.metadata, val: metadata)
+			}
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 
 	
@@ -1646,11 +1748,7 @@ open class TestScriptTest: BackboneElement {
 			if let exist = js["metadata"] {
 				presentKeys.insert("metadata")
 				if let val = exist as? FHIRJSON {
-					if let metadata = self.metadata {
-                        errors.append(contentsOf: metadata.populate(from: val) ?? [])
-                    } else {
-                        self.metadata = TestScriptMetadata(json: val, owner: self)
-                    }
+					upsert(metadata: TestScriptMetadata(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "metadata", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1700,9 +1798,19 @@ open class TestScriptTestAction: BackboneElement {
 		get { return "TestScriptTestAction" }
 	}
 
-	public dynamic var assert: TestScriptSetupActionAssert?
+	public dynamic var assert: TestScriptSetupActionAssert?						
+		
+		
+			public func upsert(assert: TestScriptSetupActionAssert?) {
+				upsert(prop: &self.assert, val: assert)
+			}
 	
-	public dynamic var operation: TestScriptSetupActionOperation?
+	public dynamic var operation: TestScriptSetupActionOperation?						
+		
+		
+			public func upsert(operation: TestScriptSetupActionOperation?) {
+				upsert(prop: &self.operation, val: operation)
+			}
 	
 
 	
@@ -1712,11 +1820,7 @@ open class TestScriptTestAction: BackboneElement {
 			if let exist = js["assert"] {
 				presentKeys.insert("assert")
 				if let val = exist as? FHIRJSON {
-					if let assert = self.assert {
-                        errors.append(contentsOf: assert.populate(from: val) ?? [])
-                    } else {
-                        self.assert = TestScriptSetupActionAssert(json: val, owner: self)
-                    }
+					upsert(assert: TestScriptSetupActionAssert(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "assert", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1725,11 +1829,7 @@ open class TestScriptTestAction: BackboneElement {
 			if let exist = js["operation"] {
 				presentKeys.insert("operation")
 				if let val = exist as? FHIRJSON {
-					if let operation = self.operation {
-                        errors.append(contentsOf: operation.populate(from: val) ?? [])
-                    } else {
-                        self.operation = TestScriptSetupActionOperation(json: val, owner: self)
-                    }
+					upsert(operation: TestScriptSetupActionOperation(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "operation", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1764,13 +1864,21 @@ open class TestScriptVariable: BackboneElement {
 		get { return "TestScriptVariable" }
 	}
 
-	public dynamic var headerField: String?
+	public dynamic var headerField: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var path: String?
+	public dynamic var path: String?						
+		
+		
 	
-	public dynamic var sourceId: String?
+	public dynamic var sourceId: String?						
+		
+		
 	
 
 	
