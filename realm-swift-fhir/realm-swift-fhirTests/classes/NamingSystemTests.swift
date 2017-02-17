@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NamingSystem?
 		do {
 			instance = try runNamingSystem1()
-			try runNamingSystem1(instance!.asJSON()) 			
+			try runNamingSystem1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NamingSystem
+			XCTAssertNotNil(copy)
+			try runNamingSystem1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
@@ -42,23 +45,60 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 		testNamingSystemRealm1(instance: instance!)
 	}
 
+    func testNamingSystem1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.NamingSystem = try runNamingSystem1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.NamingSystem)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test NamingSystem's PKs, but threw: \(error)")
+        }
+    }
+
 	func testNamingSystemRealm1(instance: RealmSwiftFHIR.NamingSystem) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNamingSystem1(realm.objects(RealmSwiftFHIR.NamingSystem.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NamingSystem.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NamingSystem()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NamingSystem.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNamingSystem1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NamingSystem.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNamingSystem1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
 	}
 	
 	@discardableResult
@@ -99,7 +139,10 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NamingSystem?
 		do {
 			instance = try runNamingSystem2()
-			try runNamingSystem2(instance!.asJSON()) 			
+			try runNamingSystem2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NamingSystem
+			XCTAssertNotNil(copy)
+			try runNamingSystem2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
@@ -108,23 +151,60 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 		testNamingSystemRealm2(instance: instance!)
 	}
 
+    func testNamingSystem2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.NamingSystem = try runNamingSystem2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.NamingSystem)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test NamingSystem's PKs, but threw: \(error)")
+        }
+    }
+
 	func testNamingSystemRealm2(instance: RealmSwiftFHIR.NamingSystem) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNamingSystem2(realm.objects(RealmSwiftFHIR.NamingSystem.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NamingSystem.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NamingSystem()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NamingSystem.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNamingSystem2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NamingSystem.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNamingSystem2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
 	}
 	
 	@discardableResult
@@ -151,7 +231,10 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.NamingSystem?
 		do {
 			instance = try runNamingSystem3()
-			try runNamingSystem3(instance!.asJSON()) 			
+			try runNamingSystem3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.NamingSystem
+			XCTAssertNotNil(copy)
+			try runNamingSystem3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
@@ -160,23 +243,60 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 		testNamingSystemRealm3(instance: instance!)
 	}
 
+    func testNamingSystem3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.NamingSystem = try runNamingSystem3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.NamingSystem)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test NamingSystem's PKs, but threw: \(error)")
+        }
+    }
+
 	func testNamingSystemRealm3(instance: RealmSwiftFHIR.NamingSystem) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runNamingSystem3(realm.objects(RealmSwiftFHIR.NamingSystem.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.NamingSystem.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.NamingSystem()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.NamingSystem.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNamingSystem3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.NamingSystem.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runNamingSystem3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.NamingSystem.self).count)
 	}
 	
 	@discardableResult

@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,25 +22,48 @@ open class DocumentManifest: DomainResource {
 	
 	public let content = RealmSwift.List<DocumentManifestContent>()
 	
-	public dynamic var created: DateTime?
+	public dynamic var created: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var masterIdentifier: Identifier?
+	public dynamic var masterIdentifier: Identifier?						
+		
+		
+			public func upsert(masterIdentifier: Identifier?) {
+				upsert(prop: &self.masterIdentifier, val: masterIdentifier)
+			}
 	
 	public let recipient = RealmSwift.List<Reference>()
 	
 	public let related = RealmSwift.List<DocumentManifestRelated>()
 	
-	public dynamic var source: String?
+	public dynamic var source: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -58,6 +81,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("author")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.author) }
 						self.author.append(objectsIn: vals)
 					}
 				}
@@ -69,6 +93,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("content")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = DocumentManifestContent.instantiate(fromArray: val, owner: self) as? [DocumentManifestContent] {
+						if let realm = self.realm { realm.delete(self.content) }
 						self.content.append(objectsIn: vals)
 					}
 				}
@@ -92,7 +117,6 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -102,6 +126,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -112,7 +137,7 @@ open class DocumentManifest: DomainResource {
 			if let exist = js["masterIdentifier"] {
 				presentKeys.insert("masterIdentifier")
 				if let val = exist as? FHIRJSON {
-					self.masterIdentifier = Identifier(json: val, owner: self)
+					upsert(masterIdentifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "masterIdentifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -122,6 +147,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("recipient")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.recipient) }
 						self.recipient.append(objectsIn: vals)
 					}
 				}
@@ -133,6 +159,7 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("related")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = DocumentManifestRelated.instantiate(fromArray: val, owner: self) as? [DocumentManifestRelated] {
+						if let realm = self.realm { realm.delete(self.related) }
 						self.related.append(objectsIn: vals)
 					}
 				}
@@ -144,7 +171,6 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("source")
 				if let val = exist as? String {
 					self.source = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: String.self, has: type(of: exist)))
@@ -154,7 +180,6 @@ open class DocumentManifest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -166,7 +191,7 @@ open class DocumentManifest: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -175,7 +200,7 @@ open class DocumentManifest: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -240,9 +265,19 @@ open class DocumentManifestContent: BackboneElement {
 		get { return "DocumentManifestContent" }
 	}
 
-	public dynamic var pAttachment: Attachment?
+	public dynamic var pAttachment: Attachment?						
+		
+		
+			public func upsert(pAttachment: Attachment?) {
+				upsert(prop: &self.pAttachment, val: pAttachment)
+			}
 	
-	public dynamic var pReference: Reference?
+	public dynamic var pReference: Reference?						
+		
+		
+			public func upsert(pReference: Reference?) {
+				upsert(prop: &self.pReference, val: pReference)
+			}
 	
 
 	
@@ -259,7 +294,7 @@ open class DocumentManifestContent: BackboneElement {
 			if let exist = js["pAttachment"] {
 				presentKeys.insert("pAttachment")
 				if let val = exist as? FHIRJSON {
-					self.pAttachment = Attachment(json: val, owner: self)
+					upsert(pAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "pAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -268,7 +303,7 @@ open class DocumentManifestContent: BackboneElement {
 			if let exist = js["pReference"] {
 				presentKeys.insert("pReference")
 				if let val = exist as? FHIRJSON {
-					self.pReference = Reference(json: val, owner: self)
+					upsert(pReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "pReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -308,9 +343,19 @@ open class DocumentManifestRelated: BackboneElement {
 		get { return "DocumentManifestRelated" }
 	}
 
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var ref: Reference?
+	public dynamic var ref: Reference?						
+		
+		
+			public func upsert(ref: Reference?) {
+				upsert(prop: &self.ref, val: ref)
+			}
 	
 
 	
@@ -320,7 +365,7 @@ open class DocumentManifestRelated: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -329,7 +374,7 @@ open class DocumentManifestRelated: BackboneElement {
 			if let exist = js["ref"] {
 				presentKeys.insert("ref")
 				if let val = exist as? FHIRJSON {
-					self.ref = Reference(json: val, owner: self)
+					upsert(ref: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ref", wants: FHIRJSON.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  CommunicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,9 +21,19 @@ open class CommunicationRequest: DomainResource {
 		get { return "CommunicationRequest" }
 	}
 
-	public dynamic var category: CodeableConcept?
+	public dynamic var category: CodeableConcept?						
+		
+		
+			public func upsert(category: CodeableConcept?) {
+				upsert(prop: &self.category, val: category)
+			}
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
@@ -31,25 +41,56 @@ open class CommunicationRequest: DomainResource {
 	
 	public let payload = RealmSwift.List<CommunicationRequestPayload>()
 	
-	public dynamic var priority: CodeableConcept?
+	public dynamic var priority: CodeableConcept?						
+		
+		
+			public func upsert(priority: CodeableConcept?) {
+				upsert(prop: &self.priority, val: priority)
+			}
 	
 	public let reason = RealmSwift.List<CodeableConcept>()
 	
 	public let recipient = RealmSwift.List<Reference>()
 	
-	public dynamic var requestedOn: DateTime?
+	public dynamic var requestedOn: DateTime?						
+		
+		
 	
-	public dynamic var requester: Reference?
+	public dynamic var requester: Reference?						
+		
+		
+			public func upsert(requester: Reference?) {
+				upsert(prop: &self.requester, val: requester)
+			}
 	
-	public dynamic var scheduledDateTime: DateTime?
+	public dynamic var scheduledDateTime: DateTime?						
+		
+		
 	
-	public dynamic var scheduledPeriod: Period?
+	public dynamic var scheduledPeriod: Period?						
+		
+		
+			public func upsert(scheduledPeriod: Period?) {
+				upsert(prop: &self.scheduledPeriod, val: scheduledPeriod)
+			}
 	
-	public dynamic var sender: Reference?
+	public dynamic var sender: Reference?						
+		
+		
+			public func upsert(sender: Reference?) {
+				upsert(prop: &self.sender, val: sender)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 
 	
@@ -59,7 +100,7 @@ open class CommunicationRequest: DomainResource {
 			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.category = CodeableConcept(json: val, owner: self)
+					upsert(category: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
@@ -68,7 +109,7 @@ open class CommunicationRequest: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -78,6 +119,7 @@ open class CommunicationRequest: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -89,6 +131,7 @@ open class CommunicationRequest: DomainResource {
 				presentKeys.insert("medium")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.medium) }
 						self.medium.append(objectsIn: vals)
 					}
 				}
@@ -100,6 +143,7 @@ open class CommunicationRequest: DomainResource {
 				presentKeys.insert("payload")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CommunicationRequestPayload.instantiate(fromArray: val, owner: self) as? [CommunicationRequestPayload] {
+						if let realm = self.realm { realm.delete(self.payload) }
 						self.payload.append(objectsIn: vals)
 					}
 				}
@@ -110,7 +154,7 @@ open class CommunicationRequest: DomainResource {
 			if let exist = js["priority"] {
 				presentKeys.insert("priority")
 				if let val = exist as? FHIRJSON {
-					self.priority = CodeableConcept(json: val, owner: self)
+					upsert(priority: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -120,6 +164,7 @@ open class CommunicationRequest: DomainResource {
 				presentKeys.insert("reason")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.reason) }
 						self.reason.append(objectsIn: vals)
 					}
 				}
@@ -131,6 +176,7 @@ open class CommunicationRequest: DomainResource {
 				presentKeys.insert("recipient")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.recipient) }
 						self.recipient.append(objectsIn: vals)
 					}
 				}
@@ -150,7 +196,7 @@ open class CommunicationRequest: DomainResource {
 			if let exist = js["requester"] {
 				presentKeys.insert("requester")
 				if let val = exist as? FHIRJSON {
-					self.requester = Reference(json: val, owner: self)
+					upsert(requester: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requester", wants: FHIRJSON.self, has: type(of: exist)))
@@ -168,7 +214,7 @@ open class CommunicationRequest: DomainResource {
 			if let exist = js["scheduledPeriod"] {
 				presentKeys.insert("scheduledPeriod")
 				if let val = exist as? FHIRJSON {
-					self.scheduledPeriod = Period(json: val, owner: self)
+					upsert(scheduledPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "scheduledPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -177,7 +223,7 @@ open class CommunicationRequest: DomainResource {
 			if let exist = js["sender"] {
 				presentKeys.insert("sender")
 				if let val = exist as? FHIRJSON {
-					self.sender = Reference(json: val, owner: self)
+					upsert(sender: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sender", wants: FHIRJSON.self, has: type(of: exist)))
@@ -187,7 +233,6 @@ open class CommunicationRequest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -196,7 +241,7 @@ open class CommunicationRequest: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -270,11 +315,23 @@ open class CommunicationRequestPayload: BackboneElement {
 		get { return "CommunicationRequestPayload" }
 	}
 
-	public dynamic var contentAttachment: Attachment?
+	public dynamic var contentAttachment: Attachment?						
+		
+		
+			public func upsert(contentAttachment: Attachment?) {
+				upsert(prop: &self.contentAttachment, val: contentAttachment)
+			}
 	
-	public dynamic var contentReference: Reference?
+	public dynamic var contentReference: Reference?						
+		
+		
+			public func upsert(contentReference: Reference?) {
+				upsert(prop: &self.contentReference, val: contentReference)
+			}
 	
-	public dynamic var contentString: String?
+	public dynamic var contentString: String?						
+		
+		
 	
 
 	
@@ -292,7 +349,7 @@ open class CommunicationRequestPayload: BackboneElement {
 			if let exist = js["contentAttachment"] {
 				presentKeys.insert("contentAttachment")
 				if let val = exist as? FHIRJSON {
-					self.contentAttachment = Attachment(json: val, owner: self)
+					upsert(contentAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -301,7 +358,7 @@ open class CommunicationRequestPayload: BackboneElement {
 			if let exist = js["contentReference"] {
 				presentKeys.insert("contentReference")
 				if let val = exist as? FHIRJSON {
-					self.contentReference = Reference(json: val, owner: self)
+					upsert(contentReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -311,7 +368,6 @@ open class CommunicationRequestPayload: BackboneElement {
 				presentKeys.insert("contentString")
 				if let val = exist as? String {
 					self.contentString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentString", wants: String.self, has: type(of: exist)))

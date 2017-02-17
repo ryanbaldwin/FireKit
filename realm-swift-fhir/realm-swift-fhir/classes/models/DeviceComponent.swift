@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,25 +21,59 @@ open class DeviceComponent: DomainResource {
 		get { return "DeviceComponent" }
 	}
 
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var languageCode: CodeableConcept?
+	public dynamic var languageCode: CodeableConcept?						
+		
+		
+			public func upsert(languageCode: CodeableConcept?) {
+				upsert(prop: &self.languageCode, val: languageCode)
+			}
 	
-	public dynamic var lastSystemChange: Instant?
+	public dynamic var lastSystemChange: Instant?						
+		
+		
 	
-	public dynamic var measurementPrinciple: String?
+	public dynamic var measurementPrinciple: String?						
+		
+		
 	
 	public let operationalStatus = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var parameterGroup: CodeableConcept?
+	public dynamic var parameterGroup: CodeableConcept?						
+		
+		
+			public func upsert(parameterGroup: CodeableConcept?) {
+				upsert(prop: &self.parameterGroup, val: parameterGroup)
+			}
 	
-	public dynamic var parent: Reference?
+	public dynamic var parent: Reference?						
+		
+		
+			public func upsert(parent: Reference?) {
+				upsert(prop: &self.parent, val: parent)
+			}
 	
 	public let productionSpecification = RealmSwift.List<DeviceComponentProductionSpecification>()
 	
-	public dynamic var source: Reference?
+	public dynamic var source: Reference?						
+		
+		
+			public func upsert(source: Reference?) {
+				upsert(prop: &self.source, val: source)
+			}
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -57,7 +91,7 @@ open class DeviceComponent: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -69,7 +103,7 @@ open class DeviceComponent: DomainResource {
 			if let exist = js["languageCode"] {
 				presentKeys.insert("languageCode")
 				if let val = exist as? FHIRJSON {
-					self.languageCode = CodeableConcept(json: val, owner: self)
+					upsert(languageCode: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "languageCode", wants: FHIRJSON.self, has: type(of: exist)))
@@ -91,7 +125,6 @@ open class DeviceComponent: DomainResource {
 				presentKeys.insert("measurementPrinciple")
 				if let val = exist as? String {
 					self.measurementPrinciple = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "measurementPrinciple", wants: String.self, has: type(of: exist)))
@@ -101,6 +134,7 @@ open class DeviceComponent: DomainResource {
 				presentKeys.insert("operationalStatus")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.operationalStatus) }
 						self.operationalStatus.append(objectsIn: vals)
 					}
 				}
@@ -111,7 +145,7 @@ open class DeviceComponent: DomainResource {
 			if let exist = js["parameterGroup"] {
 				presentKeys.insert("parameterGroup")
 				if let val = exist as? FHIRJSON {
-					self.parameterGroup = CodeableConcept(json: val, owner: self)
+					upsert(parameterGroup: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parameterGroup", wants: FHIRJSON.self, has: type(of: exist)))
@@ -120,7 +154,7 @@ open class DeviceComponent: DomainResource {
 			if let exist = js["parent"] {
 				presentKeys.insert("parent")
 				if let val = exist as? FHIRJSON {
-					self.parent = Reference(json: val, owner: self)
+					upsert(parent: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: type(of: exist)))
@@ -130,6 +164,7 @@ open class DeviceComponent: DomainResource {
 				presentKeys.insert("productionSpecification")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = DeviceComponentProductionSpecification.instantiate(fromArray: val, owner: self) as? [DeviceComponentProductionSpecification] {
+						if let realm = self.realm { realm.delete(self.productionSpecification) }
 						self.productionSpecification.append(objectsIn: vals)
 					}
 				}
@@ -140,7 +175,7 @@ open class DeviceComponent: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					self.source = Reference(json: val, owner: self)
+					upsert(source: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -149,7 +184,7 @@ open class DeviceComponent: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -211,11 +246,23 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 		get { return "DeviceComponentProductionSpecification" }
 	}
 
-	public dynamic var componentId: Identifier?
+	public dynamic var componentId: Identifier?						
+		
+		
+			public func upsert(componentId: Identifier?) {
+				upsert(prop: &self.componentId, val: componentId)
+			}
 	
-	public dynamic var productionSpec: String?
+	public dynamic var productionSpec: String?						
+		
+		
 	
-	public dynamic var specType: CodeableConcept?
+	public dynamic var specType: CodeableConcept?						
+		
+		
+			public func upsert(specType: CodeableConcept?) {
+				upsert(prop: &self.specType, val: specType)
+			}
 	
 
 	
@@ -225,7 +272,7 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 			if let exist = js["componentId"] {
 				presentKeys.insert("componentId")
 				if let val = exist as? FHIRJSON {
-					self.componentId = Identifier(json: val, owner: self)
+					upsert(componentId: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "componentId", wants: FHIRJSON.self, has: type(of: exist)))
@@ -235,7 +282,6 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 				presentKeys.insert("productionSpec")
 				if let val = exist as? String {
 					self.productionSpec = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "productionSpec", wants: String.self, has: type(of: exist)))
@@ -244,7 +290,7 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 			if let exist = js["specType"] {
 				presentKeys.insert("specType")
 				if let val = exist as? FHIRJSON {
-					self.specType = CodeableConcept(json: val, owner: self)
+					upsert(specType: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "specType", wants: FHIRJSON.self, has: type(of: exist)))

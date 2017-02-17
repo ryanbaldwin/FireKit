@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -24,11 +24,18 @@ open class Bundle: Resource {
 	
 	public let link = RealmSwift.List<BundleLink>()
 	
-	public dynamic var signature: Signature?
+	public dynamic var signature: Signature?						
+		
+		
+			public func upsert(signature: Signature?) {
+				upsert(prop: &self.signature, val: signature)
+			}
 	
 	public let total = RealmOptional<Int>()
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	
@@ -45,6 +52,7 @@ open class Bundle: Resource {
 				presentKeys.insert("entry")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = BundleEntry.instantiate(fromArray: val, owner: self) as? [BundleEntry] {
+						if let realm = self.realm { realm.delete(self.entry) }
 						self.entry.append(objectsIn: vals)
 					}
 				}
@@ -56,6 +64,7 @@ open class Bundle: Resource {
 				presentKeys.insert("link")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = BundleLink.instantiate(fromArray: val, owner: self) as? [BundleLink] {
+						if let realm = self.realm { realm.delete(self.link) }
 						self.link.append(objectsIn: vals)
 					}
 				}
@@ -66,7 +75,7 @@ open class Bundle: Resource {
 			if let exist = js["signature"] {
 				presentKeys.insert("signature")
 				if let val = exist as? FHIRJSON {
-					self.signature = Signature(json: val, owner: self)
+					upsert(signature: Signature(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "signature", wants: FHIRJSON.self, has: type(of: exist)))
@@ -76,7 +85,6 @@ open class Bundle: Resource {
 				presentKeys.insert("total")
 				if let val = exist as? Int {
 					self.total.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "total", wants: Int.self, has: type(of: exist)))
@@ -86,7 +94,6 @@ open class Bundle: Resource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -134,17 +141,39 @@ open class BundleEntry: BackboneElement {
 		get { return "BundleEntry" }
 	}
 
-	public dynamic var fullUrl: String?
+	public dynamic var fullUrl: String?						
+		
+		
 	
 	public let link = RealmSwift.List<BundleLink>()
 	
-	public dynamic var request: BundleEntryRequest?
+	public dynamic var request: BundleEntryRequest?						
+		
+		
+			public func upsert(request: BundleEntryRequest?) {
+				upsert(prop: &self.request, val: request)
+			}
 	
-	public dynamic var resource: Resource?
+	public dynamic var resource: Resource?						
+		
+		
+			public func upsert(resource: Resource?) {
+				upsert(prop: &self.resource, val: resource)
+			}
 	
-	public dynamic var response: BundleEntryResponse?
+	public dynamic var response: BundleEntryResponse?						
+		
+		
+			public func upsert(response: BundleEntryResponse?) {
+				upsert(prop: &self.response, val: response)
+			}
 	
-	public dynamic var search: BundleEntrySearch?
+	public dynamic var search: BundleEntrySearch?						
+		
+		
+			public func upsert(search: BundleEntrySearch?) {
+				upsert(prop: &self.search, val: search)
+			}
 	
 
 	
@@ -155,7 +184,6 @@ open class BundleEntry: BackboneElement {
 				presentKeys.insert("fullUrl")
 				if let val = exist as? String {
 					self.fullUrl = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fullUrl", wants: String.self, has: type(of: exist)))
@@ -165,6 +193,7 @@ open class BundleEntry: BackboneElement {
 				presentKeys.insert("link")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = BundleLink.instantiate(fromArray: val, owner: self) as? [BundleLink] {
+						if let realm = self.realm { realm.delete(self.link) }
 						self.link.append(objectsIn: vals)
 					}
 				}
@@ -175,7 +204,7 @@ open class BundleEntry: BackboneElement {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.request = BundleEntryRequest(json: val, owner: self)
+					upsert(request: BundleEntryRequest(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -193,7 +222,7 @@ open class BundleEntry: BackboneElement {
 			if let exist = js["response"] {
 				presentKeys.insert("response")
 				if let val = exist as? FHIRJSON {
-					self.response = BundleEntryResponse(json: val, owner: self)
+					upsert(response: BundleEntryResponse(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
@@ -202,7 +231,7 @@ open class BundleEntry: BackboneElement {
 			if let exist = js["search"] {
 				presentKeys.insert("search")
 				if let val = exist as? FHIRJSON {
-					self.search = BundleEntrySearch(json: val, owner: self)
+					upsert(search: BundleEntrySearch(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "search", wants: FHIRJSON.self, has: type(of: exist)))
@@ -249,17 +278,29 @@ open class BundleEntryRequest: BackboneElement {
 		get { return "BundleEntryRequest" }
 	}
 
-	public dynamic var ifMatch: String?
+	public dynamic var ifMatch: String?						
+		
+		
 	
-	public dynamic var ifModifiedSince: Instant?
+	public dynamic var ifModifiedSince: Instant?						
+		
+		
 	
-	public dynamic var ifNoneExist: String?
+	public dynamic var ifNoneExist: String?						
+		
+		
 	
-	public dynamic var ifNoneMatch: String?
+	public dynamic var ifNoneMatch: String?						
+		
+		
 	
-	public dynamic var method: String?
+	public dynamic var method: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -277,7 +318,6 @@ open class BundleEntryRequest: BackboneElement {
 				presentKeys.insert("ifMatch")
 				if let val = exist as? String {
 					self.ifMatch = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ifMatch", wants: String.self, has: type(of: exist)))
@@ -296,7 +336,6 @@ open class BundleEntryRequest: BackboneElement {
 				presentKeys.insert("ifNoneExist")
 				if let val = exist as? String {
 					self.ifNoneExist = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ifNoneExist", wants: String.self, has: type(of: exist)))
@@ -306,7 +345,6 @@ open class BundleEntryRequest: BackboneElement {
 				presentKeys.insert("ifNoneMatch")
 				if let val = exist as? String {
 					self.ifNoneMatch = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ifNoneMatch", wants: String.self, has: type(of: exist)))
@@ -316,7 +354,6 @@ open class BundleEntryRequest: BackboneElement {
 				presentKeys.insert("method")
 				if let val = exist as? String {
 					self.method = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "method", wants: String.self, has: type(of: exist)))
@@ -329,7 +366,6 @@ open class BundleEntryRequest: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -379,13 +415,21 @@ open class BundleEntryResponse: BackboneElement {
 		get { return "BundleEntryResponse" }
 	}
 
-	public dynamic var etag: String?
+	public dynamic var etag: String?						
+		
+		
 	
-	public dynamic var lastModified: Instant?
+	public dynamic var lastModified: Instant?						
+		
+		
 	
-	public dynamic var location: String?
+	public dynamic var location: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 
 	
@@ -402,7 +446,6 @@ open class BundleEntryResponse: BackboneElement {
 				presentKeys.insert("etag")
 				if let val = exist as? String {
 					self.etag = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "etag", wants: String.self, has: type(of: exist)))
@@ -421,7 +464,6 @@ open class BundleEntryResponse: BackboneElement {
 				presentKeys.insert("location")
 				if let val = exist as? String {
 					self.location = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: String.self, has: type(of: exist)))
@@ -431,7 +473,6 @@ open class BundleEntryResponse: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -475,9 +516,13 @@ open class BundleEntrySearch: BackboneElement {
 		get { return "BundleEntrySearch" }
 	}
 
-	public dynamic var mode: String?
+	public dynamic var mode: String?						
+		
+		
 	
-	public dynamic var score: RealmDecimal?
+	public dynamic var score: RealmDecimal?						
+		
+		
 	
 
 	
@@ -488,7 +533,6 @@ open class BundleEntrySearch: BackboneElement {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -532,9 +576,13 @@ open class BundleLink: BackboneElement {
 		get { return "BundleLink" }
 	}
 
-	public dynamic var relation: String?
+	public dynamic var relation: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -552,7 +600,6 @@ open class BundleLink: BackboneElement {
 				presentKeys.insert("relation")
 				if let val = exist as? String {
 					self.relation = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relation", wants: String.self, has: type(of: exist)))
@@ -565,7 +612,6 @@ open class BundleLink: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))

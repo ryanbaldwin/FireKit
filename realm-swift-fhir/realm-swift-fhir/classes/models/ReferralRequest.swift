@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,37 +21,85 @@ open class ReferralRequest: DomainResource {
 		get { return "ReferralRequest" }
 	}
 
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var dateSent: DateTime?
+	public dynamic var dateSent: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
-	public dynamic var fulfillmentTime: Period?
+	public dynamic var fulfillmentTime: Period?						
+		
+		
+			public func upsert(fulfillmentTime: Period?) {
+				upsert(prop: &self.fulfillmentTime, val: fulfillmentTime)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var priority: CodeableConcept?
+	public dynamic var priority: CodeableConcept?						
+		
+		
+			public func upsert(priority: CodeableConcept?) {
+				upsert(prop: &self.priority, val: priority)
+			}
 	
-	public dynamic var reason: CodeableConcept?
+	public dynamic var reason: CodeableConcept?						
+		
+		
+			public func upsert(reason: CodeableConcept?) {
+				upsert(prop: &self.reason, val: reason)
+			}
 	
 	public let recipient = RealmSwift.List<Reference>()
 	
-	public dynamic var requester: Reference?
+	public dynamic var requester: Reference?						
+		
+		
+			public func upsert(requester: Reference?) {
+				upsert(prop: &self.requester, val: requester)
+			}
 	
 	public let serviceRequested = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var specialty: CodeableConcept?
+	public dynamic var specialty: CodeableConcept?						
+		
+		
+			public func upsert(specialty: CodeableConcept?) {
+				upsert(prop: &self.specialty, val: specialty)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let supportingInformation = RealmSwift.List<Reference>()
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -86,7 +134,6 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -95,7 +142,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -104,7 +151,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["fulfillmentTime"] {
 				presentKeys.insert("fulfillmentTime")
 				if let val = exist as? FHIRJSON {
-					self.fulfillmentTime = Period(json: val, owner: self)
+					upsert(fulfillmentTime: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fulfillmentTime", wants: FHIRJSON.self, has: type(of: exist)))
@@ -114,6 +161,7 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -124,7 +172,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -133,7 +181,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["priority"] {
 				presentKeys.insert("priority")
 				if let val = exist as? FHIRJSON {
-					self.priority = CodeableConcept(json: val, owner: self)
+					upsert(priority: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -142,7 +190,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
-					self.reason = CodeableConcept(json: val, owner: self)
+					upsert(reason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -152,6 +200,7 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("recipient")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.recipient) }
 						self.recipient.append(objectsIn: vals)
 					}
 				}
@@ -162,7 +211,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["requester"] {
 				presentKeys.insert("requester")
 				if let val = exist as? FHIRJSON {
-					self.requester = Reference(json: val, owner: self)
+					upsert(requester: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requester", wants: FHIRJSON.self, has: type(of: exist)))
@@ -172,6 +221,7 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("serviceRequested")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.serviceRequested) }
 						self.serviceRequested.append(objectsIn: vals)
 					}
 				}
@@ -182,7 +232,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["specialty"] {
 				presentKeys.insert("specialty")
 				if let val = exist as? FHIRJSON {
-					self.specialty = CodeableConcept(json: val, owner: self)
+					upsert(specialty: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "specialty", wants: FHIRJSON.self, has: type(of: exist)))
@@ -192,7 +242,6 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -205,6 +254,7 @@ open class ReferralRequest: DomainResource {
 				presentKeys.insert("supportingInformation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.supportingInformation) }
 						self.supportingInformation.append(objectsIn: vals)
 					}
 				}
@@ -215,7 +265,7 @@ open class ReferralRequest: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

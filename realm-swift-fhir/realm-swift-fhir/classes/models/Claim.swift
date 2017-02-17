@@ -2,7 +2,7 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,9 +21,16 @@ open class Claim: DomainResource {
 		get { return "Claim" }
 	}
 
-	public dynamic var accident: FHIRDate?
+	public dynamic var accident: FHIRDate?						
+		
+		
 	
-	public dynamic var accidentType: Coding?
+	public dynamic var accidentType: Coding?						
+		
+		
+			public func upsert(accidentType: Coding?) {
+				upsert(prop: &self.accidentType, val: accidentType)
+			}
 	
 	public let additionalMaterials = RealmSwift.List<Coding>()
 	
@@ -31,17 +38,34 @@ open class Claim: DomainResource {
 	
 	public let coverage = RealmSwift.List<ClaimCoverage>()
 	
-	public dynamic var created: DateTime?
+	public dynamic var created: DateTime?						
+		
+		
 	
 	public let diagnosis = RealmSwift.List<ClaimDiagnosis>()
 	
-	public dynamic var enterer: Reference?
+	public dynamic var enterer: Reference?						
+		
+		
+			public func upsert(enterer: Reference?) {
+				upsert(prop: &self.enterer, val: enterer)
+			}
 	
 	public let exception = RealmSwift.List<Coding>()
 	
-	public dynamic var facility: Reference?
+	public dynamic var facility: Reference?						
+		
+		
+			public func upsert(facility: Reference?) {
+				upsert(prop: &self.facility, val: facility)
+			}
 	
-	public dynamic var fundsReserve: Coding?
+	public dynamic var fundsReserve: Coding?						
+		
+		
+			public func upsert(fundsReserve: Coding?) {
+				upsert(prop: &self.fundsReserve, val: fundsReserve)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
@@ -51,33 +75,94 @@ open class Claim: DomainResource {
 	
 	public let missingTeeth = RealmSwift.List<ClaimMissingTeeth>()
 	
-	public dynamic var organization: Reference?
+	public dynamic var organization: Reference?						
+		
+		
+			public func upsert(organization: Reference?) {
+				upsert(prop: &self.organization, val: organization)
+			}
 	
-	public dynamic var originalPrescription: Reference?
+	public dynamic var originalPrescription: Reference?						
+		
+		
+			public func upsert(originalPrescription: Reference?) {
+				upsert(prop: &self.originalPrescription, val: originalPrescription)
+			}
 	
-	public dynamic var originalRuleset: Coding?
+	public dynamic var originalRuleset: Coding?						
+		
+		
+			public func upsert(originalRuleset: Coding?) {
+				upsert(prop: &self.originalRuleset, val: originalRuleset)
+			}
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var payee: ClaimPayee?
+	public dynamic var payee: ClaimPayee?						
+		
+		
+			public func upsert(payee: ClaimPayee?) {
+				upsert(prop: &self.payee, val: payee)
+			}
 	
-	public dynamic var prescription: Reference?
+	public dynamic var prescription: Reference?						
+		
+		
+			public func upsert(prescription: Reference?) {
+				upsert(prop: &self.prescription, val: prescription)
+			}
 	
-	public dynamic var priority: Coding?
+	public dynamic var priority: Coding?						
+		
+		
+			public func upsert(priority: Coding?) {
+				upsert(prop: &self.priority, val: priority)
+			}
 	
-	public dynamic var provider: Reference?
+	public dynamic var provider: Reference?						
+		
+		
+			public func upsert(provider: Reference?) {
+				upsert(prop: &self.provider, val: provider)
+			}
 	
-	public dynamic var referral: Reference?
+	public dynamic var referral: Reference?						
+		
+		
+			public func upsert(referral: Reference?) {
+				upsert(prop: &self.referral, val: referral)
+			}
 	
-	public dynamic var ruleset: Coding?
+	public dynamic var ruleset: Coding?						
+		
+		
+			public func upsert(ruleset: Coding?) {
+				upsert(prop: &self.ruleset, val: ruleset)
+			}
 	
-	public dynamic var school: String?
+	public dynamic var school: String?						
+		
+		
 	
-	public dynamic var target: Reference?
+	public dynamic var target: Reference?						
+		
+		
+			public func upsert(target: Reference?) {
+				upsert(prop: &self.target, val: target)
+			}
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var use: String?
+	public dynamic var use: String?						
+		
+		
 	
 
 	
@@ -103,7 +188,7 @@ open class Claim: DomainResource {
 			if let exist = js["accidentType"] {
 				presentKeys.insert("accidentType")
 				if let val = exist as? FHIRJSON {
-					self.accidentType = Coding(json: val, owner: self)
+					upsert(accidentType: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "accidentType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -113,6 +198,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("additionalMaterials")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.additionalMaterials) }
 						self.additionalMaterials.append(objectsIn: vals)
 					}
 				}
@@ -124,6 +210,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("condition")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.condition) }
 						self.condition.append(objectsIn: vals)
 					}
 				}
@@ -135,6 +222,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("coverage")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClaimCoverage.instantiate(fromArray: val, owner: self) as? [ClaimCoverage] {
+						if let realm = self.realm { realm.delete(self.coverage) }
 						self.coverage.append(objectsIn: vals)
 					}
 				}
@@ -155,6 +243,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("diagnosis")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClaimDiagnosis.instantiate(fromArray: val, owner: self) as? [ClaimDiagnosis] {
+						if let realm = self.realm { realm.delete(self.diagnosis) }
 						self.diagnosis.append(objectsIn: vals)
 					}
 				}
@@ -165,7 +254,7 @@ open class Claim: DomainResource {
 			if let exist = js["enterer"] {
 				presentKeys.insert("enterer")
 				if let val = exist as? FHIRJSON {
-					self.enterer = Reference(json: val, owner: self)
+					upsert(enterer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "enterer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -175,6 +264,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("exception")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.exception) }
 						self.exception.append(objectsIn: vals)
 					}
 				}
@@ -185,7 +275,7 @@ open class Claim: DomainResource {
 			if let exist = js["facility"] {
 				presentKeys.insert("facility")
 				if let val = exist as? FHIRJSON {
-					self.facility = Reference(json: val, owner: self)
+					upsert(facility: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "facility", wants: FHIRJSON.self, has: type(of: exist)))
@@ -194,7 +284,7 @@ open class Claim: DomainResource {
 			if let exist = js["fundsReserve"] {
 				presentKeys.insert("fundsReserve")
 				if let val = exist as? FHIRJSON {
-					self.fundsReserve = Coding(json: val, owner: self)
+					upsert(fundsReserve: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "fundsReserve", wants: FHIRJSON.self, has: type(of: exist)))
@@ -204,6 +294,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -215,6 +306,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("interventionException")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.interventionException) }
 						self.interventionException.append(objectsIn: vals)
 					}
 				}
@@ -226,6 +318,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClaimItem.instantiate(fromArray: val, owner: self) as? [ClaimItem] {
+						if let realm = self.realm { realm.delete(self.item) }
 						self.item.append(objectsIn: vals)
 					}
 				}
@@ -237,6 +330,7 @@ open class Claim: DomainResource {
 				presentKeys.insert("missingTeeth")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClaimMissingTeeth.instantiate(fromArray: val, owner: self) as? [ClaimMissingTeeth] {
+						if let realm = self.realm { realm.delete(self.missingTeeth) }
 						self.missingTeeth.append(objectsIn: vals)
 					}
 				}
@@ -247,7 +341,7 @@ open class Claim: DomainResource {
 			if let exist = js["organization"] {
 				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					upsert(organization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -256,7 +350,7 @@ open class Claim: DomainResource {
 			if let exist = js["originalPrescription"] {
 				presentKeys.insert("originalPrescription")
 				if let val = exist as? FHIRJSON {
-					self.originalPrescription = Reference(json: val, owner: self)
+					upsert(originalPrescription: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "originalPrescription", wants: FHIRJSON.self, has: type(of: exist)))
@@ -265,7 +359,7 @@ open class Claim: DomainResource {
 			if let exist = js["originalRuleset"] {
 				presentKeys.insert("originalRuleset")
 				if let val = exist as? FHIRJSON {
-					self.originalRuleset = Coding(json: val, owner: self)
+					upsert(originalRuleset: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -274,7 +368,7 @@ open class Claim: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -286,7 +380,7 @@ open class Claim: DomainResource {
 			if let exist = js["payee"] {
 				presentKeys.insert("payee")
 				if let val = exist as? FHIRJSON {
-					self.payee = ClaimPayee(json: val, owner: self)
+					upsert(payee: ClaimPayee(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "payee", wants: FHIRJSON.self, has: type(of: exist)))
@@ -295,7 +389,7 @@ open class Claim: DomainResource {
 			if let exist = js["prescription"] {
 				presentKeys.insert("prescription")
 				if let val = exist as? FHIRJSON {
-					self.prescription = Reference(json: val, owner: self)
+					upsert(prescription: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "prescription", wants: FHIRJSON.self, has: type(of: exist)))
@@ -304,7 +398,7 @@ open class Claim: DomainResource {
 			if let exist = js["priority"] {
 				presentKeys.insert("priority")
 				if let val = exist as? FHIRJSON {
-					self.priority = Coding(json: val, owner: self)
+					upsert(priority: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -313,7 +407,7 @@ open class Claim: DomainResource {
 			if let exist = js["provider"] {
 				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.provider = Reference(json: val, owner: self)
+					upsert(provider: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
@@ -322,7 +416,7 @@ open class Claim: DomainResource {
 			if let exist = js["referral"] {
 				presentKeys.insert("referral")
 				if let val = exist as? FHIRJSON {
-					self.referral = Reference(json: val, owner: self)
+					upsert(referral: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "referral", wants: FHIRJSON.self, has: type(of: exist)))
@@ -331,7 +425,7 @@ open class Claim: DomainResource {
 			if let exist = js["ruleset"] {
 				presentKeys.insert("ruleset")
 				if let val = exist as? FHIRJSON {
-					self.ruleset = Coding(json: val, owner: self)
+					upsert(ruleset: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "ruleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -341,7 +435,6 @@ open class Claim: DomainResource {
 				presentKeys.insert("school")
 				if let val = exist as? String {
 					self.school = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "school", wants: String.self, has: type(of: exist)))
@@ -350,7 +443,7 @@ open class Claim: DomainResource {
 			if let exist = js["target"] {
 				presentKeys.insert("target")
 				if let val = exist as? FHIRJSON {
-					self.target = Reference(json: val, owner: self)
+					upsert(target: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))
@@ -360,7 +453,6 @@ open class Claim: DomainResource {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -373,7 +465,6 @@ open class Claim: DomainResource {
 				presentKeys.insert("use")
 				if let val = exist as? String {
 					self.use = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))
@@ -489,19 +580,41 @@ open class ClaimCoverage: BackboneElement {
 		get { return "ClaimCoverage" }
 	}
 
-	public dynamic var businessArrangement: String?
+	public dynamic var businessArrangement: String?						
+		
+		
 	
-	public dynamic var claimResponse: Reference?
+	public dynamic var claimResponse: Reference?						
+		
+		
+			public func upsert(claimResponse: Reference?) {
+				upsert(prop: &self.claimResponse, val: claimResponse)
+			}
 	
-	public dynamic var coverage: Reference?
+	public dynamic var coverage: Reference?						
+		
+		
+			public func upsert(coverage: Reference?) {
+				upsert(prop: &self.coverage, val: coverage)
+			}
 	
 	public let focal = RealmOptional<Bool>()
 	
-	public dynamic var originalRuleset: Coding?
+	public dynamic var originalRuleset: Coding?						
+		
+		
+			public func upsert(originalRuleset: Coding?) {
+				upsert(prop: &self.originalRuleset, val: originalRuleset)
+			}
 	
 	public let preAuthRef = RealmSwift.List<RealmString>()
 	
-	public dynamic var relationship: Coding?
+	public dynamic var relationship: Coding?						
+		
+		
+			public func upsert(relationship: Coding?) {
+				upsert(prop: &self.relationship, val: relationship)
+			}
 	
 	public let sequence = RealmOptional<Int>()
 	
@@ -523,7 +636,6 @@ open class ClaimCoverage: BackboneElement {
 				presentKeys.insert("businessArrangement")
 				if let val = exist as? String {
 					self.businessArrangement = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "businessArrangement", wants: String.self, has: type(of: exist)))
@@ -532,7 +644,7 @@ open class ClaimCoverage: BackboneElement {
 			if let exist = js["claimResponse"] {
 				presentKeys.insert("claimResponse")
 				if let val = exist as? FHIRJSON {
-					self.claimResponse = Reference(json: val, owner: self)
+					upsert(claimResponse: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "claimResponse", wants: FHIRJSON.self, has: type(of: exist)))
@@ -541,7 +653,7 @@ open class ClaimCoverage: BackboneElement {
 			if let exist = js["coverage"] {
 				presentKeys.insert("coverage")
 				if let val = exist as? FHIRJSON {
-					self.coverage = Reference(json: val, owner: self)
+					upsert(coverage: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "coverage", wants: FHIRJSON.self, has: type(of: exist)))
@@ -554,7 +666,6 @@ open class ClaimCoverage: BackboneElement {
 				presentKeys.insert("focal")
 				if let val = exist as? Bool {
 					self.focal.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "focal", wants: Bool.self, has: type(of: exist)))
@@ -566,7 +677,7 @@ open class ClaimCoverage: BackboneElement {
 			if let exist = js["originalRuleset"] {
 				presentKeys.insert("originalRuleset")
 				if let val = exist as? FHIRJSON {
-					self.originalRuleset = Coding(json: val, owner: self)
+					upsert(originalRuleset: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "originalRuleset", wants: FHIRJSON.self, has: type(of: exist)))
@@ -584,7 +695,7 @@ open class ClaimCoverage: BackboneElement {
 			if let exist = js["relationship"] {
 				presentKeys.insert("relationship")
 				if let val = exist as? FHIRJSON {
-					self.relationship = Coding(json: val, owner: self)
+					upsert(relationship: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "relationship", wants: FHIRJSON.self, has: type(of: exist)))
@@ -597,7 +708,6 @@ open class ClaimCoverage: BackboneElement {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -653,7 +763,12 @@ open class ClaimDiagnosis: BackboneElement {
 		get { return "ClaimDiagnosis" }
 	}
 
-	public dynamic var diagnosis: Coding?
+	public dynamic var diagnosis: Coding?						
+		
+		
+			public func upsert(diagnosis: Coding?) {
+				upsert(prop: &self.diagnosis, val: diagnosis)
+			}
 	
 	public let sequence = RealmOptional<Int>()
 	
@@ -672,7 +787,7 @@ open class ClaimDiagnosis: BackboneElement {
 			if let exist = js["diagnosis"] {
 				presentKeys.insert("diagnosis")
 				if let val = exist as? FHIRJSON {
-					self.diagnosis = Coding(json: val, owner: self)
+					upsert(diagnosis: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "diagnosis", wants: FHIRJSON.self, has: type(of: exist)))
@@ -685,7 +800,6 @@ open class ClaimDiagnosis: BackboneElement {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -723,39 +837,90 @@ open class ClaimItem: BackboneElement {
 		get { return "ClaimItem" }
 	}
 
-	public dynamic var bodySite: Coding?
+	public dynamic var bodySite: Coding?						
+		
+		
+			public func upsert(bodySite: Coding?) {
+				upsert(prop: &self.bodySite, val: bodySite)
+			}
 	
 	public let detail = RealmSwift.List<ClaimItemDetail>()
 	
 	public let diagnosisLinkId = RealmSwift.List<RealmInt>()
 	
-	public dynamic var factor: RealmDecimal?
+	public dynamic var factor: RealmDecimal?						
+		
+		
 	
 	public let modifier = RealmSwift.List<Coding>()
 	
-	public dynamic var net: Quantity?
+	public dynamic var net: Quantity?						
+		
+		
+			public func upsert(net: Quantity?) {
+				upsert(prop: &self.net, val: net)
+			}
 	
-	public dynamic var points: RealmDecimal?
+	public dynamic var points: RealmDecimal?						
+		
+		
 	
-	public dynamic var prosthesis: ClaimItemProsthesis?
+	public dynamic var prosthesis: ClaimItemProsthesis?						
+		
+		
+			public func upsert(prosthesis: ClaimItemProsthesis?) {
+				upsert(prop: &self.prosthesis, val: prosthesis)
+			}
 	
-	public dynamic var provider: Reference?
+	public dynamic var provider: Reference?						
+		
+		
+			public func upsert(provider: Reference?) {
+				upsert(prop: &self.provider, val: provider)
+			}
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
 	public let sequence = RealmOptional<Int>()
 	
-	public dynamic var service: Coding?
+	public dynamic var service: Coding?						
+		
+		
+			public func upsert(service: Coding?) {
+				upsert(prop: &self.service, val: service)
+			}
 	
-	public dynamic var serviceDate: FHIRDate?
+	public dynamic var serviceDate: FHIRDate?						
+		
+		
 	
 	public let subSite = RealmSwift.List<Coding>()
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var udi: Coding?
+	public dynamic var udi: Coding?						
+		
+		
+			public func upsert(udi: Coding?) {
+				upsert(prop: &self.udi, val: udi)
+			}
 	
-	public dynamic var unitPrice: Quantity?
+	public dynamic var unitPrice: Quantity?						
+		
+		
+			public func upsert(unitPrice: Quantity?) {
+				upsert(prop: &self.unitPrice, val: unitPrice)
+			}
 	
 
 	
@@ -773,7 +938,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? FHIRJSON {
-					self.bodySite = Coding(json: val, owner: self)
+					upsert(bodySite: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: type(of: exist)))
@@ -783,6 +948,7 @@ open class ClaimItem: BackboneElement {
 				presentKeys.insert("detail")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClaimItemDetail.instantiate(fromArray: val, owner: self) as? [ClaimItemDetail] {
+						if let realm = self.realm { realm.delete(self.detail) }
 						self.detail.append(objectsIn: vals)
 					}
 				}
@@ -812,6 +978,7 @@ open class ClaimItem: BackboneElement {
 				presentKeys.insert("modifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.modifier) }
 						self.modifier.append(objectsIn: vals)
 					}
 				}
@@ -822,7 +989,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Quantity(json: val, owner: self)
+					upsert(net: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
@@ -840,7 +1007,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["prosthesis"] {
 				presentKeys.insert("prosthesis")
 				if let val = exist as? FHIRJSON {
-					self.prosthesis = ClaimItemProsthesis(json: val, owner: self)
+					upsert(prosthesis: ClaimItemProsthesis(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "prosthesis", wants: FHIRJSON.self, has: type(of: exist)))
@@ -849,7 +1016,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["provider"] {
 				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.provider = Reference(json: val, owner: self)
+					upsert(provider: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
@@ -858,7 +1025,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -868,7 +1035,6 @@ open class ClaimItem: BackboneElement {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -880,7 +1046,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["service"] {
 				presentKeys.insert("service")
 				if let val = exist as? FHIRJSON {
-					self.service = Coding(json: val, owner: self)
+					upsert(service: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "service", wants: FHIRJSON.self, has: type(of: exist)))
@@ -902,6 +1068,7 @@ open class ClaimItem: BackboneElement {
 				presentKeys.insert("subSite")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.subSite) }
 						self.subSite.append(objectsIn: vals)
 					}
 				}
@@ -912,7 +1079,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -924,7 +1091,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["udi"] {
 				presentKeys.insert("udi")
 				if let val = exist as? FHIRJSON {
-					self.udi = Coding(json: val, owner: self)
+					upsert(udi: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "udi", wants: FHIRJSON.self, has: type(of: exist)))
@@ -933,7 +1100,7 @@ open class ClaimItem: BackboneElement {
 			if let exist = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Quantity(json: val, owner: self)
+					upsert(unitPrice: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1013,25 +1180,59 @@ open class ClaimItemDetail: BackboneElement {
 		get { return "ClaimItemDetail" }
 	}
 
-	public dynamic var factor: RealmDecimal?
+	public dynamic var factor: RealmDecimal?						
+		
+		
 	
-	public dynamic var net: Quantity?
+	public dynamic var net: Quantity?						
+		
+		
+			public func upsert(net: Quantity?) {
+				upsert(prop: &self.net, val: net)
+			}
 	
-	public dynamic var points: RealmDecimal?
+	public dynamic var points: RealmDecimal?						
+		
+		
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
 	public let sequence = RealmOptional<Int>()
 	
-	public dynamic var service: Coding?
+	public dynamic var service: Coding?						
+		
+		
+			public func upsert(service: Coding?) {
+				upsert(prop: &self.service, val: service)
+			}
 	
 	public let subDetail = RealmSwift.List<ClaimItemDetailSubDetail>()
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var udi: Coding?
+	public dynamic var udi: Coding?						
+		
+		
+			public func upsert(udi: Coding?) {
+				upsert(prop: &self.udi, val: udi)
+			}
 	
-	public dynamic var unitPrice: Quantity?
+	public dynamic var unitPrice: Quantity?						
+		
+		
+			public func upsert(unitPrice: Quantity?) {
+				upsert(prop: &self.unitPrice, val: unitPrice)
+			}
 	
 
 	
@@ -1058,7 +1259,7 @@ open class ClaimItemDetail: BackboneElement {
 			if let exist = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Quantity(json: val, owner: self)
+					upsert(net: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1076,7 +1277,7 @@ open class ClaimItemDetail: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1086,7 +1287,6 @@ open class ClaimItemDetail: BackboneElement {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -1098,7 +1298,7 @@ open class ClaimItemDetail: BackboneElement {
 			if let exist = js["service"] {
 				presentKeys.insert("service")
 				if let val = exist as? FHIRJSON {
-					self.service = Coding(json: val, owner: self)
+					upsert(service: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "service", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1111,6 +1311,7 @@ open class ClaimItemDetail: BackboneElement {
 				presentKeys.insert("subDetail")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ClaimItemDetailSubDetail.instantiate(fromArray: val, owner: self) as? [ClaimItemDetailSubDetail] {
+						if let realm = self.realm { realm.delete(self.subDetail) }
 						self.subDetail.append(objectsIn: vals)
 					}
 				}
@@ -1121,7 +1322,7 @@ open class ClaimItemDetail: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1133,7 +1334,7 @@ open class ClaimItemDetail: BackboneElement {
 			if let exist = js["udi"] {
 				presentKeys.insert("udi")
 				if let val = exist as? FHIRJSON {
-					self.udi = Coding(json: val, owner: self)
+					upsert(udi: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "udi", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1142,7 +1343,7 @@ open class ClaimItemDetail: BackboneElement {
 			if let exist = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Quantity(json: val, owner: self)
+					upsert(unitPrice: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1201,23 +1402,57 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 		get { return "ClaimItemDetailSubDetail" }
 	}
 
-	public dynamic var factor: RealmDecimal?
+	public dynamic var factor: RealmDecimal?						
+		
+		
 	
-	public dynamic var net: Quantity?
+	public dynamic var net: Quantity?						
+		
+		
+			public func upsert(net: Quantity?) {
+				upsert(prop: &self.net, val: net)
+			}
 	
-	public dynamic var points: RealmDecimal?
+	public dynamic var points: RealmDecimal?						
+		
+		
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
 	public let sequence = RealmOptional<Int>()
 	
-	public dynamic var service: Coding?
+	public dynamic var service: Coding?						
+		
+		
+			public func upsert(service: Coding?) {
+				upsert(prop: &self.service, val: service)
+			}
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var udi: Coding?
+	public dynamic var udi: Coding?						
+		
+		
+			public func upsert(udi: Coding?) {
+				upsert(prop: &self.udi, val: udi)
+			}
 	
-	public dynamic var unitPrice: Quantity?
+	public dynamic var unitPrice: Quantity?						
+		
+		
+			public func upsert(unitPrice: Quantity?) {
+				upsert(prop: &self.unitPrice, val: unitPrice)
+			}
 	
 
 	
@@ -1244,7 +1479,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 			if let exist = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Quantity(json: val, owner: self)
+					upsert(net: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1262,7 +1497,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1272,7 +1507,6 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -1284,7 +1518,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 			if let exist = js["service"] {
 				presentKeys.insert("service")
 				if let val = exist as? FHIRJSON {
-					self.service = Coding(json: val, owner: self)
+					upsert(service: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "service", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1296,7 +1530,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1308,7 +1542,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 			if let exist = js["udi"] {
 				presentKeys.insert("udi")
 				if let val = exist as? FHIRJSON {
-					self.udi = Coding(json: val, owner: self)
+					upsert(udi: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "udi", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1317,7 +1551,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 			if let exist = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Quantity(json: val, owner: self)
+					upsert(unitPrice: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1375,9 +1609,16 @@ open class ClaimItemProsthesis: BackboneElement {
 
 	public let initial = RealmOptional<Bool>()
 	
-	public dynamic var priorDate: FHIRDate?
+	public dynamic var priorDate: FHIRDate?						
+		
+		
 	
-	public dynamic var priorMaterial: Coding?
+	public dynamic var priorMaterial: Coding?						
+		
+		
+			public func upsert(priorMaterial: Coding?) {
+				upsert(prop: &self.priorMaterial, val: priorMaterial)
+			}
 	
 
 	
@@ -1388,7 +1629,6 @@ open class ClaimItemProsthesis: BackboneElement {
 				presentKeys.insert("initial")
 				if let val = exist as? Bool {
 					self.initial.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "initial", wants: Bool.self, has: type(of: exist)))
@@ -1406,7 +1646,7 @@ open class ClaimItemProsthesis: BackboneElement {
 			if let exist = js["priorMaterial"] {
 				presentKeys.insert("priorMaterial")
 				if let val = exist as? FHIRJSON {
-					self.priorMaterial = Coding(json: val, owner: self)
+					upsert(priorMaterial: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priorMaterial", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1445,11 +1685,23 @@ open class ClaimMissingTeeth: BackboneElement {
 		get { return "ClaimMissingTeeth" }
 	}
 
-	public dynamic var extractionDate: FHIRDate?
+	public dynamic var extractionDate: FHIRDate?						
+		
+		
 	
-	public dynamic var reason: Coding?
+	public dynamic var reason: Coding?						
+		
+		
+			public func upsert(reason: Coding?) {
+				upsert(prop: &self.reason, val: reason)
+			}
 	
-	public dynamic var tooth: Coding?
+	public dynamic var tooth: Coding?						
+		
+		
+			public func upsert(tooth: Coding?) {
+				upsert(prop: &self.tooth, val: tooth)
+			}
 	
 
 	
@@ -1474,7 +1726,7 @@ open class ClaimMissingTeeth: BackboneElement {
 			if let exist = js["reason"] {
 				presentKeys.insert("reason")
 				if let val = exist as? FHIRJSON {
-					self.reason = Coding(json: val, owner: self)
+					upsert(reason: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1483,7 +1735,7 @@ open class ClaimMissingTeeth: BackboneElement {
 			if let exist = js["tooth"] {
 				presentKeys.insert("tooth")
 				if let val = exist as? FHIRJSON {
-					self.tooth = Coding(json: val, owner: self)
+					upsert(tooth: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "tooth", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1524,13 +1776,33 @@ open class ClaimPayee: BackboneElement {
 		get { return "ClaimPayee" }
 	}
 
-	public dynamic var organization: Reference?
+	public dynamic var organization: Reference?						
+		
+		
+			public func upsert(organization: Reference?) {
+				upsert(prop: &self.organization, val: organization)
+			}
 	
-	public dynamic var person: Reference?
+	public dynamic var person: Reference?						
+		
+		
+			public func upsert(person: Reference?) {
+				upsert(prop: &self.person, val: person)
+			}
 	
-	public dynamic var provider: Reference?
+	public dynamic var provider: Reference?						
+		
+		
+			public func upsert(provider: Reference?) {
+				upsert(prop: &self.provider, val: provider)
+			}
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -1540,7 +1812,7 @@ open class ClaimPayee: BackboneElement {
 			if let exist = js["organization"] {
 				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					upsert(organization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1549,7 +1821,7 @@ open class ClaimPayee: BackboneElement {
 			if let exist = js["person"] {
 				presentKeys.insert("person")
 				if let val = exist as? FHIRJSON {
-					self.person = Reference(json: val, owner: self)
+					upsert(person: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "person", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1558,7 +1830,7 @@ open class ClaimPayee: BackboneElement {
 			if let exist = js["provider"] {
 				presentKeys.insert("provider")
 				if let val = exist as? FHIRJSON {
-					self.provider = Reference(json: val, owner: self)
+					upsert(provider: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "provider", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1567,7 +1839,7 @@ open class ClaimPayee: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

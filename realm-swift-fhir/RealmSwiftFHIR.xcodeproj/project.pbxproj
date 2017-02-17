@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		C20D20E61E3A7FB100027316 /* RealmTestingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */; };
+		C2213EFA1E54FB76007EECC5 /* Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2213EF91E54FB76007EECC5 /* Copying.swift */; };
+		C23F08881E54DA2900B1F9B1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430D1E37C96C00EE1AEE /* Realm.framework */; };
+		C23F08891E54DA2C00B1F9B1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430E1E37C96C00EE1AEE /* RealmSwift.framework */; };
 		C250E2A81E3808B300C9631E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42011E37C6D200EE1AEE /* Account.swift */; };
 		C250E2A91E3808B300C9631E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42021E37C6D200EE1AEE /* Address.swift */; };
 		C250E2AA1E3808B300C9631E /* Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42031E37C6D200EE1AEE /* Age.swift */; };
@@ -2931,6 +2934,7 @@
 
 /* Begin PBXFileReference section */
 		C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmTestingProtocols.swift; path = classes/RealmTestingProtocols.swift; sourceTree = "<group>"; };
+		C2213EF91E54FB76007EECC5 /* Copying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Copying.swift; path = classes/Copying.swift; sourceTree = "<group>"; };
 		C2AF41E51E37C4E300EE1AEE /* RealmSwiftFHIR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RealmSwiftFHIR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF41E81E37C4E300EE1AEE /* realm-swift-fhir.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "realm-swift-fhir.h"; sourceTree = "<group>"; };
 		C2AF41E91E37C4E300EE1AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -5851,6 +5855,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C23F08891E54DA2C00B1F9B1 /* RealmSwift.framework in Frameworks */,
+				C23F08881E54DA2900B1F9B1 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6045,6 +6051,7 @@
 				C2AF42831E37C6D200EE1AEE /* Timing.swift */,
 				C2AF42841E37C6D200EE1AEE /* ValueSet.swift */,
 				C2AF42851E37C6D200EE1AEE /* VisionPrescription.swift */,
+				C2213EF91E54FB76007EECC5 /* Copying.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -11696,6 +11703,7 @@
 				C250E2BC1E3808B300C9631E /* Communication.swift in Sources */,
 				C250E2EE1E3808B300C9631E /* ImagingStudy.swift in Sources */,
 				C250E3211E3808B300C9631E /* Signature.swift in Sources */,
+				C2213EFA1E54FB76007EECC5 /* Copying.swift in Sources */,
 				C250E2CD1E3808B300C9631E /* DeviceUseStatement.swift in Sources */,
 				C250E2C11E3808B300C9631E /* Conformance.swift in Sources */,
 				C250E31A1E3808B300C9631E /* ReferralRequest.swift in Sources */,
@@ -12022,7 +12030,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "realm-swift-fhir/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -12044,7 +12055,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Carthage/Build/iOS/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "realm-swift-fhir/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";

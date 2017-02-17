@@ -2,7 +2,7 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,27 +20,71 @@ open class SupplyDelivery: DomainResource {
 		get { return "SupplyDelivery" }
 	}
 
-	public dynamic var destination: Reference?
+	public dynamic var destination: Reference?						
+		
+		
+			public func upsert(destination: Reference?) {
+				upsert(prop: &self.destination, val: destination)
+			}
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
 	public let receiver = RealmSwift.List<Reference>()
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var suppliedItem: Reference?
+	public dynamic var suppliedItem: Reference?						
+		
+		
+			public func upsert(suppliedItem: Reference?) {
+				upsert(prop: &self.suppliedItem, val: suppliedItem)
+			}
 	
-	public dynamic var supplier: Reference?
+	public dynamic var supplier: Reference?						
+		
+		
+			public func upsert(supplier: Reference?) {
+				upsert(prop: &self.supplier, val: supplier)
+			}
 	
-	public dynamic var time: DateTime?
+	public dynamic var time: DateTime?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
-	public dynamic var whenPrepared: Period?
+	public dynamic var whenPrepared: Period?						
+		
+		
+			public func upsert(whenPrepared: Period?) {
+				upsert(prop: &self.whenPrepared, val: whenPrepared)
+			}
 	
 
 	
@@ -50,7 +94,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["destination"] {
 				presentKeys.insert("destination")
 				if let val = exist as? FHIRJSON {
-					self.destination = Reference(json: val, owner: self)
+					upsert(destination: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "destination", wants: FHIRJSON.self, has: type(of: exist)))
@@ -59,7 +103,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -68,7 +112,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -77,7 +121,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -87,6 +131,7 @@ open class SupplyDelivery: DomainResource {
 				presentKeys.insert("receiver")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.receiver) }
 						self.receiver.append(objectsIn: vals)
 					}
 				}
@@ -98,7 +143,6 @@ open class SupplyDelivery: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -107,7 +151,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["suppliedItem"] {
 				presentKeys.insert("suppliedItem")
 				if let val = exist as? FHIRJSON {
-					self.suppliedItem = Reference(json: val, owner: self)
+					upsert(suppliedItem: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "suppliedItem", wants: FHIRJSON.self, has: type(of: exist)))
@@ -116,7 +160,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["supplier"] {
 				presentKeys.insert("supplier")
 				if let val = exist as? FHIRJSON {
-					self.supplier = Reference(json: val, owner: self)
+					upsert(supplier: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "supplier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -134,7 +178,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -143,7 +187,7 @@ open class SupplyDelivery: DomainResource {
 			if let exist = js["whenPrepared"] {
 				presentKeys.insert("whenPrepared")
 				if let val = exist as? FHIRJSON {
-					self.whenPrepared = Period(json: val, owner: self)
+					upsert(whenPrepared: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "whenPrepared", wants: FHIRJSON.self, has: type(of: exist)))

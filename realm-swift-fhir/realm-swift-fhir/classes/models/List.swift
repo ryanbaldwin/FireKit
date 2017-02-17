@@ -2,7 +2,7 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,31 +20,71 @@ open class List: DomainResource {
 		get { return "List" }
 	}
 
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var emptyReason: CodeableConcept?
+	public dynamic var emptyReason: CodeableConcept?						
+		
+		
+			public func upsert(emptyReason: CodeableConcept?) {
+				upsert(prop: &self.emptyReason, val: emptyReason)
+			}
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let entry = RealmSwift.List<ListEntry>()
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var mode: String?
+	public dynamic var mode: String?						
+		
+		
 	
-	public dynamic var note: String?
+	public dynamic var note: String?						
+		
+		
 	
-	public dynamic var orderedBy: CodeableConcept?
+	public dynamic var orderedBy: CodeableConcept?						
+		
+		
+			public func upsert(orderedBy: CodeableConcept?) {
+				upsert(prop: &self.orderedBy, val: orderedBy)
+			}
 	
-	public dynamic var source: Reference?
+	public dynamic var source: Reference?						
+		
+		
+			public func upsert(source: Reference?) {
+				upsert(prop: &self.source, val: source)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var title: String?
+	public dynamic var title: String?						
+		
+		
 	
 
 	
@@ -61,7 +101,7 @@ open class List: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -79,7 +119,7 @@ open class List: DomainResource {
 			if let exist = js["emptyReason"] {
 				presentKeys.insert("emptyReason")
 				if let val = exist as? FHIRJSON {
-					self.emptyReason = CodeableConcept(json: val, owner: self)
+					upsert(emptyReason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "emptyReason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -88,7 +128,7 @@ open class List: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -98,6 +138,7 @@ open class List: DomainResource {
 				presentKeys.insert("entry")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ListEntry.instantiate(fromArray: val, owner: self) as? [ListEntry] {
+						if let realm = self.realm { realm.delete(self.entry) }
 						self.entry.append(objectsIn: vals)
 					}
 				}
@@ -109,6 +150,7 @@ open class List: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -120,7 +162,6 @@ open class List: DomainResource {
 				presentKeys.insert("mode")
 				if let val = exist as? String {
 					self.mode = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
@@ -133,7 +174,6 @@ open class List: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? String {
 					self.note = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "note", wants: String.self, has: type(of: exist)))
@@ -142,7 +182,7 @@ open class List: DomainResource {
 			if let exist = js["orderedBy"] {
 				presentKeys.insert("orderedBy")
 				if let val = exist as? FHIRJSON {
-					self.orderedBy = CodeableConcept(json: val, owner: self)
+					upsert(orderedBy: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderedBy", wants: FHIRJSON.self, has: type(of: exist)))
@@ -151,7 +191,7 @@ open class List: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					self.source = Reference(json: val, owner: self)
+					upsert(source: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -161,7 +201,6 @@ open class List: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -173,7 +212,7 @@ open class List: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -183,7 +222,6 @@ open class List: DomainResource {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -251,13 +289,25 @@ open class ListEntry: BackboneElement {
 		get { return "ListEntry" }
 	}
 
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
 	public let deleted = RealmOptional<Bool>()
 	
-	public dynamic var flag: CodeableConcept?
+	public dynamic var flag: CodeableConcept?						
+		
+		
+			public func upsert(flag: CodeableConcept?) {
+				upsert(prop: &self.flag, val: flag)
+			}
 	
-	public dynamic var item: Reference?
+	public dynamic var item: Reference?						
+		
+		
+			public func upsert(item: Reference?) {
+				upsert(prop: &self.item, val: item)
+			}
 	
 
 	
@@ -283,7 +333,6 @@ open class ListEntry: BackboneElement {
 				presentKeys.insert("deleted")
 				if let val = exist as? Bool {
 					self.deleted.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deleted", wants: Bool.self, has: type(of: exist)))
@@ -292,7 +341,7 @@ open class ListEntry: BackboneElement {
 			if let exist = js["flag"] {
 				presentKeys.insert("flag")
 				if let val = exist as? FHIRJSON {
-					self.flag = CodeableConcept(json: val, owner: self)
+					upsert(flag: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "flag", wants: FHIRJSON.self, has: type(of: exist)))
@@ -301,7 +350,7 @@ open class ListEntry: BackboneElement {
 			if let exist = js["item"] {
 				presentKeys.insert("item")
 				if let val = exist as? FHIRJSON {
-					self.item = Reference(json: val, owner: self)
+					upsert(item: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "item", wants: FHIRJSON.self, has: type(of: exist)))

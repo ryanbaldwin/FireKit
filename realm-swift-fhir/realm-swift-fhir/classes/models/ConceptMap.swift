@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,39 +23,76 @@ open class ConceptMap: DomainResource {
 
 	public let contact = RealmSwift.List<ConceptMapContact>()
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let element = RealmSwift.List<ConceptMapElement>()
 	
 	public let experimental = RealmOptional<Bool>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var sourceReference: Reference?
+	public dynamic var sourceReference: Reference?						
+		
+		
+			public func upsert(sourceReference: Reference?) {
+				upsert(prop: &self.sourceReference, val: sourceReference)
+			}
 	
-	public dynamic var sourceUri: String?
+	public dynamic var sourceUri: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var targetReference: Reference?
+	public dynamic var targetReference: Reference?						
+		
+		
+			public func upsert(targetReference: Reference?) {
+				upsert(prop: &self.targetReference, val: targetReference)
+			}
 	
-	public dynamic var targetUri: String?
+	public dynamic var targetUri: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -76,6 +113,7 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ConceptMapContact.instantiate(fromArray: val, owner: self) as? [ConceptMapContact] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -87,7 +125,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -106,7 +143,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -116,6 +152,7 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("element")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ConceptMapElement.instantiate(fromArray: val, owner: self) as? [ConceptMapElement] {
+						if let realm = self.realm { realm.delete(self.element) }
 						self.element.append(objectsIn: vals)
 					}
 				}
@@ -127,7 +164,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -136,7 +172,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -146,7 +182,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -156,7 +191,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -166,7 +200,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -175,7 +208,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["sourceReference"] {
 				presentKeys.insert("sourceReference")
 				if let val = exist as? FHIRJSON {
-					self.sourceReference = Reference(json: val, owner: self)
+					upsert(sourceReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -185,7 +218,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("sourceUri")
 				if let val = exist as? String {
 					self.sourceUri = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sourceUri", wants: String.self, has: type(of: exist)))
@@ -195,7 +227,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -207,7 +238,7 @@ open class ConceptMap: DomainResource {
 			if let exist = js["targetReference"] {
 				presentKeys.insert("targetReference")
 				if let val = exist as? FHIRJSON {
-					self.targetReference = Reference(json: val, owner: self)
+					upsert(targetReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -217,7 +248,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("targetUri")
 				if let val = exist as? String {
 					self.targetUri = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetUri", wants: String.self, has: type(of: exist)))
@@ -227,7 +257,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -237,6 +266,7 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.useContext) }
 						self.useContext.append(objectsIn: vals)
 					}
 				}
@@ -248,7 +278,6 @@ open class ConceptMap: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -339,7 +368,9 @@ open class ConceptMapContact: BackboneElement {
 		get { return "ConceptMapContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -352,7 +383,6 @@ open class ConceptMapContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -362,6 +392,7 @@ open class ConceptMapContact: BackboneElement {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -398,9 +429,13 @@ open class ConceptMapElement: BackboneElement {
 		get { return "ConceptMapElement" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var codeSystem: String?
+	public dynamic var codeSystem: String?						
+		
+		
 	
 	public let target = RealmSwift.List<ConceptMapElementTarget>()
 	
@@ -413,7 +448,6 @@ open class ConceptMapElement: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -423,7 +457,6 @@ open class ConceptMapElement: BackboneElement {
 				presentKeys.insert("codeSystem")
 				if let val = exist as? String {
 					self.codeSystem = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeSystem", wants: String.self, has: type(of: exist)))
@@ -433,6 +466,7 @@ open class ConceptMapElement: BackboneElement {
 				presentKeys.insert("target")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ConceptMapElementTarget.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTarget] {
+						if let realm = self.realm { realm.delete(self.target) }
 						self.target.append(objectsIn: vals)
 					}
 				}
@@ -472,15 +506,23 @@ open class ConceptMapElementTarget: BackboneElement {
 		get { return "ConceptMapElementTarget" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var codeSystem: String?
+	public dynamic var codeSystem: String?						
+		
+		
 	
-	public dynamic var comments: String?
+	public dynamic var comments: String?						
+		
+		
 	
 	public let dependsOn = RealmSwift.List<ConceptMapElementTargetDependsOn>()
 	
-	public dynamic var equivalence: String?
+	public dynamic var equivalence: String?						
+		
+		
 	
 	public let product = RealmSwift.List<ConceptMapElementTargetDependsOn>()
 	
@@ -499,7 +541,6 @@ open class ConceptMapElementTarget: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -509,7 +550,6 @@ open class ConceptMapElementTarget: BackboneElement {
 				presentKeys.insert("codeSystem")
 				if let val = exist as? String {
 					self.codeSystem = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeSystem", wants: String.self, has: type(of: exist)))
@@ -519,7 +559,6 @@ open class ConceptMapElementTarget: BackboneElement {
 				presentKeys.insert("comments")
 				if let val = exist as? String {
 					self.comments = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: type(of: exist)))
@@ -529,6 +568,7 @@ open class ConceptMapElementTarget: BackboneElement {
 				presentKeys.insert("dependsOn")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ConceptMapElementTargetDependsOn.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTargetDependsOn] {
+						if let realm = self.realm { realm.delete(self.dependsOn) }
 						self.dependsOn.append(objectsIn: vals)
 					}
 				}
@@ -540,7 +580,6 @@ open class ConceptMapElementTarget: BackboneElement {
 				presentKeys.insert("equivalence")
 				if let val = exist as? String {
 					self.equivalence = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "equivalence", wants: String.self, has: type(of: exist)))
@@ -553,6 +592,7 @@ open class ConceptMapElementTarget: BackboneElement {
 				presentKeys.insert("product")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ConceptMapElementTargetDependsOn.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTargetDependsOn] {
+						if let realm = self.realm { realm.delete(self.product) }
 						self.product.append(objectsIn: vals)
 					}
 				}
@@ -602,11 +642,17 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 		get { return "ConceptMapElementTargetDependsOn" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
-	public dynamic var codeSystem: String?
+	public dynamic var codeSystem: String?						
+		
+		
 	
-	public dynamic var element: String?
+	public dynamic var element: String?						
+		
+		
 	
 
 	
@@ -625,7 +671,6 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -638,7 +683,6 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 				presentKeys.insert("codeSystem")
 				if let val = exist as? String {
 					self.codeSystem = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeSystem", wants: String.self, has: type(of: exist)))
@@ -651,7 +695,6 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 				presentKeys.insert("element")
 				if let val = exist as? String {
 					self.element = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "element", wants: String.self, has: type(of: exist)))

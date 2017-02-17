@@ -2,7 +2,7 @@
 //  MedicationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication1()
-			try runMedication1(instance!.asJSON()) 			
+			try runMedication1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -42,23 +45,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm1(instance: instance!)
 	}
 
+    func testMedication1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm1(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication1(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult
@@ -89,7 +129,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication2()
-			try runMedication2(instance!.asJSON()) 			
+			try runMedication2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -98,23 +141,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm2(instance: instance!)
 	}
 
+    func testMedication2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm2(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication2(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult
@@ -138,7 +218,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication3()
-			try runMedication3(instance!.asJSON()) 			
+			try runMedication3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -147,23 +230,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm3(instance: instance!)
 	}
 
+    func testMedication3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm3(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication3(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult
@@ -187,7 +307,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication4()
-			try runMedication4(instance!.asJSON()) 			
+			try runMedication4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -196,23 +319,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm4(instance: instance!)
 	}
 
+    func testMedication4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm4(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication4(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult
@@ -236,7 +396,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication5()
-			try runMedication5(instance!.asJSON()) 			
+			try runMedication5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -245,23 +408,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm5(instance: instance!)
 	}
 
+    func testMedication5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm5(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication5(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult
@@ -285,7 +485,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication6()
-			try runMedication6(instance!.asJSON()) 			
+			try runMedication6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -294,23 +497,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm6(instance: instance!)
 	}
 
+    func testMedication6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm6(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication6(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult
@@ -348,7 +588,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication7()
-			try runMedication7(instance!.asJSON()) 			
+			try runMedication7(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication7(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -357,23 +600,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm7(instance: instance!)
 	}
 
+    func testMedication7RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication7()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm7(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication7(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication7(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication7(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult
@@ -397,7 +677,10 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Medication?
 		do {
 			instance = try runMedication8()
-			try runMedication8(instance!.asJSON()) 			
+			try runMedication8(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Medication
+			XCTAssertNotNil(copy)
+			try runMedication8(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw")
@@ -406,23 +689,60 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 		testMedicationRealm8(instance: instance!)
 	}
 
+    func testMedication8RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Medication = try runMedication8()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Medication)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Medication's PKs, but threw: \(error)")
+        }
+    }
+
 	func testMedicationRealm8(instance: RealmSwiftFHIR.Medication) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runMedication8(realm.objects(RealmSwiftFHIR.Medication.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Medication.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Medication()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication8(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Medication.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runMedication8(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Medication.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Medication.self).count)
 	}
 	
 	@discardableResult

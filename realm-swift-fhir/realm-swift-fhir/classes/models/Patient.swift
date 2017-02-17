@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -25,9 +25,16 @@ open class Patient: DomainResource {
 	
 	public let address = RealmSwift.List<Address>()
 	
-	public dynamic var animal: PatientAnimal?
+	public dynamic var animal: PatientAnimal?						
+		
+		
+			public func upsert(animal: PatientAnimal?) {
+				upsert(prop: &self.animal, val: animal)
+			}
 	
-	public dynamic var birthDate: FHIRDate?
+	public dynamic var birthDate: FHIRDate?						
+		
+		
 	
 	public let careProvider = RealmSwift.List<Reference>()
 	
@@ -37,17 +44,31 @@ open class Patient: DomainResource {
 	
 	public let deceasedBoolean = RealmOptional<Bool>()
 	
-	public dynamic var deceasedDateTime: DateTime?
+	public dynamic var deceasedDateTime: DateTime?						
+		
+		
 	
-	public dynamic var gender: String?
+	public dynamic var gender: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
 	public let link = RealmSwift.List<PatientLink>()
 	
-	public dynamic var managingOrganization: Reference?
+	public dynamic var managingOrganization: Reference?						
+		
+		
+			public func upsert(managingOrganization: Reference?) {
+				upsert(prop: &self.managingOrganization, val: managingOrganization)
+			}
 	
-	public dynamic var maritalStatus: CodeableConcept?
+	public dynamic var maritalStatus: CodeableConcept?						
+		
+		
+			public func upsert(maritalStatus: CodeableConcept?) {
+				upsert(prop: &self.maritalStatus, val: maritalStatus)
+			}
 	
 	public let multipleBirthBoolean = RealmOptional<Bool>()
 	
@@ -68,7 +89,6 @@ open class Patient: DomainResource {
 				presentKeys.insert("active")
 				if let val = exist as? Bool {
 					self.active.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: type(of: exist)))
@@ -78,6 +98,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("address")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Address.instantiate(fromArray: val, owner: self) as? [Address] {
+						if let realm = self.realm { realm.delete(self.address) }
 						self.address.append(objectsIn: vals)
 					}
 				}
@@ -88,7 +109,7 @@ open class Patient: DomainResource {
 			if let exist = js["animal"] {
 				presentKeys.insert("animal")
 				if let val = exist as? FHIRJSON {
-					self.animal = PatientAnimal(json: val, owner: self)
+					upsert(animal: PatientAnimal(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "animal", wants: FHIRJSON.self, has: type(of: exist)))
@@ -107,6 +128,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("careProvider")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.careProvider) }
 						self.careProvider.append(objectsIn: vals)
 					}
 				}
@@ -118,6 +140,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("communication")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = PatientCommunication.instantiate(fromArray: val, owner: self) as? [PatientCommunication] {
+						if let realm = self.realm { realm.delete(self.communication) }
 						self.communication.append(objectsIn: vals)
 					}
 				}
@@ -129,6 +152,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = PatientContact.instantiate(fromArray: val, owner: self) as? [PatientContact] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -140,7 +164,6 @@ open class Patient: DomainResource {
 				presentKeys.insert("deceasedBoolean")
 				if let val = exist as? Bool {
 					self.deceasedBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "deceasedBoolean", wants: Bool.self, has: type(of: exist)))
@@ -159,7 +182,6 @@ open class Patient: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -169,6 +191,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -180,6 +203,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("link")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = PatientLink.instantiate(fromArray: val, owner: self) as? [PatientLink] {
+						if let realm = self.realm { realm.delete(self.link) }
 						self.link.append(objectsIn: vals)
 					}
 				}
@@ -190,7 +214,7 @@ open class Patient: DomainResource {
 			if let exist = js["managingOrganization"] {
 				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
-					self.managingOrganization = Reference(json: val, owner: self)
+					upsert(managingOrganization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -199,7 +223,7 @@ open class Patient: DomainResource {
 			if let exist = js["maritalStatus"] {
 				presentKeys.insert("maritalStatus")
 				if let val = exist as? FHIRJSON {
-					self.maritalStatus = CodeableConcept(json: val, owner: self)
+					upsert(maritalStatus: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maritalStatus", wants: FHIRJSON.self, has: type(of: exist)))
@@ -209,7 +233,6 @@ open class Patient: DomainResource {
 				presentKeys.insert("multipleBirthBoolean")
 				if let val = exist as? Bool {
 					self.multipleBirthBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "multipleBirthBoolean", wants: Bool.self, has: type(of: exist)))
@@ -219,7 +242,6 @@ open class Patient: DomainResource {
 				presentKeys.insert("multipleBirthInteger")
 				if let val = exist as? Int {
 					self.multipleBirthInteger.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "multipleBirthInteger", wants: Int.self, has: type(of: exist)))
@@ -229,6 +251,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = HumanName.instantiate(fromArray: val, owner: self) as? [HumanName] {
+						if let realm = self.realm { realm.delete(self.name) }
 						self.name.append(objectsIn: vals)
 					}
 				}
@@ -240,6 +263,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("photo")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment] {
+						if let realm = self.realm { realm.delete(self.photo) }
 						self.photo.append(objectsIn: vals)
 					}
 				}
@@ -251,6 +275,7 @@ open class Patient: DomainResource {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -338,11 +363,26 @@ open class PatientAnimal: BackboneElement {
 		get { return "PatientAnimal" }
 	}
 
-	public dynamic var breed: CodeableConcept?
+	public dynamic var breed: CodeableConcept?						
+		
+		
+			public func upsert(breed: CodeableConcept?) {
+				upsert(prop: &self.breed, val: breed)
+			}
 	
-	public dynamic var genderStatus: CodeableConcept?
+	public dynamic var genderStatus: CodeableConcept?						
+		
+		
+			public func upsert(genderStatus: CodeableConcept?) {
+				upsert(prop: &self.genderStatus, val: genderStatus)
+			}
 	
-	public dynamic var species: CodeableConcept?
+	public dynamic var species: CodeableConcept?						
+		
+		
+			public func upsert(species: CodeableConcept?) {
+				upsert(prop: &self.species, val: species)
+			}
 	
 
 	
@@ -358,7 +398,7 @@ open class PatientAnimal: BackboneElement {
 			if let exist = js["breed"] {
 				presentKeys.insert("breed")
 				if let val = exist as? FHIRJSON {
-					self.breed = CodeableConcept(json: val, owner: self)
+					upsert(breed: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "breed", wants: FHIRJSON.self, has: type(of: exist)))
@@ -367,7 +407,7 @@ open class PatientAnimal: BackboneElement {
 			if let exist = js["genderStatus"] {
 				presentKeys.insert("genderStatus")
 				if let val = exist as? FHIRJSON {
-					self.genderStatus = CodeableConcept(json: val, owner: self)
+					upsert(genderStatus: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "genderStatus", wants: FHIRJSON.self, has: type(of: exist)))
@@ -376,7 +416,7 @@ open class PatientAnimal: BackboneElement {
 			if let exist = js["species"] {
 				presentKeys.insert("species")
 				if let val = exist as? FHIRJSON {
-					self.species = CodeableConcept(json: val, owner: self)
+					upsert(species: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "species", wants: FHIRJSON.self, has: type(of: exist)))
@@ -417,7 +457,12 @@ open class PatientCommunication: BackboneElement {
 		get { return "PatientCommunication" }
 	}
 
-	public dynamic var language: CodeableConcept?
+	public dynamic var language: CodeableConcept?						
+		
+		
+			public func upsert(language: CodeableConcept?) {
+				upsert(prop: &self.language, val: language)
+			}
 	
 	public let preferred = RealmOptional<Bool>()
 	
@@ -435,7 +480,7 @@ open class PatientCommunication: BackboneElement {
 			if let exist = js["language"] {
 				presentKeys.insert("language")
 				if let val = exist as? FHIRJSON {
-					self.language = CodeableConcept(json: val, owner: self)
+					upsert(language: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "language", wants: FHIRJSON.self, has: type(of: exist)))
@@ -448,7 +493,6 @@ open class PatientCommunication: BackboneElement {
 				presentKeys.insert("preferred")
 				if let val = exist as? Bool {
 					self.preferred.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "preferred", wants: Bool.self, has: type(of: exist)))
@@ -481,15 +525,37 @@ open class PatientContact: BackboneElement {
 		get { return "PatientContact" }
 	}
 
-	public dynamic var address: Address?
+	public dynamic var address: Address?						
+		
+		
+			public func upsert(address: Address?) {
+				upsert(prop: &self.address, val: address)
+			}
 	
-	public dynamic var gender: String?
+	public dynamic var gender: String?						
+		
+		
 	
-	public dynamic var name: HumanName?
+	public dynamic var name: HumanName?						
+		
+		
+			public func upsert(name: HumanName?) {
+				upsert(prop: &self.name, val: name)
+			}
 	
-	public dynamic var organization: Reference?
+	public dynamic var organization: Reference?						
+		
+		
+			public func upsert(organization: Reference?) {
+				upsert(prop: &self.organization, val: organization)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 	public let relationship = RealmSwift.List<CodeableConcept>()
 	
@@ -503,7 +569,7 @@ open class PatientContact: BackboneElement {
 			if let exist = js["address"] {
 				presentKeys.insert("address")
 				if let val = exist as? FHIRJSON {
-					self.address = Address(json: val, owner: self)
+					upsert(address: Address(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "address", wants: FHIRJSON.self, has: type(of: exist)))
@@ -513,7 +579,6 @@ open class PatientContact: BackboneElement {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -522,7 +587,7 @@ open class PatientContact: BackboneElement {
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? FHIRJSON {
-					self.name = HumanName(json: val, owner: self)
+					upsert(name: HumanName(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: type(of: exist)))
@@ -531,7 +596,7 @@ open class PatientContact: BackboneElement {
 			if let exist = js["organization"] {
 				presentKeys.insert("organization")
 				if let val = exist as? FHIRJSON {
-					self.organization = Reference(json: val, owner: self)
+					upsert(organization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "organization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -540,7 +605,7 @@ open class PatientContact: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -550,6 +615,7 @@ open class PatientContact: BackboneElement {
 				presentKeys.insert("relationship")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.relationship) }
 						self.relationship.append(objectsIn: vals)
 					}
 				}
@@ -561,6 +627,7 @@ open class PatientContact: BackboneElement {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -612,9 +679,16 @@ open class PatientLink: BackboneElement {
 		get { return "PatientLink" }
 	}
 
-	public dynamic var other: Reference?
+	public dynamic var other: Reference?						
+		
+		
+			public func upsert(other: Reference?) {
+				upsert(prop: &self.other, val: other)
+			}
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
 
 	
@@ -631,7 +705,7 @@ open class PatientLink: BackboneElement {
 			if let exist = js["other"] {
 				presentKeys.insert("other")
 				if let val = exist as? FHIRJSON {
-					self.other = Reference(json: val, owner: self)
+					upsert(other: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "other", wants: FHIRJSON.self, has: type(of: exist)))
@@ -644,7 +718,6 @@ open class PatientLink: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))

@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,43 +20,83 @@ open class ValueSet: DomainResource {
 		get { return "ValueSet" }
 	}
 
-	public dynamic var codeSystem: ValueSetCodeSystem?
+	public dynamic var codeSystem: ValueSetCodeSystem?						
+		
+		
+			public func upsert(codeSystem: ValueSetCodeSystem?) {
+				upsert(prop: &self.codeSystem, val: codeSystem)
+			}
 	
-	public dynamic var compose: ValueSetCompose?
+	public dynamic var compose: ValueSetCompose?						
+		
+		
+			public func upsert(compose: ValueSetCompose?) {
+				upsert(prop: &self.compose, val: compose)
+			}
 	
 	public let contact = RealmSwift.List<ValueSetContact>()
 	
-	public dynamic var copyright: String?
+	public dynamic var copyright: String?						
+		
+		
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var expansion: ValueSetExpansion?
+	public dynamic var expansion: ValueSetExpansion?						
+		
+		
+			public func upsert(expansion: ValueSetExpansion?) {
+				upsert(prop: &self.expansion, val: expansion)
+			}
 	
 	public let experimental = RealmOptional<Bool>()
 	
 	public let extensible = RealmOptional<Bool>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
 	public let immutable = RealmOptional<Bool>()
 	
-	public dynamic var lockedDate: FHIRDate?
+	public dynamic var lockedDate: FHIRDate?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var requirements: String?
+	public dynamic var requirements: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -72,7 +112,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["codeSystem"] {
 				presentKeys.insert("codeSystem")
 				if let val = exist as? FHIRJSON {
-					self.codeSystem = ValueSetCodeSystem(json: val, owner: self)
+					upsert(codeSystem: ValueSetCodeSystem(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "codeSystem", wants: FHIRJSON.self, has: type(of: exist)))
@@ -81,7 +121,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["compose"] {
 				presentKeys.insert("compose")
 				if let val = exist as? FHIRJSON {
-					self.compose = ValueSetCompose(json: val, owner: self)
+					upsert(compose: ValueSetCompose(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "compose", wants: FHIRJSON.self, has: type(of: exist)))
@@ -91,6 +131,7 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetContact.instantiate(fromArray: val, owner: self) as? [ValueSetContact] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -102,7 +143,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("copyright")
 				if let val = exist as? String {
 					self.copyright = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
@@ -121,7 +161,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -130,7 +169,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["expansion"] {
 				presentKeys.insert("expansion")
 				if let val = exist as? FHIRJSON {
-					self.expansion = ValueSetExpansion(json: val, owner: self)
+					upsert(expansion: ValueSetExpansion(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "expansion", wants: FHIRJSON.self, has: type(of: exist)))
@@ -140,7 +179,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("experimental")
 				if let val = exist as? Bool {
 					self.experimental.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
@@ -150,7 +188,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("extensible")
 				if let val = exist as? Bool {
 					self.extensible.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "extensible", wants: Bool.self, has: type(of: exist)))
@@ -159,7 +196,7 @@ open class ValueSet: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -169,7 +206,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("immutable")
 				if let val = exist as? Bool {
 					self.immutable.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "immutable", wants: Bool.self, has: type(of: exist)))
@@ -188,7 +224,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -198,7 +233,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -208,7 +242,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("requirements")
 				if let val = exist as? String {
 					self.requirements = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
@@ -218,7 +251,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -231,7 +263,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -241,6 +272,7 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.useContext) }
 						self.useContext.append(objectsIn: vals)
 					}
 				}
@@ -252,7 +284,6 @@ open class ValueSet: DomainResource {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -343,9 +374,13 @@ open class ValueSetCodeSystem: BackboneElement {
 	
 	public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -363,7 +398,6 @@ open class ValueSetCodeSystem: BackboneElement {
 				presentKeys.insert("caseSensitive")
 				if let val = exist as? Bool {
 					self.caseSensitive.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "caseSensitive", wants: Bool.self, has: type(of: exist)))
@@ -373,6 +407,7 @@ open class ValueSetCodeSystem: BackboneElement {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetCodeSystemConcept.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConcept] {
+						if let realm = self.realm { realm.delete(self.concept) }
 						self.concept.append(objectsIn: vals)
 					}
 				}
@@ -387,7 +422,6 @@ open class ValueSetCodeSystem: BackboneElement {
 				presentKeys.insert("system")
 				if let val = exist as? String {
 					self.system = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
@@ -400,7 +434,6 @@ open class ValueSetCodeSystem: BackboneElement {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -444,15 +477,21 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 
 	public let abstract = RealmOptional<Bool>()
 	
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
 	
-	public dynamic var definition: String?
+	public dynamic var definition: String?						
+		
+		
 	
 	public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
 	
-	public dynamic var display: String?
+	public dynamic var display: String?						
+		
+		
 	
 
 	
@@ -469,7 +508,6 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 				presentKeys.insert("abstract")
 				if let val = exist as? Bool {
 					self.abstract.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: type(of: exist)))
@@ -479,7 +517,6 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -492,6 +529,7 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetCodeSystemConcept.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConcept] {
+						if let realm = self.realm { realm.delete(self.concept) }
 						self.concept.append(objectsIn: vals)
 					}
 				}
@@ -503,7 +541,6 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 				presentKeys.insert("definition")
 				if let val = exist as? String {
 					self.definition = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: type(of: exist)))
@@ -513,6 +550,7 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 				presentKeys.insert("designation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetCodeSystemConceptDesignation.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConceptDesignation] {
+						if let realm = self.realm { realm.delete(self.designation) }
 						self.designation.append(objectsIn: vals)
 					}
 				}
@@ -524,7 +562,6 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
@@ -572,11 +609,20 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 		get { return "ValueSetCodeSystemConceptDesignation" }
 	}
 
-	public dynamic var language: String?
+	public dynamic var language: String?						
+		
+		
 	
-	public dynamic var use: Coding?
+	public dynamic var use: Coding?						
+		
+		
+			public func upsert(use: Coding?) {
+				upsert(prop: &self.use, val: use)
+			}
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -593,7 +639,6 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 				presentKeys.insert("language")
 				if let val = exist as? String {
 					self.language = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
@@ -602,7 +647,7 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 			if let exist = js["use"] {
 				presentKeys.insert("use")
 				if let val = exist as? FHIRJSON {
-					self.use = Coding(json: val, owner: self)
+					upsert(use: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "use", wants: FHIRJSON.self, has: type(of: exist)))
@@ -612,7 +657,6 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 				presentKeys.insert("value")
 				if let val = exist as? String {
 					self.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
@@ -669,6 +713,7 @@ open class ValueSetCompose: BackboneElement {
 				presentKeys.insert("exclude")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetComposeInclude.instantiate(fromArray: val, owner: self) as? [ValueSetComposeInclude] {
+						if let realm = self.realm { realm.delete(self.exclude) }
 						self.exclude.append(objectsIn: vals)
 					}
 				}
@@ -689,6 +734,7 @@ open class ValueSetCompose: BackboneElement {
 				presentKeys.insert("include")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetComposeInclude.instantiate(fromArray: val, owner: self) as? [ValueSetComposeInclude] {
+						if let realm = self.realm { realm.delete(self.include) }
 						self.include.append(objectsIn: vals)
 					}
 				}
@@ -730,9 +776,13 @@ open class ValueSetComposeInclude: BackboneElement {
 	
 	public let filter = RealmSwift.List<ValueSetComposeIncludeFilter>()
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -749,6 +799,7 @@ open class ValueSetComposeInclude: BackboneElement {
 				presentKeys.insert("concept")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetComposeIncludeConcept.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeConcept] {
+						if let realm = self.realm { realm.delete(self.concept) }
 						self.concept.append(objectsIn: vals)
 					}
 				}
@@ -760,6 +811,7 @@ open class ValueSetComposeInclude: BackboneElement {
 				presentKeys.insert("filter")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetComposeIncludeFilter.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeFilter] {
+						if let realm = self.realm { realm.delete(self.filter) }
 						self.filter.append(objectsIn: vals)
 					}
 				}
@@ -771,7 +823,6 @@ open class ValueSetComposeInclude: BackboneElement {
 				presentKeys.insert("system")
 				if let val = exist as? String {
 					self.system = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
@@ -784,7 +835,6 @@ open class ValueSetComposeInclude: BackboneElement {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -825,11 +875,15 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		get { return "ValueSetComposeIncludeConcept" }
 	}
 
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
 	
-	public dynamic var display: String?
+	public dynamic var display: String?						
+		
+		
 	
 
 	
@@ -846,7 +900,6 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -859,6 +912,7 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 				presentKeys.insert("designation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetCodeSystemConceptDesignation.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConceptDesignation] {
+						if let realm = self.realm { realm.delete(self.designation) }
 						self.designation.append(objectsIn: vals)
 					}
 				}
@@ -870,7 +924,6 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
@@ -909,11 +962,17 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		get { return "ValueSetComposeIncludeFilter" }
 	}
 
-	public dynamic var op: String?
+	public dynamic var op: String?						
+		
+		
 	
-	public dynamic var property: String?
+	public dynamic var property: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -932,7 +991,6 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 				presentKeys.insert("op")
 				if let val = exist as? String {
 					self.op = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "op", wants: String.self, has: type(of: exist)))
@@ -945,7 +1003,6 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 				presentKeys.insert("property")
 				if let val = exist as? String {
 					self.property = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "property", wants: String.self, has: type(of: exist)))
@@ -958,7 +1015,6 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 				presentKeys.insert("value")
 				if let val = exist as? String {
 					self.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
@@ -999,7 +1055,9 @@ open class ValueSetContact: BackboneElement {
 		get { return "ValueSetContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -1012,7 +1070,6 @@ open class ValueSetContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1022,6 +1079,7 @@ open class ValueSetContact: BackboneElement {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -1061,13 +1119,17 @@ open class ValueSetExpansion: BackboneElement {
 
 	public let contains = RealmSwift.List<ValueSetExpansionContains>()
 	
-	public dynamic var identifier: String?
+	public dynamic var identifier: String?						
+		
+		
 	
 	public let offset = RealmOptional<Int>()
 	
 	public let parameter = RealmSwift.List<ValueSetExpansionParameter>()
 	
-	public dynamic var timestamp: DateTime?
+	public dynamic var timestamp: DateTime?						
+		
+		
 	
 	public let total = RealmOptional<Int>()
 	
@@ -1087,6 +1149,7 @@ open class ValueSetExpansion: BackboneElement {
 				presentKeys.insert("contains")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetExpansionContains.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionContains] {
+						if let realm = self.realm { realm.delete(self.contains) }
 						self.contains.append(objectsIn: vals)
 					}
 				}
@@ -1098,7 +1161,6 @@ open class ValueSetExpansion: BackboneElement {
 				presentKeys.insert("identifier")
 				if let val = exist as? String {
 					self.identifier = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: type(of: exist)))
@@ -1111,7 +1173,6 @@ open class ValueSetExpansion: BackboneElement {
 				presentKeys.insert("offset")
 				if let val = exist as? Int {
 					self.offset.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "offset", wants: Int.self, has: type(of: exist)))
@@ -1121,6 +1182,7 @@ open class ValueSetExpansion: BackboneElement {
 				presentKeys.insert("parameter")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetExpansionParameter.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionParameter] {
+						if let realm = self.realm { realm.delete(self.parameter) }
 						self.parameter.append(objectsIn: vals)
 					}
 				}
@@ -1144,7 +1206,6 @@ open class ValueSetExpansion: BackboneElement {
 				presentKeys.insert("total")
 				if let val = exist as? Int {
 					self.total.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "total", wants: Int.self, has: type(of: exist)))
@@ -1193,15 +1254,23 @@ open class ValueSetExpansionContains: BackboneElement {
 
 	public let abstract = RealmOptional<Bool>()
 	
-	public dynamic var code: String?
+	public dynamic var code: String?						
+		
+		
 	
 	public let contains = RealmSwift.List<ValueSetExpansionContains>()
 	
-	public dynamic var display: String?
+	public dynamic var display: String?						
+		
+		
 	
-	public dynamic var system: String?
+	public dynamic var system: String?						
+		
+		
 	
-	public dynamic var version: String?
+	public dynamic var version: String?						
+		
+		
 	
 
 	
@@ -1212,7 +1281,6 @@ open class ValueSetExpansionContains: BackboneElement {
 				presentKeys.insert("abstract")
 				if let val = exist as? Bool {
 					self.abstract.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: type(of: exist)))
@@ -1222,7 +1290,6 @@ open class ValueSetExpansionContains: BackboneElement {
 				presentKeys.insert("code")
 				if let val = exist as? String {
 					self.code = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
@@ -1232,6 +1299,7 @@ open class ValueSetExpansionContains: BackboneElement {
 				presentKeys.insert("contains")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ValueSetExpansionContains.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionContains] {
+						if let realm = self.realm { realm.delete(self.contains) }
 						self.contains.append(objectsIn: vals)
 					}
 				}
@@ -1243,7 +1311,6 @@ open class ValueSetExpansionContains: BackboneElement {
 				presentKeys.insert("display")
 				if let val = exist as? String {
 					self.display = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
@@ -1253,7 +1320,6 @@ open class ValueSetExpansionContains: BackboneElement {
 				presentKeys.insert("system")
 				if let val = exist as? String {
 					self.system = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
@@ -1263,7 +1329,6 @@ open class ValueSetExpansionContains: BackboneElement {
 				presentKeys.insert("version")
 				if let val = exist as? String {
 					self.version = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
@@ -1311,19 +1376,29 @@ open class ValueSetExpansionParameter: BackboneElement {
 		get { return "ValueSetExpansionParameter" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let valueBoolean = RealmOptional<Bool>()
 	
-	public dynamic var valueCode: String?
+	public dynamic var valueCode: String?						
+		
+		
 	
-	public dynamic var valueDecimal: RealmDecimal?
+	public dynamic var valueDecimal: RealmDecimal?						
+		
+		
 	
 	public let valueInteger = RealmOptional<Int>()
 	
-	public dynamic var valueString: String?
+	public dynamic var valueString: String?						
+		
+		
 	
-	public dynamic var valueUri: String?
+	public dynamic var valueUri: String?						
+		
+		
 	
 
 	
@@ -1340,7 +1415,6 @@ open class ValueSetExpansionParameter: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -1353,7 +1427,6 @@ open class ValueSetExpansionParameter: BackboneElement {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -1363,7 +1436,6 @@ open class ValueSetExpansionParameter: BackboneElement {
 				presentKeys.insert("valueCode")
 				if let val = exist as? String {
 					self.valueCode = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCode", wants: String.self, has: type(of: exist)))
@@ -1382,7 +1454,6 @@ open class ValueSetExpansionParameter: BackboneElement {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
@@ -1392,7 +1463,6 @@ open class ValueSetExpansionParameter: BackboneElement {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -1402,7 +1472,6 @@ open class ValueSetExpansionParameter: BackboneElement {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
 					self.valueUri = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))

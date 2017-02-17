@@ -2,7 +2,7 @@
 //  AppointmentResponseTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class AppointmentResponseTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.AppointmentResponse?
 		do {
 			instance = try runAppointmentResponse1()
-			try runAppointmentResponse1(instance!.asJSON()) 			
+			try runAppointmentResponse1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.AppointmentResponse
+			XCTAssertNotNil(copy)
+			try runAppointmentResponse1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AppointmentResponse successfully, but threw")
@@ -42,23 +45,60 @@ class AppointmentResponseTests: XCTestCase, RealmPersistenceTesting {
 		testAppointmentResponseRealm1(instance: instance!)
 	}
 
+    func testAppointmentResponse1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.AppointmentResponse = try runAppointmentResponse1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.AppointmentResponse)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test AppointmentResponse's PKs, but threw: \(error)")
+        }
+    }
+
 	func testAppointmentResponseRealm1(instance: RealmSwiftFHIR.AppointmentResponse) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runAppointmentResponse1(realm.objects(RealmSwiftFHIR.AppointmentResponse.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.AppointmentResponse.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.AppointmentResponse.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.AppointmentResponse()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.AppointmentResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runAppointmentResponse1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.AppointmentResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runAppointmentResponse1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.AppointmentResponse.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.AppointmentResponse.self).count)
 	}
 	
 	@discardableResult
@@ -87,7 +127,10 @@ class AppointmentResponseTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.AppointmentResponse?
 		do {
 			instance = try runAppointmentResponse2()
-			try runAppointmentResponse2(instance!.asJSON()) 			
+			try runAppointmentResponse2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.AppointmentResponse
+			XCTAssertNotNil(copy)
+			try runAppointmentResponse2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AppointmentResponse successfully, but threw")
@@ -96,23 +139,60 @@ class AppointmentResponseTests: XCTestCase, RealmPersistenceTesting {
 		testAppointmentResponseRealm2(instance: instance!)
 	}
 
+    func testAppointmentResponse2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.AppointmentResponse = try runAppointmentResponse2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.AppointmentResponse)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test AppointmentResponse's PKs, but threw: \(error)")
+        }
+    }
+
 	func testAppointmentResponseRealm2(instance: RealmSwiftFHIR.AppointmentResponse) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runAppointmentResponse2(realm.objects(RealmSwiftFHIR.AppointmentResponse.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.AppointmentResponse.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.AppointmentResponse.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.AppointmentResponse()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.AppointmentResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runAppointmentResponse2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.AppointmentResponse.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runAppointmentResponse2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.AppointmentResponse.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.AppointmentResponse.self).count)
 	}
 	
 	@discardableResult

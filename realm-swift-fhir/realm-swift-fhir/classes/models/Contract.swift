@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -26,21 +26,43 @@ open class Contract: DomainResource {
 	
 	public let actor = RealmSwift.List<ContractActor>()
 	
-	public dynamic var applies: Period?
+	public dynamic var applies: Period?						
+		
+		
+			public func upsert(applies: Period?) {
+				upsert(prop: &self.applies, val: applies)
+			}
 	
 	public let authority = RealmSwift.List<Reference>()
 	
-	public dynamic var bindingAttachment: Attachment?
+	public dynamic var bindingAttachment: Attachment?						
+		
+		
+			public func upsert(bindingAttachment: Attachment?) {
+				upsert(prop: &self.bindingAttachment, val: bindingAttachment)
+			}
 	
-	public dynamic var bindingReference: Reference?
+	public dynamic var bindingReference: Reference?						
+		
+		
+			public func upsert(bindingReference: Reference?) {
+				upsert(prop: &self.bindingReference, val: bindingReference)
+			}
 	
 	public let domain = RealmSwift.List<Reference>()
 	
 	public let friendly = RealmSwift.List<ContractFriendly>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var issued: DateTime?
+	public dynamic var issued: DateTime?						
+		
+		
 	
 	public let legal = RealmSwift.List<ContractLegal>()
 	
@@ -54,7 +76,12 @@ open class Contract: DomainResource {
 	
 	public let term = RealmSwift.List<ContractTerm>()
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 	public let valuedItem = RealmSwift.List<ContractValuedItem>()
 	
@@ -67,6 +94,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.action) }
 						self.action.append(objectsIn: vals)
 					}
 				}
@@ -78,6 +106,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("actionReason")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.actionReason) }
 						self.actionReason.append(objectsIn: vals)
 					}
 				}
@@ -89,6 +118,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("actor")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractActor.instantiate(fromArray: val, owner: self) as? [ContractActor] {
+						if let realm = self.realm { realm.delete(self.actor) }
 						self.actor.append(objectsIn: vals)
 					}
 				}
@@ -99,7 +129,7 @@ open class Contract: DomainResource {
 			if let exist = js["applies"] {
 				presentKeys.insert("applies")
 				if let val = exist as? FHIRJSON {
-					self.applies = Period(json: val, owner: self)
+					upsert(applies: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "applies", wants: FHIRJSON.self, has: type(of: exist)))
@@ -109,6 +139,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("authority")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.authority) }
 						self.authority.append(objectsIn: vals)
 					}
 				}
@@ -119,7 +150,7 @@ open class Contract: DomainResource {
 			if let exist = js["bindingAttachment"] {
 				presentKeys.insert("bindingAttachment")
 				if let val = exist as? FHIRJSON {
-					self.bindingAttachment = Attachment(json: val, owner: self)
+					upsert(bindingAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bindingAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -128,7 +159,7 @@ open class Contract: DomainResource {
 			if let exist = js["bindingReference"] {
 				presentKeys.insert("bindingReference")
 				if let val = exist as? FHIRJSON {
-					self.bindingReference = Reference(json: val, owner: self)
+					upsert(bindingReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bindingReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -138,6 +169,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("domain")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.domain) }
 						self.domain.append(objectsIn: vals)
 					}
 				}
@@ -149,6 +181,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("friendly")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractFriendly.instantiate(fromArray: val, owner: self) as? [ContractFriendly] {
+						if let realm = self.realm { realm.delete(self.friendly) }
 						self.friendly.append(objectsIn: vals)
 					}
 				}
@@ -159,7 +192,7 @@ open class Contract: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -178,6 +211,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("legal")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractLegal.instantiate(fromArray: val, owner: self) as? [ContractLegal] {
+						if let realm = self.realm { realm.delete(self.legal) }
 						self.legal.append(objectsIn: vals)
 					}
 				}
@@ -189,6 +223,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("rule")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractRule.instantiate(fromArray: val, owner: self) as? [ContractRule] {
+						if let realm = self.realm { realm.delete(self.rule) }
 						self.rule.append(objectsIn: vals)
 					}
 				}
@@ -200,6 +235,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("signer")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractSigner.instantiate(fromArray: val, owner: self) as? [ContractSigner] {
+						if let realm = self.realm { realm.delete(self.signer) }
 						self.signer.append(objectsIn: vals)
 					}
 				}
@@ -211,6 +247,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("subType")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.subType) }
 						self.subType.append(objectsIn: vals)
 					}
 				}
@@ -222,6 +259,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("subject")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.subject) }
 						self.subject.append(objectsIn: vals)
 					}
 				}
@@ -233,6 +271,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("term")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractTerm.instantiate(fromArray: val, owner: self) as? [ContractTerm] {
+						if let realm = self.realm { realm.delete(self.term) }
 						self.term.append(objectsIn: vals)
 					}
 				}
@@ -243,7 +282,7 @@ open class Contract: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -253,6 +292,7 @@ open class Contract: DomainResource {
 				presentKeys.insert("valuedItem")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractValuedItem.instantiate(fromArray: val, owner: self) as? [ContractValuedItem] {
+						if let realm = self.realm { realm.delete(self.valuedItem) }
 						self.valuedItem.append(objectsIn: vals)
 					}
 				}
@@ -340,7 +380,12 @@ open class ContractActor: BackboneElement {
 		get { return "ContractActor" }
 	}
 
-	public dynamic var entity: Reference?
+	public dynamic var entity: Reference?						
+		
+		
+			public func upsert(entity: Reference?) {
+				upsert(prop: &self.entity, val: entity)
+			}
 	
 	public let role = RealmSwift.List<CodeableConcept>()
 	
@@ -358,7 +403,7 @@ open class ContractActor: BackboneElement {
 			if let exist = js["entity"] {
 				presentKeys.insert("entity")
 				if let val = exist as? FHIRJSON {
-					self.entity = Reference(json: val, owner: self)
+					upsert(entity: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -371,6 +416,7 @@ open class ContractActor: BackboneElement {
 				presentKeys.insert("role")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.role) }
 						self.role.append(objectsIn: vals)
 					}
 				}
@@ -410,9 +456,19 @@ open class ContractFriendly: BackboneElement {
 		get { return "ContractFriendly" }
 	}
 
-	public dynamic var contentAttachment: Attachment?
+	public dynamic var contentAttachment: Attachment?						
+		
+		
+			public func upsert(contentAttachment: Attachment?) {
+				upsert(prop: &self.contentAttachment, val: contentAttachment)
+			}
 	
-	public dynamic var contentReference: Reference?
+	public dynamic var contentReference: Reference?						
+		
+		
+			public func upsert(contentReference: Reference?) {
+				upsert(prop: &self.contentReference, val: contentReference)
+			}
 	
 
 	
@@ -429,7 +485,7 @@ open class ContractFriendly: BackboneElement {
 			if let exist = js["contentAttachment"] {
 				presentKeys.insert("contentAttachment")
 				if let val = exist as? FHIRJSON {
-					self.contentAttachment = Attachment(json: val, owner: self)
+					upsert(contentAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -438,7 +494,7 @@ open class ContractFriendly: BackboneElement {
 			if let exist = js["contentReference"] {
 				presentKeys.insert("contentReference")
 				if let val = exist as? FHIRJSON {
-					self.contentReference = Reference(json: val, owner: self)
+					upsert(contentReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -478,9 +534,19 @@ open class ContractLegal: BackboneElement {
 		get { return "ContractLegal" }
 	}
 
-	public dynamic var contentAttachment: Attachment?
+	public dynamic var contentAttachment: Attachment?						
+		
+		
+			public func upsert(contentAttachment: Attachment?) {
+				upsert(prop: &self.contentAttachment, val: contentAttachment)
+			}
 	
-	public dynamic var contentReference: Reference?
+	public dynamic var contentReference: Reference?						
+		
+		
+			public func upsert(contentReference: Reference?) {
+				upsert(prop: &self.contentReference, val: contentReference)
+			}
 	
 
 	
@@ -497,7 +563,7 @@ open class ContractLegal: BackboneElement {
 			if let exist = js["contentAttachment"] {
 				presentKeys.insert("contentAttachment")
 				if let val = exist as? FHIRJSON {
-					self.contentAttachment = Attachment(json: val, owner: self)
+					upsert(contentAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -506,7 +572,7 @@ open class ContractLegal: BackboneElement {
 			if let exist = js["contentReference"] {
 				presentKeys.insert("contentReference")
 				if let val = exist as? FHIRJSON {
-					self.contentReference = Reference(json: val, owner: self)
+					upsert(contentReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -546,9 +612,19 @@ open class ContractRule: BackboneElement {
 		get { return "ContractRule" }
 	}
 
-	public dynamic var contentAttachment: Attachment?
+	public dynamic var contentAttachment: Attachment?						
+		
+		
+			public func upsert(contentAttachment: Attachment?) {
+				upsert(prop: &self.contentAttachment, val: contentAttachment)
+			}
 	
-	public dynamic var contentReference: Reference?
+	public dynamic var contentReference: Reference?						
+		
+		
+			public func upsert(contentReference: Reference?) {
+				upsert(prop: &self.contentReference, val: contentReference)
+			}
 	
 
 	
@@ -565,7 +641,7 @@ open class ContractRule: BackboneElement {
 			if let exist = js["contentAttachment"] {
 				presentKeys.insert("contentAttachment")
 				if let val = exist as? FHIRJSON {
-					self.contentAttachment = Attachment(json: val, owner: self)
+					upsert(contentAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -574,7 +650,7 @@ open class ContractRule: BackboneElement {
 			if let exist = js["contentReference"] {
 				presentKeys.insert("contentReference")
 				if let val = exist as? FHIRJSON {
-					self.contentReference = Reference(json: val, owner: self)
+					upsert(contentReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -614,11 +690,23 @@ open class ContractSigner: BackboneElement {
 		get { return "ContractSigner" }
 	}
 
-	public dynamic var party: Reference?
+	public dynamic var party: Reference?						
+		
+		
+			public func upsert(party: Reference?) {
+				upsert(prop: &self.party, val: party)
+			}
 	
-	public dynamic var signature: String?
+	public dynamic var signature: String?						
+		
+		
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -636,7 +724,7 @@ open class ContractSigner: BackboneElement {
 			if let exist = js["party"] {
 				presentKeys.insert("party")
 				if let val = exist as? FHIRJSON {
-					self.party = Reference(json: val, owner: self)
+					upsert(party: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "party", wants: FHIRJSON.self, has: type(of: exist)))
@@ -649,7 +737,6 @@ open class ContractSigner: BackboneElement {
 				presentKeys.insert("signature")
 				if let val = exist as? String {
 					self.signature = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "signature", wants: String.self, has: type(of: exist)))
@@ -661,7 +748,7 @@ open class ContractSigner: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -708,21 +795,50 @@ open class ContractTerm: BackboneElement {
 	
 	public let actor = RealmSwift.List<ContractTermActor>()
 	
-	public dynamic var applies: Period?
+	public dynamic var applies: Period?						
+		
+		
+			public func upsert(applies: Period?) {
+				upsert(prop: &self.applies, val: applies)
+			}
 	
 	public let group = RealmSwift.List<ContractTerm>()
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var issued: DateTime?
+	public dynamic var issued: DateTime?						
+		
+		
 	
-	public dynamic var subType: CodeableConcept?
+	public dynamic var subType: CodeableConcept?						
+		
+		
+			public func upsert(subType: CodeableConcept?) {
+				upsert(prop: &self.subType, val: subType)
+			}
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 	public let valuedItem = RealmSwift.List<ContractTermValuedItem>()
 	
@@ -735,6 +851,7 @@ open class ContractTerm: BackboneElement {
 				presentKeys.insert("action")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.action) }
 						self.action.append(objectsIn: vals)
 					}
 				}
@@ -746,6 +863,7 @@ open class ContractTerm: BackboneElement {
 				presentKeys.insert("actionReason")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.actionReason) }
 						self.actionReason.append(objectsIn: vals)
 					}
 				}
@@ -757,6 +875,7 @@ open class ContractTerm: BackboneElement {
 				presentKeys.insert("actor")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractTermActor.instantiate(fromArray: val, owner: self) as? [ContractTermActor] {
+						if let realm = self.realm { realm.delete(self.actor) }
 						self.actor.append(objectsIn: vals)
 					}
 				}
@@ -767,7 +886,7 @@ open class ContractTerm: BackboneElement {
 			if let exist = js["applies"] {
 				presentKeys.insert("applies")
 				if let val = exist as? FHIRJSON {
-					self.applies = Period(json: val, owner: self)
+					upsert(applies: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "applies", wants: FHIRJSON.self, has: type(of: exist)))
@@ -777,6 +896,7 @@ open class ContractTerm: BackboneElement {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractTerm.instantiate(fromArray: val, owner: self) as? [ContractTerm] {
+						if let realm = self.realm { realm.delete(self.group) }
 						self.group.append(objectsIn: vals)
 					}
 				}
@@ -787,7 +907,7 @@ open class ContractTerm: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -805,7 +925,7 @@ open class ContractTerm: BackboneElement {
 			if let exist = js["subType"] {
 				presentKeys.insert("subType")
 				if let val = exist as? FHIRJSON {
-					self.subType = CodeableConcept(json: val, owner: self)
+					upsert(subType: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -814,7 +934,7 @@ open class ContractTerm: BackboneElement {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -824,7 +944,6 @@ open class ContractTerm: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -833,7 +952,7 @@ open class ContractTerm: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -843,6 +962,7 @@ open class ContractTerm: BackboneElement {
 				presentKeys.insert("valuedItem")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContractTermValuedItem.instantiate(fromArray: val, owner: self) as? [ContractTermValuedItem] {
+						if let realm = self.realm { realm.delete(self.valuedItem) }
 						self.valuedItem.append(objectsIn: vals)
 					}
 				}
@@ -909,7 +1029,12 @@ open class ContractTermActor: BackboneElement {
 		get { return "ContractTermActor" }
 	}
 
-	public dynamic var entity: Reference?
+	public dynamic var entity: Reference?						
+		
+		
+			public func upsert(entity: Reference?) {
+				upsert(prop: &self.entity, val: entity)
+			}
 	
 	public let role = RealmSwift.List<CodeableConcept>()
 	
@@ -927,7 +1052,7 @@ open class ContractTermActor: BackboneElement {
 			if let exist = js["entity"] {
 				presentKeys.insert("entity")
 				if let val = exist as? FHIRJSON {
-					self.entity = Reference(json: val, owner: self)
+					upsert(entity: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -940,6 +1065,7 @@ open class ContractTermActor: BackboneElement {
 				presentKeys.insert("role")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.role) }
 						self.role.append(objectsIn: vals)
 					}
 				}
@@ -976,23 +1102,59 @@ open class ContractTermValuedItem: BackboneElement {
 		get { return "ContractTermValuedItem" }
 	}
 
-	public dynamic var effectiveTime: DateTime?
+	public dynamic var effectiveTime: DateTime?						
+		
+		
 	
-	public dynamic var entityCodeableConcept: CodeableConcept?
+	public dynamic var entityCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(entityCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
+			}
 	
-	public dynamic var entityReference: Reference?
+	public dynamic var entityReference: Reference?						
+		
+		
+			public func upsert(entityReference: Reference?) {
+				upsert(prop: &self.entityReference, val: entityReference)
+			}
 	
-	public dynamic var factor: RealmDecimal?
+	public dynamic var factor: RealmDecimal?						
+		
+		
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var net: Quantity?
+	public dynamic var net: Quantity?						
+		
+		
+			public func upsert(net: Quantity?) {
+				upsert(prop: &self.net, val: net)
+			}
 	
-	public dynamic var points: RealmDecimal?
+	public dynamic var points: RealmDecimal?						
+		
+		
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
-	public dynamic var unitPrice: Quantity?
+	public dynamic var unitPrice: Quantity?						
+		
+		
+			public func upsert(unitPrice: Quantity?) {
+				upsert(prop: &self.unitPrice, val: unitPrice)
+			}
 	
 
 	
@@ -1011,7 +1173,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["entityCodeableConcept"] {
 				presentKeys.insert("entityCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.entityCodeableConcept = CodeableConcept(json: val, owner: self)
+					upsert(entityCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entityCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1020,7 +1182,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["entityReference"] {
 				presentKeys.insert("entityReference")
 				if let val = exist as? FHIRJSON {
-					self.entityReference = Reference(json: val, owner: self)
+					upsert(entityReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entityReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1038,7 +1200,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1047,7 +1209,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Quantity(json: val, owner: self)
+					upsert(net: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1065,7 +1227,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1074,7 +1236,7 @@ open class ContractTermValuedItem: BackboneElement {
 			if let exist = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Quantity(json: val, owner: self)
+					upsert(unitPrice: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1130,23 +1292,59 @@ open class ContractValuedItem: BackboneElement {
 		get { return "ContractValuedItem" }
 	}
 
-	public dynamic var effectiveTime: DateTime?
+	public dynamic var effectiveTime: DateTime?						
+		
+		
 	
-	public dynamic var entityCodeableConcept: CodeableConcept?
+	public dynamic var entityCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(entityCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
+			}
 	
-	public dynamic var entityReference: Reference?
+	public dynamic var entityReference: Reference?						
+		
+		
+			public func upsert(entityReference: Reference?) {
+				upsert(prop: &self.entityReference, val: entityReference)
+			}
 	
-	public dynamic var factor: RealmDecimal?
+	public dynamic var factor: RealmDecimal?						
+		
+		
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var net: Quantity?
+	public dynamic var net: Quantity?						
+		
+		
+			public func upsert(net: Quantity?) {
+				upsert(prop: &self.net, val: net)
+			}
 	
-	public dynamic var points: RealmDecimal?
+	public dynamic var points: RealmDecimal?						
+		
+		
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
-	public dynamic var unitPrice: Quantity?
+	public dynamic var unitPrice: Quantity?						
+		
+		
+			public func upsert(unitPrice: Quantity?) {
+				upsert(prop: &self.unitPrice, val: unitPrice)
+			}
 	
 
 	
@@ -1165,7 +1363,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["entityCodeableConcept"] {
 				presentKeys.insert("entityCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.entityCodeableConcept = CodeableConcept(json: val, owner: self)
+					upsert(entityCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entityCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1174,7 +1372,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["entityReference"] {
 				presentKeys.insert("entityReference")
 				if let val = exist as? FHIRJSON {
-					self.entityReference = Reference(json: val, owner: self)
+					upsert(entityReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "entityReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1192,7 +1390,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1201,7 +1399,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["net"] {
 				presentKeys.insert("net")
 				if let val = exist as? FHIRJSON {
-					self.net = Quantity(json: val, owner: self)
+					upsert(net: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1219,7 +1417,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -1228,7 +1426,7 @@ open class ContractValuedItem: BackboneElement {
 			if let exist = js["unitPrice"] {
 				presentKeys.insert("unitPrice")
 				if let val = exist as? FHIRJSON {
-					self.unitPrice = Quantity(json: val, owner: self)
+					upsert(unitPrice: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))

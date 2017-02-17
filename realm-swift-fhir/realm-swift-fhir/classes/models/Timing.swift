@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,11 +22,21 @@ open class Timing: Element {
 		get { return "Timing" }
 	}
 
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
 	public let event = RealmSwift.List<DateTime>()
 	
-	public dynamic var repeat_fhir: TimingRepeat?
+	public dynamic var repeat_fhir: TimingRepeat?						
+		
+		
+			public func upsert(repeat_fhir: TimingRepeat?) {
+				upsert(prop: &self.repeat_fhir, val: repeat_fhir)
+			}
 	
 
 	
@@ -36,7 +46,7 @@ open class Timing: Element {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -45,6 +55,7 @@ open class Timing: Element {
 			if let exist = js["event"] {
 				presentKeys.insert("event")
 				if let val = exist as? [String] {
+					// is_native or 'FHIRElement'
 					self.event.append(objectsIn: DateTime.instantiate(fromArray: val))
 				}
 				else {
@@ -54,7 +65,7 @@ open class Timing: Element {
 			if let exist = js["repeat"] {
 				presentKeys.insert("repeat")
 				if let val = exist as? FHIRJSON {
-					self.repeat_fhir = TimingRepeat(json: val, owner: self)
+					upsert(repeat_fhir: TimingRepeat(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "repeat", wants: FHIRJSON.self, has: type(of: exist)))
@@ -92,31 +103,60 @@ open class TimingRepeat: Element {
 		get { return "TimingRepeat" }
 	}
 
-	public dynamic var boundsPeriod: Period?
+	public dynamic var boundsPeriod: Period?						
+		
+		
+			public func upsert(boundsPeriod: Period?) {
+				upsert(prop: &self.boundsPeriod, val: boundsPeriod)
+			}
 	
-	public dynamic var boundsQuantity: Quantity?
+	public dynamic var boundsQuantity: Quantity?						
+		
+		
+			public func upsert(boundsQuantity: Quantity?) {
+				upsert(prop: &self.boundsQuantity, val: boundsQuantity)
+			}
 	
-	public dynamic var boundsRange: Range?
+	public dynamic var boundsRange: Range?						
+		
+		
+			public func upsert(boundsRange: Range?) {
+				upsert(prop: &self.boundsRange, val: boundsRange)
+			}
 	
 	public let count = RealmOptional<Int>()
 	
-	public dynamic var duration: RealmDecimal?
+	public dynamic var duration: RealmDecimal?						
+		
+		
 	
-	public dynamic var durationMax: RealmDecimal?
+	public dynamic var durationMax: RealmDecimal?						
+		
+		
 	
-	public dynamic var durationUnits: String?
+	public dynamic var durationUnits: String?						
+		
+		
 	
 	public let frequency = RealmOptional<Int>()
 	
 	public let frequencyMax = RealmOptional<Int>()
 	
-	public dynamic var period: RealmDecimal?
+	public dynamic var period: RealmDecimal?						
+		
+		
 	
-	public dynamic var periodMax: RealmDecimal?
+	public dynamic var periodMax: RealmDecimal?						
+		
+		
 	
-	public dynamic var periodUnits: String?
+	public dynamic var periodUnits: String?						
+		
+		
 	
-	public dynamic var when: String?
+	public dynamic var when: String?						
+		
+		
 	
 
 	
@@ -126,7 +166,7 @@ open class TimingRepeat: Element {
 			if let exist = js["boundsPeriod"] {
 				presentKeys.insert("boundsPeriod")
 				if let val = exist as? FHIRJSON {
-					self.boundsPeriod = Period(json: val, owner: self)
+					upsert(boundsPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "boundsPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -135,7 +175,7 @@ open class TimingRepeat: Element {
 			if let exist = js["boundsQuantity"] {
 				presentKeys.insert("boundsQuantity")
 				if let val = exist as? FHIRJSON {
-					self.boundsQuantity = Quantity(json: val, owner: self)
+					upsert(boundsQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "boundsQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -144,7 +184,7 @@ open class TimingRepeat: Element {
 			if let exist = js["boundsRange"] {
 				presentKeys.insert("boundsRange")
 				if let val = exist as? FHIRJSON {
-					self.boundsRange = Range(json: val, owner: self)
+					upsert(boundsRange: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "boundsRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -154,7 +194,6 @@ open class TimingRepeat: Element {
 				presentKeys.insert("count")
 				if let val = exist as? Int {
 					self.count.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "count", wants: Int.self, has: type(of: exist)))
@@ -182,7 +221,6 @@ open class TimingRepeat: Element {
 				presentKeys.insert("durationUnits")
 				if let val = exist as? String {
 					self.durationUnits = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "durationUnits", wants: String.self, has: type(of: exist)))
@@ -192,7 +230,6 @@ open class TimingRepeat: Element {
 				presentKeys.insert("frequency")
 				if let val = exist as? Int {
 					self.frequency.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "frequency", wants: Int.self, has: type(of: exist)))
@@ -202,7 +239,6 @@ open class TimingRepeat: Element {
 				presentKeys.insert("frequencyMax")
 				if let val = exist as? Int {
 					self.frequencyMax.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "frequencyMax", wants: Int.self, has: type(of: exist)))
@@ -230,7 +266,6 @@ open class TimingRepeat: Element {
 				presentKeys.insert("periodUnits")
 				if let val = exist as? String {
 					self.periodUnits = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "periodUnits", wants: String.self, has: type(of: exist)))
@@ -240,7 +275,6 @@ open class TimingRepeat: Element {
 				presentKeys.insert("when")
 				if let val = exist as? String {
 					self.when = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "when", wants: String.self, has: type(of: exist)))

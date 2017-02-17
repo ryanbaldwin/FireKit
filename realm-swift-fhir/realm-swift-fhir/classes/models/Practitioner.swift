@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -24,15 +24,24 @@ open class Practitioner: DomainResource {
 	
 	public let address = RealmSwift.List<Address>()
 	
-	public dynamic var birthDate: FHIRDate?
+	public dynamic var birthDate: FHIRDate?						
+		
+		
 	
 	public let communication = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var gender: String?
+	public dynamic var gender: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var name: HumanName?
+	public dynamic var name: HumanName?						
+		
+		
+			public func upsert(name: HumanName?) {
+				upsert(prop: &self.name, val: name)
+			}
 	
 	public let photo = RealmSwift.List<Attachment>()
 	
@@ -51,7 +60,6 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("active")
 				if let val = exist as? Bool {
 					self.active.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "active", wants: Bool.self, has: type(of: exist)))
@@ -61,6 +69,7 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("address")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Address.instantiate(fromArray: val, owner: self) as? [Address] {
+						if let realm = self.realm { realm.delete(self.address) }
 						self.address.append(objectsIn: vals)
 					}
 				}
@@ -81,6 +90,7 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("communication")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.communication) }
 						self.communication.append(objectsIn: vals)
 					}
 				}
@@ -92,7 +102,6 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("gender")
 				if let val = exist as? String {
 					self.gender = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "gender", wants: String.self, has: type(of: exist)))
@@ -102,6 +111,7 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -112,7 +122,7 @@ open class Practitioner: DomainResource {
 			if let exist = js["name"] {
 				presentKeys.insert("name")
 				if let val = exist as? FHIRJSON {
-					self.name = HumanName(json: val, owner: self)
+					upsert(name: HumanName(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: FHIRJSON.self, has: type(of: exist)))
@@ -122,6 +132,7 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("photo")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment] {
+						if let realm = self.realm { realm.delete(self.photo) }
 						self.photo.append(objectsIn: vals)
 					}
 				}
@@ -133,6 +144,7 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("practitionerRole")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = PractitionerPractitionerRole.instantiate(fromArray: val, owner: self) as? [PractitionerPractitionerRole] {
+						if let realm = self.realm { realm.delete(self.practitionerRole) }
 						self.practitionerRole.append(objectsIn: vals)
 					}
 				}
@@ -144,6 +156,7 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("qualification")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = PractitionerQualification.instantiate(fromArray: val, owner: self) as? [PractitionerQualification] {
+						if let realm = self.realm { realm.delete(self.qualification) }
 						self.qualification.append(objectsIn: vals)
 					}
 				}
@@ -155,6 +168,7 @@ open class Practitioner: DomainResource {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -222,11 +236,26 @@ open class PractitionerPractitionerRole: BackboneElement {
 	
 	public let location = RealmSwift.List<Reference>()
 	
-	public dynamic var managingOrganization: Reference?
+	public dynamic var managingOrganization: Reference?						
+		
+		
+			public func upsert(managingOrganization: Reference?) {
+				upsert(prop: &self.managingOrganization, val: managingOrganization)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
-	public dynamic var role: CodeableConcept?
+	public dynamic var role: CodeableConcept?						
+		
+		
+			public func upsert(role: CodeableConcept?) {
+				upsert(prop: &self.role, val: role)
+			}
 	
 	public let specialty = RealmSwift.List<CodeableConcept>()
 	
@@ -239,6 +268,7 @@ open class PractitionerPractitionerRole: BackboneElement {
 				presentKeys.insert("healthcareService")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.healthcareService) }
 						self.healthcareService.append(objectsIn: vals)
 					}
 				}
@@ -250,6 +280,7 @@ open class PractitionerPractitionerRole: BackboneElement {
 				presentKeys.insert("location")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.location) }
 						self.location.append(objectsIn: vals)
 					}
 				}
@@ -260,7 +291,7 @@ open class PractitionerPractitionerRole: BackboneElement {
 			if let exist = js["managingOrganization"] {
 				presentKeys.insert("managingOrganization")
 				if let val = exist as? FHIRJSON {
-					self.managingOrganization = Reference(json: val, owner: self)
+					upsert(managingOrganization: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "managingOrganization", wants: FHIRJSON.self, has: type(of: exist)))
@@ -269,7 +300,7 @@ open class PractitionerPractitionerRole: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -278,7 +309,7 @@ open class PractitionerPractitionerRole: BackboneElement {
 			if let exist = js["role"] {
 				presentKeys.insert("role")
 				if let val = exist as? FHIRJSON {
-					self.role = CodeableConcept(json: val, owner: self)
+					upsert(role: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: type(of: exist)))
@@ -288,6 +319,7 @@ open class PractitionerPractitionerRole: BackboneElement {
 				presentKeys.insert("specialty")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.specialty) }
 						self.specialty.append(objectsIn: vals)
 					}
 				}
@@ -334,13 +366,28 @@ open class PractitionerQualification: BackboneElement {
 		get { return "PractitionerQualification" }
 	}
 
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var issuer: Reference?
+	public dynamic var issuer: Reference?						
+		
+		
+			public func upsert(issuer: Reference?) {
+				upsert(prop: &self.issuer, val: issuer)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 
 	
@@ -356,7 +403,7 @@ open class PractitionerQualification: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -369,6 +416,7 @@ open class PractitionerQualification: BackboneElement {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -379,7 +427,7 @@ open class PractitionerQualification: BackboneElement {
 			if let exist = js["issuer"] {
 				presentKeys.insert("issuer")
 				if let val = exist as? FHIRJSON {
-					self.issuer = Reference(json: val, owner: self)
+					upsert(issuer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "issuer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -388,7 +436,7 @@ open class PractitionerQualification: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))

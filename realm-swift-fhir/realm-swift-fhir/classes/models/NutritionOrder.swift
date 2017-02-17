@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,11 +22,23 @@ open class NutritionOrder: DomainResource {
 
 	public let allergyIntolerance = RealmSwift.List<Reference>()
 	
-	public dynamic var dateTime: DateTime?
+	public dynamic var dateTime: DateTime?						
+		
+		
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
-	public dynamic var enteralFormula: NutritionOrderEnteralFormula?
+	public dynamic var enteralFormula: NutritionOrderEnteralFormula?						
+		
+		
+			public func upsert(enteralFormula: NutritionOrderEnteralFormula?) {
+				upsert(prop: &self.enteralFormula, val: enteralFormula)
+			}
 	
 	public let excludeFoodModifier = RealmSwift.List<CodeableConcept>()
 	
@@ -34,13 +46,30 @@ open class NutritionOrder: DomainResource {
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var oralDiet: NutritionOrderOralDiet?
+	public dynamic var oralDiet: NutritionOrderOralDiet?						
+		
+		
+			public func upsert(oralDiet: NutritionOrderOralDiet?) {
+				upsert(prop: &self.oralDiet, val: oralDiet)
+			}
 	
-	public dynamic var orderer: Reference?
+	public dynamic var orderer: Reference?						
+		
+		
+			public func upsert(orderer: Reference?) {
+				upsert(prop: &self.orderer, val: orderer)
+			}
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 	public let supplement = RealmSwift.List<NutritionOrderSupplement>()
 	
@@ -60,6 +89,7 @@ open class NutritionOrder: DomainResource {
 				presentKeys.insert("allergyIntolerance")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.allergyIntolerance) }
 						self.allergyIntolerance.append(objectsIn: vals)
 					}
 				}
@@ -82,7 +112,7 @@ open class NutritionOrder: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -91,7 +121,7 @@ open class NutritionOrder: DomainResource {
 			if let exist = js["enteralFormula"] {
 				presentKeys.insert("enteralFormula")
 				if let val = exist as? FHIRJSON {
-					self.enteralFormula = NutritionOrderEnteralFormula(json: val, owner: self)
+					upsert(enteralFormula: NutritionOrderEnteralFormula(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "enteralFormula", wants: FHIRJSON.self, has: type(of: exist)))
@@ -101,6 +131,7 @@ open class NutritionOrder: DomainResource {
 				presentKeys.insert("excludeFoodModifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.excludeFoodModifier) }
 						self.excludeFoodModifier.append(objectsIn: vals)
 					}
 				}
@@ -112,6 +143,7 @@ open class NutritionOrder: DomainResource {
 				presentKeys.insert("foodPreferenceModifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.foodPreferenceModifier) }
 						self.foodPreferenceModifier.append(objectsIn: vals)
 					}
 				}
@@ -123,6 +155,7 @@ open class NutritionOrder: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -133,7 +166,7 @@ open class NutritionOrder: DomainResource {
 			if let exist = js["oralDiet"] {
 				presentKeys.insert("oralDiet")
 				if let val = exist as? FHIRJSON {
-					self.oralDiet = NutritionOrderOralDiet(json: val, owner: self)
+					upsert(oralDiet: NutritionOrderOralDiet(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "oralDiet", wants: FHIRJSON.self, has: type(of: exist)))
@@ -142,7 +175,7 @@ open class NutritionOrder: DomainResource {
 			if let exist = js["orderer"] {
 				presentKeys.insert("orderer")
 				if let val = exist as? FHIRJSON {
-					self.orderer = Reference(json: val, owner: self)
+					upsert(orderer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -151,7 +184,7 @@ open class NutritionOrder: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -164,7 +197,6 @@ open class NutritionOrder: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -174,6 +206,7 @@ open class NutritionOrder: DomainResource {
 				presentKeys.insert("supplement")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = NutritionOrderSupplement.instantiate(fromArray: val, owner: self) as? [NutritionOrderSupplement] {
+						if let realm = self.realm { realm.delete(self.supplement) }
 						self.supplement.append(objectsIn: vals)
 					}
 				}
@@ -241,23 +274,54 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 		get { return "NutritionOrderEnteralFormula" }
 	}
 
-	public dynamic var additiveProductName: String?
+	public dynamic var additiveProductName: String?						
+		
+		
 	
-	public dynamic var additiveType: CodeableConcept?
+	public dynamic var additiveType: CodeableConcept?						
+		
+		
+			public func upsert(additiveType: CodeableConcept?) {
+				upsert(prop: &self.additiveType, val: additiveType)
+			}
 	
 	public let administration = RealmSwift.List<NutritionOrderEnteralFormulaAdministration>()
 	
-	public dynamic var administrationInstruction: String?
+	public dynamic var administrationInstruction: String?						
+		
+		
 	
-	public dynamic var baseFormulaProductName: String?
+	public dynamic var baseFormulaProductName: String?						
+		
+		
 	
-	public dynamic var baseFormulaType: CodeableConcept?
+	public dynamic var baseFormulaType: CodeableConcept?						
+		
+		
+			public func upsert(baseFormulaType: CodeableConcept?) {
+				upsert(prop: &self.baseFormulaType, val: baseFormulaType)
+			}
 	
-	public dynamic var caloricDensity: Quantity?
+	public dynamic var caloricDensity: Quantity?						
+		
+		
+			public func upsert(caloricDensity: Quantity?) {
+				upsert(prop: &self.caloricDensity, val: caloricDensity)
+			}
 	
-	public dynamic var maxVolumeToDeliver: Quantity?
+	public dynamic var maxVolumeToDeliver: Quantity?						
+		
+		
+			public func upsert(maxVolumeToDeliver: Quantity?) {
+				upsert(prop: &self.maxVolumeToDeliver, val: maxVolumeToDeliver)
+			}
 	
-	public dynamic var routeofAdministration: CodeableConcept?
+	public dynamic var routeofAdministration: CodeableConcept?						
+		
+		
+			public func upsert(routeofAdministration: CodeableConcept?) {
+				upsert(prop: &self.routeofAdministration, val: routeofAdministration)
+			}
 	
 
 	
@@ -268,7 +332,6 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 				presentKeys.insert("additiveProductName")
 				if let val = exist as? String {
 					self.additiveProductName = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "additiveProductName", wants: String.self, has: type(of: exist)))
@@ -277,7 +340,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 			if let exist = js["additiveType"] {
 				presentKeys.insert("additiveType")
 				if let val = exist as? FHIRJSON {
-					self.additiveType = CodeableConcept(json: val, owner: self)
+					upsert(additiveType: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "additiveType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -287,6 +350,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 				presentKeys.insert("administration")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = NutritionOrderEnteralFormulaAdministration.instantiate(fromArray: val, owner: self) as? [NutritionOrderEnteralFormulaAdministration] {
+						if let realm = self.realm { realm.delete(self.administration) }
 						self.administration.append(objectsIn: vals)
 					}
 				}
@@ -298,7 +362,6 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 				presentKeys.insert("administrationInstruction")
 				if let val = exist as? String {
 					self.administrationInstruction = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "administrationInstruction", wants: String.self, has: type(of: exist)))
@@ -308,7 +371,6 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 				presentKeys.insert("baseFormulaProductName")
 				if let val = exist as? String {
 					self.baseFormulaProductName = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "baseFormulaProductName", wants: String.self, has: type(of: exist)))
@@ -317,7 +379,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 			if let exist = js["baseFormulaType"] {
 				presentKeys.insert("baseFormulaType")
 				if let val = exist as? FHIRJSON {
-					self.baseFormulaType = CodeableConcept(json: val, owner: self)
+					upsert(baseFormulaType: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "baseFormulaType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -326,7 +388,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 			if let exist = js["caloricDensity"] {
 				presentKeys.insert("caloricDensity")
 				if let val = exist as? FHIRJSON {
-					self.caloricDensity = Quantity(json: val, owner: self)
+					upsert(caloricDensity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "caloricDensity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -335,7 +397,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 			if let exist = js["maxVolumeToDeliver"] {
 				presentKeys.insert("maxVolumeToDeliver")
 				if let val = exist as? FHIRJSON {
-					self.maxVolumeToDeliver = Quantity(json: val, owner: self)
+					upsert(maxVolumeToDeliver: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "maxVolumeToDeliver", wants: FHIRJSON.self, has: type(of: exist)))
@@ -344,7 +406,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 			if let exist = js["routeofAdministration"] {
 				presentKeys.insert("routeofAdministration")
 				if let val = exist as? FHIRJSON {
-					self.routeofAdministration = CodeableConcept(json: val, owner: self)
+					upsert(routeofAdministration: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "routeofAdministration", wants: FHIRJSON.self, has: type(of: exist)))
@@ -402,13 +464,33 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 		get { return "NutritionOrderEnteralFormulaAdministration" }
 	}
 
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
-	public dynamic var rateQuantity: Quantity?
+	public dynamic var rateQuantity: Quantity?						
+		
+		
+			public func upsert(rateQuantity: Quantity?) {
+				upsert(prop: &self.rateQuantity, val: rateQuantity)
+			}
 	
-	public dynamic var rateRatio: Ratio?
+	public dynamic var rateRatio: Ratio?						
+		
+		
+			public func upsert(rateRatio: Ratio?) {
+				upsert(prop: &self.rateRatio, val: rateRatio)
+			}
 	
-	public dynamic var schedule: Timing?
+	public dynamic var schedule: Timing?						
+		
+		
+			public func upsert(schedule: Timing?) {
+				upsert(prop: &self.schedule, val: schedule)
+			}
 	
 
 	
@@ -418,7 +500,7 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -427,7 +509,7 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 			if let exist = js["rateQuantity"] {
 				presentKeys.insert("rateQuantity")
 				if let val = exist as? FHIRJSON {
-					self.rateQuantity = Quantity(json: val, owner: self)
+					upsert(rateQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rateQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -436,7 +518,7 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 			if let exist = js["rateRatio"] {
 				presentKeys.insert("rateRatio")
 				if let val = exist as? FHIRJSON {
-					self.rateRatio = Ratio(json: val, owner: self)
+					upsert(rateRatio: Ratio(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "rateRatio", wants: FHIRJSON.self, has: type(of: exist)))
@@ -445,7 +527,7 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 			if let exist = js["schedule"] {
 				presentKeys.insert("schedule")
 				if let val = exist as? FHIRJSON {
-					self.schedule = Timing(json: val, owner: self)
+					upsert(schedule: Timing(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "schedule", wants: FHIRJSON.self, has: type(of: exist)))
@@ -488,7 +570,9 @@ open class NutritionOrderOralDiet: BackboneElement {
 
 	public let fluidConsistencyType = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var instruction: String?
+	public dynamic var instruction: String?						
+		
+		
 	
 	public let nutrient = RealmSwift.List<NutritionOrderOralDietNutrient>()
 	
@@ -507,6 +591,7 @@ open class NutritionOrderOralDiet: BackboneElement {
 				presentKeys.insert("fluidConsistencyType")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.fluidConsistencyType) }
 						self.fluidConsistencyType.append(objectsIn: vals)
 					}
 				}
@@ -518,7 +603,6 @@ open class NutritionOrderOralDiet: BackboneElement {
 				presentKeys.insert("instruction")
 				if let val = exist as? String {
 					self.instruction = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "instruction", wants: String.self, has: type(of: exist)))
@@ -528,6 +612,7 @@ open class NutritionOrderOralDiet: BackboneElement {
 				presentKeys.insert("nutrient")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = NutritionOrderOralDietNutrient.instantiate(fromArray: val, owner: self) as? [NutritionOrderOralDietNutrient] {
+						if let realm = self.realm { realm.delete(self.nutrient) }
 						self.nutrient.append(objectsIn: vals)
 					}
 				}
@@ -539,6 +624,7 @@ open class NutritionOrderOralDiet: BackboneElement {
 				presentKeys.insert("schedule")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Timing.instantiate(fromArray: val, owner: self) as? [Timing] {
+						if let realm = self.realm { realm.delete(self.schedule) }
 						self.schedule.append(objectsIn: vals)
 					}
 				}
@@ -550,6 +636,7 @@ open class NutritionOrderOralDiet: BackboneElement {
 				presentKeys.insert("texture")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = NutritionOrderOralDietTexture.instantiate(fromArray: val, owner: self) as? [NutritionOrderOralDietTexture] {
+						if let realm = self.realm { realm.delete(self.texture) }
 						self.texture.append(objectsIn: vals)
 					}
 				}
@@ -561,6 +648,7 @@ open class NutritionOrderOralDiet: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.type) }
 						self.type.append(objectsIn: vals)
 					}
 				}
@@ -609,9 +697,19 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 		get { return "NutritionOrderOralDietNutrient" }
 	}
 
-	public dynamic var amount: Quantity?
+	public dynamic var amount: Quantity?						
+		
+		
+			public func upsert(amount: Quantity?) {
+				upsert(prop: &self.amount, val: amount)
+			}
 	
-	public dynamic var modifier: CodeableConcept?
+	public dynamic var modifier: CodeableConcept?						
+		
+		
+			public func upsert(modifier: CodeableConcept?) {
+				upsert(prop: &self.modifier, val: modifier)
+			}
 	
 
 	
@@ -621,7 +719,7 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 			if let exist = js["amount"] {
 				presentKeys.insert("amount")
 				if let val = exist as? FHIRJSON {
-					self.amount = Quantity(json: val, owner: self)
+					upsert(amount: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "amount", wants: FHIRJSON.self, has: type(of: exist)))
@@ -630,7 +728,7 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 			if let exist = js["modifier"] {
 				presentKeys.insert("modifier")
 				if let val = exist as? FHIRJSON {
-					self.modifier = CodeableConcept(json: val, owner: self)
+					upsert(modifier: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -666,9 +764,19 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 		get { return "NutritionOrderOralDietTexture" }
 	}
 
-	public dynamic var foodType: CodeableConcept?
+	public dynamic var foodType: CodeableConcept?						
+		
+		
+			public func upsert(foodType: CodeableConcept?) {
+				upsert(prop: &self.foodType, val: foodType)
+			}
 	
-	public dynamic var modifier: CodeableConcept?
+	public dynamic var modifier: CodeableConcept?						
+		
+		
+			public func upsert(modifier: CodeableConcept?) {
+				upsert(prop: &self.modifier, val: modifier)
+			}
 	
 
 	
@@ -678,7 +786,7 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 			if let exist = js["foodType"] {
 				presentKeys.insert("foodType")
 				if let val = exist as? FHIRJSON {
-					self.foodType = CodeableConcept(json: val, owner: self)
+					upsert(foodType: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "foodType", wants: FHIRJSON.self, has: type(of: exist)))
@@ -687,7 +795,7 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 			if let exist = js["modifier"] {
 				presentKeys.insert("modifier")
 				if let val = exist as? FHIRJSON {
-					self.modifier = CodeableConcept(json: val, owner: self)
+					upsert(modifier: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -722,15 +830,29 @@ open class NutritionOrderSupplement: BackboneElement {
 		get { return "NutritionOrderSupplement" }
 	}
 
-	public dynamic var instruction: String?
+	public dynamic var instruction: String?						
+		
+		
 	
-	public dynamic var productName: String?
+	public dynamic var productName: String?						
+		
+		
 	
-	public dynamic var quantity: Quantity?
+	public dynamic var quantity: Quantity?						
+		
+		
+			public func upsert(quantity: Quantity?) {
+				upsert(prop: &self.quantity, val: quantity)
+			}
 	
 	public let schedule = RealmSwift.List<Timing>()
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -741,7 +863,6 @@ open class NutritionOrderSupplement: BackboneElement {
 				presentKeys.insert("instruction")
 				if let val = exist as? String {
 					self.instruction = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "instruction", wants: String.self, has: type(of: exist)))
@@ -751,7 +872,6 @@ open class NutritionOrderSupplement: BackboneElement {
 				presentKeys.insert("productName")
 				if let val = exist as? String {
 					self.productName = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "productName", wants: String.self, has: type(of: exist)))
@@ -760,7 +880,7 @@ open class NutritionOrderSupplement: BackboneElement {
 			if let exist = js["quantity"] {
 				presentKeys.insert("quantity")
 				if let val = exist as? FHIRJSON {
-					self.quantity = Quantity(json: val, owner: self)
+					upsert(quantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -770,6 +890,7 @@ open class NutritionOrderSupplement: BackboneElement {
 				presentKeys.insert("schedule")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Timing.instantiate(fromArray: val, owner: self) as? [Timing] {
+						if let realm = self.realm { realm.delete(self.schedule) }
 						self.schedule.append(objectsIn: vals)
 					}
 				}
@@ -780,7 +901,7 @@ open class NutritionOrderSupplement: BackboneElement {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

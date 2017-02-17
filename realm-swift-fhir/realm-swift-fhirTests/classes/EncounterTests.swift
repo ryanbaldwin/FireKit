@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter1()
-			try runEncounter1(instance!.asJSON()) 			
+			try runEncounter1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -42,23 +45,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm1(instance: instance!)
 	}
 
+    func testEncounter1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm1(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter1(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -108,7 +148,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter2()
-			try runEncounter2(instance!.asJSON()) 			
+			try runEncounter2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -117,23 +160,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm2(instance: instance!)
 	}
 
+    func testEncounter2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm2(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter2(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -183,7 +263,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter3()
-			try runEncounter3(instance!.asJSON()) 			
+			try runEncounter3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -192,23 +275,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm3(instance: instance!)
 	}
 
+    func testEncounter3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm3(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter3(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -259,7 +379,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter4()
-			try runEncounter4(instance!.asJSON()) 			
+			try runEncounter4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -268,23 +391,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm4(instance: instance!)
 	}
 
+    func testEncounter4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm4(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter4(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -316,7 +476,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter5()
-			try runEncounter5(instance!.asJSON()) 			
+			try runEncounter5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -325,23 +488,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm5(instance: instance!)
 	}
 
+    func testEncounter5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm5(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter5(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -383,7 +583,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter6()
-			try runEncounter6(instance!.asJSON()) 			
+			try runEncounter6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -392,23 +595,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm6(instance: instance!)
 	}
 
+    func testEncounter6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm6(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter6(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -449,7 +689,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter7()
-			try runEncounter7(instance!.asJSON()) 			
+			try runEncounter7(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter7(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -458,23 +701,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm7(instance: instance!)
 	}
 
+    func testEncounter7RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter7()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm7(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter7(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter7(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter7(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -507,7 +787,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter8()
-			try runEncounter8(instance!.asJSON()) 			
+			try runEncounter8(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter8(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -516,23 +799,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm8(instance: instance!)
 	}
 
+    func testEncounter8RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter8()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm8(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter8(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter8(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter8(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult
@@ -559,7 +879,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Encounter?
 		do {
 			instance = try runEncounter9()
-			try runEncounter9(instance!.asJSON()) 			
+			try runEncounter9(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
+			XCTAssertNotNil(copy)
+			try runEncounter9(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -568,23 +891,60 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 		testEncounterRealm9(instance: instance!)
 	}
 
+    func testEncounter9RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Encounter = try runEncounter9()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Encounter)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
+        }
+    }
+
 	func testEncounterRealm9(instance: RealmSwiftFHIR.Encounter) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runEncounter9(realm.objects(RealmSwiftFHIR.Encounter.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Encounter.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Encounter()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter9(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Encounter.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runEncounter9(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Encounter.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Encounter.self).count)
 	}
 	
 	@discardableResult

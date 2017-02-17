@@ -2,7 +2,7 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,21 +20,35 @@ open class Attachment: Element {
 		get { return "Attachment" }
 	}
 
-	public dynamic var contentType: String?
+	public dynamic var contentType: String?						
+		
+		
 	
-	public dynamic var creation: DateTime?
+	public dynamic var creation: DateTime?						
+		
+		
 	
-	public dynamic var data: Base64Binary?
+	public dynamic var data: Base64Binary?						
+		
+		
 	
-	public dynamic var hash_fhir: Base64Binary?
+	public dynamic var hash_fhir: Base64Binary?						
+		
+		
 	
-	public dynamic var language: String?
+	public dynamic var language: String?						
+		
+		
 	
 	public let size = RealmOptional<Int>()
 	
-	public dynamic var title: String?
+	public dynamic var title: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -45,7 +59,6 @@ open class Attachment: Element {
 				presentKeys.insert("contentType")
 				if let val = exist as? String {
 					self.contentType = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
@@ -82,7 +95,6 @@ open class Attachment: Element {
 				presentKeys.insert("language")
 				if let val = exist as? String {
 					self.language = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
@@ -92,7 +104,6 @@ open class Attachment: Element {
 				presentKeys.insert("size")
 				if let val = exist as? Int {
 					self.size.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "size", wants: Int.self, has: type(of: exist)))
@@ -102,7 +113,6 @@ open class Attachment: Element {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -112,7 +122,6 @@ open class Attachment: Element {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))

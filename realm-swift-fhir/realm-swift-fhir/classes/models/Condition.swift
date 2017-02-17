@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -24,53 +24,134 @@ open class Condition: DomainResource {
 
 	public let abatementBoolean = RealmOptional<Bool>()
 	
-	public dynamic var abatementDateTime: DateTime?
+	public dynamic var abatementDateTime: DateTime?						
+		
+		
 	
-	public dynamic var abatementPeriod: Period?
+	public dynamic var abatementPeriod: Period?						
+		
+		
+			public func upsert(abatementPeriod: Period?) {
+				upsert(prop: &self.abatementPeriod, val: abatementPeriod)
+			}
 	
-	public dynamic var abatementQuantity: Quantity?
+	public dynamic var abatementQuantity: Quantity?						
+		
+		
+			public func upsert(abatementQuantity: Quantity?) {
+				upsert(prop: &self.abatementQuantity, val: abatementQuantity)
+			}
 	
-	public dynamic var abatementRange: Range?
+	public dynamic var abatementRange: Range?						
+		
+		
+			public func upsert(abatementRange: Range?) {
+				upsert(prop: &self.abatementRange, val: abatementRange)
+			}
 	
-	public dynamic var abatementString: String?
+	public dynamic var abatementString: String?						
+		
+		
 	
-	public dynamic var asserter: Reference?
+	public dynamic var asserter: Reference?						
+		
+		
+			public func upsert(asserter: Reference?) {
+				upsert(prop: &self.asserter, val: asserter)
+			}
 	
 	public let bodySite = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var category: CodeableConcept?
+	public dynamic var category: CodeableConcept?						
+		
+		
+			public func upsert(category: CodeableConcept?) {
+				upsert(prop: &self.category, val: category)
+			}
 	
-	public dynamic var clinicalStatus: String?
+	public dynamic var clinicalStatus: String?						
+		
+		
 	
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
-	public dynamic var dateRecorded: FHIRDate?
+	public dynamic var dateRecorded: FHIRDate?						
+		
+		
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let evidence = RealmSwift.List<ConditionEvidence>()
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var notes: String?
+	public dynamic var notes: String?						
+		
+		
 	
-	public dynamic var onsetDateTime: DateTime?
+	public dynamic var onsetDateTime: DateTime?						
+		
+		
 	
-	public dynamic var onsetPeriod: Period?
+	public dynamic var onsetPeriod: Period?						
+		
+		
+			public func upsert(onsetPeriod: Period?) {
+				upsert(prop: &self.onsetPeriod, val: onsetPeriod)
+			}
 	
-	public dynamic var onsetQuantity: Quantity?
+	public dynamic var onsetQuantity: Quantity?						
+		
+		
+			public func upsert(onsetQuantity: Quantity?) {
+				upsert(prop: &self.onsetQuantity, val: onsetQuantity)
+			}
 	
-	public dynamic var onsetRange: Range?
+	public dynamic var onsetRange: Range?						
+		
+		
+			public func upsert(onsetRange: Range?) {
+				upsert(prop: &self.onsetRange, val: onsetRange)
+			}
 	
-	public dynamic var onsetString: String?
+	public dynamic var onsetString: String?						
+		
+		
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
-	public dynamic var severity: CodeableConcept?
+	public dynamic var severity: CodeableConcept?						
+		
+		
+			public func upsert(severity: CodeableConcept?) {
+				upsert(prop: &self.severity, val: severity)
+			}
 	
-	public dynamic var stage: ConditionStage?
+	public dynamic var stage: ConditionStage?						
+		
+		
+			public func upsert(stage: ConditionStage?) {
+				upsert(prop: &self.stage, val: stage)
+			}
 	
-	public dynamic var verificationStatus: String?
+	public dynamic var verificationStatus: String?						
+		
+		
 	
 
 	
@@ -89,7 +170,6 @@ open class Condition: DomainResource {
 				presentKeys.insert("abatementBoolean")
 				if let val = exist as? Bool {
 					self.abatementBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementBoolean", wants: Bool.self, has: type(of: exist)))
@@ -107,7 +187,7 @@ open class Condition: DomainResource {
 			if let exist = js["abatementPeriod"] {
 				presentKeys.insert("abatementPeriod")
 				if let val = exist as? FHIRJSON {
-					self.abatementPeriod = Period(json: val, owner: self)
+					upsert(abatementPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -116,7 +196,7 @@ open class Condition: DomainResource {
 			if let exist = js["abatementQuantity"] {
 				presentKeys.insert("abatementQuantity")
 				if let val = exist as? FHIRJSON {
-					self.abatementQuantity = Quantity(json: val, owner: self)
+					upsert(abatementQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -125,7 +205,7 @@ open class Condition: DomainResource {
 			if let exist = js["abatementRange"] {
 				presentKeys.insert("abatementRange")
 				if let val = exist as? FHIRJSON {
-					self.abatementRange = Range(json: val, owner: self)
+					upsert(abatementRange: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -135,7 +215,6 @@ open class Condition: DomainResource {
 				presentKeys.insert("abatementString")
 				if let val = exist as? String {
 					self.abatementString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "abatementString", wants: String.self, has: type(of: exist)))
@@ -144,7 +223,7 @@ open class Condition: DomainResource {
 			if let exist = js["asserter"] {
 				presentKeys.insert("asserter")
 				if let val = exist as? FHIRJSON {
-					self.asserter = Reference(json: val, owner: self)
+					upsert(asserter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "asserter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -154,6 +233,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("bodySite")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.bodySite) }
 						self.bodySite.append(objectsIn: vals)
 					}
 				}
@@ -164,7 +244,7 @@ open class Condition: DomainResource {
 			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.category = CodeableConcept(json: val, owner: self)
+					upsert(category: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
@@ -174,7 +254,6 @@ open class Condition: DomainResource {
 				presentKeys.insert("clinicalStatus")
 				if let val = exist as? String {
 					self.clinicalStatus = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "clinicalStatus", wants: String.self, has: type(of: exist)))
@@ -183,7 +262,7 @@ open class Condition: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -204,7 +283,7 @@ open class Condition: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -214,6 +293,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("evidence")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ConditionEvidence.instantiate(fromArray: val, owner: self) as? [ConditionEvidence] {
+						if let realm = self.realm { realm.delete(self.evidence) }
 						self.evidence.append(objectsIn: vals)
 					}
 				}
@@ -225,6 +305,7 @@ open class Condition: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -236,7 +317,6 @@ open class Condition: DomainResource {
 				presentKeys.insert("notes")
 				if let val = exist as? String {
 					self.notes = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notes", wants: String.self, has: type(of: exist)))
@@ -254,7 +334,7 @@ open class Condition: DomainResource {
 			if let exist = js["onsetPeriod"] {
 				presentKeys.insert("onsetPeriod")
 				if let val = exist as? FHIRJSON {
-					self.onsetPeriod = Period(json: val, owner: self)
+					upsert(onsetPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -263,7 +343,7 @@ open class Condition: DomainResource {
 			if let exist = js["onsetQuantity"] {
 				presentKeys.insert("onsetQuantity")
 				if let val = exist as? FHIRJSON {
-					self.onsetQuantity = Quantity(json: val, owner: self)
+					upsert(onsetQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -272,7 +352,7 @@ open class Condition: DomainResource {
 			if let exist = js["onsetRange"] {
 				presentKeys.insert("onsetRange")
 				if let val = exist as? FHIRJSON {
-					self.onsetRange = Range(json: val, owner: self)
+					upsert(onsetRange: Range(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetRange", wants: FHIRJSON.self, has: type(of: exist)))
@@ -282,7 +362,6 @@ open class Condition: DomainResource {
 				presentKeys.insert("onsetString")
 				if let val = exist as? String {
 					self.onsetString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "onsetString", wants: String.self, has: type(of: exist)))
@@ -291,7 +370,7 @@ open class Condition: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -303,7 +382,7 @@ open class Condition: DomainResource {
 			if let exist = js["severity"] {
 				presentKeys.insert("severity")
 				if let val = exist as? FHIRJSON {
-					self.severity = CodeableConcept(json: val, owner: self)
+					upsert(severity: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "severity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -312,7 +391,7 @@ open class Condition: DomainResource {
 			if let exist = js["stage"] {
 				presentKeys.insert("stage")
 				if let val = exist as? FHIRJSON {
-					self.stage = ConditionStage(json: val, owner: self)
+					upsert(stage: ConditionStage(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "stage", wants: FHIRJSON.self, has: type(of: exist)))
@@ -322,7 +401,6 @@ open class Condition: DomainResource {
 				presentKeys.insert("verificationStatus")
 				if let val = exist as? String {
 					self.verificationStatus = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "verificationStatus", wants: String.self, has: type(of: exist)))
@@ -429,7 +507,12 @@ open class ConditionEvidence: BackboneElement {
 		get { return "ConditionEvidence" }
 	}
 
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
 	public let detail = RealmSwift.List<Reference>()
 	
@@ -441,7 +524,7 @@ open class ConditionEvidence: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -451,6 +534,7 @@ open class ConditionEvidence: BackboneElement {
 				presentKeys.insert("detail")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.detail) }
 						self.detail.append(objectsIn: vals)
 					}
 				}
@@ -489,7 +573,12 @@ open class ConditionStage: BackboneElement {
 
 	public let assessment = RealmSwift.List<Reference>()
 	
-	public dynamic var summary: CodeableConcept?
+	public dynamic var summary: CodeableConcept?						
+		
+		
+			public func upsert(summary: CodeableConcept?) {
+				upsert(prop: &self.summary, val: summary)
+			}
 	
 
 	
@@ -500,6 +589,7 @@ open class ConditionStage: BackboneElement {
 				presentKeys.insert("assessment")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.assessment) }
 						self.assessment.append(objectsIn: vals)
 					}
 				}
@@ -510,7 +600,7 @@ open class ConditionStage: BackboneElement {
 			if let exist = js["summary"] {
 				presentKeys.insert("summary")
 				if let val = exist as? FHIRJSON {
-					self.summary = CodeableConcept(json: val, owner: self)
+					upsert(summary: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "summary", wants: FHIRJSON.self, has: type(of: exist)))

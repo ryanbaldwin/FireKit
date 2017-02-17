@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,11 +23,18 @@ open class Goal: DomainResource {
 
 	public let addresses = RealmSwift.List<Reference>()
 	
-	public dynamic var author: Reference?
+	public dynamic var author: Reference?						
+		
+		
+			public func upsert(author: Reference?) {
+				upsert(prop: &self.author, val: author)
+			}
 	
 	public let category = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
@@ -35,23 +42,56 @@ open class Goal: DomainResource {
 	
 	public let outcome = RealmSwift.List<GoalOutcome>()
 	
-	public dynamic var priority: CodeableConcept?
+	public dynamic var priority: CodeableConcept?						
+		
+		
+			public func upsert(priority: CodeableConcept?) {
+				upsert(prop: &self.priority, val: priority)
+			}
 	
-	public dynamic var startCodeableConcept: CodeableConcept?
+	public dynamic var startCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(startCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.startCodeableConcept, val: startCodeableConcept)
+			}
 	
-	public dynamic var startDate: FHIRDate?
+	public dynamic var startDate: FHIRDate?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var statusDate: FHIRDate?
+	public dynamic var statusDate: FHIRDate?						
+		
+		
 	
-	public dynamic var statusReason: CodeableConcept?
+	public dynamic var statusReason: CodeableConcept?						
+		
+		
+			public func upsert(statusReason: CodeableConcept?) {
+				upsert(prop: &self.statusReason, val: statusReason)
+			}
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var targetDate: FHIRDate?
+	public dynamic var targetDate: FHIRDate?						
+		
+		
 	
-	public dynamic var targetQuantity: Quantity?
+	public dynamic var targetQuantity: Quantity?						
+		
+		
+			public func upsert(targetQuantity: Quantity?) {
+				upsert(prop: &self.targetQuantity, val: targetQuantity)
+			}
 	
 
 	
@@ -69,6 +109,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("addresses")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.addresses) }
 						self.addresses.append(objectsIn: vals)
 					}
 				}
@@ -79,7 +120,7 @@ open class Goal: DomainResource {
 			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
-					self.author = Reference(json: val, owner: self)
+					upsert(author: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
@@ -89,6 +130,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("category")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.category) }
 						self.category.append(objectsIn: vals)
 					}
 				}
@@ -100,7 +142,6 @@ open class Goal: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -113,6 +154,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -124,6 +166,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation] {
+						if let realm = self.realm { realm.delete(self.note) }
 						self.note.append(objectsIn: vals)
 					}
 				}
@@ -135,6 +178,7 @@ open class Goal: DomainResource {
 				presentKeys.insert("outcome")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = GoalOutcome.instantiate(fromArray: val, owner: self) as? [GoalOutcome] {
+						if let realm = self.realm { realm.delete(self.outcome) }
 						self.outcome.append(objectsIn: vals)
 					}
 				}
@@ -145,7 +189,7 @@ open class Goal: DomainResource {
 			if let exist = js["priority"] {
 				presentKeys.insert("priority")
 				if let val = exist as? FHIRJSON {
-					self.priority = CodeableConcept(json: val, owner: self)
+					upsert(priority: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: FHIRJSON.self, has: type(of: exist)))
@@ -154,7 +198,7 @@ open class Goal: DomainResource {
 			if let exist = js["startCodeableConcept"] {
 				presentKeys.insert("startCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.startCodeableConcept = CodeableConcept(json: val, owner: self)
+					upsert(startCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "startCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,7 +217,6 @@ open class Goal: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -194,7 +237,7 @@ open class Goal: DomainResource {
 			if let exist = js["statusReason"] {
 				presentKeys.insert("statusReason")
 				if let val = exist as? FHIRJSON {
-					self.statusReason = CodeableConcept(json: val, owner: self)
+					upsert(statusReason: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "statusReason", wants: FHIRJSON.self, has: type(of: exist)))
@@ -203,7 +246,7 @@ open class Goal: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -221,7 +264,7 @@ open class Goal: DomainResource {
 			if let exist = js["targetQuantity"] {
 				presentKeys.insert("targetQuantity")
 				if let val = exist as? FHIRJSON {
-					self.targetQuantity = Quantity(json: val, owner: self)
+					upsert(targetQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "targetQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -298,9 +341,19 @@ open class GoalOutcome: BackboneElement {
 		get { return "GoalOutcome" }
 	}
 
-	public dynamic var resultCodeableConcept: CodeableConcept?
+	public dynamic var resultCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(resultCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.resultCodeableConcept, val: resultCodeableConcept)
+			}
 	
-	public dynamic var resultReference: Reference?
+	public dynamic var resultReference: Reference?						
+		
+		
+			public func upsert(resultReference: Reference?) {
+				upsert(prop: &self.resultReference, val: resultReference)
+			}
 	
 
 	
@@ -310,7 +363,7 @@ open class GoalOutcome: BackboneElement {
 			if let exist = js["resultCodeableConcept"] {
 				presentKeys.insert("resultCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.resultCodeableConcept = CodeableConcept(json: val, owner: self)
+					upsert(resultCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resultCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -319,7 +372,7 @@ open class GoalOutcome: BackboneElement {
 			if let exist = js["resultReference"] {
 				presentKeys.insert("resultReference")
 				if let val = exist as? FHIRJSON {
-					self.resultReference = Reference(json: val, owner: self)
+					upsert(resultReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "resultReference", wants: FHIRJSON.self, has: type(of: exist)))

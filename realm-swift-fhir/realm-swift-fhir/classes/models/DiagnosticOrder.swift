@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,7 +20,12 @@ open class DiagnosticOrder: DomainResource {
 		get { return "DiagnosticOrder" }
 	}
 
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let event = RealmSwift.List<DiagnosticOrderEvent>()
 	
@@ -30,17 +35,31 @@ open class DiagnosticOrder: DomainResource {
 	
 	public let note = RealmSwift.List<Annotation>()
 	
-	public dynamic var orderer: Reference?
+	public dynamic var orderer: Reference?						
+		
+		
+			public func upsert(orderer: Reference?) {
+				upsert(prop: &self.orderer, val: orderer)
+			}
 	
-	public dynamic var priority: String?
+	public dynamic var priority: String?						
+		
+		
 	
 	public let reason = RealmSwift.List<CodeableConcept>()
 	
 	public let specimen = RealmSwift.List<Reference>()
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 	public let supportingInformation = RealmSwift.List<Reference>()
 	
@@ -58,7 +77,7 @@ open class DiagnosticOrder: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -68,6 +87,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = DiagnosticOrderEvent.instantiate(fromArray: val, owner: self) as? [DiagnosticOrderEvent] {
+						if let realm = self.realm { realm.delete(self.event) }
 						self.event.append(objectsIn: vals)
 					}
 				}
@@ -79,6 +99,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -90,6 +111,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("item")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = DiagnosticOrderItem.instantiate(fromArray: val, owner: self) as? [DiagnosticOrderItem] {
+						if let realm = self.realm { realm.delete(self.item) }
 						self.item.append(objectsIn: vals)
 					}
 				}
@@ -101,6 +123,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("note")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation] {
+						if let realm = self.realm { realm.delete(self.note) }
 						self.note.append(objectsIn: vals)
 					}
 				}
@@ -111,7 +134,7 @@ open class DiagnosticOrder: DomainResource {
 			if let exist = js["orderer"] {
 				presentKeys.insert("orderer")
 				if let val = exist as? FHIRJSON {
-					self.orderer = Reference(json: val, owner: self)
+					upsert(orderer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "orderer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -121,7 +144,6 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("priority")
 				if let val = exist as? String {
 					self.priority = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: type(of: exist)))
@@ -131,6 +153,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("reason")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.reason) }
 						self.reason.append(objectsIn: vals)
 					}
 				}
@@ -142,6 +165,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("specimen")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.specimen) }
 						self.specimen.append(objectsIn: vals)
 					}
 				}
@@ -153,7 +177,6 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -162,7 +185,7 @@ open class DiagnosticOrder: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -175,6 +198,7 @@ open class DiagnosticOrder: DomainResource {
 				presentKeys.insert("supportingInformation")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.supportingInformation) }
 						self.supportingInformation.append(objectsIn: vals)
 					}
 				}
@@ -242,13 +266,27 @@ open class DiagnosticOrderEvent: BackboneElement {
 		get { return "DiagnosticOrderEvent" }
 	}
 
-	public dynamic var actor: Reference?
+	public dynamic var actor: Reference?						
+		
+		
+			public func upsert(actor: Reference?) {
+				upsert(prop: &self.actor, val: actor)
+			}
 	
-	public dynamic var dateTime: DateTime?
+	public dynamic var dateTime: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: CodeableConcept?
+	public dynamic var description_fhir: CodeableConcept?						
+		
+		
+			public func upsert(description_fhir: CodeableConcept?) {
+				upsert(prop: &self.description_fhir, val: description_fhir)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 
 	
@@ -265,7 +303,7 @@ open class DiagnosticOrderEvent: BackboneElement {
 			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					self.actor = Reference(json: val, owner: self)
+					upsert(actor: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
@@ -286,7 +324,7 @@ open class DiagnosticOrderEvent: BackboneElement {
 			if let exist = js["description"] {
 				presentKeys.insert("description")
 				if let val = exist as? FHIRJSON {
-					self.description_fhir = CodeableConcept(json: val, owner: self)
+					upsert(description_fhir: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: FHIRJSON.self, has: type(of: exist)))
@@ -296,7 +334,6 @@ open class DiagnosticOrderEvent: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -341,15 +378,27 @@ open class DiagnosticOrderItem: BackboneElement {
 		get { return "DiagnosticOrderItem" }
 	}
 
-	public dynamic var bodySite: CodeableConcept?
+	public dynamic var bodySite: CodeableConcept?						
+		
+		
+			public func upsert(bodySite: CodeableConcept?) {
+				upsert(prop: &self.bodySite, val: bodySite)
+			}
 	
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
 	public let event = RealmSwift.List<DiagnosticOrderEvent>()
 	
 	public let specimen = RealmSwift.List<Reference>()
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
 
 	
@@ -365,7 +414,7 @@ open class DiagnosticOrderItem: BackboneElement {
 			if let exist = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? FHIRJSON {
-					self.bodySite = CodeableConcept(json: val, owner: self)
+					upsert(bodySite: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: type(of: exist)))
@@ -374,7 +423,7 @@ open class DiagnosticOrderItem: BackboneElement {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -387,6 +436,7 @@ open class DiagnosticOrderItem: BackboneElement {
 				presentKeys.insert("event")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = DiagnosticOrderEvent.instantiate(fromArray: val, owner: self) as? [DiagnosticOrderEvent] {
+						if let realm = self.realm { realm.delete(self.event) }
 						self.event.append(objectsIn: vals)
 					}
 				}
@@ -398,6 +448,7 @@ open class DiagnosticOrderItem: BackboneElement {
 				presentKeys.insert("specimen")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.specimen) }
 						self.specimen.append(objectsIn: vals)
 					}
 				}
@@ -409,7 +460,6 @@ open class DiagnosticOrderItem: BackboneElement {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))

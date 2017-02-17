@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization1()
-			try runOrganization1(instance!.asJSON()) 			
+			try runOrganization1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -42,23 +45,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm1(instance: instance!)
 	}
 
+    func testOrganization1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm1(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization1(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -109,7 +149,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization2()
-			try runOrganization2(instance!.asJSON()) 			
+			try runOrganization2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -118,23 +161,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm2(instance: instance!)
 	}
 
+    func testOrganization2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm2(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization2(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -170,7 +250,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization3()
-			try runOrganization3(instance!.asJSON()) 			
+			try runOrganization3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -179,23 +262,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm3(instance: instance!)
 	}
 
+    func testOrganization3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm3(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization3(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -231,7 +351,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization4()
-			try runOrganization4(instance!.asJSON()) 			
+			try runOrganization4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -240,23 +363,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm4(instance: instance!)
 	}
 
+    func testOrganization4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm4(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization4(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -308,7 +468,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization5()
-			try runOrganization5(instance!.asJSON()) 			
+			try runOrganization5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -317,23 +480,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm5(instance: instance!)
 	}
 
+    func testOrganization5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm5(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization5(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -369,7 +569,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization6()
-			try runOrganization6(instance!.asJSON()) 			
+			try runOrganization6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -378,23 +581,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm6(instance: instance!)
 	}
 
+    func testOrganization6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm6(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization6(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -423,7 +663,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization7()
-			try runOrganization7(instance!.asJSON()) 			
+			try runOrganization7(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization7(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -432,23 +675,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm7(instance: instance!)
 	}
 
+    func testOrganization7RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization7()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm7(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization7(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization7(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization7(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -469,7 +749,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization8()
-			try runOrganization8(instance!.asJSON()) 			
+			try runOrganization8(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization8(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -478,23 +761,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm8(instance: instance!)
 	}
 
+    func testOrganization8RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization8()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm8(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization8(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization8(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization8(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -515,7 +835,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization9()
-			try runOrganization9(instance!.asJSON()) 			
+			try runOrganization9(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization9(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -524,23 +847,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm9(instance: instance!)
 	}
 
+    func testOrganization9RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization9()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm9(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization9(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization9(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization9(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult
@@ -567,7 +927,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Organization?
 		do {
 			instance = try runOrganization10()
-			try runOrganization10(instance!.asJSON()) 			
+			try runOrganization10(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
+			XCTAssertNotNil(copy)
+			try runOrganization10(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -576,23 +939,60 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 		testOrganizationRealm10(instance: instance!)
 	}
 
+    func testOrganization10RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Organization = try runOrganization10()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Organization)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
+        }
+    }
+
 	func testOrganizationRealm10(instance: RealmSwiftFHIR.Organization) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runOrganization10(realm.objects(RealmSwiftFHIR.Organization.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Organization.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Organization()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization10(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Organization.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runOrganization10(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Organization.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Organization.self).count)
 	}
 	
 	@discardableResult

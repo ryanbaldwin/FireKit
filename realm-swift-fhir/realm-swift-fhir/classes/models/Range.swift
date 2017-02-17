@@ -2,7 +2,7 @@
 //  Range.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,9 +20,19 @@ open class Range: Element {
 		get { return "Range" }
 	}
 
-	public dynamic var high: Quantity?
+	public dynamic var high: Quantity?						
+		
+		
+			public func upsert(high: Quantity?) {
+				upsert(prop: &self.high, val: high)
+			}
 	
-	public dynamic var low: Quantity?
+	public dynamic var low: Quantity?						
+		
+		
+			public func upsert(low: Quantity?) {
+				upsert(prop: &self.low, val: low)
+			}
 	
 
 	
@@ -32,7 +42,7 @@ open class Range: Element {
 			if let exist = js["high"] {
 				presentKeys.insert("high")
 				if let val = exist as? FHIRJSON {
-					self.high = Quantity(json: val, owner: self)
+					upsert(high: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "high", wants: FHIRJSON.self, has: type(of: exist)))
@@ -41,7 +51,7 @@ open class Range: Element {
 			if let exist = js["low"] {
 				presentKeys.insert("low")
 				if let val = exist as? FHIRJSON {
-					self.low = Quantity(json: val, owner: self)
+					upsert(low: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "low", wants: FHIRJSON.self, has: type(of: exist)))

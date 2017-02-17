@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,13 +21,33 @@ open class DeviceUseRequest: DomainResource {
 		get { return "DeviceUseRequest" }
 	}
 
-	public dynamic var bodySiteCodeableConcept: CodeableConcept?
+	public dynamic var bodySiteCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(bodySiteCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.bodySiteCodeableConcept, val: bodySiteCodeableConcept)
+			}
 	
-	public dynamic var bodySiteReference: Reference?
+	public dynamic var bodySiteReference: Reference?						
+		
+		
+			public func upsert(bodySiteReference: Reference?) {
+				upsert(prop: &self.bodySiteReference, val: bodySiteReference)
+			}
 	
-	public dynamic var device: Reference?
+	public dynamic var device: Reference?						
+		
+		
+			public func upsert(device: Reference?) {
+				upsert(prop: &self.device, val: device)
+			}
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
@@ -35,23 +55,48 @@ open class DeviceUseRequest: DomainResource {
 	
 	public let notes = RealmSwift.List<RealmString>()
 	
-	public dynamic var orderedOn: DateTime?
+	public dynamic var orderedOn: DateTime?						
+		
+		
 	
-	public dynamic var priority: String?
+	public dynamic var priority: String?						
+		
+		
 	
 	public let prnReason = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var recordedOn: DateTime?
+	public dynamic var recordedOn: DateTime?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var timingDateTime: DateTime?
+	public dynamic var timingDateTime: DateTime?						
+		
+		
 	
-	public dynamic var timingPeriod: Period?
+	public dynamic var timingPeriod: Period?						
+		
+		
+			public func upsert(timingPeriod: Period?) {
+				upsert(prop: &self.timingPeriod, val: timingPeriod)
+			}
 	
-	public dynamic var timingTiming: Timing?
+	public dynamic var timingTiming: Timing?						
+		
+		
+			public func upsert(timingTiming: Timing?) {
+				upsert(prop: &self.timingTiming, val: timingTiming)
+			}
 	
 
 	
@@ -68,7 +113,7 @@ open class DeviceUseRequest: DomainResource {
 			if let exist = js["bodySiteCodeableConcept"] {
 				presentKeys.insert("bodySiteCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.bodySiteCodeableConcept = CodeableConcept(json: val, owner: self)
+					upsert(bodySiteCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySiteCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -77,7 +122,7 @@ open class DeviceUseRequest: DomainResource {
 			if let exist = js["bodySiteReference"] {
 				presentKeys.insert("bodySiteReference")
 				if let val = exist as? FHIRJSON {
-					self.bodySiteReference = Reference(json: val, owner: self)
+					upsert(bodySiteReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySiteReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -86,7 +131,7 @@ open class DeviceUseRequest: DomainResource {
 			if let exist = js["device"] {
 				presentKeys.insert("device")
 				if let val = exist as? FHIRJSON {
-					self.device = Reference(json: val, owner: self)
+					upsert(device: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: type(of: exist)))
@@ -98,7 +143,7 @@ open class DeviceUseRequest: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -108,6 +153,7 @@ open class DeviceUseRequest: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -119,6 +165,7 @@ open class DeviceUseRequest: DomainResource {
 				presentKeys.insert("indication")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.indication) }
 						self.indication.append(objectsIn: vals)
 					}
 				}
@@ -148,7 +195,6 @@ open class DeviceUseRequest: DomainResource {
 				presentKeys.insert("priority")
 				if let val = exist as? String {
 					self.priority = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: type(of: exist)))
@@ -158,6 +204,7 @@ open class DeviceUseRequest: DomainResource {
 				presentKeys.insert("prnReason")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.prnReason) }
 						self.prnReason.append(objectsIn: vals)
 					}
 				}
@@ -178,7 +225,6 @@ open class DeviceUseRequest: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -187,7 +233,7 @@ open class DeviceUseRequest: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -208,7 +254,7 @@ open class DeviceUseRequest: DomainResource {
 			if let exist = js["timingPeriod"] {
 				presentKeys.insert("timingPeriod")
 				if let val = exist as? FHIRJSON {
-					self.timingPeriod = Period(json: val, owner: self)
+					upsert(timingPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "timingPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -217,7 +263,7 @@ open class DeviceUseRequest: DomainResource {
 			if let exist = js["timingTiming"] {
 				presentKeys.insert("timingTiming")
 				if let val = exist as? FHIRJSON {
-					self.timingTiming = Timing(json: val, owner: self)
+					upsert(timingTiming: Timing(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "timingTiming", wants: FHIRJSON.self, has: type(of: exist)))

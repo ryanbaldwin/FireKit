@@ -2,7 +2,7 @@
 //  CodeableConcept.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CodeableConcept) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -22,7 +22,9 @@ open class CodeableConcept: Element {
 
 	public let coding = RealmSwift.List<Coding>()
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
 
 	
@@ -33,6 +35,7 @@ open class CodeableConcept: Element {
 				presentKeys.insert("coding")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.coding) }
 						self.coding.append(objectsIn: vals)
 					}
 				}
@@ -44,7 +47,6 @@ open class CodeableConcept: Element {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))

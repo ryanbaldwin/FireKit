@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -33,7 +33,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle1()
-			try runBundle1(instance!.asJSON()) 			
+			try runBundle1(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle1(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -42,23 +45,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm1(instance: instance!)
 	}
 
+    func testBundle1RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle1()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm1(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle1(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle1(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle1(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult
@@ -88,7 +128,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle2()
-			try runBundle2(instance!.asJSON()) 			
+			try runBundle2(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle2(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -97,23 +140,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm2(instance: instance!)
 	}
 
+    func testBundle2RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle2()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm2(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle2(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle2(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle2(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult
@@ -161,7 +241,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle3()
-			try runBundle3(instance!.asJSON()) 			
+			try runBundle3(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle3(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -170,23 +253,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm3(instance: instance!)
 	}
 
+    func testBundle3RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle3()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm3(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle3(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle3(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle3(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult
@@ -234,7 +354,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle4()
-			try runBundle4(instance!.asJSON()) 			
+			try runBundle4(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle4(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -243,23 +366,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm4(instance: instance!)
 	}
 
+    func testBundle4RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle4()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm4(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle4(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle4(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle4(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult
@@ -301,7 +461,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle5()
-			try runBundle5(instance!.asJSON()) 			
+			try runBundle5(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle5(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -310,23 +473,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm5(instance: instance!)
 	}
 
+    func testBundle5RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle5()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm5(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle5(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle5(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle5(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult
@@ -374,7 +574,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle6()
-			try runBundle6(instance!.asJSON()) 			
+			try runBundle6(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle6(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -383,23 +586,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm6(instance: instance!)
 	}
 
+    func testBundle6RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle6()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm6(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle6(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle6(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle6(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult
@@ -447,7 +687,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle7()
-			try runBundle7(instance!.asJSON()) 			
+			try runBundle7(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle7(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -456,23 +699,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm7(instance: instance!)
 	}
 
+    func testBundle7RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle7()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm7(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle7(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle7(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle7(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult
@@ -520,7 +800,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		var instance: RealmSwiftFHIR.Bundle?
 		do {
 			instance = try runBundle8()
-			try runBundle8(instance!.asJSON()) 			
+			try runBundle8(instance!.asJSON()) 		
+			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
+			XCTAssertNotNil(copy)
+			try runBundle8(copy!.asJSON())            
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -529,23 +812,60 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		testBundleRealm8(instance: instance!)
 	}
 
+    func testBundle8RealmPK() {        
+        do {
+            let instance: RealmSwiftFHIR.Bundle = try runBundle8()
+            let copy = (instance.copy() as! RealmSwiftFHIR.Bundle)
+
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try! realm.write { realm.add(instance) }
+            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            
+            let prePopulatedCopyPK = copy.pk
+            _ = copy.populate(from: instance.asJSON())
+            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
+            XCTAssertNotEqual(copy.pk, instance.pk)
+
+        } catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
+        }
+    }
+
 	func testBundleRealm8(instance: RealmSwiftFHIR.Bundle) {
+		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
 		try! realm.write {
                 realm.add(instance)
             }
         try! runBundle8(realm.objects(RealmSwiftFHIR.Bundle.self).first!.asJSON())
         
-        try! realm.write {
-        	instance.implicitRules = "Rule #1"
-            realm.add(instance, update: true)
-        }
+        // ensure we can update it.
+        try! realm.write { instance.implicitRules = "Rule #1" }
         XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
         XCTAssertEqual("Rule #1", realm.objects(RealmSwiftFHIR.Bundle.self).first!.implicitRules)
         
-        try! realm.write {
-            realm.delete(instance)
-        }
-        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Account.self).count)
+        // create a new instance with default key, save it, then populate it from instance JSON. 
+        // PK should persist and not be overwritten.
+        let newInst = RealmSwiftFHIR.Bundle()
+        try! realm.write { realm.add(newInst) }
+        
+        // first time updating it should inflate children resources/elements which don't exist
+        var existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle8(existing.asJSON())
+        
+        // second time updating it will overwrite values of child resources/elements, but maintain keys
+        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
+        existing = realm.object(ofType: RealmSwiftFHIR.Bundle.self, forPrimaryKey: newInst.pk)!
+        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
+        try! runBundle8(existing.asJSON())
+
+        try! realm.write { realm.delete(instance) }        
+        XCTAssertEqual(1, realm.objects(RealmSwiftFHIR.Bundle.self).count)
+
+        try! realm.write { realm.delete(existing) }
+        XCTAssertEqual(0, realm.objects(RealmSwiftFHIR.Bundle.self).count)
 	}
 	
 	@discardableResult

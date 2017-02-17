@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,27 +23,53 @@ open class NamingSystem: DomainResource {
 
 	public let contact = RealmSwift.List<NamingSystemContact>()
 	
-	public dynamic var date: DateTime?
+	public dynamic var date: DateTime?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
-	public dynamic var kind: String?
+	public dynamic var kind: String?						
+		
+		
 	
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
-	public dynamic var publisher: String?
+	public dynamic var publisher: String?						
+		
+		
 	
-	public dynamic var replacedBy: Reference?
+	public dynamic var replacedBy: Reference?						
+		
+		
+			public func upsert(replacedBy: Reference?) {
+				upsert(prop: &self.replacedBy, val: replacedBy)
+			}
 	
-	public dynamic var responsible: String?
+	public dynamic var responsible: String?						
+		
+		
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 	public let uniqueId = RealmSwift.List<NamingSystemUniqueId>()
 	
-	public dynamic var usage: String?
+	public dynamic var usage: String?						
+		
+		
 	
 	public let useContext = RealmSwift.List<CodeableConcept>()
 	
@@ -66,6 +92,7 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("contact")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = NamingSystemContact.instantiate(fromArray: val, owner: self) as? [NamingSystemContact] {
+						if let realm = self.realm { realm.delete(self.contact) }
 						self.contact.append(objectsIn: vals)
 					}
 				}
@@ -89,7 +116,6 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -99,7 +125,6 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("kind")
 				if let val = exist as? String {
 					self.kind = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "kind", wants: String.self, has: type(of: exist)))
@@ -112,7 +137,6 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -125,7 +149,6 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("publisher")
 				if let val = exist as? String {
 					self.publisher = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
@@ -134,7 +157,7 @@ open class NamingSystem: DomainResource {
 			if let exist = js["replacedBy"] {
 				presentKeys.insert("replacedBy")
 				if let val = exist as? FHIRJSON {
-					self.replacedBy = Reference(json: val, owner: self)
+					upsert(replacedBy: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "replacedBy", wants: FHIRJSON.self, has: type(of: exist)))
@@ -144,7 +167,6 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("responsible")
 				if let val = exist as? String {
 					self.responsible = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "responsible", wants: String.self, has: type(of: exist)))
@@ -154,7 +176,6 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -166,7 +187,7 @@ open class NamingSystem: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
@@ -176,6 +197,7 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("uniqueId")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = NamingSystemUniqueId.instantiate(fromArray: val, owner: self) as? [NamingSystemUniqueId] {
+						if let realm = self.realm { realm.delete(self.uniqueId) }
 						self.uniqueId.append(objectsIn: vals)
 					}
 				}
@@ -190,7 +212,6 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("usage")
 				if let val = exist as? String {
 					self.usage = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "usage", wants: String.self, has: type(of: exist)))
@@ -200,6 +221,7 @@ open class NamingSystem: DomainResource {
 				presentKeys.insert("useContext")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.useContext) }
 						self.useContext.append(objectsIn: vals)
 					}
 				}
@@ -269,7 +291,9 @@ open class NamingSystemContact: BackboneElement {
 		get { return "NamingSystemContact" }
 	}
 
-	public dynamic var name: String?
+	public dynamic var name: String?						
+		
+		
 	
 	public let telecom = RealmSwift.List<ContactPoint>()
 	
@@ -282,7 +306,6 @@ open class NamingSystemContact: BackboneElement {
 				presentKeys.insert("name")
 				if let val = exist as? String {
 					self.name = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
@@ -292,6 +315,7 @@ open class NamingSystemContact: BackboneElement {
 				presentKeys.insert("telecom")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
+						if let realm = self.realm { realm.delete(self.telecom) }
 						self.telecom.append(objectsIn: vals)
 					}
 				}
@@ -328,13 +352,22 @@ open class NamingSystemUniqueId: BackboneElement {
 		get { return "NamingSystemUniqueId" }
 	}
 
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
 	public let preferred = RealmOptional<Bool>()
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var value: String?
+	public dynamic var value: String?						
+		
+		
 	
 
 	
@@ -351,7 +384,7 @@ open class NamingSystemUniqueId: BackboneElement {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -361,7 +394,6 @@ open class NamingSystemUniqueId: BackboneElement {
 				presentKeys.insert("preferred")
 				if let val = exist as? Bool {
 					self.preferred.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "preferred", wants: Bool.self, has: type(of: exist)))
@@ -371,7 +403,6 @@ open class NamingSystemUniqueId: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -384,7 +415,6 @@ open class NamingSystemUniqueId: BackboneElement {
 				presentKeys.insert("value")
 				if let val = exist as? String {
 					self.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))

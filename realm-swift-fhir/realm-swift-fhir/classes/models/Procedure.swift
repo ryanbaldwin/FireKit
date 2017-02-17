@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,13 +23,28 @@ open class Procedure: DomainResource {
 
 	public let bodySite = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var category: CodeableConcept?
+	public dynamic var category: CodeableConcept?						
+		
+		
+			public func upsert(category: CodeableConcept?) {
+				upsert(prop: &self.category, val: category)
+			}
 	
-	public dynamic var code: CodeableConcept?
+	public dynamic var code: CodeableConcept?						
+		
+		
+			public func upsert(code: CodeableConcept?) {
+				upsert(prop: &self.code, val: code)
+			}
 	
 	public let complication = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
 	public let focalDevice = RealmSwift.List<ProcedureFocalDevice>()
 	
@@ -37,33 +52,72 @@ open class Procedure: DomainResource {
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var location: Reference?
+	public dynamic var location: Reference?						
+		
+		
+			public func upsert(location: Reference?) {
+				upsert(prop: &self.location, val: location)
+			}
 	
 	public let notPerformed = RealmOptional<Bool>()
 	
 	public let notes = RealmSwift.List<Annotation>()
 	
-	public dynamic var outcome: CodeableConcept?
+	public dynamic var outcome: CodeableConcept?						
+		
+		
+			public func upsert(outcome: CodeableConcept?) {
+				upsert(prop: &self.outcome, val: outcome)
+			}
 	
-	public dynamic var performedDateTime: DateTime?
+	public dynamic var performedDateTime: DateTime?						
+		
+		
 	
-	public dynamic var performedPeriod: Period?
+	public dynamic var performedPeriod: Period?						
+		
+		
+			public func upsert(performedPeriod: Period?) {
+				upsert(prop: &self.performedPeriod, val: performedPeriod)
+			}
 	
 	public let performer = RealmSwift.List<ProcedurePerformer>()
 	
-	public dynamic var reasonCodeableConcept: CodeableConcept?
+	public dynamic var reasonCodeableConcept: CodeableConcept?						
+		
+		
+			public func upsert(reasonCodeableConcept: CodeableConcept?) {
+				upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
+			}
 	
 	public let reasonNotPerformed = RealmSwift.List<CodeableConcept>()
 	
-	public dynamic var reasonReference: Reference?
+	public dynamic var reasonReference: Reference?						
+		
+		
+			public func upsert(reasonReference: Reference?) {
+				upsert(prop: &self.reasonReference, val: reasonReference)
+			}
 	
 	public let report = RealmSwift.List<Reference>()
 	
-	public dynamic var request: Reference?
+	public dynamic var request: Reference?						
+		
+		
+			public func upsert(request: Reference?) {
+				upsert(prop: &self.request, val: request)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 	public let used = RealmSwift.List<Reference>()
 	
@@ -84,6 +138,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("bodySite")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.bodySite) }
 						self.bodySite.append(objectsIn: vals)
 					}
 				}
@@ -94,7 +149,7 @@ open class Procedure: DomainResource {
 			if let exist = js["category"] {
 				presentKeys.insert("category")
 				if let val = exist as? FHIRJSON {
-					self.category = CodeableConcept(json: val, owner: self)
+					upsert(category: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "category", wants: FHIRJSON.self, has: type(of: exist)))
@@ -103,7 +158,7 @@ open class Procedure: DomainResource {
 			if let exist = js["code"] {
 				presentKeys.insert("code")
 				if let val = exist as? FHIRJSON {
-					self.code = CodeableConcept(json: val, owner: self)
+					upsert(code: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
@@ -116,6 +171,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("complication")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.complication) }
 						self.complication.append(objectsIn: vals)
 					}
 				}
@@ -126,7 +182,7 @@ open class Procedure: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -136,6 +192,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("focalDevice")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ProcedureFocalDevice.instantiate(fromArray: val, owner: self) as? [ProcedureFocalDevice] {
+						if let realm = self.realm { realm.delete(self.focalDevice) }
 						self.focalDevice.append(objectsIn: vals)
 					}
 				}
@@ -147,6 +204,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("followUp")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.followUp) }
 						self.followUp.append(objectsIn: vals)
 					}
 				}
@@ -158,6 +216,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -168,7 +227,7 @@ open class Procedure: DomainResource {
 			if let exist = js["location"] {
 				presentKeys.insert("location")
 				if let val = exist as? FHIRJSON {
-					self.location = Reference(json: val, owner: self)
+					upsert(location: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
@@ -178,7 +237,6 @@ open class Procedure: DomainResource {
 				presentKeys.insert("notPerformed")
 				if let val = exist as? Bool {
 					self.notPerformed.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "notPerformed", wants: Bool.self, has: type(of: exist)))
@@ -188,6 +246,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("notes")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation] {
+						if let realm = self.realm { realm.delete(self.notes) }
 						self.notes.append(objectsIn: vals)
 					}
 				}
@@ -198,7 +257,7 @@ open class Procedure: DomainResource {
 			if let exist = js["outcome"] {
 				presentKeys.insert("outcome")
 				if let val = exist as? FHIRJSON {
-					self.outcome = CodeableConcept(json: val, owner: self)
+					upsert(outcome: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "outcome", wants: FHIRJSON.self, has: type(of: exist)))
@@ -216,7 +275,7 @@ open class Procedure: DomainResource {
 			if let exist = js["performedPeriod"] {
 				presentKeys.insert("performedPeriod")
 				if let val = exist as? FHIRJSON {
-					self.performedPeriod = Period(json: val, owner: self)
+					upsert(performedPeriod: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "performedPeriod", wants: FHIRJSON.self, has: type(of: exist)))
@@ -226,6 +285,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("performer")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ProcedurePerformer.instantiate(fromArray: val, owner: self) as? [ProcedurePerformer] {
+						if let realm = self.realm { realm.delete(self.performer) }
 						self.performer.append(objectsIn: vals)
 					}
 				}
@@ -236,7 +296,7 @@ open class Procedure: DomainResource {
 			if let exist = js["reasonCodeableConcept"] {
 				presentKeys.insert("reasonCodeableConcept")
 				if let val = exist as? FHIRJSON {
-					self.reasonCodeableConcept = CodeableConcept(json: val, owner: self)
+					upsert(reasonCodeableConcept: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
@@ -246,6 +306,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("reasonNotPerformed")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
+						if let realm = self.realm { realm.delete(self.reasonNotPerformed) }
 						self.reasonNotPerformed.append(objectsIn: vals)
 					}
 				}
@@ -256,7 +317,7 @@ open class Procedure: DomainResource {
 			if let exist = js["reasonReference"] {
 				presentKeys.insert("reasonReference")
 				if let val = exist as? FHIRJSON {
-					self.reasonReference = Reference(json: val, owner: self)
+					upsert(reasonReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -266,6 +327,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("report")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.report) }
 						self.report.append(objectsIn: vals)
 					}
 				}
@@ -276,7 +338,7 @@ open class Procedure: DomainResource {
 			if let exist = js["request"] {
 				presentKeys.insert("request")
 				if let val = exist as? FHIRJSON {
-					self.request = Reference(json: val, owner: self)
+					upsert(request: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
@@ -286,7 +348,6 @@ open class Procedure: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -298,7 +359,7 @@ open class Procedure: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -311,6 +372,7 @@ open class Procedure: DomainResource {
 				presentKeys.insert("used")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.used) }
 						self.used.append(objectsIn: vals)
 					}
 				}
@@ -411,9 +473,19 @@ open class ProcedureFocalDevice: BackboneElement {
 		get { return "ProcedureFocalDevice" }
 	}
 
-	public dynamic var action: CodeableConcept?
+	public dynamic var action: CodeableConcept?						
+		
+		
+			public func upsert(action: CodeableConcept?) {
+				upsert(prop: &self.action, val: action)
+			}
 	
-	public dynamic var manipulated: Reference?
+	public dynamic var manipulated: Reference?						
+		
+		
+			public func upsert(manipulated: Reference?) {
+				upsert(prop: &self.manipulated, val: manipulated)
+			}
 	
 
 	
@@ -429,7 +501,7 @@ open class ProcedureFocalDevice: BackboneElement {
 			if let exist = js["action"] {
 				presentKeys.insert("action")
 				if let val = exist as? FHIRJSON {
-					self.action = CodeableConcept(json: val, owner: self)
+					upsert(action: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "action", wants: FHIRJSON.self, has: type(of: exist)))
@@ -438,7 +510,7 @@ open class ProcedureFocalDevice: BackboneElement {
 			if let exist = js["manipulated"] {
 				presentKeys.insert("manipulated")
 				if let val = exist as? FHIRJSON {
-					self.manipulated = Reference(json: val, owner: self)
+					upsert(manipulated: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "manipulated", wants: FHIRJSON.self, has: type(of: exist)))
@@ -476,9 +548,19 @@ open class ProcedurePerformer: BackboneElement {
 		get { return "ProcedurePerformer" }
 	}
 
-	public dynamic var actor: Reference?
+	public dynamic var actor: Reference?						
+		
+		
+			public func upsert(actor: Reference?) {
+				upsert(prop: &self.actor, val: actor)
+			}
 	
-	public dynamic var role: CodeableConcept?
+	public dynamic var role: CodeableConcept?						
+		
+		
+			public func upsert(role: CodeableConcept?) {
+				upsert(prop: &self.role, val: role)
+			}
 	
 
 	
@@ -488,7 +570,7 @@ open class ProcedurePerformer: BackboneElement {
 			if let exist = js["actor"] {
 				presentKeys.insert("actor")
 				if let val = exist as? FHIRJSON {
-					self.actor = Reference(json: val, owner: self)
+					upsert(actor: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
@@ -497,7 +579,7 @@ open class ProcedurePerformer: BackboneElement {
 			if let exist = js["role"] {
 				presentKeys.insert("role")
 				if let val = exist as? FHIRJSON {
-					self.role = CodeableConcept(json: val, owner: self)
+					upsert(role: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: type(of: exist)))

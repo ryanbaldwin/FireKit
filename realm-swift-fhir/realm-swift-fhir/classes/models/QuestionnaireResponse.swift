@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -21,23 +21,62 @@ open class QuestionnaireResponse: DomainResource {
 		get { return "QuestionnaireResponse" }
 	}
 
-	public dynamic var author: Reference?
+	public dynamic var author: Reference?						
+		
+		
+			public func upsert(author: Reference?) {
+				upsert(prop: &self.author, val: author)
+			}
 	
-	public dynamic var authored: DateTime?
+	public dynamic var authored: DateTime?						
+		
+		
 	
-	public dynamic var encounter: Reference?
+	public dynamic var encounter: Reference?						
+		
+		
+			public func upsert(encounter: Reference?) {
+				upsert(prop: &self.encounter, val: encounter)
+			}
 	
-	public dynamic var group: QuestionnaireResponseGroup?
+	public dynamic var group: QuestionnaireResponseGroup?						
+		
+		
+			public func upsert(group: QuestionnaireResponseGroup?) {
+				upsert(prop: &self.group, val: group)
+			}
 	
-	public dynamic var identifier: Identifier?
+	public dynamic var identifier: Identifier?						
+		
+		
+			public func upsert(identifier: Identifier?) {
+				upsert(prop: &self.identifier, val: identifier)
+			}
 	
-	public dynamic var questionnaire: Reference?
+	public dynamic var questionnaire: Reference?						
+		
+		
+			public func upsert(questionnaire: Reference?) {
+				upsert(prop: &self.questionnaire, val: questionnaire)
+			}
 	
-	public dynamic var source: Reference?
+	public dynamic var source: Reference?						
+		
+		
+			public func upsert(source: Reference?) {
+				upsert(prop: &self.source, val: source)
+			}
 	
-	public dynamic var status: String?
+	public dynamic var status: String?						
+		
+		
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
 
 	
@@ -53,7 +92,7 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["author"] {
 				presentKeys.insert("author")
 				if let val = exist as? FHIRJSON {
-					self.author = Reference(json: val, owner: self)
+					upsert(author: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
@@ -71,7 +110,7 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["encounter"] {
 				presentKeys.insert("encounter")
 				if let val = exist as? FHIRJSON {
-					self.encounter = Reference(json: val, owner: self)
+					upsert(encounter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -80,7 +119,7 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["group"] {
 				presentKeys.insert("group")
 				if let val = exist as? FHIRJSON {
-					self.group = QuestionnaireResponseGroup(json: val, owner: self)
+					upsert(group: QuestionnaireResponseGroup(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: FHIRJSON.self, has: type(of: exist)))
@@ -89,7 +128,7 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["identifier"] {
 				presentKeys.insert("identifier")
 				if let val = exist as? FHIRJSON {
-					self.identifier = Identifier(json: val, owner: self)
+					upsert(identifier: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
@@ -98,7 +137,7 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["questionnaire"] {
 				presentKeys.insert("questionnaire")
 				if let val = exist as? FHIRJSON {
-					self.questionnaire = Reference(json: val, owner: self)
+					upsert(questionnaire: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "questionnaire", wants: FHIRJSON.self, has: type(of: exist)))
@@ -107,7 +146,7 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["source"] {
 				presentKeys.insert("source")
 				if let val = exist as? FHIRJSON {
-					self.source = Reference(json: val, owner: self)
+					upsert(source: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
@@ -117,7 +156,6 @@ open class QuestionnaireResponse: DomainResource {
 				presentKeys.insert("status")
 				if let val = exist as? String {
 					self.status = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
@@ -129,7 +167,7 @@ open class QuestionnaireResponse: DomainResource {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -187,15 +225,26 @@ open class QuestionnaireResponseGroup: BackboneElement {
 
 	public let group = RealmSwift.List<QuestionnaireResponseGroup>()
 	
-	public dynamic var linkId: String?
+	public dynamic var linkId: String?						
+		
+		
 	
 	public let question = RealmSwift.List<QuestionnaireResponseGroupQuestion>()
 	
-	public dynamic var subject: Reference?
+	public dynamic var subject: Reference?						
+		
+		
+			public func upsert(subject: Reference?) {
+				upsert(prop: &self.subject, val: subject)
+			}
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
-	public dynamic var title: String?
+	public dynamic var title: String?						
+		
+		
 	
 
 	
@@ -206,6 +255,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroup.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroup] {
+						if let realm = self.realm { realm.delete(self.group) }
 						self.group.append(objectsIn: vals)
 					}
 				}
@@ -217,7 +267,6 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("linkId")
 				if let val = exist as? String {
 					self.linkId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
@@ -227,6 +276,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("question")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroupQuestion.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroupQuestion] {
+						if let realm = self.realm { realm.delete(self.question) }
 						self.question.append(objectsIn: vals)
 					}
 				}
@@ -237,7 +287,7 @@ open class QuestionnaireResponseGroup: BackboneElement {
 			if let exist = js["subject"] {
 				presentKeys.insert("subject")
 				if let val = exist as? FHIRJSON {
-					self.subject = Reference(json: val, owner: self)
+					upsert(subject: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
@@ -247,7 +297,6 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -257,7 +306,6 @@ open class QuestionnaireResponseGroup: BackboneElement {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -306,9 +354,13 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 
 	public let answer = RealmSwift.List<QuestionnaireResponseGroupQuestionAnswer>()
 	
-	public dynamic var linkId: String?
+	public dynamic var linkId: String?						
+		
+		
 	
-	public dynamic var text: String?
+	public dynamic var text: String?						
+		
+		
 	
 
 	
@@ -319,6 +371,7 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("answer")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroupQuestionAnswer.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroupQuestionAnswer] {
+						if let realm = self.realm { realm.delete(self.answer) }
 						self.answer.append(objectsIn: vals)
 					}
 				}
@@ -330,7 +383,6 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("linkId")
 				if let val = exist as? String {
 					self.linkId = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
@@ -340,7 +392,6 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 				presentKeys.insert("text")
 				if let val = exist as? String {
 					self.text = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
@@ -380,31 +431,65 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 
 	public let group = RealmSwift.List<QuestionnaireResponseGroup>()
 	
-	public dynamic var valueAttachment: Attachment?
+	public dynamic var valueAttachment: Attachment?						
+		
+		
+			public func upsert(valueAttachment: Attachment?) {
+				upsert(prop: &self.valueAttachment, val: valueAttachment)
+			}
 	
 	public let valueBoolean = RealmOptional<Bool>()
 	
-	public dynamic var valueCoding: Coding?
+	public dynamic var valueCoding: Coding?						
+		
+		
+			public func upsert(valueCoding: Coding?) {
+				upsert(prop: &self.valueCoding, val: valueCoding)
+			}
 	
-	public dynamic var valueDate: FHIRDate?
+	public dynamic var valueDate: FHIRDate?						
+		
+		
 	
-	public dynamic var valueDateTime: DateTime?
+	public dynamic var valueDateTime: DateTime?						
+		
+		
 	
-	public dynamic var valueDecimal: RealmDecimal?
+	public dynamic var valueDecimal: RealmDecimal?						
+		
+		
 	
-	public dynamic var valueInstant: Instant?
+	public dynamic var valueInstant: Instant?						
+		
+		
 	
 	public let valueInteger = RealmOptional<Int>()
 	
-	public dynamic var valueQuantity: Quantity?
+	public dynamic var valueQuantity: Quantity?						
+		
+		
+			public func upsert(valueQuantity: Quantity?) {
+				upsert(prop: &self.valueQuantity, val: valueQuantity)
+			}
 	
-	public dynamic var valueReference: Reference?
+	public dynamic var valueReference: Reference?						
+		
+		
+			public func upsert(valueReference: Reference?) {
+				upsert(prop: &self.valueReference, val: valueReference)
+			}
 	
-	public dynamic var valueString: String?
+	public dynamic var valueString: String?						
+		
+		
 	
-	public dynamic var valueTime: FHIRTime?
+	public dynamic var valueTime: FHIRTime?						
+		
+		
 	
-	public dynamic var valueUri: String?
+	public dynamic var valueUri: String?						
+		
+		
 	
 
 	
@@ -415,6 +500,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("group")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = QuestionnaireResponseGroup.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroup] {
+						if let realm = self.realm { realm.delete(self.group) }
 						self.group.append(objectsIn: vals)
 					}
 				}
@@ -425,7 +511,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueAttachment"] {
 				presentKeys.insert("valueAttachment")
 				if let val = exist as? FHIRJSON {
-					self.valueAttachment = Attachment(json: val, owner: self)
+					upsert(valueAttachment: Attachment(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
@@ -435,7 +521,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueBoolean")
 				if let val = exist as? Bool {
 					self.valueBoolean.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
@@ -444,7 +529,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueCoding"] {
 				presentKeys.insert("valueCoding")
 				if let val = exist as? FHIRJSON {
-					self.valueCoding = Coding(json: val, owner: self)
+					upsert(valueCoding: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueCoding", wants: FHIRJSON.self, has: type(of: exist)))
@@ -490,7 +575,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueInteger")
 				if let val = exist as? Int {
 					self.valueInteger.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
@@ -499,7 +583,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueQuantity"] {
 				presentKeys.insert("valueQuantity")
 				if let val = exist as? FHIRJSON {
-					self.valueQuantity = Quantity(json: val, owner: self)
+					upsert(valueQuantity: Quantity(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
@@ -508,7 +592,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 			if let exist = js["valueReference"] {
 				presentKeys.insert("valueReference")
 				if let val = exist as? FHIRJSON {
-					self.valueReference = Reference(json: val, owner: self)
+					upsert(valueReference: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueReference", wants: FHIRJSON.self, has: type(of: exist)))
@@ -518,7 +602,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueString")
 				if let val = exist as? String {
 					self.valueString = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
@@ -537,7 +620,6 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 				presentKeys.insert("valueUri")
 				if let val = exist as? String {
 					self.valueUri = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))

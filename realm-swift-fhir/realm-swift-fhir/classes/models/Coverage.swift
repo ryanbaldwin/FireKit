@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,33 +20,74 @@ open class Coverage: DomainResource {
 		get { return "Coverage" }
 	}
 
-	public dynamic var bin: Identifier?
+	public dynamic var bin: Identifier?						
+		
+		
+			public func upsert(bin: Identifier?) {
+				upsert(prop: &self.bin, val: bin)
+			}
 	
 	public let contract = RealmSwift.List<Reference>()
 	
 	public let dependent = RealmOptional<Int>()
 	
-	public dynamic var group: String?
+	public dynamic var group: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var issuer: Reference?
+	public dynamic var issuer: Reference?						
+		
+		
+			public func upsert(issuer: Reference?) {
+				upsert(prop: &self.issuer, val: issuer)
+			}
 	
-	public dynamic var network: Identifier?
+	public dynamic var network: Identifier?						
+		
+		
+			public func upsert(network: Identifier?) {
+				upsert(prop: &self.network, val: network)
+			}
 	
-	public dynamic var period: Period?
+	public dynamic var period: Period?						
+		
+		
+			public func upsert(period: Period?) {
+				upsert(prop: &self.period, val: period)
+			}
 	
-	public dynamic var plan: String?
+	public dynamic var plan: String?						
+		
+		
 	
 	public let sequence = RealmOptional<Int>()
 	
-	public dynamic var subPlan: String?
+	public dynamic var subPlan: String?						
+		
+		
 	
-	public dynamic var subscriber: Reference?
+	public dynamic var subscriber: Reference?						
+		
+		
+			public func upsert(subscriber: Reference?) {
+				upsert(prop: &self.subscriber, val: subscriber)
+			}
 	
-	public dynamic var subscriberId: Identifier?
+	public dynamic var subscriberId: Identifier?						
+		
+		
+			public func upsert(subscriberId: Identifier?) {
+				upsert(prop: &self.subscriberId, val: subscriberId)
+			}
 	
-	public dynamic var type: Coding?
+	public dynamic var type: Coding?						
+		
+		
+			public func upsert(type: Coding?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -56,7 +97,7 @@ open class Coverage: DomainResource {
 			if let exist = js["bin"] {
 				presentKeys.insert("bin")
 				if let val = exist as? FHIRJSON {
-					self.bin = Identifier(json: val, owner: self)
+					upsert(bin: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bin", wants: FHIRJSON.self, has: type(of: exist)))
@@ -66,6 +107,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("contract")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.contract) }
 						self.contract.append(objectsIn: vals)
 					}
 				}
@@ -77,7 +119,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("dependent")
 				if let val = exist as? Int {
 					self.dependent.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "dependent", wants: Int.self, has: type(of: exist)))
@@ -87,7 +128,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("group")
 				if let val = exist as? String {
 					self.group = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "group", wants: String.self, has: type(of: exist)))
@@ -97,6 +137,7 @@ open class Coverage: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -107,7 +148,7 @@ open class Coverage: DomainResource {
 			if let exist = js["issuer"] {
 				presentKeys.insert("issuer")
 				if let val = exist as? FHIRJSON {
-					self.issuer = Reference(json: val, owner: self)
+					upsert(issuer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "issuer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -116,7 +157,7 @@ open class Coverage: DomainResource {
 			if let exist = js["network"] {
 				presentKeys.insert("network")
 				if let val = exist as? FHIRJSON {
-					self.network = Identifier(json: val, owner: self)
+					upsert(network: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "network", wants: FHIRJSON.self, has: type(of: exist)))
@@ -125,7 +166,7 @@ open class Coverage: DomainResource {
 			if let exist = js["period"] {
 				presentKeys.insert("period")
 				if let val = exist as? FHIRJSON {
-					self.period = Period(json: val, owner: self)
+					upsert(period: Period(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
@@ -135,7 +176,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("plan")
 				if let val = exist as? String {
 					self.plan = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "plan", wants: String.self, has: type(of: exist)))
@@ -145,7 +185,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("sequence")
 				if let val = exist as? Int {
 					self.sequence.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sequence", wants: Int.self, has: type(of: exist)))
@@ -155,7 +194,6 @@ open class Coverage: DomainResource {
 				presentKeys.insert("subPlan")
 				if let val = exist as? String {
 					self.subPlan = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subPlan", wants: String.self, has: type(of: exist)))
@@ -164,7 +202,7 @@ open class Coverage: DomainResource {
 			if let exist = js["subscriber"] {
 				presentKeys.insert("subscriber")
 				if let val = exist as? FHIRJSON {
-					self.subscriber = Reference(json: val, owner: self)
+					upsert(subscriber: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subscriber", wants: FHIRJSON.self, has: type(of: exist)))
@@ -173,7 +211,7 @@ open class Coverage: DomainResource {
 			if let exist = js["subscriberId"] {
 				presentKeys.insert("subscriberId")
 				if let val = exist as? FHIRJSON {
-					self.subscriberId = Identifier(json: val, owner: self)
+					upsert(subscriberId: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "subscriberId", wants: FHIRJSON.self, has: type(of: exist)))
@@ -182,7 +220,7 @@ open class Coverage: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = Coding(json: val, owner: self)
+					upsert(type: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))

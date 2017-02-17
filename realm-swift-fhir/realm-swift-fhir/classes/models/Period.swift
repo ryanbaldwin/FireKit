@@ -2,7 +2,7 @@
 //  Period.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Period) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Period) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -20,9 +20,13 @@ open class Period: Element {
 		get { return "Period" }
 	}
 
-	public dynamic var end: DateTime?
+	public dynamic var end: DateTime?						
+		
+		
 	
-	public dynamic var start: DateTime?
+	public dynamic var start: DateTime?						
+		
+		
 	
 
 	

@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -23,15 +23,29 @@ open class ImagingStudy: DomainResource {
 		get { return "ImagingStudy" }
 	}
 
-	public dynamic var accession: Identifier?
+	public dynamic var accession: Identifier?						
+		
+		
+			public func upsert(accession: Identifier?) {
+				upsert(prop: &self.accession, val: accession)
+			}
 	
-	public dynamic var availability: String?
+	public dynamic var availability: String?						
+		
+		
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
-	public dynamic var interpreter: Reference?
+	public dynamic var interpreter: Reference?						
+		
+		
+			public func upsert(interpreter: Reference?) {
+				upsert(prop: &self.interpreter, val: interpreter)
+			}
 	
 	public let modalityList = RealmSwift.List<Coding>()
 	
@@ -41,19 +55,35 @@ open class ImagingStudy: DomainResource {
 	
 	public let order = RealmSwift.List<Reference>()
 	
-	public dynamic var patient: Reference?
+	public dynamic var patient: Reference?						
+		
+		
+			public func upsert(patient: Reference?) {
+				upsert(prop: &self.patient, val: patient)
+			}
 	
 	public let procedure = RealmSwift.List<Reference>()
 	
-	public dynamic var referrer: Reference?
+	public dynamic var referrer: Reference?						
+		
+		
+			public func upsert(referrer: Reference?) {
+				upsert(prop: &self.referrer, val: referrer)
+			}
 	
 	public let series = RealmSwift.List<ImagingStudySeries>()
 	
-	public dynamic var started: DateTime?
+	public dynamic var started: DateTime?						
+		
+		
 	
-	public dynamic var uid: String?
+	public dynamic var uid: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -72,7 +102,7 @@ open class ImagingStudy: DomainResource {
 			if let exist = js["accession"] {
 				presentKeys.insert("accession")
 				if let val = exist as? FHIRJSON {
-					self.accession = Identifier(json: val, owner: self)
+					upsert(accession: Identifier(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "accession", wants: FHIRJSON.self, has: type(of: exist)))
@@ -82,7 +112,6 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("availability")
 				if let val = exist as? String {
 					self.availability = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availability", wants: String.self, has: type(of: exist)))
@@ -92,7 +121,6 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -102,6 +130,7 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -112,7 +141,7 @@ open class ImagingStudy: DomainResource {
 			if let exist = js["interpreter"] {
 				presentKeys.insert("interpreter")
 				if let val = exist as? FHIRJSON {
-					self.interpreter = Reference(json: val, owner: self)
+					upsert(interpreter: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "interpreter", wants: FHIRJSON.self, has: type(of: exist)))
@@ -122,6 +151,7 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("modalityList")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
+						if let realm = self.realm { realm.delete(self.modalityList) }
 						self.modalityList.append(objectsIn: vals)
 					}
 				}
@@ -133,7 +163,6 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("numberOfInstances")
 				if let val = exist as? Int {
 					self.numberOfInstances.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "numberOfInstances", wants: Int.self, has: type(of: exist)))
@@ -146,7 +175,6 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("numberOfSeries")
 				if let val = exist as? Int {
 					self.numberOfSeries.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "numberOfSeries", wants: Int.self, has: type(of: exist)))
@@ -159,6 +187,7 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("order")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.order) }
 						self.order.append(objectsIn: vals)
 					}
 				}
@@ -169,7 +198,7 @@ open class ImagingStudy: DomainResource {
 			if let exist = js["patient"] {
 				presentKeys.insert("patient")
 				if let val = exist as? FHIRJSON {
-					self.patient = Reference(json: val, owner: self)
+					upsert(patient: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
@@ -182,6 +211,7 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("procedure")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
+						if let realm = self.realm { realm.delete(self.procedure) }
 						self.procedure.append(objectsIn: vals)
 					}
 				}
@@ -192,7 +222,7 @@ open class ImagingStudy: DomainResource {
 			if let exist = js["referrer"] {
 				presentKeys.insert("referrer")
 				if let val = exist as? FHIRJSON {
-					self.referrer = Reference(json: val, owner: self)
+					upsert(referrer: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "referrer", wants: FHIRJSON.self, has: type(of: exist)))
@@ -202,6 +232,7 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("series")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ImagingStudySeries.instantiate(fromArray: val, owner: self) as? [ImagingStudySeries] {
+						if let realm = self.realm { realm.delete(self.series) }
 						self.series.append(objectsIn: vals)
 					}
 				}
@@ -222,7 +253,6 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
 					self.uid = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -235,7 +265,6 @@ open class ImagingStudy: DomainResource {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -312,27 +341,52 @@ open class ImagingStudySeries: BackboneElement {
 		get { return "ImagingStudySeries" }
 	}
 
-	public dynamic var availability: String?
+	public dynamic var availability: String?						
+		
+		
 	
-	public dynamic var bodySite: Coding?
+	public dynamic var bodySite: Coding?						
+		
+		
+			public func upsert(bodySite: Coding?) {
+				upsert(prop: &self.bodySite, val: bodySite)
+			}
 	
-	public dynamic var description_fhir: String?
+	public dynamic var description_fhir: String?						
+		
+		
 	
 	public let instance = RealmSwift.List<ImagingStudySeriesInstance>()
 	
-	public dynamic var laterality: Coding?
+	public dynamic var laterality: Coding?						
+		
+		
+			public func upsert(laterality: Coding?) {
+				upsert(prop: &self.laterality, val: laterality)
+			}
 	
-	public dynamic var modality: Coding?
+	public dynamic var modality: Coding?						
+		
+		
+			public func upsert(modality: Coding?) {
+				upsert(prop: &self.modality, val: modality)
+			}
 	
 	public let number = RealmOptional<Int>()
 	
 	public let numberOfInstances = RealmOptional<Int>()
 	
-	public dynamic var started: DateTime?
+	public dynamic var started: DateTime?						
+		
+		
 	
-	public dynamic var uid: String?
+	public dynamic var uid: String?						
+		
+		
 	
-	public dynamic var url: String?
+	public dynamic var url: String?						
+		
+		
 	
 
 	
@@ -351,7 +405,6 @@ open class ImagingStudySeries: BackboneElement {
 				presentKeys.insert("availability")
 				if let val = exist as? String {
 					self.availability = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "availability", wants: String.self, has: type(of: exist)))
@@ -360,7 +413,7 @@ open class ImagingStudySeries: BackboneElement {
 			if let exist = js["bodySite"] {
 				presentKeys.insert("bodySite")
 				if let val = exist as? FHIRJSON {
-					self.bodySite = Coding(json: val, owner: self)
+					upsert(bodySite: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "bodySite", wants: FHIRJSON.self, has: type(of: exist)))
@@ -370,7 +423,6 @@ open class ImagingStudySeries: BackboneElement {
 				presentKeys.insert("description")
 				if let val = exist as? String {
 					self.description_fhir = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
@@ -380,6 +432,7 @@ open class ImagingStudySeries: BackboneElement {
 				presentKeys.insert("instance")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = ImagingStudySeriesInstance.instantiate(fromArray: val, owner: self) as? [ImagingStudySeriesInstance] {
+						if let realm = self.realm { realm.delete(self.instance) }
 						self.instance.append(objectsIn: vals)
 					}
 				}
@@ -390,7 +443,7 @@ open class ImagingStudySeries: BackboneElement {
 			if let exist = js["laterality"] {
 				presentKeys.insert("laterality")
 				if let val = exist as? FHIRJSON {
-					self.laterality = Coding(json: val, owner: self)
+					upsert(laterality: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "laterality", wants: FHIRJSON.self, has: type(of: exist)))
@@ -399,7 +452,7 @@ open class ImagingStudySeries: BackboneElement {
 			if let exist = js["modality"] {
 				presentKeys.insert("modality")
 				if let val = exist as? FHIRJSON {
-					self.modality = Coding(json: val, owner: self)
+					upsert(modality: Coding(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "modality", wants: FHIRJSON.self, has: type(of: exist)))
@@ -412,7 +465,6 @@ open class ImagingStudySeries: BackboneElement {
 				presentKeys.insert("number")
 				if let val = exist as? Int {
 					self.number.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "number", wants: Int.self, has: type(of: exist)))
@@ -422,7 +474,6 @@ open class ImagingStudySeries: BackboneElement {
 				presentKeys.insert("numberOfInstances")
 				if let val = exist as? Int {
 					self.numberOfInstances.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "numberOfInstances", wants: Int.self, has: type(of: exist)))
@@ -444,7 +495,6 @@ open class ImagingStudySeries: BackboneElement {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
 					self.uid = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
@@ -457,7 +507,6 @@ open class ImagingStudySeries: BackboneElement {
 				presentKeys.insert("url")
 				if let val = exist as? String {
 					self.url = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
@@ -523,13 +572,21 @@ open class ImagingStudySeriesInstance: BackboneElement {
 	
 	public let number = RealmOptional<Int>()
 	
-	public dynamic var sopClass: String?
+	public dynamic var sopClass: String?						
+		
+		
 	
-	public dynamic var title: String?
+	public dynamic var title: String?						
+		
+		
 	
-	public dynamic var type: String?
+	public dynamic var type: String?						
+		
+		
 	
-	public dynamic var uid: String?
+	public dynamic var uid: String?						
+		
+		
 	
 
 	
@@ -547,6 +604,7 @@ open class ImagingStudySeriesInstance: BackboneElement {
 				presentKeys.insert("content")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Attachment.instantiate(fromArray: val, owner: self) as? [Attachment] {
+						if let realm = self.realm { realm.delete(self.content) }
 						self.content.append(objectsIn: vals)
 					}
 				}
@@ -558,7 +616,6 @@ open class ImagingStudySeriesInstance: BackboneElement {
 				presentKeys.insert("number")
 				if let val = exist as? Int {
 					self.number.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "number", wants: Int.self, has: type(of: exist)))
@@ -568,7 +625,6 @@ open class ImagingStudySeriesInstance: BackboneElement {
 				presentKeys.insert("sopClass")
 				if let val = exist as? String {
 					self.sopClass = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "sopClass", wants: String.self, has: type(of: exist)))
@@ -581,7 +637,6 @@ open class ImagingStudySeriesInstance: BackboneElement {
 				presentKeys.insert("title")
 				if let val = exist as? String {
 					self.title = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
@@ -591,7 +646,6 @@ open class ImagingStudySeriesInstance: BackboneElement {
 				presentKeys.insert("type")
 				if let val = exist as? String {
 					self.type = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
@@ -601,7 +655,6 @@ open class ImagingStudySeriesInstance: BackboneElement {
 				presentKeys.insert("uid")
 				if let val = exist as? String {
 					self.uid = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))

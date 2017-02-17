@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-17.
 //  2017, SMART Health IT.
 //
 
@@ -18,21 +18,39 @@ open class Slot: DomainResource {
 		get { return "Slot" }
 	}
 
-	public dynamic var comment: String?
+	public dynamic var comment: String?						
+		
+		
 	
-	public dynamic var end: Instant?
+	public dynamic var end: Instant?						
+		
+		
 	
-	public dynamic var freeBusyType: String?
+	public dynamic var freeBusyType: String?						
+		
+		
 	
 	public let identifier = RealmSwift.List<Identifier>()
 	
 	public let overbooked = RealmOptional<Bool>()
 	
-	public dynamic var schedule: Reference?
+	public dynamic var schedule: Reference?						
+		
+		
+			public func upsert(schedule: Reference?) {
+				upsert(prop: &self.schedule, val: schedule)
+			}
 	
-	public dynamic var start: Instant?
+	public dynamic var start: Instant?						
+		
+		
 	
-	public dynamic var type: CodeableConcept?
+	public dynamic var type: CodeableConcept?						
+		
+		
+			public func upsert(type: CodeableConcept?) {
+				upsert(prop: &self.type, val: type)
+			}
 	
 
 	
@@ -52,7 +70,6 @@ open class Slot: DomainResource {
 				presentKeys.insert("comment")
 				if let val = exist as? String {
 					self.comment = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
@@ -74,7 +91,6 @@ open class Slot: DomainResource {
 				presentKeys.insert("freeBusyType")
 				if let val = exist as? String {
 					self.freeBusyType = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "freeBusyType", wants: String.self, has: type(of: exist)))
@@ -87,6 +103,7 @@ open class Slot: DomainResource {
 				presentKeys.insert("identifier")
 				if let val = exist as? [FHIRJSON] {
 					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
+						if let realm = self.realm { realm.delete(self.identifier) }
 						self.identifier.append(objectsIn: vals)
 					}
 				}
@@ -98,7 +115,6 @@ open class Slot: DomainResource {
 				presentKeys.insert("overbooked")
 				if let val = exist as? Bool {
 					self.overbooked.value = val
-					
 				}
 				else {
 					errors.append(FHIRJSONError(key: "overbooked", wants: Bool.self, has: type(of: exist)))
@@ -107,7 +123,7 @@ open class Slot: DomainResource {
 			if let exist = js["schedule"] {
 				presentKeys.insert("schedule")
 				if let val = exist as? FHIRJSON {
-					self.schedule = Reference(json: val, owner: self)
+					upsert(schedule: Reference(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "schedule", wants: FHIRJSON.self, has: type(of: exist)))
@@ -131,7 +147,7 @@ open class Slot: DomainResource {
 			if let exist = js["type"] {
 				presentKeys.insert("type")
 				if let val = exist as? FHIRJSON {
-					self.type = CodeableConcept(json: val, owner: self)
+					upsert(type: CodeableConcept(json: val, owner: self))
 				}
 				else {
 					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
