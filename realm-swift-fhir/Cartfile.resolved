@@ -1,1 +1,2 @@
-github "realm/realm-cocoa" "v2.4.0"
+github "smart-on-fhir/fhir-parser" "FHIR-1.6.0"
+github "realm/realm-cocoa" "v2.4.2"

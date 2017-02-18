@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eo pipefail
+
+cp fhir-parser-resources/fhir-1.6.0/mappings.py fhir-parser/
+cp fhir-parser-resources/fhir-1.6.0/settings.py fhir-parser/
+cd fhir-parser
+python generate.py
