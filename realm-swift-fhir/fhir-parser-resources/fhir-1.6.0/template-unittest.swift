@@ -108,21 +108,21 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "{{ tcase.filename }}")
 		{% for onetest in tcase.tests %}
 		{%- if "String" == onetest.klass.name %}
-		XCTAssertEqual(inst.{{ onetest.path }}, "{{ onetest.value|replace('"', '\\"') }}")
+		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}, "{{ onetest.value|replace('"', '\\"') }}")
 		{%- else %}{% if "RealmDecimal" == onetest.klass.name %}
-		XCTAssertTrue(inst.{{ onetest.path }}! == RealmDecimal(string: "{{ onetest.value }}"))
+		XCTAssertTrue(inst.{{ onetest.path|expand_test_path(tcase.klass) }}! == RealmDecimal(string: "{{ onetest.value }}"))
 		{%- else %}{% if "Int" == onetest.klass.name or "Double" == onetest.klass.name %}
-		XCTAssertEqual(inst.{{ onetest.path }}, {{ onetest.value }})
+		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}, {{ onetest.value }})
 		{%- else %}{% if "UInt" == onetest.klass.name %}
-		XCTAssertEqual(inst.{{ onetest.path }}, UInt({{ onetest.value }}))
+		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}, UInt({{ onetest.value }}))
 		{%- else %}{% if "Bool" == onetest.klass.name %}
-		XCTAssert{% if onetest.value %}True{% else %}False{% endif %}(inst.{{ onetest.path }} ?? {% if onetest.value %}false{% else %}true{% endif %})
+		XCTAssert{% if onetest.value %}True{% else %}False{% endif %}(inst.{{ onetest.path|expand_test_path(tcase.klass) }} ?? {% if onetest.value %}false{% else %}true{% endif %})
 		{%- else %}{% if "FHIRDate" == onetest.klass.name or "FHIRTime" == onetest.klass.name or "DateTime" == onetest.klass.name or "Instant" == onetest.klass.name %}
-		XCTAssertEqual(inst.{{ onetest.path }}{% if not onetest.array_item %}?{% endif %}.description, "{{ onetest.value }}")
+		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}{% if not onetest.array_item %}?{% endif %}.description, "{{ onetest.value }}")
 		{%- else %}{% if "URL" == onetest.klass.name %}
-		XCTAssertEqual(inst.{{ onetest.path }}{% if not onetest.array_item %}?{% endif %}.absoluteString, "{{ onetest.value }}")
+		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}{% if not onetest.array_item %}?{% endif %}.absoluteString, "{{ onetest.value }}")
 		{%- else %}{% if "Base64Binary" == onetest.klass.name %}
-		XCTAssertTrue(inst.{{ onetest.path }}! == Base64Binary(val: "{{ onetest.value }}"))
+		XCTAssertTrue(inst.{{ onetest.path|expand_test_path(tcase.klass) }}! == Base64Binary(val: "{{ onetest.value }}"))
 		{%- else %}
 		// Don't know how to create unit test for "{{ onetest.path }}", which is a {{ onetest.klass.name }}
 		{%- endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}{% endif %}
