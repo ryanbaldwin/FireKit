@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-01.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 

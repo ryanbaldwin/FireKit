@@ -2,7 +2,7 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,108 +20,64 @@ open class StructureDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "StructureDefinition" }
 	}
+    
+    public let abstract = RealmOptional<Bool>()    
+    public dynamic var base: String?        
+        
+    public let code = RealmSwift.List<Coding>()    
+    public dynamic var constrainedType: String?        
+        
+    public let contact = RealmSwift.List<StructureDefinitionContact>()    
+    public let context = RealmSwift.List<RealmString>()    
+    public dynamic var contextType: String?        
+        
+    public dynamic var copyright: String?        
+        
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var differential: StructureDefinitionDifferential?        
+    public func upsert(differential: StructureDefinitionDifferential?) {
+        upsert(prop: &self.differential, val: differential)
+    }    
+    public dynamic var display: String?        
+        
+    public let experimental = RealmOptional<Bool>()    
+    public dynamic var fhirVersion: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var kind: String?        
+        
+    public let mapping = RealmSwift.List<StructureDefinitionMapping>()    
+    public dynamic var name: String?        
+        
+    public dynamic var publisher: String?        
+        
+    public dynamic var requirements: String?        
+        
+    public dynamic var snapshot: StructureDefinitionSnapshot?        
+    public func upsert(snapshot: StructureDefinitionSnapshot?) {
+        upsert(prop: &self.snapshot, val: snapshot)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var url: String?        
+        
+    public let useContext = RealmSwift.List<CodeableConcept>()    
+    public dynamic var version: String?        
+    
 
-	public let abstract = RealmOptional<Bool>()
-	
-	public dynamic var base: String?						
-		
-		
-	
-	public let code = RealmSwift.List<Coding>()
-	
-	public dynamic var constrainedType: String?						
-		
-		
-	
-	public let contact = RealmSwift.List<StructureDefinitionContact>()
-	
-	public let context = RealmSwift.List<RealmString>()
-	
-	public dynamic var contextType: String?						
-		
-		
-	
-	public dynamic var copyright: String?						
-		
-		
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var differential: StructureDefinitionDifferential?						
-		
-		
-			public func upsert(differential: StructureDefinitionDifferential?) {
-				upsert(prop: &self.differential, val: differential)
-			}
-	
-	public dynamic var display: String?						
-		
-		
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public dynamic var fhirVersion: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var kind: String?						
-		
-		
-	
-	public let mapping = RealmSwift.List<StructureDefinitionMapping>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public dynamic var snapshot: StructureDefinitionSnapshot?						
-		
-		
-			public func upsert(snapshot: StructureDefinitionSnapshot?) {
-				upsert(prop: &self.snapshot, val: snapshot)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public let useContext = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(abstract: Bool, kind: String, name: String, status: String, url: String) {
+        self.init(json: nil)
+        self.abstract.value = abstract
+        self.kind = kind
+        self.name = name
+        self.status = status
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(abstract: Bool, kind: String, name: String, status: String, url: String) {
-		self.init(json: nil)
-		self.abstract.value = abstract
-		self.kind = kind
-		self.name = name
-		self.status = status
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -478,13 +434,10 @@ open class StructureDefinitionContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -540,16 +493,15 @@ open class StructureDefinitionDifferential: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionDifferential" }
 	}
+    
+    public let element = RealmSwift.List<ElementDefinition>()
 
-	public let element = RealmSwift.List<ElementDefinition>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(element: [ElementDefinition]) {
+        self.init(json: nil)
+        self.element.append(objectsIn: element)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ElementDefinition]) {
-		self.init(json: nil)
-		self.element.append(objectsIn: element)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -594,30 +546,22 @@ open class StructureDefinitionMapping: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionMapping" }
 	}
+    
+    public dynamic var comments: String?        
+        
+    public dynamic var identity: String?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var uri: String?        
+    
 
-	public dynamic var comments: String?						
-		
-		
-	
-	public dynamic var identity: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var uri: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(identity: String) {
+        self.init(json: nil)
+        self.identity = identity
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String) {
-		self.init(json: nil)
-		self.identity = identity
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -696,16 +640,15 @@ open class StructureDefinitionSnapshot: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionSnapshot" }
 	}
+    
+    public let element = RealmSwift.List<ElementDefinition>()
 
-	public let element = RealmSwift.List<ElementDefinition>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(element: [ElementDefinition]) {
+        self.init(json: nil)
+        self.element.append(objectsIn: element)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ElementDefinition]) {
-		self.init(json: nil)
-		self.element.append(objectsIn: element)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,72 +19,42 @@ open class Contract: DomainResource {
 	override open class var resourceType: String {
 		get { return "Contract" }
 	}
-
-	public let action = RealmSwift.List<CodeableConcept>()
-	
-	public let actionReason = RealmSwift.List<CodeableConcept>()
-	
-	public let actor = RealmSwift.List<ContractActor>()
-	
-	public dynamic var applies: Period?						
-		
-		
-			public func upsert(applies: Period?) {
-				upsert(prop: &self.applies, val: applies)
-			}
-	
-	public let authority = RealmSwift.List<Reference>()
-	
-	public dynamic var bindingAttachment: Attachment?						
-		
-		
-			public func upsert(bindingAttachment: Attachment?) {
-				upsert(prop: &self.bindingAttachment, val: bindingAttachment)
-			}
-	
-	public dynamic var bindingReference: Reference?						
-		
-		
-			public func upsert(bindingReference: Reference?) {
-				upsert(prop: &self.bindingReference, val: bindingReference)
-			}
-	
-	public let domain = RealmSwift.List<Reference>()
-	
-	public let friendly = RealmSwift.List<ContractFriendly>()
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var issued: DateTime?						
-		
-		
-	
-	public let legal = RealmSwift.List<ContractLegal>()
-	
-	public let rule = RealmSwift.List<ContractRule>()
-	
-	public let signer = RealmSwift.List<ContractSigner>()
-	
-	public let subType = RealmSwift.List<CodeableConcept>()
-	
-	public let subject = RealmSwift.List<Reference>()
-	
-	public let term = RealmSwift.List<ContractTerm>()
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
-	public let valuedItem = RealmSwift.List<ContractValuedItem>()
-	
+    
+    public let action = RealmSwift.List<CodeableConcept>()    
+    public let actionReason = RealmSwift.List<CodeableConcept>()    
+    public let actor = RealmSwift.List<ContractActor>()    
+    public dynamic var applies: Period?        
+    public func upsert(applies: Period?) {
+        upsert(prop: &self.applies, val: applies)
+    }    
+    public let authority = RealmSwift.List<Reference>()    
+    public dynamic var bindingAttachment: Attachment?        
+    public func upsert(bindingAttachment: Attachment?) {
+        upsert(prop: &self.bindingAttachment, val: bindingAttachment)
+    }    
+    public dynamic var bindingReference: Reference?        
+    public func upsert(bindingReference: Reference?) {
+        upsert(prop: &self.bindingReference, val: bindingReference)
+    }    
+    public let domain = RealmSwift.List<Reference>()    
+    public let friendly = RealmSwift.List<ContractFriendly>()    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var issued: DateTime?        
+        
+    public let legal = RealmSwift.List<ContractLegal>()    
+    public let rule = RealmSwift.List<ContractRule>()    
+    public let signer = RealmSwift.List<ContractSigner>()    
+    public let subType = RealmSwift.List<CodeableConcept>()    
+    public let subject = RealmSwift.List<Reference>()    
+    public let term = RealmSwift.List<ContractTerm>()    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }    
+    public let valuedItem = RealmSwift.List<ContractValuedItem>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -379,23 +349,19 @@ open class ContractActor: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractActor" }
 	}
+    
+    public dynamic var entity: Reference?        
+    public func upsert(entity: Reference?) {
+        upsert(prop: &self.entity, val: entity)
+    }    
+    public let role = RealmSwift.List<CodeableConcept>()
 
-	public dynamic var entity: Reference?						
-		
-		
-			public func upsert(entity: Reference?) {
-				upsert(prop: &self.entity, val: entity)
-			}
-	
-	public let role = RealmSwift.List<CodeableConcept>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(entity: Reference) {
+        self.init(json: nil)
+        self.entity = entity
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(entity: Reference) {
-		self.init(json: nil)
-		self.entity = entity
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -455,29 +421,23 @@ open class ContractFriendly: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractFriendly" }
 	}
+    
+    public dynamic var contentAttachment: Attachment?        
+    public func upsert(contentAttachment: Attachment?) {
+        upsert(prop: &self.contentAttachment, val: contentAttachment)
+    }    
+    public dynamic var contentReference: Reference?        
+    public func upsert(contentReference: Reference?) {
+        upsert(prop: &self.contentReference, val: contentReference)
+    }
 
-	public dynamic var contentAttachment: Attachment?						
-		
-		
-			public func upsert(contentAttachment: Attachment?) {
-				upsert(prop: &self.contentAttachment, val: contentAttachment)
-			}
-	
-	public dynamic var contentReference: Reference?						
-		
-		
-			public func upsert(contentReference: Reference?) {
-				upsert(prop: &self.contentReference, val: contentReference)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(contentAttachment: Attachment, contentReference: Reference) {
+        self.init(json: nil)
+        self.contentAttachment = contentAttachment
+        self.contentReference = contentReference
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment, contentReference: Reference) {
-		self.init(json: nil)
-		self.contentAttachment = contentAttachment
-		self.contentReference = contentReference
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -533,29 +493,23 @@ open class ContractLegal: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractLegal" }
 	}
+    
+    public dynamic var contentAttachment: Attachment?        
+    public func upsert(contentAttachment: Attachment?) {
+        upsert(prop: &self.contentAttachment, val: contentAttachment)
+    }    
+    public dynamic var contentReference: Reference?        
+    public func upsert(contentReference: Reference?) {
+        upsert(prop: &self.contentReference, val: contentReference)
+    }
 
-	public dynamic var contentAttachment: Attachment?						
-		
-		
-			public func upsert(contentAttachment: Attachment?) {
-				upsert(prop: &self.contentAttachment, val: contentAttachment)
-			}
-	
-	public dynamic var contentReference: Reference?						
-		
-		
-			public func upsert(contentReference: Reference?) {
-				upsert(prop: &self.contentReference, val: contentReference)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(contentAttachment: Attachment, contentReference: Reference) {
+        self.init(json: nil)
+        self.contentAttachment = contentAttachment
+        self.contentReference = contentReference
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment, contentReference: Reference) {
-		self.init(json: nil)
-		self.contentAttachment = contentAttachment
-		self.contentReference = contentReference
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -611,29 +565,23 @@ open class ContractRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractRule" }
 	}
+    
+    public dynamic var contentAttachment: Attachment?        
+    public func upsert(contentAttachment: Attachment?) {
+        upsert(prop: &self.contentAttachment, val: contentAttachment)
+    }    
+    public dynamic var contentReference: Reference?        
+    public func upsert(contentReference: Reference?) {
+        upsert(prop: &self.contentReference, val: contentReference)
+    }
 
-	public dynamic var contentAttachment: Attachment?						
-		
-		
-			public func upsert(contentAttachment: Attachment?) {
-				upsert(prop: &self.contentAttachment, val: contentAttachment)
-			}
-	
-	public dynamic var contentReference: Reference?						
-		
-		
-			public func upsert(contentReference: Reference?) {
-				upsert(prop: &self.contentReference, val: contentReference)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(contentAttachment: Attachment, contentReference: Reference) {
+        self.init(json: nil)
+        self.contentAttachment = contentAttachment
+        self.contentReference = contentReference
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment, contentReference: Reference) {
-		self.init(json: nil)
-		self.contentAttachment = contentAttachment
-		self.contentReference = contentReference
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -689,34 +637,26 @@ open class ContractSigner: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractSigner" }
 	}
+    
+    public dynamic var party: Reference?        
+    public func upsert(party: Reference?) {
+        upsert(prop: &self.party, val: party)
+    }    
+    public dynamic var signature: String?        
+        
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var party: Reference?						
-		
-		
-			public func upsert(party: Reference?) {
-				upsert(prop: &self.party, val: party)
-			}
-	
-	public dynamic var signature: String?						
-		
-		
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(party: Reference, signature: String, type: Coding) {
+        self.init(json: nil)
+        self.party = party
+        self.signature = signature
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(party: Reference, signature: String, type: Coding) {
-		self.init(json: nil)
-		self.party = party
-		self.signature = signature
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -788,60 +728,36 @@ open class ContractTerm: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTerm" }
 	}
-
-	public let action = RealmSwift.List<CodeableConcept>()
-	
-	public let actionReason = RealmSwift.List<CodeableConcept>()
-	
-	public let actor = RealmSwift.List<ContractTermActor>()
-	
-	public dynamic var applies: Period?						
-		
-		
-			public func upsert(applies: Period?) {
-				upsert(prop: &self.applies, val: applies)
-			}
-	
-	public let group = RealmSwift.List<ContractTerm>()
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var issued: DateTime?						
-		
-		
-	
-	public dynamic var subType: CodeableConcept?						
-		
-		
-			public func upsert(subType: CodeableConcept?) {
-				upsert(prop: &self.subType, val: subType)
-			}
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
-	public let valuedItem = RealmSwift.List<ContractTermValuedItem>()
-	
+    
+    public let action = RealmSwift.List<CodeableConcept>()    
+    public let actionReason = RealmSwift.List<CodeableConcept>()    
+    public let actor = RealmSwift.List<ContractTermActor>()    
+    public dynamic var applies: Period?        
+    public func upsert(applies: Period?) {
+        upsert(prop: &self.applies, val: applies)
+    }    
+    public let group = RealmSwift.List<ContractTerm>()    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var issued: DateTime?        
+        
+    public dynamic var subType: CodeableConcept?        
+    public func upsert(subType: CodeableConcept?) {
+        upsert(prop: &self.subType, val: subType)
+    }    
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var text: String?        
+        
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }    
+    public let valuedItem = RealmSwift.List<ContractTermValuedItem>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1028,23 +944,19 @@ open class ContractTermActor: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTermActor" }
 	}
+    
+    public dynamic var entity: Reference?        
+    public func upsert(entity: Reference?) {
+        upsert(prop: &self.entity, val: entity)
+    }    
+    public let role = RealmSwift.List<CodeableConcept>()
 
-	public dynamic var entity: Reference?						
-		
-		
-			public func upsert(entity: Reference?) {
-				upsert(prop: &self.entity, val: entity)
-			}
-	
-	public let role = RealmSwift.List<CodeableConcept>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(entity: Reference) {
+        self.init(json: nil)
+        self.entity = entity
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(entity: Reference) {
-		self.init(json: nil)
-		self.entity = entity
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1101,61 +1013,37 @@ open class ContractTermValuedItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTermValuedItem" }
 	}
-
-	public dynamic var effectiveTime: DateTime?						
-		
-		
-	
-	public dynamic var entityCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(entityCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
-			}
-	
-	public dynamic var entityReference: Reference?						
-		
-		
-			public func upsert(entityReference: Reference?) {
-				upsert(prop: &self.entityReference, val: entityReference)
-			}
-	
-	public dynamic var factor: RealmDecimal?						
-		
-		
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var net: Quantity?						
-		
-		
-			public func upsert(net: Quantity?) {
-				upsert(prop: &self.net, val: net)
-			}
-	
-	public dynamic var points: RealmDecimal?						
-		
-		
-	
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
-	public dynamic var unitPrice: Quantity?						
-		
-		
-			public func upsert(unitPrice: Quantity?) {
-				upsert(prop: &self.unitPrice, val: unitPrice)
-			}
-	
+    
+    public dynamic var effectiveTime: DateTime?        
+        
+    public dynamic var entityCodeableConcept: CodeableConcept?        
+    public func upsert(entityCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
+    }    
+    public dynamic var entityReference: Reference?        
+    public func upsert(entityReference: Reference?) {
+        upsert(prop: &self.entityReference, val: entityReference)
+    }    
+    public dynamic var factor: RealmDecimal?        
+        
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var net: Quantity?        
+    public func upsert(net: Quantity?) {
+        upsert(prop: &self.net, val: net)
+    }    
+    public dynamic var points: RealmDecimal?        
+        
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }    
+    public dynamic var unitPrice: Quantity?        
+    public func upsert(unitPrice: Quantity?) {
+        upsert(prop: &self.unitPrice, val: unitPrice)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1291,61 +1179,37 @@ open class ContractValuedItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractValuedItem" }
 	}
-
-	public dynamic var effectiveTime: DateTime?						
-		
-		
-	
-	public dynamic var entityCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(entityCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
-			}
-	
-	public dynamic var entityReference: Reference?						
-		
-		
-			public func upsert(entityReference: Reference?) {
-				upsert(prop: &self.entityReference, val: entityReference)
-			}
-	
-	public dynamic var factor: RealmDecimal?						
-		
-		
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var net: Quantity?						
-		
-		
-			public func upsert(net: Quantity?) {
-				upsert(prop: &self.net, val: net)
-			}
-	
-	public dynamic var points: RealmDecimal?						
-		
-		
-	
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
-	public dynamic var unitPrice: Quantity?						
-		
-		
-			public func upsert(unitPrice: Quantity?) {
-				upsert(prop: &self.unitPrice, val: unitPrice)
-			}
-	
+    
+    public dynamic var effectiveTime: DateTime?        
+        
+    public dynamic var entityCodeableConcept: CodeableConcept?        
+    public func upsert(entityCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
+    }    
+    public dynamic var entityReference: Reference?        
+    public func upsert(entityReference: Reference?) {
+        upsert(prop: &self.entityReference, val: entityReference)
+    }    
+    public dynamic var factor: RealmDecimal?        
+        
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var net: Quantity?        
+    public func upsert(net: Quantity?) {
+        upsert(prop: &self.net, val: net)
+    }    
+    public dynamic var points: RealmDecimal?        
+        
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }    
+    public dynamic var unitPrice: Quantity?        
+    public func upsert(unitPrice: Quantity?) {
+        upsert(prop: &self.unitPrice, val: unitPrice)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

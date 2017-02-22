@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest1(copy!.asJSON())            
+			try runProcessRequest1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -59,7 +62,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -124,7 +126,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest2(copy!.asJSON())            
+			try runProcessRequest2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -147,7 +152,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -214,7 +218,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest3(copy!.asJSON())            
+			try runProcessRequest3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -237,7 +244,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -303,7 +309,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest4(copy!.asJSON())            
+			try runProcessRequest4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -326,7 +335,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -394,7 +402,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest5(copy!.asJSON())            
+			try runProcessRequest5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -417,7 +428,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -483,7 +493,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest6(copy!.asJSON())            
+			try runProcessRequest6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -506,7 +519,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -574,7 +586,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest7(copy!.asJSON())            
+			try runProcessRequest7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -597,7 +612,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -664,7 +678,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest8(copy!.asJSON())            
+			try runProcessRequest8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -687,7 +704,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }
@@ -754,7 +770,10 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			try runProcessRequest9(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ProcessRequest
 			XCTAssertNotNil(copy)
-			try runProcessRequest9(copy!.asJSON())            
+			try runProcessRequest9(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcessRequest9(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
@@ -777,7 +796,6 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ProcessRequest's PKs, but threw: \(error)")
         }

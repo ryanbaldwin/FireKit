@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,73 +19,46 @@ open class SearchParameter: DomainResource {
 	override open class var resourceType: String {
 		get { return "SearchParameter" }
 	}
+    
+    public dynamic var base: String?        
+        
+    public dynamic var code: String?        
+        
+    public let contact = RealmSwift.List<SearchParameterContact>()    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let experimental = RealmOptional<Bool>()    
+    public dynamic var name: String?        
+        
+    public dynamic var publisher: String?        
+        
+    public dynamic var requirements: String?        
+        
+    public dynamic var status: String?        
+        
+    public let target = RealmSwift.List<RealmString>()    
+    public dynamic var type: String?        
+        
+    public dynamic var url: String?        
+        
+    public dynamic var xpath: String?        
+        
+    public dynamic var xpathUsage: String?        
+    
 
-	public dynamic var base: String?						
-		
-		
-	
-	public dynamic var code: String?						
-		
-		
-	
-	public let contact = RealmSwift.List<SearchParameterContact>()
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let target = RealmSwift.List<RealmString>()
-	
-	public dynamic var type: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public dynamic var xpath: String?						
-		
-		
-	
-	public dynamic var xpathUsage: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(base: String, code: String, description_fhir: String, name: String, type: String, url: String) {
+        self.init(json: nil)
+        self.base = base
+        self.code = code
+        self.description_fhir = description_fhir
+        self.name = name
+        self.type = type
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(base: String, code: String, description_fhir: String, name: String, type: String, url: String) {
-		self.init(json: nil)
-		self.base = base
-		self.code = code
-		self.description_fhir = description_fhir
-		self.name = name
-		self.type = type
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -313,13 +286,10 @@ open class SearchParameterContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SearchParameterContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

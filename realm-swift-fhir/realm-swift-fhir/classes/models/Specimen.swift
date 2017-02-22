@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,58 +19,38 @@ open class Specimen: DomainResource {
 	override open class var resourceType: String {
 		get { return "Specimen" }
 	}
+    
+    public dynamic var accessionIdentifier: Identifier?        
+    public func upsert(accessionIdentifier: Identifier?) {
+        upsert(prop: &self.accessionIdentifier, val: accessionIdentifier)
+    }    
+    public dynamic var collection: SpecimenCollection?        
+    public func upsert(collection: SpecimenCollection?) {
+        upsert(prop: &self.collection, val: collection)
+    }    
+    public let container = RealmSwift.List<SpecimenContainer>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let parent = RealmSwift.List<Reference>()    
+    public dynamic var receivedTime: DateTime?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public let treatment = RealmSwift.List<SpecimenTreatment>()    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var accessionIdentifier: Identifier?						
-		
-		
-			public func upsert(accessionIdentifier: Identifier?) {
-				upsert(prop: &self.accessionIdentifier, val: accessionIdentifier)
-			}
-	
-	public dynamic var collection: SpecimenCollection?						
-		
-		
-			public func upsert(collection: SpecimenCollection?) {
-				upsert(prop: &self.collection, val: collection)
-			}
-	
-	public let container = RealmSwift.List<SpecimenContainer>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let parent = RealmSwift.List<Reference>()
-	
-	public dynamic var receivedTime: DateTime?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public let treatment = RealmSwift.List<SpecimenTreatment>()
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(subject: Reference) {
+        self.init(json: nil)
+        self.subject = subject
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(subject: Reference) {
-		self.init(json: nil)
-		self.subject = subject
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -232,48 +212,30 @@ open class SpecimenCollection: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SpecimenCollection" }
 	}
-
-	public dynamic var bodySite: CodeableConcept?						
-		
-		
-			public func upsert(bodySite: CodeableConcept?) {
-				upsert(prop: &self.bodySite, val: bodySite)
-			}
-	
-	public dynamic var collectedDateTime: DateTime?						
-		
-		
-	
-	public dynamic var collectedPeriod: Period?						
-		
-		
-			public func upsert(collectedPeriod: Period?) {
-				upsert(prop: &self.collectedPeriod, val: collectedPeriod)
-			}
-	
-	public dynamic var collector: Reference?						
-		
-		
-			public func upsert(collector: Reference?) {
-				upsert(prop: &self.collector, val: collector)
-			}
-	
-	public let comment = RealmSwift.List<RealmString>()
-	
-	public dynamic var method: CodeableConcept?						
-		
-		
-			public func upsert(method: CodeableConcept?) {
-				upsert(prop: &self.method, val: method)
-			}
-	
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
+    
+    public dynamic var bodySite: CodeableConcept?        
+    public func upsert(bodySite: CodeableConcept?) {
+        upsert(prop: &self.bodySite, val: bodySite)
+    }    
+    public dynamic var collectedDateTime: DateTime?        
+        
+    public dynamic var collectedPeriod: Period?        
+    public func upsert(collectedPeriod: Period?) {
+        upsert(prop: &self.collectedPeriod, val: collectedPeriod)
+    }    
+    public dynamic var collector: Reference?        
+    public func upsert(collector: Reference?) {
+        upsert(prop: &self.collector, val: collector)
+    }    
+    public let comment = RealmSwift.List<RealmString>()    
+    public dynamic var method: CodeableConcept?        
+    public func upsert(method: CodeableConcept?) {
+        upsert(prop: &self.method, val: method)
+    }    
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -386,48 +348,30 @@ open class SpecimenContainer: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SpecimenContainer" }
 	}
-
-	public dynamic var additiveCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(additiveCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.additiveCodeableConcept, val: additiveCodeableConcept)
-			}
-	
-	public dynamic var additiveReference: Reference?						
-		
-		
-			public func upsert(additiveReference: Reference?) {
-				upsert(prop: &self.additiveReference, val: additiveReference)
-			}
-	
-	public dynamic var capacity: Quantity?						
-		
-		
-			public func upsert(capacity: Quantity?) {
-				upsert(prop: &self.capacity, val: capacity)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var specimenQuantity: Quantity?						
-		
-		
-			public func upsert(specimenQuantity: Quantity?) {
-				upsert(prop: &self.specimenQuantity, val: specimenQuantity)
-			}
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var additiveCodeableConcept: CodeableConcept?        
+    public func upsert(additiveCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.additiveCodeableConcept, val: additiveCodeableConcept)
+    }    
+    public dynamic var additiveReference: Reference?        
+    public func upsert(additiveReference: Reference?) {
+        upsert(prop: &self.additiveReference, val: additiveReference)
+    }    
+    public dynamic var capacity: Quantity?        
+    public func upsert(capacity: Quantity?) {
+        upsert(prop: &self.capacity, val: capacity)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var specimenQuantity: Quantity?        
+    public func upsert(specimenQuantity: Quantity?) {
+        upsert(prop: &self.specimenQuantity, val: specimenQuantity)
+    }    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -542,20 +486,14 @@ open class SpecimenTreatment: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SpecimenTreatment" }
 	}
-
-	public let additive = RealmSwift.List<Reference>()
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var procedure: CodeableConcept?						
-		
-		
-			public func upsert(procedure: CodeableConcept?) {
-				upsert(prop: &self.procedure, val: procedure)
-			}
-	
+    
+    public let additive = RealmSwift.List<Reference>()    
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var procedure: CodeableConcept?        
+    public func upsert(procedure: CodeableConcept?) {
+        upsert(prop: &self.procedure, val: procedure)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

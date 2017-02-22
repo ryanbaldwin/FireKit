@@ -2,7 +2,7 @@
 //  TestScriptTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 			try runTestScript1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.TestScript
 			XCTAssertNotNil(copy)
-			try runTestScript1(copy!.asJSON())            
+			try runTestScript1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runTestScript1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
@@ -59,7 +62,6 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test TestScript's PKs, but threw: \(error)")
         }
@@ -205,7 +207,10 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 			try runTestScript2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.TestScript
 			XCTAssertNotNil(copy)
-			try runTestScript2(copy!.asJSON())            
+			try runTestScript2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runTestScript2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
@@ -228,7 +233,6 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test TestScript's PKs, but threw: \(error)")
         }

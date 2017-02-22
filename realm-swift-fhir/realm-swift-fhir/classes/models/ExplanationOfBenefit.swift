@@ -2,7 +2,7 @@
 //  ExplanationOfBenefit.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ExplanationOfBenefit) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,63 +20,38 @@ open class ExplanationOfBenefit: DomainResource {
 	override open class var resourceType: String {
 		get { return "ExplanationOfBenefit" }
 	}
-
-	public dynamic var created: DateTime?						
-		
-		
-	
-	public dynamic var disposition: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var organization: Reference?						
-		
-		
-			public func upsert(organization: Reference?) {
-				upsert(prop: &self.organization, val: organization)
-			}
-	
-	public dynamic var originalRuleset: Coding?						
-		
-		
-			public func upsert(originalRuleset: Coding?) {
-				upsert(prop: &self.originalRuleset, val: originalRuleset)
-			}
-	
-	public dynamic var outcome: String?						
-		
-		
-	
-	public dynamic var request: Reference?						
-		
-		
-			public func upsert(request: Reference?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var requestOrganization: Reference?						
-		
-		
-			public func upsert(requestOrganization: Reference?) {
-				upsert(prop: &self.requestOrganization, val: requestOrganization)
-			}
-	
-	public dynamic var requestProvider: Reference?						
-		
-		
-			public func upsert(requestProvider: Reference?) {
-				upsert(prop: &self.requestProvider, val: requestProvider)
-			}
-	
-	public dynamic var ruleset: Coding?						
-		
-		
-			public func upsert(ruleset: Coding?) {
-				upsert(prop: &self.ruleset, val: ruleset)
-			}
-	
+    
+    public dynamic var created: DateTime?        
+        
+    public dynamic var disposition: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var organization: Reference?        
+    public func upsert(organization: Reference?) {
+        upsert(prop: &self.organization, val: organization)
+    }    
+    public dynamic var originalRuleset: Coding?        
+    public func upsert(originalRuleset: Coding?) {
+        upsert(prop: &self.originalRuleset, val: originalRuleset)
+    }    
+    public dynamic var outcome: String?        
+        
+    public dynamic var request: Reference?        
+    public func upsert(request: Reference?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var requestOrganization: Reference?        
+    public func upsert(requestOrganization: Reference?) {
+        upsert(prop: &self.requestOrganization, val: requestOrganization)
+    }    
+    public dynamic var requestProvider: Reference?        
+    public func upsert(requestProvider: Reference?) {
+        upsert(prop: &self.requestProvider, val: requestProvider)
+    }    
+    public dynamic var ruleset: Coding?        
+    public func upsert(ruleset: Coding?) {
+        upsert(prop: &self.ruleset, val: ruleset)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

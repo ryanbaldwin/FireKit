@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,33 +17,24 @@ open class Substance: DomainResource {
 	override open class var resourceType: String {
 		get { return "Substance" }
 	}
+    
+    public let category = RealmSwift.List<CodeableConcept>()    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let ingredient = RealmSwift.List<SubstanceIngredient>()    
+    public let instance = RealmSwift.List<SubstanceInstance>()
 
-	public let category = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let ingredient = RealmSwift.List<SubstanceIngredient>()
-	
-	public let instance = RealmSwift.List<SubstanceInstance>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -157,28 +148,22 @@ open class SubstanceIngredient: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubstanceIngredient" }
 	}
+    
+    public dynamic var quantity: Ratio?        
+    public func upsert(quantity: Ratio?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }    
+    public dynamic var substance: Reference?        
+    public func upsert(substance: Reference?) {
+        upsert(prop: &self.substance, val: substance)
+    }
 
-	public dynamic var quantity: Ratio?						
-		
-		
-			public func upsert(quantity: Ratio?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
-	public dynamic var substance: Reference?						
-		
-		
-			public func upsert(substance: Reference?) {
-				upsert(prop: &self.substance, val: substance)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(substance: Reference) {
+        self.init(json: nil)
+        self.substance = substance
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(substance: Reference) {
-		self.init(json: nil)
-		self.substance = substance
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -233,25 +218,17 @@ open class SubstanceInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubstanceInstance" }
 	}
-
-	public dynamic var expiry: DateTime?						
-		
-		
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
+    
+    public dynamic var expiry: DateTime?        
+        
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

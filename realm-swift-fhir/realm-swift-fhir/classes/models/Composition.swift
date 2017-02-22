@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -23,85 +23,55 @@ open class Composition: DomainResource {
 	override open class var resourceType: String {
 		get { return "Composition" }
 	}
+    
+    public let attester = RealmSwift.List<CompositionAttester>()    
+    public let author = RealmSwift.List<Reference>()    
+    public dynamic var class_fhir: CodeableConcept?        
+    public func upsert(class_fhir: CodeableConcept?) {
+        upsert(prop: &self.class_fhir, val: class_fhir)
+    }    
+    public dynamic var confidentiality: String?        
+        
+    public dynamic var custodian: Reference?        
+    public func upsert(custodian: Reference?) {
+        upsert(prop: &self.custodian, val: custodian)
+    }    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let event = RealmSwift.List<CompositionEvent>()    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public let section = RealmSwift.List<CompositionSection>()    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var title: String?        
+        
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public let attester = RealmSwift.List<CompositionAttester>()
-	
-	public let author = RealmSwift.List<Reference>()
-	
-	public dynamic var class_fhir: CodeableConcept?						
-		
-		
-			public func upsert(class_fhir: CodeableConcept?) {
-				upsert(prop: &self.class_fhir, val: class_fhir)
-			}
-	
-	public dynamic var confidentiality: String?						
-		
-		
-	
-	public dynamic var custodian: Reference?						
-		
-		
-			public func upsert(custodian: Reference?) {
-				upsert(prop: &self.custodian, val: custodian)
-			}
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let event = RealmSwift.List<CompositionEvent>()
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public let section = RealmSwift.List<CompositionSection>()
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var title: String?						
-		
-		
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(author: [Reference], date: DateTime, status: String, subject: Reference, title: String, type: CodeableConcept) {
+        self.init(json: nil)
+        self.author.append(objectsIn: author)
+        self.date = date
+        self.status = status
+        self.subject = subject
+        self.title = title
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(author: [Reference], date: DateTime, status: String, subject: Reference, title: String, type: CodeableConcept) {
-		self.init(json: nil)
-		self.author.append(objectsIn: author)
-		self.date = date
-		self.status = status
-		self.subject = subject
-		self.title = title
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -326,27 +296,21 @@ open class CompositionAttester: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionAttester" }
 	}
+    
+    public let mode = RealmSwift.List<RealmString>()    
+    public dynamic var party: Reference?        
+    public func upsert(party: Reference?) {
+        upsert(prop: &self.party, val: party)
+    }    
+    public dynamic var time: DateTime?        
+    
 
-	public let mode = RealmSwift.List<RealmString>()
-	
-	public dynamic var party: Reference?						
-		
-		
-			public func upsert(party: Reference?) {
-				upsert(prop: &self.party, val: party)
-			}
-	
-	public dynamic var time: DateTime?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(mode: [String]) {
+        self.init(json: nil)
+        self.mode.append(objectsIn: mode.map{ RealmString(value: [$0]) })
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: [String]) {
-		self.init(json: nil)
-		self.mode.append(objectsIn: mode.map{ RealmString(value: [$0]) })
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -412,18 +376,13 @@ open class CompositionEvent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionEvent" }
 	}
-
-	public let code = RealmSwift.List<CodeableConcept>()
-	
-	public let detail = RealmSwift.List<Reference>()
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
+    
+    public let code = RealmSwift.List<CodeableConcept>()    
+    public let detail = RealmSwift.List<Reference>()    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -493,47 +452,29 @@ open class CompositionSection: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionSection" }
 	}
-
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var emptyReason: CodeableConcept?						
-		
-		
-			public func upsert(emptyReason: CodeableConcept?) {
-				upsert(prop: &self.emptyReason, val: emptyReason)
-			}
-	
-	public let entry = RealmSwift.List<Reference>()
-	
-	public dynamic var mode: String?						
-		
-		
-	
-	public dynamic var orderedBy: CodeableConcept?						
-		
-		
-			public func upsert(orderedBy: CodeableConcept?) {
-				upsert(prop: &self.orderedBy, val: orderedBy)
-			}
-	
-	public let section = RealmSwift.List<CompositionSection>()
-	
-	public dynamic var text: Narrative?						
-		
-		
-			public func upsert(text: Narrative?) {
-				upsert(prop: &self.text, val: text)
-			}
-	
-	public dynamic var title: String?						
-		
-		
-	
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var emptyReason: CodeableConcept?        
+    public func upsert(emptyReason: CodeableConcept?) {
+        upsert(prop: &self.emptyReason, val: emptyReason)
+    }    
+    public let entry = RealmSwift.List<Reference>()    
+    public dynamic var mode: String?        
+        
+    public dynamic var orderedBy: CodeableConcept?        
+    public func upsert(orderedBy: CodeableConcept?) {
+        upsert(prop: &self.orderedBy, val: orderedBy)
+    }    
+    public let section = RealmSwift.List<CompositionSection>()    
+    public dynamic var text: Narrative?        
+    public func upsert(text: Narrative?) {
+        upsert(prop: &self.text, val: text)
+    }    
+    public dynamic var title: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

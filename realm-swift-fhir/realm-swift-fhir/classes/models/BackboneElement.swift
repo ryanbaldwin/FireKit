@@ -2,7 +2,7 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,9 +19,8 @@ open class BackboneElement: Element {
 	override open class var resourceType: String {
 		get { return "BackboneElement" }
 	}
-
-	public let modifierExtension = RealmSwift.List<Extension>()
-	
+    
+    public let modifierExtension = RealmSwift.List<Extension>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

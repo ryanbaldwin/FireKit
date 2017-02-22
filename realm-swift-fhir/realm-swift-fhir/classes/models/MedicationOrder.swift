@@ -2,7 +2,7 @@
 //  MedicationOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationOrder) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationOrder) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,112 +21,69 @@ open class MedicationOrder: DomainResource {
 	override open class var resourceType: String {
 		get { return "MedicationOrder" }
 	}
+    
+    public dynamic var dateEnded: DateTime?        
+        
+    public dynamic var dateWritten: DateTime?        
+        
+    public dynamic var dispenseRequest: MedicationOrderDispenseRequest?        
+    public func upsert(dispenseRequest: MedicationOrderDispenseRequest?) {
+        upsert(prop: &self.dispenseRequest, val: dispenseRequest)
+    }    
+    public let dosageInstruction = RealmSwift.List<MedicationOrderDosageInstruction>()    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var medicationCodeableConcept: CodeableConcept?        
+    public func upsert(medicationCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.medicationCodeableConcept, val: medicationCodeableConcept)
+    }    
+    public dynamic var medicationReference: Reference?        
+    public func upsert(medicationReference: Reference?) {
+        upsert(prop: &self.medicationReference, val: medicationReference)
+    }    
+    public dynamic var note: String?        
+        
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var prescriber: Reference?        
+    public func upsert(prescriber: Reference?) {
+        upsert(prop: &self.prescriber, val: prescriber)
+    }    
+    public dynamic var priorPrescription: Reference?        
+    public func upsert(priorPrescription: Reference?) {
+        upsert(prop: &self.priorPrescription, val: priorPrescription)
+    }    
+    public dynamic var reasonCodeableConcept: CodeableConcept?        
+    public func upsert(reasonCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
+    }    
+    public dynamic var reasonEnded: CodeableConcept?        
+    public func upsert(reasonEnded: CodeableConcept?) {
+        upsert(prop: &self.reasonEnded, val: reasonEnded)
+    }    
+    public dynamic var reasonReference: Reference?        
+    public func upsert(reasonReference: Reference?) {
+        upsert(prop: &self.reasonReference, val: reasonReference)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var substitution: MedicationOrderSubstitution?        
+    public func upsert(substitution: MedicationOrderSubstitution?) {
+        upsert(prop: &self.substitution, val: substitution)
+    }
 
-	public dynamic var dateEnded: DateTime?						
-		
-		
-	
-	public dynamic var dateWritten: DateTime?						
-		
-		
-	
-	public dynamic var dispenseRequest: MedicationOrderDispenseRequest?						
-		
-		
-			public func upsert(dispenseRequest: MedicationOrderDispenseRequest?) {
-				upsert(prop: &self.dispenseRequest, val: dispenseRequest)
-			}
-	
-	public let dosageInstruction = RealmSwift.List<MedicationOrderDosageInstruction>()
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var medicationCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(medicationCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.medicationCodeableConcept, val: medicationCodeableConcept)
-			}
-	
-	public dynamic var medicationReference: Reference?						
-		
-		
-			public func upsert(medicationReference: Reference?) {
-				upsert(prop: &self.medicationReference, val: medicationReference)
-			}
-	
-	public dynamic var note: String?						
-		
-		
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var prescriber: Reference?						
-		
-		
-			public func upsert(prescriber: Reference?) {
-				upsert(prop: &self.prescriber, val: prescriber)
-			}
-	
-	public dynamic var priorPrescription: Reference?						
-		
-		
-			public func upsert(priorPrescription: Reference?) {
-				upsert(prop: &self.priorPrescription, val: priorPrescription)
-			}
-	
-	public dynamic var reasonCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(reasonCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
-			}
-	
-	public dynamic var reasonEnded: CodeableConcept?						
-		
-		
-			public func upsert(reasonEnded: CodeableConcept?) {
-				upsert(prop: &self.reasonEnded, val: reasonEnded)
-			}
-	
-	public dynamic var reasonReference: Reference?						
-		
-		
-			public func upsert(reasonReference: Reference?) {
-				upsert(prop: &self.reasonReference, val: reasonReference)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var substitution: MedicationOrderSubstitution?						
-		
-		
-			public func upsert(substitution: MedicationOrderSubstitution?) {
-				upsert(prop: &self.substitution, val: substitution)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(medicationCodeableConcept: CodeableConcept, medicationReference: Reference) {
+        self.init(json: nil)
+        self.medicationCodeableConcept = medicationCodeableConcept
+        self.medicationReference = medicationReference
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(medicationCodeableConcept: CodeableConcept, medicationReference: Reference) {
-		self.init(json: nil)
-		self.medicationCodeableConcept = medicationCodeableConcept
-		self.medicationReference = medicationReference
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -371,44 +328,28 @@ open class MedicationOrderDispenseRequest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationOrderDispenseRequest" }
 	}
-
-	public dynamic var expectedSupplyDuration: Quantity?						
-		
-		
-			public func upsert(expectedSupplyDuration: Quantity?) {
-				upsert(prop: &self.expectedSupplyDuration, val: expectedSupplyDuration)
-			}
-	
-	public dynamic var medicationCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(medicationCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.medicationCodeableConcept, val: medicationCodeableConcept)
-			}
-	
-	public dynamic var medicationReference: Reference?						
-		
-		
-			public func upsert(medicationReference: Reference?) {
-				upsert(prop: &self.medicationReference, val: medicationReference)
-			}
-	
-	public let numberOfRepeatsAllowed = RealmOptional<Int>()
-	
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
-	public dynamic var validityPeriod: Period?						
-		
-		
-			public func upsert(validityPeriod: Period?) {
-				upsert(prop: &self.validityPeriod, val: validityPeriod)
-			}
-	
+    
+    public dynamic var expectedSupplyDuration: Quantity?        
+    public func upsert(expectedSupplyDuration: Quantity?) {
+        upsert(prop: &self.expectedSupplyDuration, val: expectedSupplyDuration)
+    }    
+    public dynamic var medicationCodeableConcept: CodeableConcept?        
+    public func upsert(medicationCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.medicationCodeableConcept, val: medicationCodeableConcept)
+    }    
+    public dynamic var medicationReference: Reference?        
+    public func upsert(medicationReference: Reference?) {
+        upsert(prop: &self.medicationReference, val: medicationReference)
+    }    
+    public let numberOfRepeatsAllowed = RealmOptional<Int>()    
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }    
+    public dynamic var validityPeriod: Period?        
+    public func upsert(validityPeriod: Period?) {
+        upsert(prop: &self.validityPeriod, val: validityPeriod)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -508,97 +449,58 @@ open class MedicationOrderDosageInstruction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationOrderDosageInstruction" }
 	}
-
-	public dynamic var additionalInstructions: CodeableConcept?						
-		
-		
-			public func upsert(additionalInstructions: CodeableConcept?) {
-				upsert(prop: &self.additionalInstructions, val: additionalInstructions)
-			}
-	
-	public let asNeededBoolean = RealmOptional<Bool>()
-	
-	public dynamic var asNeededCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(asNeededCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.asNeededCodeableConcept, val: asNeededCodeableConcept)
-			}
-	
-	public dynamic var doseQuantity: Quantity?						
-		
-		
-			public func upsert(doseQuantity: Quantity?) {
-				upsert(prop: &self.doseQuantity, val: doseQuantity)
-			}
-	
-	public dynamic var doseRange: Range?						
-		
-		
-			public func upsert(doseRange: Range?) {
-				upsert(prop: &self.doseRange, val: doseRange)
-			}
-	
-	public dynamic var maxDosePerPeriod: Ratio?						
-		
-		
-			public func upsert(maxDosePerPeriod: Ratio?) {
-				upsert(prop: &self.maxDosePerPeriod, val: maxDosePerPeriod)
-			}
-	
-	public dynamic var method: CodeableConcept?						
-		
-		
-			public func upsert(method: CodeableConcept?) {
-				upsert(prop: &self.method, val: method)
-			}
-	
-	public dynamic var rateRange: Range?						
-		
-		
-			public func upsert(rateRange: Range?) {
-				upsert(prop: &self.rateRange, val: rateRange)
-			}
-	
-	public dynamic var rateRatio: Ratio?						
-		
-		
-			public func upsert(rateRatio: Ratio?) {
-				upsert(prop: &self.rateRatio, val: rateRatio)
-			}
-	
-	public dynamic var route: CodeableConcept?						
-		
-		
-			public func upsert(route: CodeableConcept?) {
-				upsert(prop: &self.route, val: route)
-			}
-	
-	public dynamic var siteCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(siteCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.siteCodeableConcept, val: siteCodeableConcept)
-			}
-	
-	public dynamic var siteReference: Reference?						
-		
-		
-			public func upsert(siteReference: Reference?) {
-				upsert(prop: &self.siteReference, val: siteReference)
-			}
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var timing: Timing?						
-		
-		
-			public func upsert(timing: Timing?) {
-				upsert(prop: &self.timing, val: timing)
-			}
-	
+    
+    public dynamic var additionalInstructions: CodeableConcept?        
+    public func upsert(additionalInstructions: CodeableConcept?) {
+        upsert(prop: &self.additionalInstructions, val: additionalInstructions)
+    }    
+    public let asNeededBoolean = RealmOptional<Bool>()    
+    public dynamic var asNeededCodeableConcept: CodeableConcept?        
+    public func upsert(asNeededCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.asNeededCodeableConcept, val: asNeededCodeableConcept)
+    }    
+    public dynamic var doseQuantity: Quantity?        
+    public func upsert(doseQuantity: Quantity?) {
+        upsert(prop: &self.doseQuantity, val: doseQuantity)
+    }    
+    public dynamic var doseRange: Range?        
+    public func upsert(doseRange: Range?) {
+        upsert(prop: &self.doseRange, val: doseRange)
+    }    
+    public dynamic var maxDosePerPeriod: Ratio?        
+    public func upsert(maxDosePerPeriod: Ratio?) {
+        upsert(prop: &self.maxDosePerPeriod, val: maxDosePerPeriod)
+    }    
+    public dynamic var method: CodeableConcept?        
+    public func upsert(method: CodeableConcept?) {
+        upsert(prop: &self.method, val: method)
+    }    
+    public dynamic var rateRange: Range?        
+    public func upsert(rateRange: Range?) {
+        upsert(prop: &self.rateRange, val: rateRange)
+    }    
+    public dynamic var rateRatio: Ratio?        
+    public func upsert(rateRatio: Ratio?) {
+        upsert(prop: &self.rateRatio, val: rateRatio)
+    }    
+    public dynamic var route: CodeableConcept?        
+    public func upsert(route: CodeableConcept?) {
+        upsert(prop: &self.route, val: route)
+    }    
+    public dynamic var siteCodeableConcept: CodeableConcept?        
+    public func upsert(siteCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.siteCodeableConcept, val: siteCodeableConcept)
+    }    
+    public dynamic var siteReference: Reference?        
+    public func upsert(siteReference: Reference?) {
+        upsert(prop: &self.siteReference, val: siteReference)
+    }    
+    public dynamic var text: String?        
+        
+    public dynamic var timing: Timing?        
+    public func upsert(timing: Timing?) {
+        upsert(prop: &self.timing, val: timing)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -796,28 +698,22 @@ open class MedicationOrderSubstitution: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationOrderSubstitution" }
 	}
+    
+    public dynamic var reason: CodeableConcept?        
+    public func upsert(reason: CodeableConcept?) {
+        upsert(prop: &self.reason, val: reason)
+    }    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var reason: CodeableConcept?						
-		
-		
-			public func upsert(reason: CodeableConcept?) {
-				upsert(prop: &self.reason, val: reason)
-			}
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: CodeableConcept) {
+        self.init(json: nil)
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept) {
-		self.init(json: nil)
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

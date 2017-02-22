@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter1(copy!.asJSON())            
+			try runEncounter1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -59,7 +62,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -151,7 +153,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter2(copy!.asJSON())            
+			try runEncounter2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -174,7 +179,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -266,7 +270,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter3(copy!.asJSON())            
+			try runEncounter3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -289,7 +296,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -382,7 +388,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter4(copy!.asJSON())            
+			try runEncounter4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -405,7 +414,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -479,7 +487,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter5(copy!.asJSON())            
+			try runEncounter5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -502,7 +513,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -586,7 +596,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter6(copy!.asJSON())            
+			try runEncounter6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -609,7 +622,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -692,7 +704,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter7(copy!.asJSON())            
+			try runEncounter7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -715,7 +730,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -790,7 +804,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter8(copy!.asJSON())            
+			try runEncounter8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -813,7 +830,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }
@@ -882,7 +898,10 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 			try runEncounter9(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Encounter
 			XCTAssertNotNil(copy)
-			try runEncounter9(copy!.asJSON())            
+			try runEncounter9(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runEncounter9(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
@@ -905,7 +924,6 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Encounter's PKs, but threw: \(error)")
         }

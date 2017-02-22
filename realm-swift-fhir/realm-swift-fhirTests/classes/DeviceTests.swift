@@ -2,7 +2,7 @@
 //  DeviceTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 			try runDevice1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Device
 			XCTAssertNotNil(copy)
-			try runDevice1(copy!.asJSON())            
+			try runDevice1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runDevice1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
@@ -59,7 +62,6 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Device's PKs, but threw: \(error)")
         }
@@ -129,7 +131,10 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 			try runDevice2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Device
 			XCTAssertNotNil(copy)
-			try runDevice2(copy!.asJSON())            
+			try runDevice2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runDevice2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
@@ -152,7 +157,6 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Device's PKs, but threw: \(error)")
         }
@@ -220,7 +224,10 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 			try runDevice3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Device
 			XCTAssertNotNil(copy)
-			try runDevice3(copy!.asJSON())            
+			try runDevice3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runDevice3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
@@ -243,7 +250,6 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Device's PKs, but threw: \(error)")
         }
@@ -313,7 +319,10 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 			try runDevice4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Device
 			XCTAssertNotNil(copy)
-			try runDevice4(copy!.asJSON())            
+			try runDevice4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runDevice4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
@@ -336,7 +345,6 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Device's PKs, but threw: \(error)")
         }
@@ -403,7 +411,10 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 			try runDevice5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Device
 			XCTAssertNotNil(copy)
-			try runDevice5(copy!.asJSON())            
+			try runDevice5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runDevice5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
@@ -426,7 +437,6 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Device's PKs, but threw: \(error)")
         }

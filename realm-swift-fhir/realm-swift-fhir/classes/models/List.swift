@@ -2,7 +2,7 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,81 +19,51 @@ open class List: DomainResource {
 	override open class var resourceType: String {
 		get { return "List" }
 	}
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var emptyReason: CodeableConcept?        
+    public func upsert(emptyReason: CodeableConcept?) {
+        upsert(prop: &self.emptyReason, val: emptyReason)
+    }    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let entry = RealmSwift.List<ListEntry>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var mode: String?        
+        
+    public dynamic var note: String?        
+        
+    public dynamic var orderedBy: CodeableConcept?        
+    public func upsert(orderedBy: CodeableConcept?) {
+        upsert(prop: &self.orderedBy, val: orderedBy)
+    }    
+    public dynamic var source: Reference?        
+    public func upsert(source: Reference?) {
+        upsert(prop: &self.source, val: source)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var title: String?        
+    
 
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var emptyReason: CodeableConcept?						
-		
-		
-			public func upsert(emptyReason: CodeableConcept?) {
-				upsert(prop: &self.emptyReason, val: emptyReason)
-			}
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let entry = RealmSwift.List<ListEntry>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var mode: String?						
-		
-		
-	
-	public dynamic var note: String?						
-		
-		
-	
-	public dynamic var orderedBy: CodeableConcept?						
-		
-		
-			public func upsert(orderedBy: CodeableConcept?) {
-				upsert(prop: &self.orderedBy, val: orderedBy)
-			}
-	
-	public dynamic var source: Reference?						
-		
-		
-			public func upsert(source: Reference?) {
-				upsert(prop: &self.source, val: source)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var title: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(mode: String, status: String) {
+        self.init(json: nil)
+        self.mode = mode
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, status: String) {
-		self.init(json: nil)
-		self.mode = mode
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -288,34 +258,25 @@ open class ListEntry: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ListEntry" }
 	}
+    
+    public dynamic var date: DateTime?        
+        
+    public let deleted = RealmOptional<Bool>()    
+    public dynamic var flag: CodeableConcept?        
+    public func upsert(flag: CodeableConcept?) {
+        upsert(prop: &self.flag, val: flag)
+    }    
+    public dynamic var item: Reference?        
+    public func upsert(item: Reference?) {
+        upsert(prop: &self.item, val: item)
+    }
 
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public let deleted = RealmOptional<Bool>()
-	
-	public dynamic var flag: CodeableConcept?						
-		
-		
-			public func upsert(flag: CodeableConcept?) {
-				upsert(prop: &self.flag, val: flag)
-			}
-	
-	public dynamic var item: Reference?						
-		
-		
-			public func upsert(item: Reference?) {
-				upsert(prop: &self.item, val: item)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(item: Reference) {
+        self.init(json: nil)
+        self.item = item
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: Reference) {
-		self.init(json: nil)
-		self.item = item
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

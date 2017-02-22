@@ -38,7 +38,10 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 			try run{{ class.name }}{{ loop.index }}(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.{{ class.name }}
 			XCTAssertNotNil(copy)
-			try run{{ class.name}}{{ loop.index }}(copy!.asJSON())            
+			try run{{ class.name}}{{ loop.index }}(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try run{{ class.name }}{{ loop.index }}(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test {{ class.name }} successfully, but threw")
@@ -61,7 +64,6 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test {{ class.name }}'s PKs, but threw: \(error)")
         }
@@ -108,7 +110,7 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "{{ tcase.filename }}")
 		{% for onetest in tcase.tests %}
 		{%- if "String" == onetest.klass.name %}
-		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}, "{{ onetest.value|replace('"', '\\"') }}")
+		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}, "{{ onetest.value|replace('\t', '\\t')|replace('"', '\\"') }}")
 		{%- else %}{% if "RealmDecimal" == onetest.klass.name %}
 		XCTAssertTrue(inst.{{ onetest.path|expand_test_path(tcase.klass) }}! == RealmDecimal(string: "{{ onetest.value }}"))
 		{%- else %}{% if "Int" == onetest.klass.name or "Double" == onetest.klass.name %}

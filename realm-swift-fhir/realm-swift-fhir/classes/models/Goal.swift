@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,87 +20,54 @@ open class Goal: DomainResource {
 	override open class var resourceType: String {
 		get { return "Goal" }
 	}
+    
+    public let addresses = RealmSwift.List<Reference>()    
+    public dynamic var author: Reference?        
+    public func upsert(author: Reference?) {
+        upsert(prop: &self.author, val: author)
+    }    
+    public let category = RealmSwift.List<CodeableConcept>()    
+    public dynamic var description_fhir: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let note = RealmSwift.List<Annotation>()    
+    public let outcome = RealmSwift.List<GoalOutcome>()    
+    public dynamic var priority: CodeableConcept?        
+    public func upsert(priority: CodeableConcept?) {
+        upsert(prop: &self.priority, val: priority)
+    }    
+    public dynamic var startCodeableConcept: CodeableConcept?        
+    public func upsert(startCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.startCodeableConcept, val: startCodeableConcept)
+    }    
+    public dynamic var startDate: FHIRDate?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var statusDate: FHIRDate?        
+        
+    public dynamic var statusReason: CodeableConcept?        
+    public func upsert(statusReason: CodeableConcept?) {
+        upsert(prop: &self.statusReason, val: statusReason)
+    }    
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var targetDate: FHIRDate?        
+        
+    public dynamic var targetQuantity: Quantity?        
+    public func upsert(targetQuantity: Quantity?) {
+        upsert(prop: &self.targetQuantity, val: targetQuantity)
+    }
 
-	public let addresses = RealmSwift.List<Reference>()
-	
-	public dynamic var author: Reference?						
-		
-		
-			public func upsert(author: Reference?) {
-				upsert(prop: &self.author, val: author)
-			}
-	
-	public let category = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let note = RealmSwift.List<Annotation>()
-	
-	public let outcome = RealmSwift.List<GoalOutcome>()
-	
-	public dynamic var priority: CodeableConcept?						
-		
-		
-			public func upsert(priority: CodeableConcept?) {
-				upsert(prop: &self.priority, val: priority)
-			}
-	
-	public dynamic var startCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(startCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.startCodeableConcept, val: startCodeableConcept)
-			}
-	
-	public dynamic var startDate: FHIRDate?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var statusDate: FHIRDate?						
-		
-		
-	
-	public dynamic var statusReason: CodeableConcept?						
-		
-		
-			public func upsert(statusReason: CodeableConcept?) {
-				upsert(prop: &self.statusReason, val: statusReason)
-			}
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var targetDate: FHIRDate?						
-		
-		
-	
-	public dynamic var targetQuantity: Quantity?						
-		
-		
-			public func upsert(targetQuantity: Quantity?) {
-				upsert(prop: &self.targetQuantity, val: targetQuantity)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(description_fhir: String, status: String) {
+        self.init(json: nil)
+        self.description_fhir = description_fhir
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String, status: String) {
-		self.init(json: nil)
-		self.description_fhir = description_fhir
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -340,21 +307,15 @@ open class GoalOutcome: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GoalOutcome" }
 	}
-
-	public dynamic var resultCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(resultCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.resultCodeableConcept, val: resultCodeableConcept)
-			}
-	
-	public dynamic var resultReference: Reference?						
-		
-		
-			public func upsert(resultReference: Reference?) {
-				upsert(prop: &self.resultReference, val: resultReference)
-			}
-	
+    
+    public dynamic var resultCodeableConcept: CodeableConcept?        
+    public func upsert(resultCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.resultCodeableConcept, val: resultCodeableConcept)
+    }    
+    public dynamic var resultReference: Reference?        
+    public func upsert(resultReference: Reference?) {
+        upsert(prop: &self.resultReference, val: resultReference)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,55 +20,33 @@ open class DetectedIssue: DomainResource {
 	override open class var resourceType: String {
 		get { return "DetectedIssue" }
 	}
-
-	public dynamic var author: Reference?						
-		
-		
-			public func upsert(author: Reference?) {
-				upsert(prop: &self.author, val: author)
-			}
-	
-	public dynamic var category: CodeableConcept?						
-		
-		
-			public func upsert(category: CodeableConcept?) {
-				upsert(prop: &self.category, val: category)
-			}
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var detail: String?						
-		
-		
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public let implicated = RealmSwift.List<Reference>()
-	
-	public let mitigation = RealmSwift.List<DetectedIssueMitigation>()
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var reference: String?						
-		
-		
-	
-	public dynamic var severity: String?						
-		
-		
-	
+    
+    public dynamic var author: Reference?        
+    public func upsert(author: Reference?) {
+        upsert(prop: &self.author, val: author)
+    }    
+    public dynamic var category: CodeableConcept?        
+    public func upsert(category: CodeableConcept?) {
+        upsert(prop: &self.category, val: category)
+    }    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var detail: String?        
+        
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public let implicated = RealmSwift.List<Reference>()    
+    public let mitigation = RealmSwift.List<DetectedIssueMitigation>()    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var reference: String?        
+        
+    public dynamic var severity: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -224,32 +202,24 @@ open class DetectedIssueMitigation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DetectedIssueMitigation" }
 	}
+    
+    public dynamic var action: CodeableConcept?        
+    public func upsert(action: CodeableConcept?) {
+        upsert(prop: &self.action, val: action)
+    }    
+    public dynamic var author: Reference?        
+    public func upsert(author: Reference?) {
+        upsert(prop: &self.author, val: author)
+    }    
+    public dynamic var date: DateTime?        
+    
 
-	public dynamic var action: CodeableConcept?						
-		
-		
-			public func upsert(action: CodeableConcept?) {
-				upsert(prop: &self.action, val: action)
-			}
-	
-	public dynamic var author: Reference?						
-		
-		
-			public func upsert(author: Reference?) {
-				upsert(prop: &self.author, val: author)
-			}
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(action: CodeableConcept) {
+        self.init(json: nil)
+        self.action = action
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: CodeableConcept) {
-		self.init(json: nil)
-		self.action = action
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

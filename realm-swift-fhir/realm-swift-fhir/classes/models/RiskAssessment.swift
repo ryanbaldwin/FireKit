@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,61 +19,37 @@ open class RiskAssessment: DomainResource {
 	override open class var resourceType: String {
 		get { return "RiskAssessment" }
 	}
-
-	public let basis = RealmSwift.List<Reference>()
-	
-	public dynamic var condition: Reference?						
-		
-		
-			public func upsert(condition: Reference?) {
-				upsert(prop: &self.condition, val: condition)
-			}
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var method: CodeableConcept?						
-		
-		
-			public func upsert(method: CodeableConcept?) {
-				upsert(prop: &self.method, val: method)
-			}
-	
-	public dynamic var mitigation: String?						
-		
-		
-	
-	public dynamic var performer: Reference?						
-		
-		
-			public func upsert(performer: Reference?) {
-				upsert(prop: &self.performer, val: performer)
-			}
-	
-	public let prediction = RealmSwift.List<RiskAssessmentPrediction>()
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
+    
+    public let basis = RealmSwift.List<Reference>()    
+    public dynamic var condition: Reference?        
+    public func upsert(condition: Reference?) {
+        upsert(prop: &self.condition, val: condition)
+    }    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var method: CodeableConcept?        
+    public func upsert(method: CodeableConcept?) {
+        upsert(prop: &self.method, val: method)
+    }    
+    public dynamic var mitigation: String?        
+        
+    public dynamic var performer: Reference?        
+    public func upsert(performer: Reference?) {
+        upsert(prop: &self.performer, val: performer)
+    }    
+    public let prediction = RealmSwift.List<RiskAssessmentPrediction>()    
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -227,61 +203,40 @@ open class RiskAssessmentPrediction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "RiskAssessmentPrediction" }
 	}
+    
+    public dynamic var outcome: CodeableConcept?        
+    public func upsert(outcome: CodeableConcept?) {
+        upsert(prop: &self.outcome, val: outcome)
+    }    
+    public dynamic var probabilityCodeableConcept: CodeableConcept?        
+    public func upsert(probabilityCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.probabilityCodeableConcept, val: probabilityCodeableConcept)
+    }    
+    public dynamic var probabilityDecimal: RealmDecimal?        
+        
+    public dynamic var probabilityRange: Range?        
+    public func upsert(probabilityRange: Range?) {
+        upsert(prop: &self.probabilityRange, val: probabilityRange)
+    }    
+    public dynamic var rationale: String?        
+        
+    public dynamic var relativeRisk: RealmDecimal?        
+        
+    public dynamic var whenPeriod: Period?        
+    public func upsert(whenPeriod: Period?) {
+        upsert(prop: &self.whenPeriod, val: whenPeriod)
+    }    
+    public dynamic var whenRange: Range?        
+    public func upsert(whenRange: Range?) {
+        upsert(prop: &self.whenRange, val: whenRange)
+    }
 
-	public dynamic var outcome: CodeableConcept?						
-		
-		
-			public func upsert(outcome: CodeableConcept?) {
-				upsert(prop: &self.outcome, val: outcome)
-			}
-	
-	public dynamic var probabilityCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(probabilityCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.probabilityCodeableConcept, val: probabilityCodeableConcept)
-			}
-	
-	public dynamic var probabilityDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var probabilityRange: Range?						
-		
-		
-			public func upsert(probabilityRange: Range?) {
-				upsert(prop: &self.probabilityRange, val: probabilityRange)
-			}
-	
-	public dynamic var rationale: String?						
-		
-		
-	
-	public dynamic var relativeRisk: RealmDecimal?						
-		
-		
-	
-	public dynamic var whenPeriod: Period?						
-		
-		
-			public func upsert(whenPeriod: Period?) {
-				upsert(prop: &self.whenPeriod, val: whenPeriod)
-			}
-	
-	public dynamic var whenRange: Range?						
-		
-		
-			public func upsert(whenRange: Range?) {
-				upsert(prop: &self.whenRange, val: whenRange)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(outcome: CodeableConcept) {
+        self.init(json: nil)
+        self.outcome = outcome
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(outcome: CodeableConcept) {
-		self.init(json: nil)
-		self.outcome = outcome
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

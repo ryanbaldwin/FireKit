@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			try runSlot1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Slot
 			XCTAssertNotNil(copy)
-			try runSlot1(copy!.asJSON())            
+			try runSlot1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runSlot1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
@@ -59,7 +62,6 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Slot's PKs, but threw: \(error)")
         }
@@ -129,7 +131,10 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			try runSlot2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Slot
 			XCTAssertNotNil(copy)
-			try runSlot2(copy!.asJSON())            
+			try runSlot2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runSlot2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
@@ -152,7 +157,6 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Slot's PKs, but threw: \(error)")
         }
@@ -219,7 +223,10 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			try runSlot3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Slot
 			XCTAssertNotNil(copy)
-			try runSlot3(copy!.asJSON())            
+			try runSlot3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runSlot3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
@@ -242,7 +249,6 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Slot's PKs, but threw: \(error)")
         }
@@ -309,7 +315,10 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			try runSlot4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Slot
 			XCTAssertNotNil(copy)
-			try runSlot4(copy!.asJSON())            
+			try runSlot4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runSlot4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
@@ -332,7 +341,6 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Slot's PKs, but threw: \(error)")
         }

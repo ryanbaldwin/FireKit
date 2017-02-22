@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle1(copy!.asJSON())            
+			try runBundle1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -59,7 +62,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }
@@ -131,7 +133,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle2(copy!.asJSON())            
+			try runBundle2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -154,7 +159,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }
@@ -244,7 +248,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle3(copy!.asJSON())            
+			try runBundle3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -267,7 +274,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }
@@ -357,7 +363,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle4(copy!.asJSON())            
+			try runBundle4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -380,7 +389,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }
@@ -464,7 +472,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle5(copy!.asJSON())            
+			try runBundle5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -487,7 +498,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }
@@ -577,7 +587,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle6(copy!.asJSON())            
+			try runBundle6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -600,7 +613,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }
@@ -690,7 +702,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle7(copy!.asJSON())            
+			try runBundle7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -713,7 +728,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }
@@ -803,7 +817,10 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			try runBundle8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Bundle
 			XCTAssertNotNil(copy)
-			try runBundle8(copy!.asJSON())            
+			try runBundle8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBundle8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
@@ -826,7 +843,6 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
         }

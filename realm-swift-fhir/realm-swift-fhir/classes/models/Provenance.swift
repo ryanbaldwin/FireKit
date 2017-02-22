@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -25,52 +25,35 @@ open class Provenance: DomainResource {
 	override open class var resourceType: String {
 		get { return "Provenance" }
 	}
+    
+    public dynamic var activity: CodeableConcept?        
+    public func upsert(activity: CodeableConcept?) {
+        upsert(prop: &self.activity, val: activity)
+    }    
+    public let agent = RealmSwift.List<ProvenanceAgent>()    
+    public let entity = RealmSwift.List<ProvenanceEntity>()    
+    public dynamic var location: Reference?        
+    public func upsert(location: Reference?) {
+        upsert(prop: &self.location, val: location)
+    }    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let policy = RealmSwift.List<RealmString>()    
+    public let reason = RealmSwift.List<CodeableConcept>()    
+    public dynamic var recorded: Instant?        
+        
+    public let signature = RealmSwift.List<Signature>()    
+    public let target = RealmSwift.List<Reference>()
 
-	public dynamic var activity: CodeableConcept?						
-		
-		
-			public func upsert(activity: CodeableConcept?) {
-				upsert(prop: &self.activity, val: activity)
-			}
-	
-	public let agent = RealmSwift.List<ProvenanceAgent>()
-	
-	public let entity = RealmSwift.List<ProvenanceEntity>()
-	
-	public dynamic var location: Reference?						
-		
-		
-			public func upsert(location: Reference?) {
-				upsert(prop: &self.location, val: location)
-			}
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let policy = RealmSwift.List<RealmString>()
-	
-	public let reason = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var recorded: Instant?						
-		
-		
-	
-	public let signature = RealmSwift.List<Signature>()
-	
-	public let target = RealmSwift.List<Reference>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(recorded: Instant, target: [Reference]) {
+        self.init(json: nil)
+        self.recorded = recorded
+        self.target.append(objectsIn: target)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(recorded: Instant, target: [Reference]) {
-		self.init(json: nil)
-		self.recorded = recorded
-		self.target.append(objectsIn: target)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -240,37 +223,27 @@ open class ProvenanceAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceAgent" }
 	}
+    
+    public dynamic var actor: Reference?        
+    public func upsert(actor: Reference?) {
+        upsert(prop: &self.actor, val: actor)
+    }    
+    public let relatedAgent = RealmSwift.List<ProvenanceAgentRelatedAgent>()    
+    public dynamic var role: Coding?        
+    public func upsert(role: Coding?) {
+        upsert(prop: &self.role, val: role)
+    }    
+    public dynamic var userId: Identifier?        
+    public func upsert(userId: Identifier?) {
+        upsert(prop: &self.userId, val: userId)
+    }
 
-	public dynamic var actor: Reference?						
-		
-		
-			public func upsert(actor: Reference?) {
-				upsert(prop: &self.actor, val: actor)
-			}
-	
-	public let relatedAgent = RealmSwift.List<ProvenanceAgentRelatedAgent>()
-	
-	public dynamic var role: Coding?						
-		
-		
-			public func upsert(role: Coding?) {
-				upsert(prop: &self.role, val: role)
-			}
-	
-	public dynamic var userId: Identifier?						
-		
-		
-			public func upsert(userId: Identifier?) {
-				upsert(prop: &self.userId, val: userId)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(role: Coding) {
+        self.init(json: nil)
+        self.role = role
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(role: Coding) {
-		self.init(json: nil)
-		self.role = role
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -353,26 +326,21 @@ open class ProvenanceAgentRelatedAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceAgentRelatedAgent" }
 	}
+    
+    public dynamic var target: String?        
+        
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var target: String?						
-		
-		
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(target: String, type: CodeableConcept) {
+        self.init(json: nil)
+        self.target = target
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: String, type: CodeableConcept) {
-		self.init(json: nil)
-		self.target = target
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -427,42 +395,30 @@ open class ProvenanceEntity: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceEntity" }
 	}
+    
+    public dynamic var agent: ProvenanceAgent?        
+    public func upsert(agent: ProvenanceAgent?) {
+        upsert(prop: &self.agent, val: agent)
+    }    
+    public dynamic var display: String?        
+        
+    public dynamic var reference: String?        
+        
+    public dynamic var role: String?        
+        
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var agent: ProvenanceAgent?						
-		
-		
-			public func upsert(agent: ProvenanceAgent?) {
-				upsert(prop: &self.agent, val: agent)
-			}
-	
-	public dynamic var display: String?						
-		
-		
-	
-	public dynamic var reference: String?						
-		
-		
-	
-	public dynamic var role: String?						
-		
-		
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(reference: String, role: String, type: Coding) {
+        self.init(json: nil)
+        self.reference = reference
+        self.role = role
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(reference: String, role: String, type: Coding) {
-		self.init(json: nil)
-		self.reference = reference
-		self.role = role
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

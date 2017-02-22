@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -23,94 +23,60 @@ open class DiagnosticReport: DomainResource {
 	override open class var resourceType: String {
 		get { return "DiagnosticReport" }
 	}
+    
+    public dynamic var category: CodeableConcept?        
+    public func upsert(category: CodeableConcept?) {
+        upsert(prop: &self.category, val: category)
+    }    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let codedDiagnosis = RealmSwift.List<CodeableConcept>()    
+    public dynamic var conclusion: String?        
+        
+    public dynamic var effectiveDateTime: DateTime?        
+        
+    public dynamic var effectivePeriod: Period?        
+    public func upsert(effectivePeriod: Period?) {
+        upsert(prop: &self.effectivePeriod, val: effectivePeriod)
+    }    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let image = RealmSwift.List<DiagnosticReportImage>()    
+    public let imagingStudy = RealmSwift.List<Reference>()    
+    public dynamic var issued: Instant?        
+        
+    public dynamic var performer: Reference?        
+    public func upsert(performer: Reference?) {
+        upsert(prop: &self.performer, val: performer)
+    }    
+    public let presentedForm = RealmSwift.List<Attachment>()    
+    public let request = RealmSwift.List<Reference>()    
+    public let result = RealmSwift.List<Reference>()    
+    public let specimen = RealmSwift.List<Reference>()    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }
 
-	public dynamic var category: CodeableConcept?						
-		
-		
-			public func upsert(category: CodeableConcept?) {
-				upsert(prop: &self.category, val: category)
-			}
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let codedDiagnosis = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var conclusion: String?						
-		
-		
-	
-	public dynamic var effectiveDateTime: DateTime?						
-		
-		
-	
-	public dynamic var effectivePeriod: Period?						
-		
-		
-			public func upsert(effectivePeriod: Period?) {
-				upsert(prop: &self.effectivePeriod, val: effectivePeriod)
-			}
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let image = RealmSwift.List<DiagnosticReportImage>()
-	
-	public let imagingStudy = RealmSwift.List<Reference>()
-	
-	public dynamic var issued: Instant?						
-		
-		
-	
-	public dynamic var performer: Reference?						
-		
-		
-			public func upsert(performer: Reference?) {
-				upsert(prop: &self.performer, val: performer)
-			}
-	
-	public let presentedForm = RealmSwift.List<Attachment>()
-	
-	public let request = RealmSwift.List<Reference>()
-	
-	public let result = RealmSwift.List<Reference>()
-	
-	public let specimen = RealmSwift.List<Reference>()
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept, effectiveDateTime: DateTime, effectivePeriod: Period, issued: Instant, performer: Reference, status: String, subject: Reference) {
+        self.init(json: nil)
+        self.code = code
+        self.effectiveDateTime = effectiveDateTime
+        self.effectivePeriod = effectivePeriod
+        self.issued = issued
+        self.performer = performer
+        self.status = status
+        self.subject = subject
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, effectiveDateTime: DateTime, effectivePeriod: Period, issued: Instant, performer: Reference, status: String, subject: Reference) {
-		self.init(json: nil)
-		self.code = code
-		self.effectiveDateTime = effectiveDateTime
-		self.effectivePeriod = effectivePeriod
-		self.issued = issued
-		self.performer = performer
-		self.status = status
-		self.subject = subject
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -398,25 +364,20 @@ open class DiagnosticReportImage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DiagnosticReportImage" }
 	}
+    
+    public dynamic var comment: String?        
+        
+    public dynamic var link: Reference?        
+    public func upsert(link: Reference?) {
+        upsert(prop: &self.link, val: link)
+    }
 
-	public dynamic var comment: String?						
-		
-		
-	
-	public dynamic var link: Reference?						
-		
-		
-			public func upsert(link: Reference?) {
-				upsert(prop: &self.link, val: link)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(link: Reference) {
+        self.init(json: nil)
+        self.link = link
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(link: Reference) {
-		self.init(json: nil)
-		self.link = link
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

@@ -63,19 +63,16 @@ def _expand_test_path(parts, klass):
 	if len(parts) > 1:		
 		return _expand_test_path(parts[1:], fhirclass.FHIRClass.with_name(prop.class_name))
 	
-	print("prop: " + prop.class_name)
 	if prop:		
 		if prop.is_array and requires_realm_listable_type(prop):
 			return ".value"
 		elif requires_realm_optional(prop):
-			print("checking realm optionals for:" + prop.class_name)
 			return ".value"
 
 	return ""
 
 def expand_test_path(path, klass):
 	# first get the property name for this FHIRUnitTestCase
-	print(path)	
 	return path + _expand_test_path(path.split('.'), klass)	
 
 jinja2.filters.FILTERS['expand_test_path'] = expand_test_path

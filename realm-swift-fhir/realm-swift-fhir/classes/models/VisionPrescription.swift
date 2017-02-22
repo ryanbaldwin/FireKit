@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,50 +19,31 @@ open class VisionPrescription: DomainResource {
 	override open class var resourceType: String {
 		get { return "VisionPrescription" }
 	}
-
-	public dynamic var dateWritten: DateTime?						
-		
-		
-	
-	public let dispense = RealmSwift.List<VisionPrescriptionDispense>()
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var prescriber: Reference?						
-		
-		
-			public func upsert(prescriber: Reference?) {
-				upsert(prop: &self.prescriber, val: prescriber)
-			}
-	
-	public dynamic var reasonCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(reasonCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
-			}
-	
-	public dynamic var reasonReference: Reference?						
-		
-		
-			public func upsert(reasonReference: Reference?) {
-				upsert(prop: &self.reasonReference, val: reasonReference)
-			}
-	
+    
+    public dynamic var dateWritten: DateTime?        
+        
+    public let dispense = RealmSwift.List<VisionPrescriptionDispense>()    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var prescriber: Reference?        
+    public func upsert(prescriber: Reference?) {
+        upsert(prop: &self.prescriber, val: prescriber)
+    }    
+    public dynamic var reasonCodeableConcept: CodeableConcept?        
+    public func upsert(reasonCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
+    }    
+    public dynamic var reasonReference: Reference?        
+    public func upsert(reasonReference: Reference?) {
+        upsert(prop: &self.reasonReference, val: reasonReference)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -192,78 +173,47 @@ open class VisionPrescriptionDispense: BackboneElement {
 	override open class var resourceType: String {
 		get { return "VisionPrescriptionDispense" }
 	}
+    
+    public dynamic var add: RealmDecimal?        
+        
+    public let axis = RealmOptional<Int>()    
+    public dynamic var backCurve: RealmDecimal?        
+        
+    public dynamic var base: String?        
+        
+    public dynamic var brand: String?        
+        
+    public dynamic var color: String?        
+        
+    public dynamic var cylinder: RealmDecimal?        
+        
+    public dynamic var diameter: RealmDecimal?        
+        
+    public dynamic var duration: Quantity?        
+    public func upsert(duration: Quantity?) {
+        upsert(prop: &self.duration, val: duration)
+    }    
+    public dynamic var eye: String?        
+        
+    public dynamic var notes: String?        
+        
+    public dynamic var power: RealmDecimal?        
+        
+    public dynamic var prism: RealmDecimal?        
+        
+    public dynamic var product: Coding?        
+    public func upsert(product: Coding?) {
+        upsert(prop: &self.product, val: product)
+    }    
+    public dynamic var sphere: RealmDecimal?        
+    
 
-	public dynamic var add: RealmDecimal?						
-		
-		
-	
-	public let axis = RealmOptional<Int>()
-	
-	public dynamic var backCurve: RealmDecimal?						
-		
-		
-	
-	public dynamic var base: String?						
-		
-		
-	
-	public dynamic var brand: String?						
-		
-		
-	
-	public dynamic var color: String?						
-		
-		
-	
-	public dynamic var cylinder: RealmDecimal?						
-		
-		
-	
-	public dynamic var diameter: RealmDecimal?						
-		
-		
-	
-	public dynamic var duration: Quantity?						
-		
-		
-			public func upsert(duration: Quantity?) {
-				upsert(prop: &self.duration, val: duration)
-			}
-	
-	public dynamic var eye: String?						
-		
-		
-	
-	public dynamic var notes: String?						
-		
-		
-	
-	public dynamic var power: RealmDecimal?						
-		
-		
-	
-	public dynamic var prism: RealmDecimal?						
-		
-		
-	
-	public dynamic var product: Coding?						
-		
-		
-			public func upsert(product: Coding?) {
-				upsert(prop: &self.product, val: product)
-			}
-	
-	public dynamic var sphere: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(product: Coding) {
+        self.init(json: nil)
+        self.product = product
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(product: Coding) {
-		self.init(json: nil)
-		self.product = product
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

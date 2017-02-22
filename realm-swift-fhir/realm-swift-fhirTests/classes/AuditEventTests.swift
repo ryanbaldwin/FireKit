@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent1(copy!.asJSON())            
+			try runAuditEvent1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -59,7 +62,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }
@@ -138,7 +140,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent2(copy!.asJSON())            
+			try runAuditEvent2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -161,7 +166,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }
@@ -240,7 +244,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent3(copy!.asJSON())            
+			try runAuditEvent3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -263,7 +270,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }
@@ -367,7 +373,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent4(copy!.asJSON())            
+			try runAuditEvent4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -390,7 +399,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }
@@ -486,7 +494,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent5(copy!.asJSON())            
+			try runAuditEvent5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -509,7 +520,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }
@@ -593,7 +603,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent6(copy!.asJSON())            
+			try runAuditEvent6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -616,7 +629,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }
@@ -700,7 +712,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent7(copy!.asJSON())            
+			try runAuditEvent7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -723,7 +738,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }
@@ -851,7 +865,10 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			try runAuditEvent8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.AuditEvent
 			XCTAssertNotNil(copy)
-			try runAuditEvent8(copy!.asJSON())            
+			try runAuditEvent8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAuditEvent8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
@@ -874,7 +891,6 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test AuditEvent's PKs, but threw: \(error)")
         }

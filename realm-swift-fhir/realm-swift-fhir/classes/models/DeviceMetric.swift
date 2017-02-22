@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,72 +19,47 @@ open class DeviceMetric: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceMetric" }
 	}
+    
+    public let calibration = RealmSwift.List<DeviceMetricCalibration>()    
+    public dynamic var category: String?        
+        
+    public dynamic var color: String?        
+        
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var measurementPeriod: Timing?        
+    public func upsert(measurementPeriod: Timing?) {
+        upsert(prop: &self.measurementPeriod, val: measurementPeriod)
+    }    
+    public dynamic var operationalStatus: String?        
+        
+    public dynamic var parent: Reference?        
+    public func upsert(parent: Reference?) {
+        upsert(prop: &self.parent, val: parent)
+    }    
+    public dynamic var source: Reference?        
+    public func upsert(source: Reference?) {
+        upsert(prop: &self.source, val: source)
+    }    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }    
+    public dynamic var unit: CodeableConcept?        
+    public func upsert(unit: CodeableConcept?) {
+        upsert(prop: &self.unit, val: unit)
+    }
 
-	public let calibration = RealmSwift.List<DeviceMetricCalibration>()
-	
-	public dynamic var category: String?						
-		
-		
-	
-	public dynamic var color: String?						
-		
-		
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var measurementPeriod: Timing?						
-		
-		
-			public func upsert(measurementPeriod: Timing?) {
-				upsert(prop: &self.measurementPeriod, val: measurementPeriod)
-			}
-	
-	public dynamic var operationalStatus: String?						
-		
-		
-	
-	public dynamic var parent: Reference?						
-		
-		
-			public func upsert(parent: Reference?) {
-				upsert(prop: &self.parent, val: parent)
-			}
-	
-	public dynamic var source: Reference?						
-		
-		
-			public func upsert(source: Reference?) {
-				upsert(prop: &self.source, val: source)
-			}
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
-	public dynamic var unit: CodeableConcept?						
-		
-		
-			public func upsert(unit: CodeableConcept?) {
-				upsert(prop: &self.unit, val: unit)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(category: String, identifier: Identifier, type: CodeableConcept) {
+        self.init(json: nil)
+        self.category = category
+        self.identifier = identifier
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(category: String, identifier: Identifier, type: CodeableConcept) {
-		self.init(json: nil)
-		self.category = category
-		self.identifier = identifier
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -241,19 +216,13 @@ open class DeviceMetricCalibration: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DeviceMetricCalibration" }
 	}
-
-	public dynamic var state: String?						
-		
-		
-	
-	public dynamic var time: Instant?						
-		
-		
-	
-	public dynamic var type: String?						
-		
-		
-	
+    
+    public dynamic var state: String?        
+        
+    public dynamic var time: Instant?        
+        
+    public dynamic var type: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,66 +20,38 @@ open class Patient: DomainResource {
 	override open class var resourceType: String {
 		get { return "Patient" }
 	}
-
-	public let active = RealmOptional<Bool>()
-	
-	public let address = RealmSwift.List<Address>()
-	
-	public dynamic var animal: PatientAnimal?						
-		
-		
-			public func upsert(animal: PatientAnimal?) {
-				upsert(prop: &self.animal, val: animal)
-			}
-	
-	public dynamic var birthDate: FHIRDate?						
-		
-		
-	
-	public let careProvider = RealmSwift.List<Reference>()
-	
-	public let communication = RealmSwift.List<PatientCommunication>()
-	
-	public let contact = RealmSwift.List<PatientContact>()
-	
-	public let deceasedBoolean = RealmOptional<Bool>()
-	
-	public dynamic var deceasedDateTime: DateTime?						
-		
-		
-	
-	public dynamic var gender: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let link = RealmSwift.List<PatientLink>()
-	
-	public dynamic var managingOrganization: Reference?						
-		
-		
-			public func upsert(managingOrganization: Reference?) {
-				upsert(prop: &self.managingOrganization, val: managingOrganization)
-			}
-	
-	public dynamic var maritalStatus: CodeableConcept?						
-		
-		
-			public func upsert(maritalStatus: CodeableConcept?) {
-				upsert(prop: &self.maritalStatus, val: maritalStatus)
-			}
-	
-	public let multipleBirthBoolean = RealmOptional<Bool>()
-	
-	public let multipleBirthInteger = RealmOptional<Int>()
-	
-	public let name = RealmSwift.List<HumanName>()
-	
-	public let photo = RealmSwift.List<Attachment>()
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public let active = RealmOptional<Bool>()    
+    public let address = RealmSwift.List<Address>()    
+    public dynamic var animal: PatientAnimal?        
+    public func upsert(animal: PatientAnimal?) {
+        upsert(prop: &self.animal, val: animal)
+    }    
+    public dynamic var birthDate: FHIRDate?        
+        
+    public let careProvider = RealmSwift.List<Reference>()    
+    public let communication = RealmSwift.List<PatientCommunication>()    
+    public let contact = RealmSwift.List<PatientContact>()    
+    public let deceasedBoolean = RealmOptional<Bool>()    
+    public dynamic var deceasedDateTime: DateTime?        
+        
+    public dynamic var gender: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let link = RealmSwift.List<PatientLink>()    
+    public dynamic var managingOrganization: Reference?        
+    public func upsert(managingOrganization: Reference?) {
+        upsert(prop: &self.managingOrganization, val: managingOrganization)
+    }    
+    public dynamic var maritalStatus: CodeableConcept?        
+    public func upsert(maritalStatus: CodeableConcept?) {
+        upsert(prop: &self.maritalStatus, val: maritalStatus)
+    }    
+    public let multipleBirthBoolean = RealmOptional<Bool>()    
+    public let multipleBirthInteger = RealmOptional<Int>()    
+    public let name = RealmSwift.List<HumanName>()    
+    public let photo = RealmSwift.List<Attachment>()    
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -362,35 +334,26 @@ open class PatientAnimal: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientAnimal" }
 	}
+    
+    public dynamic var breed: CodeableConcept?        
+    public func upsert(breed: CodeableConcept?) {
+        upsert(prop: &self.breed, val: breed)
+    }    
+    public dynamic var genderStatus: CodeableConcept?        
+    public func upsert(genderStatus: CodeableConcept?) {
+        upsert(prop: &self.genderStatus, val: genderStatus)
+    }    
+    public dynamic var species: CodeableConcept?        
+    public func upsert(species: CodeableConcept?) {
+        upsert(prop: &self.species, val: species)
+    }
 
-	public dynamic var breed: CodeableConcept?						
-		
-		
-			public func upsert(breed: CodeableConcept?) {
-				upsert(prop: &self.breed, val: breed)
-			}
-	
-	public dynamic var genderStatus: CodeableConcept?						
-		
-		
-			public func upsert(genderStatus: CodeableConcept?) {
-				upsert(prop: &self.genderStatus, val: genderStatus)
-			}
-	
-	public dynamic var species: CodeableConcept?						
-		
-		
-			public func upsert(species: CodeableConcept?) {
-				upsert(prop: &self.species, val: species)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(species: CodeableConcept) {
+        self.init(json: nil)
+        self.species = species
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(species: CodeableConcept) {
-		self.init(json: nil)
-		self.species = species
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -456,23 +419,19 @@ open class PatientCommunication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientCommunication" }
 	}
+    
+    public dynamic var language: CodeableConcept?        
+    public func upsert(language: CodeableConcept?) {
+        upsert(prop: &self.language, val: language)
+    }    
+    public let preferred = RealmOptional<Bool>()
 
-	public dynamic var language: CodeableConcept?						
-		
-		
-			public func upsert(language: CodeableConcept?) {
-				upsert(prop: &self.language, val: language)
-			}
-	
-	public let preferred = RealmOptional<Bool>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(language: CodeableConcept) {
+        self.init(json: nil)
+        self.language = language
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(language: CodeableConcept) {
-		self.init(json: nil)
-		self.language = language
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -524,43 +483,27 @@ open class PatientContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientContact" }
 	}
-
-	public dynamic var address: Address?						
-		
-		
-			public func upsert(address: Address?) {
-				upsert(prop: &self.address, val: address)
-			}
-	
-	public dynamic var gender: String?						
-		
-		
-	
-	public dynamic var name: HumanName?						
-		
-		
-			public func upsert(name: HumanName?) {
-				upsert(prop: &self.name, val: name)
-			}
-	
-	public dynamic var organization: Reference?						
-		
-		
-			public func upsert(organization: Reference?) {
-				upsert(prop: &self.organization, val: organization)
-			}
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let relationship = RealmSwift.List<CodeableConcept>()
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var address: Address?        
+    public func upsert(address: Address?) {
+        upsert(prop: &self.address, val: address)
+    }    
+    public dynamic var gender: String?        
+        
+    public dynamic var name: HumanName?        
+    public func upsert(name: HumanName?) {
+        upsert(prop: &self.name, val: name)
+    }    
+    public dynamic var organization: Reference?        
+    public func upsert(organization: Reference?) {
+        upsert(prop: &self.organization, val: organization)
+    }    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let relationship = RealmSwift.List<CodeableConcept>()    
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -678,26 +621,21 @@ open class PatientLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PatientLink" }
 	}
+    
+    public dynamic var other: Reference?        
+    public func upsert(other: Reference?) {
+        upsert(prop: &self.other, val: other)
+    }    
+    public dynamic var type: String?        
+    
 
-	public dynamic var other: Reference?						
-		
-		
-			public func upsert(other: Reference?) {
-				upsert(prop: &self.other, val: other)
-			}
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(other: Reference, type: String) {
+        self.init(json: nil)
+        self.other = other
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(other: Reference, type: String) {
-		self.init(json: nil)
-		self.other = other
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

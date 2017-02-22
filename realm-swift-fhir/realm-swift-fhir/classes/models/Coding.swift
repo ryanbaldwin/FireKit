@@ -2,7 +2,7 @@
 //  Coding.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coding) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coding) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,25 +17,16 @@ open class Coding: Element {
 	override open class var resourceType: String {
 		get { return "Coding" }
 	}
-
-	public dynamic var code: String?						
-		
-		
-	
-	public dynamic var display: String?						
-		
-		
-	
-	public dynamic var system: String?						
-		
-		
-	
-	public let userSelected = RealmOptional<Bool>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    
+    public dynamic var code: String?        
+        
+    public dynamic var display: String?        
+        
+    public dynamic var system: String?        
+        
+    public let userSelected = RealmOptional<Bool>()    
+    public dynamic var version: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

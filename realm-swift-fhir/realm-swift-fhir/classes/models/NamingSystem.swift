@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,70 +20,45 @@ open class NamingSystem: DomainResource {
 	override open class var resourceType: String {
 		get { return "NamingSystem" }
 	}
+    
+    public let contact = RealmSwift.List<NamingSystemContact>()    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var kind: String?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var publisher: String?        
+        
+    public dynamic var replacedBy: Reference?        
+    public func upsert(replacedBy: Reference?) {
+        upsert(prop: &self.replacedBy, val: replacedBy)
+    }    
+    public dynamic var responsible: String?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }    
+    public let uniqueId = RealmSwift.List<NamingSystemUniqueId>()    
+    public dynamic var usage: String?        
+        
+    public let useContext = RealmSwift.List<CodeableConcept>()
 
-	public let contact = RealmSwift.List<NamingSystemContact>()
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var kind: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var replacedBy: Reference?						
-		
-		
-			public func upsert(replacedBy: Reference?) {
-				upsert(prop: &self.replacedBy, val: replacedBy)
-			}
-	
-	public dynamic var responsible: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
-	public let uniqueId = RealmSwift.List<NamingSystemUniqueId>()
-	
-	public dynamic var usage: String?						
-		
-		
-	
-	public let useContext = RealmSwift.List<CodeableConcept>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(date: DateTime, kind: String, name: String, status: String, uniqueId: [NamingSystemUniqueId]) {
+        self.init(json: nil)
+        self.date = date
+        self.kind = kind
+        self.name = name
+        self.status = status
+        self.uniqueId.append(objectsIn: uniqueId)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime, kind: String, name: String, status: String, uniqueId: [NamingSystemUniqueId]) {
-		self.init(json: nil)
-		self.date = date
-		self.kind = kind
-		self.name = name
-		self.status = status
-		self.uniqueId.append(objectsIn: uniqueId)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -290,13 +265,10 @@ open class NamingSystemContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NamingSystemContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -351,32 +323,24 @@ open class NamingSystemUniqueId: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NamingSystemUniqueId" }
 	}
+    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let preferred = RealmOptional<Bool>()    
+    public dynamic var type: String?        
+        
+    public dynamic var value: String?        
+    
 
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let preferred = RealmOptional<Bool>()
-	
-	public dynamic var type: String?						
-		
-		
-	
-	public dynamic var value: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: String, val: String) {
+        self.init(json: nil)
+        self.type = type
+        self.value = val
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, val: String) {
-		self.init(json: nil)
-		self.type = type
-		self.value = val
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

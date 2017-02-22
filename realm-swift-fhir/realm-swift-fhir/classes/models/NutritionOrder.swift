@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,68 +19,44 @@ open class NutritionOrder: DomainResource {
 	override open class var resourceType: String {
 		get { return "NutritionOrder" }
 	}
+    
+    public let allergyIntolerance = RealmSwift.List<Reference>()    
+    public dynamic var dateTime: DateTime?        
+        
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public dynamic var enteralFormula: NutritionOrderEnteralFormula?        
+    public func upsert(enteralFormula: NutritionOrderEnteralFormula?) {
+        upsert(prop: &self.enteralFormula, val: enteralFormula)
+    }    
+    public let excludeFoodModifier = RealmSwift.List<CodeableConcept>()    
+    public let foodPreferenceModifier = RealmSwift.List<CodeableConcept>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var oralDiet: NutritionOrderOralDiet?        
+    public func upsert(oralDiet: NutritionOrderOralDiet?) {
+        upsert(prop: &self.oralDiet, val: oralDiet)
+    }    
+    public dynamic var orderer: Reference?        
+    public func upsert(orderer: Reference?) {
+        upsert(prop: &self.orderer, val: orderer)
+    }    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var status: String?        
+        
+    public let supplement = RealmSwift.List<NutritionOrderSupplement>()
 
-	public let allergyIntolerance = RealmSwift.List<Reference>()
-	
-	public dynamic var dateTime: DateTime?						
-		
-		
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public dynamic var enteralFormula: NutritionOrderEnteralFormula?						
-		
-		
-			public func upsert(enteralFormula: NutritionOrderEnteralFormula?) {
-				upsert(prop: &self.enteralFormula, val: enteralFormula)
-			}
-	
-	public let excludeFoodModifier = RealmSwift.List<CodeableConcept>()
-	
-	public let foodPreferenceModifier = RealmSwift.List<CodeableConcept>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var oralDiet: NutritionOrderOralDiet?						
-		
-		
-			public func upsert(oralDiet: NutritionOrderOralDiet?) {
-				upsert(prop: &self.oralDiet, val: oralDiet)
-			}
-	
-	public dynamic var orderer: Reference?						
-		
-		
-			public func upsert(orderer: Reference?) {
-				upsert(prop: &self.orderer, val: orderer)
-			}
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let supplement = RealmSwift.List<NutritionOrderSupplement>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(dateTime: DateTime, patient: Reference) {
+        self.init(json: nil)
+        self.dateTime = dateTime
+        self.patient = patient
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(dateTime: DateTime, patient: Reference) {
-		self.init(json: nil)
-		self.dateTime = dateTime
-		self.patient = patient
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -273,56 +249,34 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderEnteralFormula" }
 	}
-
-	public dynamic var additiveProductName: String?						
-		
-		
-	
-	public dynamic var additiveType: CodeableConcept?						
-		
-		
-			public func upsert(additiveType: CodeableConcept?) {
-				upsert(prop: &self.additiveType, val: additiveType)
-			}
-	
-	public let administration = RealmSwift.List<NutritionOrderEnteralFormulaAdministration>()
-	
-	public dynamic var administrationInstruction: String?						
-		
-		
-	
-	public dynamic var baseFormulaProductName: String?						
-		
-		
-	
-	public dynamic var baseFormulaType: CodeableConcept?						
-		
-		
-			public func upsert(baseFormulaType: CodeableConcept?) {
-				upsert(prop: &self.baseFormulaType, val: baseFormulaType)
-			}
-	
-	public dynamic var caloricDensity: Quantity?						
-		
-		
-			public func upsert(caloricDensity: Quantity?) {
-				upsert(prop: &self.caloricDensity, val: caloricDensity)
-			}
-	
-	public dynamic var maxVolumeToDeliver: Quantity?						
-		
-		
-			public func upsert(maxVolumeToDeliver: Quantity?) {
-				upsert(prop: &self.maxVolumeToDeliver, val: maxVolumeToDeliver)
-			}
-	
-	public dynamic var routeofAdministration: CodeableConcept?						
-		
-		
-			public func upsert(routeofAdministration: CodeableConcept?) {
-				upsert(prop: &self.routeofAdministration, val: routeofAdministration)
-			}
-	
+    
+    public dynamic var additiveProductName: String?        
+        
+    public dynamic var additiveType: CodeableConcept?        
+    public func upsert(additiveType: CodeableConcept?) {
+        upsert(prop: &self.additiveType, val: additiveType)
+    }    
+    public let administration = RealmSwift.List<NutritionOrderEnteralFormulaAdministration>()    
+    public dynamic var administrationInstruction: String?        
+        
+    public dynamic var baseFormulaProductName: String?        
+        
+    public dynamic var baseFormulaType: CodeableConcept?        
+    public func upsert(baseFormulaType: CodeableConcept?) {
+        upsert(prop: &self.baseFormulaType, val: baseFormulaType)
+    }    
+    public dynamic var caloricDensity: Quantity?        
+    public func upsert(caloricDensity: Quantity?) {
+        upsert(prop: &self.caloricDensity, val: caloricDensity)
+    }    
+    public dynamic var maxVolumeToDeliver: Quantity?        
+    public func upsert(maxVolumeToDeliver: Quantity?) {
+        upsert(prop: &self.maxVolumeToDeliver, val: maxVolumeToDeliver)
+    }    
+    public dynamic var routeofAdministration: CodeableConcept?        
+    public func upsert(routeofAdministration: CodeableConcept?) {
+        upsert(prop: &self.routeofAdministration, val: routeofAdministration)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -463,35 +417,23 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderEnteralFormulaAdministration" }
 	}
-
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
-	public dynamic var rateQuantity: Quantity?						
-		
-		
-			public func upsert(rateQuantity: Quantity?) {
-				upsert(prop: &self.rateQuantity, val: rateQuantity)
-			}
-	
-	public dynamic var rateRatio: Ratio?						
-		
-		
-			public func upsert(rateRatio: Ratio?) {
-				upsert(prop: &self.rateRatio, val: rateRatio)
-			}
-	
-	public dynamic var schedule: Timing?						
-		
-		
-			public func upsert(schedule: Timing?) {
-				upsert(prop: &self.schedule, val: schedule)
-			}
-	
+    
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }    
+    public dynamic var rateQuantity: Quantity?        
+    public func upsert(rateQuantity: Quantity?) {
+        upsert(prop: &self.rateQuantity, val: rateQuantity)
+    }    
+    public dynamic var rateRatio: Ratio?        
+    public func upsert(rateRatio: Ratio?) {
+        upsert(prop: &self.rateRatio, val: rateRatio)
+    }    
+    public dynamic var schedule: Timing?        
+    public func upsert(schedule: Timing?) {
+        upsert(prop: &self.schedule, val: schedule)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -567,21 +509,14 @@ open class NutritionOrderOralDiet: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderOralDiet" }
 	}
-
-	public let fluidConsistencyType = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var instruction: String?						
-		
-		
-	
-	public let nutrient = RealmSwift.List<NutritionOrderOralDietNutrient>()
-	
-	public let schedule = RealmSwift.List<Timing>()
-	
-	public let texture = RealmSwift.List<NutritionOrderOralDietTexture>()
-	
-	public let type = RealmSwift.List<CodeableConcept>()
-	
+    
+    public let fluidConsistencyType = RealmSwift.List<CodeableConcept>()    
+    public dynamic var instruction: String?        
+        
+    public let nutrient = RealmSwift.List<NutritionOrderOralDietNutrient>()    
+    public let schedule = RealmSwift.List<Timing>()    
+    public let texture = RealmSwift.List<NutritionOrderOralDietTexture>()    
+    public let type = RealmSwift.List<CodeableConcept>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -696,21 +631,15 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderOralDietNutrient" }
 	}
-
-	public dynamic var amount: Quantity?						
-		
-		
-			public func upsert(amount: Quantity?) {
-				upsert(prop: &self.amount, val: amount)
-			}
-	
-	public dynamic var modifier: CodeableConcept?						
-		
-		
-			public func upsert(modifier: CodeableConcept?) {
-				upsert(prop: &self.modifier, val: modifier)
-			}
-	
+    
+    public dynamic var amount: Quantity?        
+    public func upsert(amount: Quantity?) {
+        upsert(prop: &self.amount, val: amount)
+    }    
+    public dynamic var modifier: CodeableConcept?        
+    public func upsert(modifier: CodeableConcept?) {
+        upsert(prop: &self.modifier, val: modifier)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -763,21 +692,15 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderOralDietTexture" }
 	}
-
-	public dynamic var foodType: CodeableConcept?						
-		
-		
-			public func upsert(foodType: CodeableConcept?) {
-				upsert(prop: &self.foodType, val: foodType)
-			}
-	
-	public dynamic var modifier: CodeableConcept?						
-		
-		
-			public func upsert(modifier: CodeableConcept?) {
-				upsert(prop: &self.modifier, val: modifier)
-			}
-	
+    
+    public dynamic var foodType: CodeableConcept?        
+    public func upsert(foodType: CodeableConcept?) {
+        upsert(prop: &self.foodType, val: foodType)
+    }    
+    public dynamic var modifier: CodeableConcept?        
+    public func upsert(modifier: CodeableConcept?) {
+        upsert(prop: &self.modifier, val: modifier)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -829,31 +752,20 @@ open class NutritionOrderSupplement: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderSupplement" }
 	}
-
-	public dynamic var instruction: String?						
-		
-		
-	
-	public dynamic var productName: String?						
-		
-		
-	
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
-	public let schedule = RealmSwift.List<Timing>()
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var instruction: String?        
+        
+    public dynamic var productName: String?        
+        
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }    
+    public let schedule = RealmSwift.List<Timing>()    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,82 +20,51 @@ open class AllergyIntolerance: DomainResource {
 	override open class var resourceType: String {
 		get { return "AllergyIntolerance" }
 	}
+    
+    public dynamic var category: String?        
+        
+    public dynamic var criticality: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var lastOccurence: DateTime?        
+        
+    public dynamic var note: Annotation?        
+    public func upsert(note: Annotation?) {
+        upsert(prop: &self.note, val: note)
+    }    
+    public dynamic var onset: DateTime?        
+        
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public let reaction = RealmSwift.List<AllergyIntoleranceReaction>()    
+    public dynamic var recordedDate: DateTime?        
+        
+    public dynamic var recorder: Reference?        
+    public func upsert(recorder: Reference?) {
+        upsert(prop: &self.recorder, val: recorder)
+    }    
+    public dynamic var reporter: Reference?        
+    public func upsert(reporter: Reference?) {
+        upsert(prop: &self.reporter, val: reporter)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var substance: CodeableConcept?        
+    public func upsert(substance: CodeableConcept?) {
+        upsert(prop: &self.substance, val: substance)
+    }    
+    public dynamic var type: String?        
+    
 
-	public dynamic var category: String?						
-		
-		
-	
-	public dynamic var criticality: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var lastOccurence: DateTime?						
-		
-		
-	
-	public dynamic var note: Annotation?						
-		
-		
-			public func upsert(note: Annotation?) {
-				upsert(prop: &self.note, val: note)
-			}
-	
-	public dynamic var onset: DateTime?						
-		
-		
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public let reaction = RealmSwift.List<AllergyIntoleranceReaction>()
-	
-	public dynamic var recordedDate: DateTime?						
-		
-		
-	
-	public dynamic var recorder: Reference?						
-		
-		
-			public func upsert(recorder: Reference?) {
-				upsert(prop: &self.recorder, val: recorder)
-			}
-	
-	public dynamic var reporter: Reference?						
-		
-		
-			public func upsert(reporter: Reference?) {
-				upsert(prop: &self.reporter, val: reporter)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var substance: CodeableConcept?						
-		
-		
-			public func upsert(substance: CodeableConcept?) {
-				upsert(prop: &self.substance, val: substance)
-			}
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference, substance: CodeableConcept) {
+        self.init(json: nil)
+        self.patient = patient
+        self.substance = substance
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, substance: CodeableConcept) {
-		self.init(json: nil)
-		self.patient = patient
-		self.substance = substance
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -302,53 +271,35 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AllergyIntoleranceReaction" }
 	}
+    
+    public dynamic var certainty: String?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var exposureRoute: CodeableConcept?        
+    public func upsert(exposureRoute: CodeableConcept?) {
+        upsert(prop: &self.exposureRoute, val: exposureRoute)
+    }    
+    public let manifestation = RealmSwift.List<CodeableConcept>()    
+    public dynamic var note: Annotation?        
+    public func upsert(note: Annotation?) {
+        upsert(prop: &self.note, val: note)
+    }    
+    public dynamic var onset: DateTime?        
+        
+    public dynamic var severity: String?        
+        
+    public dynamic var substance: CodeableConcept?        
+    public func upsert(substance: CodeableConcept?) {
+        upsert(prop: &self.substance, val: substance)
+    }
 
-	public dynamic var certainty: String?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var exposureRoute: CodeableConcept?						
-		
-		
-			public func upsert(exposureRoute: CodeableConcept?) {
-				upsert(prop: &self.exposureRoute, val: exposureRoute)
-			}
-	
-	public let manifestation = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var note: Annotation?						
-		
-		
-			public func upsert(note: Annotation?) {
-				upsert(prop: &self.note, val: note)
-			}
-	
-	public dynamic var onset: DateTime?						
-		
-		
-	
-	public dynamic var severity: String?						
-		
-		
-	
-	public dynamic var substance: CodeableConcept?						
-		
-		
-			public func upsert(substance: CodeableConcept?) {
-				upsert(prop: &self.substance, val: substance)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(manifestation: [CodeableConcept]) {
+        self.init(json: nil)
+        self.manifestation.append(objectsIn: manifestation)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(manifestation: [CodeableConcept]) {
-		self.init(json: nil)
-		self.manifestation.append(objectsIn: manifestation)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,94 +20,58 @@ open class ReferralRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "ReferralRequest" }
 	}
+    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var dateSent: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public dynamic var fulfillmentTime: Period?        
+    public func upsert(fulfillmentTime: Period?) {
+        upsert(prop: &self.fulfillmentTime, val: fulfillmentTime)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var priority: CodeableConcept?        
+    public func upsert(priority: CodeableConcept?) {
+        upsert(prop: &self.priority, val: priority)
+    }    
+    public dynamic var reason: CodeableConcept?        
+    public func upsert(reason: CodeableConcept?) {
+        upsert(prop: &self.reason, val: reason)
+    }    
+    public let recipient = RealmSwift.List<Reference>()    
+    public dynamic var requester: Reference?        
+    public func upsert(requester: Reference?) {
+        upsert(prop: &self.requester, val: requester)
+    }    
+    public let serviceRequested = RealmSwift.List<CodeableConcept>()    
+    public dynamic var specialty: CodeableConcept?        
+    public func upsert(specialty: CodeableConcept?) {
+        upsert(prop: &self.specialty, val: specialty)
+    }    
+    public dynamic var status: String?        
+        
+    public let supportingInformation = RealmSwift.List<Reference>()    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var dateSent: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public dynamic var fulfillmentTime: Period?						
-		
-		
-			public func upsert(fulfillmentTime: Period?) {
-				upsert(prop: &self.fulfillmentTime, val: fulfillmentTime)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var priority: CodeableConcept?						
-		
-		
-			public func upsert(priority: CodeableConcept?) {
-				upsert(prop: &self.priority, val: priority)
-			}
-	
-	public dynamic var reason: CodeableConcept?						
-		
-		
-			public func upsert(reason: CodeableConcept?) {
-				upsert(prop: &self.reason, val: reason)
-			}
-	
-	public let recipient = RealmSwift.List<Reference>()
-	
-	public dynamic var requester: Reference?						
-		
-		
-			public func upsert(requester: Reference?) {
-				upsert(prop: &self.requester, val: requester)
-			}
-	
-	public let serviceRequested = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var specialty: CodeableConcept?						
-		
-		
-			public func upsert(specialty: CodeableConcept?) {
-				upsert(prop: &self.specialty, val: specialty)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let supportingInformation = RealmSwift.List<Reference>()
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(status: String) {
+        self.init(json: nil)
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
-		self.init(json: nil)
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

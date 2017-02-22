@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,75 +20,47 @@ open class ImplementationGuide: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImplementationGuide" }
 	}
+    
+    public let binary = RealmSwift.List<RealmString>()    
+    public let contact = RealmSwift.List<ImplementationGuideContact>()    
+    public dynamic var copyright: String?        
+        
+    public dynamic var date: DateTime?        
+        
+    public let dependency = RealmSwift.List<ImplementationGuideDependency>()    
+    public dynamic var description_fhir: String?        
+        
+    public let experimental = RealmOptional<Bool>()    
+    public dynamic var fhirVersion: String?        
+        
+    public let global = RealmSwift.List<ImplementationGuideGlobal>()    
+    public dynamic var name: String?        
+        
+    public let package = RealmSwift.List<ImplementationGuidePackage>()    
+    public dynamic var page: ImplementationGuidePage?        
+    public func upsert(page: ImplementationGuidePage?) {
+        upsert(prop: &self.page, val: page)
+    }    
+    public dynamic var publisher: String?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var url: String?        
+        
+    public let useContext = RealmSwift.List<CodeableConcept>()    
+    public dynamic var version: String?        
+    
 
-	public let binary = RealmSwift.List<RealmString>()
-	
-	public let contact = RealmSwift.List<ImplementationGuideContact>()
-	
-	public dynamic var copyright: String?						
-		
-		
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public let dependency = RealmSwift.List<ImplementationGuideDependency>()
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public dynamic var fhirVersion: String?						
-		
-		
-	
-	public let global = RealmSwift.List<ImplementationGuideGlobal>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public let package = RealmSwift.List<ImplementationGuidePackage>()
-	
-	public dynamic var page: ImplementationGuidePage?						
-		
-		
-			public func upsert(page: ImplementationGuidePage?) {
-				upsert(prop: &self.page, val: page)
-			}
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public let useContext = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(name: String, package: [ImplementationGuidePackage], page: ImplementationGuidePage, status: String, url: String) {
+        self.init(json: nil)
+        self.name = name
+        self.package.append(objectsIn: package)
+        self.page = page
+        self.status = status
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, package: [ImplementationGuidePackage], page: ImplementationGuidePage, status: String, url: String) {
-		self.init(json: nil)
-		self.name = name
-		self.package.append(objectsIn: package)
-		self.page = page
-		self.status = status
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -349,13 +321,10 @@ open class ImplementationGuideContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuideContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -411,23 +380,19 @@ open class ImplementationGuideDependency: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuideDependency" }
 	}
+    
+    public dynamic var type: String?        
+        
+    public dynamic var uri: String?        
+    
 
-	public dynamic var type: String?						
-		
-		
-	
-	public dynamic var uri: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: String, uri: String) {
+        self.init(json: nil)
+        self.type = type
+        self.uri = uri
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, uri: String) {
-		self.init(json: nil)
-		self.type = type
-		self.uri = uri
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -484,26 +449,21 @@ open class ImplementationGuideGlobal: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuideGlobal" }
 	}
+    
+    public dynamic var profile: Reference?        
+    public func upsert(profile: Reference?) {
+        upsert(prop: &self.profile, val: profile)
+    }    
+    public dynamic var type: String?        
+    
 
-	public dynamic var profile: Reference?						
-		
-		
-			public func upsert(profile: Reference?) {
-				upsert(prop: &self.profile, val: profile)
-			}
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(profile: Reference, type: String) {
+        self.init(json: nil)
+        self.profile = profile
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(profile: Reference, type: String) {
-		self.init(json: nil)
-		self.profile = profile
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -560,25 +520,20 @@ open class ImplementationGuidePackage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuidePackage" }
 	}
+    
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var name: String?        
+        
+    public let resource = RealmSwift.List<ImplementationGuidePackageResource>()
 
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public let resource = RealmSwift.List<ImplementationGuidePackageResource>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(name: String, resource: [ImplementationGuidePackageResource]) {
+        self.init(json: nil)
+        self.name = name
+        self.resource.append(objectsIn: resource)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, resource: [ImplementationGuidePackageResource]) {
-		self.init(json: nil)
-		self.name = name
-		self.resource.append(objectsIn: resource)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -652,50 +607,34 @@ open class ImplementationGuidePackageResource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuidePackageResource" }
 	}
+    
+    public dynamic var acronym: String?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var exampleFor: Reference?        
+    public func upsert(exampleFor: Reference?) {
+        upsert(prop: &self.exampleFor, val: exampleFor)
+    }    
+    public dynamic var name: String?        
+        
+    public dynamic var purpose: String?        
+        
+    public dynamic var sourceReference: Reference?        
+    public func upsert(sourceReference: Reference?) {
+        upsert(prop: &self.sourceReference, val: sourceReference)
+    }    
+    public dynamic var sourceUri: String?        
+    
 
-	public dynamic var acronym: String?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var exampleFor: Reference?						
-		
-		
-			public func upsert(exampleFor: Reference?) {
-				upsert(prop: &self.exampleFor, val: exampleFor)
-			}
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var purpose: String?						
-		
-		
-	
-	public dynamic var sourceReference: Reference?						
-		
-		
-			public func upsert(sourceReference: Reference?) {
-				upsert(prop: &self.sourceReference, val: sourceReference)
-			}
-	
-	public dynamic var sourceUri: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(purpose: String, sourceReference: Reference, sourceUri: String) {
+        self.init(json: nil)
+        self.purpose = purpose
+        self.sourceReference = sourceReference
+        self.sourceUri = sourceUri
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(purpose: String, sourceReference: Reference, sourceUri: String) {
-		self.init(json: nil)
-		self.purpose = purpose
-		self.sourceReference = sourceReference
-		self.sourceUri = sourceUri
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -814,38 +753,27 @@ open class ImplementationGuidePage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImplementationGuidePage" }
 	}
+    
+    public dynamic var format: String?        
+        
+    public dynamic var kind: String?        
+        
+    public dynamic var name: String?        
+        
+    public let package = RealmSwift.List<RealmString>()    
+    public let page = RealmSwift.List<ImplementationGuidePage>()    
+    public dynamic var source: String?        
+        
+    public let type = RealmSwift.List<RealmString>()
 
-	public dynamic var format: String?						
-		
-		
-	
-	public dynamic var kind: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public let package = RealmSwift.List<RealmString>()
-	
-	public let page = RealmSwift.List<ImplementationGuidePage>()
-	
-	public dynamic var source: String?						
-		
-		
-	
-	public let type = RealmSwift.List<RealmString>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(kind: String, name: String, source: String) {
+        self.init(json: nil)
+        self.kind = kind
+        self.name = name
+        self.source = source
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(kind: String, name: String, source: String) {
-		self.init(json: nil)
-		self.kind = kind
-		self.name = name
-		self.source = source
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

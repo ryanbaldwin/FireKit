@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,44 +20,30 @@ open class Questionnaire: DomainResource {
 	override open class var resourceType: String {
 		get { return "Questionnaire" }
 	}
+    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var group: QuestionnaireGroup?        
+    public func upsert(group: QuestionnaireGroup?) {
+        upsert(prop: &self.group, val: group)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var publisher: String?        
+        
+    public dynamic var status: String?        
+        
+    public let subjectType = RealmSwift.List<RealmString>()    
+    public let telecom = RealmSwift.List<ContactPoint>()    
+    public dynamic var version: String?        
+    
 
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var group: QuestionnaireGroup?						
-		
-		
-			public func upsert(group: QuestionnaireGroup?) {
-				upsert(prop: &self.group, val: group)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let subjectType = RealmSwift.List<RealmString>()
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(group: QuestionnaireGroup, status: String) {
+        self.init(json: nil)
+        self.group = group
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(group: QuestionnaireGroup, status: String) {
-		self.init(json: nil)
-		self.group = group
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -192,29 +178,18 @@ open class QuestionnaireGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireGroup" }
 	}
-
-	public let concept = RealmSwift.List<Coding>()
-	
-	public let group = RealmSwift.List<QuestionnaireGroup>()
-	
-	public dynamic var linkId: String?						
-		
-		
-	
-	public let question = RealmSwift.List<QuestionnaireGroupQuestion>()
-	
-	public let repeats = RealmOptional<Bool>()
-	
-	public let required = RealmOptional<Bool>()
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var title: String?						
-		
-		
-	
+    
+    public let concept = RealmSwift.List<Coding>()    
+    public let group = RealmSwift.List<QuestionnaireGroup>()    
+    public dynamic var linkId: String?        
+        
+    public let question = RealmSwift.List<QuestionnaireGroupQuestion>()    
+    public let repeats = RealmOptional<Bool>()    
+    public let required = RealmOptional<Bool>()    
+    public dynamic var text: String?        
+        
+    public dynamic var title: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -347,36 +322,22 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireGroupQuestion" }
 	}
-
-	public let concept = RealmSwift.List<Coding>()
-	
-	public let group = RealmSwift.List<QuestionnaireGroup>()
-	
-	public dynamic var linkId: String?						
-		
-		
-	
-	public let option = RealmSwift.List<Coding>()
-	
-	public dynamic var options: Reference?						
-		
-		
-			public func upsert(options: Reference?) {
-				upsert(prop: &self.options, val: options)
-			}
-	
-	public let repeats = RealmOptional<Bool>()
-	
-	public let required = RealmOptional<Bool>()
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var type: String?						
-		
-		
-	
+    
+    public let concept = RealmSwift.List<Coding>()    
+    public let group = RealmSwift.List<QuestionnaireGroup>()    
+    public dynamic var linkId: String?        
+        
+    public let option = RealmSwift.List<Coding>()    
+    public dynamic var options: Reference?        
+    public func upsert(options: Reference?) {
+        upsert(prop: &self.options, val: options)
+    }    
+    public let repeats = RealmOptional<Bool>()    
+    public let required = RealmOptional<Bool>()    
+    public dynamic var text: String?        
+        
+    public dynamic var type: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

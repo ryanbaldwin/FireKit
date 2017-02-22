@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,23 +19,19 @@ open class Binary: Resource {
 	override open class var resourceType: String {
 		get { return "Binary" }
 	}
+    
+    public dynamic var content: Base64Binary?        
+        
+    public dynamic var contentType: String?        
+    
 
-	public dynamic var content: Base64Binary?						
-		
-		
-	
-	public dynamic var contentType: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(content: Base64Binary, contentType: String) {
+        self.init(json: nil)
+        self.content = content
+        self.contentType = contentType
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Base64Binary, contentType: String) {
-		self.init(json: nil)
-		self.content = content
-		self.contentType = contentType
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

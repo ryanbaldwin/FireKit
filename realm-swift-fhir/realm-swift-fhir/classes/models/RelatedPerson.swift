@@ -2,7 +2,7 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,58 +20,38 @@ open class RelatedPerson: DomainResource {
 	override open class var resourceType: String {
 		get { return "RelatedPerson" }
 	}
+    
+    public let address = RealmSwift.List<Address>()    
+    public dynamic var birthDate: FHIRDate?        
+        
+    public dynamic var gender: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var name: HumanName?        
+    public func upsert(name: HumanName?) {
+        upsert(prop: &self.name, val: name)
+    }    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let photo = RealmSwift.List<Attachment>()    
+    public dynamic var relationship: CodeableConcept?        
+    public func upsert(relationship: CodeableConcept?) {
+        upsert(prop: &self.relationship, val: relationship)
+    }    
+    public let telecom = RealmSwift.List<ContactPoint>()
 
-	public let address = RealmSwift.List<Address>()
-	
-	public dynamic var birthDate: FHIRDate?						
-		
-		
-	
-	public dynamic var gender: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var name: HumanName?						
-		
-		
-			public func upsert(name: HumanName?) {
-				upsert(prop: &self.name, val: name)
-			}
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let photo = RealmSwift.List<Attachment>()
-	
-	public dynamic var relationship: CodeableConcept?						
-		
-		
-			public func upsert(relationship: CodeableConcept?) {
-				upsert(prop: &self.relationship, val: relationship)
-			}
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference) {
+        self.init(json: nil)
+        self.patient = patient
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference) {
-		self.init(json: nil)
-		self.patient = patient
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

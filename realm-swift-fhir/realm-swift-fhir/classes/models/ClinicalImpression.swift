@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -23,88 +23,54 @@ open class ClinicalImpression: DomainResource {
 	override open class var resourceType: String {
 		get { return "ClinicalImpression" }
 	}
+    
+    public let action = RealmSwift.List<Reference>()    
+    public dynamic var assessor: Reference?        
+    public func upsert(assessor: Reference?) {
+        upsert(prop: &self.assessor, val: assessor)
+    }    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let finding = RealmSwift.List<ClinicalImpressionFinding>()    
+    public let investigations = RealmSwift.List<ClinicalImpressionInvestigations>()    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public let plan = RealmSwift.List<Reference>()    
+    public dynamic var previous: Reference?        
+    public func upsert(previous: Reference?) {
+        upsert(prop: &self.previous, val: previous)
+    }    
+    public let problem = RealmSwift.List<Reference>()    
+    public dynamic var prognosis: String?        
+        
+    public dynamic var protocol_fhir: String?        
+        
+    public let resolved = RealmSwift.List<CodeableConcept>()    
+    public let ruledOut = RealmSwift.List<ClinicalImpressionRuledOut>()    
+    public dynamic var status: String?        
+        
+    public dynamic var summary: String?        
+        
+    public dynamic var triggerCodeableConcept: CodeableConcept?        
+    public func upsert(triggerCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.triggerCodeableConcept, val: triggerCodeableConcept)
+    }    
+    public dynamic var triggerReference: Reference?        
+    public func upsert(triggerReference: Reference?) {
+        upsert(prop: &self.triggerReference, val: triggerReference)
+    }
 
-	public let action = RealmSwift.List<Reference>()
-	
-	public dynamic var assessor: Reference?						
-		
-		
-			public func upsert(assessor: Reference?) {
-				upsert(prop: &self.assessor, val: assessor)
-			}
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let finding = RealmSwift.List<ClinicalImpressionFinding>()
-	
-	public let investigations = RealmSwift.List<ClinicalImpressionInvestigations>()
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public let plan = RealmSwift.List<Reference>()
-	
-	public dynamic var previous: Reference?						
-		
-		
-			public func upsert(previous: Reference?) {
-				upsert(prop: &self.previous, val: previous)
-			}
-	
-	public let problem = RealmSwift.List<Reference>()
-	
-	public dynamic var prognosis: String?						
-		
-		
-	
-	public dynamic var protocol_fhir: String?						
-		
-		
-	
-	public let resolved = RealmSwift.List<CodeableConcept>()
-	
-	public let ruledOut = RealmSwift.List<ClinicalImpressionRuledOut>()
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var summary: String?						
-		
-		
-	
-	public dynamic var triggerCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(triggerCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.triggerCodeableConcept, val: triggerCodeableConcept)
-			}
-	
-	public dynamic var triggerReference: Reference?						
-		
-		
-			public func upsert(triggerReference: Reference?) {
-				upsert(prop: &self.triggerReference, val: triggerReference)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference, status: String) {
+        self.init(json: nil)
+        self.patient = patient
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, status: String) {
-		self.init(json: nil)
-		self.patient = patient
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -374,25 +340,20 @@ open class ClinicalImpressionFinding: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClinicalImpressionFinding" }
 	}
+    
+    public dynamic var cause: String?        
+        
+    public dynamic var item: CodeableConcept?        
+    public func upsert(item: CodeableConcept?) {
+        upsert(prop: &self.item, val: item)
+    }
 
-	public dynamic var cause: String?						
-		
-		
-	
-	public dynamic var item: CodeableConcept?						
-		
-		
-			public func upsert(item: CodeableConcept?) {
-				upsert(prop: &self.item, val: item)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(item: CodeableConcept) {
+        self.init(json: nil)
+        self.item = item
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: CodeableConcept) {
-		self.init(json: nil)
-		self.item = item
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -448,23 +409,19 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClinicalImpressionInvestigations" }
 	}
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let item = RealmSwift.List<Reference>()
 
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let item = RealmSwift.List<Reference>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -519,25 +476,20 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClinicalImpressionRuledOut" }
 	}
+    
+    public dynamic var item: CodeableConcept?        
+    public func upsert(item: CodeableConcept?) {
+        upsert(prop: &self.item, val: item)
+    }    
+    public dynamic var reason: String?        
+    
 
-	public dynamic var item: CodeableConcept?						
-		
-		
-			public func upsert(item: CodeableConcept?) {
-				upsert(prop: &self.item, val: item)
-			}
-	
-	public dynamic var reason: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(item: CodeableConcept) {
+        self.init(json: nil)
+        self.item = item
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(item: CodeableConcept) {
-		self.init(json: nil)
-		self.item = item
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

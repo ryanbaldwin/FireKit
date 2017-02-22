@@ -2,7 +2,7 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,73 +19,44 @@ open class SupplyDelivery: DomainResource {
 	override open class var resourceType: String {
 		get { return "SupplyDelivery" }
 	}
-
-	public dynamic var destination: Reference?						
-		
-		
-			public func upsert(destination: Reference?) {
-				upsert(prop: &self.destination, val: destination)
-			}
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var quantity: Quantity?						
-		
-		
-			public func upsert(quantity: Quantity?) {
-				upsert(prop: &self.quantity, val: quantity)
-			}
-	
-	public let receiver = RealmSwift.List<Reference>()
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var suppliedItem: Reference?						
-		
-		
-			public func upsert(suppliedItem: Reference?) {
-				upsert(prop: &self.suppliedItem, val: suppliedItem)
-			}
-	
-	public dynamic var supplier: Reference?						
-		
-		
-			public func upsert(supplier: Reference?) {
-				upsert(prop: &self.supplier, val: supplier)
-			}
-	
-	public dynamic var time: DateTime?						
-		
-		
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
-	public dynamic var whenPrepared: Period?						
-		
-		
-			public func upsert(whenPrepared: Period?) {
-				upsert(prop: &self.whenPrepared, val: whenPrepared)
-			}
-	
+    
+    public dynamic var destination: Reference?        
+    public func upsert(destination: Reference?) {
+        upsert(prop: &self.destination, val: destination)
+    }    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var quantity: Quantity?        
+    public func upsert(quantity: Quantity?) {
+        upsert(prop: &self.quantity, val: quantity)
+    }    
+    public let receiver = RealmSwift.List<Reference>()    
+    public dynamic var status: String?        
+        
+    public dynamic var suppliedItem: Reference?        
+    public func upsert(suppliedItem: Reference?) {
+        upsert(prop: &self.suppliedItem, val: suppliedItem)
+    }    
+    public dynamic var supplier: Reference?        
+    public func upsert(supplier: Reference?) {
+        upsert(prop: &self.supplier, val: supplier)
+    }    
+    public dynamic var time: DateTime?        
+        
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }    
+    public dynamic var whenPrepared: Period?        
+    public func upsert(whenPrepared: Period?) {
+        upsert(prop: &self.whenPrepared, val: whenPrepared)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

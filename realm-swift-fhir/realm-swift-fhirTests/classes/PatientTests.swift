@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient1(copy!.asJSON())            
+			try runPatient1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -59,7 +62,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -138,7 +140,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient2(copy!.asJSON())            
+			try runPatient2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -161,7 +166,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -250,7 +254,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient3(copy!.asJSON())            
+			try runPatient3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -273,7 +280,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -349,7 +355,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient4(copy!.asJSON())            
+			try runPatient4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -372,7 +381,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -446,7 +454,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient5(copy!.asJSON())            
+			try runPatient5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -469,7 +480,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -543,7 +553,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient6(copy!.asJSON())            
+			try runPatient6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -566,7 +579,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -641,7 +653,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient7(copy!.asJSON())            
+			try runPatient7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -664,7 +679,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -767,7 +781,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient8(copy!.asJSON())            
+			try runPatient8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -790,7 +807,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -902,7 +918,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient9(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient9(copy!.asJSON())            
+			try runPatient9(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient9(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -925,7 +944,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }
@@ -990,7 +1008,10 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 			try runPatient10(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Patient
 			XCTAssertNotNil(copy)
-			try runPatient10(copy!.asJSON())            
+			try runPatient10(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runPatient10(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
@@ -1013,7 +1034,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Patient's PKs, but threw: \(error)")
         }

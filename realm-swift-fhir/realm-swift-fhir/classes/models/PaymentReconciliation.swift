@@ -2,7 +2,7 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,95 +19,59 @@ open class PaymentReconciliation: DomainResource {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliation" }
 	}
+    
+    public dynamic var created: DateTime?        
+        
+    public let detail = RealmSwift.List<PaymentReconciliationDetail>()    
+    public dynamic var disposition: String?        
+        
+    public dynamic var form: Coding?        
+    public func upsert(form: Coding?) {
+        upsert(prop: &self.form, val: form)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let note = RealmSwift.List<PaymentReconciliationNote>()    
+    public dynamic var organization: Reference?        
+    public func upsert(organization: Reference?) {
+        upsert(prop: &self.organization, val: organization)
+    }    
+    public dynamic var originalRuleset: Coding?        
+    public func upsert(originalRuleset: Coding?) {
+        upsert(prop: &self.originalRuleset, val: originalRuleset)
+    }    
+    public dynamic var outcome: String?        
+        
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public dynamic var request: Reference?        
+    public func upsert(request: Reference?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var requestOrganization: Reference?        
+    public func upsert(requestOrganization: Reference?) {
+        upsert(prop: &self.requestOrganization, val: requestOrganization)
+    }    
+    public dynamic var requestProvider: Reference?        
+    public func upsert(requestProvider: Reference?) {
+        upsert(prop: &self.requestProvider, val: requestProvider)
+    }    
+    public dynamic var ruleset: Coding?        
+    public func upsert(ruleset: Coding?) {
+        upsert(prop: &self.ruleset, val: ruleset)
+    }    
+    public dynamic var total: Quantity?        
+    public func upsert(total: Quantity?) {
+        upsert(prop: &self.total, val: total)
+    }
 
-	public dynamic var created: DateTime?						
-		
-		
-	
-	public let detail = RealmSwift.List<PaymentReconciliationDetail>()
-	
-	public dynamic var disposition: String?						
-		
-		
-	
-	public dynamic var form: Coding?						
-		
-		
-			public func upsert(form: Coding?) {
-				upsert(prop: &self.form, val: form)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let note = RealmSwift.List<PaymentReconciliationNote>()
-	
-	public dynamic var organization: Reference?						
-		
-		
-			public func upsert(organization: Reference?) {
-				upsert(prop: &self.organization, val: organization)
-			}
-	
-	public dynamic var originalRuleset: Coding?						
-		
-		
-			public func upsert(originalRuleset: Coding?) {
-				upsert(prop: &self.originalRuleset, val: originalRuleset)
-			}
-	
-	public dynamic var outcome: String?						
-		
-		
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public dynamic var request: Reference?						
-		
-		
-			public func upsert(request: Reference?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var requestOrganization: Reference?						
-		
-		
-			public func upsert(requestOrganization: Reference?) {
-				upsert(prop: &self.requestOrganization, val: requestOrganization)
-			}
-	
-	public dynamic var requestProvider: Reference?						
-		
-		
-			public func upsert(requestProvider: Reference?) {
-				upsert(prop: &self.requestProvider, val: requestProvider)
-			}
-	
-	public dynamic var ruleset: Coding?						
-		
-		
-			public func upsert(ruleset: Coding?) {
-				upsert(prop: &self.ruleset, val: ruleset)
-			}
-	
-	public dynamic var total: Quantity?						
-		
-		
-			public func upsert(total: Quantity?) {
-				upsert(prop: &self.total, val: total)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(total: Quantity) {
+        self.init(json: nil)
+        self.total = total
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(total: Quantity) {
-		self.init(json: nil)
-		self.total = total
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -326,60 +290,40 @@ open class PaymentReconciliationDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliationDetail" }
 	}
+    
+    public dynamic var amount: Quantity?        
+    public func upsert(amount: Quantity?) {
+        upsert(prop: &self.amount, val: amount)
+    }    
+    public dynamic var date: FHIRDate?        
+        
+    public dynamic var payee: Reference?        
+    public func upsert(payee: Reference?) {
+        upsert(prop: &self.payee, val: payee)
+    }    
+    public dynamic var request: Reference?        
+    public func upsert(request: Reference?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var responce: Reference?        
+    public func upsert(responce: Reference?) {
+        upsert(prop: &self.responce, val: responce)
+    }    
+    public dynamic var submitter: Reference?        
+    public func upsert(submitter: Reference?) {
+        upsert(prop: &self.submitter, val: submitter)
+    }    
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var amount: Quantity?						
-		
-		
-			public func upsert(amount: Quantity?) {
-				upsert(prop: &self.amount, val: amount)
-			}
-	
-	public dynamic var date: FHIRDate?						
-		
-		
-	
-	public dynamic var payee: Reference?						
-		
-		
-			public func upsert(payee: Reference?) {
-				upsert(prop: &self.payee, val: payee)
-			}
-	
-	public dynamic var request: Reference?						
-		
-		
-			public func upsert(request: Reference?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var responce: Reference?						
-		
-		
-			public func upsert(responce: Reference?) {
-				upsert(prop: &self.responce, val: responce)
-			}
-	
-	public dynamic var submitter: Reference?						
-		
-		
-			public func upsert(submitter: Reference?) {
-				upsert(prop: &self.submitter, val: submitter)
-			}
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: Coding) {
+        self.init(json: nil)
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: Coding) {
-		self.init(json: nil)
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -493,18 +437,13 @@ open class PaymentReconciliationNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliationNote" }
 	}
-
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var text: String?        
+        
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

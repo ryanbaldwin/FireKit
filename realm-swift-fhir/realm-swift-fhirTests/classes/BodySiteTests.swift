@@ -2,7 +2,7 @@
 //  BodySiteTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class BodySiteTests: XCTestCase, RealmPersistenceTesting {
 			try runBodySite1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.BodySite
 			XCTAssertNotNil(copy)
-			try runBodySite1(copy!.asJSON())            
+			try runBodySite1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runBodySite1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw")
@@ -59,7 +62,6 @@ class BodySiteTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test BodySite's PKs, but threw: \(error)")
         }

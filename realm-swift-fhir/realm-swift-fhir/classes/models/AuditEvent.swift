@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,34 +20,26 @@ open class AuditEvent: DomainResource {
 	override open class var resourceType: String {
 		get { return "AuditEvent" }
 	}
+    
+    public dynamic var event: AuditEventEvent?        
+    public func upsert(event: AuditEventEvent?) {
+        upsert(prop: &self.event, val: event)
+    }    
+    public let object = RealmSwift.List<AuditEventObject>()    
+    public let participant = RealmSwift.List<AuditEventParticipant>()    
+    public dynamic var source: AuditEventSource?        
+    public func upsert(source: AuditEventSource?) {
+        upsert(prop: &self.source, val: source)
+    }
 
-	public dynamic var event: AuditEventEvent?						
-		
-		
-			public func upsert(event: AuditEventEvent?) {
-				upsert(prop: &self.event, val: event)
-			}
-	
-	public let object = RealmSwift.List<AuditEventObject>()
-	
-	public let participant = RealmSwift.List<AuditEventParticipant>()
-	
-	public dynamic var source: AuditEventSource?						
-		
-		
-			public func upsert(source: AuditEventSource?) {
-				upsert(prop: &self.source, val: source)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(event: AuditEventEvent, participant: [AuditEventParticipant], source: AuditEventSource) {
+        self.init(json: nil)
+        self.event = event
+        self.participant.append(objectsIn: participant)
+        self.source = source
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: AuditEventEvent, participant: [AuditEventParticipant], source: AuditEventSource) {
-		self.init(json: nil)
-		self.event = event
-		self.participant.append(objectsIn: participant)
-		self.source = source
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -137,42 +129,29 @@ open class AuditEventEvent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventEvent" }
 	}
+    
+    public dynamic var action: String?        
+        
+    public dynamic var dateTime: Instant?        
+        
+    public dynamic var outcome: String?        
+        
+    public dynamic var outcomeDesc: String?        
+        
+    public let purposeOfEvent = RealmSwift.List<Coding>()    
+    public let subtype = RealmSwift.List<Coding>()    
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var action: String?						
-		
-		
-	
-	public dynamic var dateTime: Instant?						
-		
-		
-	
-	public dynamic var outcome: String?						
-		
-		
-	
-	public dynamic var outcomeDesc: String?						
-		
-		
-	
-	public let purposeOfEvent = RealmSwift.List<Coding>()
-	
-	public let subtype = RealmSwift.List<Coding>()
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(dateTime: Instant, type: Coding) {
+        self.init(json: nil)
+        self.dateTime = dateTime
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(dateTime: Instant, type: Coding) {
-		self.init(json: nil)
-		self.dateTime = dateTime
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -293,58 +272,35 @@ open class AuditEventObject: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventObject" }
 	}
-
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let detail = RealmSwift.List<AuditEventObjectDetail>()
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var lifecycle: Coding?						
-		
-		
-			public func upsert(lifecycle: Coding?) {
-				upsert(prop: &self.lifecycle, val: lifecycle)
-			}
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var query: Base64Binary?						
-		
-		
-	
-	public dynamic var reference: Reference?						
-		
-		
-			public func upsert(reference: Reference?) {
-				upsert(prop: &self.reference, val: reference)
-			}
-	
-	public dynamic var role: Coding?						
-		
-		
-			public func upsert(role: Coding?) {
-				upsert(prop: &self.role, val: role)
-			}
-	
-	public let securityLabel = RealmSwift.List<Coding>()
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var description_fhir: String?        
+        
+    public let detail = RealmSwift.List<AuditEventObjectDetail>()    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var lifecycle: Coding?        
+    public func upsert(lifecycle: Coding?) {
+        upsert(prop: &self.lifecycle, val: lifecycle)
+    }    
+    public dynamic var name: String?        
+        
+    public dynamic var query: Base64Binary?        
+        
+    public dynamic var reference: Reference?        
+    public func upsert(reference: Reference?) {
+        upsert(prop: &self.reference, val: reference)
+    }    
+    public dynamic var role: Coding?        
+    public func upsert(role: Coding?) {
+        upsert(prop: &self.role, val: role)
+    }    
+    public let securityLabel = RealmSwift.List<Coding>()    
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -496,23 +452,19 @@ open class AuditEventObjectDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventObjectDetail" }
 	}
+    
+    public dynamic var type: String?        
+        
+    public dynamic var value: Base64Binary?        
+    
 
-	public dynamic var type: String?						
-		
-		
-	
-	public dynamic var value: Base64Binary?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: String, val: Base64Binary) {
+        self.init(json: nil)
+        self.type = type
+        self.value = val
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String, val: Base64Binary) {
-		self.init(json: nil)
-		self.type = type
-		self.value = val
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -567,65 +519,42 @@ open class AuditEventParticipant: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventParticipant" }
 	}
+    
+    public dynamic var altId: String?        
+        
+    public dynamic var location: Reference?        
+    public func upsert(location: Reference?) {
+        upsert(prop: &self.location, val: location)
+    }    
+    public dynamic var media: Coding?        
+    public func upsert(media: Coding?) {
+        upsert(prop: &self.media, val: media)
+    }    
+    public dynamic var name: String?        
+        
+    public dynamic var network: AuditEventParticipantNetwork?        
+    public func upsert(network: AuditEventParticipantNetwork?) {
+        upsert(prop: &self.network, val: network)
+    }    
+    public let policy = RealmSwift.List<RealmString>()    
+    public let purposeOfUse = RealmSwift.List<Coding>()    
+    public dynamic var reference: Reference?        
+    public func upsert(reference: Reference?) {
+        upsert(prop: &self.reference, val: reference)
+    }    
+    public let requestor = RealmOptional<Bool>()    
+    public let role = RealmSwift.List<CodeableConcept>()    
+    public dynamic var userId: Identifier?        
+    public func upsert(userId: Identifier?) {
+        upsert(prop: &self.userId, val: userId)
+    }
 
-	public dynamic var altId: String?						
-		
-		
-	
-	public dynamic var location: Reference?						
-		
-		
-			public func upsert(location: Reference?) {
-				upsert(prop: &self.location, val: location)
-			}
-	
-	public dynamic var media: Coding?						
-		
-		
-			public func upsert(media: Coding?) {
-				upsert(prop: &self.media, val: media)
-			}
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var network: AuditEventParticipantNetwork?						
-		
-		
-			public func upsert(network: AuditEventParticipantNetwork?) {
-				upsert(prop: &self.network, val: network)
-			}
-	
-	public let policy = RealmSwift.List<RealmString>()
-	
-	public let purposeOfUse = RealmSwift.List<Coding>()
-	
-	public dynamic var reference: Reference?						
-		
-		
-			public func upsert(reference: Reference?) {
-				upsert(prop: &self.reference, val: reference)
-			}
-	
-	public let requestor = RealmOptional<Bool>()
-	
-	public let role = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var userId: Identifier?						
-		
-		
-			public func upsert(userId: Identifier?) {
-				upsert(prop: &self.userId, val: userId)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(requestor: Bool) {
+        self.init(json: nil)
+        self.requestor.value = requestor
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(requestor: Bool) {
-		self.init(json: nil)
-		self.requestor.value = requestor
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -793,15 +722,11 @@ open class AuditEventParticipantNetwork: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventParticipantNetwork" }
 	}
-
-	public dynamic var address: String?						
-		
-		
-	
-	public dynamic var type: String?						
-		
-		
-	
+    
+    public dynamic var address: String?        
+        
+    public dynamic var type: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -851,27 +776,21 @@ open class AuditEventSource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AuditEventSource" }
 	}
+    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var site: String?        
+        
+    public let type = RealmSwift.List<Coding>()
 
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var site: String?						
-		
-		
-	
-	public let type = RealmSwift.List<Coding>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(identifier: Identifier) {
+        self.init(json: nil)
+        self.identifier = identifier
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier) {
-		self.init(json: nil)
-		self.identifier = identifier
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

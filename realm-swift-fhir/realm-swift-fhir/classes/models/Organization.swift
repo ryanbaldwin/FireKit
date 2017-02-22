@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,35 +21,22 @@ open class Organization: DomainResource {
 	override open class var resourceType: String {
 		get { return "Organization" }
 	}
-
-	public let active = RealmOptional<Bool>()
-	
-	public let address = RealmSwift.List<Address>()
-	
-	public let contact = RealmSwift.List<OrganizationContact>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var partOf: Reference?						
-		
-		
-			public func upsert(partOf: Reference?) {
-				upsert(prop: &self.partOf, val: partOf)
-			}
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public let active = RealmOptional<Bool>()    
+    public let address = RealmSwift.List<Address>()    
+    public let contact = RealmSwift.List<OrganizationContact>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var name: String?        
+        
+    public dynamic var partOf: Reference?        
+    public func upsert(partOf: Reference?) {
+        upsert(prop: &self.partOf, val: partOf)
+    }    
+    public let telecom = RealmSwift.List<ContactPoint>()    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -183,30 +170,20 @@ open class OrganizationContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OrganizationContact" }
 	}
-
-	public dynamic var address: Address?						
-		
-		
-			public func upsert(address: Address?) {
-				upsert(prop: &self.address, val: address)
-			}
-	
-	public dynamic var name: HumanName?						
-		
-		
-			public func upsert(name: HumanName?) {
-				upsert(prop: &self.name, val: name)
-			}
-	
-	public dynamic var purpose: CodeableConcept?						
-		
-		
-			public func upsert(purpose: CodeableConcept?) {
-				upsert(prop: &self.purpose, val: purpose)
-			}
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var address: Address?        
+    public func upsert(address: Address?) {
+        upsert(prop: &self.address, val: address)
+    }    
+    public dynamic var name: HumanName?        
+    public func upsert(name: HumanName?) {
+        upsert(prop: &self.name, val: name)
+    }    
+    public dynamic var purpose: CodeableConcept?        
+    public func upsert(purpose: CodeableConcept?) {
+        upsert(prop: &self.purpose, val: purpose)
+    }    
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

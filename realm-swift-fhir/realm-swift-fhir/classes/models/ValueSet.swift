@@ -2,7 +2,7 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,92 +19,55 @@ open class ValueSet: DomainResource {
 	override open class var resourceType: String {
 		get { return "ValueSet" }
 	}
+    
+    public dynamic var codeSystem: ValueSetCodeSystem?        
+    public func upsert(codeSystem: ValueSetCodeSystem?) {
+        upsert(prop: &self.codeSystem, val: codeSystem)
+    }    
+    public dynamic var compose: ValueSetCompose?        
+    public func upsert(compose: ValueSetCompose?) {
+        upsert(prop: &self.compose, val: compose)
+    }    
+    public let contact = RealmSwift.List<ValueSetContact>()    
+    public dynamic var copyright: String?        
+        
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var expansion: ValueSetExpansion?        
+    public func upsert(expansion: ValueSetExpansion?) {
+        upsert(prop: &self.expansion, val: expansion)
+    }    
+    public let experimental = RealmOptional<Bool>()    
+    public let extensible = RealmOptional<Bool>()    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public let immutable = RealmOptional<Bool>()    
+    public dynamic var lockedDate: FHIRDate?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var publisher: String?        
+        
+    public dynamic var requirements: String?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var url: String?        
+        
+    public let useContext = RealmSwift.List<CodeableConcept>()    
+    public dynamic var version: String?        
+    
 
-	public dynamic var codeSystem: ValueSetCodeSystem?						
-		
-		
-			public func upsert(codeSystem: ValueSetCodeSystem?) {
-				upsert(prop: &self.codeSystem, val: codeSystem)
-			}
-	
-	public dynamic var compose: ValueSetCompose?						
-		
-		
-			public func upsert(compose: ValueSetCompose?) {
-				upsert(prop: &self.compose, val: compose)
-			}
-	
-	public let contact = RealmSwift.List<ValueSetContact>()
-	
-	public dynamic var copyright: String?						
-		
-		
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var expansion: ValueSetExpansion?						
-		
-		
-			public func upsert(expansion: ValueSetExpansion?) {
-				upsert(prop: &self.expansion, val: expansion)
-			}
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public let extensible = RealmOptional<Bool>()
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public let immutable = RealmOptional<Bool>()
-	
-	public dynamic var lockedDate: FHIRDate?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public let useContext = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(status: String) {
+        self.init(json: nil)
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
-		self.init(json: nil)
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -369,27 +332,21 @@ open class ValueSetCodeSystem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCodeSystem" }
 	}
+    
+    public let caseSensitive = RealmOptional<Bool>()    
+    public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()    
+    public dynamic var system: String?        
+        
+    public dynamic var version: String?        
+    
 
-	public let caseSensitive = RealmOptional<Bool>()
-	
-	public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
-	
-	public dynamic var system: String?						
-		
-		
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(concept: [ValueSetCodeSystemConcept], system: String) {
+        self.init(json: nil)
+        self.concept.append(objectsIn: concept)
+        self.system = system
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(concept: [ValueSetCodeSystemConcept], system: String) {
-		self.init(json: nil)
-		self.concept.append(objectsIn: concept)
-		self.system = system
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -474,32 +431,23 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCodeSystemConcept" }
 	}
+    
+    public let abstract = RealmOptional<Bool>()    
+    public dynamic var code: String?        
+        
+    public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()    
+    public dynamic var definition: String?        
+        
+    public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()    
+    public dynamic var display: String?        
+    
 
-	public let abstract = RealmOptional<Bool>()
-	
-	public dynamic var code: String?						
-		
-		
-	
-	public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
-	
-	public dynamic var definition: String?						
-		
-		
-	
-	public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
-	
-	public dynamic var display: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: String) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -608,29 +556,22 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCodeSystemConceptDesignation" }
 	}
+    
+    public dynamic var language: String?        
+        
+    public dynamic var use: Coding?        
+    public func upsert(use: Coding?) {
+        upsert(prop: &self.use, val: use)
+    }    
+    public dynamic var value: String?        
+    
 
-	public dynamic var language: String?						
-		
-		
-	
-	public dynamic var use: Coding?						
-		
-		
-			public func upsert(use: Coding?) {
-				upsert(prop: &self.use, val: use)
-			}
-	
-	public dynamic var value: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(val: String) {
+        self.init(json: nil)
+        self.value = val
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(val: String) {
-		self.init(json: nil)
-		self.value = val
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -697,13 +638,10 @@ open class ValueSetCompose: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCompose" }
 	}
-
-	public let exclude = RealmSwift.List<ValueSetComposeInclude>()
-	
-	public let import_fhir = RealmSwift.List<RealmString>()
-	
-	public let include = RealmSwift.List<ValueSetComposeInclude>()
-	
+    
+    public let exclude = RealmSwift.List<ValueSetComposeInclude>()    
+    public let import_fhir = RealmSwift.List<RealmString>()    
+    public let include = RealmSwift.List<ValueSetComposeInclude>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -771,26 +709,20 @@ open class ValueSetComposeInclude: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeInclude" }
 	}
+    
+    public let concept = RealmSwift.List<ValueSetComposeIncludeConcept>()    
+    public let filter = RealmSwift.List<ValueSetComposeIncludeFilter>()    
+    public dynamic var system: String?        
+        
+    public dynamic var version: String?        
+    
 
-	public let concept = RealmSwift.List<ValueSetComposeIncludeConcept>()
-	
-	public let filter = RealmSwift.List<ValueSetComposeIncludeFilter>()
-	
-	public dynamic var system: String?						
-		
-		
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(system: String) {
+        self.init(json: nil)
+        self.system = system
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(system: String) {
-		self.init(json: nil)
-		self.system = system
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -874,24 +806,19 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeConcept" }
 	}
+    
+    public dynamic var code: String?        
+        
+    public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()    
+    public dynamic var display: String?        
+    
 
-	public dynamic var code: String?						
-		
-		
-	
-	public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
-	
-	public dynamic var display: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: String) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -961,28 +888,22 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeFilter" }
 	}
+    
+    public dynamic var op: String?        
+        
+    public dynamic var property: String?        
+        
+    public dynamic var value: String?        
+    
 
-	public dynamic var op: String?						
-		
-		
-	
-	public dynamic var property: String?						
-		
-		
-	
-	public dynamic var value: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(op: String, property: String, val: String) {
+        self.init(json: nil)
+        self.op = op
+        self.property = property
+        self.value = val
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(op: String, property: String, val: String) {
-		self.init(json: nil)
-		self.op = op
-		self.property = property
-		self.value = val
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1054,13 +975,10 @@ open class ValueSetContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1116,31 +1034,23 @@ open class ValueSetExpansion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansion" }
 	}
+    
+    public let contains = RealmSwift.List<ValueSetExpansionContains>()    
+    public dynamic var identifier: String?        
+        
+    public let offset = RealmOptional<Int>()    
+    public let parameter = RealmSwift.List<ValueSetExpansionParameter>()    
+    public dynamic var timestamp: DateTime?        
+        
+    public let total = RealmOptional<Int>()
 
-	public let contains = RealmSwift.List<ValueSetExpansionContains>()
-	
-	public dynamic var identifier: String?						
-		
-		
-	
-	public let offset = RealmOptional<Int>()
-	
-	public let parameter = RealmSwift.List<ValueSetExpansionParameter>()
-	
-	public dynamic var timestamp: DateTime?						
-		
-		
-	
-	public let total = RealmOptional<Int>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(identifier: String, timestamp: DateTime) {
+        self.init(json: nil)
+        self.identifier = identifier
+        self.timestamp = timestamp
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: String, timestamp: DateTime) {
-		self.init(json: nil)
-		self.identifier = identifier
-		self.timestamp = timestamp
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1251,27 +1161,17 @@ open class ValueSetExpansionContains: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansionContains" }
 	}
-
-	public let abstract = RealmOptional<Bool>()
-	
-	public dynamic var code: String?						
-		
-		
-	
-	public let contains = RealmSwift.List<ValueSetExpansionContains>()
-	
-	public dynamic var display: String?						
-		
-		
-	
-	public dynamic var system: String?						
-		
-		
-	
-	public dynamic var version: String?						
-		
-		
-	
+    
+    public let abstract = RealmOptional<Bool>()    
+    public dynamic var code: String?        
+        
+    public let contains = RealmSwift.List<ValueSetExpansionContains>()    
+    public dynamic var display: String?        
+        
+    public dynamic var system: String?        
+        
+    public dynamic var version: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1375,38 +1275,26 @@ open class ValueSetExpansionParameter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansionParameter" }
 	}
+    
+    public dynamic var name: String?        
+        
+    public let valueBoolean = RealmOptional<Bool>()    
+    public dynamic var valueCode: String?        
+        
+    public dynamic var valueDecimal: RealmDecimal?        
+        
+    public let valueInteger = RealmOptional<Int>()    
+    public dynamic var valueString: String?        
+        
+    public dynamic var valueUri: String?        
+    
 
-	public dynamic var name: String?						
-		
-		
-	
-	public let valueBoolean = RealmOptional<Bool>()
-	
-	public dynamic var valueCode: String?						
-		
-		
-	
-	public dynamic var valueDecimal: RealmDecimal?						
-		
-		
-	
-	public let valueInteger = RealmOptional<Int>()
-	
-	public dynamic var valueString: String?						
-		
-		
-	
-	public dynamic var valueUri: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(name: String) {
+        self.init(json: nil)
+        self.name = name
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String) {
-		self.init(json: nil)
-		self.name = name
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

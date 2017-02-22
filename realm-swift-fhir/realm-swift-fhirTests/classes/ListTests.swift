@@ -2,7 +2,7 @@
 //  ListTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 			try runList1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.List
 			XCTAssertNotNil(copy)
-			try runList1(copy!.asJSON())            
+			try runList1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runList1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -59,7 +62,6 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test List's PKs, but threw: \(error)")
         }
@@ -131,7 +133,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 			try runList2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.List
 			XCTAssertNotNil(copy)
-			try runList2(copy!.asJSON())            
+			try runList2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runList2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -154,7 +159,6 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test List's PKs, but threw: \(error)")
         }
@@ -226,7 +230,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 			try runList3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.List
 			XCTAssertNotNil(copy)
-			try runList3(copy!.asJSON())            
+			try runList3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runList3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -249,7 +256,6 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test List's PKs, but threw: \(error)")
         }
@@ -320,7 +326,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 			try runList4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.List
 			XCTAssertNotNil(copy)
-			try runList4(copy!.asJSON())            
+			try runList4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runList4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -343,7 +352,6 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test List's PKs, but threw: \(error)")
         }
@@ -430,7 +438,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 			try runList5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.List
 			XCTAssertNotNil(copy)
-			try runList5(copy!.asJSON())            
+			try runList5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runList5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -453,7 +464,6 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test List's PKs, but threw: \(error)")
         }
@@ -536,7 +546,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 			try runList6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.List
 			XCTAssertNotNil(copy)
-			try runList6(copy!.asJSON())            
+			try runList6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runList6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -559,7 +572,6 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test List's PKs, but threw: \(error)")
         }
@@ -636,7 +648,10 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 			try runList7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.List
 			XCTAssertNotNil(copy)
-			try runList7(copy!.asJSON())            
+			try runList7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runList7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
@@ -659,7 +674,6 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test List's PKs, but threw: \(error)")
         }

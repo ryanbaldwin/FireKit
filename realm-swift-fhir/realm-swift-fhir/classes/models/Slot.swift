@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,51 +17,35 @@ open class Slot: DomainResource {
 	override open class var resourceType: String {
 		get { return "Slot" }
 	}
+    
+    public dynamic var comment: String?        
+        
+    public dynamic var end: Instant?        
+        
+    public dynamic var freeBusyType: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let overbooked = RealmOptional<Bool>()    
+    public dynamic var schedule: Reference?        
+    public func upsert(schedule: Reference?) {
+        upsert(prop: &self.schedule, val: schedule)
+    }    
+    public dynamic var start: Instant?        
+        
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var comment: String?						
-		
-		
-	
-	public dynamic var end: Instant?						
-		
-		
-	
-	public dynamic var freeBusyType: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let overbooked = RealmOptional<Bool>()
-	
-	public dynamic var schedule: Reference?						
-		
-		
-			public func upsert(schedule: Reference?) {
-				upsert(prop: &self.schedule, val: schedule)
-			}
-	
-	public dynamic var start: Instant?						
-		
-		
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(end: Instant, freeBusyType: String, schedule: Reference, start: Instant) {
+        self.init(json: nil)
+        self.end = end
+        self.freeBusyType = freeBusyType
+        self.schedule = schedule
+        self.start = start
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(end: Instant, freeBusyType: String, schedule: Reference, start: Instant) {
-		self.init(json: nil)
-		self.end = end
-		self.freeBusyType = freeBusyType
-		self.schedule = schedule
-		self.start = start
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
