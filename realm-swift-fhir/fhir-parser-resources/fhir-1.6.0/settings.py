@@ -1,6 +1,6 @@
 # These are settings for the FHIR class generator
-
-from Swift3Realm.mappings import *
+from env import *
+from mappings import *
 
 # Base URL for where to load specification data from
 specification_url = 'http://hl7.org/fhir/dstu2/'
@@ -8,17 +8,17 @@ specification_url = 'http://hl7.org/fhir/dstu2/'
 #specification_url = 'http://hl7-fhir.github.io'
 
 # Whether and where to put the generated class models
-tpl_source = ".././fhir-parser-resources/fhir-1.6.0"
+tpl_source = "."
 write_resources = True
-tpl_resource_target_ptrn = '../../realm-swift-fhir/classes/models/{}.swift'             # where to write the generated class files to, with one "{}" placeholder for the class name
+tpl_resource_target_ptrn = '../../../realm-swift-fhir/classes/models/{}.swift'             # where to write the generated class files to, with one "{}" placeholder for the class name
 
 # Whether and where to put the factory methods
 write_factory = write_resources        # required in Swift
-tpl_factory_target = '../../realm-swift-fhir/classes/models/FHIRAbstractBase+Factory.swift'
+tpl_factory_target = '../../../realm-swift-fhir/classes/models/FHIRAbstractBase+Factory.swift'
 
 # Whether and where to write unit tests
 write_unittests = True
-tpl_unittest_target_ptrn = '../../realm-swift-fhirTests/classes/{}Tests.swift'  # a pattern to determine the output files for unit tests; the one placeholder will be the class name
+tpl_unittest_target_ptrn = '../../../realm-swift-fhirTests/classes/{}Tests.swift'  # a pattern to determine the output files for unit tests; the one placeholder will be the class name
 
 
 ##
@@ -32,7 +32,7 @@ default_base = {
     'resource': 'FHIRAbstractResource',                 # for "Resource"
 }
 resource_modules_lowercase = False                      # whether all resource paths (i.e. modules) should be lowercase
-tpl_resource_source = tpl_source + '/template-resource.swift'   # the template to use as source when writing resource implementations for profiles
+tpl_resource_source = 'template-resource.swift'   # the template to use as source when writing resource implementations for profiles
 manual_profiles = [                                     # all these profiles should be copied to dirname(`tpl_resource_target_ptrn`): tuples of (path, module, profile-name-list)
     (tpl_source + '/FHIRAbstractBase.swift', None, ['FHIRAbstractBase']),
     (tpl_source + '/FHIRAbstractResource.swift', None, ['FHIRAbstractResource']),
@@ -54,7 +54,7 @@ manual_profiles = [                                     # all these profiles sho
 ]
 
 # factory methods
-tpl_factory_source = '../../fhir-parser-resources/template-elementfactory.swift'
+tpl_factory_source = tpl_source + '/template-elementfactory.swift'
 
 # search parameters
 write_searchparams = False
@@ -63,7 +63,7 @@ tpl_searchparams_source = ''
 tpl_searchparams_target = ''
 
 # unit tests
-tpl_unittest_source = '../../fhir-parser-resources/template-unittest.swift'
+tpl_unittest_source = tpl_source + '/template-unittest.swift'
 unittest_copyfiles = [
     tpl_source + '/XCTestCase+FHIR.swift',
     tpl_source + '/DateAndTimeTests.swift',

@@ -17,6 +17,5 @@ extension Resource: NSCopying {
 extension Element: NSCopying {
     public func copy(with zone: NSZone? = nil) -> Any {
         return type(of: self).init(json: self.asJSON())
-        // return FHIRAbstractBase.instantiate(from: self.asJSON(), owner: nil)
     }
 }

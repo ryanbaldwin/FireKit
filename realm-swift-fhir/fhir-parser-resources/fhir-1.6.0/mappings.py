@@ -63,12 +63,6 @@ starexpandtypes = {
 # Which class names are native to the language (or can be treated this way)
 natives = ['Bool', 'Int', 'String', 'Base64Binary', 'NSNumber', 'RealmDecimal', 'FHIRDate', 'FHIRTime', 'DateTime', 'Instant', 'RealmURL']
 
-# Which classes are primitives and don't support the RealmSwift.List<> without an Object wrapper
-primitives = ['Bool', 'Int', 'String', 'NSNumber']
-
-# which class names require to be wrapped in RealmOptional
-realm_optionals = ['Bool', 'Int', 'NSNumber']
-
 # Which classes are to be expected from JSON decoding
 jsonmap = {
     'Int': 'Int',

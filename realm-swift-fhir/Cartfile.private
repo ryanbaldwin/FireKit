@@ -1,3 +1,5 @@
 # Realm
 github "realm/realm-cocoa" == 2.4.2
-github "smart-on-fhir/fhir-parser" "FHIR-1.6.0"
+github "smart-on-fhir/fhir-parser" "70f814c"
+#github "smart-on-fhir/fhir-parser" "develop"
+#github "smart-on-fhir/fhir-parser" "FHIR-1.6.0"

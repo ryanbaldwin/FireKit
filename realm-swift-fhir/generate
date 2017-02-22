@@ -1,7 +1,20 @@
 #!/bin/bash
 set -eo pipefail
 
+echo "copying mappings..."
 cp fhir-parser-resources/fhir-1.6.0/mappings.py fhir-parser/
+
+echo "copying settings..."
 cp fhir-parser-resources/fhir-1.6.0/settings.py fhir-parser/
+
+echo "copying templates..."
+cp fhir-parser-resources/fhir-1.6.0/*.swift fhir-parser/
+#echo "copying custom Jinja2 environment configurations..."
+#cp fhir-parser-resources/fhir-1.6.0/env.py fhir-parser/
+
+echo "switching directories..."
 cd fhir-parser
+echo $(pwd)
+
+echo "generating Swift..."
 python generate.py
