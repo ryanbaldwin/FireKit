@@ -2,7 +2,7 @@
 //  FamilyMemberHistoryTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 			try runFamilyMemberHistory1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.FamilyMemberHistory
 			XCTAssertNotNil(copy)
-			try runFamilyMemberHistory1(copy!.asJSON())            
+			try runFamilyMemberHistory1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runFamilyMemberHistory1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
@@ -59,7 +62,6 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory's PKs, but threw: \(error)")
         }
@@ -131,7 +133,10 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 			try runFamilyMemberHistory2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.FamilyMemberHistory
 			XCTAssertNotNil(copy)
-			try runFamilyMemberHistory2(copy!.asJSON())            
+			try runFamilyMemberHistory2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runFamilyMemberHistory2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
@@ -154,7 +159,6 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory's PKs, but threw: \(error)")
         }

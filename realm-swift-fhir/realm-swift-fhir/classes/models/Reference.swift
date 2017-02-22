@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,15 +17,11 @@ open class Reference: Element {
 	override open class var resourceType: String {
 		get { return "Reference" }
 	}
-
-	public dynamic var display: String?						
-		
-		
-	
-	public dynamic var reference: String?						
-		
-		
-	
+    
+    public dynamic var display: String?        
+        
+    public dynamic var reference: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

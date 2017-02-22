@@ -2,7 +2,7 @@
 //  AppointmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AppointmentResponse) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,49 +17,33 @@ open class AppointmentResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "AppointmentResponse" }
 	}
+    
+    public dynamic var actor: Reference?        
+    public func upsert(actor: Reference?) {
+        upsert(prop: &self.actor, val: actor)
+    }    
+    public dynamic var appointment: Reference?        
+    public func upsert(appointment: Reference?) {
+        upsert(prop: &self.appointment, val: appointment)
+    }    
+    public dynamic var comment: String?        
+        
+    public dynamic var end: Instant?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var participantStatus: String?        
+        
+    public let participantType = RealmSwift.List<CodeableConcept>()    
+    public dynamic var start: Instant?        
+    
 
-	public dynamic var actor: Reference?						
-		
-		
-			public func upsert(actor: Reference?) {
-				upsert(prop: &self.actor, val: actor)
-			}
-	
-	public dynamic var appointment: Reference?						
-		
-		
-			public func upsert(appointment: Reference?) {
-				upsert(prop: &self.appointment, val: appointment)
-			}
-	
-	public dynamic var comment: String?						
-		
-		
-	
-	public dynamic var end: Instant?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var participantStatus: String?						
-		
-		
-	
-	public let participantType = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var start: Instant?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(appointment: Reference, participantStatus: String) {
+        self.init(json: nil)
+        self.appointment = appointment
+        self.participantStatus = participantStatus
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(appointment: Reference, participantStatus: String) {
-		self.init(json: nil)
-		self.appointment = appointment
-		self.participantStatus = participantStatus
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

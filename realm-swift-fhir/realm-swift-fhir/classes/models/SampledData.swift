@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,46 +20,32 @@ open class SampledData: Element {
 	override open class var resourceType: String {
 		get { return "SampledData" }
 	}
+    
+    public dynamic var data: String?        
+        
+    public let dimensions = RealmOptional<Int>()    
+    public dynamic var factor: RealmDecimal?        
+        
+    public dynamic var lowerLimit: RealmDecimal?        
+        
+    public dynamic var origin: Quantity?        
+    public func upsert(origin: Quantity?) {
+        upsert(prop: &self.origin, val: origin)
+    }    
+    public dynamic var period: RealmDecimal?        
+        
+    public dynamic var upperLimit: RealmDecimal?        
+    
 
-	public dynamic var data: String?						
-		
-		
-	
-	public let dimensions = RealmOptional<Int>()
-	
-	public dynamic var factor: RealmDecimal?						
-		
-		
-	
-	public dynamic var lowerLimit: RealmDecimal?						
-		
-		
-	
-	public dynamic var origin: Quantity?						
-		
-		
-			public func upsert(origin: Quantity?) {
-				upsert(prop: &self.origin, val: origin)
-			}
-	
-	public dynamic var period: RealmDecimal?						
-		
-		
-	
-	public dynamic var upperLimit: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(data: String, dimensions: Int, origin: Quantity, period: RealmDecimal) {
+        self.init(json: nil)
+        self.data = data
+        self.dimensions.value = dimensions
+        self.origin = origin
+        self.period = period
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(data: String, dimensions: Int, origin: Quantity, period: RealmDecimal) {
-		self.init(json: nil)
-		self.data = data
-		self.dimensions.value = dimensions
-		self.origin = origin
-		self.period = period
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

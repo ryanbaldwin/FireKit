@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,57 +19,37 @@ open class DiagnosticOrder: DomainResource {
 	override open class var resourceType: String {
 		get { return "DiagnosticOrder" }
 	}
+    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let event = RealmSwift.List<DiagnosticOrderEvent>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let item = RealmSwift.List<DiagnosticOrderItem>()    
+    public let note = RealmSwift.List<Annotation>()    
+    public dynamic var orderer: Reference?        
+    public func upsert(orderer: Reference?) {
+        upsert(prop: &self.orderer, val: orderer)
+    }    
+    public dynamic var priority: String?        
+        
+    public let reason = RealmSwift.List<CodeableConcept>()    
+    public let specimen = RealmSwift.List<Reference>()    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public let supportingInformation = RealmSwift.List<Reference>()
 
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let event = RealmSwift.List<DiagnosticOrderEvent>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let item = RealmSwift.List<DiagnosticOrderItem>()
-	
-	public let note = RealmSwift.List<Annotation>()
-	
-	public dynamic var orderer: Reference?						
-		
-		
-			public func upsert(orderer: Reference?) {
-				upsert(prop: &self.orderer, val: orderer)
-			}
-	
-	public dynamic var priority: String?						
-		
-		
-	
-	public let reason = RealmSwift.List<CodeableConcept>()
-	
-	public let specimen = RealmSwift.List<Reference>()
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public let supportingInformation = RealmSwift.List<Reference>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(subject: Reference) {
+        self.init(json: nil)
+        self.subject = subject
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(subject: Reference) {
-		self.init(json: nil)
-		self.subject = subject
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -265,37 +245,27 @@ open class DiagnosticOrderEvent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DiagnosticOrderEvent" }
 	}
+    
+    public dynamic var actor: Reference?        
+    public func upsert(actor: Reference?) {
+        upsert(prop: &self.actor, val: actor)
+    }    
+    public dynamic var dateTime: DateTime?        
+        
+    public dynamic var description_fhir: CodeableConcept?        
+    public func upsert(description_fhir: CodeableConcept?) {
+        upsert(prop: &self.description_fhir, val: description_fhir)
+    }    
+    public dynamic var status: String?        
+    
 
-	public dynamic var actor: Reference?						
-		
-		
-			public func upsert(actor: Reference?) {
-				upsert(prop: &self.actor, val: actor)
-			}
-	
-	public dynamic var dateTime: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: CodeableConcept?						
-		
-		
-			public func upsert(description_fhir: CodeableConcept?) {
-				upsert(prop: &self.description_fhir, val: description_fhir)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(dateTime: DateTime, status: String) {
+        self.init(json: nil)
+        self.dateTime = dateTime
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(dateTime: DateTime, status: String) {
-		self.init(json: nil)
-		self.dateTime = dateTime
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -377,36 +347,26 @@ open class DiagnosticOrderItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DiagnosticOrderItem" }
 	}
+    
+    public dynamic var bodySite: CodeableConcept?        
+    public func upsert(bodySite: CodeableConcept?) {
+        upsert(prop: &self.bodySite, val: bodySite)
+    }    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let event = RealmSwift.List<DiagnosticOrderEvent>()    
+    public let specimen = RealmSwift.List<Reference>()    
+    public dynamic var status: String?        
+    
 
-	public dynamic var bodySite: CodeableConcept?						
-		
-		
-			public func upsert(bodySite: CodeableConcept?) {
-				upsert(prop: &self.bodySite, val: bodySite)
-			}
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let event = RealmSwift.List<DiagnosticOrderEvent>()
-	
-	public let specimen = RealmSwift.List<Reference>()
-	
-	public dynamic var status: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

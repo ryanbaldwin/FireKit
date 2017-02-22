@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,91 +20,56 @@ open class ConceptMap: DomainResource {
 	override open class var resourceType: String {
 		get { return "ConceptMap" }
 	}
+    
+    public let contact = RealmSwift.List<ConceptMapContact>()    
+    public dynamic var copyright: String?        
+        
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let element = RealmSwift.List<ConceptMapElement>()    
+    public let experimental = RealmOptional<Bool>()    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var name: String?        
+        
+    public dynamic var publisher: String?        
+        
+    public dynamic var requirements: String?        
+        
+    public dynamic var sourceReference: Reference?        
+    public func upsert(sourceReference: Reference?) {
+        upsert(prop: &self.sourceReference, val: sourceReference)
+    }    
+    public dynamic var sourceUri: String?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var targetReference: Reference?        
+    public func upsert(targetReference: Reference?) {
+        upsert(prop: &self.targetReference, val: targetReference)
+    }    
+    public dynamic var targetUri: String?        
+        
+    public dynamic var url: String?        
+        
+    public let useContext = RealmSwift.List<CodeableConcept>()    
+    public dynamic var version: String?        
+    
 
-	public let contact = RealmSwift.List<ConceptMapContact>()
-	
-	public dynamic var copyright: String?						
-		
-		
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let element = RealmSwift.List<ConceptMapElement>()
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public dynamic var sourceReference: Reference?						
-		
-		
-			public func upsert(sourceReference: Reference?) {
-				upsert(prop: &self.sourceReference, val: sourceReference)
-			}
-	
-	public dynamic var sourceUri: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var targetReference: Reference?						
-		
-		
-			public func upsert(targetReference: Reference?) {
-				upsert(prop: &self.targetReference, val: targetReference)
-			}
-	
-	public dynamic var targetUri: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public let useContext = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(sourceReference: Reference, sourceUri: String, status: String, targetReference: Reference, targetUri: String) {
+        self.init(json: nil)
+        self.sourceReference = sourceReference
+        self.sourceUri = sourceUri
+        self.status = status
+        self.targetReference = targetReference
+        self.targetUri = targetUri
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sourceReference: Reference, sourceUri: String, status: String, targetReference: Reference, targetUri: String) {
-		self.init(json: nil)
-		self.sourceReference = sourceReference
-		self.sourceUri = sourceUri
-		self.status = status
-		self.targetReference = targetReference
-		self.targetUri = targetUri
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -367,13 +332,10 @@ open class ConceptMapContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -428,17 +390,12 @@ open class ConceptMapElement: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapElement" }
 	}
-
-	public dynamic var code: String?						
-		
-		
-	
-	public dynamic var codeSystem: String?						
-		
-		
-	
-	public let target = RealmSwift.List<ConceptMapElementTarget>()
-	
+    
+    public dynamic var code: String?        
+        
+    public dynamic var codeSystem: String?        
+        
+    public let target = RealmSwift.List<ConceptMapElementTarget>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -505,34 +462,24 @@ open class ConceptMapElementTarget: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapElementTarget" }
 	}
+    
+    public dynamic var code: String?        
+        
+    public dynamic var codeSystem: String?        
+        
+    public dynamic var comments: String?        
+        
+    public let dependsOn = RealmSwift.List<ConceptMapElementTargetDependsOn>()    
+    public dynamic var equivalence: String?        
+        
+    public let product = RealmSwift.List<ConceptMapElementTargetDependsOn>()
 
-	public dynamic var code: String?						
-		
-		
-	
-	public dynamic var codeSystem: String?						
-		
-		
-	
-	public dynamic var comments: String?						
-		
-		
-	
-	public let dependsOn = RealmSwift.List<ConceptMapElementTargetDependsOn>()
-	
-	public dynamic var equivalence: String?						
-		
-		
-	
-	public let product = RealmSwift.List<ConceptMapElementTargetDependsOn>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(equivalence: String) {
+        self.init(json: nil)
+        self.equivalence = equivalence
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(equivalence: String) {
-		self.init(json: nil)
-		self.equivalence = equivalence
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -641,28 +588,22 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapElementTargetDependsOn" }
 	}
+    
+    public dynamic var code: String?        
+        
+    public dynamic var codeSystem: String?        
+        
+    public dynamic var element: String?        
+    
 
-	public dynamic var code: String?						
-		
-		
-	
-	public dynamic var codeSystem: String?						
-		
-		
-	
-	public dynamic var element: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: String, codeSystem: String, element: String) {
+        self.init(json: nil)
+        self.code = code
+        self.codeSystem = codeSystem
+        self.element = element
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, codeSystem: String, element: String) {
-		self.init(json: nil)
-		self.code = code
-		self.codeSystem = codeSystem
-		self.element = element
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

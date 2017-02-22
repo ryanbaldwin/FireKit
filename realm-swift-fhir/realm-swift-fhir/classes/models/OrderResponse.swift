@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,45 +17,31 @@ open class OrderResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "OrderResponse" }
 	}
+    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let fulfillment = RealmSwift.List<Reference>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var orderStatus: String?        
+        
+    public dynamic var request: Reference?        
+    public func upsert(request: Reference?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var who: Reference?        
+    public func upsert(who: Reference?) {
+        upsert(prop: &self.who, val: who)
+    }
 
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let fulfillment = RealmSwift.List<Reference>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var orderStatus: String?						
-		
-		
-	
-	public dynamic var request: Reference?						
-		
-		
-			public func upsert(request: Reference?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var who: Reference?						
-		
-		
-			public func upsert(who: Reference?) {
-				upsert(prop: &self.who, val: who)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(orderStatus: String, request: Reference) {
+        self.init(json: nil)
+        self.orderStatus = orderStatus
+        self.request = request
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(orderStatus: String, request: Reference) {
-		self.init(json: nil)
-		self.orderStatus = orderStatus
-		self.request = request
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,33 +19,24 @@ open class Annotation: Element {
 	override open class var resourceType: String {
 		get { return "Annotation" }
 	}
+    
+    public dynamic var authorReference: Reference?        
+    public func upsert(authorReference: Reference?) {
+        upsert(prop: &self.authorReference, val: authorReference)
+    }    
+    public dynamic var authorString: String?        
+        
+    public dynamic var text: String?        
+        
+    public dynamic var time: DateTime?        
+    
 
-	public dynamic var authorReference: Reference?						
-		
-		
-			public func upsert(authorReference: Reference?) {
-				upsert(prop: &self.authorReference, val: authorReference)
-			}
-	
-	public dynamic var authorString: String?						
-		
-		
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var time: DateTime?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(text: String) {
+        self.init(json: nil)
+        self.text = text
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(text: String) {
-		self.init(json: nil)
-		self.text = text
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

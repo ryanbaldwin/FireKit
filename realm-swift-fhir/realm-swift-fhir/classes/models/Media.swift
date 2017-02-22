@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -18,68 +18,44 @@ open class Media: DomainResource {
 	override open class var resourceType: String {
 		get { return "Media" }
 	}
+    
+    public dynamic var content: Attachment?        
+    public func upsert(content: Attachment?) {
+        upsert(prop: &self.content, val: content)
+    }    
+    public dynamic var deviceName: String?        
+        
+    public let duration = RealmOptional<Int>()    
+    public let frames = RealmOptional<Int>()    
+    public let height = RealmOptional<Int>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var operator_fhir: Reference?        
+    public func upsert(operator_fhir: Reference?) {
+        upsert(prop: &self.operator_fhir, val: operator_fhir)
+    }    
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var subtype: CodeableConcept?        
+    public func upsert(subtype: CodeableConcept?) {
+        upsert(prop: &self.subtype, val: subtype)
+    }    
+    public dynamic var type: String?        
+        
+    public dynamic var view: CodeableConcept?        
+    public func upsert(view: CodeableConcept?) {
+        upsert(prop: &self.view, val: view)
+    }    
+    public let width = RealmOptional<Int>()
 
-	public dynamic var content: Attachment?						
-		
-		
-			public func upsert(content: Attachment?) {
-				upsert(prop: &self.content, val: content)
-			}
-	
-	public dynamic var deviceName: String?						
-		
-		
-	
-	public let duration = RealmOptional<Int>()
-	
-	public let frames = RealmOptional<Int>()
-	
-	public let height = RealmOptional<Int>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var operator_fhir: Reference?						
-		
-		
-			public func upsert(operator_fhir: Reference?) {
-				upsert(prop: &self.operator_fhir, val: operator_fhir)
-			}
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var subtype: CodeableConcept?						
-		
-		
-			public func upsert(subtype: CodeableConcept?) {
-				upsert(prop: &self.subtype, val: subtype)
-			}
-	
-	public dynamic var type: String?						
-		
-		
-	
-	public dynamic var view: CodeableConcept?						
-		
-		
-			public func upsert(view: CodeableConcept?) {
-				upsert(prop: &self.view, val: view)
-			}
-	
-	public let width = RealmOptional<Int>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(content: Attachment, type: String) {
+        self.init(json: nil)
+        self.content = content
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: Attachment, type: String) {
-		self.init(json: nil)
-		self.content = content
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

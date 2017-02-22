@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -23,84 +23,51 @@ open class Device: DomainResource {
 	override open class var resourceType: String {
 		get { return "Device" }
 	}
+    
+    public let contact = RealmSwift.List<ContactPoint>()    
+    public dynamic var expiry: DateTime?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var location: Reference?        
+    public func upsert(location: Reference?) {
+        upsert(prop: &self.location, val: location)
+    }    
+    public dynamic var lotNumber: String?        
+        
+    public dynamic var manufactureDate: DateTime?        
+        
+    public dynamic var manufacturer: String?        
+        
+    public dynamic var model: String?        
+        
+    public let note = RealmSwift.List<Annotation>()    
+    public dynamic var owner: Reference?        
+    public func upsert(owner: Reference?) {
+        upsert(prop: &self.owner, val: owner)
+    }    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }    
+    public dynamic var udi: String?        
+        
+    public dynamic var url: String?        
+        
+    public dynamic var version: String?        
+    
 
-	public let contact = RealmSwift.List<ContactPoint>()
-	
-	public dynamic var expiry: DateTime?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var location: Reference?						
-		
-		
-			public func upsert(location: Reference?) {
-				upsert(prop: &self.location, val: location)
-			}
-	
-	public dynamic var lotNumber: String?						
-		
-		
-	
-	public dynamic var manufactureDate: DateTime?						
-		
-		
-	
-	public dynamic var manufacturer: String?						
-		
-		
-	
-	public dynamic var model: String?						
-		
-		
-	
-	public let note = RealmSwift.List<Annotation>()
-	
-	public dynamic var owner: Reference?						
-		
-		
-			public func upsert(owner: Reference?) {
-				upsert(prop: &self.owner, val: owner)
-			}
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
-	public dynamic var udi: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: CodeableConcept) {
+        self.init(json: nil)
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept) {
-		self.init(json: nil)
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -22,48 +22,33 @@ open class Subscription: DomainResource {
 	override open class var resourceType: String {
 		get { return "Subscription" }
 	}
+    
+    public dynamic var channel: SubscriptionChannel?        
+    public func upsert(channel: SubscriptionChannel?) {
+        upsert(prop: &self.channel, val: channel)
+    }    
+    public let contact = RealmSwift.List<ContactPoint>()    
+    public dynamic var criteria: String?        
+        
+    public dynamic var end: Instant?        
+        
+    public dynamic var error: String?        
+        
+    public dynamic var reason: String?        
+        
+    public dynamic var status: String?        
+        
+    public let tag = RealmSwift.List<Coding>()
 
-	public dynamic var channel: SubscriptionChannel?						
-		
-		
-			public func upsert(channel: SubscriptionChannel?) {
-				upsert(prop: &self.channel, val: channel)
-			}
-	
-	public let contact = RealmSwift.List<ContactPoint>()
-	
-	public dynamic var criteria: String?						
-		
-		
-	
-	public dynamic var end: Instant?						
-		
-		
-	
-	public dynamic var error: String?						
-		
-		
-	
-	public dynamic var reason: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let tag = RealmSwift.List<Coding>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(channel: SubscriptionChannel, criteria: String, reason: String, status: String) {
+        self.init(json: nil)
+        self.channel = channel
+        self.criteria = criteria
+        self.reason = reason
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(channel: SubscriptionChannel, criteria: String, reason: String, status: String) {
-		self.init(json: nil)
-		self.channel = channel
-		self.criteria = criteria
-		self.reason = reason
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -204,31 +189,23 @@ open class SubscriptionChannel: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubscriptionChannel" }
 	}
+    
+    public dynamic var endpoint: String?        
+        
+    public dynamic var header: String?        
+        
+    public dynamic var payload: String?        
+        
+    public dynamic var type: String?        
+    
 
-	public dynamic var endpoint: String?						
-		
-		
-	
-	public dynamic var header: String?						
-		
-		
-	
-	public dynamic var payload: String?						
-		
-		
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(payload: String, type: String) {
+        self.init(json: nil)
+        self.payload = payload
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(payload: String, type: String) {
-		self.init(json: nil)
-		self.payload = payload
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

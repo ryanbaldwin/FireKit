@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,59 +19,37 @@ open class DataElement: DomainResource {
 	override open class var resourceType: String {
 		get { return "DataElement" }
 	}
+    
+    public let contact = RealmSwift.List<DataElementContact>()    
+    public dynamic var copyright: String?        
+        
+    public dynamic var date: DateTime?        
+        
+    public let element = RealmSwift.List<ElementDefinition>()    
+    public let experimental = RealmOptional<Bool>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let mapping = RealmSwift.List<DataElementMapping>()    
+    public dynamic var name: String?        
+        
+    public dynamic var publisher: String?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var stringency: String?        
+        
+    public dynamic var url: String?        
+        
+    public let useContext = RealmSwift.List<CodeableConcept>()    
+    public dynamic var version: String?        
+    
 
-	public let contact = RealmSwift.List<DataElementContact>()
-	
-	public dynamic var copyright: String?						
-		
-		
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public let element = RealmSwift.List<ElementDefinition>()
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let mapping = RealmSwift.List<DataElementMapping>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var stringency: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public let useContext = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(element: [ElementDefinition], status: String) {
+        self.init(json: nil)
+        self.element.append(objectsIn: element)
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(element: [ElementDefinition], status: String) {
-		self.init(json: nil)
-		self.element.append(objectsIn: element)
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -287,13 +265,10 @@ open class DataElementContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DataElementContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -349,30 +324,22 @@ open class DataElementMapping: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DataElementMapping" }
 	}
+    
+    public dynamic var comments: String?        
+        
+    public dynamic var identity: String?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var uri: String?        
+    
 
-	public dynamic var comments: String?						
-		
-		
-	
-	public dynamic var identity: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var uri: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(identity: String) {
+        self.init(json: nil)
+        self.identity = identity
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String) {
-		self.init(json: nil)
-		self.identity = identity
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

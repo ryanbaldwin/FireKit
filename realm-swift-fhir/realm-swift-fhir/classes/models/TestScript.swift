@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,96 +20,58 @@ open class TestScript: DomainResource {
 	override open class var resourceType: String {
 		get { return "TestScript" }
 	}
+    
+    public let contact = RealmSwift.List<TestScriptContact>()    
+    public dynamic var copyright: String?        
+        
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let experimental = RealmOptional<Bool>()    
+    public let fixture = RealmSwift.List<TestScriptFixture>()    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var metadata: TestScriptMetadata?        
+    public func upsert(metadata: TestScriptMetadata?) {
+        upsert(prop: &self.metadata, val: metadata)
+    }    
+    public let multiserver = RealmOptional<Bool>()    
+    public dynamic var name: String?        
+        
+    public let profile = RealmSwift.List<Reference>()    
+    public dynamic var publisher: String?        
+        
+    public dynamic var requirements: String?        
+        
+    public dynamic var setup: TestScriptSetup?        
+    public func upsert(setup: TestScriptSetup?) {
+        upsert(prop: &self.setup, val: setup)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var teardown: TestScriptTeardown?        
+    public func upsert(teardown: TestScriptTeardown?) {
+        upsert(prop: &self.teardown, val: teardown)
+    }    
+    public let test = RealmSwift.List<TestScriptTest>()    
+    public dynamic var url: String?        
+        
+    public let useContext = RealmSwift.List<CodeableConcept>()    
+    public let variable = RealmSwift.List<TestScriptVariable>()    
+    public dynamic var version: String?        
+    
 
-	public let contact = RealmSwift.List<TestScriptContact>()
-	
-	public dynamic var copyright: String?						
-		
-		
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public let fixture = RealmSwift.List<TestScriptFixture>()
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var metadata: TestScriptMetadata?						
-		
-		
-			public func upsert(metadata: TestScriptMetadata?) {
-				upsert(prop: &self.metadata, val: metadata)
-			}
-	
-	public let multiserver = RealmOptional<Bool>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public let profile = RealmSwift.List<Reference>()
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public dynamic var setup: TestScriptSetup?						
-		
-		
-			public func upsert(setup: TestScriptSetup?) {
-				upsert(prop: &self.setup, val: setup)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var teardown: TestScriptTeardown?						
-		
-		
-			public func upsert(teardown: TestScriptTeardown?) {
-				upsert(prop: &self.teardown, val: teardown)
-			}
-	
-	public let test = RealmSwift.List<TestScriptTest>()
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public let useContext = RealmSwift.List<CodeableConcept>()
-	
-	public let variable = RealmSwift.List<TestScriptVariable>()
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(name: String, status: String, url: String) {
+        self.init(json: nil)
+        self.name = name
+        self.status = status
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, status: String, url: String) {
-		self.init(json: nil)
-		self.name = name
-		self.status = status
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -415,13 +377,10 @@ open class TestScriptContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -476,18 +435,13 @@ open class TestScriptFixture: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptFixture" }
 	}
-
-	public let autocreate = RealmOptional<Bool>()
-	
-	public let autodelete = RealmOptional<Bool>()
-	
-	public dynamic var resource: Reference?						
-		
-		
-			public func upsert(resource: Reference?) {
-				upsert(prop: &self.resource, val: resource)
-			}
-	
+    
+    public let autocreate = RealmOptional<Bool>()    
+    public let autodelete = RealmOptional<Bool>()    
+    public dynamic var resource: Reference?        
+    public func upsert(resource: Reference?) {
+        upsert(prop: &self.resource, val: resource)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -551,18 +505,16 @@ open class TestScriptMetadata: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptMetadata" }
 	}
+    
+    public let capability = RealmSwift.List<TestScriptMetadataCapability>()    
+    public let link = RealmSwift.List<TestScriptMetadataLink>()
 
-	public let capability = RealmSwift.List<TestScriptMetadataCapability>()
-	
-	public let link = RealmSwift.List<TestScriptMetadataLink>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(capability: [TestScriptMetadataCapability]) {
+        self.init(json: nil)
+        self.capability.append(objectsIn: capability)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(capability: [TestScriptMetadataCapability]) {
-		self.init(json: nil)
-		self.capability.append(objectsIn: capability)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -622,33 +574,24 @@ open class TestScriptMetadataCapability: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptMetadataCapability" }
 	}
+    
+    public dynamic var conformance: Reference?        
+    public func upsert(conformance: Reference?) {
+        upsert(prop: &self.conformance, val: conformance)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let destination = RealmOptional<Int>()    
+    public let link = RealmSwift.List<RealmString>()    
+    public let required = RealmOptional<Bool>()    
+    public let validated = RealmOptional<Bool>()
 
-	public dynamic var conformance: Reference?						
-		
-		
-			public func upsert(conformance: Reference?) {
-				upsert(prop: &self.conformance, val: conformance)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let destination = RealmOptional<Int>()
-	
-	public let link = RealmSwift.List<RealmString>()
-	
-	public let required = RealmOptional<Bool>()
-	
-	public let validated = RealmOptional<Bool>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(conformance: Reference) {
+        self.init(json: nil)
+        self.conformance = conformance
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(conformance: Reference) {
-		self.init(json: nil)
-		self.conformance = conformance
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -750,22 +693,18 @@ open class TestScriptMetadataLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptMetadataLink" }
 	}
+    
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(url: String) {
+        self.init(json: nil)
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(url: String) {
-		self.init(json: nil)
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -817,23 +756,19 @@ open class TestScriptSetup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetup" }
 	}
+    
+    public let action = RealmSwift.List<TestScriptSetupAction>()    
+    public dynamic var metadata: TestScriptMetadata?        
+    public func upsert(metadata: TestScriptMetadata?) {
+        upsert(prop: &self.metadata, val: metadata)
+    }
 
-	public let action = RealmSwift.List<TestScriptSetupAction>()
-	
-	public dynamic var metadata: TestScriptMetadata?						
-		
-		
-			public func upsert(metadata: TestScriptMetadata?) {
-				upsert(prop: &self.metadata, val: metadata)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(action: [TestScriptSetupAction]) {
+        self.init(json: nil)
+        self.action.append(objectsIn: action)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: [TestScriptSetupAction]) {
-		self.init(json: nil)
-		self.action.append(objectsIn: action)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -890,21 +825,15 @@ open class TestScriptSetupAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupAction" }
 	}
-
-	public dynamic var assert: TestScriptSetupActionAssert?						
-		
-		
-			public func upsert(assert: TestScriptSetupActionAssert?) {
-				upsert(prop: &self.assert, val: assert)
-			}
-	
-	public dynamic var operation: TestScriptSetupActionOperation?						
-		
-		
-			public func upsert(operation: TestScriptSetupActionOperation?) {
-				upsert(prop: &self.operation, val: operation)
-			}
-	
+    
+    public dynamic var assert: TestScriptSetupActionAssert?        
+    public func upsert(assert: TestScriptSetupActionAssert?) {
+        upsert(prop: &self.assert, val: assert)
+    }    
+    public dynamic var operation: TestScriptSetupActionOperation?        
+    public func upsert(operation: TestScriptSetupActionOperation?) {
+        upsert(prop: &self.operation, val: operation)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -956,75 +885,41 @@ open class TestScriptSetupActionAssert: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionAssert" }
 	}
-
-	public dynamic var compareToSourceId: String?						
-		
-		
-	
-	public dynamic var compareToSourcePath: String?						
-		
-		
-	
-	public dynamic var contentType: String?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var direction: String?						
-		
-		
-	
-	public dynamic var headerField: String?						
-		
-		
-	
-	public dynamic var label: String?						
-		
-		
-	
-	public dynamic var minimumId: String?						
-		
-		
-	
-	public let navigationLinks = RealmOptional<Bool>()
-	
-	public dynamic var operator_fhir: String?						
-		
-		
-	
-	public dynamic var path: String?						
-		
-		
-	
-	public dynamic var resource: String?						
-		
-		
-	
-	public dynamic var response: String?						
-		
-		
-	
-	public dynamic var responseCode: String?						
-		
-		
-	
-	public dynamic var sourceId: String?						
-		
-		
-	
-	public dynamic var validateProfileId: String?						
-		
-		
-	
-	public dynamic var value: String?						
-		
-		
-	
-	public let warningOnly = RealmOptional<Bool>()
-	
+    
+    public dynamic var compareToSourceId: String?        
+        
+    public dynamic var compareToSourcePath: String?        
+        
+    public dynamic var contentType: String?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var direction: String?        
+        
+    public dynamic var headerField: String?        
+        
+    public dynamic var label: String?        
+        
+    public dynamic var minimumId: String?        
+        
+    public let navigationLinks = RealmOptional<Bool>()    
+    public dynamic var operator_fhir: String?        
+        
+    public dynamic var path: String?        
+        
+    public dynamic var resource: String?        
+        
+    public dynamic var response: String?        
+        
+    public dynamic var responseCode: String?        
+        
+    public dynamic var sourceId: String?        
+        
+    public dynamic var validateProfileId: String?        
+        
+    public dynamic var value: String?        
+        
+    public let warningOnly = RealmOptional<Bool>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1268,60 +1163,34 @@ open class TestScriptSetupActionOperation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionOperation" }
 	}
-
-	public dynamic var accept: String?						
-		
-		
-	
-	public dynamic var contentType: String?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let destination = RealmOptional<Int>()
-	
-	public let encodeRequestUrl = RealmOptional<Bool>()
-	
-	public dynamic var label: String?						
-		
-		
-	
-	public dynamic var params: String?						
-		
-		
-	
-	public let requestHeader = RealmSwift.List<TestScriptSetupActionOperationRequestHeader>()
-	
-	public dynamic var resource: String?						
-		
-		
-	
-	public dynamic var responseId: String?						
-		
-		
-	
-	public dynamic var sourceId: String?						
-		
-		
-	
-	public dynamic var targetId: String?						
-		
-		
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
-	public dynamic var url: String?						
-		
-		
-	
+    
+    public dynamic var accept: String?        
+        
+    public dynamic var contentType: String?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let destination = RealmOptional<Int>()    
+    public let encodeRequestUrl = RealmOptional<Bool>()    
+    public dynamic var label: String?        
+        
+    public dynamic var params: String?        
+        
+    public let requestHeader = RealmSwift.List<TestScriptSetupActionOperationRequestHeader>()    
+    public dynamic var resource: String?        
+        
+    public dynamic var responseId: String?        
+        
+    public dynamic var sourceId: String?        
+        
+    public dynamic var targetId: String?        
+        
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }    
+    public dynamic var url: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1520,23 +1389,19 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptSetupActionOperationRequestHeader" }
 	}
+    
+    public dynamic var field: String?        
+        
+    public dynamic var value: String?        
+    
 
-	public dynamic var field: String?						
-		
-		
-	
-	public dynamic var value: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(field: String, val: String) {
+        self.init(json: nil)
+        self.field = field
+        self.value = val
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(field: String, val: String) {
-		self.init(json: nil)
-		self.field = field
-		self.value = val
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1593,16 +1458,15 @@ open class TestScriptTeardown: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTeardown" }
 	}
+    
+    public let action = RealmSwift.List<TestScriptTeardownAction>()
 
-	public let action = RealmSwift.List<TestScriptTeardownAction>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(action: [TestScriptTeardownAction]) {
+        self.init(json: nil)
+        self.action.append(objectsIn: action)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: [TestScriptTeardownAction]) {
-		self.init(json: nil)
-		self.action.append(objectsIn: action)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1647,14 +1511,11 @@ open class TestScriptTeardownAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTeardownAction" }
 	}
-
-	public dynamic var operation: TestScriptSetupActionOperation?						
-		
-		
-			public func upsert(operation: TestScriptSetupActionOperation?) {
-				upsert(prop: &self.operation, val: operation)
-			}
-	
+    
+    public dynamic var operation: TestScriptSetupActionOperation?        
+    public func upsert(operation: TestScriptSetupActionOperation?) {
+        upsert(prop: &self.operation, val: operation)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1692,31 +1553,23 @@ open class TestScriptTest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTest" }
 	}
+    
+    public let action = RealmSwift.List<TestScriptTestAction>()    
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var metadata: TestScriptMetadata?        
+    public func upsert(metadata: TestScriptMetadata?) {
+        upsert(prop: &self.metadata, val: metadata)
+    }    
+    public dynamic var name: String?        
+    
 
-	public let action = RealmSwift.List<TestScriptTestAction>()
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var metadata: TestScriptMetadata?						
-		
-		
-			public func upsert(metadata: TestScriptMetadata?) {
-				upsert(prop: &self.metadata, val: metadata)
-			}
-	
-	public dynamic var name: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(action: [TestScriptTestAction]) {
+        self.init(json: nil)
+        self.action.append(objectsIn: action)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(action: [TestScriptTestAction]) {
-		self.init(json: nil)
-		self.action.append(objectsIn: action)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1797,21 +1650,15 @@ open class TestScriptTestAction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptTestAction" }
 	}
-
-	public dynamic var assert: TestScriptSetupActionAssert?						
-		
-		
-			public func upsert(assert: TestScriptSetupActionAssert?) {
-				upsert(prop: &self.assert, val: assert)
-			}
-	
-	public dynamic var operation: TestScriptSetupActionOperation?						
-		
-		
-			public func upsert(operation: TestScriptSetupActionOperation?) {
-				upsert(prop: &self.operation, val: operation)
-			}
-	
+    
+    public dynamic var assert: TestScriptSetupActionAssert?        
+    public func upsert(assert: TestScriptSetupActionAssert?) {
+        upsert(prop: &self.assert, val: assert)
+    }    
+    public dynamic var operation: TestScriptSetupActionOperation?        
+    public func upsert(operation: TestScriptSetupActionOperation?) {
+        upsert(prop: &self.operation, val: operation)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1863,30 +1710,22 @@ open class TestScriptVariable: BackboneElement {
 	override open class var resourceType: String {
 		get { return "TestScriptVariable" }
 	}
+    
+    public dynamic var headerField: String?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var path: String?        
+        
+    public dynamic var sourceId: String?        
+    
 
-	public dynamic var headerField: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var path: String?						
-		
-		
-	
-	public dynamic var sourceId: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(name: String) {
+        self.init(json: nil)
+        self.name = name
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String) {
-		self.init(json: nil)
-		self.name = name
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

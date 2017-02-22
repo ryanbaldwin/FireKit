@@ -2,7 +2,7 @@
 //  Timing.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Timing) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,23 +21,16 @@ open class Timing: Element {
 	override open class var resourceType: String {
 		get { return "Timing" }
 	}
-
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let event = RealmSwift.List<DateTime>()
-	
-	public dynamic var repeat_fhir: TimingRepeat?						
-		
-		
-			public func upsert(repeat_fhir: TimingRepeat?) {
-				upsert(prop: &self.repeat_fhir, val: repeat_fhir)
-			}
-	
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let event = RealmSwift.List<DateTime>()    
+    public dynamic var repeat_fhir: TimingRepeat?        
+    public func upsert(repeat_fhir: TimingRepeat?) {
+        upsert(prop: &self.repeat_fhir, val: repeat_fhir)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -102,62 +95,36 @@ open class TimingRepeat: Element {
 	override open class var resourceType: String {
 		get { return "TimingRepeat" }
 	}
-
-	public dynamic var boundsPeriod: Period?						
-		
-		
-			public func upsert(boundsPeriod: Period?) {
-				upsert(prop: &self.boundsPeriod, val: boundsPeriod)
-			}
-	
-	public dynamic var boundsQuantity: Quantity?						
-		
-		
-			public func upsert(boundsQuantity: Quantity?) {
-				upsert(prop: &self.boundsQuantity, val: boundsQuantity)
-			}
-	
-	public dynamic var boundsRange: Range?						
-		
-		
-			public func upsert(boundsRange: Range?) {
-				upsert(prop: &self.boundsRange, val: boundsRange)
-			}
-	
-	public let count = RealmOptional<Int>()
-	
-	public dynamic var duration: RealmDecimal?						
-		
-		
-	
-	public dynamic var durationMax: RealmDecimal?						
-		
-		
-	
-	public dynamic var durationUnits: String?						
-		
-		
-	
-	public let frequency = RealmOptional<Int>()
-	
-	public let frequencyMax = RealmOptional<Int>()
-	
-	public dynamic var period: RealmDecimal?						
-		
-		
-	
-	public dynamic var periodMax: RealmDecimal?						
-		
-		
-	
-	public dynamic var periodUnits: String?						
-		
-		
-	
-	public dynamic var when: String?						
-		
-		
-	
+    
+    public dynamic var boundsPeriod: Period?        
+    public func upsert(boundsPeriod: Period?) {
+        upsert(prop: &self.boundsPeriod, val: boundsPeriod)
+    }    
+    public dynamic var boundsQuantity: Quantity?        
+    public func upsert(boundsQuantity: Quantity?) {
+        upsert(prop: &self.boundsQuantity, val: boundsQuantity)
+    }    
+    public dynamic var boundsRange: Range?        
+    public func upsert(boundsRange: Range?) {
+        upsert(prop: &self.boundsRange, val: boundsRange)
+    }    
+    public let count = RealmOptional<Int>()    
+    public dynamic var duration: RealmDecimal?        
+        
+    public dynamic var durationMax: RealmDecimal?        
+        
+    public dynamic var durationUnits: String?        
+        
+    public let frequency = RealmOptional<Int>()    
+    public let frequencyMax = RealmOptional<Int>()    
+    public dynamic var period: RealmDecimal?        
+        
+    public dynamic var periodMax: RealmDecimal?        
+        
+    public dynamic var periodUnits: String?        
+        
+    public dynamic var when: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

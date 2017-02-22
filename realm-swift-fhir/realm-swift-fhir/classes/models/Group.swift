@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,40 +21,28 @@ open class Group: DomainResource {
 	override open class var resourceType: String {
 		get { return "Group" }
 	}
+    
+    public let actual = RealmOptional<Bool>()    
+    public let characteristic = RealmSwift.List<GroupCharacteristic>()    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let member = RealmSwift.List<GroupMember>()    
+    public dynamic var name: String?        
+        
+    public let quantity = RealmOptional<Int>()    
+    public dynamic var type: String?        
+    
 
-	public let actual = RealmOptional<Bool>()
-	
-	public let characteristic = RealmSwift.List<GroupCharacteristic>()
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let member = RealmSwift.List<GroupMember>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public let quantity = RealmOptional<Int>()
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(actual: Bool, type: String) {
+        self.init(json: nil)
+        self.actual.value = actual
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actual: Bool, type: String) {
-		self.init(json: nil)
-		self.actual.value = actual
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -192,58 +180,41 @@ open class GroupCharacteristic: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GroupCharacteristic" }
 	}
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let exclude = RealmOptional<Bool>()    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let valueBoolean = RealmOptional<Bool>()    
+    public dynamic var valueCodeableConcept: CodeableConcept?        
+    public func upsert(valueCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
+    }    
+    public dynamic var valueQuantity: Quantity?        
+    public func upsert(valueQuantity: Quantity?) {
+        upsert(prop: &self.valueQuantity, val: valueQuantity)
+    }    
+    public dynamic var valueRange: Range?        
+    public func upsert(valueRange: Range?) {
+        upsert(prop: &self.valueRange, val: valueRange)
+    }
 
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let exclude = RealmOptional<Bool>()
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let valueBoolean = RealmOptional<Bool>()
-	
-	public dynamic var valueCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(valueCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
-			}
-	
-	public dynamic var valueQuantity: Quantity?						
-		
-		
-			public func upsert(valueQuantity: Quantity?) {
-				upsert(prop: &self.valueQuantity, val: valueQuantity)
-			}
-	
-	public dynamic var valueRange: Range?						
-		
-		
-			public func upsert(valueRange: Range?) {
-				upsert(prop: &self.valueRange, val: valueRange)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept, exclude: Bool, valueBoolean: Bool, valueCodeableConcept: CodeableConcept, valueQuantity: Quantity, valueRange: Range) {
+        self.init(json: nil)
+        self.code = code
+        self.exclude.value = exclude
+        self.valueBoolean.value = valueBoolean
+        self.valueCodeableConcept = valueCodeableConcept
+        self.valueQuantity = valueQuantity
+        self.valueRange = valueRange
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, exclude: Bool, valueBoolean: Bool, valueCodeableConcept: CodeableConcept, valueQuantity: Quantity, valueRange: Range) {
-		self.init(json: nil)
-		self.code = code
-		self.exclude.value = exclude
-		self.valueBoolean.value = valueBoolean
-		self.valueCodeableConcept = valueCodeableConcept
-		self.valueQuantity = valueQuantity
-		self.valueRange = valueRange
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -365,30 +336,23 @@ open class GroupMember: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GroupMember" }
 	}
+    
+    public dynamic var entity: Reference?        
+    public func upsert(entity: Reference?) {
+        upsert(prop: &self.entity, val: entity)
+    }    
+    public let inactive = RealmOptional<Bool>()    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }
 
-	public dynamic var entity: Reference?						
-		
-		
-			public func upsert(entity: Reference?) {
-				upsert(prop: &self.entity, val: entity)
-			}
-	
-	public let inactive = RealmOptional<Bool>()
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(entity: Reference) {
+        self.init(json: nil)
+        self.entity = entity
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(entity: Reference) {
-		self.init(json: nil)
-		self.entity = entity
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

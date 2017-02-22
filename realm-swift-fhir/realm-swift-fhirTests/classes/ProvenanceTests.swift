@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 			try runProvenance1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Provenance
 			XCTAssertNotNil(copy)
-			try runProvenance1(copy!.asJSON())            
+			try runProvenance1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProvenance1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
@@ -59,7 +62,6 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Provenance's PKs, but threw: \(error)")
         }
@@ -139,7 +141,10 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 			try runProvenance2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Provenance
 			XCTAssertNotNil(copy)
-			try runProvenance2(copy!.asJSON())            
+			try runProvenance2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProvenance2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
@@ -162,7 +167,6 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Provenance's PKs, but threw: \(error)")
         }

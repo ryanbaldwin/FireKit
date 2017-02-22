@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,71 +20,46 @@ open class QuestionnaireResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponse" }
 	}
+    
+    public dynamic var author: Reference?        
+    public func upsert(author: Reference?) {
+        upsert(prop: &self.author, val: author)
+    }    
+    public dynamic var authored: DateTime?        
+        
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public dynamic var group: QuestionnaireResponseGroup?        
+    public func upsert(group: QuestionnaireResponseGroup?) {
+        upsert(prop: &self.group, val: group)
+    }    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var questionnaire: Reference?        
+    public func upsert(questionnaire: Reference?) {
+        upsert(prop: &self.questionnaire, val: questionnaire)
+    }    
+    public dynamic var source: Reference?        
+    public func upsert(source: Reference?) {
+        upsert(prop: &self.source, val: source)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }
 
-	public dynamic var author: Reference?						
-		
-		
-			public func upsert(author: Reference?) {
-				upsert(prop: &self.author, val: author)
-			}
-	
-	public dynamic var authored: DateTime?						
-		
-		
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public dynamic var group: QuestionnaireResponseGroup?						
-		
-		
-			public func upsert(group: QuestionnaireResponseGroup?) {
-				upsert(prop: &self.group, val: group)
-			}
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var questionnaire: Reference?						
-		
-		
-			public func upsert(questionnaire: Reference?) {
-				upsert(prop: &self.questionnaire, val: questionnaire)
-			}
-	
-	public dynamic var source: Reference?						
-		
-		
-			public func upsert(source: Reference?) {
-				upsert(prop: &self.source, val: source)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(status: String) {
+        self.init(json: nil)
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
-		self.init(json: nil)
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -222,30 +197,19 @@ open class QuestionnaireResponseGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseGroup" }
 	}
-
-	public let group = RealmSwift.List<QuestionnaireResponseGroup>()
-	
-	public dynamic var linkId: String?						
-		
-		
-	
-	public let question = RealmSwift.List<QuestionnaireResponseGroupQuestion>()
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var title: String?						
-		
-		
-	
+    
+    public let group = RealmSwift.List<QuestionnaireResponseGroup>()    
+    public dynamic var linkId: String?        
+        
+    public let question = RealmSwift.List<QuestionnaireResponseGroupQuestion>()    
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var text: String?        
+        
+    public dynamic var title: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -351,17 +315,12 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseGroupQuestion" }
 	}
-
-	public let answer = RealmSwift.List<QuestionnaireResponseGroupQuestionAnswer>()
-	
-	public dynamic var linkId: String?						
-		
-		
-	
-	public dynamic var text: String?						
-		
-		
-	
+    
+    public let answer = RealmSwift.List<QuestionnaireResponseGroupQuestionAnswer>()    
+    public dynamic var linkId: String?        
+        
+    public dynamic var text: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -428,69 +387,40 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseGroupQuestionAnswer" }
 	}
-
-	public let group = RealmSwift.List<QuestionnaireResponseGroup>()
-	
-	public dynamic var valueAttachment: Attachment?						
-		
-		
-			public func upsert(valueAttachment: Attachment?) {
-				upsert(prop: &self.valueAttachment, val: valueAttachment)
-			}
-	
-	public let valueBoolean = RealmOptional<Bool>()
-	
-	public dynamic var valueCoding: Coding?						
-		
-		
-			public func upsert(valueCoding: Coding?) {
-				upsert(prop: &self.valueCoding, val: valueCoding)
-			}
-	
-	public dynamic var valueDate: FHIRDate?						
-		
-		
-	
-	public dynamic var valueDateTime: DateTime?						
-		
-		
-	
-	public dynamic var valueDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var valueInstant: Instant?						
-		
-		
-	
-	public let valueInteger = RealmOptional<Int>()
-	
-	public dynamic var valueQuantity: Quantity?						
-		
-		
-			public func upsert(valueQuantity: Quantity?) {
-				upsert(prop: &self.valueQuantity, val: valueQuantity)
-			}
-	
-	public dynamic var valueReference: Reference?						
-		
-		
-			public func upsert(valueReference: Reference?) {
-				upsert(prop: &self.valueReference, val: valueReference)
-			}
-	
-	public dynamic var valueString: String?						
-		
-		
-	
-	public dynamic var valueTime: FHIRTime?						
-		
-		
-	
-	public dynamic var valueUri: String?						
-		
-		
-	
+    
+    public let group = RealmSwift.List<QuestionnaireResponseGroup>()    
+    public dynamic var valueAttachment: Attachment?        
+    public func upsert(valueAttachment: Attachment?) {
+        upsert(prop: &self.valueAttachment, val: valueAttachment)
+    }    
+    public let valueBoolean = RealmOptional<Bool>()    
+    public dynamic var valueCoding: Coding?        
+    public func upsert(valueCoding: Coding?) {
+        upsert(prop: &self.valueCoding, val: valueCoding)
+    }    
+    public dynamic var valueDate: FHIRDate?        
+        
+    public dynamic var valueDateTime: DateTime?        
+        
+    public dynamic var valueDecimal: RealmDecimal?        
+        
+    public dynamic var valueInstant: Instant?        
+        
+    public let valueInteger = RealmOptional<Int>()    
+    public dynamic var valueQuantity: Quantity?        
+    public func upsert(valueQuantity: Quantity?) {
+        upsert(prop: &self.valueQuantity, val: valueQuantity)
+    }    
+    public dynamic var valueReference: Reference?        
+    public func upsert(valueReference: Reference?) {
+        upsert(prop: &self.valueReference, val: valueReference)
+    }    
+    public dynamic var valueString: String?        
+        
+    public dynamic var valueTime: FHIRTime?        
+        
+    public dynamic var valueUri: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,36 +17,26 @@ open class Schedule: DomainResource {
 	override open class var resourceType: String {
 		get { return "Schedule" }
 	}
+    
+    public dynamic var actor: Reference?        
+    public func upsert(actor: Reference?) {
+        upsert(prop: &self.actor, val: actor)
+    }    
+    public dynamic var comment: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var planningHorizon: Period?        
+    public func upsert(planningHorizon: Period?) {
+        upsert(prop: &self.planningHorizon, val: planningHorizon)
+    }    
+    public let type = RealmSwift.List<CodeableConcept>()
 
-	public dynamic var actor: Reference?						
-		
-		
-			public func upsert(actor: Reference?) {
-				upsert(prop: &self.actor, val: actor)
-			}
-	
-	public dynamic var comment: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var planningHorizon: Period?						
-		
-		
-			public func upsert(planningHorizon: Period?) {
-				upsert(prop: &self.planningHorizon, val: planningHorizon)
-			}
-	
-	public let type = RealmSwift.List<CodeableConcept>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(actor: Reference) {
+        self.init(json: nil)
+        self.actor = actor
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(actor: Reference) {
-		self.init(json: nil)
-		self.actor = actor
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

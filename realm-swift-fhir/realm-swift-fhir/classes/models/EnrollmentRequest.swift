@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,78 +19,51 @@ open class EnrollmentRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "EnrollmentRequest" }
 	}
+    
+    public dynamic var coverage: Reference?        
+    public func upsert(coverage: Reference?) {
+        upsert(prop: &self.coverage, val: coverage)
+    }    
+    public dynamic var created: DateTime?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var organization: Reference?        
+    public func upsert(organization: Reference?) {
+        upsert(prop: &self.organization, val: organization)
+    }    
+    public dynamic var originalRuleset: Coding?        
+    public func upsert(originalRuleset: Coding?) {
+        upsert(prop: &self.originalRuleset, val: originalRuleset)
+    }    
+    public dynamic var provider: Reference?        
+    public func upsert(provider: Reference?) {
+        upsert(prop: &self.provider, val: provider)
+    }    
+    public dynamic var relationship: Coding?        
+    public func upsert(relationship: Coding?) {
+        upsert(prop: &self.relationship, val: relationship)
+    }    
+    public dynamic var ruleset: Coding?        
+    public func upsert(ruleset: Coding?) {
+        upsert(prop: &self.ruleset, val: ruleset)
+    }    
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var target: Reference?        
+    public func upsert(target: Reference?) {
+        upsert(prop: &self.target, val: target)
+    }
 
-	public dynamic var coverage: Reference?						
-		
-		
-			public func upsert(coverage: Reference?) {
-				upsert(prop: &self.coverage, val: coverage)
-			}
-	
-	public dynamic var created: DateTime?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var organization: Reference?						
-		
-		
-			public func upsert(organization: Reference?) {
-				upsert(prop: &self.organization, val: organization)
-			}
-	
-	public dynamic var originalRuleset: Coding?						
-		
-		
-			public func upsert(originalRuleset: Coding?) {
-				upsert(prop: &self.originalRuleset, val: originalRuleset)
-			}
-	
-	public dynamic var provider: Reference?						
-		
-		
-			public func upsert(provider: Reference?) {
-				upsert(prop: &self.provider, val: provider)
-			}
-	
-	public dynamic var relationship: Coding?						
-		
-		
-			public func upsert(relationship: Coding?) {
-				upsert(prop: &self.relationship, val: relationship)
-			}
-	
-	public dynamic var ruleset: Coding?						
-		
-		
-			public func upsert(ruleset: Coding?) {
-				upsert(prop: &self.ruleset, val: ruleset)
-			}
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var target: Reference?						
-		
-		
-			public func upsert(target: Reference?) {
-				upsert(prop: &self.target, val: target)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(coverage: Reference, relationship: Coding, subject: Reference) {
+        self.init(json: nil)
+        self.coverage = coverage
+        self.relationship = relationship
+        self.subject = subject
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverage: Reference, relationship: Coding, subject: Reference) {
-		self.init(json: nil)
-		self.coverage = coverage
-		self.relationship = relationship
-		self.subject = subject
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,114 +20,69 @@ open class FamilyMemberHistory: DomainResource {
 	override open class var resourceType: String {
 		get { return "FamilyMemberHistory" }
 	}
+    
+    public dynamic var ageQuantity: Quantity?        
+    public func upsert(ageQuantity: Quantity?) {
+        upsert(prop: &self.ageQuantity, val: ageQuantity)
+    }    
+    public dynamic var ageRange: Range?        
+    public func upsert(ageRange: Range?) {
+        upsert(prop: &self.ageRange, val: ageRange)
+    }    
+    public dynamic var ageString: String?        
+        
+    public dynamic var bornDate: FHIRDate?        
+        
+    public dynamic var bornPeriod: Period?        
+    public func upsert(bornPeriod: Period?) {
+        upsert(prop: &self.bornPeriod, val: bornPeriod)
+    }    
+    public dynamic var bornString: String?        
+        
+    public let condition = RealmSwift.List<FamilyMemberHistoryCondition>()    
+    public dynamic var date: DateTime?        
+        
+    public let deceasedBoolean = RealmOptional<Bool>()    
+    public dynamic var deceasedDate: FHIRDate?        
+        
+    public dynamic var deceasedQuantity: Quantity?        
+    public func upsert(deceasedQuantity: Quantity?) {
+        upsert(prop: &self.deceasedQuantity, val: deceasedQuantity)
+    }    
+    public dynamic var deceasedRange: Range?        
+    public func upsert(deceasedRange: Range?) {
+        upsert(prop: &self.deceasedRange, val: deceasedRange)
+    }    
+    public dynamic var deceasedString: String?        
+        
+    public dynamic var gender: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var name: String?        
+        
+    public dynamic var note: Annotation?        
+    public func upsert(note: Annotation?) {
+        upsert(prop: &self.note, val: note)
+    }    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var relationship: CodeableConcept?        
+    public func upsert(relationship: CodeableConcept?) {
+        upsert(prop: &self.relationship, val: relationship)
+    }    
+    public dynamic var status: String?        
+    
 
-	public dynamic var ageQuantity: Quantity?						
-		
-		
-			public func upsert(ageQuantity: Quantity?) {
-				upsert(prop: &self.ageQuantity, val: ageQuantity)
-			}
-	
-	public dynamic var ageRange: Range?						
-		
-		
-			public func upsert(ageRange: Range?) {
-				upsert(prop: &self.ageRange, val: ageRange)
-			}
-	
-	public dynamic var ageString: String?						
-		
-		
-	
-	public dynamic var bornDate: FHIRDate?						
-		
-		
-	
-	public dynamic var bornPeriod: Period?						
-		
-		
-			public func upsert(bornPeriod: Period?) {
-				upsert(prop: &self.bornPeriod, val: bornPeriod)
-			}
-	
-	public dynamic var bornString: String?						
-		
-		
-	
-	public let condition = RealmSwift.List<FamilyMemberHistoryCondition>()
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public let deceasedBoolean = RealmOptional<Bool>()
-	
-	public dynamic var deceasedDate: FHIRDate?						
-		
-		
-	
-	public dynamic var deceasedQuantity: Quantity?						
-		
-		
-			public func upsert(deceasedQuantity: Quantity?) {
-				upsert(prop: &self.deceasedQuantity, val: deceasedQuantity)
-			}
-	
-	public dynamic var deceasedRange: Range?						
-		
-		
-			public func upsert(deceasedRange: Range?) {
-				upsert(prop: &self.deceasedRange, val: deceasedRange)
-			}
-	
-	public dynamic var deceasedString: String?						
-		
-		
-	
-	public dynamic var gender: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var note: Annotation?						
-		
-		
-			public func upsert(note: Annotation?) {
-				upsert(prop: &self.note, val: note)
-			}
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var relationship: CodeableConcept?						
-		
-		
-			public func upsert(relationship: CodeableConcept?) {
-				upsert(prop: &self.relationship, val: relationship)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference, relationship: CodeableConcept, status: String) {
+        self.init(json: nil)
+        self.patient = patient
+        self.relationship = relationship
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, relationship: CodeableConcept, status: String) {
-		self.init(json: nil)
-		self.patient = patient
-		self.relationship = relationship
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -411,60 +366,40 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 	override open class var resourceType: String {
 		get { return "FamilyMemberHistoryCondition" }
 	}
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var note: Annotation?        
+    public func upsert(note: Annotation?) {
+        upsert(prop: &self.note, val: note)
+    }    
+    public dynamic var onsetPeriod: Period?        
+    public func upsert(onsetPeriod: Period?) {
+        upsert(prop: &self.onsetPeriod, val: onsetPeriod)
+    }    
+    public dynamic var onsetQuantity: Quantity?        
+    public func upsert(onsetQuantity: Quantity?) {
+        upsert(prop: &self.onsetQuantity, val: onsetQuantity)
+    }    
+    public dynamic var onsetRange: Range?        
+    public func upsert(onsetRange: Range?) {
+        upsert(prop: &self.onsetRange, val: onsetRange)
+    }    
+    public dynamic var onsetString: String?        
+        
+    public dynamic var outcome: CodeableConcept?        
+    public func upsert(outcome: CodeableConcept?) {
+        upsert(prop: &self.outcome, val: outcome)
+    }
 
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var note: Annotation?						
-		
-		
-			public func upsert(note: Annotation?) {
-				upsert(prop: &self.note, val: note)
-			}
-	
-	public dynamic var onsetPeriod: Period?						
-		
-		
-			public func upsert(onsetPeriod: Period?) {
-				upsert(prop: &self.onsetPeriod, val: onsetPeriod)
-			}
-	
-	public dynamic var onsetQuantity: Quantity?						
-		
-		
-			public func upsert(onsetQuantity: Quantity?) {
-				upsert(prop: &self.onsetQuantity, val: onsetQuantity)
-			}
-	
-	public dynamic var onsetRange: Range?						
-		
-		
-			public func upsert(onsetRange: Range?) {
-				upsert(prop: &self.onsetRange, val: onsetRange)
-			}
-	
-	public dynamic var onsetString: String?						
-		
-		
-	
-	public dynamic var outcome: CodeableConcept?						
-		
-		
-			public func upsert(outcome: CodeableConcept?) {
-				upsert(prop: &self.outcome, val: outcome)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

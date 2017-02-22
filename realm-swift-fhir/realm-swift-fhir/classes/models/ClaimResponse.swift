@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,147 +19,85 @@ open class ClaimResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "ClaimResponse" }
 	}
-
-	public let addItem = RealmSwift.List<ClaimResponseAddItem>()
-	
-	public let coverage = RealmSwift.List<ClaimResponseCoverage>()
-	
-	public dynamic var created: DateTime?						
-		
-		
-	
-	public dynamic var disposition: String?						
-		
-		
-	
-	public let error = RealmSwift.List<ClaimResponseError>()
-	
-	public dynamic var form: Coding?						
-		
-		
-			public func upsert(form: Coding?) {
-				upsert(prop: &self.form, val: form)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let item = RealmSwift.List<ClaimResponseItem>()
-	
-	public let note = RealmSwift.List<ClaimResponseNote>()
-	
-	public dynamic var organization: Reference?						
-		
-		
-			public func upsert(organization: Reference?) {
-				upsert(prop: &self.organization, val: organization)
-			}
-	
-	public dynamic var originalRuleset: Coding?						
-		
-		
-			public func upsert(originalRuleset: Coding?) {
-				upsert(prop: &self.originalRuleset, val: originalRuleset)
-			}
-	
-	public dynamic var outcome: String?						
-		
-		
-	
-	public dynamic var payeeType: Coding?						
-		
-		
-			public func upsert(payeeType: Coding?) {
-				upsert(prop: &self.payeeType, val: payeeType)
-			}
-	
-	public dynamic var paymentAdjustment: Quantity?						
-		
-		
-			public func upsert(paymentAdjustment: Quantity?) {
-				upsert(prop: &self.paymentAdjustment, val: paymentAdjustment)
-			}
-	
-	public dynamic var paymentAdjustmentReason: Coding?						
-		
-		
-			public func upsert(paymentAdjustmentReason: Coding?) {
-				upsert(prop: &self.paymentAdjustmentReason, val: paymentAdjustmentReason)
-			}
-	
-	public dynamic var paymentAmount: Quantity?						
-		
-		
-			public func upsert(paymentAmount: Quantity?) {
-				upsert(prop: &self.paymentAmount, val: paymentAmount)
-			}
-	
-	public dynamic var paymentDate: FHIRDate?						
-		
-		
-	
-	public dynamic var paymentRef: Identifier?						
-		
-		
-			public func upsert(paymentRef: Identifier?) {
-				upsert(prop: &self.paymentRef, val: paymentRef)
-			}
-	
-	public dynamic var request: Reference?						
-		
-		
-			public func upsert(request: Reference?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var requestOrganization: Reference?						
-		
-		
-			public func upsert(requestOrganization: Reference?) {
-				upsert(prop: &self.requestOrganization, val: requestOrganization)
-			}
-	
-	public dynamic var requestProvider: Reference?						
-		
-		
-			public func upsert(requestProvider: Reference?) {
-				upsert(prop: &self.requestProvider, val: requestProvider)
-			}
-	
-	public dynamic var reserved: Coding?						
-		
-		
-			public func upsert(reserved: Coding?) {
-				upsert(prop: &self.reserved, val: reserved)
-			}
-	
-	public dynamic var ruleset: Coding?						
-		
-		
-			public func upsert(ruleset: Coding?) {
-				upsert(prop: &self.ruleset, val: ruleset)
-			}
-	
-	public dynamic var totalBenefit: Quantity?						
-		
-		
-			public func upsert(totalBenefit: Quantity?) {
-				upsert(prop: &self.totalBenefit, val: totalBenefit)
-			}
-	
-	public dynamic var totalCost: Quantity?						
-		
-		
-			public func upsert(totalCost: Quantity?) {
-				upsert(prop: &self.totalCost, val: totalCost)
-			}
-	
-	public dynamic var unallocDeductable: Quantity?						
-		
-		
-			public func upsert(unallocDeductable: Quantity?) {
-				upsert(prop: &self.unallocDeductable, val: unallocDeductable)
-			}
-	
+    
+    public let addItem = RealmSwift.List<ClaimResponseAddItem>()    
+    public let coverage = RealmSwift.List<ClaimResponseCoverage>()    
+    public dynamic var created: DateTime?        
+        
+    public dynamic var disposition: String?        
+        
+    public let error = RealmSwift.List<ClaimResponseError>()    
+    public dynamic var form: Coding?        
+    public func upsert(form: Coding?) {
+        upsert(prop: &self.form, val: form)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let item = RealmSwift.List<ClaimResponseItem>()    
+    public let note = RealmSwift.List<ClaimResponseNote>()    
+    public dynamic var organization: Reference?        
+    public func upsert(organization: Reference?) {
+        upsert(prop: &self.organization, val: organization)
+    }    
+    public dynamic var originalRuleset: Coding?        
+    public func upsert(originalRuleset: Coding?) {
+        upsert(prop: &self.originalRuleset, val: originalRuleset)
+    }    
+    public dynamic var outcome: String?        
+        
+    public dynamic var payeeType: Coding?        
+    public func upsert(payeeType: Coding?) {
+        upsert(prop: &self.payeeType, val: payeeType)
+    }    
+    public dynamic var paymentAdjustment: Quantity?        
+    public func upsert(paymentAdjustment: Quantity?) {
+        upsert(prop: &self.paymentAdjustment, val: paymentAdjustment)
+    }    
+    public dynamic var paymentAdjustmentReason: Coding?        
+    public func upsert(paymentAdjustmentReason: Coding?) {
+        upsert(prop: &self.paymentAdjustmentReason, val: paymentAdjustmentReason)
+    }    
+    public dynamic var paymentAmount: Quantity?        
+    public func upsert(paymentAmount: Quantity?) {
+        upsert(prop: &self.paymentAmount, val: paymentAmount)
+    }    
+    public dynamic var paymentDate: FHIRDate?        
+        
+    public dynamic var paymentRef: Identifier?        
+    public func upsert(paymentRef: Identifier?) {
+        upsert(prop: &self.paymentRef, val: paymentRef)
+    }    
+    public dynamic var request: Reference?        
+    public func upsert(request: Reference?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var requestOrganization: Reference?        
+    public func upsert(requestOrganization: Reference?) {
+        upsert(prop: &self.requestOrganization, val: requestOrganization)
+    }    
+    public dynamic var requestProvider: Reference?        
+    public func upsert(requestProvider: Reference?) {
+        upsert(prop: &self.requestProvider, val: requestProvider)
+    }    
+    public dynamic var reserved: Coding?        
+    public func upsert(reserved: Coding?) {
+        upsert(prop: &self.reserved, val: reserved)
+    }    
+    public dynamic var ruleset: Coding?        
+    public func upsert(ruleset: Coding?) {
+        upsert(prop: &self.ruleset, val: ruleset)
+    }    
+    public dynamic var totalBenefit: Quantity?        
+    public func upsert(totalBenefit: Quantity?) {
+        upsert(prop: &self.totalBenefit, val: totalBenefit)
+    }    
+    public dynamic var totalCost: Quantity?        
+    public func upsert(totalCost: Quantity?) {
+        upsert(prop: &self.totalCost, val: totalCost)
+    }    
+    public dynamic var unallocDeductable: Quantity?        
+    public func upsert(unallocDeductable: Quantity?) {
+        upsert(prop: &self.unallocDeductable, val: unallocDeductable)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -517,36 +455,26 @@ open class ClaimResponseAddItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItem" }
 	}
+    
+    public let adjudication = RealmSwift.List<ClaimResponseAddItemAdjudication>()    
+    public let detail = RealmSwift.List<ClaimResponseAddItemDetail>()    
+    public dynamic var fee: Quantity?        
+    public func upsert(fee: Quantity?) {
+        upsert(prop: &self.fee, val: fee)
+    }    
+    public let noteNumberLinkId = RealmSwift.List<RealmInt>()    
+    public let sequenceLinkId = RealmSwift.List<RealmInt>()    
+    public dynamic var service: Coding?        
+    public func upsert(service: Coding?) {
+        upsert(prop: &self.service, val: service)
+    }
 
-	public let adjudication = RealmSwift.List<ClaimResponseAddItemAdjudication>()
-	
-	public let detail = RealmSwift.List<ClaimResponseAddItemDetail>()
-	
-	public dynamic var fee: Quantity?						
-		
-		
-			public func upsert(fee: Quantity?) {
-				upsert(prop: &self.fee, val: fee)
-			}
-	
-	public let noteNumberLinkId = RealmSwift.List<RealmInt>()
-	
-	public let sequenceLinkId = RealmSwift.List<RealmInt>()
-	
-	public dynamic var service: Coding?						
-		
-		
-			public func upsert(service: Coding?) {
-				upsert(prop: &self.service, val: service)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(service: Coding) {
+        self.init(json: nil)
+        self.service = service
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(service: Coding) {
-		self.init(json: nil)
-		self.service = service
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -654,32 +582,24 @@ open class ClaimResponseAddItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemAdjudication" }
 	}
+    
+    public dynamic var amount: Quantity?        
+    public func upsert(amount: Quantity?) {
+        upsert(prop: &self.amount, val: amount)
+    }    
+    public dynamic var code: Coding?        
+    public func upsert(code: Coding?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var value: RealmDecimal?        
+    
 
-	public dynamic var amount: Quantity?						
-		
-		
-			public func upsert(amount: Quantity?) {
-				upsert(prop: &self.amount, val: amount)
-			}
-	
-	public dynamic var code: Coding?						
-		
-		
-			public func upsert(code: Coding?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var value: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: Coding) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -745,30 +665,23 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemDetail" }
 	}
+    
+    public let adjudication = RealmSwift.List<ClaimResponseAddItemDetailAdjudication>()    
+    public dynamic var fee: Quantity?        
+    public func upsert(fee: Quantity?) {
+        upsert(prop: &self.fee, val: fee)
+    }    
+    public dynamic var service: Coding?        
+    public func upsert(service: Coding?) {
+        upsert(prop: &self.service, val: service)
+    }
 
-	public let adjudication = RealmSwift.List<ClaimResponseAddItemDetailAdjudication>()
-	
-	public dynamic var fee: Quantity?						
-		
-		
-			public func upsert(fee: Quantity?) {
-				upsert(prop: &self.fee, val: fee)
-			}
-	
-	public dynamic var service: Coding?						
-		
-		
-			public func upsert(service: Coding?) {
-				upsert(prop: &self.service, val: service)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(service: Coding) {
+        self.init(json: nil)
+        self.service = service
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(service: Coding) {
-		self.init(json: nil)
-		self.service = service
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -837,32 +750,24 @@ open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemDetailAdjudication" }
 	}
+    
+    public dynamic var amount: Quantity?        
+    public func upsert(amount: Quantity?) {
+        upsert(prop: &self.amount, val: amount)
+    }    
+    public dynamic var code: Coding?        
+    public func upsert(code: Coding?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var value: RealmDecimal?        
+    
 
-	public dynamic var amount: Quantity?						
-		
-		
-			public func upsert(amount: Quantity?) {
-				upsert(prop: &self.amount, val: amount)
-			}
-	
-	public dynamic var code: Coding?						
-		
-		
-			public func upsert(code: Coding?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var value: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: Coding) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -928,55 +833,38 @@ open class ClaimResponseCoverage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseCoverage" }
 	}
+    
+    public dynamic var businessArrangement: String?        
+        
+    public dynamic var claimResponse: Reference?        
+    public func upsert(claimResponse: Reference?) {
+        upsert(prop: &self.claimResponse, val: claimResponse)
+    }    
+    public dynamic var coverage: Reference?        
+    public func upsert(coverage: Reference?) {
+        upsert(prop: &self.coverage, val: coverage)
+    }    
+    public let focal = RealmOptional<Bool>()    
+    public dynamic var originalRuleset: Coding?        
+    public func upsert(originalRuleset: Coding?) {
+        upsert(prop: &self.originalRuleset, val: originalRuleset)
+    }    
+    public let preAuthRef = RealmSwift.List<RealmString>()    
+    public dynamic var relationship: Coding?        
+    public func upsert(relationship: Coding?) {
+        upsert(prop: &self.relationship, val: relationship)
+    }    
+    public let sequence = RealmOptional<Int>()
 
-	public dynamic var businessArrangement: String?						
-		
-		
-	
-	public dynamic var claimResponse: Reference?						
-		
-		
-			public func upsert(claimResponse: Reference?) {
-				upsert(prop: &self.claimResponse, val: claimResponse)
-			}
-	
-	public dynamic var coverage: Reference?						
-		
-		
-			public func upsert(coverage: Reference?) {
-				upsert(prop: &self.coverage, val: coverage)
-			}
-	
-	public let focal = RealmOptional<Bool>()
-	
-	public dynamic var originalRuleset: Coding?						
-		
-		
-			public func upsert(originalRuleset: Coding?) {
-				upsert(prop: &self.originalRuleset, val: originalRuleset)
-			}
-	
-	public let preAuthRef = RealmSwift.List<RealmString>()
-	
-	public dynamic var relationship: Coding?						
-		
-		
-			public func upsert(relationship: Coding?) {
-				upsert(prop: &self.relationship, val: relationship)
-			}
-	
-	public let sequence = RealmOptional<Int>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(coverage: Reference, focal: Bool, relationship: Coding, sequence: Int) {
+        self.init(json: nil)
+        self.coverage = coverage
+        self.focal.value = focal
+        self.relationship = relationship
+        self.sequence.value = sequence
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(coverage: Reference, focal: Bool, relationship: Coding, sequence: Int) {
-		self.init(json: nil)
-		self.coverage = coverage
-		self.focal.value = focal
-		self.relationship = relationship
-		self.sequence.value = sequence
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1111,27 +999,21 @@ open class ClaimResponseError: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseError" }
 	}
+    
+    public dynamic var code: Coding?        
+    public func upsert(code: Coding?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let detailSequenceLinkId = RealmOptional<Int>()    
+    public let sequenceLinkId = RealmOptional<Int>()    
+    public let subdetailSequenceLinkId = RealmOptional<Int>()
 
-	public dynamic var code: Coding?						
-		
-		
-			public func upsert(code: Coding?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let detailSequenceLinkId = RealmOptional<Int>()
-	
-	public let sequenceLinkId = RealmOptional<Int>()
-	
-	public let subdetailSequenceLinkId = RealmOptional<Int>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: Coding) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1209,22 +1091,18 @@ open class ClaimResponseItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItem" }
 	}
+    
+    public let adjudication = RealmSwift.List<ClaimResponseItemAdjudication>()    
+    public let detail = RealmSwift.List<ClaimResponseItemDetail>()    
+    public let noteNumber = RealmSwift.List<RealmInt>()    
+    public let sequenceLinkId = RealmOptional<Int>()
 
-	public let adjudication = RealmSwift.List<ClaimResponseItemAdjudication>()
-	
-	public let detail = RealmSwift.List<ClaimResponseItemDetail>()
-	
-	public let noteNumber = RealmSwift.List<RealmInt>()
-	
-	public let sequenceLinkId = RealmOptional<Int>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(sequenceLinkId: Int) {
+        self.init(json: nil)
+        self.sequenceLinkId.value = sequenceLinkId
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: Int) {
-		self.init(json: nil)
-		self.sequenceLinkId.value = sequenceLinkId
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1308,32 +1186,24 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemAdjudication" }
 	}
+    
+    public dynamic var amount: Quantity?        
+    public func upsert(amount: Quantity?) {
+        upsert(prop: &self.amount, val: amount)
+    }    
+    public dynamic var code: Coding?        
+    public func upsert(code: Coding?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var value: RealmDecimal?        
+    
 
-	public dynamic var amount: Quantity?						
-		
-		
-			public func upsert(amount: Quantity?) {
-				upsert(prop: &self.amount, val: amount)
-			}
-	
-	public dynamic var code: Coding?						
-		
-		
-			public func upsert(code: Coding?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var value: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: Coding) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1399,20 +1269,17 @@ open class ClaimResponseItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetail" }
 	}
+    
+    public let adjudication = RealmSwift.List<ClaimResponseItemDetailAdjudication>()    
+    public let sequenceLinkId = RealmOptional<Int>()    
+    public let subDetail = RealmSwift.List<ClaimResponseItemDetailSubDetail>()
 
-	public let adjudication = RealmSwift.List<ClaimResponseItemDetailAdjudication>()
-	
-	public let sequenceLinkId = RealmOptional<Int>()
-	
-	public let subDetail = RealmSwift.List<ClaimResponseItemDetailSubDetail>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(sequenceLinkId: Int) {
+        self.init(json: nil)
+        self.sequenceLinkId.value = sequenceLinkId
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: Int) {
-		self.init(json: nil)
-		self.sequenceLinkId.value = sequenceLinkId
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1484,32 +1351,24 @@ open class ClaimResponseItemDetailAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailAdjudication" }
 	}
+    
+    public dynamic var amount: Quantity?        
+    public func upsert(amount: Quantity?) {
+        upsert(prop: &self.amount, val: amount)
+    }    
+    public dynamic var code: Coding?        
+    public func upsert(code: Coding?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var value: RealmDecimal?        
+    
 
-	public dynamic var amount: Quantity?						
-		
-		
-			public func upsert(amount: Quantity?) {
-				upsert(prop: &self.amount, val: amount)
-			}
-	
-	public dynamic var code: Coding?						
-		
-		
-			public func upsert(code: Coding?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var value: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: Coding) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1575,18 +1434,16 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailSubDetail" }
 	}
+    
+    public let adjudication = RealmSwift.List<ClaimResponseItemDetailSubDetailAdjudication>()    
+    public let sequenceLinkId = RealmOptional<Int>()
 
-	public let adjudication = RealmSwift.List<ClaimResponseItemDetailSubDetailAdjudication>()
-	
-	public let sequenceLinkId = RealmOptional<Int>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(sequenceLinkId: Int) {
+        self.init(json: nil)
+        self.sequenceLinkId.value = sequenceLinkId
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sequenceLinkId: Int) {
-		self.init(json: nil)
-		self.sequenceLinkId.value = sequenceLinkId
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1643,32 +1500,24 @@ open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailSubDetailAdjudication" }
 	}
+    
+    public dynamic var amount: Quantity?        
+    public func upsert(amount: Quantity?) {
+        upsert(prop: &self.amount, val: amount)
+    }    
+    public dynamic var code: Coding?        
+    public func upsert(code: Coding?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var value: RealmDecimal?        
+    
 
-	public dynamic var amount: Quantity?						
-		
-		
-			public func upsert(amount: Quantity?) {
-				upsert(prop: &self.amount, val: amount)
-			}
-	
-	public dynamic var code: Coding?						
-		
-		
-			public func upsert(code: Coding?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var value: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: Coding) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1734,20 +1583,14 @@ open class ClaimResponseNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseNote" }
 	}
-
-	public let number = RealmOptional<Int>()
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public let number = RealmOptional<Int>()    
+    public dynamic var text: String?        
+        
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

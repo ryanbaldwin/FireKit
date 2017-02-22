@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,41 +19,25 @@ open class Person: DomainResource {
 	override open class var resourceType: String {
 		get { return "Person" }
 	}
-
-	public let active = RealmOptional<Bool>()
-	
-	public let address = RealmSwift.List<Address>()
-	
-	public dynamic var birthDate: FHIRDate?						
-		
-		
-	
-	public dynamic var gender: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let link = RealmSwift.List<PersonLink>()
-	
-	public dynamic var managingOrganization: Reference?						
-		
-		
-			public func upsert(managingOrganization: Reference?) {
-				upsert(prop: &self.managingOrganization, val: managingOrganization)
-			}
-	
-	public let name = RealmSwift.List<HumanName>()
-	
-	public dynamic var photo: Attachment?						
-		
-		
-			public func upsert(photo: Attachment?) {
-				upsert(prop: &self.photo, val: photo)
-			}
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public let active = RealmOptional<Bool>()    
+    public let address = RealmSwift.List<Address>()    
+    public dynamic var birthDate: FHIRDate?        
+        
+    public dynamic var gender: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let link = RealmSwift.List<PersonLink>()    
+    public dynamic var managingOrganization: Reference?        
+    public func upsert(managingOrganization: Reference?) {
+        upsert(prop: &self.managingOrganization, val: managingOrganization)
+    }    
+    public let name = RealmSwift.List<HumanName>()    
+    public dynamic var photo: Attachment?        
+    public func upsert(photo: Attachment?) {
+        upsert(prop: &self.photo, val: photo)
+    }    
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -214,25 +198,20 @@ open class PersonLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PersonLink" }
 	}
+    
+    public dynamic var assurance: String?        
+        
+    public dynamic var target: Reference?        
+    public func upsert(target: Reference?) {
+        upsert(prop: &self.target, val: target)
+    }
 
-	public dynamic var assurance: String?						
-		
-		
-	
-	public dynamic var target: Reference?						
-		
-		
-			public func upsert(target: Reference?) {
-				upsert(prop: &self.target, val: target)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(target: Reference) {
+        self.init(json: nil)
+        self.target = target
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: Reference) {
-		self.init(json: nil)
-		self.target = target
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

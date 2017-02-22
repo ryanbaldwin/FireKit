@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,64 +20,38 @@ open class Communication: DomainResource {
 	override open class var resourceType: String {
 		get { return "Communication" }
 	}
-
-	public dynamic var category: CodeableConcept?						
-		
-		
-			public func upsert(category: CodeableConcept?) {
-				upsert(prop: &self.category, val: category)
-			}
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let medium = RealmSwift.List<CodeableConcept>()
-	
-	public let payload = RealmSwift.List<CommunicationPayload>()
-	
-	public let reason = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var received: DateTime?						
-		
-		
-	
-	public let recipient = RealmSwift.List<Reference>()
-	
-	public dynamic var requestDetail: Reference?						
-		
-		
-			public func upsert(requestDetail: Reference?) {
-				upsert(prop: &self.requestDetail, val: requestDetail)
-			}
-	
-	public dynamic var sender: Reference?						
-		
-		
-			public func upsert(sender: Reference?) {
-				upsert(prop: &self.sender, val: sender)
-			}
-	
-	public dynamic var sent: DateTime?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
+    
+    public dynamic var category: CodeableConcept?        
+    public func upsert(category: CodeableConcept?) {
+        upsert(prop: &self.category, val: category)
+    }    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let medium = RealmSwift.List<CodeableConcept>()    
+    public let payload = RealmSwift.List<CommunicationPayload>()    
+    public let reason = RealmSwift.List<CodeableConcept>()    
+    public dynamic var received: DateTime?        
+        
+    public let recipient = RealmSwift.List<Reference>()    
+    public dynamic var requestDetail: Reference?        
+    public func upsert(requestDetail: Reference?) {
+        upsert(prop: &self.requestDetail, val: requestDetail)
+    }    
+    public dynamic var sender: Reference?        
+    public func upsert(sender: Reference?) {
+        upsert(prop: &self.sender, val: sender)
+    }    
+    public dynamic var sent: DateTime?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -276,34 +250,26 @@ open class CommunicationPayload: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CommunicationPayload" }
 	}
+    
+    public dynamic var contentAttachment: Attachment?        
+    public func upsert(contentAttachment: Attachment?) {
+        upsert(prop: &self.contentAttachment, val: contentAttachment)
+    }    
+    public dynamic var contentReference: Reference?        
+    public func upsert(contentReference: Reference?) {
+        upsert(prop: &self.contentReference, val: contentReference)
+    }    
+    public dynamic var contentString: String?        
+    
 
-	public dynamic var contentAttachment: Attachment?						
-		
-		
-			public func upsert(contentAttachment: Attachment?) {
-				upsert(prop: &self.contentAttachment, val: contentAttachment)
-			}
-	
-	public dynamic var contentReference: Reference?						
-		
-		
-			public func upsert(contentReference: Reference?) {
-				upsert(prop: &self.contentReference, val: contentReference)
-			}
-	
-	public dynamic var contentString: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(contentAttachment: Attachment, contentReference: Reference, contentString: String) {
+        self.init(json: nil)
+        self.contentAttachment = contentAttachment
+        self.contentReference = contentReference
+        self.contentString = contentString
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(contentAttachment: Attachment, contentReference: Reference, contentString: String) {
-		self.init(json: nil)
-		self.contentAttachment = contentAttachment
-		self.contentReference = contentReference
-		self.contentString = contentString
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

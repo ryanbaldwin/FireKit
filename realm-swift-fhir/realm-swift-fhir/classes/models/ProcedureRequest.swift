@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,109 +19,67 @@ open class ProcedureRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "ProcedureRequest" }
 	}
+    
+    public let asNeededBoolean = RealmOptional<Bool>()    
+    public dynamic var asNeededCodeableConcept: CodeableConcept?        
+    public func upsert(asNeededCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.asNeededCodeableConcept, val: asNeededCodeableConcept)
+    }    
+    public let bodySite = RealmSwift.List<CodeableConcept>()    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let notes = RealmSwift.List<Annotation>()    
+    public dynamic var orderedOn: DateTime?        
+        
+    public dynamic var orderer: Reference?        
+    public func upsert(orderer: Reference?) {
+        upsert(prop: &self.orderer, val: orderer)
+    }    
+    public dynamic var performer: Reference?        
+    public func upsert(performer: Reference?) {
+        upsert(prop: &self.performer, val: performer)
+    }    
+    public dynamic var priority: String?        
+        
+    public dynamic var reasonCodeableConcept: CodeableConcept?        
+    public func upsert(reasonCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
+    }    
+    public dynamic var reasonReference: Reference?        
+    public func upsert(reasonReference: Reference?) {
+        upsert(prop: &self.reasonReference, val: reasonReference)
+    }    
+    public dynamic var scheduledDateTime: DateTime?        
+        
+    public dynamic var scheduledPeriod: Period?        
+    public func upsert(scheduledPeriod: Period?) {
+        upsert(prop: &self.scheduledPeriod, val: scheduledPeriod)
+    }    
+    public dynamic var scheduledTiming: Timing?        
+    public func upsert(scheduledTiming: Timing?) {
+        upsert(prop: &self.scheduledTiming, val: scheduledTiming)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }
 
-	public let asNeededBoolean = RealmOptional<Bool>()
-	
-	public dynamic var asNeededCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(asNeededCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.asNeededCodeableConcept, val: asNeededCodeableConcept)
-			}
-	
-	public let bodySite = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let notes = RealmSwift.List<Annotation>()
-	
-	public dynamic var orderedOn: DateTime?						
-		
-		
-	
-	public dynamic var orderer: Reference?						
-		
-		
-			public func upsert(orderer: Reference?) {
-				upsert(prop: &self.orderer, val: orderer)
-			}
-	
-	public dynamic var performer: Reference?						
-		
-		
-			public func upsert(performer: Reference?) {
-				upsert(prop: &self.performer, val: performer)
-			}
-	
-	public dynamic var priority: String?						
-		
-		
-	
-	public dynamic var reasonCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(reasonCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
-			}
-	
-	public dynamic var reasonReference: Reference?						
-		
-		
-			public func upsert(reasonReference: Reference?) {
-				upsert(prop: &self.reasonReference, val: reasonReference)
-			}
-	
-	public dynamic var scheduledDateTime: DateTime?						
-		
-		
-	
-	public dynamic var scheduledPeriod: Period?						
-		
-		
-			public func upsert(scheduledPeriod: Period?) {
-				upsert(prop: &self.scheduledPeriod, val: scheduledPeriod)
-			}
-	
-	public dynamic var scheduledTiming: Timing?						
-		
-		
-			public func upsert(scheduledTiming: Timing?) {
-				upsert(prop: &self.scheduledTiming, val: scheduledTiming)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept, subject: Reference) {
+        self.init(json: nil)
+        self.code = code
+        self.subject = subject
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, subject: Reference) {
-		self.init(json: nil)
-		self.code = code
-		self.subject = subject
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

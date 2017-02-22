@@ -2,7 +2,7 @@
 //  OrganizationTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization1(copy!.asJSON())            
+			try runOrganization1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -59,7 +62,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -152,7 +154,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization2(copy!.asJSON())            
+			try runOrganization2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -175,7 +180,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -253,7 +257,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization3(copy!.asJSON())            
+			try runOrganization3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -276,7 +283,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -354,7 +360,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization4(copy!.asJSON())            
+			try runOrganization4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -377,7 +386,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -471,7 +479,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization5(copy!.asJSON())            
+			try runOrganization5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -494,7 +505,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -572,7 +582,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization6(copy!.asJSON())            
+			try runOrganization6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -595,7 +608,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -666,7 +678,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization7(copy!.asJSON())            
+			try runOrganization7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -689,7 +704,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -752,7 +766,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization8(copy!.asJSON())            
+			try runOrganization8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -775,7 +792,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -838,7 +854,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization9(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization9(copy!.asJSON())            
+			try runOrganization9(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization9(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -861,7 +880,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }
@@ -930,7 +948,10 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 			try runOrganization10(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Organization
 			XCTAssertNotNil(copy)
-			try runOrganization10(copy!.asJSON())            
+			try runOrganization10(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runOrganization10(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
@@ -953,7 +974,6 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Organization's PKs, but threw: \(error)")
         }

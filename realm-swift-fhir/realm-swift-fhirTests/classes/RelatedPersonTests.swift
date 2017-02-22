@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 			try runRelatedPerson1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
 			XCTAssertNotNil(copy)
-			try runRelatedPerson1(copy!.asJSON())            
+			try runRelatedPerson1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runRelatedPerson1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -59,7 +62,6 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test RelatedPerson's PKs, but threw: \(error)")
         }
@@ -135,7 +137,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 			try runRelatedPerson2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
 			XCTAssertNotNil(copy)
-			try runRelatedPerson2(copy!.asJSON())            
+			try runRelatedPerson2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runRelatedPerson2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -158,7 +163,6 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test RelatedPerson's PKs, but threw: \(error)")
         }
@@ -230,7 +234,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 			try runRelatedPerson3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
 			XCTAssertNotNil(copy)
-			try runRelatedPerson3(copy!.asJSON())            
+			try runRelatedPerson3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runRelatedPerson3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -253,7 +260,6 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test RelatedPerson's PKs, but threw: \(error)")
         }
@@ -331,7 +337,10 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 			try runRelatedPerson4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.RelatedPerson
 			XCTAssertNotNil(copy)
-			try runRelatedPerson4(copy!.asJSON())            
+			try runRelatedPerson4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runRelatedPerson4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw")
@@ -354,7 +363,6 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test RelatedPerson's PKs, but threw: \(error)")
         }

@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,92 +20,57 @@ open class DeviceUseRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceUseRequest" }
 	}
+    
+    public dynamic var bodySiteCodeableConcept: CodeableConcept?        
+    public func upsert(bodySiteCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.bodySiteCodeableConcept, val: bodySiteCodeableConcept)
+    }    
+    public dynamic var bodySiteReference: Reference?        
+    public func upsert(bodySiteReference: Reference?) {
+        upsert(prop: &self.bodySiteReference, val: bodySiteReference)
+    }    
+    public dynamic var device: Reference?        
+    public func upsert(device: Reference?) {
+        upsert(prop: &self.device, val: device)
+    }    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let indication = RealmSwift.List<CodeableConcept>()    
+    public let notes = RealmSwift.List<RealmString>()    
+    public dynamic var orderedOn: DateTime?        
+        
+    public dynamic var priority: String?        
+        
+    public let prnReason = RealmSwift.List<CodeableConcept>()    
+    public dynamic var recordedOn: DateTime?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var timingDateTime: DateTime?        
+        
+    public dynamic var timingPeriod: Period?        
+    public func upsert(timingPeriod: Period?) {
+        upsert(prop: &self.timingPeriod, val: timingPeriod)
+    }    
+    public dynamic var timingTiming: Timing?        
+    public func upsert(timingTiming: Timing?) {
+        upsert(prop: &self.timingTiming, val: timingTiming)
+    }
 
-	public dynamic var bodySiteCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(bodySiteCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.bodySiteCodeableConcept, val: bodySiteCodeableConcept)
-			}
-	
-	public dynamic var bodySiteReference: Reference?						
-		
-		
-			public func upsert(bodySiteReference: Reference?) {
-				upsert(prop: &self.bodySiteReference, val: bodySiteReference)
-			}
-	
-	public dynamic var device: Reference?						
-		
-		
-			public func upsert(device: Reference?) {
-				upsert(prop: &self.device, val: device)
-			}
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let indication = RealmSwift.List<CodeableConcept>()
-	
-	public let notes = RealmSwift.List<RealmString>()
-	
-	public dynamic var orderedOn: DateTime?						
-		
-		
-	
-	public dynamic var priority: String?						
-		
-		
-	
-	public let prnReason = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var recordedOn: DateTime?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var timingDateTime: DateTime?						
-		
-		
-	
-	public dynamic var timingPeriod: Period?						
-		
-		
-			public func upsert(timingPeriod: Period?) {
-				upsert(prop: &self.timingPeriod, val: timingPeriod)
-			}
-	
-	public dynamic var timingTiming: Timing?						
-		
-		
-			public func upsert(timingTiming: Timing?) {
-				upsert(prop: &self.timingTiming, val: timingTiming)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(device: Reference, subject: Reference) {
+        self.init(json: nil)
+        self.device = device
+        self.subject = subject
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(device: Reference, subject: Reference) {
-		self.init(json: nil)
-		self.device = device
-		self.subject = subject
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

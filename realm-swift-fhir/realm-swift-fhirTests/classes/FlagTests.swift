@@ -2,7 +2,7 @@
 //  FlagTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 			try runFlag1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Flag
 			XCTAssertNotNil(copy)
-			try runFlag1(copy!.asJSON())            
+			try runFlag1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runFlag1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw")
@@ -59,7 +62,6 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Flag's PKs, but threw: \(error)")
         }
@@ -129,7 +131,10 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 			try runFlag2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Flag
 			XCTAssertNotNil(copy)
-			try runFlag2(copy!.asJSON())            
+			try runFlag2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runFlag2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw")
@@ -152,7 +157,6 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Flag's PKs, but threw: \(error)")
         }

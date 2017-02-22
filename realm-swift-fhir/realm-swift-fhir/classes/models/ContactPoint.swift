@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,28 +20,18 @@ open class ContactPoint: Element {
 	override open class var resourceType: String {
 		get { return "ContactPoint" }
 	}
-
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let rank = RealmOptional<Int>()
-	
-	public dynamic var system: String?						
-		
-		
-	
-	public dynamic var use: String?						
-		
-		
-	
-	public dynamic var value: String?						
-		
-		
-	
+    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let rank = RealmOptional<Int>()    
+    public dynamic var system: String?        
+        
+    public dynamic var use: String?        
+        
+    public dynamic var value: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

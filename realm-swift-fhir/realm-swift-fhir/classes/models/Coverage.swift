@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,76 +19,45 @@ open class Coverage: DomainResource {
 	override open class var resourceType: String {
 		get { return "Coverage" }
 	}
-
-	public dynamic var bin: Identifier?						
-		
-		
-			public func upsert(bin: Identifier?) {
-				upsert(prop: &self.bin, val: bin)
-			}
-	
-	public let contract = RealmSwift.List<Reference>()
-	
-	public let dependent = RealmOptional<Int>()
-	
-	public dynamic var group: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var issuer: Reference?						
-		
-		
-			public func upsert(issuer: Reference?) {
-				upsert(prop: &self.issuer, val: issuer)
-			}
-	
-	public dynamic var network: Identifier?						
-		
-		
-			public func upsert(network: Identifier?) {
-				upsert(prop: &self.network, val: network)
-			}
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public dynamic var plan: String?						
-		
-		
-	
-	public let sequence = RealmOptional<Int>()
-	
-	public dynamic var subPlan: String?						
-		
-		
-	
-	public dynamic var subscriber: Reference?						
-		
-		
-			public func upsert(subscriber: Reference?) {
-				upsert(prop: &self.subscriber, val: subscriber)
-			}
-	
-	public dynamic var subscriberId: Identifier?						
-		
-		
-			public func upsert(subscriberId: Identifier?) {
-				upsert(prop: &self.subscriberId, val: subscriberId)
-			}
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var bin: Identifier?        
+    public func upsert(bin: Identifier?) {
+        upsert(prop: &self.bin, val: bin)
+    }    
+    public let contract = RealmSwift.List<Reference>()    
+    public let dependent = RealmOptional<Int>()    
+    public dynamic var group: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var issuer: Reference?        
+    public func upsert(issuer: Reference?) {
+        upsert(prop: &self.issuer, val: issuer)
+    }    
+    public dynamic var network: Identifier?        
+    public func upsert(network: Identifier?) {
+        upsert(prop: &self.network, val: network)
+    }    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public dynamic var plan: String?        
+        
+    public let sequence = RealmOptional<Int>()    
+    public dynamic var subPlan: String?        
+        
+    public dynamic var subscriber: Reference?        
+    public func upsert(subscriber: Reference?) {
+        upsert(prop: &self.subscriber, val: subscriber)
+    }    
+    public dynamic var subscriberId: Identifier?        
+    public func upsert(subscriberId: Identifier?) {
+        upsert(prop: &self.subscriberId, val: subscriberId)
+    }    
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

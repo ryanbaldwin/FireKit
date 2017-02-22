@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,94 +20,57 @@ open class Conformance: DomainResource {
 	override open class var resourceType: String {
 		get { return "Conformance" }
 	}
+    
+    public dynamic var acceptUnknown: String?        
+        
+    public let contact = RealmSwift.List<ConformanceContact>()    
+    public dynamic var copyright: String?        
+        
+    public dynamic var date: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let document = RealmSwift.List<ConformanceDocument>()    
+    public let experimental = RealmOptional<Bool>()    
+    public dynamic var fhirVersion: String?        
+        
+    public let format = RealmSwift.List<RealmString>()    
+    public dynamic var implementation: ConformanceImplementation?        
+    public func upsert(implementation: ConformanceImplementation?) {
+        upsert(prop: &self.implementation, val: implementation)
+    }    
+    public dynamic var kind: String?        
+        
+    public let messaging = RealmSwift.List<ConformanceMessaging>()    
+    public dynamic var name: String?        
+        
+    public let profile = RealmSwift.List<Reference>()    
+    public dynamic var publisher: String?        
+        
+    public dynamic var requirements: String?        
+        
+    public let rest = RealmSwift.List<ConformanceRest>()    
+    public dynamic var software: ConformanceSoftware?        
+    public func upsert(software: ConformanceSoftware?) {
+        upsert(prop: &self.software, val: software)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var url: String?        
+        
+    public dynamic var version: String?        
+    
 
-	public dynamic var acceptUnknown: String?						
-		
-		
-	
-	public let contact = RealmSwift.List<ConformanceContact>()
-	
-	public dynamic var copyright: String?						
-		
-		
-	
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let document = RealmSwift.List<ConformanceDocument>()
-	
-	public let experimental = RealmOptional<Bool>()
-	
-	public dynamic var fhirVersion: String?						
-		
-		
-	
-	public let format = RealmSwift.List<RealmString>()
-	
-	public dynamic var implementation: ConformanceImplementation?						
-		
-		
-			public func upsert(implementation: ConformanceImplementation?) {
-				upsert(prop: &self.implementation, val: implementation)
-			}
-	
-	public dynamic var kind: String?						
-		
-		
-	
-	public let messaging = RealmSwift.List<ConformanceMessaging>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public let profile = RealmSwift.List<Reference>()
-	
-	public dynamic var publisher: String?						
-		
-		
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public let rest = RealmSwift.List<ConformanceRest>()
-	
-	public dynamic var software: ConformanceSoftware?						
-		
-		
-			public func upsert(software: ConformanceSoftware?) {
-				upsert(prop: &self.software, val: software)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(acceptUnknown: String, date: DateTime, fhirVersion: String, format: [String], kind: String) {
+        self.init(json: nil)
+        self.acceptUnknown = acceptUnknown
+        self.date = date
+        self.fhirVersion = fhirVersion
+        self.format.append(objectsIn: format.map{ RealmString(value: [$0]) })
+        self.kind = kind
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(acceptUnknown: String, date: DateTime, fhirVersion: String, format: [String], kind: String) {
-		self.init(json: nil)
-		self.acceptUnknown = acceptUnknown
-		self.date = date
-		self.fhirVersion = fhirVersion
-		self.format.append(objectsIn: format.map{ RealmString(value: [$0]) })
-		self.kind = kind
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -416,13 +379,10 @@ open class ConformanceContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceContact" }
 	}
-
-	public dynamic var name: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    
+    public dynamic var name: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -477,30 +437,23 @@ open class ConformanceDocument: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceDocument" }
 	}
+    
+    public dynamic var documentation: String?        
+        
+    public dynamic var mode: String?        
+        
+    public dynamic var profile: Reference?        
+    public func upsert(profile: Reference?) {
+        upsert(prop: &self.profile, val: profile)
+    }
 
-	public dynamic var documentation: String?						
-		
-		
-	
-	public dynamic var mode: String?						
-		
-		
-	
-	public dynamic var profile: Reference?						
-		
-		
-			public func upsert(profile: Reference?) {
-				upsert(prop: &self.profile, val: profile)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(mode: String, profile: Reference) {
+        self.init(json: nil)
+        self.mode = mode
+        self.profile = profile
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, profile: Reference) {
-		self.init(json: nil)
-		self.mode = mode
-		self.profile = profile
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -570,22 +523,18 @@ open class ConformanceImplementation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceImplementation" }
 	}
+    
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(description_fhir: String) {
+        self.init(json: nil)
+        self.description_fhir = description_fhir
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String) {
-		self.init(json: nil)
-		self.description_fhir = description_fhir
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -639,24 +588,19 @@ open class ConformanceMessaging: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceMessaging" }
 	}
+    
+    public dynamic var documentation: String?        
+        
+    public let endpoint = RealmSwift.List<ConformanceMessagingEndpoint>()    
+    public let event = RealmSwift.List<ConformanceMessagingEvent>()    
+    public let reliableCache = RealmOptional<Int>()
 
-	public dynamic var documentation: String?						
-		
-		
-	
-	public let endpoint = RealmSwift.List<ConformanceMessagingEndpoint>()
-	
-	public let event = RealmSwift.List<ConformanceMessagingEvent>()
-	
-	public let reliableCache = RealmOptional<Int>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(event: [ConformanceMessagingEvent]) {
+        self.init(json: nil)
+        self.event.append(objectsIn: event)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: [ConformanceMessagingEvent]) {
-		self.init(json: nil)
-		self.event.append(objectsIn: event)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -740,26 +684,21 @@ open class ConformanceMessagingEndpoint: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceMessagingEndpoint" }
 	}
+    
+    public dynamic var address: String?        
+        
+    public dynamic var protocol_fhir: Coding?        
+    public func upsert(protocol_fhir: Coding?) {
+        upsert(prop: &self.protocol_fhir, val: protocol_fhir)
+    }
 
-	public dynamic var address: String?						
-		
-		
-	
-	public dynamic var protocol_fhir: Coding?						
-		
-		
-			public func upsert(protocol_fhir: Coding?) {
-				upsert(prop: &self.protocol_fhir, val: protocol_fhir)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(address: String, protocol_fhir: Coding) {
+        self.init(json: nil)
+        self.address = address
+        self.protocol_fhir = protocol_fhir
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(address: String, protocol_fhir: Coding) {
-		self.init(json: nil)
-		self.address = address
-		self.protocol_fhir = protocol_fhir
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -816,55 +755,38 @@ open class ConformanceMessagingEvent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceMessagingEvent" }
 	}
+    
+    public dynamic var category: String?        
+        
+    public dynamic var code: Coding?        
+    public func upsert(code: Coding?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var documentation: String?        
+        
+    public dynamic var focus: String?        
+        
+    public dynamic var mode: String?        
+        
+    public dynamic var request: Reference?        
+    public func upsert(request: Reference?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var response: Reference?        
+    public func upsert(response: Reference?) {
+        upsert(prop: &self.response, val: response)
+    }
 
-	public dynamic var category: String?						
-		
-		
-	
-	public dynamic var code: Coding?						
-		
-		
-			public func upsert(code: Coding?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var documentation: String?						
-		
-		
-	
-	public dynamic var focus: String?						
-		
-		
-	
-	public dynamic var mode: String?						
-		
-		
-	
-	public dynamic var request: Reference?						
-		
-		
-			public func upsert(request: Reference?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var response: Reference?						
-		
-		
-			public func upsert(response: Reference?) {
-				upsert(prop: &self.response, val: response)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: Coding, focus: String, mode: String, request: Reference, response: Reference) {
+        self.init(json: nil)
+        self.code = code
+        self.focus = focus
+        self.mode = mode
+        self.request = request
+        self.response = response
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: Coding, focus: String, mode: String, request: Reference, response: Reference) {
-		self.init(json: nil)
-		self.code = code
-		self.focus = focus
-		self.mode = mode
-		self.request = request
-		self.response = response
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -990,44 +912,30 @@ open class ConformanceRest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRest" }
 	}
+    
+    public let compartment = RealmSwift.List<RealmString>()    
+    public dynamic var documentation: String?        
+        
+    public let interaction = RealmSwift.List<ConformanceRestInteraction>()    
+    public dynamic var mode: String?        
+        
+    public let operation = RealmSwift.List<ConformanceRestOperation>()    
+    public let resource = RealmSwift.List<ConformanceRestResource>()    
+    public let searchParam = RealmSwift.List<ConformanceRestResourceSearchParam>()    
+    public dynamic var security: ConformanceRestSecurity?        
+    public func upsert(security: ConformanceRestSecurity?) {
+        upsert(prop: &self.security, val: security)
+    }    
+    public dynamic var transactionMode: String?        
+    
 
-	public let compartment = RealmSwift.List<RealmString>()
-	
-	public dynamic var documentation: String?						
-		
-		
-	
-	public let interaction = RealmSwift.List<ConformanceRestInteraction>()
-	
-	public dynamic var mode: String?						
-		
-		
-	
-	public let operation = RealmSwift.List<ConformanceRestOperation>()
-	
-	public let resource = RealmSwift.List<ConformanceRestResource>()
-	
-	public let searchParam = RealmSwift.List<ConformanceRestResourceSearchParam>()
-	
-	public dynamic var security: ConformanceRestSecurity?						
-		
-		
-			public func upsert(security: ConformanceRestSecurity?) {
-				upsert(prop: &self.security, val: security)
-			}
-	
-	public dynamic var transactionMode: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(mode: String, resource: [ConformanceRestResource]) {
+        self.init(json: nil)
+        self.mode = mode
+        self.resource.append(objectsIn: resource)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(mode: String, resource: [ConformanceRestResource]) {
-		self.init(json: nil)
-		self.mode = mode
-		self.resource.append(objectsIn: resource)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1180,22 +1088,18 @@ open class ConformanceRestInteraction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRestInteraction" }
 	}
+    
+    public dynamic var code: String?        
+        
+    public dynamic var documentation: String?        
+    
 
-	public dynamic var code: String?						
-		
-		
-	
-	public dynamic var documentation: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: String) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1249,26 +1153,21 @@ open class ConformanceRestOperation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRestOperation" }
 	}
+    
+    public dynamic var definition: Reference?        
+    public func upsert(definition: Reference?) {
+        upsert(prop: &self.definition, val: definition)
+    }    
+    public dynamic var name: String?        
+    
 
-	public dynamic var definition: Reference?						
-		
-		
-			public func upsert(definition: Reference?) {
-				upsert(prop: &self.definition, val: definition)
-			}
-	
-	public dynamic var name: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(definition: Reference, name: String) {
+        self.init(json: nil)
+        self.definition = definition
+        self.name = name
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(definition: Reference, name: String) {
-		self.init(json: nil)
-		self.definition = definition
-		self.name = name
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1325,50 +1224,33 @@ open class ConformanceRestResource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRestResource" }
 	}
+    
+    public let conditionalCreate = RealmOptional<Bool>()    
+    public dynamic var conditionalDelete: String?        
+        
+    public let conditionalUpdate = RealmOptional<Bool>()    
+    public let interaction = RealmSwift.List<ConformanceRestResourceInteraction>()    
+    public dynamic var profile: Reference?        
+    public func upsert(profile: Reference?) {
+        upsert(prop: &self.profile, val: profile)
+    }    
+    public let readHistory = RealmOptional<Bool>()    
+    public let searchInclude = RealmSwift.List<RealmString>()    
+    public let searchParam = RealmSwift.List<ConformanceRestResourceSearchParam>()    
+    public let searchRevInclude = RealmSwift.List<RealmString>()    
+    public dynamic var type: String?        
+        
+    public let updateCreate = RealmOptional<Bool>()    
+    public dynamic var versioning: String?        
+    
 
-	public let conditionalCreate = RealmOptional<Bool>()
-	
-	public dynamic var conditionalDelete: String?						
-		
-		
-	
-	public let conditionalUpdate = RealmOptional<Bool>()
-	
-	public let interaction = RealmSwift.List<ConformanceRestResourceInteraction>()
-	
-	public dynamic var profile: Reference?						
-		
-		
-			public func upsert(profile: Reference?) {
-				upsert(prop: &self.profile, val: profile)
-			}
-	
-	public let readHistory = RealmOptional<Bool>()
-	
-	public let searchInclude = RealmSwift.List<RealmString>()
-	
-	public let searchParam = RealmSwift.List<ConformanceRestResourceSearchParam>()
-	
-	public let searchRevInclude = RealmSwift.List<RealmString>()
-	
-	public dynamic var type: String?						
-		
-		
-	
-	public let updateCreate = RealmOptional<Bool>()
-	
-	public dynamic var versioning: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(interaction: [ConformanceRestResourceInteraction], type: String) {
+        self.init(json: nil)
+        self.interaction.append(objectsIn: interaction)
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(interaction: [ConformanceRestResourceInteraction], type: String) {
-		self.init(json: nil)
-		self.interaction.append(objectsIn: interaction)
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1551,22 +1433,18 @@ open class ConformanceRestResourceInteraction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRestResourceInteraction" }
 	}
+    
+    public dynamic var code: String?        
+        
+    public dynamic var documentation: String?        
+    
 
-	public dynamic var code: String?						
-		
-		
-	
-	public dynamic var documentation: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: String) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1621,37 +1499,26 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRestResourceSearchParam" }
 	}
+    
+    public let chain = RealmSwift.List<RealmString>()    
+    public dynamic var definition: String?        
+        
+    public dynamic var documentation: String?        
+        
+    public let modifier = RealmSwift.List<RealmString>()    
+    public dynamic var name: String?        
+        
+    public let target = RealmSwift.List<RealmString>()    
+    public dynamic var type: String?        
+    
 
-	public let chain = RealmSwift.List<RealmString>()
-	
-	public dynamic var definition: String?						
-		
-		
-	
-	public dynamic var documentation: String?						
-		
-		
-	
-	public let modifier = RealmSwift.List<RealmString>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public let target = RealmSwift.List<RealmString>()
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(name: String, type: String) {
+        self.init(json: nil)
+        self.name = name
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String, type: String) {
-		self.init(json: nil)
-		self.name = name
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1768,17 +1635,12 @@ open class ConformanceRestSecurity: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRestSecurity" }
 	}
-
-	public let certificate = RealmSwift.List<ConformanceRestSecurityCertificate>()
-	
-	public let cors = RealmOptional<Bool>()
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let service = RealmSwift.List<CodeableConcept>()
-	
+    
+    public let certificate = RealmSwift.List<ConformanceRestSecurityCertificate>()    
+    public let cors = RealmOptional<Bool>()    
+    public dynamic var description_fhir: String?        
+        
+    public let service = RealmSwift.List<CodeableConcept>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1858,15 +1720,11 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceRestSecurityCertificate" }
 	}
-
-	public dynamic var blob: Base64Binary?						
-		
-		
-	
-	public dynamic var type: String?						
-		
-		
-	
+    
+    public dynamic var blob: Base64Binary?        
+        
+    public dynamic var type: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -1919,26 +1777,20 @@ open class ConformanceSoftware: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConformanceSoftware" }
 	}
+    
+    public dynamic var name: String?        
+        
+    public dynamic var releaseDate: DateTime?        
+        
+    public dynamic var version: String?        
+    
 
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var releaseDate: DateTime?						
-		
-		
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(name: String) {
+        self.init(json: nil)
+        self.name = name
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(name: String) {
-		self.init(json: nil)
-		self.name = name
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

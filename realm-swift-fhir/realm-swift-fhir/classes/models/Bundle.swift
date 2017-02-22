@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,31 +19,23 @@ open class Bundle: Resource {
 	override open class var resourceType: String {
 		get { return "Bundle" }
 	}
+    
+    public let entry = RealmSwift.List<BundleEntry>()    
+    public let link = RealmSwift.List<BundleLink>()    
+    public dynamic var signature: Signature?        
+    public func upsert(signature: Signature?) {
+        upsert(prop: &self.signature, val: signature)
+    }    
+    public let total = RealmOptional<Int>()    
+    public dynamic var type: String?        
+    
 
-	public let entry = RealmSwift.List<BundleEntry>()
-	
-	public let link = RealmSwift.List<BundleLink>()
-	
-	public dynamic var signature: Signature?						
-		
-		
-			public func upsert(signature: Signature?) {
-				upsert(prop: &self.signature, val: signature)
-			}
-	
-	public let total = RealmOptional<Int>()
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: String) {
+        self.init(json: nil)
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: String) {
-		self.init(json: nil)
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -140,41 +132,26 @@ open class BundleEntry: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntry" }
 	}
-
-	public dynamic var fullUrl: String?						
-		
-		
-	
-	public let link = RealmSwift.List<BundleLink>()
-	
-	public dynamic var request: BundleEntryRequest?						
-		
-		
-			public func upsert(request: BundleEntryRequest?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var resource: Resource?						
-		
-		
-			public func upsert(resource: Resource?) {
-				upsert(prop: &self.resource, val: resource)
-			}
-	
-	public dynamic var response: BundleEntryResponse?						
-		
-		
-			public func upsert(response: BundleEntryResponse?) {
-				upsert(prop: &self.response, val: response)
-			}
-	
-	public dynamic var search: BundleEntrySearch?						
-		
-		
-			public func upsert(search: BundleEntrySearch?) {
-				upsert(prop: &self.search, val: search)
-			}
-	
+    
+    public dynamic var fullUrl: String?        
+        
+    public let link = RealmSwift.List<BundleLink>()    
+    public dynamic var request: BundleEntryRequest?        
+    public func upsert(request: BundleEntryRequest?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var resource: Resource?        
+    public func upsert(resource: Resource?) {
+        upsert(prop: &self.resource, val: resource)
+    }    
+    public dynamic var response: BundleEntryResponse?        
+    public func upsert(response: BundleEntryResponse?) {
+        upsert(prop: &self.response, val: response)
+    }    
+    public dynamic var search: BundleEntrySearch?        
+    public func upsert(search: BundleEntrySearch?) {
+        upsert(prop: &self.search, val: search)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -277,39 +254,27 @@ open class BundleEntryRequest: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntryRequest" }
 	}
+    
+    public dynamic var ifMatch: String?        
+        
+    public dynamic var ifModifiedSince: Instant?        
+        
+    public dynamic var ifNoneExist: String?        
+        
+    public dynamic var ifNoneMatch: String?        
+        
+    public dynamic var method: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public dynamic var ifMatch: String?						
-		
-		
-	
-	public dynamic var ifModifiedSince: Instant?						
-		
-		
-	
-	public dynamic var ifNoneExist: String?						
-		
-		
-	
-	public dynamic var ifNoneMatch: String?						
-		
-		
-	
-	public dynamic var method: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(method: String, url: String) {
+        self.init(json: nil)
+        self.method = method
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(method: String, url: String) {
-		self.init(json: nil)
-		self.method = method
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -414,30 +379,22 @@ open class BundleEntryResponse: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntryResponse" }
 	}
+    
+    public dynamic var etag: String?        
+        
+    public dynamic var lastModified: Instant?        
+        
+    public dynamic var location: String?        
+        
+    public dynamic var status: String?        
+    
 
-	public dynamic var etag: String?						
-		
-		
-	
-	public dynamic var lastModified: Instant?						
-		
-		
-	
-	public dynamic var location: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(status: String) {
+        self.init(json: nil)
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(status: String) {
-		self.init(json: nil)
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -515,15 +472,11 @@ open class BundleEntrySearch: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleEntrySearch" }
 	}
-
-	public dynamic var mode: String?						
-		
-		
-	
-	public dynamic var score: RealmDecimal?						
-		
-		
-	
+    
+    public dynamic var mode: String?        
+        
+    public dynamic var score: RealmDecimal?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -575,23 +528,19 @@ open class BundleLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "BundleLink" }
 	}
+    
+    public dynamic var relation: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public dynamic var relation: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(relation: String, url: String) {
+        self.init(json: nil)
+        self.relation = relation
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(relation: String, url: String) {
-		self.init(json: nil)
-		self.relation = relation
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

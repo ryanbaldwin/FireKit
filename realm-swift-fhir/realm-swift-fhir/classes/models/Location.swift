@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,69 +20,41 @@ open class Location: DomainResource {
 	override open class var resourceType: String {
 		get { return "Location" }
 	}
-
-	public dynamic var address: Address?						
-		
-		
-			public func upsert(address: Address?) {
-				upsert(prop: &self.address, val: address)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var managingOrganization: Reference?						
-		
-		
-			public func upsert(managingOrganization: Reference?) {
-				upsert(prop: &self.managingOrganization, val: managingOrganization)
-			}
-	
-	public dynamic var mode: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var partOf: Reference?						
-		
-		
-			public func upsert(partOf: Reference?) {
-				upsert(prop: &self.partOf, val: partOf)
-			}
-	
-	public dynamic var physicalType: CodeableConcept?						
-		
-		
-			public func upsert(physicalType: CodeableConcept?) {
-				upsert(prop: &self.physicalType, val: physicalType)
-			}
-	
-	public dynamic var position: LocationPosition?						
-		
-		
-			public func upsert(position: LocationPosition?) {
-				upsert(prop: &self.position, val: position)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var address: Address?        
+    public func upsert(address: Address?) {
+        upsert(prop: &self.address, val: address)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var managingOrganization: Reference?        
+    public func upsert(managingOrganization: Reference?) {
+        upsert(prop: &self.managingOrganization, val: managingOrganization)
+    }    
+    public dynamic var mode: String?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var partOf: Reference?        
+    public func upsert(partOf: Reference?) {
+        upsert(prop: &self.partOf, val: partOf)
+    }    
+    public dynamic var physicalType: CodeableConcept?        
+    public func upsert(physicalType: CodeableConcept?) {
+        upsert(prop: &self.physicalType, val: physicalType)
+    }    
+    public dynamic var position: LocationPosition?        
+    public func upsert(position: LocationPosition?) {
+        upsert(prop: &self.position, val: position)
+    }    
+    public dynamic var status: String?        
+        
+    public let telecom = RealmSwift.List<ContactPoint>()    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -261,27 +233,21 @@ open class LocationPosition: BackboneElement {
 	override open class var resourceType: String {
 		get { return "LocationPosition" }
 	}
+    
+    public dynamic var altitude: RealmDecimal?        
+        
+    public dynamic var latitude: RealmDecimal?        
+        
+    public dynamic var longitude: RealmDecimal?        
+    
 
-	public dynamic var altitude: RealmDecimal?						
-		
-		
-	
-	public dynamic var latitude: RealmDecimal?						
-		
-		
-	
-	public dynamic var longitude: RealmDecimal?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(latitude: RealmDecimal, longitude: RealmDecimal) {
+        self.init(json: nil)
+        self.latitude = latitude
+        self.longitude = longitude
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(latitude: RealmDecimal, longitude: RealmDecimal) {
-		self.init(json: nil)
-		self.latitude = latitude
-		self.longitude = longitude
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

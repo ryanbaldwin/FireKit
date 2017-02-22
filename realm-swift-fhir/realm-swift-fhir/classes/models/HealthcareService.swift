@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,95 +17,57 @@ open class HealthcareService: DomainResource {
 	override open class var resourceType: String {
 		get { return "HealthcareService" }
 	}
+    
+    public let appointmentRequired = RealmOptional<Bool>()    
+    public dynamic var availabilityExceptions: String?        
+        
+    public let availableTime = RealmSwift.List<HealthcareServiceAvailableTime>()    
+    public let characteristic = RealmSwift.List<CodeableConcept>()    
+    public dynamic var comment: String?        
+        
+    public let coverageArea = RealmSwift.List<Reference>()    
+    public dynamic var eligibility: CodeableConcept?        
+    public func upsert(eligibility: CodeableConcept?) {
+        upsert(prop: &self.eligibility, val: eligibility)
+    }    
+    public dynamic var eligibilityNote: String?        
+        
+    public dynamic var extraDetails: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var location: Reference?        
+    public func upsert(location: Reference?) {
+        upsert(prop: &self.location, val: location)
+    }    
+    public let notAvailable = RealmSwift.List<HealthcareServiceNotAvailable>()    
+    public dynamic var photo: Attachment?        
+    public func upsert(photo: Attachment?) {
+        upsert(prop: &self.photo, val: photo)
+    }    
+    public let programName = RealmSwift.List<RealmString>()    
+    public dynamic var providedBy: Reference?        
+    public func upsert(providedBy: Reference?) {
+        upsert(prop: &self.providedBy, val: providedBy)
+    }    
+    public dynamic var publicKey: String?        
+        
+    public let referralMethod = RealmSwift.List<CodeableConcept>()    
+    public dynamic var serviceCategory: CodeableConcept?        
+    public func upsert(serviceCategory: CodeableConcept?) {
+        upsert(prop: &self.serviceCategory, val: serviceCategory)
+    }    
+    public dynamic var serviceName: String?        
+        
+    public let serviceProvisionCode = RealmSwift.List<CodeableConcept>()    
+    public let serviceType = RealmSwift.List<HealthcareServiceServiceType>()    
+    public let telecom = RealmSwift.List<ContactPoint>()
 
-	public let appointmentRequired = RealmOptional<Bool>()
-	
-	public dynamic var availabilityExceptions: String?						
-		
-		
-	
-	public let availableTime = RealmSwift.List<HealthcareServiceAvailableTime>()
-	
-	public let characteristic = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var comment: String?						
-		
-		
-	
-	public let coverageArea = RealmSwift.List<Reference>()
-	
-	public dynamic var eligibility: CodeableConcept?						
-		
-		
-			public func upsert(eligibility: CodeableConcept?) {
-				upsert(prop: &self.eligibility, val: eligibility)
-			}
-	
-	public dynamic var eligibilityNote: String?						
-		
-		
-	
-	public dynamic var extraDetails: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var location: Reference?						
-		
-		
-			public func upsert(location: Reference?) {
-				upsert(prop: &self.location, val: location)
-			}
-	
-	public let notAvailable = RealmSwift.List<HealthcareServiceNotAvailable>()
-	
-	public dynamic var photo: Attachment?						
-		
-		
-			public func upsert(photo: Attachment?) {
-				upsert(prop: &self.photo, val: photo)
-			}
-	
-	public let programName = RealmSwift.List<RealmString>()
-	
-	public dynamic var providedBy: Reference?						
-		
-		
-			public func upsert(providedBy: Reference?) {
-				upsert(prop: &self.providedBy, val: providedBy)
-			}
-	
-	public dynamic var publicKey: String?						
-		
-		
-	
-	public let referralMethod = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var serviceCategory: CodeableConcept?						
-		
-		
-			public func upsert(serviceCategory: CodeableConcept?) {
-				upsert(prop: &self.serviceCategory, val: serviceCategory)
-			}
-	
-	public dynamic var serviceName: String?						
-		
-		
-	
-	public let serviceProvisionCode = RealmSwift.List<CodeableConcept>()
-	
-	public let serviceType = RealmSwift.List<HealthcareServiceServiceType>()
-	
-	public let telecom = RealmSwift.List<ContactPoint>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(location: Reference) {
+        self.init(json: nil)
+        self.location = location
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(location: Reference) {
-		self.init(json: nil)
-		self.location = location
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -426,19 +388,13 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceAvailableTime" }
 	}
-
-	public let allDay = RealmOptional<Bool>()
-	
-	public dynamic var availableEndTime: FHIRTime?						
-		
-		
-	
-	public dynamic var availableStartTime: FHIRTime?						
-		
-		
-	
-	public let daysOfWeek = RealmSwift.List<RealmString>()
-	
+    
+    public let allDay = RealmOptional<Bool>()    
+    public dynamic var availableEndTime: FHIRTime?        
+        
+    public dynamic var availableStartTime: FHIRTime?        
+        
+    public let daysOfWeek = RealmSwift.List<RealmString>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -514,25 +470,20 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceNotAvailable" }
 	}
+    
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var during: Period?        
+    public func upsert(during: Period?) {
+        upsert(prop: &self.during, val: during)
+    }
 
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var during: Period?						
-		
-		
-			public func upsert(during: Period?) {
-				upsert(prop: &self.during, val: during)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(description_fhir: String) {
+        self.init(json: nil)
+        self.description_fhir = description_fhir
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(description_fhir: String) {
-		self.init(json: nil)
-		self.description_fhir = description_fhir
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -586,23 +537,19 @@ open class HealthcareServiceServiceType: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceServiceType" }
 	}
+    
+    public let specialty = RealmSwift.List<CodeableConcept>()    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public let specialty = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(type: CodeableConcept) {
+        self.init(json: nil)
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(type: CodeableConcept) {
-		self.init(json: nil)
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,80 +21,52 @@ open class MessageHeader: DomainResource {
 	override open class var resourceType: String {
 		get { return "MessageHeader" }
 	}
+    
+    public dynamic var author: Reference?        
+    public func upsert(author: Reference?) {
+        upsert(prop: &self.author, val: author)
+    }    
+    public let data = RealmSwift.List<Reference>()    
+    public let destination = RealmSwift.List<MessageHeaderDestination>()    
+    public dynamic var enterer: Reference?        
+    public func upsert(enterer: Reference?) {
+        upsert(prop: &self.enterer, val: enterer)
+    }    
+    public dynamic var event: Coding?        
+    public func upsert(event: Coding?) {
+        upsert(prop: &self.event, val: event)
+    }    
+    public dynamic var reason: CodeableConcept?        
+    public func upsert(reason: CodeableConcept?) {
+        upsert(prop: &self.reason, val: reason)
+    }    
+    public dynamic var receiver: Reference?        
+    public func upsert(receiver: Reference?) {
+        upsert(prop: &self.receiver, val: receiver)
+    }    
+    public dynamic var response: MessageHeaderResponse?        
+    public func upsert(response: MessageHeaderResponse?) {
+        upsert(prop: &self.response, val: response)
+    }    
+    public dynamic var responsible: Reference?        
+    public func upsert(responsible: Reference?) {
+        upsert(prop: &self.responsible, val: responsible)
+    }    
+    public dynamic var source: MessageHeaderSource?        
+    public func upsert(source: MessageHeaderSource?) {
+        upsert(prop: &self.source, val: source)
+    }    
+    public dynamic var timestamp: Instant?        
+    
 
-	public dynamic var author: Reference?						
-		
-		
-			public func upsert(author: Reference?) {
-				upsert(prop: &self.author, val: author)
-			}
-	
-	public let data = RealmSwift.List<Reference>()
-	
-	public let destination = RealmSwift.List<MessageHeaderDestination>()
-	
-	public dynamic var enterer: Reference?						
-		
-		
-			public func upsert(enterer: Reference?) {
-				upsert(prop: &self.enterer, val: enterer)
-			}
-	
-	public dynamic var event: Coding?						
-		
-		
-			public func upsert(event: Coding?) {
-				upsert(prop: &self.event, val: event)
-			}
-	
-	public dynamic var reason: CodeableConcept?						
-		
-		
-			public func upsert(reason: CodeableConcept?) {
-				upsert(prop: &self.reason, val: reason)
-			}
-	
-	public dynamic var receiver: Reference?						
-		
-		
-			public func upsert(receiver: Reference?) {
-				upsert(prop: &self.receiver, val: receiver)
-			}
-	
-	public dynamic var response: MessageHeaderResponse?						
-		
-		
-			public func upsert(response: MessageHeaderResponse?) {
-				upsert(prop: &self.response, val: response)
-			}
-	
-	public dynamic var responsible: Reference?						
-		
-		
-			public func upsert(responsible: Reference?) {
-				upsert(prop: &self.responsible, val: responsible)
-			}
-	
-	public dynamic var source: MessageHeaderSource?						
-		
-		
-			public func upsert(source: MessageHeaderSource?) {
-				upsert(prop: &self.source, val: source)
-			}
-	
-	public dynamic var timestamp: Instant?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(event: Coding, source: MessageHeaderSource, timestamp: Instant) {
+        self.init(json: nil)
+        self.event = event
+        self.source = source
+        self.timestamp = timestamp
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(event: Coding, source: MessageHeaderSource, timestamp: Instant) {
-		self.init(json: nil)
-		self.event = event
-		self.source = source
-		self.timestamp = timestamp
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -268,29 +240,22 @@ open class MessageHeaderDestination: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MessageHeaderDestination" }
 	}
+    
+    public dynamic var endpoint: String?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var target: Reference?        
+    public func upsert(target: Reference?) {
+        upsert(prop: &self.target, val: target)
+    }
 
-	public dynamic var endpoint: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var target: Reference?						
-		
-		
-			public func upsert(target: Reference?) {
-				upsert(prop: &self.target, val: target)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(endpoint: String) {
+        self.init(json: nil)
+        self.endpoint = endpoint
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(endpoint: String) {
-		self.init(json: nil)
-		self.endpoint = endpoint
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -356,30 +321,23 @@ open class MessageHeaderResponse: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MessageHeaderResponse" }
 	}
+    
+    public dynamic var code: String?        
+        
+    public dynamic var details: Reference?        
+    public func upsert(details: Reference?) {
+        upsert(prop: &self.details, val: details)
+    }    
+    public dynamic var identifier: String?        
+    
 
-	public dynamic var code: String?						
-		
-		
-	
-	public dynamic var details: Reference?						
-		
-		
-			public func upsert(details: Reference?) {
-				upsert(prop: &self.details, val: details)
-			}
-	
-	public dynamic var identifier: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: String, identifier: String) {
+        self.init(json: nil)
+        self.code = code
+        self.identifier = identifier
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String, identifier: String) {
-		self.init(json: nil)
-		self.code = code
-		self.identifier = identifier
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -448,37 +406,26 @@ open class MessageHeaderSource: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MessageHeaderSource" }
 	}
+    
+    public dynamic var contact: ContactPoint?        
+    public func upsert(contact: ContactPoint?) {
+        upsert(prop: &self.contact, val: contact)
+    }    
+    public dynamic var endpoint: String?        
+        
+    public dynamic var name: String?        
+        
+    public dynamic var software: String?        
+        
+    public dynamic var version: String?        
+    
 
-	public dynamic var contact: ContactPoint?						
-		
-		
-			public func upsert(contact: ContactPoint?) {
-				upsert(prop: &self.contact, val: contact)
-			}
-	
-	public dynamic var endpoint: String?						
-		
-		
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var software: String?						
-		
-		
-	
-	public dynamic var version: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(endpoint: String) {
+        self.init(json: nil)
+        self.endpoint = endpoint
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(endpoint: String) {
-		self.init(json: nil)
-		self.endpoint = endpoint
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

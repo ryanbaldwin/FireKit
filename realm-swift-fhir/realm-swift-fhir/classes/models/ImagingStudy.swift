@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -22,79 +22,50 @@ open class ImagingStudy: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImagingStudy" }
 	}
+    
+    public dynamic var accession: Identifier?        
+    public func upsert(accession: Identifier?) {
+        upsert(prop: &self.accession, val: accession)
+    }    
+    public dynamic var availability: String?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var interpreter: Reference?        
+    public func upsert(interpreter: Reference?) {
+        upsert(prop: &self.interpreter, val: interpreter)
+    }    
+    public let modalityList = RealmSwift.List<Coding>()    
+    public let numberOfInstances = RealmOptional<Int>()    
+    public let numberOfSeries = RealmOptional<Int>()    
+    public let order = RealmSwift.List<Reference>()    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public let procedure = RealmSwift.List<Reference>()    
+    public dynamic var referrer: Reference?        
+    public func upsert(referrer: Reference?) {
+        upsert(prop: &self.referrer, val: referrer)
+    }    
+    public let series = RealmSwift.List<ImagingStudySeries>()    
+    public dynamic var started: DateTime?        
+        
+    public dynamic var uid: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public dynamic var accession: Identifier?						
-		
-		
-			public func upsert(accession: Identifier?) {
-				upsert(prop: &self.accession, val: accession)
-			}
-	
-	public dynamic var availability: String?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var interpreter: Reference?						
-		
-		
-			public func upsert(interpreter: Reference?) {
-				upsert(prop: &self.interpreter, val: interpreter)
-			}
-	
-	public let modalityList = RealmSwift.List<Coding>()
-	
-	public let numberOfInstances = RealmOptional<Int>()
-	
-	public let numberOfSeries = RealmOptional<Int>()
-	
-	public let order = RealmSwift.List<Reference>()
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public let procedure = RealmSwift.List<Reference>()
-	
-	public dynamic var referrer: Reference?						
-		
-		
-			public func upsert(referrer: Reference?) {
-				upsert(prop: &self.referrer, val: referrer)
-			}
-	
-	public let series = RealmSwift.List<ImagingStudySeries>()
-	
-	public dynamic var started: DateTime?						
-		
-		
-	
-	public dynamic var uid: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(numberOfInstances: Int, numberOfSeries: Int, patient: Reference, uid: String) {
+        self.init(json: nil)
+        self.numberOfInstances.value = numberOfInstances
+        self.numberOfSeries.value = numberOfSeries
+        self.patient = patient
+        self.uid = uid
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(numberOfInstances: Int, numberOfSeries: Int, patient: Reference, uid: String) {
-		self.init(json: nil)
-		self.numberOfInstances.value = numberOfInstances
-		self.numberOfSeries.value = numberOfSeries
-		self.patient = patient
-		self.uid = uid
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -340,63 +311,41 @@ open class ImagingStudySeries: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudySeries" }
 	}
+    
+    public dynamic var availability: String?        
+        
+    public dynamic var bodySite: Coding?        
+    public func upsert(bodySite: Coding?) {
+        upsert(prop: &self.bodySite, val: bodySite)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let instance = RealmSwift.List<ImagingStudySeriesInstance>()    
+    public dynamic var laterality: Coding?        
+    public func upsert(laterality: Coding?) {
+        upsert(prop: &self.laterality, val: laterality)
+    }    
+    public dynamic var modality: Coding?        
+    public func upsert(modality: Coding?) {
+        upsert(prop: &self.modality, val: modality)
+    }    
+    public let number = RealmOptional<Int>()    
+    public let numberOfInstances = RealmOptional<Int>()    
+    public dynamic var started: DateTime?        
+        
+    public dynamic var uid: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public dynamic var availability: String?						
-		
-		
-	
-	public dynamic var bodySite: Coding?						
-		
-		
-			public func upsert(bodySite: Coding?) {
-				upsert(prop: &self.bodySite, val: bodySite)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let instance = RealmSwift.List<ImagingStudySeriesInstance>()
-	
-	public dynamic var laterality: Coding?						
-		
-		
-			public func upsert(laterality: Coding?) {
-				upsert(prop: &self.laterality, val: laterality)
-			}
-	
-	public dynamic var modality: Coding?						
-		
-		
-			public func upsert(modality: Coding?) {
-				upsert(prop: &self.modality, val: modality)
-			}
-	
-	public let number = RealmOptional<Int>()
-	
-	public let numberOfInstances = RealmOptional<Int>()
-	
-	public dynamic var started: DateTime?						
-		
-		
-	
-	public dynamic var uid: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(modality: Coding, numberOfInstances: Int, uid: String) {
+        self.init(json: nil)
+        self.modality = modality
+        self.numberOfInstances.value = numberOfInstances
+        self.uid = uid
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(modality: Coding, numberOfInstances: Int, uid: String) {
-		self.init(json: nil)
-		self.modality = modality
-		self.numberOfInstances.value = numberOfInstances
-		self.uid = uid
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -567,35 +516,25 @@ open class ImagingStudySeriesInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudySeriesInstance" }
 	}
+    
+    public let content = RealmSwift.List<Attachment>()    
+    public let number = RealmOptional<Int>()    
+    public dynamic var sopClass: String?        
+        
+    public dynamic var title: String?        
+        
+    public dynamic var type: String?        
+        
+    public dynamic var uid: String?        
+    
 
-	public let content = RealmSwift.List<Attachment>()
-	
-	public let number = RealmOptional<Int>()
-	
-	public dynamic var sopClass: String?						
-		
-		
-	
-	public dynamic var title: String?						
-		
-		
-	
-	public dynamic var type: String?						
-		
-		
-	
-	public dynamic var uid: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(sopClass: String, uid: String) {
+        self.init(json: nil)
+        self.sopClass = sopClass
+        self.uid = uid
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sopClass: String, uid: String) {
-		self.init(json: nil)
-		self.sopClass = sopClass
-		self.uid = uid
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

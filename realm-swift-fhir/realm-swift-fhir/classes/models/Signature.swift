@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,44 +21,32 @@ open class Signature: Element {
 	override open class var resourceType: String {
 		get { return "Signature" }
 	}
+    
+    public dynamic var blob: Base64Binary?        
+        
+    public dynamic var contentType: String?        
+        
+    public let type = RealmSwift.List<Coding>()    
+    public dynamic var when: Instant?        
+        
+    public dynamic var whoReference: Reference?        
+    public func upsert(whoReference: Reference?) {
+        upsert(prop: &self.whoReference, val: whoReference)
+    }    
+    public dynamic var whoUri: String?        
+    
 
-	public dynamic var blob: Base64Binary?						
-		
-		
-	
-	public dynamic var contentType: String?						
-		
-		
-	
-	public let type = RealmSwift.List<Coding>()
-	
-	public dynamic var when: Instant?						
-		
-		
-	
-	public dynamic var whoReference: Reference?						
-		
-		
-			public func upsert(whoReference: Reference?) {
-				upsert(prop: &self.whoReference, val: whoReference)
-			}
-	
-	public dynamic var whoUri: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(blob: Base64Binary, contentType: String, type: [Coding], when: Instant, whoReference: Reference, whoUri: String) {
+        self.init(json: nil)
+        self.blob = blob
+        self.contentType = contentType
+        self.type.append(objectsIn: type)
+        self.when = when
+        self.whoReference = whoReference
+        self.whoUri = whoUri
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(blob: Base64Binary, contentType: String, type: [Coding], when: Instant, whoReference: Reference, whoUri: String) {
-		self.init(json: nil)
-		self.blob = blob
-		self.contentType = contentType
-		self.type.append(objectsIn: type)
-		self.when = when
-		self.whoReference = whoReference
-		self.whoUri = whoUri
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

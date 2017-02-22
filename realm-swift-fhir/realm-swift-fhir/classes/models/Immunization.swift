@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,123 +21,76 @@ open class Immunization: DomainResource {
 	override open class var resourceType: String {
 		get { return "Immunization" }
 	}
+    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var doseQuantity: Quantity?        
+    public func upsert(doseQuantity: Quantity?) {
+        upsert(prop: &self.doseQuantity, val: doseQuantity)
+    }    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public dynamic var expirationDate: FHIRDate?        
+        
+    public dynamic var explanation: ImmunizationExplanation?        
+    public func upsert(explanation: ImmunizationExplanation?) {
+        upsert(prop: &self.explanation, val: explanation)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var location: Reference?        
+    public func upsert(location: Reference?) {
+        upsert(prop: &self.location, val: location)
+    }    
+    public dynamic var lotNumber: String?        
+        
+    public dynamic var manufacturer: Reference?        
+    public func upsert(manufacturer: Reference?) {
+        upsert(prop: &self.manufacturer, val: manufacturer)
+    }    
+    public let note = RealmSwift.List<Annotation>()    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var performer: Reference?        
+    public func upsert(performer: Reference?) {
+        upsert(prop: &self.performer, val: performer)
+    }    
+    public let reaction = RealmSwift.List<ImmunizationReaction>()    
+    public let reported = RealmOptional<Bool>()    
+    public dynamic var requester: Reference?        
+    public func upsert(requester: Reference?) {
+        upsert(prop: &self.requester, val: requester)
+    }    
+    public dynamic var route: CodeableConcept?        
+    public func upsert(route: CodeableConcept?) {
+        upsert(prop: &self.route, val: route)
+    }    
+    public dynamic var site: CodeableConcept?        
+    public func upsert(site: CodeableConcept?) {
+        upsert(prop: &self.site, val: site)
+    }    
+    public dynamic var status: String?        
+        
+    public let vaccinationProtocol = RealmSwift.List<ImmunizationVaccinationProtocol>()    
+    public dynamic var vaccineCode: CodeableConcept?        
+    public func upsert(vaccineCode: CodeableConcept?) {
+        upsert(prop: &self.vaccineCode, val: vaccineCode)
+    }    
+    public let wasNotGiven = RealmOptional<Bool>()
 
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var doseQuantity: Quantity?						
-		
-		
-			public func upsert(doseQuantity: Quantity?) {
-				upsert(prop: &self.doseQuantity, val: doseQuantity)
-			}
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public dynamic var expirationDate: FHIRDate?						
-		
-		
-	
-	public dynamic var explanation: ImmunizationExplanation?						
-		
-		
-			public func upsert(explanation: ImmunizationExplanation?) {
-				upsert(prop: &self.explanation, val: explanation)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var location: Reference?						
-		
-		
-			public func upsert(location: Reference?) {
-				upsert(prop: &self.location, val: location)
-			}
-	
-	public dynamic var lotNumber: String?						
-		
-		
-	
-	public dynamic var manufacturer: Reference?						
-		
-		
-			public func upsert(manufacturer: Reference?) {
-				upsert(prop: &self.manufacturer, val: manufacturer)
-			}
-	
-	public let note = RealmSwift.List<Annotation>()
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var performer: Reference?						
-		
-		
-			public func upsert(performer: Reference?) {
-				upsert(prop: &self.performer, val: performer)
-			}
-	
-	public let reaction = RealmSwift.List<ImmunizationReaction>()
-	
-	public let reported = RealmOptional<Bool>()
-	
-	public dynamic var requester: Reference?						
-		
-		
-			public func upsert(requester: Reference?) {
-				upsert(prop: &self.requester, val: requester)
-			}
-	
-	public dynamic var route: CodeableConcept?						
-		
-		
-			public func upsert(route: CodeableConcept?) {
-				upsert(prop: &self.route, val: route)
-			}
-	
-	public dynamic var site: CodeableConcept?						
-		
-		
-			public func upsert(site: CodeableConcept?) {
-				upsert(prop: &self.site, val: site)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let vaccinationProtocol = RealmSwift.List<ImmunizationVaccinationProtocol>()
-	
-	public dynamic var vaccineCode: CodeableConcept?						
-		
-		
-			public func upsert(vaccineCode: CodeableConcept?) {
-				upsert(prop: &self.vaccineCode, val: vaccineCode)
-			}
-	
-	public let wasNotGiven = RealmOptional<Bool>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference, reported: Bool, status: String, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
+        self.init(json: nil)
+        self.patient = patient
+        self.reported.value = reported
+        self.status = status
+        self.vaccineCode = vaccineCode
+        self.wasNotGiven.value = wasNotGiven
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, reported: Bool, status: String, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
-		self.init(json: nil)
-		self.patient = patient
-		self.reported.value = reported
-		self.status = status
-		self.vaccineCode = vaccineCode
-		self.wasNotGiven.value = wasNotGiven
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -443,11 +396,9 @@ open class ImmunizationExplanation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationExplanation" }
 	}
-
-	public let reason = RealmSwift.List<CodeableConcept>()
-	
-	public let reasonNotGiven = RealmSwift.List<CodeableConcept>()
-	
+    
+    public let reason = RealmSwift.List<CodeableConcept>()    
+    public let reasonNotGiven = RealmSwift.List<CodeableConcept>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -505,20 +456,14 @@ open class ImmunizationReaction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationReaction" }
 	}
-
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var detail: Reference?						
-		
-		
-			public func upsert(detail: Reference?) {
-				upsert(prop: &self.detail, val: detail)
-			}
-	
-	public let reported = RealmOptional<Bool>()
-	
+    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var detail: Reference?        
+    public func upsert(detail: Reference?) {
+        upsert(prop: &self.detail, val: detail)
+    }    
+    public let reported = RealmOptional<Bool>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -582,51 +527,35 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationVaccinationProtocol" }
 	}
+    
+    public dynamic var authority: Reference?        
+    public func upsert(authority: Reference?) {
+        upsert(prop: &self.authority, val: authority)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let doseSequence = RealmOptional<Int>()    
+    public dynamic var doseStatus: CodeableConcept?        
+    public func upsert(doseStatus: CodeableConcept?) {
+        upsert(prop: &self.doseStatus, val: doseStatus)
+    }    
+    public dynamic var doseStatusReason: CodeableConcept?        
+    public func upsert(doseStatusReason: CodeableConcept?) {
+        upsert(prop: &self.doseStatusReason, val: doseStatusReason)
+    }    
+    public dynamic var series: String?        
+        
+    public let seriesDoses = RealmOptional<Int>()    
+    public let targetDisease = RealmSwift.List<CodeableConcept>()
 
-	public dynamic var authority: Reference?						
-		
-		
-			public func upsert(authority: Reference?) {
-				upsert(prop: &self.authority, val: authority)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let doseSequence = RealmOptional<Int>()
-	
-	public dynamic var doseStatus: CodeableConcept?						
-		
-		
-			public func upsert(doseStatus: CodeableConcept?) {
-				upsert(prop: &self.doseStatus, val: doseStatus)
-			}
-	
-	public dynamic var doseStatusReason: CodeableConcept?						
-		
-		
-			public func upsert(doseStatusReason: CodeableConcept?) {
-				upsert(prop: &self.doseStatusReason, val: doseStatusReason)
-			}
-	
-	public dynamic var series: String?						
-		
-		
-	
-	public let seriesDoses = RealmOptional<Int>()
-	
-	public let targetDisease = RealmSwift.List<CodeableConcept>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(doseSequence: Int, doseStatus: CodeableConcept, targetDisease: [CodeableConcept]) {
+        self.init(json: nil)
+        self.doseSequence.value = doseSequence
+        self.doseStatus = doseStatus
+        self.targetDisease.append(objectsIn: targetDisease)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(doseSequence: Int, doseStatus: CodeableConcept, targetDisease: [CodeableConcept]) {
-		self.init(json: nil)
-		self.doseSequence.value = doseSequence
-		self.doseStatus = doseStatus
-		self.targetDisease.append(objectsIn: targetDisease)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

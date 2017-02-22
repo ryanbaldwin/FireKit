@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -32,92 +32,58 @@ open class MedicationStatement: DomainResource {
 	override open class var resourceType: String {
 		get { return "MedicationStatement" }
 	}
+    
+    public dynamic var dateAsserted: DateTime?        
+        
+    public let dosage = RealmSwift.List<MedicationStatementDosage>()    
+    public dynamic var effectiveDateTime: DateTime?        
+        
+    public dynamic var effectivePeriod: Period?        
+    public func upsert(effectivePeriod: Period?) {
+        upsert(prop: &self.effectivePeriod, val: effectivePeriod)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var informationSource: Reference?        
+    public func upsert(informationSource: Reference?) {
+        upsert(prop: &self.informationSource, val: informationSource)
+    }    
+    public dynamic var medicationCodeableConcept: CodeableConcept?        
+    public func upsert(medicationCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.medicationCodeableConcept, val: medicationCodeableConcept)
+    }    
+    public dynamic var medicationReference: Reference?        
+    public func upsert(medicationReference: Reference?) {
+        upsert(prop: &self.medicationReference, val: medicationReference)
+    }    
+    public dynamic var note: String?        
+        
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var reasonForUseCodeableConcept: CodeableConcept?        
+    public func upsert(reasonForUseCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.reasonForUseCodeableConcept, val: reasonForUseCodeableConcept)
+    }    
+    public dynamic var reasonForUseReference: Reference?        
+    public func upsert(reasonForUseReference: Reference?) {
+        upsert(prop: &self.reasonForUseReference, val: reasonForUseReference)
+    }    
+    public let reasonNotTaken = RealmSwift.List<CodeableConcept>()    
+    public dynamic var status: String?        
+        
+    public let supportingInformation = RealmSwift.List<Reference>()    
+    public let wasNotTaken = RealmOptional<Bool>()
 
-	public dynamic var dateAsserted: DateTime?						
-		
-		
-	
-	public let dosage = RealmSwift.List<MedicationStatementDosage>()
-	
-	public dynamic var effectiveDateTime: DateTime?						
-		
-		
-	
-	public dynamic var effectivePeriod: Period?						
-		
-		
-			public func upsert(effectivePeriod: Period?) {
-				upsert(prop: &self.effectivePeriod, val: effectivePeriod)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var informationSource: Reference?						
-		
-		
-			public func upsert(informationSource: Reference?) {
-				upsert(prop: &self.informationSource, val: informationSource)
-			}
-	
-	public dynamic var medicationCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(medicationCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.medicationCodeableConcept, val: medicationCodeableConcept)
-			}
-	
-	public dynamic var medicationReference: Reference?						
-		
-		
-			public func upsert(medicationReference: Reference?) {
-				upsert(prop: &self.medicationReference, val: medicationReference)
-			}
-	
-	public dynamic var note: String?						
-		
-		
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var reasonForUseCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(reasonForUseCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.reasonForUseCodeableConcept, val: reasonForUseCodeableConcept)
-			}
-	
-	public dynamic var reasonForUseReference: Reference?						
-		
-		
-			public func upsert(reasonForUseReference: Reference?) {
-				upsert(prop: &self.reasonForUseReference, val: reasonForUseReference)
-			}
-	
-	public let reasonNotTaken = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let supportingInformation = RealmSwift.List<Reference>()
-	
-	public let wasNotTaken = RealmOptional<Bool>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(medicationCodeableConcept: CodeableConcept, medicationReference: Reference, patient: Reference, status: String) {
+        self.init(json: nil)
+        self.medicationCodeableConcept = medicationCodeableConcept
+        self.medicationReference = medicationReference
+        self.patient = patient
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(medicationCodeableConcept: CodeableConcept, medicationReference: Reference, patient: Reference, status: String) {
-		self.init(json: nil)
-		self.medicationCodeableConcept = medicationCodeableConcept
-		self.medicationReference = medicationReference
-		self.patient = patient
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -359,90 +325,54 @@ open class MedicationStatementDosage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "MedicationStatementDosage" }
 	}
-
-	public let asNeededBoolean = RealmOptional<Bool>()
-	
-	public dynamic var asNeededCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(asNeededCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.asNeededCodeableConcept, val: asNeededCodeableConcept)
-			}
-	
-	public dynamic var maxDosePerPeriod: Ratio?						
-		
-		
-			public func upsert(maxDosePerPeriod: Ratio?) {
-				upsert(prop: &self.maxDosePerPeriod, val: maxDosePerPeriod)
-			}
-	
-	public dynamic var method: CodeableConcept?						
-		
-		
-			public func upsert(method: CodeableConcept?) {
-				upsert(prop: &self.method, val: method)
-			}
-	
-	public dynamic var quantityQuantity: Quantity?						
-		
-		
-			public func upsert(quantityQuantity: Quantity?) {
-				upsert(prop: &self.quantityQuantity, val: quantityQuantity)
-			}
-	
-	public dynamic var quantityRange: Range?						
-		
-		
-			public func upsert(quantityRange: Range?) {
-				upsert(prop: &self.quantityRange, val: quantityRange)
-			}
-	
-	public dynamic var rateRange: Range?						
-		
-		
-			public func upsert(rateRange: Range?) {
-				upsert(prop: &self.rateRange, val: rateRange)
-			}
-	
-	public dynamic var rateRatio: Ratio?						
-		
-		
-			public func upsert(rateRatio: Ratio?) {
-				upsert(prop: &self.rateRatio, val: rateRatio)
-			}
-	
-	public dynamic var route: CodeableConcept?						
-		
-		
-			public func upsert(route: CodeableConcept?) {
-				upsert(prop: &self.route, val: route)
-			}
-	
-	public dynamic var siteCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(siteCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.siteCodeableConcept, val: siteCodeableConcept)
-			}
-	
-	public dynamic var siteReference: Reference?						
-		
-		
-			public func upsert(siteReference: Reference?) {
-				upsert(prop: &self.siteReference, val: siteReference)
-			}
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var timing: Timing?						
-		
-		
-			public func upsert(timing: Timing?) {
-				upsert(prop: &self.timing, val: timing)
-			}
-	
+    
+    public let asNeededBoolean = RealmOptional<Bool>()    
+    public dynamic var asNeededCodeableConcept: CodeableConcept?        
+    public func upsert(asNeededCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.asNeededCodeableConcept, val: asNeededCodeableConcept)
+    }    
+    public dynamic var maxDosePerPeriod: Ratio?        
+    public func upsert(maxDosePerPeriod: Ratio?) {
+        upsert(prop: &self.maxDosePerPeriod, val: maxDosePerPeriod)
+    }    
+    public dynamic var method: CodeableConcept?        
+    public func upsert(method: CodeableConcept?) {
+        upsert(prop: &self.method, val: method)
+    }    
+    public dynamic var quantityQuantity: Quantity?        
+    public func upsert(quantityQuantity: Quantity?) {
+        upsert(prop: &self.quantityQuantity, val: quantityQuantity)
+    }    
+    public dynamic var quantityRange: Range?        
+    public func upsert(quantityRange: Range?) {
+        upsert(prop: &self.quantityRange, val: quantityRange)
+    }    
+    public dynamic var rateRange: Range?        
+    public func upsert(rateRange: Range?) {
+        upsert(prop: &self.rateRange, val: rateRange)
+    }    
+    public dynamic var rateRatio: Ratio?        
+    public func upsert(rateRatio: Ratio?) {
+        upsert(prop: &self.rateRatio, val: rateRatio)
+    }    
+    public dynamic var route: CodeableConcept?        
+    public func upsert(route: CodeableConcept?) {
+        upsert(prop: &self.route, val: route)
+    }    
+    public dynamic var siteCodeableConcept: CodeableConcept?        
+    public func upsert(siteCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.siteCodeableConcept, val: siteCodeableConcept)
+    }    
+    public dynamic var siteReference: Reference?        
+    public func upsert(siteReference: Reference?) {
+        upsert(prop: &self.siteReference, val: siteReference)
+    }    
+    public dynamic var text: String?        
+        
+    public dynamic var timing: Timing?        
+    public func upsert(timing: Timing?) {
+        upsert(prop: &self.timing, val: timing)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

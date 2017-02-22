@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,41 +20,29 @@ open class Basic: DomainResource {
 	override open class var resourceType: String {
 		get { return "Basic" }
 	}
+    
+    public dynamic var author: Reference?        
+    public func upsert(author: Reference?) {
+        upsert(prop: &self.author, val: author)
+    }    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var created: FHIRDate?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }
 
-	public dynamic var author: Reference?						
-		
-		
-			public func upsert(author: Reference?) {
-				upsert(prop: &self.author, val: author)
-			}
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var created: FHIRDate?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

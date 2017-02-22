@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,48 +20,28 @@ open class Address: Element {
 	override open class var resourceType: String {
 		get { return "Address" }
 	}
-
-	public dynamic var city: String?						
-		
-		
-	
-	public dynamic var country: String?						
-		
-		
-	
-	public dynamic var district: String?						
-		
-		
-	
-	public let line = RealmSwift.List<RealmString>()
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public dynamic var postalCode: String?						
-		
-		
-	
-	public dynamic var state: String?						
-		
-		
-	
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var type: String?						
-		
-		
-	
-	public dynamic var use: String?						
-		
-		
-	
+    
+    public dynamic var city: String?        
+        
+    public dynamic var country: String?        
+        
+    public dynamic var district: String?        
+        
+    public let line = RealmSwift.List<RealmString>()    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public dynamic var postalCode: String?        
+        
+    public dynamic var state: String?        
+        
+    public dynamic var text: String?        
+        
+    public dynamic var type: String?        
+        
+    public dynamic var use: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

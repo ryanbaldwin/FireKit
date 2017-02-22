@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			try runQuestionnaireResponse1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
 			XCTAssertNotNil(copy)
-			try runQuestionnaireResponse1(copy!.asJSON())            
+			try runQuestionnaireResponse1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runQuestionnaireResponse1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -59,7 +62,6 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse's PKs, but threw: \(error)")
         }
@@ -161,7 +163,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			try runQuestionnaireResponse2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
 			XCTAssertNotNil(copy)
-			try runQuestionnaireResponse2(copy!.asJSON())            
+			try runQuestionnaireResponse2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runQuestionnaireResponse2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -184,7 +189,6 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse's PKs, but threw: \(error)")
         }
@@ -276,7 +280,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			try runQuestionnaireResponse3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
 			XCTAssertNotNil(copy)
-			try runQuestionnaireResponse3(copy!.asJSON())            
+			try runQuestionnaireResponse3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runQuestionnaireResponse3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -299,7 +306,6 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse's PKs, but threw: \(error)")
         }
@@ -384,7 +390,10 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			try runQuestionnaireResponse4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.QuestionnaireResponse
 			XCTAssertNotNil(copy)
-			try runQuestionnaireResponse4(copy!.asJSON())            
+			try runQuestionnaireResponse4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runQuestionnaireResponse4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
@@ -407,7 +416,6 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse's PKs, but threw: \(error)")
         }

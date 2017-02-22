@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -25,52 +25,36 @@ open class ImagingObjectSelection: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelection" }
 	}
+    
+    public dynamic var author: Reference?        
+    public func upsert(author: Reference?) {
+        upsert(prop: &self.author, val: author)
+    }    
+    public dynamic var authoringTime: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public let study = RealmSwift.List<ImagingObjectSelectionStudy>()    
+    public dynamic var title: CodeableConcept?        
+    public func upsert(title: CodeableConcept?) {
+        upsert(prop: &self.title, val: title)
+    }    
+    public dynamic var uid: String?        
+    
 
-	public dynamic var author: Reference?						
-		
-		
-			public func upsert(author: Reference?) {
-				upsert(prop: &self.author, val: author)
-			}
-	
-	public dynamic var authoringTime: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public let study = RealmSwift.List<ImagingObjectSelectionStudy>()
-	
-	public dynamic var title: CodeableConcept?						
-		
-		
-			public func upsert(title: CodeableConcept?) {
-				upsert(prop: &self.title, val: title)
-			}
-	
-	public dynamic var uid: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference, study: [ImagingObjectSelectionStudy], title: CodeableConcept, uid: String) {
+        self.init(json: nil)
+        self.patient = patient
+        self.study.append(objectsIn: study)
+        self.title = title
+        self.uid = uid
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, study: [ImagingObjectSelectionStudy], title: CodeableConcept, uid: String) {
-		self.init(json: nil)
-		self.patient = patient
-		self.study.append(objectsIn: study)
-		self.title = title
-		self.uid = uid
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -196,32 +180,24 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudy" }
 	}
+    
+    public dynamic var imagingStudy: Reference?        
+    public func upsert(imagingStudy: Reference?) {
+        upsert(prop: &self.imagingStudy, val: imagingStudy)
+    }    
+    public let series = RealmSwift.List<ImagingObjectSelectionStudySeries>()    
+    public dynamic var uid: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public dynamic var imagingStudy: Reference?						
-		
-		
-			public func upsert(imagingStudy: Reference?) {
-				upsert(prop: &self.imagingStudy, val: imagingStudy)
-			}
-	
-	public let series = RealmSwift.List<ImagingObjectSelectionStudySeries>()
-	
-	public dynamic var uid: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(series: [ImagingObjectSelectionStudySeries], uid: String) {
+        self.init(json: nil)
+        self.series.append(objectsIn: series)
+        self.uid = uid
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(series: [ImagingObjectSelectionStudySeries], uid: String) {
-		self.init(json: nil)
-		self.series.append(objectsIn: series)
-		self.uid = uid
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -305,24 +281,19 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudySeries" }
 	}
+    
+    public let instance = RealmSwift.List<ImagingObjectSelectionStudySeriesInstance>()    
+    public dynamic var uid: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public let instance = RealmSwift.List<ImagingObjectSelectionStudySeriesInstance>()
-	
-	public dynamic var uid: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]) {
+        self.init(json: nil)
+        self.instance.append(objectsIn: instance)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]) {
-		self.init(json: nil)
-		self.instance.append(objectsIn: instance)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -391,30 +362,23 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudySeriesInstance" }
 	}
+    
+    public let frames = RealmSwift.List<ImagingObjectSelectionStudySeriesInstanceFrames>()    
+    public dynamic var sopClass: String?        
+        
+    public dynamic var uid: String?        
+        
+    public dynamic var url: String?        
+    
 
-	public let frames = RealmSwift.List<ImagingObjectSelectionStudySeriesInstanceFrames>()
-	
-	public dynamic var sopClass: String?						
-		
-		
-	
-	public dynamic var uid: String?						
-		
-		
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(sopClass: String, uid: String, url: String) {
+        self.init(json: nil)
+        self.sopClass = sopClass
+        self.uid = uid
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(sopClass: String, uid: String, url: String) {
-		self.init(json: nil)
-		self.sopClass = sopClass
-		self.uid = uid
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -501,21 +465,18 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudySeriesInstanceFrames" }
 	}
+    
+    public let frameNumbers = RealmSwift.List<RealmInt>()    
+    public dynamic var url: String?        
+    
 
-	public let frameNumbers = RealmSwift.List<RealmInt>()
-	
-	public dynamic var url: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(frameNumbers: [Int], url: String) {
+        self.init(json: nil)
+        self.frameNumbers.append(objectsIn: frameNumbers.map{ RealmInt(value: [$0]) })
+        self.url = url
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(frameNumbers: [Int], url: String) {
-		self.init(json: nil)
-		self.frameNumbers.append(objectsIn: frameNumbers.map{ RealmInt(value: [$0]) })
-		self.url = url
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

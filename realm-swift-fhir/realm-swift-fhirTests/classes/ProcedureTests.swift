@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure1(copy!.asJSON())            
+			try runProcedure1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -59,7 +62,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }
@@ -135,7 +137,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure2(copy!.asJSON())            
+			try runProcedure2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -158,7 +163,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }
@@ -240,7 +244,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure3(copy!.asJSON())            
+			try runProcedure3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -263,7 +270,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }
@@ -345,7 +351,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure4(copy!.asJSON())            
+			try runProcedure4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -368,7 +377,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }
@@ -450,7 +458,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure5(copy!.asJSON())            
+			try runProcedure5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -473,7 +484,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }
@@ -555,7 +565,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure6(copy!.asJSON())            
+			try runProcedure6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -578,7 +591,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }
@@ -657,7 +669,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure7(copy!.asJSON())            
+			try runProcedure7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -680,7 +695,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }
@@ -754,7 +768,10 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			try runProcedure8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Procedure
 			XCTAssertNotNil(copy)
-			try runProcedure8(copy!.asJSON())            
+			try runProcedure8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runProcedure8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
@@ -777,7 +794,6 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Procedure's PKs, but threw: \(error)")
         }

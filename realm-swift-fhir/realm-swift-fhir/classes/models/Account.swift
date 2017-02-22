@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,70 +20,42 @@ open class Account: DomainResource {
 	override open class var resourceType: String {
 		get { return "Account" }
 	}
-
-	public dynamic var activePeriod: Period?						
-		
-		
-			public func upsert(activePeriod: Period?) {
-				upsert(prop: &self.activePeriod, val: activePeriod)
-			}
-	
-	public dynamic var balance: Quantity?						
-		
-		
-			public func upsert(balance: Quantity?) {
-				upsert(prop: &self.balance, val: balance)
-			}
-	
-	public dynamic var coveragePeriod: Period?						
-		
-		
-			public func upsert(coveragePeriod: Period?) {
-				upsert(prop: &self.coveragePeriod, val: coveragePeriod)
-			}
-	
-	public dynamic var currency: Coding?						
-		
-		
-			public func upsert(currency: Coding?) {
-				upsert(prop: &self.currency, val: currency)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var owner: Reference?						
-		
-		
-			public func upsert(owner: Reference?) {
-				upsert(prop: &self.owner, val: owner)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var activePeriod: Period?        
+    public func upsert(activePeriod: Period?) {
+        upsert(prop: &self.activePeriod, val: activePeriod)
+    }    
+    public dynamic var balance: Quantity?        
+    public func upsert(balance: Quantity?) {
+        upsert(prop: &self.balance, val: balance)
+    }    
+    public dynamic var coveragePeriod: Period?        
+    public func upsert(coveragePeriod: Period?) {
+        upsert(prop: &self.coveragePeriod, val: coveragePeriod)
+    }    
+    public dynamic var currency: Coding?        
+    public func upsert(currency: Coding?) {
+        upsert(prop: &self.currency, val: currency)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var name: String?        
+        
+    public dynamic var owner: Reference?        
+    public func upsert(owner: Reference?) {
+        upsert(prop: &self.owner, val: owner)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
 			try runImagingStudy1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.ImagingStudy
 			XCTAssertNotNil(copy)
-			try runImagingStudy1(copy!.asJSON())            
+			try runImagingStudy1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runImagingStudy1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test ImagingStudy successfully, but threw")
@@ -59,7 +62,6 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test ImagingStudy's PKs, but threw: \(error)")
         }

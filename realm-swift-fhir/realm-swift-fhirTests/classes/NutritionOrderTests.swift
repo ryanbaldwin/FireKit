@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder1(copy!.asJSON())            
+			try runNutritionOrder1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -59,7 +62,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -165,7 +167,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder2(copy!.asJSON())            
+			try runNutritionOrder2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -188,7 +193,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -283,7 +287,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder3(copy!.asJSON())            
+			try runNutritionOrder3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -306,7 +313,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -400,7 +406,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder4(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder4(copy!.asJSON())            
+			try runNutritionOrder4(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder4(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -423,7 +432,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -514,7 +522,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder5(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder5(copy!.asJSON())            
+			try runNutritionOrder5(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder5(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -537,7 +548,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -642,7 +652,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder6(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder6(copy!.asJSON())            
+			try runNutritionOrder6(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder6(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -665,7 +678,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -765,7 +777,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder7(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder7(copy!.asJSON())            
+			try runNutritionOrder7(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder7(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -788,7 +803,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -890,7 +904,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder8(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder8(copy!.asJSON())            
+			try runNutritionOrder8(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder8(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -913,7 +930,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -1011,7 +1027,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder9(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder9(copy!.asJSON())            
+			try runNutritionOrder9(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder9(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -1034,7 +1053,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }
@@ -1118,7 +1136,10 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			try runNutritionOrder10(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.NutritionOrder
 			XCTAssertNotNil(copy)
-			try runNutritionOrder10(copy!.asJSON())            
+			try runNutritionOrder10(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runNutritionOrder10(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
@@ -1141,7 +1162,6 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test NutritionOrder's PKs, but threw: \(error)")
         }

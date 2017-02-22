@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,26 +20,21 @@ open class ImmunizationRecommendation: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendation" }
 	}
+    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public let recommendation = RealmSwift.List<ImmunizationRecommendationRecommendation>()
 
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public let recommendation = RealmSwift.List<ImmunizationRecommendationRecommendation>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference, recommendation: [ImmunizationRecommendationRecommendation]) {
+        self.init(json: nil)
+        self.patient = patient
+        self.recommendation.append(objectsIn: recommendation)
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, recommendation: [ImmunizationRecommendationRecommendation]) {
-		self.init(json: nil)
-		self.patient = patient
-		self.recommendation.append(objectsIn: recommendation)
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -112,49 +107,34 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendationRecommendation" }
 	}
+    
+    public dynamic var date: DateTime?        
+        
+    public let dateCriterion = RealmSwift.List<ImmunizationRecommendationRecommendationDateCriterion>()    
+    public let doseNumber = RealmOptional<Int>()    
+    public dynamic var forecastStatus: CodeableConcept?        
+    public func upsert(forecastStatus: CodeableConcept?) {
+        upsert(prop: &self.forecastStatus, val: forecastStatus)
+    }    
+    public dynamic var protocol_fhir: ImmunizationRecommendationRecommendationProtocol?        
+    public func upsert(protocol_fhir: ImmunizationRecommendationRecommendationProtocol?) {
+        upsert(prop: &self.protocol_fhir, val: protocol_fhir)
+    }    
+    public let supportingImmunization = RealmSwift.List<Reference>()    
+    public let supportingPatientInformation = RealmSwift.List<Reference>()    
+    public dynamic var vaccineCode: CodeableConcept?        
+    public func upsert(vaccineCode: CodeableConcept?) {
+        upsert(prop: &self.vaccineCode, val: vaccineCode)
+    }
 
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public let dateCriterion = RealmSwift.List<ImmunizationRecommendationRecommendationDateCriterion>()
-	
-	public let doseNumber = RealmOptional<Int>()
-	
-	public dynamic var forecastStatus: CodeableConcept?						
-		
-		
-			public func upsert(forecastStatus: CodeableConcept?) {
-				upsert(prop: &self.forecastStatus, val: forecastStatus)
-			}
-	
-	public dynamic var protocol_fhir: ImmunizationRecommendationRecommendationProtocol?						
-		
-		
-			public func upsert(protocol_fhir: ImmunizationRecommendationRecommendationProtocol?) {
-				upsert(prop: &self.protocol_fhir, val: protocol_fhir)
-			}
-	
-	public let supportingImmunization = RealmSwift.List<Reference>()
-	
-	public let supportingPatientInformation = RealmSwift.List<Reference>()
-	
-	public dynamic var vaccineCode: CodeableConcept?						
-		
-		
-			public func upsert(vaccineCode: CodeableConcept?) {
-				upsert(prop: &self.vaccineCode, val: vaccineCode)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(date: DateTime, forecastStatus: CodeableConcept, vaccineCode: CodeableConcept) {
+        self.init(json: nil)
+        self.date = date
+        self.forecastStatus = forecastStatus
+        self.vaccineCode = vaccineCode
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(date: DateTime, forecastStatus: CodeableConcept, vaccineCode: CodeableConcept) {
-		self.init(json: nil)
-		self.date = date
-		self.forecastStatus = forecastStatus
-		self.vaccineCode = vaccineCode
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -295,26 +275,21 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendationRecommendationDateCriterion" }
 	}
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var value: DateTime?        
+    
 
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var value: DateTime?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept, val: DateTime) {
+        self.init(json: nil)
+        self.code = code
+        self.value = val
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, val: DateTime) {
-		self.init(json: nil)
-		self.code = code
-		self.value = val
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -371,24 +346,16 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationRecommendationRecommendationProtocol" }
 	}
-
-	public dynamic var authority: Reference?						
-		
-		
-			public func upsert(authority: Reference?) {
-				upsert(prop: &self.authority, val: authority)
-			}
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let doseSequence = RealmOptional<Int>()
-	
-	public dynamic var series: String?						
-		
-		
-	
+    
+    public dynamic var authority: Reference?        
+    public func upsert(authority: Reference?) {
+        upsert(prop: &self.authority, val: authority)
+    }    
+    public dynamic var description_fhir: String?        
+        
+    public let doseSequence = RealmOptional<Int>()    
+    public dynamic var series: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

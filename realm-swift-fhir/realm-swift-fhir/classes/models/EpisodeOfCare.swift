@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,59 +21,39 @@ open class EpisodeOfCare: DomainResource {
 	override open class var resourceType: String {
 		get { return "EpisodeOfCare" }
 	}
+    
+    public dynamic var careManager: Reference?        
+    public func upsert(careManager: Reference?) {
+        upsert(prop: &self.careManager, val: careManager)
+    }    
+    public let careTeam = RealmSwift.List<EpisodeOfCareCareTeam>()    
+    public let condition = RealmSwift.List<Reference>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var managingOrganization: Reference?        
+    public func upsert(managingOrganization: Reference?) {
+        upsert(prop: &self.managingOrganization, val: managingOrganization)
+    }    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let referralRequest = RealmSwift.List<Reference>()    
+    public dynamic var status: String?        
+        
+    public let statusHistory = RealmSwift.List<EpisodeOfCareStatusHistory>()    
+    public let type = RealmSwift.List<CodeableConcept>()
 
-	public dynamic var careManager: Reference?						
-		
-		
-			public func upsert(careManager: Reference?) {
-				upsert(prop: &self.careManager, val: careManager)
-			}
-	
-	public let careTeam = RealmSwift.List<EpisodeOfCareCareTeam>()
-	
-	public let condition = RealmSwift.List<Reference>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var managingOrganization: Reference?						
-		
-		
-			public func upsert(managingOrganization: Reference?) {
-				upsert(prop: &self.managingOrganization, val: managingOrganization)
-			}
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let referralRequest = RealmSwift.List<Reference>()
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let statusHistory = RealmSwift.List<EpisodeOfCareStatusHistory>()
-	
-	public let type = RealmSwift.List<CodeableConcept>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(patient: Reference, status: String) {
+        self.init(json: nil)
+        self.patient = patient
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(patient: Reference, status: String) {
-		self.init(json: nil)
-		self.patient = patient
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -256,23 +236,16 @@ open class EpisodeOfCareCareTeam: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EpisodeOfCareCareTeam" }
 	}
-
-	public dynamic var member: Reference?						
-		
-		
-			public func upsert(member: Reference?) {
-				upsert(prop: &self.member, val: member)
-			}
-	
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public let role = RealmSwift.List<CodeableConcept>()
-	
+    
+    public dynamic var member: Reference?        
+    public func upsert(member: Reference?) {
+        upsert(prop: &self.member, val: member)
+    }    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public let role = RealmSwift.List<CodeableConcept>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -340,26 +313,21 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 	override open class var resourceType: String {
 		get { return "EpisodeOfCareStatusHistory" }
 	}
+    
+    public dynamic var period: Period?        
+    public func upsert(period: Period?) {
+        upsert(prop: &self.period, val: period)
+    }    
+    public dynamic var status: String?        
+    
 
-	public dynamic var period: Period?						
-		
-		
-			public func upsert(period: Period?) {
-				upsert(prop: &self.period, val: period)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(period: Period, status: String) {
+        self.init(json: nil)
+        self.period = period
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(period: Period, status: String) {
-		self.init(json: nil)
-		self.period = period
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

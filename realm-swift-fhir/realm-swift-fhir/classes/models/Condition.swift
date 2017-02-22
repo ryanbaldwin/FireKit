@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -21,147 +21,88 @@ open class Condition: DomainResource {
 	override open class var resourceType: String {
 		get { return "Condition" }
 	}
+    
+    public let abatementBoolean = RealmOptional<Bool>()    
+    public dynamic var abatementDateTime: DateTime?        
+        
+    public dynamic var abatementPeriod: Period?        
+    public func upsert(abatementPeriod: Period?) {
+        upsert(prop: &self.abatementPeriod, val: abatementPeriod)
+    }    
+    public dynamic var abatementQuantity: Quantity?        
+    public func upsert(abatementQuantity: Quantity?) {
+        upsert(prop: &self.abatementQuantity, val: abatementQuantity)
+    }    
+    public dynamic var abatementRange: Range?        
+    public func upsert(abatementRange: Range?) {
+        upsert(prop: &self.abatementRange, val: abatementRange)
+    }    
+    public dynamic var abatementString: String?        
+        
+    public dynamic var asserter: Reference?        
+    public func upsert(asserter: Reference?) {
+        upsert(prop: &self.asserter, val: asserter)
+    }    
+    public let bodySite = RealmSwift.List<CodeableConcept>()    
+    public dynamic var category: CodeableConcept?        
+    public func upsert(category: CodeableConcept?) {
+        upsert(prop: &self.category, val: category)
+    }    
+    public dynamic var clinicalStatus: String?        
+        
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var dateRecorded: FHIRDate?        
+        
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let evidence = RealmSwift.List<ConditionEvidence>()    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var notes: String?        
+        
+    public dynamic var onsetDateTime: DateTime?        
+        
+    public dynamic var onsetPeriod: Period?        
+    public func upsert(onsetPeriod: Period?) {
+        upsert(prop: &self.onsetPeriod, val: onsetPeriod)
+    }    
+    public dynamic var onsetQuantity: Quantity?        
+    public func upsert(onsetQuantity: Quantity?) {
+        upsert(prop: &self.onsetQuantity, val: onsetQuantity)
+    }    
+    public dynamic var onsetRange: Range?        
+    public func upsert(onsetRange: Range?) {
+        upsert(prop: &self.onsetRange, val: onsetRange)
+    }    
+    public dynamic var onsetString: String?        
+        
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var severity: CodeableConcept?        
+    public func upsert(severity: CodeableConcept?) {
+        upsert(prop: &self.severity, val: severity)
+    }    
+    public dynamic var stage: ConditionStage?        
+    public func upsert(stage: ConditionStage?) {
+        upsert(prop: &self.stage, val: stage)
+    }    
+    public dynamic var verificationStatus: String?        
+    
 
-	public let abatementBoolean = RealmOptional<Bool>()
-	
-	public dynamic var abatementDateTime: DateTime?						
-		
-		
-	
-	public dynamic var abatementPeriod: Period?						
-		
-		
-			public func upsert(abatementPeriod: Period?) {
-				upsert(prop: &self.abatementPeriod, val: abatementPeriod)
-			}
-	
-	public dynamic var abatementQuantity: Quantity?						
-		
-		
-			public func upsert(abatementQuantity: Quantity?) {
-				upsert(prop: &self.abatementQuantity, val: abatementQuantity)
-			}
-	
-	public dynamic var abatementRange: Range?						
-		
-		
-			public func upsert(abatementRange: Range?) {
-				upsert(prop: &self.abatementRange, val: abatementRange)
-			}
-	
-	public dynamic var abatementString: String?						
-		
-		
-	
-	public dynamic var asserter: Reference?						
-		
-		
-			public func upsert(asserter: Reference?) {
-				upsert(prop: &self.asserter, val: asserter)
-			}
-	
-	public let bodySite = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var category: CodeableConcept?						
-		
-		
-			public func upsert(category: CodeableConcept?) {
-				upsert(prop: &self.category, val: category)
-			}
-	
-	public dynamic var clinicalStatus: String?						
-		
-		
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var dateRecorded: FHIRDate?						
-		
-		
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let evidence = RealmSwift.List<ConditionEvidence>()
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var notes: String?						
-		
-		
-	
-	public dynamic var onsetDateTime: DateTime?						
-		
-		
-	
-	public dynamic var onsetPeriod: Period?						
-		
-		
-			public func upsert(onsetPeriod: Period?) {
-				upsert(prop: &self.onsetPeriod, val: onsetPeriod)
-			}
-	
-	public dynamic var onsetQuantity: Quantity?						
-		
-		
-			public func upsert(onsetQuantity: Quantity?) {
-				upsert(prop: &self.onsetQuantity, val: onsetQuantity)
-			}
-	
-	public dynamic var onsetRange: Range?						
-		
-		
-			public func upsert(onsetRange: Range?) {
-				upsert(prop: &self.onsetRange, val: onsetRange)
-			}
-	
-	public dynamic var onsetString: String?						
-		
-		
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var severity: CodeableConcept?						
-		
-		
-			public func upsert(severity: CodeableConcept?) {
-				upsert(prop: &self.severity, val: severity)
-			}
-	
-	public dynamic var stage: ConditionStage?						
-		
-		
-			public func upsert(stage: ConditionStage?) {
-				upsert(prop: &self.stage, val: stage)
-			}
-	
-	public dynamic var verificationStatus: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept, patient: Reference, verificationStatus: String) {
+        self.init(json: nil)
+        self.code = code
+        self.patient = patient
+        self.verificationStatus = verificationStatus
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, patient: Reference, verificationStatus: String) {
-		self.init(json: nil)
-		self.code = code
-		self.patient = patient
-		self.verificationStatus = verificationStatus
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -506,16 +447,12 @@ open class ConditionEvidence: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConditionEvidence" }
 	}
-
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public let detail = RealmSwift.List<Reference>()
-	
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public let detail = RealmSwift.List<Reference>()
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -570,16 +507,12 @@ open class ConditionStage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConditionStage" }
 	}
-
-	public let assessment = RealmSwift.List<Reference>()
-	
-	public dynamic var summary: CodeableConcept?						
-		
-		
-			public func upsert(summary: CodeableConcept?) {
-				upsert(prop: &self.summary, val: summary)
-			}
-	
+    
+    public let assessment = RealmSwift.List<Reference>()    
+    public dynamic var summary: CodeableConcept?        
+    public func upsert(summary: CodeableConcept?) {
+        upsert(prop: &self.summary, val: summary)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

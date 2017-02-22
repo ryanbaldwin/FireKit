@@ -2,7 +2,7 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,77 +19,46 @@ open class ProcessResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "ProcessResponse" }
 	}
-
-	public dynamic var created: DateTime?						
-		
-		
-	
-	public dynamic var disposition: String?						
-		
-		
-	
-	public let error = RealmSwift.List<Coding>()
-	
-	public dynamic var form: Coding?						
-		
-		
-			public func upsert(form: Coding?) {
-				upsert(prop: &self.form, val: form)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public let notes = RealmSwift.List<ProcessResponseNotes>()
-	
-	public dynamic var organization: Reference?						
-		
-		
-			public func upsert(organization: Reference?) {
-				upsert(prop: &self.organization, val: organization)
-			}
-	
-	public dynamic var originalRuleset: Coding?						
-		
-		
-			public func upsert(originalRuleset: Coding?) {
-				upsert(prop: &self.originalRuleset, val: originalRuleset)
-			}
-	
-	public dynamic var outcome: Coding?						
-		
-		
-			public func upsert(outcome: Coding?) {
-				upsert(prop: &self.outcome, val: outcome)
-			}
-	
-	public dynamic var request: Reference?						
-		
-		
-			public func upsert(request: Reference?) {
-				upsert(prop: &self.request, val: request)
-			}
-	
-	public dynamic var requestOrganization: Reference?						
-		
-		
-			public func upsert(requestOrganization: Reference?) {
-				upsert(prop: &self.requestOrganization, val: requestOrganization)
-			}
-	
-	public dynamic var requestProvider: Reference?						
-		
-		
-			public func upsert(requestProvider: Reference?) {
-				upsert(prop: &self.requestProvider, val: requestProvider)
-			}
-	
-	public dynamic var ruleset: Coding?						
-		
-		
-			public func upsert(ruleset: Coding?) {
-				upsert(prop: &self.ruleset, val: ruleset)
-			}
-	
+    
+    public dynamic var created: DateTime?        
+        
+    public dynamic var disposition: String?        
+        
+    public let error = RealmSwift.List<Coding>()    
+    public dynamic var form: Coding?        
+    public func upsert(form: Coding?) {
+        upsert(prop: &self.form, val: form)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public let notes = RealmSwift.List<ProcessResponseNotes>()    
+    public dynamic var organization: Reference?        
+    public func upsert(organization: Reference?) {
+        upsert(prop: &self.organization, val: organization)
+    }    
+    public dynamic var originalRuleset: Coding?        
+    public func upsert(originalRuleset: Coding?) {
+        upsert(prop: &self.originalRuleset, val: originalRuleset)
+    }    
+    public dynamic var outcome: Coding?        
+    public func upsert(outcome: Coding?) {
+        upsert(prop: &self.outcome, val: outcome)
+    }    
+    public dynamic var request: Reference?        
+    public func upsert(request: Reference?) {
+        upsert(prop: &self.request, val: request)
+    }    
+    public dynamic var requestOrganization: Reference?        
+    public func upsert(requestOrganization: Reference?) {
+        upsert(prop: &self.requestOrganization, val: requestOrganization)
+    }    
+    public dynamic var requestProvider: Reference?        
+    public func upsert(requestProvider: Reference?) {
+        upsert(prop: &self.requestProvider, val: requestProvider)
+    }    
+    public dynamic var ruleset: Coding?        
+    public func upsert(ruleset: Coding?) {
+        upsert(prop: &self.ruleset, val: ruleset)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -282,18 +251,13 @@ open class ProcessResponseNotes: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProcessResponseNotes" }
 	}
-
-	public dynamic var text: String?						
-		
-		
-	
-	public dynamic var type: Coding?						
-		
-		
-			public func upsert(type: Coding?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    
+    public dynamic var text: String?        
+        
+    public dynamic var type: Coding?        
+    public func upsert(type: Coding?) {
+        upsert(prop: &self.type, val: type)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

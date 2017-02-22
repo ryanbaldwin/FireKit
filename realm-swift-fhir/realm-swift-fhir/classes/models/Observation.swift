@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,179 +19,106 @@ open class Observation: DomainResource {
 	override open class var resourceType: String {
 		get { return "Observation" }
 	}
+    
+    public dynamic var bodySite: CodeableConcept?        
+    public func upsert(bodySite: CodeableConcept?) {
+        upsert(prop: &self.bodySite, val: bodySite)
+    }    
+    public dynamic var category: CodeableConcept?        
+    public func upsert(category: CodeableConcept?) {
+        upsert(prop: &self.category, val: category)
+    }    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var comments: String?        
+        
+    public let component = RealmSwift.List<ObservationComponent>()    
+    public dynamic var dataAbsentReason: CodeableConcept?        
+    public func upsert(dataAbsentReason: CodeableConcept?) {
+        upsert(prop: &self.dataAbsentReason, val: dataAbsentReason)
+    }    
+    public dynamic var device: Reference?        
+    public func upsert(device: Reference?) {
+        upsert(prop: &self.device, val: device)
+    }    
+    public dynamic var effectiveDateTime: DateTime?        
+        
+    public dynamic var effectivePeriod: Period?        
+    public func upsert(effectivePeriod: Period?) {
+        upsert(prop: &self.effectivePeriod, val: effectivePeriod)
+    }    
+    public dynamic var encounter: Reference?        
+    public func upsert(encounter: Reference?) {
+        upsert(prop: &self.encounter, val: encounter)
+    }    
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var interpretation: CodeableConcept?        
+    public func upsert(interpretation: CodeableConcept?) {
+        upsert(prop: &self.interpretation, val: interpretation)
+    }    
+    public dynamic var issued: Instant?        
+        
+    public dynamic var method: CodeableConcept?        
+    public func upsert(method: CodeableConcept?) {
+        upsert(prop: &self.method, val: method)
+    }    
+    public let performer = RealmSwift.List<Reference>()    
+    public let referenceRange = RealmSwift.List<ObservationReferenceRange>()    
+    public let related = RealmSwift.List<ObservationRelated>()    
+    public dynamic var specimen: Reference?        
+    public func upsert(specimen: Reference?) {
+        upsert(prop: &self.specimen, val: specimen)
+    }    
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var valueAttachment: Attachment?        
+    public func upsert(valueAttachment: Attachment?) {
+        upsert(prop: &self.valueAttachment, val: valueAttachment)
+    }    
+    public dynamic var valueCodeableConcept: CodeableConcept?        
+    public func upsert(valueCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
+    }    
+    public dynamic var valueDateTime: DateTime?        
+        
+    public dynamic var valuePeriod: Period?        
+    public func upsert(valuePeriod: Period?) {
+        upsert(prop: &self.valuePeriod, val: valuePeriod)
+    }    
+    public dynamic var valueQuantity: Quantity?        
+    public func upsert(valueQuantity: Quantity?) {
+        upsert(prop: &self.valueQuantity, val: valueQuantity)
+    }    
+    public dynamic var valueRange: Range?        
+    public func upsert(valueRange: Range?) {
+        upsert(prop: &self.valueRange, val: valueRange)
+    }    
+    public dynamic var valueRatio: Ratio?        
+    public func upsert(valueRatio: Ratio?) {
+        upsert(prop: &self.valueRatio, val: valueRatio)
+    }    
+    public dynamic var valueSampledData: SampledData?        
+    public func upsert(valueSampledData: SampledData?) {
+        upsert(prop: &self.valueSampledData, val: valueSampledData)
+    }    
+    public dynamic var valueString: String?        
+        
+    public dynamic var valueTime: FHIRTime?        
+    
 
-	public dynamic var bodySite: CodeableConcept?						
-		
-		
-			public func upsert(bodySite: CodeableConcept?) {
-				upsert(prop: &self.bodySite, val: bodySite)
-			}
-	
-	public dynamic var category: CodeableConcept?						
-		
-		
-			public func upsert(category: CodeableConcept?) {
-				upsert(prop: &self.category, val: category)
-			}
-	
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var comments: String?						
-		
-		
-	
-	public let component = RealmSwift.List<ObservationComponent>()
-	
-	public dynamic var dataAbsentReason: CodeableConcept?						
-		
-		
-			public func upsert(dataAbsentReason: CodeableConcept?) {
-				upsert(prop: &self.dataAbsentReason, val: dataAbsentReason)
-			}
-	
-	public dynamic var device: Reference?						
-		
-		
-			public func upsert(device: Reference?) {
-				upsert(prop: &self.device, val: device)
-			}
-	
-	public dynamic var effectiveDateTime: DateTime?						
-		
-		
-	
-	public dynamic var effectivePeriod: Period?						
-		
-		
-			public func upsert(effectivePeriod: Period?) {
-				upsert(prop: &self.effectivePeriod, val: effectivePeriod)
-			}
-	
-	public dynamic var encounter: Reference?						
-		
-		
-			public func upsert(encounter: Reference?) {
-				upsert(prop: &self.encounter, val: encounter)
-			}
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var interpretation: CodeableConcept?						
-		
-		
-			public func upsert(interpretation: CodeableConcept?) {
-				upsert(prop: &self.interpretation, val: interpretation)
-			}
-	
-	public dynamic var issued: Instant?						
-		
-		
-	
-	public dynamic var method: CodeableConcept?						
-		
-		
-			public func upsert(method: CodeableConcept?) {
-				upsert(prop: &self.method, val: method)
-			}
-	
-	public let performer = RealmSwift.List<Reference>()
-	
-	public let referenceRange = RealmSwift.List<ObservationReferenceRange>()
-	
-	public let related = RealmSwift.List<ObservationRelated>()
-	
-	public dynamic var specimen: Reference?						
-		
-		
-			public func upsert(specimen: Reference?) {
-				upsert(prop: &self.specimen, val: specimen)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var valueAttachment: Attachment?						
-		
-		
-			public func upsert(valueAttachment: Attachment?) {
-				upsert(prop: &self.valueAttachment, val: valueAttachment)
-			}
-	
-	public dynamic var valueCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(valueCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
-			}
-	
-	public dynamic var valueDateTime: DateTime?						
-		
-		
-	
-	public dynamic var valuePeriod: Period?						
-		
-		
-			public func upsert(valuePeriod: Period?) {
-				upsert(prop: &self.valuePeriod, val: valuePeriod)
-			}
-	
-	public dynamic var valueQuantity: Quantity?						
-		
-		
-			public func upsert(valueQuantity: Quantity?) {
-				upsert(prop: &self.valueQuantity, val: valueQuantity)
-			}
-	
-	public dynamic var valueRange: Range?						
-		
-		
-			public func upsert(valueRange: Range?) {
-				upsert(prop: &self.valueRange, val: valueRange)
-			}
-	
-	public dynamic var valueRatio: Ratio?						
-		
-		
-			public func upsert(valueRatio: Ratio?) {
-				upsert(prop: &self.valueRatio, val: valueRatio)
-			}
-	
-	public dynamic var valueSampledData: SampledData?						
-		
-		
-			public func upsert(valueSampledData: SampledData?) {
-				upsert(prop: &self.valueSampledData, val: valueSampledData)
-			}
-	
-	public dynamic var valueString: String?						
-		
-		
-	
-	public dynamic var valueTime: FHIRTime?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept, status: String) {
+        self.init(json: nil)
+        self.code = code
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept, status: String) {
-		self.init(json: nil)
-		self.code = code
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -601,91 +528,57 @@ open class ObservationComponent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ObservationComponent" }
 	}
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var dataAbsentReason: CodeableConcept?        
+    public func upsert(dataAbsentReason: CodeableConcept?) {
+        upsert(prop: &self.dataAbsentReason, val: dataAbsentReason)
+    }    
+    public let referenceRange = RealmSwift.List<ObservationReferenceRange>()    
+    public dynamic var valueAttachment: Attachment?        
+    public func upsert(valueAttachment: Attachment?) {
+        upsert(prop: &self.valueAttachment, val: valueAttachment)
+    }    
+    public dynamic var valueCodeableConcept: CodeableConcept?        
+    public func upsert(valueCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
+    }    
+    public dynamic var valueDateTime: DateTime?        
+        
+    public dynamic var valuePeriod: Period?        
+    public func upsert(valuePeriod: Period?) {
+        upsert(prop: &self.valuePeriod, val: valuePeriod)
+    }    
+    public dynamic var valueQuantity: Quantity?        
+    public func upsert(valueQuantity: Quantity?) {
+        upsert(prop: &self.valueQuantity, val: valueQuantity)
+    }    
+    public dynamic var valueRange: Range?        
+    public func upsert(valueRange: Range?) {
+        upsert(prop: &self.valueRange, val: valueRange)
+    }    
+    public dynamic var valueRatio: Ratio?        
+    public func upsert(valueRatio: Ratio?) {
+        upsert(prop: &self.valueRatio, val: valueRatio)
+    }    
+    public dynamic var valueSampledData: SampledData?        
+    public func upsert(valueSampledData: SampledData?) {
+        upsert(prop: &self.valueSampledData, val: valueSampledData)
+    }    
+    public dynamic var valueString: String?        
+        
+    public dynamic var valueTime: FHIRTime?        
+    
 
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var dataAbsentReason: CodeableConcept?						
-		
-		
-			public func upsert(dataAbsentReason: CodeableConcept?) {
-				upsert(prop: &self.dataAbsentReason, val: dataAbsentReason)
-			}
-	
-	public let referenceRange = RealmSwift.List<ObservationReferenceRange>()
-	
-	public dynamic var valueAttachment: Attachment?						
-		
-		
-			public func upsert(valueAttachment: Attachment?) {
-				upsert(prop: &self.valueAttachment, val: valueAttachment)
-			}
-	
-	public dynamic var valueCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(valueCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
-			}
-	
-	public dynamic var valueDateTime: DateTime?						
-		
-		
-	
-	public dynamic var valuePeriod: Period?						
-		
-		
-			public func upsert(valuePeriod: Period?) {
-				upsert(prop: &self.valuePeriod, val: valuePeriod)
-			}
-	
-	public dynamic var valueQuantity: Quantity?						
-		
-		
-			public func upsert(valueQuantity: Quantity?) {
-				upsert(prop: &self.valueQuantity, val: valueQuantity)
-			}
-	
-	public dynamic var valueRange: Range?						
-		
-		
-			public func upsert(valueRange: Range?) {
-				upsert(prop: &self.valueRange, val: valueRange)
-			}
-	
-	public dynamic var valueRatio: Ratio?						
-		
-		
-			public func upsert(valueRatio: Ratio?) {
-				upsert(prop: &self.valueRatio, val: valueRatio)
-			}
-	
-	public dynamic var valueSampledData: SampledData?						
-		
-		
-			public func upsert(valueSampledData: SampledData?) {
-				upsert(prop: &self.valueSampledData, val: valueSampledData)
-			}
-	
-	public dynamic var valueString: String?						
-		
-		
-	
-	public dynamic var valueTime: FHIRTime?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: CodeableConcept) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: CodeableConcept) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -874,39 +767,25 @@ open class ObservationReferenceRange: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ObservationReferenceRange" }
 	}
-
-	public dynamic var age: Range?						
-		
-		
-			public func upsert(age: Range?) {
-				upsert(prop: &self.age, val: age)
-			}
-	
-	public dynamic var high: Quantity?						
-		
-		
-			public func upsert(high: Quantity?) {
-				upsert(prop: &self.high, val: high)
-			}
-	
-	public dynamic var low: Quantity?						
-		
-		
-			public func upsert(low: Quantity?) {
-				upsert(prop: &self.low, val: low)
-			}
-	
-	public dynamic var meaning: CodeableConcept?						
-		
-		
-			public func upsert(meaning: CodeableConcept?) {
-				upsert(prop: &self.meaning, val: meaning)
-			}
-	
-	public dynamic var text: String?						
-		
-		
-	
+    
+    public dynamic var age: Range?        
+    public func upsert(age: Range?) {
+        upsert(prop: &self.age, val: age)
+    }    
+    public dynamic var high: Quantity?        
+    public func upsert(high: Quantity?) {
+        upsert(prop: &self.high, val: high)
+    }    
+    public dynamic var low: Quantity?        
+    public func upsert(low: Quantity?) {
+        upsert(prop: &self.low, val: low)
+    }    
+    public dynamic var meaning: CodeableConcept?        
+    public func upsert(meaning: CodeableConcept?) {
+        upsert(prop: &self.meaning, val: meaning)
+    }    
+    public dynamic var text: String?        
+    
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -995,25 +874,20 @@ open class ObservationRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ObservationRelated" }
 	}
+    
+    public dynamic var target: Reference?        
+    public func upsert(target: Reference?) {
+        upsert(prop: &self.target, val: target)
+    }    
+    public dynamic var type: String?        
+    
 
-	public dynamic var target: Reference?						
-		
-		
-			public func upsert(target: Reference?) {
-				upsert(prop: &self.target, val: target)
-			}
-	
-	public dynamic var type: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(target: Reference) {
+        self.init(json: nil)
+        self.target = target
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(target: Reference) {
-		self.init(json: nil)
-		self.target = target
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

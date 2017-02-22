@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,1149 +19,634 @@ open class ElementDefinition: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinition" }
 	}
+    
+    public let alias = RealmSwift.List<RealmString>()    
+    public dynamic var base: ElementDefinitionBase?        
+    public func upsert(base: ElementDefinitionBase?) {
+        upsert(prop: &self.base, val: base)
+    }    
+    public dynamic var binding: ElementDefinitionBinding?        
+    public func upsert(binding: ElementDefinitionBinding?) {
+        upsert(prop: &self.binding, val: binding)
+    }    
+    public let code = RealmSwift.List<Coding>()    
+    public dynamic var comments: String?        
+        
+    public let condition = RealmSwift.List<RealmString>()    
+    public let constraint = RealmSwift.List<ElementDefinitionConstraint>()    
+    public dynamic var defaultValueAddress: Address?        
+    public func upsert(defaultValueAddress: Address?) {
+        upsert(prop: &self.defaultValueAddress, val: defaultValueAddress)
+    }    
+    public dynamic var defaultValueAnnotation: Annotation?        
+    public func upsert(defaultValueAnnotation: Annotation?) {
+        upsert(prop: &self.defaultValueAnnotation, val: defaultValueAnnotation)
+    }    
+    public dynamic var defaultValueAttachment: Attachment?        
+    public func upsert(defaultValueAttachment: Attachment?) {
+        upsert(prop: &self.defaultValueAttachment, val: defaultValueAttachment)
+    }    
+    public dynamic var defaultValueBase64Binary: Base64Binary?        
+        
+    public let defaultValueBoolean = RealmOptional<Bool>()    
+    public dynamic var defaultValueCode: String?        
+        
+    public dynamic var defaultValueCodeableConcept: CodeableConcept?        
+    public func upsert(defaultValueCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.defaultValueCodeableConcept, val: defaultValueCodeableConcept)
+    }    
+    public dynamic var defaultValueCoding: Coding?        
+    public func upsert(defaultValueCoding: Coding?) {
+        upsert(prop: &self.defaultValueCoding, val: defaultValueCoding)
+    }    
+    public dynamic var defaultValueContactPoint: ContactPoint?        
+    public func upsert(defaultValueContactPoint: ContactPoint?) {
+        upsert(prop: &self.defaultValueContactPoint, val: defaultValueContactPoint)
+    }    
+    public dynamic var defaultValueDate: FHIRDate?        
+        
+    public dynamic var defaultValueDateTime: DateTime?        
+        
+    public dynamic var defaultValueDecimal: RealmDecimal?        
+        
+    public dynamic var defaultValueHumanName: HumanName?        
+    public func upsert(defaultValueHumanName: HumanName?) {
+        upsert(prop: &self.defaultValueHumanName, val: defaultValueHumanName)
+    }    
+    public dynamic var defaultValueId: String?        
+        
+    public dynamic var defaultValueIdentifier: Identifier?        
+    public func upsert(defaultValueIdentifier: Identifier?) {
+        upsert(prop: &self.defaultValueIdentifier, val: defaultValueIdentifier)
+    }    
+    public dynamic var defaultValueInstant: Instant?        
+        
+    public let defaultValueInteger = RealmOptional<Int>()    
+    public dynamic var defaultValueMarkdown: String?        
+        
+    public dynamic var defaultValueMeta: Meta?        
+    public func upsert(defaultValueMeta: Meta?) {
+        upsert(prop: &self.defaultValueMeta, val: defaultValueMeta)
+    }    
+    public dynamic var defaultValueOid: String?        
+        
+    public dynamic var defaultValuePeriod: Period?        
+    public func upsert(defaultValuePeriod: Period?) {
+        upsert(prop: &self.defaultValuePeriod, val: defaultValuePeriod)
+    }    
+    public let defaultValuePositiveInt = RealmOptional<Int>()    
+    public dynamic var defaultValueQuantity: Quantity?        
+    public func upsert(defaultValueQuantity: Quantity?) {
+        upsert(prop: &self.defaultValueQuantity, val: defaultValueQuantity)
+    }    
+    public dynamic var defaultValueRange: Range?        
+    public func upsert(defaultValueRange: Range?) {
+        upsert(prop: &self.defaultValueRange, val: defaultValueRange)
+    }    
+    public dynamic var defaultValueRatio: Ratio?        
+    public func upsert(defaultValueRatio: Ratio?) {
+        upsert(prop: &self.defaultValueRatio, val: defaultValueRatio)
+    }    
+    public dynamic var defaultValueReference: Reference?        
+    public func upsert(defaultValueReference: Reference?) {
+        upsert(prop: &self.defaultValueReference, val: defaultValueReference)
+    }    
+    public dynamic var defaultValueSampledData: SampledData?        
+    public func upsert(defaultValueSampledData: SampledData?) {
+        upsert(prop: &self.defaultValueSampledData, val: defaultValueSampledData)
+    }    
+    public dynamic var defaultValueSignature: Signature?        
+    public func upsert(defaultValueSignature: Signature?) {
+        upsert(prop: &self.defaultValueSignature, val: defaultValueSignature)
+    }    
+    public dynamic var defaultValueString: String?        
+        
+    public dynamic var defaultValueTime: FHIRTime?        
+        
+    public dynamic var defaultValueTiming: Timing?        
+    public func upsert(defaultValueTiming: Timing?) {
+        upsert(prop: &self.defaultValueTiming, val: defaultValueTiming)
+    }    
+    public let defaultValueUnsignedInt = RealmOptional<Int>()    
+    public dynamic var defaultValueUri: String?        
+        
+    public dynamic var definition: String?        
+        
+    public dynamic var exampleAddress: Address?        
+    public func upsert(exampleAddress: Address?) {
+        upsert(prop: &self.exampleAddress, val: exampleAddress)
+    }    
+    public dynamic var exampleAnnotation: Annotation?        
+    public func upsert(exampleAnnotation: Annotation?) {
+        upsert(prop: &self.exampleAnnotation, val: exampleAnnotation)
+    }    
+    public dynamic var exampleAttachment: Attachment?        
+    public func upsert(exampleAttachment: Attachment?) {
+        upsert(prop: &self.exampleAttachment, val: exampleAttachment)
+    }    
+    public dynamic var exampleBase64Binary: Base64Binary?        
+        
+    public let exampleBoolean = RealmOptional<Bool>()    
+    public dynamic var exampleCode: String?        
+        
+    public dynamic var exampleCodeableConcept: CodeableConcept?        
+    public func upsert(exampleCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.exampleCodeableConcept, val: exampleCodeableConcept)
+    }    
+    public dynamic var exampleCoding: Coding?        
+    public func upsert(exampleCoding: Coding?) {
+        upsert(prop: &self.exampleCoding, val: exampleCoding)
+    }    
+    public dynamic var exampleContactPoint: ContactPoint?        
+    public func upsert(exampleContactPoint: ContactPoint?) {
+        upsert(prop: &self.exampleContactPoint, val: exampleContactPoint)
+    }    
+    public dynamic var exampleDate: FHIRDate?        
+        
+    public dynamic var exampleDateTime: DateTime?        
+        
+    public dynamic var exampleDecimal: RealmDecimal?        
+        
+    public dynamic var exampleHumanName: HumanName?        
+    public func upsert(exampleHumanName: HumanName?) {
+        upsert(prop: &self.exampleHumanName, val: exampleHumanName)
+    }    
+    public dynamic var exampleId: String?        
+        
+    public dynamic var exampleIdentifier: Identifier?        
+    public func upsert(exampleIdentifier: Identifier?) {
+        upsert(prop: &self.exampleIdentifier, val: exampleIdentifier)
+    }    
+    public dynamic var exampleInstant: Instant?        
+        
+    public let exampleInteger = RealmOptional<Int>()    
+    public dynamic var exampleMarkdown: String?        
+        
+    public dynamic var exampleMeta: Meta?        
+    public func upsert(exampleMeta: Meta?) {
+        upsert(prop: &self.exampleMeta, val: exampleMeta)
+    }    
+    public dynamic var exampleOid: String?        
+        
+    public dynamic var examplePeriod: Period?        
+    public func upsert(examplePeriod: Period?) {
+        upsert(prop: &self.examplePeriod, val: examplePeriod)
+    }    
+    public let examplePositiveInt = RealmOptional<Int>()    
+    public dynamic var exampleQuantity: Quantity?        
+    public func upsert(exampleQuantity: Quantity?) {
+        upsert(prop: &self.exampleQuantity, val: exampleQuantity)
+    }    
+    public dynamic var exampleRange: Range?        
+    public func upsert(exampleRange: Range?) {
+        upsert(prop: &self.exampleRange, val: exampleRange)
+    }    
+    public dynamic var exampleRatio: Ratio?        
+    public func upsert(exampleRatio: Ratio?) {
+        upsert(prop: &self.exampleRatio, val: exampleRatio)
+    }    
+    public dynamic var exampleReference: Reference?        
+    public func upsert(exampleReference: Reference?) {
+        upsert(prop: &self.exampleReference, val: exampleReference)
+    }    
+    public dynamic var exampleSampledData: SampledData?        
+    public func upsert(exampleSampledData: SampledData?) {
+        upsert(prop: &self.exampleSampledData, val: exampleSampledData)
+    }    
+    public dynamic var exampleSignature: Signature?        
+    public func upsert(exampleSignature: Signature?) {
+        upsert(prop: &self.exampleSignature, val: exampleSignature)
+    }    
+    public dynamic var exampleString: String?        
+        
+    public dynamic var exampleTime: FHIRTime?        
+        
+    public dynamic var exampleTiming: Timing?        
+    public func upsert(exampleTiming: Timing?) {
+        upsert(prop: &self.exampleTiming, val: exampleTiming)
+    }    
+    public let exampleUnsignedInt = RealmOptional<Int>()    
+    public dynamic var exampleUri: String?        
+        
+    public dynamic var fixedAddress: Address?        
+    public func upsert(fixedAddress: Address?) {
+        upsert(prop: &self.fixedAddress, val: fixedAddress)
+    }    
+    public dynamic var fixedAnnotation: Annotation?        
+    public func upsert(fixedAnnotation: Annotation?) {
+        upsert(prop: &self.fixedAnnotation, val: fixedAnnotation)
+    }    
+    public dynamic var fixedAttachment: Attachment?        
+    public func upsert(fixedAttachment: Attachment?) {
+        upsert(prop: &self.fixedAttachment, val: fixedAttachment)
+    }    
+    public dynamic var fixedBase64Binary: Base64Binary?        
+        
+    public let fixedBoolean = RealmOptional<Bool>()    
+    public dynamic var fixedCode: String?        
+        
+    public dynamic var fixedCodeableConcept: CodeableConcept?        
+    public func upsert(fixedCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.fixedCodeableConcept, val: fixedCodeableConcept)
+    }    
+    public dynamic var fixedCoding: Coding?        
+    public func upsert(fixedCoding: Coding?) {
+        upsert(prop: &self.fixedCoding, val: fixedCoding)
+    }    
+    public dynamic var fixedContactPoint: ContactPoint?        
+    public func upsert(fixedContactPoint: ContactPoint?) {
+        upsert(prop: &self.fixedContactPoint, val: fixedContactPoint)
+    }    
+    public dynamic var fixedDate: FHIRDate?        
+        
+    public dynamic var fixedDateTime: DateTime?        
+        
+    public dynamic var fixedDecimal: RealmDecimal?        
+        
+    public dynamic var fixedHumanName: HumanName?        
+    public func upsert(fixedHumanName: HumanName?) {
+        upsert(prop: &self.fixedHumanName, val: fixedHumanName)
+    }    
+    public dynamic var fixedId: String?        
+        
+    public dynamic var fixedIdentifier: Identifier?        
+    public func upsert(fixedIdentifier: Identifier?) {
+        upsert(prop: &self.fixedIdentifier, val: fixedIdentifier)
+    }    
+    public dynamic var fixedInstant: Instant?        
+        
+    public let fixedInteger = RealmOptional<Int>()    
+    public dynamic var fixedMarkdown: String?        
+        
+    public dynamic var fixedMeta: Meta?        
+    public func upsert(fixedMeta: Meta?) {
+        upsert(prop: &self.fixedMeta, val: fixedMeta)
+    }    
+    public dynamic var fixedOid: String?        
+        
+    public dynamic var fixedPeriod: Period?        
+    public func upsert(fixedPeriod: Period?) {
+        upsert(prop: &self.fixedPeriod, val: fixedPeriod)
+    }    
+    public let fixedPositiveInt = RealmOptional<Int>()    
+    public dynamic var fixedQuantity: Quantity?        
+    public func upsert(fixedQuantity: Quantity?) {
+        upsert(prop: &self.fixedQuantity, val: fixedQuantity)
+    }    
+    public dynamic var fixedRange: Range?        
+    public func upsert(fixedRange: Range?) {
+        upsert(prop: &self.fixedRange, val: fixedRange)
+    }    
+    public dynamic var fixedRatio: Ratio?        
+    public func upsert(fixedRatio: Ratio?) {
+        upsert(prop: &self.fixedRatio, val: fixedRatio)
+    }    
+    public dynamic var fixedReference: Reference?        
+    public func upsert(fixedReference: Reference?) {
+        upsert(prop: &self.fixedReference, val: fixedReference)
+    }    
+    public dynamic var fixedSampledData: SampledData?        
+    public func upsert(fixedSampledData: SampledData?) {
+        upsert(prop: &self.fixedSampledData, val: fixedSampledData)
+    }    
+    public dynamic var fixedSignature: Signature?        
+    public func upsert(fixedSignature: Signature?) {
+        upsert(prop: &self.fixedSignature, val: fixedSignature)
+    }    
+    public dynamic var fixedString: String?        
+        
+    public dynamic var fixedTime: FHIRTime?        
+        
+    public dynamic var fixedTiming: Timing?        
+    public func upsert(fixedTiming: Timing?) {
+        upsert(prop: &self.fixedTiming, val: fixedTiming)
+    }    
+    public let fixedUnsignedInt = RealmOptional<Int>()    
+    public dynamic var fixedUri: String?        
+        
+    public let isModifier = RealmOptional<Bool>()    
+    public let isSummary = RealmOptional<Bool>()    
+    public dynamic var label: String?        
+        
+    public let mapping = RealmSwift.List<ElementDefinitionMapping>()    
+    public dynamic var max: String?        
+        
+    public let maxLength = RealmOptional<Int>()    
+    public dynamic var maxValueAddress: Address?        
+    public func upsert(maxValueAddress: Address?) {
+        upsert(prop: &self.maxValueAddress, val: maxValueAddress)
+    }    
+    public dynamic var maxValueAnnotation: Annotation?        
+    public func upsert(maxValueAnnotation: Annotation?) {
+        upsert(prop: &self.maxValueAnnotation, val: maxValueAnnotation)
+    }    
+    public dynamic var maxValueAttachment: Attachment?        
+    public func upsert(maxValueAttachment: Attachment?) {
+        upsert(prop: &self.maxValueAttachment, val: maxValueAttachment)
+    }    
+    public dynamic var maxValueBase64Binary: Base64Binary?        
+        
+    public let maxValueBoolean = RealmOptional<Bool>()    
+    public dynamic var maxValueCode: String?        
+        
+    public dynamic var maxValueCodeableConcept: CodeableConcept?        
+    public func upsert(maxValueCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.maxValueCodeableConcept, val: maxValueCodeableConcept)
+    }    
+    public dynamic var maxValueCoding: Coding?        
+    public func upsert(maxValueCoding: Coding?) {
+        upsert(prop: &self.maxValueCoding, val: maxValueCoding)
+    }    
+    public dynamic var maxValueContactPoint: ContactPoint?        
+    public func upsert(maxValueContactPoint: ContactPoint?) {
+        upsert(prop: &self.maxValueContactPoint, val: maxValueContactPoint)
+    }    
+    public dynamic var maxValueDate: FHIRDate?        
+        
+    public dynamic var maxValueDateTime: DateTime?        
+        
+    public dynamic var maxValueDecimal: RealmDecimal?        
+        
+    public dynamic var maxValueHumanName: HumanName?        
+    public func upsert(maxValueHumanName: HumanName?) {
+        upsert(prop: &self.maxValueHumanName, val: maxValueHumanName)
+    }    
+    public dynamic var maxValueId: String?        
+        
+    public dynamic var maxValueIdentifier: Identifier?        
+    public func upsert(maxValueIdentifier: Identifier?) {
+        upsert(prop: &self.maxValueIdentifier, val: maxValueIdentifier)
+    }    
+    public dynamic var maxValueInstant: Instant?        
+        
+    public let maxValueInteger = RealmOptional<Int>()    
+    public dynamic var maxValueMarkdown: String?        
+        
+    public dynamic var maxValueMeta: Meta?        
+    public func upsert(maxValueMeta: Meta?) {
+        upsert(prop: &self.maxValueMeta, val: maxValueMeta)
+    }    
+    public dynamic var maxValueOid: String?        
+        
+    public dynamic var maxValuePeriod: Period?        
+    public func upsert(maxValuePeriod: Period?) {
+        upsert(prop: &self.maxValuePeriod, val: maxValuePeriod)
+    }    
+    public let maxValuePositiveInt = RealmOptional<Int>()    
+    public dynamic var maxValueQuantity: Quantity?        
+    public func upsert(maxValueQuantity: Quantity?) {
+        upsert(prop: &self.maxValueQuantity, val: maxValueQuantity)
+    }    
+    public dynamic var maxValueRange: Range?        
+    public func upsert(maxValueRange: Range?) {
+        upsert(prop: &self.maxValueRange, val: maxValueRange)
+    }    
+    public dynamic var maxValueRatio: Ratio?        
+    public func upsert(maxValueRatio: Ratio?) {
+        upsert(prop: &self.maxValueRatio, val: maxValueRatio)
+    }    
+    public dynamic var maxValueReference: Reference?        
+    public func upsert(maxValueReference: Reference?) {
+        upsert(prop: &self.maxValueReference, val: maxValueReference)
+    }    
+    public dynamic var maxValueSampledData: SampledData?        
+    public func upsert(maxValueSampledData: SampledData?) {
+        upsert(prop: &self.maxValueSampledData, val: maxValueSampledData)
+    }    
+    public dynamic var maxValueSignature: Signature?        
+    public func upsert(maxValueSignature: Signature?) {
+        upsert(prop: &self.maxValueSignature, val: maxValueSignature)
+    }    
+    public dynamic var maxValueString: String?        
+        
+    public dynamic var maxValueTime: FHIRTime?        
+        
+    public dynamic var maxValueTiming: Timing?        
+    public func upsert(maxValueTiming: Timing?) {
+        upsert(prop: &self.maxValueTiming, val: maxValueTiming)
+    }    
+    public let maxValueUnsignedInt = RealmOptional<Int>()    
+    public dynamic var maxValueUri: String?        
+        
+    public dynamic var meaningWhenMissing: String?        
+        
+    public let min = RealmOptional<Int>()    
+    public dynamic var minValueAddress: Address?        
+    public func upsert(minValueAddress: Address?) {
+        upsert(prop: &self.minValueAddress, val: minValueAddress)
+    }    
+    public dynamic var minValueAnnotation: Annotation?        
+    public func upsert(minValueAnnotation: Annotation?) {
+        upsert(prop: &self.minValueAnnotation, val: minValueAnnotation)
+    }    
+    public dynamic var minValueAttachment: Attachment?        
+    public func upsert(minValueAttachment: Attachment?) {
+        upsert(prop: &self.minValueAttachment, val: minValueAttachment)
+    }    
+    public dynamic var minValueBase64Binary: Base64Binary?        
+        
+    public let minValueBoolean = RealmOptional<Bool>()    
+    public dynamic var minValueCode: String?        
+        
+    public dynamic var minValueCodeableConcept: CodeableConcept?        
+    public func upsert(minValueCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.minValueCodeableConcept, val: minValueCodeableConcept)
+    }    
+    public dynamic var minValueCoding: Coding?        
+    public func upsert(minValueCoding: Coding?) {
+        upsert(prop: &self.minValueCoding, val: minValueCoding)
+    }    
+    public dynamic var minValueContactPoint: ContactPoint?        
+    public func upsert(minValueContactPoint: ContactPoint?) {
+        upsert(prop: &self.minValueContactPoint, val: minValueContactPoint)
+    }    
+    public dynamic var minValueDate: FHIRDate?        
+        
+    public dynamic var minValueDateTime: DateTime?        
+        
+    public dynamic var minValueDecimal: RealmDecimal?        
+        
+    public dynamic var minValueHumanName: HumanName?        
+    public func upsert(minValueHumanName: HumanName?) {
+        upsert(prop: &self.minValueHumanName, val: minValueHumanName)
+    }    
+    public dynamic var minValueId: String?        
+        
+    public dynamic var minValueIdentifier: Identifier?        
+    public func upsert(minValueIdentifier: Identifier?) {
+        upsert(prop: &self.minValueIdentifier, val: minValueIdentifier)
+    }    
+    public dynamic var minValueInstant: Instant?        
+        
+    public let minValueInteger = RealmOptional<Int>()    
+    public dynamic var minValueMarkdown: String?        
+        
+    public dynamic var minValueMeta: Meta?        
+    public func upsert(minValueMeta: Meta?) {
+        upsert(prop: &self.minValueMeta, val: minValueMeta)
+    }    
+    public dynamic var minValueOid: String?        
+        
+    public dynamic var minValuePeriod: Period?        
+    public func upsert(minValuePeriod: Period?) {
+        upsert(prop: &self.minValuePeriod, val: minValuePeriod)
+    }    
+    public let minValuePositiveInt = RealmOptional<Int>()    
+    public dynamic var minValueQuantity: Quantity?        
+    public func upsert(minValueQuantity: Quantity?) {
+        upsert(prop: &self.minValueQuantity, val: minValueQuantity)
+    }    
+    public dynamic var minValueRange: Range?        
+    public func upsert(minValueRange: Range?) {
+        upsert(prop: &self.minValueRange, val: minValueRange)
+    }    
+    public dynamic var minValueRatio: Ratio?        
+    public func upsert(minValueRatio: Ratio?) {
+        upsert(prop: &self.minValueRatio, val: minValueRatio)
+    }    
+    public dynamic var minValueReference: Reference?        
+    public func upsert(minValueReference: Reference?) {
+        upsert(prop: &self.minValueReference, val: minValueReference)
+    }    
+    public dynamic var minValueSampledData: SampledData?        
+    public func upsert(minValueSampledData: SampledData?) {
+        upsert(prop: &self.minValueSampledData, val: minValueSampledData)
+    }    
+    public dynamic var minValueSignature: Signature?        
+    public func upsert(minValueSignature: Signature?) {
+        upsert(prop: &self.minValueSignature, val: minValueSignature)
+    }    
+    public dynamic var minValueString: String?        
+        
+    public dynamic var minValueTime: FHIRTime?        
+        
+    public dynamic var minValueTiming: Timing?        
+    public func upsert(minValueTiming: Timing?) {
+        upsert(prop: &self.minValueTiming, val: minValueTiming)
+    }    
+    public let minValueUnsignedInt = RealmOptional<Int>()    
+    public dynamic var minValueUri: String?        
+        
+    public let mustSupport = RealmOptional<Bool>()    
+    public dynamic var name: String?        
+        
+    public dynamic var nameReference: String?        
+        
+    public dynamic var path: String?        
+        
+    public dynamic var patternAddress: Address?        
+    public func upsert(patternAddress: Address?) {
+        upsert(prop: &self.patternAddress, val: patternAddress)
+    }    
+    public dynamic var patternAnnotation: Annotation?        
+    public func upsert(patternAnnotation: Annotation?) {
+        upsert(prop: &self.patternAnnotation, val: patternAnnotation)
+    }    
+    public dynamic var patternAttachment: Attachment?        
+    public func upsert(patternAttachment: Attachment?) {
+        upsert(prop: &self.patternAttachment, val: patternAttachment)
+    }    
+    public dynamic var patternBase64Binary: Base64Binary?        
+        
+    public let patternBoolean = RealmOptional<Bool>()    
+    public dynamic var patternCode: String?        
+        
+    public dynamic var patternCodeableConcept: CodeableConcept?        
+    public func upsert(patternCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.patternCodeableConcept, val: patternCodeableConcept)
+    }    
+    public dynamic var patternCoding: Coding?        
+    public func upsert(patternCoding: Coding?) {
+        upsert(prop: &self.patternCoding, val: patternCoding)
+    }    
+    public dynamic var patternContactPoint: ContactPoint?        
+    public func upsert(patternContactPoint: ContactPoint?) {
+        upsert(prop: &self.patternContactPoint, val: patternContactPoint)
+    }    
+    public dynamic var patternDate: FHIRDate?        
+        
+    public dynamic var patternDateTime: DateTime?        
+        
+    public dynamic var patternDecimal: RealmDecimal?        
+        
+    public dynamic var patternHumanName: HumanName?        
+    public func upsert(patternHumanName: HumanName?) {
+        upsert(prop: &self.patternHumanName, val: patternHumanName)
+    }    
+    public dynamic var patternId: String?        
+        
+    public dynamic var patternIdentifier: Identifier?        
+    public func upsert(patternIdentifier: Identifier?) {
+        upsert(prop: &self.patternIdentifier, val: patternIdentifier)
+    }    
+    public dynamic var patternInstant: Instant?        
+        
+    public let patternInteger = RealmOptional<Int>()    
+    public dynamic var patternMarkdown: String?        
+        
+    public dynamic var patternMeta: Meta?        
+    public func upsert(patternMeta: Meta?) {
+        upsert(prop: &self.patternMeta, val: patternMeta)
+    }    
+    public dynamic var patternOid: String?        
+        
+    public dynamic var patternPeriod: Period?        
+    public func upsert(patternPeriod: Period?) {
+        upsert(prop: &self.patternPeriod, val: patternPeriod)
+    }    
+    public let patternPositiveInt = RealmOptional<Int>()    
+    public dynamic var patternQuantity: Quantity?        
+    public func upsert(patternQuantity: Quantity?) {
+        upsert(prop: &self.patternQuantity, val: patternQuantity)
+    }    
+    public dynamic var patternRange: Range?        
+    public func upsert(patternRange: Range?) {
+        upsert(prop: &self.patternRange, val: patternRange)
+    }    
+    public dynamic var patternRatio: Ratio?        
+    public func upsert(patternRatio: Ratio?) {
+        upsert(prop: &self.patternRatio, val: patternRatio)
+    }    
+    public dynamic var patternReference: Reference?        
+    public func upsert(patternReference: Reference?) {
+        upsert(prop: &self.patternReference, val: patternReference)
+    }    
+    public dynamic var patternSampledData: SampledData?        
+    public func upsert(patternSampledData: SampledData?) {
+        upsert(prop: &self.patternSampledData, val: patternSampledData)
+    }    
+    public dynamic var patternSignature: Signature?        
+    public func upsert(patternSignature: Signature?) {
+        upsert(prop: &self.patternSignature, val: patternSignature)
+    }    
+    public dynamic var patternString: String?        
+        
+    public dynamic var patternTime: FHIRTime?        
+        
+    public dynamic var patternTiming: Timing?        
+    public func upsert(patternTiming: Timing?) {
+        upsert(prop: &self.patternTiming, val: patternTiming)
+    }    
+    public let patternUnsignedInt = RealmOptional<Int>()    
+    public dynamic var patternUri: String?        
+        
+    public let representation = RealmSwift.List<RealmString>()    
+    public dynamic var requirements: String?        
+        
+    public dynamic var short: String?        
+        
+    public dynamic var slicing: ElementDefinitionSlicing?        
+    public func upsert(slicing: ElementDefinitionSlicing?) {
+        upsert(prop: &self.slicing, val: slicing)
+    }    
+    public let type = RealmSwift.List<ElementDefinitionType>()
 
-	public let alias = RealmSwift.List<RealmString>()
-	
-	public dynamic var base: ElementDefinitionBase?						
-		
-		
-			public func upsert(base: ElementDefinitionBase?) {
-				upsert(prop: &self.base, val: base)
-			}
-	
-	public dynamic var binding: ElementDefinitionBinding?						
-		
-		
-			public func upsert(binding: ElementDefinitionBinding?) {
-				upsert(prop: &self.binding, val: binding)
-			}
-	
-	public let code = RealmSwift.List<Coding>()
-	
-	public dynamic var comments: String?						
-		
-		
-	
-	public let condition = RealmSwift.List<RealmString>()
-	
-	public let constraint = RealmSwift.List<ElementDefinitionConstraint>()
-	
-	public dynamic var defaultValueAddress: Address?						
-		
-		
-			public func upsert(defaultValueAddress: Address?) {
-				upsert(prop: &self.defaultValueAddress, val: defaultValueAddress)
-			}
-	
-	public dynamic var defaultValueAnnotation: Annotation?						
-		
-		
-			public func upsert(defaultValueAnnotation: Annotation?) {
-				upsert(prop: &self.defaultValueAnnotation, val: defaultValueAnnotation)
-			}
-	
-	public dynamic var defaultValueAttachment: Attachment?						
-		
-		
-			public func upsert(defaultValueAttachment: Attachment?) {
-				upsert(prop: &self.defaultValueAttachment, val: defaultValueAttachment)
-			}
-	
-	public dynamic var defaultValueBase64Binary: Base64Binary?						
-		
-		
-	
-	public let defaultValueBoolean = RealmOptional<Bool>()
-	
-	public dynamic var defaultValueCode: String?						
-		
-		
-	
-	public dynamic var defaultValueCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(defaultValueCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.defaultValueCodeableConcept, val: defaultValueCodeableConcept)
-			}
-	
-	public dynamic var defaultValueCoding: Coding?						
-		
-		
-			public func upsert(defaultValueCoding: Coding?) {
-				upsert(prop: &self.defaultValueCoding, val: defaultValueCoding)
-			}
-	
-	public dynamic var defaultValueContactPoint: ContactPoint?						
-		
-		
-			public func upsert(defaultValueContactPoint: ContactPoint?) {
-				upsert(prop: &self.defaultValueContactPoint, val: defaultValueContactPoint)
-			}
-	
-	public dynamic var defaultValueDate: FHIRDate?						
-		
-		
-	
-	public dynamic var defaultValueDateTime: DateTime?						
-		
-		
-	
-	public dynamic var defaultValueDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var defaultValueHumanName: HumanName?						
-		
-		
-			public func upsert(defaultValueHumanName: HumanName?) {
-				upsert(prop: &self.defaultValueHumanName, val: defaultValueHumanName)
-			}
-	
-	public dynamic var defaultValueId: String?						
-		
-		
-	
-	public dynamic var defaultValueIdentifier: Identifier?						
-		
-		
-			public func upsert(defaultValueIdentifier: Identifier?) {
-				upsert(prop: &self.defaultValueIdentifier, val: defaultValueIdentifier)
-			}
-	
-	public dynamic var defaultValueInstant: Instant?						
-		
-		
-	
-	public let defaultValueInteger = RealmOptional<Int>()
-	
-	public dynamic var defaultValueMarkdown: String?						
-		
-		
-	
-	public dynamic var defaultValueMeta: Meta?						
-		
-		
-			public func upsert(defaultValueMeta: Meta?) {
-				upsert(prop: &self.defaultValueMeta, val: defaultValueMeta)
-			}
-	
-	public dynamic var defaultValueOid: String?						
-		
-		
-	
-	public dynamic var defaultValuePeriod: Period?						
-		
-		
-			public func upsert(defaultValuePeriod: Period?) {
-				upsert(prop: &self.defaultValuePeriod, val: defaultValuePeriod)
-			}
-	
-	public let defaultValuePositiveInt = RealmOptional<Int>()
-	
-	public dynamic var defaultValueQuantity: Quantity?						
-		
-		
-			public func upsert(defaultValueQuantity: Quantity?) {
-				upsert(prop: &self.defaultValueQuantity, val: defaultValueQuantity)
-			}
-	
-	public dynamic var defaultValueRange: Range?						
-		
-		
-			public func upsert(defaultValueRange: Range?) {
-				upsert(prop: &self.defaultValueRange, val: defaultValueRange)
-			}
-	
-	public dynamic var defaultValueRatio: Ratio?						
-		
-		
-			public func upsert(defaultValueRatio: Ratio?) {
-				upsert(prop: &self.defaultValueRatio, val: defaultValueRatio)
-			}
-	
-	public dynamic var defaultValueReference: Reference?						
-		
-		
-			public func upsert(defaultValueReference: Reference?) {
-				upsert(prop: &self.defaultValueReference, val: defaultValueReference)
-			}
-	
-	public dynamic var defaultValueSampledData: SampledData?						
-		
-		
-			public func upsert(defaultValueSampledData: SampledData?) {
-				upsert(prop: &self.defaultValueSampledData, val: defaultValueSampledData)
-			}
-	
-	public dynamic var defaultValueSignature: Signature?						
-		
-		
-			public func upsert(defaultValueSignature: Signature?) {
-				upsert(prop: &self.defaultValueSignature, val: defaultValueSignature)
-			}
-	
-	public dynamic var defaultValueString: String?						
-		
-		
-	
-	public dynamic var defaultValueTime: FHIRTime?						
-		
-		
-	
-	public dynamic var defaultValueTiming: Timing?						
-		
-		
-			public func upsert(defaultValueTiming: Timing?) {
-				upsert(prop: &self.defaultValueTiming, val: defaultValueTiming)
-			}
-	
-	public let defaultValueUnsignedInt = RealmOptional<Int>()
-	
-	public dynamic var defaultValueUri: String?						
-		
-		
-	
-	public dynamic var definition: String?						
-		
-		
-	
-	public dynamic var exampleAddress: Address?						
-		
-		
-			public func upsert(exampleAddress: Address?) {
-				upsert(prop: &self.exampleAddress, val: exampleAddress)
-			}
-	
-	public dynamic var exampleAnnotation: Annotation?						
-		
-		
-			public func upsert(exampleAnnotation: Annotation?) {
-				upsert(prop: &self.exampleAnnotation, val: exampleAnnotation)
-			}
-	
-	public dynamic var exampleAttachment: Attachment?						
-		
-		
-			public func upsert(exampleAttachment: Attachment?) {
-				upsert(prop: &self.exampleAttachment, val: exampleAttachment)
-			}
-	
-	public dynamic var exampleBase64Binary: Base64Binary?						
-		
-		
-	
-	public let exampleBoolean = RealmOptional<Bool>()
-	
-	public dynamic var exampleCode: String?						
-		
-		
-	
-	public dynamic var exampleCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(exampleCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.exampleCodeableConcept, val: exampleCodeableConcept)
-			}
-	
-	public dynamic var exampleCoding: Coding?						
-		
-		
-			public func upsert(exampleCoding: Coding?) {
-				upsert(prop: &self.exampleCoding, val: exampleCoding)
-			}
-	
-	public dynamic var exampleContactPoint: ContactPoint?						
-		
-		
-			public func upsert(exampleContactPoint: ContactPoint?) {
-				upsert(prop: &self.exampleContactPoint, val: exampleContactPoint)
-			}
-	
-	public dynamic var exampleDate: FHIRDate?						
-		
-		
-	
-	public dynamic var exampleDateTime: DateTime?						
-		
-		
-	
-	public dynamic var exampleDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var exampleHumanName: HumanName?						
-		
-		
-			public func upsert(exampleHumanName: HumanName?) {
-				upsert(prop: &self.exampleHumanName, val: exampleHumanName)
-			}
-	
-	public dynamic var exampleId: String?						
-		
-		
-	
-	public dynamic var exampleIdentifier: Identifier?						
-		
-		
-			public func upsert(exampleIdentifier: Identifier?) {
-				upsert(prop: &self.exampleIdentifier, val: exampleIdentifier)
-			}
-	
-	public dynamic var exampleInstant: Instant?						
-		
-		
-	
-	public let exampleInteger = RealmOptional<Int>()
-	
-	public dynamic var exampleMarkdown: String?						
-		
-		
-	
-	public dynamic var exampleMeta: Meta?						
-		
-		
-			public func upsert(exampleMeta: Meta?) {
-				upsert(prop: &self.exampleMeta, val: exampleMeta)
-			}
-	
-	public dynamic var exampleOid: String?						
-		
-		
-	
-	public dynamic var examplePeriod: Period?						
-		
-		
-			public func upsert(examplePeriod: Period?) {
-				upsert(prop: &self.examplePeriod, val: examplePeriod)
-			}
-	
-	public let examplePositiveInt = RealmOptional<Int>()
-	
-	public dynamic var exampleQuantity: Quantity?						
-		
-		
-			public func upsert(exampleQuantity: Quantity?) {
-				upsert(prop: &self.exampleQuantity, val: exampleQuantity)
-			}
-	
-	public dynamic var exampleRange: Range?						
-		
-		
-			public func upsert(exampleRange: Range?) {
-				upsert(prop: &self.exampleRange, val: exampleRange)
-			}
-	
-	public dynamic var exampleRatio: Ratio?						
-		
-		
-			public func upsert(exampleRatio: Ratio?) {
-				upsert(prop: &self.exampleRatio, val: exampleRatio)
-			}
-	
-	public dynamic var exampleReference: Reference?						
-		
-		
-			public func upsert(exampleReference: Reference?) {
-				upsert(prop: &self.exampleReference, val: exampleReference)
-			}
-	
-	public dynamic var exampleSampledData: SampledData?						
-		
-		
-			public func upsert(exampleSampledData: SampledData?) {
-				upsert(prop: &self.exampleSampledData, val: exampleSampledData)
-			}
-	
-	public dynamic var exampleSignature: Signature?						
-		
-		
-			public func upsert(exampleSignature: Signature?) {
-				upsert(prop: &self.exampleSignature, val: exampleSignature)
-			}
-	
-	public dynamic var exampleString: String?						
-		
-		
-	
-	public dynamic var exampleTime: FHIRTime?						
-		
-		
-	
-	public dynamic var exampleTiming: Timing?						
-		
-		
-			public func upsert(exampleTiming: Timing?) {
-				upsert(prop: &self.exampleTiming, val: exampleTiming)
-			}
-	
-	public let exampleUnsignedInt = RealmOptional<Int>()
-	
-	public dynamic var exampleUri: String?						
-		
-		
-	
-	public dynamic var fixedAddress: Address?						
-		
-		
-			public func upsert(fixedAddress: Address?) {
-				upsert(prop: &self.fixedAddress, val: fixedAddress)
-			}
-	
-	public dynamic var fixedAnnotation: Annotation?						
-		
-		
-			public func upsert(fixedAnnotation: Annotation?) {
-				upsert(prop: &self.fixedAnnotation, val: fixedAnnotation)
-			}
-	
-	public dynamic var fixedAttachment: Attachment?						
-		
-		
-			public func upsert(fixedAttachment: Attachment?) {
-				upsert(prop: &self.fixedAttachment, val: fixedAttachment)
-			}
-	
-	public dynamic var fixedBase64Binary: Base64Binary?						
-		
-		
-	
-	public let fixedBoolean = RealmOptional<Bool>()
-	
-	public dynamic var fixedCode: String?						
-		
-		
-	
-	public dynamic var fixedCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(fixedCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.fixedCodeableConcept, val: fixedCodeableConcept)
-			}
-	
-	public dynamic var fixedCoding: Coding?						
-		
-		
-			public func upsert(fixedCoding: Coding?) {
-				upsert(prop: &self.fixedCoding, val: fixedCoding)
-			}
-	
-	public dynamic var fixedContactPoint: ContactPoint?						
-		
-		
-			public func upsert(fixedContactPoint: ContactPoint?) {
-				upsert(prop: &self.fixedContactPoint, val: fixedContactPoint)
-			}
-	
-	public dynamic var fixedDate: FHIRDate?						
-		
-		
-	
-	public dynamic var fixedDateTime: DateTime?						
-		
-		
-	
-	public dynamic var fixedDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var fixedHumanName: HumanName?						
-		
-		
-			public func upsert(fixedHumanName: HumanName?) {
-				upsert(prop: &self.fixedHumanName, val: fixedHumanName)
-			}
-	
-	public dynamic var fixedId: String?						
-		
-		
-	
-	public dynamic var fixedIdentifier: Identifier?						
-		
-		
-			public func upsert(fixedIdentifier: Identifier?) {
-				upsert(prop: &self.fixedIdentifier, val: fixedIdentifier)
-			}
-	
-	public dynamic var fixedInstant: Instant?						
-		
-		
-	
-	public let fixedInteger = RealmOptional<Int>()
-	
-	public dynamic var fixedMarkdown: String?						
-		
-		
-	
-	public dynamic var fixedMeta: Meta?						
-		
-		
-			public func upsert(fixedMeta: Meta?) {
-				upsert(prop: &self.fixedMeta, val: fixedMeta)
-			}
-	
-	public dynamic var fixedOid: String?						
-		
-		
-	
-	public dynamic var fixedPeriod: Period?						
-		
-		
-			public func upsert(fixedPeriod: Period?) {
-				upsert(prop: &self.fixedPeriod, val: fixedPeriod)
-			}
-	
-	public let fixedPositiveInt = RealmOptional<Int>()
-	
-	public dynamic var fixedQuantity: Quantity?						
-		
-		
-			public func upsert(fixedQuantity: Quantity?) {
-				upsert(prop: &self.fixedQuantity, val: fixedQuantity)
-			}
-	
-	public dynamic var fixedRange: Range?						
-		
-		
-			public func upsert(fixedRange: Range?) {
-				upsert(prop: &self.fixedRange, val: fixedRange)
-			}
-	
-	public dynamic var fixedRatio: Ratio?						
-		
-		
-			public func upsert(fixedRatio: Ratio?) {
-				upsert(prop: &self.fixedRatio, val: fixedRatio)
-			}
-	
-	public dynamic var fixedReference: Reference?						
-		
-		
-			public func upsert(fixedReference: Reference?) {
-				upsert(prop: &self.fixedReference, val: fixedReference)
-			}
-	
-	public dynamic var fixedSampledData: SampledData?						
-		
-		
-			public func upsert(fixedSampledData: SampledData?) {
-				upsert(prop: &self.fixedSampledData, val: fixedSampledData)
-			}
-	
-	public dynamic var fixedSignature: Signature?						
-		
-		
-			public func upsert(fixedSignature: Signature?) {
-				upsert(prop: &self.fixedSignature, val: fixedSignature)
-			}
-	
-	public dynamic var fixedString: String?						
-		
-		
-	
-	public dynamic var fixedTime: FHIRTime?						
-		
-		
-	
-	public dynamic var fixedTiming: Timing?						
-		
-		
-			public func upsert(fixedTiming: Timing?) {
-				upsert(prop: &self.fixedTiming, val: fixedTiming)
-			}
-	
-	public let fixedUnsignedInt = RealmOptional<Int>()
-	
-	public dynamic var fixedUri: String?						
-		
-		
-	
-	public let isModifier = RealmOptional<Bool>()
-	
-	public let isSummary = RealmOptional<Bool>()
-	
-	public dynamic var label: String?						
-		
-		
-	
-	public let mapping = RealmSwift.List<ElementDefinitionMapping>()
-	
-	public dynamic var max: String?						
-		
-		
-	
-	public let maxLength = RealmOptional<Int>()
-	
-	public dynamic var maxValueAddress: Address?						
-		
-		
-			public func upsert(maxValueAddress: Address?) {
-				upsert(prop: &self.maxValueAddress, val: maxValueAddress)
-			}
-	
-	public dynamic var maxValueAnnotation: Annotation?						
-		
-		
-			public func upsert(maxValueAnnotation: Annotation?) {
-				upsert(prop: &self.maxValueAnnotation, val: maxValueAnnotation)
-			}
-	
-	public dynamic var maxValueAttachment: Attachment?						
-		
-		
-			public func upsert(maxValueAttachment: Attachment?) {
-				upsert(prop: &self.maxValueAttachment, val: maxValueAttachment)
-			}
-	
-	public dynamic var maxValueBase64Binary: Base64Binary?						
-		
-		
-	
-	public let maxValueBoolean = RealmOptional<Bool>()
-	
-	public dynamic var maxValueCode: String?						
-		
-		
-	
-	public dynamic var maxValueCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(maxValueCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.maxValueCodeableConcept, val: maxValueCodeableConcept)
-			}
-	
-	public dynamic var maxValueCoding: Coding?						
-		
-		
-			public func upsert(maxValueCoding: Coding?) {
-				upsert(prop: &self.maxValueCoding, val: maxValueCoding)
-			}
-	
-	public dynamic var maxValueContactPoint: ContactPoint?						
-		
-		
-			public func upsert(maxValueContactPoint: ContactPoint?) {
-				upsert(prop: &self.maxValueContactPoint, val: maxValueContactPoint)
-			}
-	
-	public dynamic var maxValueDate: FHIRDate?						
-		
-		
-	
-	public dynamic var maxValueDateTime: DateTime?						
-		
-		
-	
-	public dynamic var maxValueDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var maxValueHumanName: HumanName?						
-		
-		
-			public func upsert(maxValueHumanName: HumanName?) {
-				upsert(prop: &self.maxValueHumanName, val: maxValueHumanName)
-			}
-	
-	public dynamic var maxValueId: String?						
-		
-		
-	
-	public dynamic var maxValueIdentifier: Identifier?						
-		
-		
-			public func upsert(maxValueIdentifier: Identifier?) {
-				upsert(prop: &self.maxValueIdentifier, val: maxValueIdentifier)
-			}
-	
-	public dynamic var maxValueInstant: Instant?						
-		
-		
-	
-	public let maxValueInteger = RealmOptional<Int>()
-	
-	public dynamic var maxValueMarkdown: String?						
-		
-		
-	
-	public dynamic var maxValueMeta: Meta?						
-		
-		
-			public func upsert(maxValueMeta: Meta?) {
-				upsert(prop: &self.maxValueMeta, val: maxValueMeta)
-			}
-	
-	public dynamic var maxValueOid: String?						
-		
-		
-	
-	public dynamic var maxValuePeriod: Period?						
-		
-		
-			public func upsert(maxValuePeriod: Period?) {
-				upsert(prop: &self.maxValuePeriod, val: maxValuePeriod)
-			}
-	
-	public let maxValuePositiveInt = RealmOptional<Int>()
-	
-	public dynamic var maxValueQuantity: Quantity?						
-		
-		
-			public func upsert(maxValueQuantity: Quantity?) {
-				upsert(prop: &self.maxValueQuantity, val: maxValueQuantity)
-			}
-	
-	public dynamic var maxValueRange: Range?						
-		
-		
-			public func upsert(maxValueRange: Range?) {
-				upsert(prop: &self.maxValueRange, val: maxValueRange)
-			}
-	
-	public dynamic var maxValueRatio: Ratio?						
-		
-		
-			public func upsert(maxValueRatio: Ratio?) {
-				upsert(prop: &self.maxValueRatio, val: maxValueRatio)
-			}
-	
-	public dynamic var maxValueReference: Reference?						
-		
-		
-			public func upsert(maxValueReference: Reference?) {
-				upsert(prop: &self.maxValueReference, val: maxValueReference)
-			}
-	
-	public dynamic var maxValueSampledData: SampledData?						
-		
-		
-			public func upsert(maxValueSampledData: SampledData?) {
-				upsert(prop: &self.maxValueSampledData, val: maxValueSampledData)
-			}
-	
-	public dynamic var maxValueSignature: Signature?						
-		
-		
-			public func upsert(maxValueSignature: Signature?) {
-				upsert(prop: &self.maxValueSignature, val: maxValueSignature)
-			}
-	
-	public dynamic var maxValueString: String?						
-		
-		
-	
-	public dynamic var maxValueTime: FHIRTime?						
-		
-		
-	
-	public dynamic var maxValueTiming: Timing?						
-		
-		
-			public func upsert(maxValueTiming: Timing?) {
-				upsert(prop: &self.maxValueTiming, val: maxValueTiming)
-			}
-	
-	public let maxValueUnsignedInt = RealmOptional<Int>()
-	
-	public dynamic var maxValueUri: String?						
-		
-		
-	
-	public dynamic var meaningWhenMissing: String?						
-		
-		
-	
-	public let min = RealmOptional<Int>()
-	
-	public dynamic var minValueAddress: Address?						
-		
-		
-			public func upsert(minValueAddress: Address?) {
-				upsert(prop: &self.minValueAddress, val: minValueAddress)
-			}
-	
-	public dynamic var minValueAnnotation: Annotation?						
-		
-		
-			public func upsert(minValueAnnotation: Annotation?) {
-				upsert(prop: &self.minValueAnnotation, val: minValueAnnotation)
-			}
-	
-	public dynamic var minValueAttachment: Attachment?						
-		
-		
-			public func upsert(minValueAttachment: Attachment?) {
-				upsert(prop: &self.minValueAttachment, val: minValueAttachment)
-			}
-	
-	public dynamic var minValueBase64Binary: Base64Binary?						
-		
-		
-	
-	public let minValueBoolean = RealmOptional<Bool>()
-	
-	public dynamic var minValueCode: String?						
-		
-		
-	
-	public dynamic var minValueCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(minValueCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.minValueCodeableConcept, val: minValueCodeableConcept)
-			}
-	
-	public dynamic var minValueCoding: Coding?						
-		
-		
-			public func upsert(minValueCoding: Coding?) {
-				upsert(prop: &self.minValueCoding, val: minValueCoding)
-			}
-	
-	public dynamic var minValueContactPoint: ContactPoint?						
-		
-		
-			public func upsert(minValueContactPoint: ContactPoint?) {
-				upsert(prop: &self.minValueContactPoint, val: minValueContactPoint)
-			}
-	
-	public dynamic var minValueDate: FHIRDate?						
-		
-		
-	
-	public dynamic var minValueDateTime: DateTime?						
-		
-		
-	
-	public dynamic var minValueDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var minValueHumanName: HumanName?						
-		
-		
-			public func upsert(minValueHumanName: HumanName?) {
-				upsert(prop: &self.minValueHumanName, val: minValueHumanName)
-			}
-	
-	public dynamic var minValueId: String?						
-		
-		
-	
-	public dynamic var minValueIdentifier: Identifier?						
-		
-		
-			public func upsert(minValueIdentifier: Identifier?) {
-				upsert(prop: &self.minValueIdentifier, val: minValueIdentifier)
-			}
-	
-	public dynamic var minValueInstant: Instant?						
-		
-		
-	
-	public let minValueInteger = RealmOptional<Int>()
-	
-	public dynamic var minValueMarkdown: String?						
-		
-		
-	
-	public dynamic var minValueMeta: Meta?						
-		
-		
-			public func upsert(minValueMeta: Meta?) {
-				upsert(prop: &self.minValueMeta, val: minValueMeta)
-			}
-	
-	public dynamic var minValueOid: String?						
-		
-		
-	
-	public dynamic var minValuePeriod: Period?						
-		
-		
-			public func upsert(minValuePeriod: Period?) {
-				upsert(prop: &self.minValuePeriod, val: minValuePeriod)
-			}
-	
-	public let minValuePositiveInt = RealmOptional<Int>()
-	
-	public dynamic var minValueQuantity: Quantity?						
-		
-		
-			public func upsert(minValueQuantity: Quantity?) {
-				upsert(prop: &self.minValueQuantity, val: minValueQuantity)
-			}
-	
-	public dynamic var minValueRange: Range?						
-		
-		
-			public func upsert(minValueRange: Range?) {
-				upsert(prop: &self.minValueRange, val: minValueRange)
-			}
-	
-	public dynamic var minValueRatio: Ratio?						
-		
-		
-			public func upsert(minValueRatio: Ratio?) {
-				upsert(prop: &self.minValueRatio, val: minValueRatio)
-			}
-	
-	public dynamic var minValueReference: Reference?						
-		
-		
-			public func upsert(minValueReference: Reference?) {
-				upsert(prop: &self.minValueReference, val: minValueReference)
-			}
-	
-	public dynamic var minValueSampledData: SampledData?						
-		
-		
-			public func upsert(minValueSampledData: SampledData?) {
-				upsert(prop: &self.minValueSampledData, val: minValueSampledData)
-			}
-	
-	public dynamic var minValueSignature: Signature?						
-		
-		
-			public func upsert(minValueSignature: Signature?) {
-				upsert(prop: &self.minValueSignature, val: minValueSignature)
-			}
-	
-	public dynamic var minValueString: String?						
-		
-		
-	
-	public dynamic var minValueTime: FHIRTime?						
-		
-		
-	
-	public dynamic var minValueTiming: Timing?						
-		
-		
-			public func upsert(minValueTiming: Timing?) {
-				upsert(prop: &self.minValueTiming, val: minValueTiming)
-			}
-	
-	public let minValueUnsignedInt = RealmOptional<Int>()
-	
-	public dynamic var minValueUri: String?						
-		
-		
-	
-	public let mustSupport = RealmOptional<Bool>()
-	
-	public dynamic var name: String?						
-		
-		
-	
-	public dynamic var nameReference: String?						
-		
-		
-	
-	public dynamic var path: String?						
-		
-		
-	
-	public dynamic var patternAddress: Address?						
-		
-		
-			public func upsert(patternAddress: Address?) {
-				upsert(prop: &self.patternAddress, val: patternAddress)
-			}
-	
-	public dynamic var patternAnnotation: Annotation?						
-		
-		
-			public func upsert(patternAnnotation: Annotation?) {
-				upsert(prop: &self.patternAnnotation, val: patternAnnotation)
-			}
-	
-	public dynamic var patternAttachment: Attachment?						
-		
-		
-			public func upsert(patternAttachment: Attachment?) {
-				upsert(prop: &self.patternAttachment, val: patternAttachment)
-			}
-	
-	public dynamic var patternBase64Binary: Base64Binary?						
-		
-		
-	
-	public let patternBoolean = RealmOptional<Bool>()
-	
-	public dynamic var patternCode: String?						
-		
-		
-	
-	public dynamic var patternCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(patternCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.patternCodeableConcept, val: patternCodeableConcept)
-			}
-	
-	public dynamic var patternCoding: Coding?						
-		
-		
-			public func upsert(patternCoding: Coding?) {
-				upsert(prop: &self.patternCoding, val: patternCoding)
-			}
-	
-	public dynamic var patternContactPoint: ContactPoint?						
-		
-		
-			public func upsert(patternContactPoint: ContactPoint?) {
-				upsert(prop: &self.patternContactPoint, val: patternContactPoint)
-			}
-	
-	public dynamic var patternDate: FHIRDate?						
-		
-		
-	
-	public dynamic var patternDateTime: DateTime?						
-		
-		
-	
-	public dynamic var patternDecimal: RealmDecimal?						
-		
-		
-	
-	public dynamic var patternHumanName: HumanName?						
-		
-		
-			public func upsert(patternHumanName: HumanName?) {
-				upsert(prop: &self.patternHumanName, val: patternHumanName)
-			}
-	
-	public dynamic var patternId: String?						
-		
-		
-	
-	public dynamic var patternIdentifier: Identifier?						
-		
-		
-			public func upsert(patternIdentifier: Identifier?) {
-				upsert(prop: &self.patternIdentifier, val: patternIdentifier)
-			}
-	
-	public dynamic var patternInstant: Instant?						
-		
-		
-	
-	public let patternInteger = RealmOptional<Int>()
-	
-	public dynamic var patternMarkdown: String?						
-		
-		
-	
-	public dynamic var patternMeta: Meta?						
-		
-		
-			public func upsert(patternMeta: Meta?) {
-				upsert(prop: &self.patternMeta, val: patternMeta)
-			}
-	
-	public dynamic var patternOid: String?						
-		
-		
-	
-	public dynamic var patternPeriod: Period?						
-		
-		
-			public func upsert(patternPeriod: Period?) {
-				upsert(prop: &self.patternPeriod, val: patternPeriod)
-			}
-	
-	public let patternPositiveInt = RealmOptional<Int>()
-	
-	public dynamic var patternQuantity: Quantity?						
-		
-		
-			public func upsert(patternQuantity: Quantity?) {
-				upsert(prop: &self.patternQuantity, val: patternQuantity)
-			}
-	
-	public dynamic var patternRange: Range?						
-		
-		
-			public func upsert(patternRange: Range?) {
-				upsert(prop: &self.patternRange, val: patternRange)
-			}
-	
-	public dynamic var patternRatio: Ratio?						
-		
-		
-			public func upsert(patternRatio: Ratio?) {
-				upsert(prop: &self.patternRatio, val: patternRatio)
-			}
-	
-	public dynamic var patternReference: Reference?						
-		
-		
-			public func upsert(patternReference: Reference?) {
-				upsert(prop: &self.patternReference, val: patternReference)
-			}
-	
-	public dynamic var patternSampledData: SampledData?						
-		
-		
-			public func upsert(patternSampledData: SampledData?) {
-				upsert(prop: &self.patternSampledData, val: patternSampledData)
-			}
-	
-	public dynamic var patternSignature: Signature?						
-		
-		
-			public func upsert(patternSignature: Signature?) {
-				upsert(prop: &self.patternSignature, val: patternSignature)
-			}
-	
-	public dynamic var patternString: String?						
-		
-		
-	
-	public dynamic var patternTime: FHIRTime?						
-		
-		
-	
-	public dynamic var patternTiming: Timing?						
-		
-		
-			public func upsert(patternTiming: Timing?) {
-				upsert(prop: &self.patternTiming, val: patternTiming)
-			}
-	
-	public let patternUnsignedInt = RealmOptional<Int>()
-	
-	public dynamic var patternUri: String?						
-		
-		
-	
-	public let representation = RealmSwift.List<RealmString>()
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public dynamic var short: String?						
-		
-		
-	
-	public dynamic var slicing: ElementDefinitionSlicing?						
-		
-		
-			public func upsert(slicing: ElementDefinitionSlicing?) {
-				upsert(prop: &self.slicing, val: slicing)
-			}
-	
-	public let type = RealmSwift.List<ElementDefinitionType>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(path: String) {
+        self.init(json: nil)
+        self.path = path
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(path: String) {
-		self.init(json: nil)
-		self.path = path
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -3882,26 +3367,21 @@ open class ElementDefinitionBase: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionBase" }
 	}
+    
+    public dynamic var max: String?        
+        
+    public let min = RealmOptional<Int>()    
+    public dynamic var path: String?        
+    
 
-	public dynamic var max: String?						
-		
-		
-	
-	public let min = RealmOptional<Int>()
-	
-	public dynamic var path: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(max: String, min: Int, path: String) {
+        self.init(json: nil)
+        self.max = max
+        self.min.value = min
+        self.path = path
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(max: String, min: Int, path: String) {
-		self.init(json: nil)
-		self.max = max
-		self.min.value = min
-		self.path = path
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -3973,33 +3453,24 @@ open class ElementDefinitionBinding: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionBinding" }
 	}
+    
+    public dynamic var description_fhir: String?        
+        
+    public dynamic var strength: String?        
+        
+    public dynamic var valueSetReference: Reference?        
+    public func upsert(valueSetReference: Reference?) {
+        upsert(prop: &self.valueSetReference, val: valueSetReference)
+    }    
+    public dynamic var valueSetUri: String?        
+    
 
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public dynamic var strength: String?						
-		
-		
-	
-	public dynamic var valueSetReference: Reference?						
-		
-		
-			public func upsert(valueSetReference: Reference?) {
-				upsert(prop: &self.valueSetReference, val: valueSetReference)
-			}
-	
-	public dynamic var valueSetUri: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(strength: String) {
+        self.init(json: nil)
+        self.strength = strength
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(strength: String) {
-		self.init(json: nil)
-		self.strength = strength
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -4078,37 +3549,27 @@ open class ElementDefinitionConstraint: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionConstraint" }
 	}
+    
+    public dynamic var human: String?        
+        
+    public dynamic var key: String?        
+        
+    public dynamic var requirements: String?        
+        
+    public dynamic var severity: String?        
+        
+    public dynamic var xpath: String?        
+    
 
-	public dynamic var human: String?						
-		
-		
-	
-	public dynamic var key: String?						
-		
-		
-	
-	public dynamic var requirements: String?						
-		
-		
-	
-	public dynamic var severity: String?						
-		
-		
-	
-	public dynamic var xpath: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(human: String, key: String, severity: String, xpath: String) {
+        self.init(json: nil)
+        self.human = human
+        self.key = key
+        self.severity = severity
+        self.xpath = xpath
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(human: String, key: String, severity: String, xpath: String) {
-		self.init(json: nil)
-		self.human = human
-		self.key = key
-		self.severity = severity
-		self.xpath = xpath
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -4207,27 +3668,21 @@ open class ElementDefinitionMapping: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionMapping" }
 	}
+    
+    public dynamic var identity: String?        
+        
+    public dynamic var language: String?        
+        
+    public dynamic var map: String?        
+    
 
-	public dynamic var identity: String?						
-		
-		
-	
-	public dynamic var language: String?						
-		
-		
-	
-	public dynamic var map: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(identity: String, map: String) {
+        self.init(json: nil)
+        self.identity = identity
+        self.map = map
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identity: String, map: String) {
-		self.init(json: nil)
-		self.identity = identity
-		self.map = map
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -4300,26 +3755,20 @@ open class ElementDefinitionSlicing: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionSlicing" }
 	}
+    
+    public dynamic var description_fhir: String?        
+        
+    public let discriminator = RealmSwift.List<RealmString>()    
+    public let ordered = RealmOptional<Bool>()    
+    public dynamic var rules: String?        
+    
 
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let discriminator = RealmSwift.List<RealmString>()
-	
-	public let ordered = RealmOptional<Bool>()
-	
-	public dynamic var rules: String?						
-		
-		
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(rules: String) {
+        self.init(json: nil)
+        self.rules = rules
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(rules: String) {
-		self.init(json: nil)
-		self.rules = rules
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -4397,22 +3846,18 @@ open class ElementDefinitionType: Element {
 	override open class var resourceType: String {
 		get { return "ElementDefinitionType" }
 	}
+    
+    public let aggregation = RealmSwift.List<RealmString>()    
+    public dynamic var code: String?        
+        
+    public let profile = RealmSwift.List<RealmString>()
 
-	public let aggregation = RealmSwift.List<RealmString>()
-	
-	public dynamic var code: String?						
-		
-		
-	
-	public let profile = RealmSwift.List<RealmString>()
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(code: String) {
+        self.init(json: nil)
+        self.code = code
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(code: String) {
-		self.init(json: nil)
-		self.code = code
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()

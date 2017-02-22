@@ -2,7 +2,7 @@
 //  Range.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,21 +19,15 @@ open class Range: Element {
 	override open class var resourceType: String {
 		get { return "Range" }
 	}
-
-	public dynamic var high: Quantity?						
-		
-		
-			public func upsert(high: Quantity?) {
-				upsert(prop: &self.high, val: high)
-			}
-	
-	public dynamic var low: Quantity?						
-		
-		
-			public func upsert(low: Quantity?) {
-				upsert(prop: &self.low, val: low)
-			}
-	
+    
+    public dynamic var high: Quantity?        
+    public func upsert(high: Quantity?) {
+        upsert(prop: &self.high, val: high)
+    }    
+    public dynamic var low: Quantity?        
+    public func upsert(low: Quantity?) {
+        upsert(prop: &self.low, val: low)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -17,62 +17,40 @@ open class DocumentManifest: DomainResource {
 	override open class var resourceType: String {
 		get { return "DocumentManifest" }
 	}
+    
+    public let author = RealmSwift.List<Reference>()    
+    public let content = RealmSwift.List<DocumentManifestContent>()    
+    public dynamic var created: DateTime?        
+        
+    public dynamic var description_fhir: String?        
+        
+    public let identifier = RealmSwift.List<Identifier>()    
+    public dynamic var masterIdentifier: Identifier?        
+    public func upsert(masterIdentifier: Identifier?) {
+        upsert(prop: &self.masterIdentifier, val: masterIdentifier)
+    }    
+    public let recipient = RealmSwift.List<Reference>()    
+    public let related = RealmSwift.List<DocumentManifestRelated>()    
+    public dynamic var source: String?        
+        
+    public dynamic var status: String?        
+        
+    public dynamic var subject: Reference?        
+    public func upsert(subject: Reference?) {
+        upsert(prop: &self.subject, val: subject)
+    }    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public let author = RealmSwift.List<Reference>()
-	
-	public let content = RealmSwift.List<DocumentManifestContent>()
-	
-	public dynamic var created: DateTime?						
-		
-		
-	
-	public dynamic var description_fhir: String?						
-		
-		
-	
-	public let identifier = RealmSwift.List<Identifier>()
-	
-	public dynamic var masterIdentifier: Identifier?						
-		
-		
-			public func upsert(masterIdentifier: Identifier?) {
-				upsert(prop: &self.masterIdentifier, val: masterIdentifier)
-			}
-	
-	public let recipient = RealmSwift.List<Reference>()
-	
-	public let related = RealmSwift.List<DocumentManifestRelated>()
-	
-	public dynamic var source: String?						
-		
-		
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public dynamic var subject: Reference?						
-		
-		
-			public func upsert(subject: Reference?) {
-				upsert(prop: &self.subject, val: subject)
-			}
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(content: [DocumentManifestContent], status: String) {
+        self.init(json: nil)
+        self.content.append(objectsIn: content)
+        self.status = status
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(content: [DocumentManifestContent], status: String) {
-		self.init(json: nil)
-		self.content.append(objectsIn: content)
-		self.status = status
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -264,29 +242,23 @@ open class DocumentManifestContent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentManifestContent" }
 	}
+    
+    public dynamic var pAttachment: Attachment?        
+    public func upsert(pAttachment: Attachment?) {
+        upsert(prop: &self.pAttachment, val: pAttachment)
+    }    
+    public dynamic var pReference: Reference?        
+    public func upsert(pReference: Reference?) {
+        upsert(prop: &self.pReference, val: pReference)
+    }
 
-	public dynamic var pAttachment: Attachment?						
-		
-		
-			public func upsert(pAttachment: Attachment?) {
-				upsert(prop: &self.pAttachment, val: pAttachment)
-			}
-	
-	public dynamic var pReference: Reference?						
-		
-		
-			public func upsert(pReference: Reference?) {
-				upsert(prop: &self.pReference, val: pReference)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(pAttachment: Attachment, pReference: Reference) {
+        self.init(json: nil)
+        self.pAttachment = pAttachment
+        self.pReference = pReference
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(pAttachment: Attachment, pReference: Reference) {
-		self.init(json: nil)
-		self.pAttachment = pAttachment
-		self.pReference = pReference
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -342,21 +314,15 @@ open class DocumentManifestRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentManifestRelated" }
 	}
-
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var ref: Reference?						
-		
-		
-			public func upsert(ref: Reference?) {
-				upsert(prop: &self.ref, val: ref)
-			}
-	
+    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var ref: Reference?        
+    public func upsert(ref: Reference?) {
+        upsert(prop: &self.ref, val: ref)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

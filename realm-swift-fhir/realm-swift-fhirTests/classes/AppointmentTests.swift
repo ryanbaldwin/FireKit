@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -36,7 +36,10 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 			try runAppointment1(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Appointment
 			XCTAssertNotNil(copy)
-			try runAppointment1(copy!.asJSON())            
+			try runAppointment1(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAppointment1(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
@@ -59,7 +62,6 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Appointment's PKs, but threw: \(error)")
         }
@@ -141,7 +143,10 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 			try runAppointment2(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Appointment
 			XCTAssertNotNil(copy)
-			try runAppointment2(copy!.asJSON())            
+			try runAppointment2(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAppointment2(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
@@ -164,7 +169,6 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Appointment's PKs, but threw: \(error)")
         }
@@ -245,7 +249,10 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 			try runAppointment3(instance!.asJSON()) 		
 			let copy = instance!.copy() as? RealmSwiftFHIR.Appointment
 			XCTAssertNotNil(copy)
-			try runAppointment3(copy!.asJSON())            
+			try runAppointment3(copy!.asJSON())     
+
+            try! realm.write { copy!.populate(from: instance!) }
+            try runAppointment3(copy!.asJSON())  
 		}
 		catch {
 			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
@@ -268,7 +275,6 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
             _ = copy.populate(from: instance.asJSON())
             XCTAssertEqual(prePopulatedCopyPK, copy.pk)
             XCTAssertNotEqual(copy.pk, instance.pk)
-
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test Appointment's PKs, but threw: \(error)")
         }

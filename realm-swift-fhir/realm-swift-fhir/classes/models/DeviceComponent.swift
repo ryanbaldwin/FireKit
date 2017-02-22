@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -20,70 +20,46 @@ open class DeviceComponent: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceComponent" }
 	}
+    
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var languageCode: CodeableConcept?        
+    public func upsert(languageCode: CodeableConcept?) {
+        upsert(prop: &self.languageCode, val: languageCode)
+    }    
+    public dynamic var lastSystemChange: Instant?        
+        
+    public dynamic var measurementPrinciple: String?        
+        
+    public let operationalStatus = RealmSwift.List<CodeableConcept>()    
+    public dynamic var parameterGroup: CodeableConcept?        
+    public func upsert(parameterGroup: CodeableConcept?) {
+        upsert(prop: &self.parameterGroup, val: parameterGroup)
+    }    
+    public dynamic var parent: Reference?        
+    public func upsert(parent: Reference?) {
+        upsert(prop: &self.parent, val: parent)
+    }    
+    public let productionSpecification = RealmSwift.List<DeviceComponentProductionSpecification>()    
+    public dynamic var source: Reference?        
+    public func upsert(source: Reference?) {
+        upsert(prop: &self.source, val: source)
+    }    
+    public dynamic var type: CodeableConcept?        
+    public func upsert(type: CodeableConcept?) {
+        upsert(prop: &self.type, val: type)
+    }
 
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var languageCode: CodeableConcept?						
-		
-		
-			public func upsert(languageCode: CodeableConcept?) {
-				upsert(prop: &self.languageCode, val: languageCode)
-			}
-	
-	public dynamic var lastSystemChange: Instant?						
-		
-		
-	
-	public dynamic var measurementPrinciple: String?						
-		
-		
-	
-	public let operationalStatus = RealmSwift.List<CodeableConcept>()
-	
-	public dynamic var parameterGroup: CodeableConcept?						
-		
-		
-			public func upsert(parameterGroup: CodeableConcept?) {
-				upsert(prop: &self.parameterGroup, val: parameterGroup)
-			}
-	
-	public dynamic var parent: Reference?						
-		
-		
-			public func upsert(parent: Reference?) {
-				upsert(prop: &self.parent, val: parent)
-			}
-	
-	public let productionSpecification = RealmSwift.List<DeviceComponentProductionSpecification>()
-	
-	public dynamic var source: Reference?						
-		
-		
-			public func upsert(source: Reference?) {
-				upsert(prop: &self.source, val: source)
-			}
-	
-	public dynamic var type: CodeableConcept?						
-		
-		
-			public func upsert(type: CodeableConcept?) {
-				upsert(prop: &self.type, val: type)
-			}
-	
+    /** Convenience initializer, taking all required properties as arguments. */
+    public convenience init(identifier: Identifier, lastSystemChange: Instant, type: CodeableConcept) {
+        self.init(json: nil)
+        self.identifier = identifier
+        self.lastSystemChange = lastSystemChange
+        self.type = type
+    }
 
-	
-	/** Convenience initializer, taking all required properties as arguments. */
-	public convenience init(identifier: Identifier, lastSystemChange: Instant, type: CodeableConcept) {
-		self.init(json: nil)
-		self.identifier = identifier
-		self.lastSystemChange = lastSystemChange
-		self.type = type
-	}
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -245,25 +221,17 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DeviceComponentProductionSpecification" }
 	}
-
-	public dynamic var componentId: Identifier?						
-		
-		
-			public func upsert(componentId: Identifier?) {
-				upsert(prop: &self.componentId, val: componentId)
-			}
-	
-	public dynamic var productionSpec: String?						
-		
-		
-	
-	public dynamic var specType: CodeableConcept?						
-		
-		
-			public func upsert(specType: CodeableConcept?) {
-				upsert(prop: &self.specType, val: specType)
-			}
-	
+    
+    public dynamic var componentId: Identifier?        
+    public func upsert(componentId: Identifier?) {
+        upsert(prop: &self.componentId, val: componentId)
+    }    
+    public dynamic var productionSpec: String?        
+        
+    public dynamic var specType: CodeableConcept?        
+    public func upsert(specType: CodeableConcept?) {
+        upsert(prop: &self.specType, val: specType)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {

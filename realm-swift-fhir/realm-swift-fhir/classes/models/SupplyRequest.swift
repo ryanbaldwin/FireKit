@@ -2,7 +2,7 @@
 //  SupplyRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-02-17.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-02-22.
 //  2017, SMART Health IT.
 //
 
@@ -19,73 +19,44 @@ open class SupplyRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "SupplyRequest" }
 	}
-
-	public dynamic var date: DateTime?						
-		
-		
-	
-	public dynamic var identifier: Identifier?						
-		
-		
-			public func upsert(identifier: Identifier?) {
-				upsert(prop: &self.identifier, val: identifier)
-			}
-	
-	public dynamic var kind: CodeableConcept?						
-		
-		
-			public func upsert(kind: CodeableConcept?) {
-				upsert(prop: &self.kind, val: kind)
-			}
-	
-	public dynamic var orderedItem: Reference?						
-		
-		
-			public func upsert(orderedItem: Reference?) {
-				upsert(prop: &self.orderedItem, val: orderedItem)
-			}
-	
-	public dynamic var patient: Reference?						
-		
-		
-			public func upsert(patient: Reference?) {
-				upsert(prop: &self.patient, val: patient)
-			}
-	
-	public dynamic var reasonCodeableConcept: CodeableConcept?						
-		
-		
-			public func upsert(reasonCodeableConcept: CodeableConcept?) {
-				upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
-			}
-	
-	public dynamic var reasonReference: Reference?						
-		
-		
-			public func upsert(reasonReference: Reference?) {
-				upsert(prop: &self.reasonReference, val: reasonReference)
-			}
-	
-	public dynamic var source: Reference?						
-		
-		
-			public func upsert(source: Reference?) {
-				upsert(prop: &self.source, val: source)
-			}
-	
-	public dynamic var status: String?						
-		
-		
-	
-	public let supplier = RealmSwift.List<Reference>()
-	
-	public dynamic var when: SupplyRequestWhen?						
-		
-		
-			public func upsert(when: SupplyRequestWhen?) {
-				upsert(prop: &self.when, val: when)
-			}
-	
+    
+    public dynamic var date: DateTime?        
+        
+    public dynamic var identifier: Identifier?        
+    public func upsert(identifier: Identifier?) {
+        upsert(prop: &self.identifier, val: identifier)
+    }    
+    public dynamic var kind: CodeableConcept?        
+    public func upsert(kind: CodeableConcept?) {
+        upsert(prop: &self.kind, val: kind)
+    }    
+    public dynamic var orderedItem: Reference?        
+    public func upsert(orderedItem: Reference?) {
+        upsert(prop: &self.orderedItem, val: orderedItem)
+    }    
+    public dynamic var patient: Reference?        
+    public func upsert(patient: Reference?) {
+        upsert(prop: &self.patient, val: patient)
+    }    
+    public dynamic var reasonCodeableConcept: CodeableConcept?        
+    public func upsert(reasonCodeableConcept: CodeableConcept?) {
+        upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
+    }    
+    public dynamic var reasonReference: Reference?        
+    public func upsert(reasonReference: Reference?) {
+        upsert(prop: &self.reasonReference, val: reasonReference)
+    }    
+    public dynamic var source: Reference?        
+    public func upsert(source: Reference?) {
+        upsert(prop: &self.source, val: source)
+    }    
+    public dynamic var status: String?        
+        
+    public let supplier = RealmSwift.List<Reference>()    
+    public dynamic var when: SupplyRequestWhen?        
+    public func upsert(when: SupplyRequestWhen?) {
+        upsert(prop: &self.when, val: when)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
@@ -246,21 +217,15 @@ open class SupplyRequestWhen: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SupplyRequestWhen" }
 	}
-
-	public dynamic var code: CodeableConcept?						
-		
-		
-			public func upsert(code: CodeableConcept?) {
-				upsert(prop: &self.code, val: code)
-			}
-	
-	public dynamic var schedule: Timing?						
-		
-		
-			public func upsert(schedule: Timing?) {
-				upsert(prop: &self.schedule, val: schedule)
-			}
-	
+    
+    public dynamic var code: CodeableConcept?        
+    public func upsert(code: CodeableConcept?) {
+        upsert(prop: &self.code, val: code)
+    }    
+    public dynamic var schedule: Timing?        
+    public func upsert(schedule: Timing?) {
+        upsert(prop: &self.schedule, val: schedule)
+    }
 
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
