@@ -1,0 +1,104 @@
+#!/bin/sh
+set -eo pipefail
+CARTHAGE=/usr/local/bin/carthage
+RSYNC=/usr/bin/rsync
+SSH=/usr/bin/ssh
+GIT=/usr/bin/git
+
+# Cleans the Carthage directory
+clean() {
+	set -eo pipefail
+	echo "cleaning Carthage..."	
+	rm -rf Carthage
+	echo "done"
+}
+
+# cleans the PreBuiltArchives directory
+clean_archives() {
+	set -eo pipefail
+
+	echo "cleaning archives"
+	rm -rf PreBuiltFrameworks/*.zip
+	echo "done"
+	return
+}
+
+# updates the frameworks
+update_frameworks() {
+	set -eo pipefail
+	
+	echo "updating frameworks..."	
+	$CARTHAGE update --verbose realm-cocoa --platform iOS
+	echo "done"
+	return
+}
+
+# updates the project dependencies
+update_projects() {
+	set -eo pipefail
+	
+	echo "updating project dependencies..."	
+	$CARTHAGE update --verbose fhir-parser --no-build
+	echo "done"
+	return
+}
+
+# performs a carthage update on the frameworks and project dependencies
+update() {
+	set -eo pipefail
+
+	update_frameworks
+	update_projects
+	return
+}
+
+# bootstrap the frameworks 
+bootstrap_frameworks() {
+	set -eo pipefail
+	
+	echo "boostrapping frameworks..."
+	$CARTHAGE bootstrap realm-cocoa --platform iOS
+	echo "done"
+}
+
+# bootstraps the project dependencies
+bootstrap_projects() {
+	set -eo pipefail
+
+	echo "bootstrapping project dependencies..."
+	$CARTHAGE bootstrap fhir-parser --platform iOS --no-build
+	echo "done"
+	return
+}
+
+# performs a carthage bootstrap on the frameworks and the project dependencies
+bootstrap() {
+	set -eo pipefail
+
+	bootstrap_frameworks
+	bootstrap_projects
+	return
+}
+
+# Updates and archives the frameworks
+archive() {
+	set -eo pipefail
+
+	clean_archives	
+	echo "archiving frameworks"	
+	ls Carthage/Build/iOS/*.framework | grep "\.framework" | cut -d "/" -f 4 | cut -d "." -f 1 | xargs -I '{}' $CARTHAGE archive '{}' --output PreBuiltFrameworks/
+	echo "done"
+}
+
+# extracts the frameworks from the archives into the Carthage directory
+extract() {
+	set -eo pipefail
+
+	clean
+	ls PreBuiltFrameworks/*.zip | grep "\.zip" | cut -d "/" -f 2 | cut -d "." -f 1 | xargs -I '{}' unzip PreBuiltFrameworks/'{}'.framework.zip
+}
+
+for var in "$@"
+do
+	$var
+done
