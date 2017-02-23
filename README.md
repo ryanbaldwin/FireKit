@@ -34,8 +34,8 @@ try! realm.write { realm.add(patient) }
 let sickMan = Patient()
 sickMan.gender = "M"
 sickMan.name.append(HumanName())
-sickman.name[0].given.append(val: "Joey")
-sickman.name[0].family.append(val: "Baloney")
+sickman.name[0].given.append(RealmString(val: "Joey"))
+sickman.name[0].family.append(RealmString(val: "Baloney"))
 try! realm.write { realm.add(sickMan) }
 
 // You can update properties on your realm object as you normally would
@@ -84,7 +84,7 @@ You have 2 options:
 
 ## Carthage
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-2. Add `github "ryanbaldwin/RealmSwiftFHIR" == 0.2.1` to the appropriate `Cartfile`
+2. Add `github "ryanbaldwin/RealmSwiftFHIR" == 0.2.2` to the appropriate `Cartfile`
 3. Do a quick `carthage update` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
 
