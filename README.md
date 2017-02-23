@@ -40,8 +40,8 @@ try! realm.write { realm.add(sickMan) }
 
 // You can update properties on your realm object as you normally would
  try! realm.write {
- 	sickMan.name[0].given.value = "Joseph"
- 	sickMan.name[0].family.value = "Balogna"
+ 	sickMan.name[0].given[0].value = "Joseph"
+ 	sickMan.name[0].family[0].value = "Balogna"
  }
 
 // And of course, you can query for your Patient
