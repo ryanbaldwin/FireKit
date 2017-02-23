@@ -1,4 +1,5 @@
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58af27323d775c010080149c&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58af27323d775c010080149c/build/latest?branch=master)
 
 # Table of Contents
 - [Introduction](#realmswiftfhir)
