@@ -54,7 +54,7 @@ let joeys = realm.objects(Patient.self).filter {
 }
 
 // You can also fetch a patient by its ID (not guaranteed to be unique in RealmSwiftFHIR)
-let lonelyJoey = realm.objects(Patient.self).filter("id = %@", "123").first // returns Patient?
+let lonelyJoey = realm.objects(Patient.self).filter("id == %@", "123").first // returns Patient?
 
 // Or you can fetch a patient by it's RealmSwiftFHIR local primary key
 let THEJoey = realm.object(ofType: Patient.self, forPrimaryKey: lonelyJoey?.pk)
