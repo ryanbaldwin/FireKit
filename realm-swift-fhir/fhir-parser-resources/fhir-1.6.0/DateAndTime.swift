@@ -318,12 +318,12 @@ final public class DateTime: Object, DateAndTime {
 	/// The timezone
     public var timeZone: TimeZone? {
         didSet {
-            timeZoneString = nil;
+            timeZoneString = timeZone?.offset();
         }
     }
 	
     /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
-	private dynamic var timeZoneString: String?
+	private(set) dynamic var timeZoneString: String?
 	
     public override class func ignoredProperties() -> [String] {
         return ["timeZone", "nsDate"]
@@ -358,6 +358,8 @@ final public class DateTime: Object, DateAndTime {
 		else {
 			self.timeZone = timeZone
 		}
+
+		self.timeZoneString = self.timeZone?.offset()
 	}
 	
 	/**

@@ -2,7 +2,7 @@
 //  EncounterTests.swift
 //  RealmSwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-02-22.
+//  Generated from FHIR 1.0.2.7202 on 2017-03-28.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
