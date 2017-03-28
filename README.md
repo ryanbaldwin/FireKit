@@ -26,23 +26,23 @@ import RealmSwiftFHIR
 
 // You can hydrate a patient with some JSON from your FHIR Server and 
 // natively save it to a Realm
-let realm = Realm()
+let realm = try! Realm()
 let patientResponseJSON = someMagicalFHIREndpoint(patientId: 123)
 let patient = Patient(json: patientResponseJSON)
 try! realm.write { realm.add(patient) }
  
 // Alternatively you can Create your own patient
-let sickMan = Patient()
-sickMan.gender = "M"
-sickMan.name.append(HumanName())
+let sickman = Patient()
+sickman.gender = "M"
+sickman.name.append(HumanName())
 sickman.name[0].given.append(RealmString(val: "Joey"))
 sickman.name[0].family.append(RealmString(val: "Baloney"))
-try! realm.write { realm.add(sickMan) }
+try! realm.write { realm.add(sickman) }
 
 // You can update properties on your realm object as you normally would
  try! realm.write {
- 	sickMan.name[0].given[0].value = "Joseph"
- 	sickMan.name[0].family[0].value = "Balogna"
+ 	sickman.name[0].given[0].value = "Joseph"
+ 	sickman.name[0].family[0].value = "Balogna"
  }
 
 // And of course, you can query for your Patient
