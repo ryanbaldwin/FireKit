@@ -224,7 +224,7 @@ class TimeTests: XCTestCase {
 }
 
 
-class DateTimeTests: XCTestCase {
+class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 	
 	func testParseAllCorrect() {
 		var d = DateTime(string: "2015")
@@ -372,6 +372,23 @@ class DateTimeTests: XCTestCase {
 		XCTAssertTrue(-19800 == d!.timeZone!.secondsFromGMT(), "Should be 19800 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 	}
 	
+	func testSomeRealmPersistence() {
+        let d = DateTime.now
+        let inMemJSON = d.asJSON()
+        XCTAssertNotNil(d.timeZoneString)
+        
+        let realm = self.makeRealm()
+        try! realm.write { realm.add(d) }
+        
+        let fetched = realm.objects(DateTime.self).first
+        XCTAssertNotNil(fetched)
+        
+        XCTAssertEqual(inMemJSON, fetched?.asJSON())
+        
+        try! realm.write { fetched?.timeZone = TimeZone(abbreviation: "EDT") }
+        XCTAssertNotEqual(inMemJSON, fetched?.asJSON())
+    }
+
 	func testParseSomeFails() {
 		var d: DateTime?
 //		d = DateTime(string: "02015")	// should probably fail, currently doesn't
