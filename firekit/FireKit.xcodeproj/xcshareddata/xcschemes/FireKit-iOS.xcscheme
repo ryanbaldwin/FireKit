@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C2AF41E41E37C4E300EE1AEE"
-            BuildableName = "RealmSwiftFHIR.framework"
-            BlueprintName = "RealmSwiftFHIR-iOS"
-            ReferencedContainer = "container:RealmSwiftFHIR.xcodeproj">
+            BuildableName = "FireKit.framework"
+            BlueprintName = "FireKit-iOS"
+            ReferencedContainer = "container:FireKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>

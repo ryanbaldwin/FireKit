@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-//! Project version number for realm-swift-fhir.
+//! Project version number for firekit.
 FOUNDATION_EXPORT double firekitVersionNumber;
 
-//! Project version string for realm-swift-fhir.
+//! Project version string for firekit.
 FOUNDATION_EXPORT const unsigned char firekitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <firekit/PublicHeader.h>

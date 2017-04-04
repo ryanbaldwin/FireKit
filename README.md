@@ -2,13 +2,13 @@
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58af27323d775c010080149c&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58af27323d775c010080149c/build/latest?branch=master)
 
 # Table of Contents
-- [Introduction](#realmswiftfhir)
+- [Introduction](#firekit)
 - [Installation](#installation)
 	- [Carthage](#carthage)
 	- [Clone 'n Build](#clone-n-build)
 - [Versioning](#versioning)
-- [Modifying FireKit](#modifying-realmswiftfhir)
-- [What's Distinct to FireKit](#whats-distinct-to-realmswiftfhir)
+- [Modifying FireKit](#modifying-firekit)
+- [What's Distinct to FireKit](#whats-distinct-to-firekit)
 	- [RealmSwift.Object](#realmswift-object)
 	- [Primary Keys](#primary-keys)
 	- [RealmList vs. Arrays](#realmlist-vs-arrays)
