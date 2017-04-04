@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
-cd realm-swift-fhir
+cd firekit
 ./xcarthage bootstrap_projects
