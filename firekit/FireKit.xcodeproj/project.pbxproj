@@ -714,7 +714,6 @@
 		C2AF65101E37D5BC00EE1AEE /* episodeofcare-questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF5A991E37D59600EE1AEE /* episodeofcare-questionnaire.json */; };
 		C2AF65111E37D5BC00EE1AEE /* episodeofcare.profile.canonical.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF5A9A1E37D59600EE1AEE /* episodeofcare.profile.canonical.json */; };
 		C2AF65121E37D5BC00EE1AEE /* episodeofcare.profile.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF5A9B1E37D59600EE1AEE /* episodeofcare.profile.json */; };
-		C2AF65131E37D5BC00EE1AEE /* examples-json.zip in Resources */ = {isa = PBXBuildFile; fileRef = C2AF5A9C1E37D59600EE1AEE /* examples-json.zip */; };
 		C2AF65141E37D5BC00EE1AEE /* expansions.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF5A9D1E37D59600EE1AEE /* expansions.json */; };
 		C2AF65151E37D5BC00EE1AEE /* explanationofbenefit-example.canonical.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF5A9E1E37D59600EE1AEE /* explanationofbenefit-example.canonical.json */; };
 		C2AF65161E37D5BC00EE1AEE /* explanationofbenefit-example.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF5A9F1E37D59600EE1AEE /* explanationofbenefit-example.json */; };
@@ -2928,7 +2927,7 @@
 			containerPortal = C2AF41DC1E37C4E300EE1AEE /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C2AF41E41E37C4E300EE1AEE;
-			remoteInfo = "firekit";
+			remoteInfo = firekit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -3642,7 +3641,6 @@
 		C2AF5A991E37D59600EE1AEE /* episodeofcare-questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "episodeofcare-questionnaire.json"; sourceTree = "<group>"; };
 		C2AF5A9A1E37D59600EE1AEE /* episodeofcare.profile.canonical.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = episodeofcare.profile.canonical.json; sourceTree = "<group>"; };
 		C2AF5A9B1E37D59600EE1AEE /* episodeofcare.profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = episodeofcare.profile.json; sourceTree = "<group>"; };
-		C2AF5A9C1E37D59600EE1AEE /* examples-json.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = "examples-json.zip"; sourceTree = "<group>"; };
 		C2AF5A9D1E37D59600EE1AEE /* expansions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = expansions.json; sourceTree = "<group>"; };
 		C2AF5A9E1E37D59600EE1AEE /* explanationofbenefit-example.canonical.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "explanationofbenefit-example.canonical.json"; sourceTree = "<group>"; };
 		C2AF5A9F1E37D59600EE1AEE /* explanationofbenefit-example.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "explanationofbenefit-example.json"; sourceTree = "<group>"; };
@@ -5901,7 +5899,7 @@
 				C2AF41E91E37C4E300EE1AEE /* Info.plist */,
 			);
 			name = FireKit;
-			path = "firekit";
+			path = firekit;
 			sourceTree = "<group>";
 		};
 		C2AF41F21E37C4E300EE1AEE /* FireKitTests */ = {
@@ -5912,7 +5910,7 @@
 				C2AF41F51E37C4E300EE1AEE /* Info.plist */,
 			);
 			name = FireKitTests;
-			path = "firekitTests";
+			path = firekitTests;
 			sourceTree = "<group>";
 		};
 		C2AF41FF1E37C50100EE1AEE /* models */ = {
@@ -6650,7 +6648,6 @@
 				C2AF5A991E37D59600EE1AEE /* episodeofcare-questionnaire.json */,
 				C2AF5A9A1E37D59600EE1AEE /* episodeofcare.profile.canonical.json */,
 				C2AF5A9B1E37D59600EE1AEE /* episodeofcare.profile.json */,
-				C2AF5A9C1E37D59600EE1AEE /* examples-json.zip */,
 				C2AF5A9D1E37D59600EE1AEE /* expansions.json */,
 				C2AF5A9E1E37D59600EE1AEE /* explanationofbenefit-example.canonical.json */,
 				C2AF5A9F1E37D59600EE1AEE /* explanationofbenefit-example.json */,
@@ -8888,7 +8885,7 @@
 			dependencies = (
 			);
 			name = "FireKit-iOS";
-			productName = "firekit";
+			productName = firekit;
 			productReference = C2AF41E51E37C4E300EE1AEE /* FireKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -8907,7 +8904,7 @@
 				C2AF41F11E37C4E300EE1AEE /* PBXTargetDependency */,
 			);
 			name = "FireKit-iOSTests";
-			productName = "firekitTests";
+			productName = firekitTests;
 			productReference = C2AF41EE1E37C4E300EE1AEE /* FireKit-iOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -11252,7 +11249,6 @@
 				C2AF69871E37D5BE00EE1AEE /* person-provider-directory.canonical.json in Resources */,
 				C2AF67CF1E37D5BD00EE1AEE /* medication-example-f005-enalapril.canonical.json in Resources */,
 				C2AF67931E37D5BD00EE1AEE /* list-example-empty.json in Resources */,
-				C2AF65131E37D5BC00EE1AEE /* examples-json.zip in Resources */,
 				C2AF69B31E37D5BE00EE1AEE /* procedure-example-f001-heart.canonical.json in Resources */,
 				C2AF6A951E37D5BE00EE1AEE /* testscript-example.json in Resources */,
 				C2AF695E1E37D5BE00EE1AEE /* patient-extensions-Patient-birthOrderBoolean.json in Resources */,
@@ -12034,7 +12030,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "firekit/Info.plist";
+				INFOPLIST_FILE = firekit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.FireKit;
@@ -12059,7 +12055,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "firekit/Info.plist";
+				INFOPLIST_FILE = firekit/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.FireKit;
@@ -12079,9 +12075,9 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "firekitTests/Info.plist";
+				INFOPLIST_FILE = firekitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.bunnyhug.firekitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.firekitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -12097,9 +12093,9 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS/**",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "firekitTests/Info.plist";
+				INFOPLIST_FILE = firekitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "me.bunnyhug.firekitTests";
+				PRODUCT_BUNDLE_IDENTIFIER = me.bunnyhug.firekitTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
