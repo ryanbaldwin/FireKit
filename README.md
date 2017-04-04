@@ -2,13 +2,13 @@
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58af27323d775c010080149c&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58af27323d775c010080149c/build/latest?branch=master)
 
 # Table of Contents
-- [Introduction](#realmswiftfhir)
+- [Introduction](#firekit)
 - [Installation](#installation)
 	- [Carthage](#carthage)
 	- [Clone 'n Build](#clone-n-build)
 - [Versioning](#versioning)
-- [Modifying RealmSwiftFHIR](#modifying-realmswiftfhir)
-- [What's Distinct to RealmSwiftFHIR](#whats-distinct-to-realmswiftfhir)
+- [Modifying FireKit](#modifying-firekit)
+- [What's Distinct to FireKit](#whats-distinct-to-firekit)
 	- [RealmSwift.Object](#realmswift-object)
 	- [Primary Keys](#primary-keys)
 	- [RealmList vs. Arrays](#realmlist-vs-arrays)
@@ -17,11 +17,11 @@
 	- [Upsert](#upsert)
 - [State of the Union](#state-of-the-union)
 
-# RealmSwiftFHIR
-RealmSwiftFHIR is an adaptation of [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR/), with one notable difference: All FHIR Resources and Elements support [Realm](https://realm.io) for data persistence.
+# FireKit
+FireKit is an adaptation of [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR/), with one notable difference: All FHIR Resources and Elements support [Realm](https://realm.io) for data persistence.
 
 ```Swift
-import RealmSwiftFHIR
+import FireKit
 
 
 // You can hydrate a patient with some JSON from your FHIR Server and 
@@ -54,10 +54,10 @@ let joeys = realm.objects(Patient.self).filter {
 	}.count > 0
 }
 
-// You can also fetch a patient by its ID (not guaranteed to be unique in RealmSwiftFHIR)
+// You can also fetch a patient by its ID (not guaranteed to be unique in FireKit)
 let lonelyJoey = realm.objects(Patient.self).filter("id == %@", "123").first // returns Patient?
 
-// Or you can fetch a patient by it's RealmSwiftFHIR local primary key
+// Or you can fetch a patient by it's FireKit local primary key
 let THEJoey = realm.object(ofType: Patient.self, forPrimaryKey: lonelyJoey?.pk)
 
 // You can create an unmanaged duplicate by simply calling `copy`
@@ -85,20 +85,20 @@ You have 2 options:
 
 ## Carthage
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-2. Add `github "ryanbaldwin/RealmSwiftFHIR" == 0.2.2` to the appropriate `Cartfile`
+2. Add `github "ryanbaldwin/FireKit" == 0.2.2` to the appropriate `Cartfile`
 3. Do a quick `carthage update` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
 
 ## Clone 'n Build
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
 2. Clone this repo.
-3. `cd` into the `realm-swift-fhir` project directory where the various `Cartfile`s reside.
+3. `cd` into the `firekit` project directory where the various `Cartfile`s reside.
 4. run `./xcarthage bootstrap` to download the dependencies, both binary and external projects such as [Pascal Pfiffner](https://github.com/p2)'s `fhir-parser` (which does the actual parsing)
-5. Open the `realm-swift-fhir.xcworkspace`
+5. Open the `firekit.xcworkspace`
 6. Build and run the tests as you would for any other Xcode project.
 
-# Modifying RealmSwiftFHIR
-All classes and tests in RealmSwiftFHIR are generated using [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) and some old Swift3 templates he once had which I modified. Therefore, if you're interested in modifying the classes/tests, then it's best to modify the templates and re-generate the `*.swift` files.
+# Modifying FireKit
+All classes and tests in FireKit are generated using [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) and some old Swift3 templates he once had which I modified. Therefore, if you're interested in modifying the classes/tests, then it's best to modify the templates and re-generate the `*.swift` files.
 
 The templates can be found in the `fhir-parser-resources/FHIR-1.6.0` directory. The main file's you'll be looking at modifying are:
  - `template-resource.swift`
@@ -110,8 +110,8 @@ After making the changes you want (or didn't mean to make), you can re-generate 
 # Versioning
 Current of `RealmSmartFHIR` is `v0.2.2` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
 
-# What's Distinct to RealmSwiftFHIR
-While most of RealmSwiftFHIR follows as closely as possible to [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR)'s original implementation, certain provision had to be made in order to accomodate Realm.
+# What's Distinct to FireKit
+While most of FireKit follows as closely as possible to [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR)'s original implementation, certain provision had to be made in order to accomodate Realm.
 
 ## RealmSwift.Object
 Everything ultimately inherits from a `RealmSwift.Object`. This is the secret sauce for persistence. This includes all Resources and Elements.
@@ -125,7 +125,7 @@ All Swift-FHIR array properties (such as `Patient.name: [HumanName]`) have been 
 Furthermore, Realm does not support RealmList's of primitives. As a result, what would normally be `[String]` in Swift-FHIR, is now `RealmList<RealmString>`; `[Int]` is now `RealmList<RealmInt>`, and so on. Each `Realm*` type has a single property, `value`, which contains the actual value. 
 
 ## RealmOptional vs. Optional Primitives
-Realm straight up doesn't support optionals beyond `String?`, `Date?`, and `Data?`. As a result, What would normally be `Bool?` in Realm-FHIR, is a wrapped `RealmOptional<Bool>` in RealmSwiftFHIR; `Int?` is now `RealmOptional<Int>`, and so on. 
+Realm straight up doesn't support optionals beyond `String?`, `Date?`, and `Data?`. As a result, What would normally be `Bool?` in Realm-FHIR, is a wrapped `RealmOptional<Bool>` in FireKit; `Int?` is now `RealmOptional<Int>`, and so on. 
 
 Each [`RealmOptional<T>`](https://realm.io/docs/swift/latest/api/Classes/RealmOptional.html) has a `value: T?` within.
 
@@ -154,6 +154,6 @@ public func upsert(managingOrganization: Reference?)
 These `upsert` functions will manage the primary key for you. So don't sweat it, just upsert it... yea, that was kinda lame but hey.
 
 # State of the Union
-RealmSwiftFHIR should be considered a Work In Progress. I've only just started using it in a real world project, and am dogfooding and actively fixing bugs, making improvements, etc. as required. Use this at your own risk, but it should be fine, but use it at your own risk.
+FireKit should be considered a Work In Progress. I've only just started using it in a real world project, and am dogfooding and actively fixing bugs, making improvements, etc. as required. Use this at your own risk, but it should be fine, but use it at your own risk.
 
 If you find any bugs or have any enhancements, ideas, questions, etc. Create an issue. Or, better yet, create a pull request and give it some love.
