@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 cd firekit
-./xcarthage bootstrap
+./xcarthage bootstrap_projects
