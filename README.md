@@ -116,17 +116,16 @@ After making the changes you want (or didn't mean to make), you can re-generate 
 # Versioning
 Welcome to Crazytown! There are a lot of moving parts when it comes to versioning. The version number is composed by the following:
 
-- Major Version of this framework (current at `0` for the forseable future)
-- "Minor" Version is the FHIR STU Version (currently `2` for `DSTU2`)
-- "Build" number is actually the Swift Version (`31` for `Swift 3.1`)
-- Finally, the _actual_ build number.
+- "Major" Version is the FHIR STU Version (currently `2` for `DSTU2`)
+- "Minor" version number is actually the Swift Version (`31` for `Swift 3.1`)
+- The build number is the typical build number, the _actual_ build number.
 
-Current of `FireKit` is `v0.2.31.01` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
+Current of `FireKit` is `v2.31.01` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
 
 ## Version Matrix
 | Swift Version | DSTU2        | STU3  |
 | :---          | :---:        | :---: |
-| 3.1           | `v0.2.31.01` | n/a   |
+| 3.1           | `v2.31.01`   | n/a   |
 | 3.0.2         | `v0.2.3`     | n/a   |
 
 An STU3 version for Swift 3.1 should be coming soon-ish.
