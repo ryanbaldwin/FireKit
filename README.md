@@ -7,6 +7,7 @@
 	- [Carthage](#carthage)
 	- [Clone 'n Build](#clone-n-build)
 - [Versioning](#versioning)
+	- [Version Matrix](#version-matrix)
 - [Modifying FireKit](#modifying-firekit)
 - [What's Distinct to FireKit](#whats-distinct-to-firekit)
 	- [RealmSwift.Object](#realmswift-object)
@@ -18,7 +19,9 @@
 - [State of the Union](#state-of-the-union)
 
 # FireKit
-FireKit is an adaptation of [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR/), with one notable difference: All FHIR Resources and Elements support [Realm](https://realm.io) for data persistence.
+FireKit, formerly known by the cumbersome name RealmSwiftFHIR, is an adaptation of [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR/), with one notable difference: All FHIR Resources and Elements are [Realm](https://realm.io) ready out of the box. No more annoying, horrible, terrible, mapping code between JSON, FHIR, some backing datamodel.
+
+## Examples
 
 ```Swift
 import FireKit
@@ -83,9 +86,11 @@ You have 2 options:
 1. [Carthage](https://github.com/Carthage/Carthage) (which will download the binaries attached to the appropriate Release)
 2. Good ol' fashioned Clone 'n Build.
 
+> **ATTENTION**: All Swift 3.1 releases have been renamed to `FireKit`. If the Swift 3.0.2 release the old name of the library, `RealmSwiftFHIR`, applies. If you are using Swift 3.0.2, anywhere you see the word `FireKit` you should intentionally misread it as `RealmSwiftFHIR`. I would apologize for the confusion but naming is _hard_.
+
 ## Carthage
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-2. Add `github "ryanbaldwin/FireKit" == 0.2.2` to the appropriate `Cartfile`
+2. Add `github "ryanbaldwin/FireKit" == 0.2.31.01` to the your `Cartfile` (see [Versioning](#versioning) for more info)
 3. Do a quick `carthage update` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
 
@@ -94,11 +99,12 @@ You have 2 options:
 2. Clone this repo.
 3. `cd` into the `firekit` project directory where the various `Cartfile`s reside.
 4. run `./xcarthage bootstrap` to download the dependencies, both binary and external projects such as [Pascal Pfiffner](https://github.com/p2)'s `fhir-parser` (which does the actual parsing)
-5. Open the `firekit.xcworkspace`
-6. Build and run the tests as you would for any other Xcode project.
+5. run `./generate`
+6. Open the `firekit.xcworkspace`
+7. Build and run the tests as you would for any other Xcode project.
 
 # Modifying FireKit
-All classes and tests in FireKit are generated using [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) and some old Swift3 templates he once had which I modified. Therefore, if you're interested in modifying the classes/tests, then it's best to modify the templates and re-generate the `*.swift` files.
+All classes and tests in FireKit are generated using [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) and some old Swift3 templates he once had which I modified. Therefore, if you're interested in modifying the classes/tests, then it's best to modify the templates and re-generate the `*.swift` files using the `./generate` tool in step `6` above.
 
 The templates can be found in the `fhir-parser-resources/FHIR-1.6.0` directory. The main file's you'll be looking at modifying are:
  - `template-resource.swift`
@@ -108,10 +114,25 @@ After making the changes you want (or didn't mean to make), you can re-generate 
 > Learn more about [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) by visiting its repo.
 
 # Versioning
-Current of `RealmSmartFHIR` is `v0.2.2` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
+Welcome to Crazytown! There are a lot of moving parts when it comes to versioning. The version number is composed by the following:
+
+- Major Version of this framework (current at `0` for the forseable future)
+- "Minor" Version is the FHIR STU Version (currently `2` for `DSTU2`)
+- "Build" number is actually the Swift Version (`31` for `Swift 3.1`)
+- Finally, the _actual_ build number.
+
+Current of `FireKit` is `v0.2.31.01` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
+
+## Version Matrix
+| Swift Version | DSTU2        | STU3  |
+| :---          | :---:        | :---: |
+| 3.1           | `v0.2.31.01` | n/a   |
+| 3.0.2         | `v0.2.3`     | n/a   |
+
+An STU3 version for Swift 3.1 should be coming soon-ish.
 
 # What's Distinct to FireKit
-While most of FireKit follows as closely as possible to [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR)'s original implementation, certain provision had to be made in order to accomodate Realm.
+While most of FireKit follows as closely as possible to [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR)'s original implementation, certain provisions had to be made in order to accomodate Realm.
 
 ## RealmSwift.Object
 Everything ultimately inherits from a `RealmSwift.Object`. This is the secret sauce for persistence. This includes all Resources and Elements.
