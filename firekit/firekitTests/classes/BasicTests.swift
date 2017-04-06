@@ -2,7 +2,7 @@
 //  BasicTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Basic {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Basic {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Basic {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Basic {
 		let instance = FireKit.Basic(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
 		}
 
-		testBasicRealm1(instance: instance!)
+		testBasicRealm1(instance!)
 	}
 
     func testBasic1RealmPK() {        
@@ -67,7 +67,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBasicRealm1(instance: FireKit.Basic) {
+	func testBasicRealm1(_ instance: FireKit.Basic) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBasic1(_ json: FHIRJSON? = nil) throws -> FireKit.Basic {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example-narrative.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("basic-example-narrative.json")
 		
 		XCTAssertEqual(inst.code?.text, "Example Narrative Tester")
 		XCTAssertEqual(inst.id, "basic-example-narrative")
@@ -130,7 +130,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
 		}
 
-		testBasicRealm2(instance: instance!)
+		testBasicRealm2(instance!)
 	}
 
     func testBasic2RealmPK() {        
@@ -152,7 +152,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBasicRealm2(instance: FireKit.Basic) {
+	func testBasicRealm2(_ instance: FireKit.Basic) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -190,7 +190,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBasic2(_ json: FHIRJSON? = nil) throws -> FireKit.Basic {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("basic-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.code?.coding[0].code, "referral")
@@ -236,7 +236,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
 		}
 
-		testBasicRealm3(instance: instance!)
+		testBasicRealm3(instance!)
 	}
 
     func testBasic3RealmPK() {        
@@ -258,7 +258,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBasicRealm3(instance: FireKit.Basic) {
+	func testBasicRealm3(_ instance: FireKit.Basic) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -296,7 +296,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBasic3(_ json: FHIRJSON? = nil) throws -> FireKit.Basic {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "basic-example2.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("basic-example2.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "UMLCLASSMODEL")
 		XCTAssertEqual(inst.code?.coding[0].system, "http://example.org/do-not-use/fhir-codes#resourceTypes")

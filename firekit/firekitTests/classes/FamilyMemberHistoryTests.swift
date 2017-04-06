@@ -2,7 +2,7 @@
 //  FamilyMemberHistoryTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.FamilyMemberHistory {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.FamilyMemberHistory {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.FamilyMemberHistory {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.FamilyMemberHistory {
 		let instance = FireKit.FamilyMemberHistory(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
 		}
 
-		testFamilyMemberHistoryRealm1(instance: instance!)
+		testFamilyMemberHistoryRealm1(instance!)
 	}
 
     func testFamilyMemberHistory1RealmPK() {        
@@ -67,7 +67,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testFamilyMemberHistoryRealm1(instance: FireKit.FamilyMemberHistory) {
+	func testFamilyMemberHistoryRealm1(_ instance: FireKit.FamilyMemberHistory) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runFamilyMemberHistory1(_ json: FHIRJSON? = nil) throws -> FireKit.FamilyMemberHistory {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example-mother.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("familymemberhistory-example-mother.json")
 		
 		XCTAssertEqual(inst.condition[0].code?.coding[0].code, "371041009")
 		XCTAssertEqual(inst.condition[0].code?.coding[0].display, "Embolic Stroke")
@@ -142,7 +142,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw")
 		}
 
-		testFamilyMemberHistoryRealm2(instance: instance!)
+		testFamilyMemberHistoryRealm2(instance!)
 	}
 
     func testFamilyMemberHistory2RealmPK() {        
@@ -164,7 +164,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testFamilyMemberHistoryRealm2(instance: FireKit.FamilyMemberHistory) {
+	func testFamilyMemberHistoryRealm2(_ instance: FireKit.FamilyMemberHistory) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -202,7 +202,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runFamilyMemberHistory2(_ json: FHIRJSON? = nil) throws -> FireKit.FamilyMemberHistory {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "familymemberhistory-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("familymemberhistory-example.json")
 		
 		XCTAssertEqual(inst.condition[0].code?.coding[0].code, "315619001")
 		XCTAssertEqual(inst.condition[0].code?.coding[0].display, "Myocardial Infarction")

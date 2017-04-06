@@ -2,7 +2,7 @@
 //  ProcessResponseTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ProcessResponse {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ProcessResponse {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ProcessResponse {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ProcessResponse {
 		let instance = FireKit.ProcessResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessResponse successfully, but threw")
 		}
 
-		testProcessResponseRealm1(instance: instance!)
+		testProcessResponseRealm1(instance!)
 	}
 
     func testProcessResponse1RealmPK() {        
@@ -67,7 +67,7 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessResponseRealm1(instance: FireKit.ProcessResponse) {
+	func testProcessResponseRealm1(_ instance: FireKit.ProcessResponse) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessResponse1(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processresponse-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition, "Specified coverage is currently in-force.")

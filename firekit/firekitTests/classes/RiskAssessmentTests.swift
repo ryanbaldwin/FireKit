@@ -2,7 +2,7 @@
 //  RiskAssessmentTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.RiskAssessment {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.RiskAssessment {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.RiskAssessment {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.RiskAssessment {
 		let instance = FireKit.RiskAssessment(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 
-		testRiskAssessmentRealm1(instance: instance!)
+		testRiskAssessmentRealm1(instance!)
 	}
 
     func testRiskAssessment1RealmPK() {        
@@ -67,7 +67,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testRiskAssessmentRealm1(instance: FireKit.RiskAssessment) {
+	func testRiskAssessmentRealm1(_ instance: FireKit.RiskAssessment) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runRiskAssessment1(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-cardiac.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example-cardiac.json")
 		
 		XCTAssertEqual(inst.basis[0].reference, "Patient/example")
 		XCTAssertEqual(inst.basis[1].reference, "DiagnosticReport/lipids")
@@ -144,7 +144,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 
-		testRiskAssessmentRealm2(instance: instance!)
+		testRiskAssessmentRealm2(instance!)
 	}
 
     func testRiskAssessment2RealmPK() {        
@@ -166,7 +166,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testRiskAssessmentRealm2(instance: FireKit.RiskAssessment) {
+	func testRiskAssessmentRealm2(_ instance: FireKit.RiskAssessment) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -204,7 +204,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runRiskAssessment2(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-population.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id, "population")
 		XCTAssertEqual(inst.text?.div, "<div>\n      <p>Todo - e.g. probable number of infections in a given region over a time period for a given disease based on vaccination rates and other factors</p>\n    </div>")
@@ -229,7 +229,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 
-		testRiskAssessmentRealm3(instance: instance!)
+		testRiskAssessmentRealm3(instance!)
 	}
 
     func testRiskAssessment3RealmPK() {        
@@ -251,7 +251,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testRiskAssessmentRealm3(instance: FireKit.RiskAssessment) {
+	func testRiskAssessmentRealm3(_ instance: FireKit.RiskAssessment) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -289,7 +289,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runRiskAssessment3(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example-prognosis.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example-prognosis.json")
 		
 		XCTAssertEqual(inst.condition?.display, "Ischemic Stroke")
 		XCTAssertEqual(inst.condition?.reference, "Condition/stroke")
@@ -323,7 +323,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
 		}
 
-		testRiskAssessmentRealm4(instance: instance!)
+		testRiskAssessmentRealm4(instance!)
 	}
 
     func testRiskAssessment4RealmPK() {        
@@ -345,7 +345,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testRiskAssessmentRealm4(instance: FireKit.RiskAssessment) {
+	func testRiskAssessmentRealm4(_ instance: FireKit.RiskAssessment) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -383,7 +383,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runRiskAssessment4(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "riskassessment-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis[0].reference, "List/prognosis")
 		XCTAssertEqual(inst.date?.description, "2006-01-13T23:01:00Z")

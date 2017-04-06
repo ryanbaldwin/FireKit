@@ -2,7 +2,7 @@
 //  PaymentReconciliationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class PaymentReconciliationTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.PaymentReconciliation {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.PaymentReconciliation {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.PaymentReconciliation {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.PaymentReconciliation {
 		let instance = FireKit.PaymentReconciliation(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class PaymentReconciliationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test PaymentReconciliation successfully, but threw")
 		}
 
-		testPaymentReconciliationRealm1(instance: instance!)
+		testPaymentReconciliationRealm1(instance!)
 	}
 
     func testPaymentReconciliation1RealmPK() {        
@@ -67,7 +67,7 @@ class PaymentReconciliationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPaymentReconciliationRealm1(instance: FireKit.PaymentReconciliation) {
+	func testPaymentReconciliationRealm1(_ instance: FireKit.PaymentReconciliation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class PaymentReconciliationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPaymentReconciliation1(_ json: FHIRJSON? = nil) throws -> FireKit.PaymentReconciliation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "paymentreconciliation-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("paymentreconciliation-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.detail[0].amount?.code, "USD")

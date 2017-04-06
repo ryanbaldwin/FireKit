@@ -2,7 +2,7 @@
 //  CommunicationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Communication {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Communication {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Communication {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Communication {
 		let instance = FireKit.Communication(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Communication successfully, but threw")
 		}
 
-		testCommunicationRealm1(instance: instance!)
+		testCommunicationRealm1(instance!)
 	}
 
     func testCommunication1RealmPK() {        
@@ -67,7 +67,7 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCommunicationRealm1(instance: FireKit.Communication) {
+	func testCommunicationRealm1(_ instance: FireKit.Communication) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCommunication1(_ json: FHIRJSON? = nil) throws -> FireKit.Communication {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "communication-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("communication-example.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "Alert")
 		XCTAssertEqual(inst.category?.coding[0].system, "http://acme.org/messagetypes")

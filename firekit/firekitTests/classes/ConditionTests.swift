@@ -2,7 +2,7 @@
 //  ConditionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Condition {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Condition {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Condition {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Condition {
 		let instance = FireKit.Condition(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm1(instance: instance!)
+		testConditionRealm1(instance!)
 	}
 
     func testCondition1RealmPK() {        
@@ -67,7 +67,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm1(instance: FireKit.Condition) {
+	func testConditionRealm1(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition1(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f001-heart.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.asserter?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.asserter?.reference, "Patient/f001")
@@ -154,7 +154,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm2(instance: instance!)
+		testConditionRealm2(instance!)
 	}
 
     func testCondition2RealmPK() {        
@@ -176,7 +176,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm2(instance: FireKit.Condition) {
+	func testConditionRealm2(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -214,7 +214,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition2(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f002-lung.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.asserter?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.asserter?.reference, "Patient/f001")
@@ -265,7 +265,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm3(instance: instance!)
+		testConditionRealm3(instance!)
 	}
 
     func testCondition3RealmPK() {        
@@ -287,7 +287,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm3(instance: FireKit.Condition) {
+	func testConditionRealm3(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -325,7 +325,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition3(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f003-abscess.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.asserter?.display, "P. van de Heuvel")
 		XCTAssertEqual(inst.asserter?.reference, "Patient/f001")
@@ -373,7 +373,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm4(instance: instance!)
+		testConditionRealm4(instance!)
 	}
 
     func testCondition4RealmPK() {        
@@ -395,7 +395,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm4(instance: FireKit.Condition) {
+	func testConditionRealm4(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -433,7 +433,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition4(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f201-fever.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f201-fever.json")
 		
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "38266002")
@@ -484,7 +484,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm5(instance: instance!)
+		testConditionRealm5(instance!)
 	}
 
     func testCondition5RealmPK() {        
@@ -506,7 +506,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm5(instance: FireKit.Condition) {
+	func testConditionRealm5(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -544,7 +544,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition5(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f202-malignancy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "361355005")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Entire head and neck")
@@ -590,7 +590,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm6(instance: instance!)
+		testConditionRealm6(instance!)
 	}
 
     func testCondition6RealmPK() {        
@@ -612,7 +612,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm6(instance: FireKit.Condition) {
+	func testConditionRealm6(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -650,7 +650,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition6(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f203-sepsis.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "281158006")
@@ -699,7 +699,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm7(instance: instance!)
+		testConditionRealm7(instance!)
 	}
 
     func testCondition7RealmPK() {        
@@ -721,7 +721,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm7(instance: FireKit.Condition) {
+	func testConditionRealm7(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -759,7 +759,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition7(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f204-renal.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f204-renal.json")
 		
 		XCTAssertEqual(inst.abatementDateTime?.description, "2013-03-20")
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
@@ -810,7 +810,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm8(instance: instance!)
+		testConditionRealm8(instance!)
 	}
 
     func testCondition8RealmPK() {        
@@ -832,7 +832,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm8(instance: FireKit.Condition) {
+	func testConditionRealm8(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -870,7 +870,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition8(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-f205-infection.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f205-infection.json")
 		
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
 		XCTAssertEqual(inst.clinicalStatus, "active")
@@ -903,7 +903,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm9(instance: instance!)
+		testConditionRealm9(instance!)
 	}
 
     func testCondition9RealmPK() {        
@@ -925,7 +925,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm9(instance: FireKit.Condition) {
+	func testConditionRealm9(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -963,7 +963,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition9(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example-stroke.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-stroke.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "diagnosis")
 		XCTAssertEqual(inst.category?.coding[0].display, "Diagnosis")
@@ -999,7 +999,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
 		}
 
-		testConditionRealm10(instance: instance!)
+		testConditionRealm10(instance!)
 	}
 
     func testCondition10RealmPK() {        
@@ -1021,7 +1021,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConditionRealm10(instance: FireKit.Condition) {
+	func testConditionRealm10(_ instance: FireKit.Condition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1059,7 +1059,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCondition10(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "condition-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "49521004")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Left external ear structure")

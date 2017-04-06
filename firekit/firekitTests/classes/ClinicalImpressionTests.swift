@@ -2,7 +2,7 @@
 //  ClinicalImpressionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ClinicalImpression {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ClinicalImpression {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ClinicalImpression {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ClinicalImpression {
 		let instance = FireKit.ClinicalImpression(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ClinicalImpression successfully, but threw")
 		}
 
-		testClinicalImpressionRealm1(instance: instance!)
+		testClinicalImpressionRealm1(instance!)
 	}
 
     func testClinicalImpression1RealmPK() {        
@@ -67,7 +67,7 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClinicalImpressionRealm1(instance: FireKit.ClinicalImpression) {
+	func testClinicalImpressionRealm1(_ instance: FireKit.ClinicalImpression) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClinicalImpression1(_ json: FHIRJSON? = nil) throws -> FireKit.ClinicalImpression {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "clinicalimpression-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("clinicalimpression-example.json")
 		
 		XCTAssertEqual(inst.assessor?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.date?.description, "2014-12-06T22:33:00+11:00")

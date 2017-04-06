@@ -2,7 +2,7 @@
 //  SupplyRequestTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.SupplyRequest {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.SupplyRequest {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.SupplyRequest {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.SupplyRequest {
 		let instance = FireKit.SupplyRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test SupplyRequest successfully, but threw")
 		}
 
-		testSupplyRequestRealm1(instance: instance!)
+		testSupplyRequestRealm1(instance!)
 	}
 
     func testSupplyRequest1RealmPK() {        
@@ -67,7 +67,7 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSupplyRequestRealm1(instance: FireKit.SupplyRequest) {
+	func testSupplyRequestRealm1(_ instance: FireKit.SupplyRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSupplyRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.SupplyRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "supplyrequest-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("supplyrequest-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")

@@ -2,7 +2,7 @@
 //  HealthcareServiceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.HealthcareService {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.HealthcareService {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.HealthcareService {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.HealthcareService {
 		let instance = FireKit.HealthcareService(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test HealthcareService successfully, but threw")
 		}
 
-		testHealthcareServiceRealm1(instance: instance!)
+		testHealthcareServiceRealm1(instance!)
 	}
 
     func testHealthcareService1RealmPK() {        
@@ -67,7 +67,7 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testHealthcareServiceRealm1(instance: FireKit.HealthcareService) {
+	func testHealthcareServiceRealm1(_ instance: FireKit.HealthcareService) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runHealthcareService1(_ json: FHIRJSON? = nil) throws -> FireKit.HealthcareService {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "healthcareservice-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("healthcareservice-example.json")
 		
 		XCTAssertFalse(inst.appointmentRequired.value ?? true)
 		XCTAssertEqual(inst.availabilityExceptions, "Reduced capacity is available during the Christmas period")

@@ -2,7 +2,7 @@
 //  DeviceComponentTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.DeviceComponent {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.DeviceComponent {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.DeviceComponent {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DeviceComponent {
 		let instance = FireKit.DeviceComponent(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
 		}
 
-		testDeviceComponentRealm1(instance: instance!)
+		testDeviceComponentRealm1(instance!)
 	}
 
     func testDeviceComponent1RealmPK() {        
@@ -67,7 +67,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDeviceComponentRealm1(instance: FireKit.DeviceComponent) {
+	func testDeviceComponentRealm1(_ instance: FireKit.DeviceComponent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runDeviceComponent1(_ json: FHIRJSON? = nil) throws -> FireKit.DeviceComponent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example-prodspec.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("devicecomponent-example-prodspec.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "d1")
 		XCTAssertEqual(inst.id, "example-prodspec")
@@ -155,7 +155,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
 		}
 
-		testDeviceComponentRealm2(instance: instance!)
+		testDeviceComponentRealm2(instance!)
 	}
 
     func testDeviceComponent2RealmPK() {        
@@ -177,7 +177,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDeviceComponentRealm2(instance: FireKit.DeviceComponent) {
+	func testDeviceComponentRealm2(_ instance: FireKit.DeviceComponent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -215,7 +215,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runDeviceComponent2(_ json: FHIRJSON? = nil) throws -> FireKit.DeviceComponent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "devicecomponent-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("devicecomponent-example.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "d1")
 		XCTAssertEqual(inst.id, "example")

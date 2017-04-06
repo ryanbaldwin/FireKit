@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Observation {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Observation {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Observation {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Observation {
 		let instance = FireKit.Observation(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm1(instance: instance!)
+		testObservationRealm1(instance!)
 	}
 
     func testObservation1RealmPK() {        
@@ -67,7 +67,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm1(instance: FireKit.Observation) {
+	func testObservationRealm1(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation1(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example1-somatic.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example1-somatic.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "55233-1")
 		XCTAssertEqual(inst.code?.coding[0].system, "http://loinc.org")
@@ -169,7 +169,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm2(instance: instance!)
+		testObservationRealm2(instance!)
 	}
 
     func testObservation2RealmPK() {        
@@ -191,7 +191,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm2(instance: FireKit.Observation) {
+	func testObservationRealm2(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -229,7 +229,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation2(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example2-germline.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example2-germline.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "21636-6")
 		XCTAssertEqual(inst.code?.coding[0].display, "BRCA1 gene mutation analysis")
@@ -289,7 +289,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm3(instance: instance!)
+		testObservationRealm3(instance!)
 	}
 
     func testObservation3RealmPK() {        
@@ -311,7 +311,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm3(instance: FireKit.Observation) {
+	func testObservationRealm3(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -349,7 +349,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation3(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example3-mutationlist-1.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-1.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
 		XCTAssertEqual(inst.code?.coding[0].display, "ABCB4 gene mutation analysis")
@@ -395,7 +395,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm4(instance: instance!)
+		testObservationRealm4(instance!)
 	}
 
     func testObservation4RealmPK() {        
@@ -417,7 +417,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm4(instance: FireKit.Observation) {
+	func testObservationRealm4(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -455,7 +455,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation4(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example3-mutationlist-2.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-2.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
 		XCTAssertEqual(inst.code?.coding[0].display, "ABCB4 gene mutation analysis")
@@ -503,7 +503,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm5(instance: instance!)
+		testObservationRealm5(instance!)
 	}
 
     func testObservation5RealmPK() {        
@@ -525,7 +525,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm5(instance: FireKit.Observation) {
+	func testObservationRealm5(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -563,7 +563,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation5(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example3-mutationlist-3.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-3.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
 		XCTAssertEqual(inst.code?.coding[0].display, "ABCB4 gene mutation analysis")
@@ -609,7 +609,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm6(instance: instance!)
+		testObservationRealm6(instance!)
 	}
 
     func testObservation6RealmPK() {        
@@ -631,7 +631,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm6(instance: FireKit.Observation) {
+	func testObservationRealm6(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -669,7 +669,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation6(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example3-mutationlist-4.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-4.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
 		XCTAssertEqual(inst.code?.coding[0].display, "ABCB4 gene mutation analysis")
@@ -715,7 +715,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm7(instance: instance!)
+		testObservationRealm7(instance!)
 	}
 
     func testObservation7RealmPK() {        
@@ -737,7 +737,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm7(instance: FireKit.Observation) {
+	func testObservationRealm7(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -775,7 +775,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation7(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "obs-genetics-example3-mutationlist.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
 		XCTAssertEqual(inst.code?.coding[0].display, "ABCB4 gene mutation analysis")
@@ -827,7 +827,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm8(instance: instance!)
+		testObservationRealm8(instance!)
 	}
 
     func testObservation8RealmPK() {        
@@ -849,7 +849,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm8(instance: FireKit.Observation) {
+	func testObservationRealm8(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -887,7 +887,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation8(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure-cancel.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("observation-example-bloodpressure-cancel.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding[0].code, "368209003")
 		XCTAssertEqual(inst.bodySite?.coding[0].display, "Right arm")
@@ -947,7 +947,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm9(instance: instance!)
+		testObservationRealm9(instance!)
 	}
 
     func testObservation9RealmPK() {        
@@ -969,7 +969,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm9(instance: FireKit.Observation) {
+	func testObservationRealm9(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1007,7 +1007,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation9(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-bloodpressure.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("observation-example-bloodpressure.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding[0].code, "368209003")
 		XCTAssertEqual(inst.bodySite?.coding[0].display, "Right arm")
@@ -1064,7 +1064,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
 		}
 
-		testObservationRealm10(instance: instance!)
+		testObservationRealm10(instance!)
 	}
 
     func testObservation10RealmPK() {        
@@ -1086,7 +1086,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testObservationRealm10(instance: FireKit.Observation) {
+	func testObservationRealm10(_ instance: FireKit.Observation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1124,7 +1124,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runObservation10(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "observation-example-f001-glucose.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("observation-example-f001-glucose.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "15074-8")
 		XCTAssertEqual(inst.code?.coding[0].display, "Glucose [Moles/volume] in Blood")

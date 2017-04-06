@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.OperationDefinition {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.OperationDefinition {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.OperationDefinition {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.OperationDefinition {
 		let instance = FireKit.OperationDefinition(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OperationDefinition successfully, but threw")
 		}
 
-		testOperationDefinitionRealm1(instance: instance!)
+		testOperationDefinitionRealm1(instance!)
 	}
 
     func testOperationDefinition1RealmPK() {        
@@ -67,7 +67,7 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationDefinitionRealm1(instance: FireKit.OperationDefinition) {
+	func testOperationDefinitionRealm1(_ instance: FireKit.OperationDefinition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOperationDefinition1(_ json: FHIRJSON? = nil) throws -> FireKit.OperationDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationdefinition-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationdefinition-example.json")
 		
 		XCTAssertEqual(inst.base?.reference, "OperationDefinition/Questionnaire-populate")
 		XCTAssertEqual(inst.code, "populate")

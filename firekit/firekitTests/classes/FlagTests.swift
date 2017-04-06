@@ -2,7 +2,7 @@
 //  FlagTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Flag {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Flag {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Flag {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Flag {
 		let instance = FireKit.Flag(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw")
 		}
 
-		testFlagRealm1(instance: instance!)
+		testFlagRealm1(instance!)
 	}
 
     func testFlag1RealmPK() {        
@@ -67,7 +67,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testFlagRealm1(instance: FireKit.Flag) {
+	func testFlagRealm1(_ instance: FireKit.Flag) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runFlag1(_ json: FHIRJSON? = nil) throws -> FireKit.Flag {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example-encounter.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("flag-example-encounter.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "infection")
 		XCTAssertEqual(inst.category?.coding[0].display, "Infection Control Level")
@@ -140,7 +140,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Flag successfully, but threw")
 		}
 
-		testFlagRealm2(instance: instance!)
+		testFlagRealm2(instance!)
 	}
 
     func testFlag2RealmPK() {        
@@ -162,7 +162,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testFlagRealm2(instance: FireKit.Flag) {
+	func testFlagRealm2(_ instance: FireKit.Flag) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -200,7 +200,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runFlag2(_ json: FHIRJSON? = nil) throws -> FireKit.Flag {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "flag-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("flag-example.json")
 		
 		XCTAssertEqual(inst.author?.display, "Nancy Nurse")
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")

@@ -2,7 +2,7 @@
 //  AccountTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Account {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Account {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Account {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Account {
 		let instance = FireKit.Account(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Account successfully, but threw")
 		}
 
-		testAccountRealm1(instance: instance!)
+		testAccountRealm1(instance!)
 	}
 
     func testAccount1RealmPK() {        
@@ -67,7 +67,7 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAccountRealm1(instance: FireKit.Account) {
+	func testAccountRealm1(_ instance: FireKit.Account) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAccount1(_ json: FHIRJSON? = nil) throws -> FireKit.Account {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "account-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("account-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")

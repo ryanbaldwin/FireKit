@@ -2,7 +2,7 @@
 //  BinaryTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Binary {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Binary {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Binary {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Binary {
 		let instance = FireKit.Binary(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Binary successfully, but threw")
 		}
 
-		testBinaryRealm1(instance: instance!)
+		testBinaryRealm1(instance!)
 	}
 
     func testBinary1RealmPK() {        
@@ -67,7 +67,7 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBinaryRealm1(instance: FireKit.Binary) {
+	func testBinaryRealm1(_ instance: FireKit.Binary) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBinary1(_ json: FHIRJSON? = nil) throws -> FireKit.Binary {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "binary-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("binary-example.json")
 		
 		XCTAssertEqual(inst.contentType, "application/pdf")
 		XCTAssertEqual(inst.id, "example")

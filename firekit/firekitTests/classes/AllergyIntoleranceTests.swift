@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.AllergyIntolerance {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.AllergyIntolerance {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.AllergyIntolerance {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.AllergyIntolerance {
 		let instance = FireKit.AllergyIntolerance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AllergyIntolerance successfully, but threw")
 		}
 
-		testAllergyIntoleranceRealm1(instance: instance!)
+		testAllergyIntoleranceRealm1(instance!)
 	}
 
     func testAllergyIntolerance1RealmPK() {        
@@ -67,7 +67,7 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAllergyIntoleranceRealm1(instance: FireKit.AllergyIntolerance) {
+	func testAllergyIntoleranceRealm1(_ instance: FireKit.AllergyIntolerance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> FireKit.AllergyIntolerance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "allergyintolerance-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("allergyintolerance-example.json")
 		
 		XCTAssertEqual(inst.category, "food")
 		XCTAssertEqual(inst.criticality, "CRITH")

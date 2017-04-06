@@ -2,7 +2,7 @@
 //  ReferralRequestTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ReferralRequestTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ReferralRequest {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ReferralRequest {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ReferralRequest {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ReferralRequest {
 		let instance = FireKit.ReferralRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ReferralRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ReferralRequest successfully, but threw")
 		}
 
-		testReferralRequestRealm1(instance: instance!)
+		testReferralRequestRealm1(instance!)
 	}
 
     func testReferralRequest1RealmPK() {        
@@ -67,7 +67,7 @@ class ReferralRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testReferralRequestRealm1(instance: FireKit.ReferralRequest) {
+	func testReferralRequestRealm1(_ instance: FireKit.ReferralRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ReferralRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runReferralRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.ReferralRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "referralrequest-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("referralrequest-example.json")
 		
 		XCTAssertEqual(inst.dateSent?.description, "2014-02-14")
 		XCTAssertEqual(inst.description_fhir, "In the past 2 years Beverly has had 6 instances of r) sided Otitis media. She is     falling behind her peers at school, and displaying some learning difficulties.")

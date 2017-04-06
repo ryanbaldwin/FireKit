@@ -13,7 +13,7 @@ protocol RealmPersistenceTesting: class {}
 
 extension RealmPersistenceTesting where Self: XCTestCase {
     /// Clears the current in-memory realm of all entities.
-    func clear(realm: Realm) {
+    func clear(_ realm: Realm) {
         try! realm.write {
             realm.deleteAll()
         }
@@ -24,15 +24,15 @@ extension RealmPersistenceTesting where Self: XCTestCase {
     /// - Returns: A new Realm instance
     func makeRealm() -> Realm {
         var realm: Realm!
-        stopwatch(label: "Time to fire up realm") {
+        stopwatch("Time to fire up realm") {
             realm = try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "FireKitInMemDB"))
         }
         
-        clear(realm: realm)
+        clear(realm)
         return realm
     }
 
-    func stopwatch(label: String, _ closure: () -> ()) {
+    func stopwatch(_ label: String, closure: () -> ()) {
         let start = Date()
         closure()
         let end = Date()

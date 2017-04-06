@@ -2,7 +2,7 @@
 //  SpecimenTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Specimen {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Specimen {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Specimen {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Specimen {
 		let instance = FireKit.Specimen(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
 		}
 
-		testSpecimenRealm1(instance: instance!)
+		testSpecimenRealm1(instance!)
 	}
 
     func testSpecimen1RealmPK() {        
@@ -67,7 +67,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSpecimenRealm1(instance: FireKit.Specimen) {
+	func testSpecimenRealm1(_ instance: FireKit.Specimen) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSpecimen1(_ json: FHIRJSON? = nil) throws -> FireKit.Specimen {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-isolate.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("specimen-example-isolate.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system, "http://lab.acme.org/specimens/2011")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356-ISO1")
@@ -143,7 +143,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
 		}
 
-		testSpecimenRealm2(instance: instance!)
+		testSpecimenRealm2(instance!)
 	}
 
     func testSpecimen2RealmPK() {        
@@ -165,7 +165,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSpecimenRealm2(instance: FireKit.Specimen) {
+	func testSpecimenRealm2(_ instance: FireKit.Specimen) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -203,7 +203,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSpecimen2(_ json: FHIRJSON? = nil) throws -> FireKit.Specimen {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example-urine.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("specimen-example-urine.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system, "http://lab.acme.org/specimens/2015")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356")
@@ -245,7 +245,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw")
 		}
 
-		testSpecimenRealm3(instance: instance!)
+		testSpecimenRealm3(instance!)
 	}
 
     func testSpecimen3RealmPK() {        
@@ -267,7 +267,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSpecimenRealm3(instance: FireKit.Specimen) {
+	func testSpecimenRealm3(_ instance: FireKit.Specimen) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -305,7 +305,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSpecimen3(_ json: FHIRJSON? = nil) throws -> FireKit.Specimen {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "specimen-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("specimen-example.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system, "http://lab.acme.org/specimens/2011")
 		XCTAssertEqual(inst.accessionIdentifier?.value, "X352356")

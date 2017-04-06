@@ -2,7 +2,7 @@
 //  PractitionerTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Practitioner {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Practitioner {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Practitioner {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Practitioner {
 		let instance = FireKit.Practitioner(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm1(instance: instance!)
+		testPractitionerRealm1(instance!)
 	}
 
     func testPractitioner1RealmPK() {        
@@ -67,7 +67,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm1(instance: FireKit.Practitioner) {
+	func testPractitionerRealm1(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner1(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f001-evdb.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f001-evdb.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
 		XCTAssertEqual(inst.address[0].country, "NLD")
@@ -165,7 +165,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm2(instance: instance!)
+		testPractitionerRealm2(instance!)
 	}
 
     func testPractitioner2RealmPK() {        
@@ -187,7 +187,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm2(instance: FireKit.Practitioner) {
+	func testPractitionerRealm2(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -225,7 +225,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner2(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f002-pv.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f002-pv.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
 		XCTAssertEqual(inst.address[0].country, "NLD")
@@ -285,7 +285,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm3(instance: instance!)
+		testPractitionerRealm3(instance!)
 	}
 
     func testPractitioner3RealmPK() {        
@@ -307,7 +307,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm3(instance: FireKit.Practitioner) {
+	func testPractitionerRealm3(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -345,7 +345,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner3(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f003-mv.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f003-mv.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address[0].country, "NLD")
@@ -408,7 +408,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm4(instance: instance!)
+		testPractitionerRealm4(instance!)
 	}
 
     func testPractitioner4RealmPK() {        
@@ -430,7 +430,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm4(instance: FireKit.Practitioner) {
+	func testPractitionerRealm4(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -468,7 +468,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner4(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f004-rb.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f004-rb.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address[0].country, "NLD")
@@ -532,7 +532,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm5(instance: instance!)
+		testPractitionerRealm5(instance!)
 	}
 
     func testPractitioner5RealmPK() {        
@@ -554,7 +554,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm5(instance: FireKit.Practitioner) {
+	func testPractitionerRealm5(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -592,7 +592,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner5(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f005-al.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f005-al.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Amsterdam")
 		XCTAssertEqual(inst.address[0].country, "NLD")
@@ -656,7 +656,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm6(instance: instance!)
+		testPractitionerRealm6(instance!)
 	}
 
     func testPractitioner6RealmPK() {        
@@ -678,7 +678,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm6(instance: FireKit.Practitioner) {
+	func testPractitionerRealm6(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -716,7 +716,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner6(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f006-rvdb.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f006-rvdb.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
 		XCTAssertEqual(inst.address[0].country, "NLD")
@@ -776,7 +776,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm7(instance: instance!)
+		testPractitionerRealm7(instance!)
 	}
 
     func testPractitioner7RealmPK() {        
@@ -798,7 +798,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm7(instance: FireKit.Practitioner) {
+	func testPractitionerRealm7(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -836,7 +836,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner7(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f007-sh.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f007-sh.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
 		XCTAssertEqual(inst.address[0].country, "NLD")
@@ -896,7 +896,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm8(instance: instance!)
+		testPractitionerRealm8(instance!)
 	}
 
     func testPractitioner8RealmPK() {        
@@ -918,7 +918,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm8(instance: FireKit.Practitioner) {
+	func testPractitionerRealm8(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -956,7 +956,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner8(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f201-ab.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f201-ab.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
 		XCTAssertEqual(inst.address[0].city, "Den helder")
@@ -1012,7 +1012,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm9(instance: instance!)
+		testPractitionerRealm9(instance!)
 	}
 
     func testPractitioner9RealmPK() {        
@@ -1034,7 +1034,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm9(instance: FireKit.Practitioner) {
+	func testPractitionerRealm9(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1072,7 +1072,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner9(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f202-lm.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f202-lm.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
 		XCTAssertEqual(inst.address[0].city, "Den helder")
@@ -1129,7 +1129,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw")
 		}
 
-		testPractitionerRealm10(instance: instance!)
+		testPractitionerRealm10(instance!)
 	}
 
     func testPractitioner10RealmPK() {        
@@ -1151,7 +1151,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPractitionerRealm10(instance: FireKit.Practitioner) {
+	func testPractitionerRealm10(_ instance: FireKit.Practitioner) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1189,7 +1189,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runPractitioner10(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-example-f203-jvg.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f203-jvg.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
 		XCTAssertEqual(inst.address[0].city, "Den helder")

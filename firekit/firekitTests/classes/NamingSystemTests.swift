@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.NamingSystem {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.NamingSystem {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.NamingSystem {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.NamingSystem {
 		let instance = FireKit.NamingSystem(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
 		}
 
-		testNamingSystemRealm1(instance: instance!)
+		testNamingSystemRealm1(instance!)
 	}
 
     func testNamingSystem1RealmPK() {        
@@ -67,7 +67,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNamingSystemRealm1(instance: FireKit.NamingSystem) {
+	func testNamingSystemRealm1(_ instance: FireKit.NamingSystem) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNamingSystem1(_ json: FHIRJSON? = nil) throws -> FireKit.NamingSystem {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-id.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("namingsystem-example-id.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "HL7 Australia FHIR Team")
 		XCTAssertEqual(inst.contact[0].telecom[0].system, "other")
@@ -153,7 +153,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
 		}
 
-		testNamingSystemRealm2(instance: instance!)
+		testNamingSystemRealm2(instance!)
 	}
 
     func testNamingSystem2RealmPK() {        
@@ -175,7 +175,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNamingSystemRealm2(instance: FireKit.NamingSystem) {
+	func testNamingSystemRealm2(_ instance: FireKit.NamingSystem) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -213,7 +213,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNamingSystem2(_ json: FHIRJSON? = nil) throws -> FireKit.NamingSystem {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example-replaced.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("namingsystem-example-replaced.json")
 		
 		XCTAssertEqual(inst.date?.description, "2005-01-25")
 		XCTAssertEqual(inst.description_fhir, "This was a wrong registration for the spanish editions of SNOMED CT. Do not use")
@@ -247,7 +247,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NamingSystem successfully, but threw")
 		}
 
-		testNamingSystemRealm3(instance: instance!)
+		testNamingSystemRealm3(instance!)
 	}
 
     func testNamingSystem3RealmPK() {        
@@ -269,7 +269,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNamingSystemRealm3(instance: FireKit.NamingSystem) {
+	func testNamingSystemRealm3(_ instance: FireKit.NamingSystem) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -307,7 +307,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNamingSystem3(_ json: FHIRJSON? = nil) throws -> FireKit.NamingSystem {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "namingsystem-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("namingsystem-example.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "FHIR project team")
 		XCTAssertEqual(inst.contact[0].telecom[0].system, "other")

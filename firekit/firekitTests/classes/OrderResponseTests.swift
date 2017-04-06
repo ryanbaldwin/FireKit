@@ -2,7 +2,7 @@
 //  OrderResponseTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.OrderResponse {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.OrderResponse {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.OrderResponse {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.OrderResponse {
 		let instance = FireKit.OrderResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OrderResponse successfully, but threw")
 		}
 
-		testOrderResponseRealm1(instance: instance!)
+		testOrderResponseRealm1(instance!)
 	}
 
     func testOrderResponse1RealmPK() {        
@@ -67,7 +67,7 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOrderResponseRealm1(instance: FireKit.OrderResponse) {
+	func testOrderResponseRealm1(_ instance: FireKit.OrderResponse) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOrderResponse1(_ json: FHIRJSON? = nil) throws -> FireKit.OrderResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "orderresponse-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("orderresponse-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-12-28T13:10:56+11:00")
 		XCTAssertEqual(inst.fulfillment[0].reference, "DiagnosticReport/101")

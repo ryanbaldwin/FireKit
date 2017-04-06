@@ -2,7 +2,7 @@
 //  GoalTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Goal {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Goal {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Goal {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Goal {
 		let instance = FireKit.Goal(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Goal successfully, but threw")
 		}
 
-		testGoalRealm1(instance: instance!)
+		testGoalRealm1(instance!)
 	}
 
     func testGoal1RealmPK() {        
@@ -67,7 +67,7 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testGoalRealm1(instance: FireKit.Goal) {
+	func testGoalRealm1(_ instance: FireKit.Goal) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runGoal1(_ json: FHIRJSON? = nil) throws -> FireKit.Goal {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "goal-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("goal-example.json")
 		
 		XCTAssertEqual(inst.addresses[0].display, "obesity")
 		XCTAssertEqual(inst.addresses[0].reference, "Condition/12345")

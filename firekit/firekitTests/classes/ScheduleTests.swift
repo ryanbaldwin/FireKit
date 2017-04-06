@@ -2,7 +2,7 @@
 //  ScheduleTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Schedule {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Schedule {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Schedule {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Schedule {
 		let instance = FireKit.Schedule(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Schedule successfully, but threw")
 		}
 
-		testScheduleRealm1(instance: instance!)
+		testScheduleRealm1(instance!)
 	}
 
     func testSchedule1RealmPK() {        
@@ -67,7 +67,7 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testScheduleRealm1(instance: FireKit.Schedule) {
+	func testScheduleRealm1(_ instance: FireKit.Schedule) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSchedule1(_ json: FHIRJSON? = nil) throws -> FireKit.Schedule {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "schedule-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("schedule-example.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Burgers UMC, South Wing, second floor")
 		XCTAssertEqual(inst.actor?.reference, "Location/1")

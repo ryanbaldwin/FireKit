@@ -2,7 +2,7 @@
 //  StructureDefinitionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.StructureDefinition {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.StructureDefinition {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.StructureDefinition {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.StructureDefinition {
 		let instance = FireKit.StructureDefinition(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw")
 		}
 
-		testStructureDefinitionRealm1(instance: instance!)
+		testStructureDefinitionRealm1(instance!)
 	}
 
     func testStructureDefinition1RealmPK() {        
@@ -67,7 +67,7 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testStructureDefinitionRealm1(instance: FireKit.StructureDefinition) {
+	func testStructureDefinitionRealm1(_ instance: FireKit.StructureDefinition) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runStructureDefinition1(_ json: FHIRJSON? = nil) throws -> FireKit.StructureDefinition {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "structuredefinition-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("structuredefinition-example.json")
 		
 		XCTAssertFalse(inst.abstract.value ?? true)
 		XCTAssertEqual(inst.base, "http://hl7.org/fhir/StructureDefinition/DiagnosticReport")

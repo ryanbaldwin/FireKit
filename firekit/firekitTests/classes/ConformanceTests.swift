@@ -2,7 +2,7 @@
 //  ConformanceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Conformance {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Conformance {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Conformance {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Conformance {
 		let instance = FireKit.Conformance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw")
 		}
 
-		testConformanceRealm1(instance: instance!)
+		testConformanceRealm1(instance!)
 	}
 
     func testConformance1RealmPK() {        
@@ -67,7 +67,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConformanceRealm1(instance: FireKit.Conformance) {
+	func testConformanceRealm1(_ instance: FireKit.Conformance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runConformance1(_ json: FHIRJSON? = nil) throws -> FireKit.Conformance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conformance-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "both")
 		XCTAssertEqual(inst.contact[0].name, "System Administrator")
@@ -207,7 +207,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw")
 		}
 
-		testConformanceRealm2(instance: instance!)
+		testConformanceRealm2(instance!)
 	}
 
     func testConformance2RealmPK() {        
@@ -229,7 +229,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConformanceRealm2(instance: FireKit.Conformance) {
+	func testConformanceRealm2(_ instance: FireKit.Conformance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -267,7 +267,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runConformance2(_ json: FHIRJSON? = nil) throws -> FireKit.Conformance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conformance-phr-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conformance-phr-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "no")
 		XCTAssertEqual(inst.contact[0].telecom[0].system, "other")

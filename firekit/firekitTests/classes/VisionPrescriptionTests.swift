@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.VisionPrescription {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.VisionPrescription {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.VisionPrescription {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.VisionPrescription {
 		let instance = FireKit.VisionPrescription(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
 		}
 
-		testVisionPrescriptionRealm1(instance: instance!)
+		testVisionPrescriptionRealm1(instance!)
 	}
 
     func testVisionPrescription1RealmPK() {        
@@ -67,7 +67,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testVisionPrescriptionRealm1(instance: FireKit.VisionPrescription) {
+	func testVisionPrescriptionRealm1(_ instance: FireKit.VisionPrescription) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runVisionPrescription1(_ json: FHIRJSON? = nil) throws -> FireKit.VisionPrescription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example-1.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("visionprescription-example-1.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
 		XCTAssertTrue(inst.dispense[0].add! == RealmDecimal(string: "1.75"))
@@ -165,7 +165,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
 		}
 
-		testVisionPrescriptionRealm2(instance: instance!)
+		testVisionPrescriptionRealm2(instance!)
 	}
 
     func testVisionPrescription2RealmPK() {        
@@ -187,7 +187,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testVisionPrescriptionRealm2(instance: FireKit.VisionPrescription) {
+	func testVisionPrescriptionRealm2(_ instance: FireKit.VisionPrescription) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -225,7 +225,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runVisionPrescription2(_ json: FHIRJSON? = nil) throws -> FireKit.VisionPrescription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "visionprescription-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("visionprescription-example.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
 		XCTAssertTrue(inst.dispense[0].add! == RealmDecimal(string: "2.0"))

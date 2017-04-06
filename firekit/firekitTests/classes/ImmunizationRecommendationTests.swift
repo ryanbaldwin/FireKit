@@ -2,7 +2,7 @@
 //  ImmunizationRecommendationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ImmunizationRecommendation {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ImmunizationRecommendation {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ImmunizationRecommendation {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImmunizationRecommendation {
 		let instance = FireKit.ImmunizationRecommendation(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ImmunizationRecommendation successfully, but threw")
 		}
 
-		testImmunizationRecommendationRealm1(instance: instance!)
+		testImmunizationRecommendationRealm1(instance!)
 	}
 
     func testImmunizationRecommendation1RealmPK() {        
@@ -67,7 +67,7 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testImmunizationRecommendationRealm1(instance: FireKit.ImmunizationRecommendation) {
+	func testImmunizationRecommendationRealm1(_ instance: FireKit.ImmunizationRecommendation) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runImmunizationRecommendation1(_ json: FHIRJSON? = nil) throws -> FireKit.ImmunizationRecommendation {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "immunizationrecommendation-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("immunizationrecommendation-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.identifier[0].system, "urn:ietf:rfc:3986")

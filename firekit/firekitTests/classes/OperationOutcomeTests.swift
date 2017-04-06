@@ -2,7 +2,7 @@
 //  OperationOutcomeTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.OperationOutcome {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.OperationOutcome {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.OperationOutcome {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.OperationOutcome {
 		let instance = FireKit.OperationOutcome(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 
-		testOperationOutcomeRealm1(instance: instance!)
+		testOperationOutcomeRealm1(instance!)
 	}
 
     func testOperationOutcome1RealmPK() {        
@@ -67,7 +67,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm1(instance: FireKit.OperationOutcome) {
+	func testOperationOutcomeRealm1(_ instance: FireKit.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOperationOutcome1(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-allok.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-allok.json")
 		
 		XCTAssertEqual(inst.id, "allok")
 		XCTAssertEqual(inst.issue[0].code, "informational")
@@ -133,7 +133,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 
-		testOperationOutcomeRealm2(instance: instance!)
+		testOperationOutcomeRealm2(instance!)
 	}
 
     func testOperationOutcome2RealmPK() {        
@@ -155,7 +155,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm2(instance: FireKit.OperationOutcome) {
+	func testOperationOutcomeRealm2(_ instance: FireKit.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -193,7 +193,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOperationOutcome2(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-break-the-glass.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-break-the-glass.json")
 		
 		XCTAssertEqual(inst.id, "break-the-glass")
 		XCTAssertEqual(inst.issue[0].code, "suppressed")
@@ -224,7 +224,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 
-		testOperationOutcomeRealm3(instance: instance!)
+		testOperationOutcomeRealm3(instance!)
 	}
 
     func testOperationOutcome3RealmPK() {        
@@ -246,7 +246,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm3(instance: FireKit.OperationOutcome) {
+	func testOperationOutcomeRealm3(_ instance: FireKit.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -284,7 +284,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOperationOutcome3(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-exception.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-exception.json")
 		
 		XCTAssertEqual(inst.id, "exception")
 		XCTAssertEqual(inst.issue[0].code, "exception")
@@ -312,7 +312,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 
-		testOperationOutcomeRealm4(instance: instance!)
+		testOperationOutcomeRealm4(instance!)
 	}
 
     func testOperationOutcome4RealmPK() {        
@@ -334,7 +334,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm4(instance: FireKit.OperationOutcome) {
+	func testOperationOutcomeRealm4(_ instance: FireKit.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -372,7 +372,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOperationOutcome4(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-searchfail.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-searchfail.json")
 		
 		XCTAssertEqual(inst.id, "searchfail")
 		XCTAssertEqual(inst.issue[0].code, "code-invalid")
@@ -401,7 +401,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 
-		testOperationOutcomeRealm5(instance: instance!)
+		testOperationOutcomeRealm5(instance!)
 	}
 
     func testOperationOutcome5RealmPK() {        
@@ -423,7 +423,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm5(instance: FireKit.OperationOutcome) {
+	func testOperationOutcomeRealm5(_ instance: FireKit.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -461,7 +461,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOperationOutcome5(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example-validationfail.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-validationfail.json")
 		
 		XCTAssertEqual(inst.id, "validationfail")
 		XCTAssertEqual(inst.issue[0].code, "structure")
@@ -490,7 +490,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
 		}
 
-		testOperationOutcomeRealm6(instance: instance!)
+		testOperationOutcomeRealm6(instance!)
 	}
 
     func testOperationOutcome6RealmPK() {        
@@ -512,7 +512,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm6(instance: FireKit.OperationOutcome) {
+	func testOperationOutcomeRealm6(_ instance: FireKit.OperationOutcome) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -550,7 +550,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runOperationOutcome6(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "operationoutcome-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example.json")
 		
 		XCTAssertEqual(inst.id, "101")
 		XCTAssertEqual(inst.issue[0].code, "code-invalid")

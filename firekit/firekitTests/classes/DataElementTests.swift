@@ -2,7 +2,7 @@
 //  DataElementTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.DataElement {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.DataElement {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.DataElement {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DataElement {
 		let instance = FireKit.DataElement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
 		}
 
-		testDataElementRealm1(instance: instance!)
+		testDataElementRealm1(instance!)
 	}
 
     func testDataElement1RealmPK() {        
@@ -67,7 +67,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDataElementRealm1(instance: FireKit.DataElement) {
+	func testDataElementRealm1(_ instance: FireKit.DataElement) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runDataElement1(_ json: FHIRJSON? = nil) throws -> FireKit.DataElement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("dataelement-example.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "2179414")
 		XCTAssertEqual(inst.contained[1].id, "2179414-permitted")
@@ -171,7 +171,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
 		}
 
-		testDataElementRealm2(instance: instance!)
+		testDataElementRealm2(instance!)
 	}
 
     func testDataElement2RealmPK() {        
@@ -193,7 +193,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDataElementRealm2(instance: FireKit.DataElement) {
+	func testDataElementRealm2(_ instance: FireKit.DataElement) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -231,7 +231,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runDataElement2(_ json: FHIRJSON? = nil) throws -> FireKit.DataElement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "dataelement-labtestmaster-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("dataelement-labtestmaster-example.json")
 		
 		XCTAssertEqual(inst.element[0].alias[0].value, "Protime, PT")
 		XCTAssertEqual(inst.element[0].comments, "Used to screen the integrity of the extrinsic and common pathways of coagulation and to monitor warfarin anticoagulation. ")

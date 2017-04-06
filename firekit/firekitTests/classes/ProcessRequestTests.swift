@@ -2,7 +2,7 @@
 //  ProcessRequestTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ProcessRequest {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ProcessRequest {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ProcessRequest {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ProcessRequest {
 		let instance = FireKit.ProcessRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm1(instance: instance!)
+		testProcessRequestRealm1(instance!)
 	}
 
     func testProcessRequest1RealmPK() {        
@@ -67,7 +67,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm1(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm1(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-eob.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-poll-eob.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -135,7 +135,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm2(instance: instance!)
+		testProcessRequestRealm2(instance!)
 	}
 
     func testProcessRequest2RealmPK() {        
@@ -157,7 +157,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm2(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm2(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -195,7 +195,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest2(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-exclusive.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-poll-exclusive.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -227,7 +227,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm3(instance: instance!)
+		testProcessRequestRealm3(instance!)
 	}
 
     func testProcessRequest3RealmPK() {        
@@ -249,7 +249,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm3(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm3(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -287,7 +287,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest3(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-inclusive.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-poll-inclusive.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -318,7 +318,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm4(instance: instance!)
+		testProcessRequestRealm4(instance!)
 	}
 
     func testProcessRequest4RealmPK() {        
@@ -340,7 +340,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm4(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm4(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -378,7 +378,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest4(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-payrec.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-poll-payrec.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -411,7 +411,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm5(instance: instance!)
+		testProcessRequestRealm5(instance!)
 	}
 
     func testProcessRequest5RealmPK() {        
@@ -433,7 +433,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm5(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm5(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -471,7 +471,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest5(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-poll-specific.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-poll-specific.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -502,7 +502,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm6(instance: instance!)
+		testProcessRequestRealm6(instance!)
 	}
 
     func testProcessRequest6RealmPK() {        
@@ -524,7 +524,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm6(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm6(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -562,7 +562,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest6(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reprocess.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-reprocess.json")
 		
 		XCTAssertEqual(inst.action, "reprocess")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -595,7 +595,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm7(instance: instance!)
+		testProcessRequestRealm7(instance!)
 	}
 
     func testProcessRequest7RealmPK() {        
@@ -617,7 +617,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm7(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm7(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -655,7 +655,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest7(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-reverse.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-reverse.json")
 		
 		XCTAssertEqual(inst.action, "cancel")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -687,7 +687,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm8(instance: instance!)
+		testProcessRequestRealm8(instance!)
 	}
 
     func testProcessRequest8RealmPK() {        
@@ -709,7 +709,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm8(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm8(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -747,7 +747,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest8(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example-status.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example-status.json")
 		
 		XCTAssertEqual(inst.action, "status")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
@@ -779,7 +779,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
 		}
 
-		testProcessRequestRealm9(instance: instance!)
+		testProcessRequestRealm9(instance!)
 	}
 
     func testProcessRequest9RealmPK() {        
@@ -801,7 +801,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessRequestRealm9(instance: FireKit.ProcessRequest) {
+	func testProcessRequestRealm9(_ instance: FireKit.ProcessRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -839,7 +839,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcessRequest9(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "processrequest-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processrequest-example.json")
 		
 		XCTAssertEqual(inst.action, "poll")
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

@@ -2,7 +2,7 @@
 //  SubstanceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Substance {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Substance {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Substance {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Substance {
 		let instance = FireKit.Substance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 
-		testSubstanceRealm1(instance: instance!)
+		testSubstanceRealm1(instance!)
 	}
 
     func testSubstance1RealmPK() {        
@@ -67,7 +67,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubstanceRealm1(instance: FireKit.Substance) {
+	func testSubstanceRealm1(_ instance: FireKit.Substance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubstance1(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-amoxicillin-clavulanate.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-amoxicillin-clavulanate.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "drug")
 		XCTAssertEqual(inst.category[0].coding[0].display, "Drug or Medicament")
@@ -156,7 +156,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 
-		testSubstanceRealm2(instance: instance!)
+		testSubstanceRealm2(instance!)
 	}
 
     func testSubstance2RealmPK() {        
@@ -178,7 +178,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubstanceRealm2(instance: FireKit.Substance) {
+	func testSubstanceRealm2(_ instance: FireKit.Substance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -216,7 +216,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubstance2(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f201-dust.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-f201-dust.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "406466009")
 		XCTAssertEqual(inst.code?.coding[0].display, "House dust allergen")
@@ -243,7 +243,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 
-		testSubstanceRealm3(instance: instance!)
+		testSubstanceRealm3(instance!)
 	}
 
     func testSubstance3RealmPK() {        
@@ -265,7 +265,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubstanceRealm3(instance: FireKit.Substance) {
+	func testSubstanceRealm3(_ instance: FireKit.Substance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -303,7 +303,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubstance3(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f202-staphylococcus.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-f202-staphylococcus.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "3092008")
 		XCTAssertEqual(inst.code?.coding[0].display, "Staphylococcus Aureus")
@@ -330,7 +330,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 
-		testSubstanceRealm4(instance: instance!)
+		testSubstanceRealm4(instance!)
 	}
 
     func testSubstance4RealmPK() {        
@@ -352,7 +352,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubstanceRealm4(instance: FireKit.Substance) {
+	func testSubstanceRealm4(_ instance: FireKit.Substance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -390,7 +390,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubstance4(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-f203-potassium.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-f203-potassium.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "chemical")
 		XCTAssertEqual(inst.category[0].coding[0].display, "Chemical")
@@ -422,7 +422,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 
-		testSubstanceRealm5(instance: instance!)
+		testSubstanceRealm5(instance!)
 	}
 
     func testSubstance5RealmPK() {        
@@ -444,7 +444,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubstanceRealm5(instance: FireKit.Substance) {
+	func testSubstanceRealm5(_ instance: FireKit.Substance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -482,7 +482,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubstance5(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example-silver-nitrate-product.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-silver-nitrate-product.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "chemical")
 		XCTAssertEqual(inst.category[0].coding[0].display, "Chemical")
@@ -522,7 +522,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
 		}
 
-		testSubstanceRealm6(instance: instance!)
+		testSubstanceRealm6(instance!)
 	}
 
     func testSubstance6RealmPK() {        
@@ -544,7 +544,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubstanceRealm6(instance: FireKit.Substance) {
+	func testSubstanceRealm6(_ instance: FireKit.Substance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -582,7 +582,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubstance6(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "substance-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "allergen")
 		XCTAssertEqual(inst.category[0].coding[0].display, "Allergen")

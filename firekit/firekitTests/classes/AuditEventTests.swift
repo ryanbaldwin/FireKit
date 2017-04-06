@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.AuditEvent {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.AuditEvent {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.AuditEvent {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.AuditEvent {
 		let instance = FireKit.AuditEvent(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm1(instance: instance!)
+		testAuditEventRealm1(instance!)
 	}
 
     func testAuditEvent1RealmPK() {        
@@ -67,7 +67,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm1(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm1(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent1(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-login.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-login.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2013-06-20T23:41:23Z")
@@ -149,7 +149,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm2(instance: instance!)
+		testAuditEventRealm2(instance!)
 	}
 
     func testAuditEvent2RealmPK() {        
@@ -171,7 +171,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm2(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm2(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -209,7 +209,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent2(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-logout.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-logout.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2013-06-20T23:46:41Z")
@@ -253,7 +253,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm3(instance: instance!)
+		testAuditEventRealm3(instance!)
 	}
 
     func testAuditEvent3RealmPK() {        
@@ -275,7 +275,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm3(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm3(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -313,7 +313,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent3(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-media.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-media.json")
 		
 		XCTAssertEqual(inst.event?.action, "R")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2015-08-27T23:42:24Z")
@@ -382,7 +382,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm4(instance: instance!)
+		testAuditEventRealm4(instance!)
 	}
 
     func testAuditEvent4RealmPK() {        
@@ -404,7 +404,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm4(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm4(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -442,7 +442,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent4(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-pixQuery.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-pixQuery.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2015-08-26T23:42:24Z")
@@ -503,7 +503,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm5(instance: instance!)
+		testAuditEventRealm5(instance!)
 	}
 
     func testAuditEvent5RealmPK() {        
@@ -525,7 +525,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm5(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm5(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -563,7 +563,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent5(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-search.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-search.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2015-08-22T23:42:24Z")
@@ -612,7 +612,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm6(instance: instance!)
+		testAuditEventRealm6(instance!)
 	}
 
     func testAuditEvent6RealmPK() {        
@@ -634,7 +634,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm6(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm6(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -672,7 +672,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent6(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "audit-event-example-vread.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-vread.json")
 		
 		XCTAssertEqual(inst.event?.action, "R")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2013-06-20T23:42:24Z")
@@ -721,7 +721,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm7(instance: instance!)
+		testAuditEventRealm7(instance!)
 	}
 
     func testAuditEvent7RealmPK() {        
@@ -743,7 +743,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm7(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm7(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -781,7 +781,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent7(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example-disclosure.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("auditevent-example-disclosure.json")
 		
 		XCTAssertEqual(inst.event?.action, "R")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2013-09-22T00:08:00Z")
@@ -874,7 +874,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
 		}
 
-		testAuditEventRealm8(instance: instance!)
+		testAuditEventRealm8(instance!)
 	}
 
     func testAuditEvent8RealmPK() {        
@@ -896,7 +896,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAuditEventRealm8(instance: FireKit.AuditEvent) {
+	func testAuditEventRealm8(_ instance: FireKit.AuditEvent) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -934,7 +934,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAuditEvent8(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "auditevent-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("auditevent-example.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
 		XCTAssertEqual(inst.event?.dateTime?.description, "2012-10-25T22:04:27+11:00")

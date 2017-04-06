@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ImagingStudy {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ImagingStudy {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ImagingStudy {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImagingStudy {
 		let instance = FireKit.ImagingStudy(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ImagingStudy successfully, but threw")
 		}
 
-		testImagingStudyRealm1(instance: instance!)
+		testImagingStudyRealm1(instance!)
 	}
 
     func testImagingStudy1RealmPK() {        
@@ -67,7 +67,7 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testImagingStudyRealm1(instance: FireKit.ImagingStudy) {
+	func testImagingStudyRealm1(_ instance: FireKit.ImagingStudy) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runImagingStudy1(_ json: FHIRJSON? = nil) throws -> FireKit.ImagingStudy {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingstudy-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("imagingstudy-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.numberOfInstances.value, 1)

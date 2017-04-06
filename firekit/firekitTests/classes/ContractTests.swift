@@ -2,7 +2,7 @@
 //  ContractTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Contract {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Contract {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Contract {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Contract {
 		let instance = FireKit.Contract(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Contract successfully, but threw")
 		}
 
-		testContractRealm1(instance: instance!)
+		testContractRealm1(instance!)
 	}
 
     func testContract1RealmPK() {        
@@ -67,7 +67,7 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testContractRealm1(instance: FireKit.Contract) {
+	func testContractRealm1(_ instance: FireKit.Contract) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runContract1(_ json: FHIRJSON? = nil) throws -> FireKit.Contract {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "contract-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("contract-example.json")
 		
 		XCTAssertEqual(inst.id, "C-123")
 		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the contract</div>")

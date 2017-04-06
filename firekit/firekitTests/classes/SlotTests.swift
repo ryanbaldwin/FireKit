@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Slot {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Slot {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Slot {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Slot {
 		let instance = FireKit.Slot(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
 		}
 
-		testSlotRealm1(instance: instance!)
+		testSlotRealm1(instance!)
 	}
 
     func testSlot1RealmPK() {        
@@ -67,7 +67,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSlotRealm1(instance: FireKit.Slot) {
+	func testSlotRealm1(_ instance: FireKit.Slot) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSlot1(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example-busy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example-busy.json")
 		
 		XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end?.description, "2013-12-25T09:15:00Z")
@@ -140,7 +140,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
 		}
 
-		testSlotRealm2(instance: instance!)
+		testSlotRealm2(instance!)
 	}
 
     func testSlot2RealmPK() {        
@@ -162,7 +162,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSlotRealm2(instance: FireKit.Slot) {
+	func testSlotRealm2(_ instance: FireKit.Slot) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -200,7 +200,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSlot2(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example-tentative.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example-tentative.json")
 		
 		XCTAssertEqual(inst.comment, "Dr Careful is out of the office")
 		XCTAssertEqual(inst.end?.description, "2013-12-25T10:00:00Z")
@@ -232,7 +232,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
 		}
 
-		testSlotRealm3(instance: instance!)
+		testSlotRealm3(instance!)
 	}
 
     func testSlot3RealmPK() {        
@@ -254,7 +254,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSlotRealm3(instance: FireKit.Slot) {
+	func testSlotRealm3(_ instance: FireKit.Slot) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -292,7 +292,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSlot3(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example-unavailable.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example-unavailable.json")
 		
 		XCTAssertEqual(inst.comment, "Dr Careful is out of the office")
 		XCTAssertEqual(inst.end?.description, "2013-12-25T09:45:00Z")
@@ -324,7 +324,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
 		}
 
-		testSlotRealm4(instance: instance!)
+		testSlotRealm4(instance!)
 	}
 
     func testSlot4RealmPK() {        
@@ -346,7 +346,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSlotRealm4(instance: FireKit.Slot) {
+	func testSlotRealm4(_ instance: FireKit.Slot) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -384,7 +384,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSlot4(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "slot-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example.json")
 		
 		XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")
 		XCTAssertEqual(inst.end?.description, "2013-12-25T09:30:00Z")

@@ -2,7 +2,7 @@
 //  DeviceUseStatementTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.DeviceUseStatement {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.DeviceUseStatement {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.DeviceUseStatement {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DeviceUseStatement {
 		let instance = FireKit.DeviceUseStatement(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test DeviceUseStatement successfully, but threw")
 		}
 
-		testDeviceUseStatementRealm1(instance: instance!)
+		testDeviceUseStatementRealm1(instance!)
 	}
 
     func testDeviceUseStatement1RealmPK() {        
@@ -67,7 +67,7 @@ class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDeviceUseStatementRealm1(instance: FireKit.DeviceUseStatement) {
+	func testDeviceUseStatementRealm1(_ instance: FireKit.DeviceUseStatement) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runDeviceUseStatement1(_ json: FHIRJSON? = nil) throws -> FireKit.DeviceUseStatement {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "deviceusestatement-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("deviceusestatement-example.json")
 		
 		XCTAssertEqual(inst.device?.reference, "Device/example")
 		XCTAssertEqual(inst.id, "example")

@@ -2,7 +2,7 @@
 //  SubscriptionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Subscription {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Subscription {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Subscription {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Subscription {
 		let instance = FireKit.Subscription(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
 		}
 
-		testSubscriptionRealm1(instance: instance!)
+		testSubscriptionRealm1(instance!)
 	}
 
     func testSubscription1RealmPK() {        
@@ -67,7 +67,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubscriptionRealm1(instance: FireKit.Subscription) {
+	func testSubscriptionRealm1(_ instance: FireKit.Subscription) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubscription1(_ json: FHIRJSON? = nil) throws -> FireKit.Subscription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example-error.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("subscription-example-error.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
@@ -143,7 +143,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
 		}
 
-		testSubscriptionRealm2(instance: instance!)
+		testSubscriptionRealm2(instance!)
 	}
 
     func testSubscription2RealmPK() {        
@@ -165,7 +165,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubscriptionRealm2(instance: FireKit.Subscription) {
+	func testSubscriptionRealm2(_ instance: FireKit.Subscription) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -203,7 +203,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSubscription2(_ json: FHIRJSON? = nil) throws -> FireKit.Subscription {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "subscription-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("subscription-example.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
 		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")

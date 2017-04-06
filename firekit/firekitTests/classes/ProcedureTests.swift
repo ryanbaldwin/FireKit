@@ -2,7 +2,7 @@
 //  ProcedureTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Procedure {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Procedure {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Procedure {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Procedure {
 		let instance = FireKit.Procedure(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm1(instance: instance!)
+		testProcedureRealm1(instance!)
 	}
 
     func testProcedure1RealmPK() {        
@@ -67,7 +67,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm1(instance: FireKit.Procedure) {
+	func testProcedureRealm1(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure1(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-biopsy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-biopsy.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "368225008")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Entire Left Forearm")
@@ -146,7 +146,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm2(instance: instance!)
+		testProcedureRealm2(instance!)
 	}
 
     func testProcedure2RealmPK() {        
@@ -168,7 +168,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm2(instance: FireKit.Procedure) {
+	func testProcedureRealm2(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -206,7 +206,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure2(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f001-heart.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "17401000")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Heart valve structure")
@@ -253,7 +253,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm3(instance: instance!)
+		testProcedureRealm3(instance!)
 	}
 
     func testProcedure3RealmPK() {        
@@ -275,7 +275,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm3(instance: FireKit.Procedure) {
+	func testProcedureRealm3(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -313,7 +313,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure3(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f002-lung.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "39607008")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Lung structure")
@@ -360,7 +360,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm4(instance: instance!)
+		testProcedureRealm4(instance!)
 	}
 
     func testProcedure4RealmPK() {        
@@ -382,7 +382,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm4(instance: FireKit.Procedure) {
+	func testProcedureRealm4(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -420,7 +420,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure4(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f003-abscess.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "83030008")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Retropharyngeal area")
@@ -467,7 +467,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm5(instance: instance!)
+		testProcedureRealm5(instance!)
 	}
 
     func testProcedure5RealmPK() {        
@@ -489,7 +489,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm5(instance: FireKit.Procedure) {
+	func testProcedureRealm5(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -527,7 +527,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure5(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f004-tracheotomy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f004-tracheotomy.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "83030008")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Retropharyngeal area")
@@ -574,7 +574,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm6(instance: instance!)
+		testProcedureRealm6(instance!)
 	}
 
     func testProcedure6RealmPK() {        
@@ -596,7 +596,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm6(instance: FireKit.Procedure) {
+	func testProcedureRealm6(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -634,7 +634,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure6(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-f201-tpf.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f201-tpf.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "272676008")
 		XCTAssertEqual(inst.bodySite[0].coding[0].display, "Sphenoid bone")
@@ -678,7 +678,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm7(instance: instance!)
+		testProcedureRealm7(instance!)
 	}
 
     func testProcedure7RealmPK() {        
@@ -700,7 +700,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm7(instance: FireKit.Procedure) {
+	func testProcedureRealm7(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -738,7 +738,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure7(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example-implant.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-implant.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "25267002")
 		XCTAssertEqual(inst.code?.coding[0].display, "Insertion of intracardiac pacemaker (procedure)")
@@ -777,7 +777,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
 		}
 
-		testProcedureRealm8(instance: instance!)
+		testProcedureRealm8(instance!)
 	}
 
     func testProcedure8RealmPK() {        
@@ -799,7 +799,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRealm8(instance: FireKit.Procedure) {
+	func testProcedureRealm8(_ instance: FireKit.Procedure) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -837,7 +837,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProcedure8(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "procedure-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "80146002")
 		XCTAssertEqual(inst.code?.coding[0].display, "Appendectomy (Procedure)")

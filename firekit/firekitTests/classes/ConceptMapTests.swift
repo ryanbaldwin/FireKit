@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ConceptMap {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ConceptMap {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ConceptMap {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ConceptMap {
 		let instance = FireKit.ConceptMap(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw")
 		}
 
-		testConceptMapRealm1(instance: instance!)
+		testConceptMapRealm1(instance!)
 	}
 
     func testConceptMap1RealmPK() {        
@@ -67,7 +67,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConceptMapRealm1(instance: FireKit.ConceptMap) {
+	func testConceptMapRealm1(_ instance: FireKit.ConceptMap) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runConceptMap1(_ json: FHIRJSON? = nil) throws -> FireKit.ConceptMap {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example-specimen-type.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conceptmap-example-specimen-type.json")
 		
 		XCTAssertEqual(inst.contact[0].telecom[0].system, "other")
 		XCTAssertEqual(inst.contact[0].telecom[0].value, "http://hl7.org/fhir")
@@ -207,7 +207,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ConceptMap successfully, but threw")
 		}
 
-		testConceptMapRealm2(instance: instance!)
+		testConceptMapRealm2(instance!)
 	}
 
     func testConceptMap2RealmPK() {        
@@ -229,7 +229,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testConceptMapRealm2(instance: FireKit.ConceptMap) {
+	func testConceptMapRealm2(_ instance: FireKit.ConceptMap) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -267,7 +267,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runConceptMap2(_ json: FHIRJSON? = nil) throws -> FireKit.ConceptMap {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "conceptmap-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conceptmap-example.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "FHIR project team (example)")
 		XCTAssertEqual(inst.contact[0].telecom[0].system, "other")

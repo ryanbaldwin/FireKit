@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Bundle {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Bundle {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Bundle {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Bundle {
 		let instance = FireKit.Bundle(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm1(instance: instance!)
+		testBundleRealm1(instance!)
 	}
 
     func testBundle1RealmPK() {        
@@ -67,7 +67,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm1(instance: FireKit.Bundle) {
+	func testBundleRealm1(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle1(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "bundle-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("bundle-example.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "https://example.com/base/MedicationOrder/3123")
 		XCTAssertEqual(inst.entry[0].resource?.id, "3123")
@@ -142,7 +142,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm2(instance: instance!)
+		testBundleRealm2(instance!)
 	}
 
     func testBundle2RealmPK() {        
@@ -164,7 +164,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm2(instance: FireKit.Bundle) {
+	func testBundleRealm2(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -202,7 +202,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle2(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-general.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-examples-general.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/DiagnosticReport/3")
 		XCTAssertEqual(inst.entry[0].resource?.id, "3")
@@ -257,7 +257,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm3(instance: instance!)
+		testBundleRealm3(instance!)
 	}
 
     func testBundle3RealmPK() {        
@@ -279,7 +279,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm3(instance: FireKit.Bundle) {
+	func testBundleRealm3(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -317,7 +317,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle3(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "diagnosticreport-examples-lab-text.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-examples-lab-text.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/DiagnosticReport/103")
 		XCTAssertEqual(inst.entry[0].resource?.id, "103")
@@ -372,7 +372,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm4(instance: instance!)
+		testBundleRealm4(instance!)
 	}
 
     func testBundle4RealmPK() {        
@@ -394,7 +394,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm4(instance: FireKit.Bundle) {
+	func testBundleRealm4(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -432,7 +432,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle4(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "document-example-dischargesummary.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("document-example-dischargesummary.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://fhir.healthintersections.com.au/open/Composition/180f219f-97a8-486d-99d9-ed631fe4fc57")
 		XCTAssertEqual(inst.entry[0].resource?.id, "180f219f-97a8-486d-99d9-ed631fe4fc57")
@@ -481,7 +481,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm5(instance: instance!)
+		testBundleRealm5(instance!)
 	}
 
     func testBundle5RealmPK() {        
@@ -503,7 +503,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm5(instance: FireKit.Bundle) {
+	func testBundleRealm5(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -541,7 +541,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle5(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-cypress-template.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-examples-cypress-template.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/Patient/71")
 		XCTAssertEqual(inst.entry[0].resource?.id, "71")
@@ -596,7 +596,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm6(instance: instance!)
+		testBundleRealm6(instance!)
 	}
 
     func testBundle6RealmPK() {        
@@ -618,7 +618,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm6(instance: FireKit.Bundle) {
+	func testBundleRealm6(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -656,7 +656,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle6(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "patient-examples-general.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-examples-general.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/Patient/1")
 		XCTAssertEqual(inst.entry[0].resource?.id, "1")
@@ -711,7 +711,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm7(instance: instance!)
+		testBundleRealm7(instance!)
 	}
 
     func testBundle7RealmPK() {        
@@ -733,7 +733,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm7(instance: FireKit.Bundle) {
+	func testBundleRealm7(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -771,7 +771,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle7(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "practitioner-examples-general.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-examples-general.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/Practitioner/13")
 		XCTAssertEqual(inst.entry[0].resource?.id, "13")
@@ -826,7 +826,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
 		}
 
-		testBundleRealm8(instance: instance!)
+		testBundleRealm8(instance!)
 	}
 
     func testBundle8RealmPK() {        
@@ -848,7 +848,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBundleRealm8(instance: FireKit.Bundle) {
+	func testBundleRealm8(_ instance: FireKit.Bundle) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -886,7 +886,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runBundle8(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "xds-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("xds-example.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "urn:uuid:3fdc72f4-a11d-4a9d-9260-a9f745779e1d")
 		XCTAssertEqual(inst.entry[0].request?.method, "POST")

@@ -8920,12 +8920,13 @@
 				TargetAttributes = {
 					C2AF41E41E37C4E300EE1AEE = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0820;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					C2AF41ED1E37C4E300EE1AEE = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 7365BP9627;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};

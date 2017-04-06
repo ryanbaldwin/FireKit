@@ -2,7 +2,7 @@
 //  EligibilityRequestTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.EligibilityRequest {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.EligibilityRequest {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.EligibilityRequest {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.EligibilityRequest {
 		let instance = FireKit.EligibilityRequest(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test EligibilityRequest successfully, but threw")
 		}
 
-		testEligibilityRequestRealm1(instance: instance!)
+		testEligibilityRequestRealm1(instance!)
 	}
 
     func testEligibilityRequest1RealmPK() {        
@@ -67,7 +67,7 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testEligibilityRequestRealm1(instance: FireKit.EligibilityRequest) {
+	func testEligibilityRequestRealm1(_ instance: FireKit.EligibilityRequest) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runEligibilityRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.EligibilityRequest {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "eligibilityrequest-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("eligibilityrequest-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.id, "52345")

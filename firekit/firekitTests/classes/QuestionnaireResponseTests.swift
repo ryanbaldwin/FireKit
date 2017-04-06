@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.QuestionnaireResponse {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.QuestionnaireResponse {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.QuestionnaireResponse {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.QuestionnaireResponse {
 		let instance = FireKit.QuestionnaireResponse(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
 		}
 
-		testQuestionnaireResponseRealm1(instance: instance!)
+		testQuestionnaireResponseRealm1(instance!)
 	}
 
     func testQuestionnaireResponse1RealmPK() {        
@@ -67,7 +67,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testQuestionnaireResponseRealm1(instance: FireKit.QuestionnaireResponse) {
+	func testQuestionnaireResponseRealm1(_ instance: FireKit.QuestionnaireResponse) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runQuestionnaireResponse1(_ json: FHIRJSON? = nil) throws -> FireKit.QuestionnaireResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaireresponse-example-bluebook.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaireresponse-example-bluebook.json")
 		
 		XCTAssertEqual(inst.author?.reference, "http://hl7.org/fhir/Practitioner/example")
 		XCTAssertEqual(inst.authored?.description, "2013-02-19T14:15:00+10:00")
@@ -172,7 +172,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
 		}
 
-		testQuestionnaireResponseRealm2(instance: instance!)
+		testQuestionnaireResponseRealm2(instance!)
 	}
 
     func testQuestionnaireResponse2RealmPK() {        
@@ -194,7 +194,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testQuestionnaireResponseRealm2(instance: FireKit.QuestionnaireResponse) {
+	func testQuestionnaireResponseRealm2(_ instance: FireKit.QuestionnaireResponse) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -232,7 +232,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runQuestionnaireResponse2(_ json: FHIRJSON? = nil) throws -> FireKit.QuestionnaireResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaireresponse-example-f201-lifelines.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaireresponse-example-f201-lifelines.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/f201")
 		XCTAssertEqual(inst.authored?.description, "2013-06-18T00:00:00+01:00")
@@ -289,7 +289,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
 		}
 
-		testQuestionnaireResponseRealm3(instance: instance!)
+		testQuestionnaireResponseRealm3(instance!)
 	}
 
     func testQuestionnaireResponse3RealmPK() {        
@@ -311,7 +311,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testQuestionnaireResponseRealm3(instance: FireKit.QuestionnaireResponse) {
+	func testQuestionnaireResponseRealm3(_ instance: FireKit.QuestionnaireResponse) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -349,7 +349,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runQuestionnaireResponse3(_ json: FHIRJSON? = nil) throws -> FireKit.QuestionnaireResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaireresponse-example-gcs.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaireresponse-example-gcs.json")
 		
 		XCTAssertEqual(inst.authored?.description, "2014-12-11T04:44:16Z")
 		XCTAssertEqual(inst.group?.linkId, "1")
@@ -399,7 +399,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
 		}
 
-		testQuestionnaireResponseRealm4(instance: instance!)
+		testQuestionnaireResponseRealm4(instance!)
 	}
 
     func testQuestionnaireResponse4RealmPK() {        
@@ -421,7 +421,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testQuestionnaireResponseRealm4(instance: FireKit.QuestionnaireResponse) {
+	func testQuestionnaireResponseRealm4(_ instance: FireKit.QuestionnaireResponse) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -459,7 +459,7 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runQuestionnaireResponse4(_ json: FHIRJSON? = nil) throws -> FireKit.QuestionnaireResponse {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "questionnaireresponse-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaireresponse-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "#questauth")
 		XCTAssertEqual(inst.authored?.description, "2013-02-19T14:15:00-05:00")

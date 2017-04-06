@@ -2,7 +2,7 @@
 //  ClaimTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Claim {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Claim {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Claim {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Claim {
 		let instance = FireKit.Claim(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm1(instance: instance!)
+		testClaimRealm1(instance!)
 	}
 
     func testClaim1RealmPK() {        
@@ -67,7 +67,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm1(instance: FireKit.Claim) {
+	func testClaimRealm1(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim1(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-institutional.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-institutional.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)
@@ -158,7 +158,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm2(instance: instance!)
+		testClaimRealm2(instance!)
 	}
 
     func testClaim2RealmPK() {        
@@ -180,7 +180,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm2(instance: FireKit.Claim) {
+	func testClaimRealm2(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -218,7 +218,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim2(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-average.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-oral-average.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)
@@ -321,7 +321,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm3(instance: instance!)
+		testClaimRealm3(instance!)
 	}
 
     func testClaim3RealmPK() {        
@@ -343,7 +343,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm3(instance: FireKit.Claim) {
+	func testClaimRealm3(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -381,7 +381,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim3(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-contained.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-oral-contained.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "organization-1")
 		XCTAssertEqual(inst.contained[1].id, "organization-2")
@@ -438,7 +438,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm4(instance: instance!)
+		testClaimRealm4(instance!)
 	}
 
     func testClaim4RealmPK() {        
@@ -460,7 +460,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm4(instance: FireKit.Claim) {
+	func testClaimRealm4(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -498,7 +498,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim4(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-oral-orthoplan.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-oral-orthoplan.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)
@@ -655,7 +655,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm5(instance: instance!)
+		testClaimRealm5(instance!)
 	}
 
     func testClaim5RealmPK() {        
@@ -677,7 +677,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm5(instance: FireKit.Claim) {
+	func testClaimRealm5(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -715,7 +715,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim5(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-pharmacy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-pharmacy.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)
@@ -768,7 +768,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm6(instance: instance!)
+		testClaimRealm6(instance!)
 	}
 
     func testClaim6RealmPK() {        
@@ -790,7 +790,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm6(instance: FireKit.Claim) {
+	func testClaimRealm6(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -828,7 +828,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim6(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-professional.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-professional.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)
@@ -881,7 +881,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm7(instance: instance!)
+		testClaimRealm7(instance!)
 	}
 
     func testClaim7RealmPK() {        
@@ -903,7 +903,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm7(instance: FireKit.Claim) {
+	func testClaimRealm7(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -941,7 +941,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim7(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision-glasses.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-vision-glasses.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)
@@ -1027,7 +1027,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm8(instance: instance!)
+		testClaimRealm8(instance!)
 	}
 
     func testClaim8RealmPK() {        
@@ -1049,7 +1049,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm8(instance: FireKit.Claim) {
+	func testClaimRealm8(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1087,7 +1087,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim8(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example-vision.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-vision.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)
@@ -1140,7 +1140,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
 		}
 
-		testClaimRealm9(instance: instance!)
+		testClaimRealm9(instance!)
 	}
 
     func testClaim9RealmPK() {        
@@ -1162,7 +1162,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClaimRealm9(instance: FireKit.Claim) {
+	func testClaimRealm9(_ instance: FireKit.Claim) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1200,7 +1200,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runClaim9(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "claim-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
 		XCTAssertTrue(inst.coverage[0].focal.value ?? false)

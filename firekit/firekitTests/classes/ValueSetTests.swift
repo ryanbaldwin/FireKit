@@ -2,7 +2,7 @@
 //  ValueSetTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ValueSet {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ValueSet {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ValueSet {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ValueSet {
 		let instance = FireKit.ValueSet(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
 		}
 
-		testValueSetRealm1(instance: instance!)
+		testValueSetRealm1(instance!)
 	}
 
     func testValueSet1RealmPK() {        
@@ -67,7 +67,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testValueSetRealm1(instance: FireKit.ValueSet) {
+	func testValueSetRealm1(_ instance: FireKit.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runValueSet1(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-expansion.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-expansion.json")
 		
 		XCTAssertEqual(inst.compose?.include[0].filter[0].op, "=")
 		XCTAssertEqual(inst.compose?.include[0].filter[0].property, "parent")
@@ -188,7 +188,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
 		}
 
-		testValueSetRealm2(instance: instance!)
+		testValueSetRealm2(instance!)
 	}
 
     func testValueSet2RealmPK() {        
@@ -210,7 +210,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testValueSetRealm2(instance: FireKit.ValueSet) {
+	func testValueSetRealm2(_ instance: FireKit.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -248,7 +248,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runValueSet2(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-inline.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-inline.json")
 		
 		XCTAssertTrue(inst.codeSystem?.caseSensitive.value ?? false)
 		XCTAssertEqual(inst.codeSystem?.concept[0].code, "chol-mmol")
@@ -307,7 +307,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
 		}
 
-		testValueSetRealm3(instance: instance!)
+		testValueSetRealm3(instance!)
 	}
 
     func testValueSet3RealmPK() {        
@@ -329,7 +329,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testValueSetRealm3(instance: FireKit.ValueSet) {
+	func testValueSetRealm3(_ instance: FireKit.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -367,7 +367,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runValueSet3(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-intensional.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-intensional.json")
 		
 		XCTAssertEqual(inst.compose?.exclude[0].concept[0].code, "5932-9")
 		XCTAssertEqual(inst.compose?.exclude[0].concept[0].display, "Cholesterol [Presence] in Blood by Test strip")
@@ -412,7 +412,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
 		}
 
-		testValueSetRealm4(instance: instance!)
+		testValueSetRealm4(instance!)
 	}
 
     func testValueSet4RealmPK() {        
@@ -434,7 +434,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testValueSetRealm4(instance: FireKit.ValueSet) {
+	func testValueSetRealm4(_ instance: FireKit.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -472,7 +472,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runValueSet4(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example-yesnodontknow.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-yesnodontknow.json")
 		
 		XCTAssertEqual(inst.compose?.import_fhir[0].value, "http://hl7.org/fhir/ValueSet/v2-0136")
 		XCTAssertEqual(inst.compose?.include[0].concept[0].code, "asked")
@@ -515,7 +515,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
 		}
 
-		testValueSetRealm5(instance: instance!)
+		testValueSetRealm5(instance!)
 	}
 
     func testValueSet5RealmPK() {        
@@ -537,7 +537,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testValueSetRealm5(instance: FireKit.ValueSet) {
+	func testValueSetRealm5(_ instance: FireKit.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -575,7 +575,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runValueSet5(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example.json")
 		
 		XCTAssertEqual(inst.compose?.include[0].concept[0].code, "14647-2")
 		XCTAssertEqual(inst.compose?.include[0].concept[0].display, "Cholesterol [Moles/Volume]")
@@ -624,7 +624,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
 		}
 
-		testValueSetRealm6(instance: instance!)
+		testValueSetRealm6(instance!)
 	}
 
     func testValueSet6RealmPK() {        
@@ -646,7 +646,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testValueSetRealm6(instance: FireKit.ValueSet) {
+	func testValueSetRealm6(_ instance: FireKit.ValueSet) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -684,7 +684,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runValueSet6(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "valueset-list-example-codes.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-list-example-codes.json")
 		
 		XCTAssertTrue(inst.codeSystem?.caseSensitive.value ?? false)
 		XCTAssertEqual(inst.codeSystem?.concept[0].code, "alerts")

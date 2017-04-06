@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Provenance {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Provenance {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Provenance {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Provenance {
 		let instance = FireKit.Provenance(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
 		}
 
-		testProvenanceRealm1(instance: instance!)
+		testProvenanceRealm1(instance!)
 	}
 
     func testProvenance1RealmPK() {        
@@ -67,7 +67,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProvenanceRealm1(instance: FireKit.Provenance) {
+	func testProvenanceRealm1(_ instance: FireKit.Provenance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProvenance1(_ json: FHIRJSON? = nil) throws -> FireKit.Provenance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example-sig.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("provenance-example-sig.json")
 		
 		XCTAssertEqual(inst.activity?.coding[0].code, "AU")
 		XCTAssertEqual(inst.activity?.coding[0].display, "authenticated")
@@ -150,7 +150,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw")
 		}
 
-		testProvenanceRealm2(instance: instance!)
+		testProvenanceRealm2(instance!)
 	}
 
     func testProvenance2RealmPK() {        
@@ -172,7 +172,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProvenanceRealm2(instance: FireKit.Provenance) {
+	func testProvenanceRealm2(_ instance: FireKit.Provenance) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -210,7 +210,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runProvenance2(_ json: FHIRJSON? = nil) throws -> FireKit.Provenance {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "provenance-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("provenance-example.json")
 		
 		XCTAssertEqual(inst.agent[0].actor?.reference, "Practitioner/xcda-author")
 		XCTAssertEqual(inst.agent[0].relatedAgent[0].target, "#a1")

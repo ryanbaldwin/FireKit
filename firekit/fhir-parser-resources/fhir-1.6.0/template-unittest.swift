@@ -19,11 +19,11 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.{{ class.name }} {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.{{ class.name }} {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.{{ class.name }} {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.{{ class.name }} {
 		let instance = FireKit.{{ class.name }}(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -47,7 +47,7 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test {{ class.name }} successfully, but threw")
 		}
 
-		test{{ class.name}}Realm{{ loop.index}}(instance: instance!)
+		test{{ class.name}}Realm{{ loop.index}}(instance!)
 	}
 
     func test{{ class.name }}{{ loop.index }}RealmPK() {        
@@ -69,7 +69,7 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func test{{ class.name}}Realm{{ loop.index }}(instance: FireKit.{{class.name}}) {
+	func test{{ class.name}}Realm{{ loop.index }}(_ instance: FireKit.{{class.name}}) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -107,7 +107,7 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func run{{ class.name }}{{ loop.index }}(_ json: FHIRJSON? = nil) throws -> FireKit.{{ class.name }} {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "{{ tcase.filename }}")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("{{ tcase.filename }}")
 		{% for onetest in tcase.tests %}
 		{%- if "String" == onetest.klass.name %}
 		XCTAssertEqual(inst.{{ onetest.path|expand_test_path(tcase.klass) }}, "{{ onetest.value|replace('\t', '\\t')|replace('"', '\\"') }}")

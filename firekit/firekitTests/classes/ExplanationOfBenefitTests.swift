@@ -2,7 +2,7 @@
 //  ExplanationOfBenefitTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ExplanationOfBenefit {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ExplanationOfBenefit {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ExplanationOfBenefit {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ExplanationOfBenefit {
 		let instance = FireKit.ExplanationOfBenefit(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit successfully, but threw")
 		}
 
-		testExplanationOfBenefitRealm1(instance: instance!)
+		testExplanationOfBenefitRealm1(instance!)
 	}
 
     func testExplanationOfBenefit1RealmPK() {        
@@ -67,7 +67,7 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testExplanationOfBenefitRealm1(instance: FireKit.ExplanationOfBenefit) {
+	func testExplanationOfBenefitRealm1(_ instance: FireKit.ExplanationOfBenefit) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runExplanationOfBenefit1(_ json: FHIRJSON? = nil) throws -> FireKit.ExplanationOfBenefit {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "explanationofbenefit-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("explanationofbenefit-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")
 		XCTAssertEqual(inst.disposition, "Claim settled as per contract.")

@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Media {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Media {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Media {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Media {
 		let instance = FireKit.Media(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
 		}
 
-		testMediaRealm1(instance: instance!)
+		testMediaRealm1(instance!)
 	}
 
     func testMedia1RealmPK() {        
@@ -67,7 +67,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testMediaRealm1(instance: FireKit.Media) {
+	func testMediaRealm1(_ instance: FireKit.Media) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runMedia1(_ json: FHIRJSON? = nil) throws -> FireKit.Media {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-dicom.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("media-example-dicom.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "application/dicom")
 		XCTAssertEqual(inst.deviceName, "G.E. Medical Systems")
@@ -155,7 +155,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
 		}
 
-		testMediaRealm2(instance: instance!)
+		testMediaRealm2(instance!)
 	}
 
     func testMedia2RealmPK() {        
@@ -177,7 +177,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testMediaRealm2(instance: FireKit.Media) {
+	func testMediaRealm2(_ instance: FireKit.Media) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -215,7 +215,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runMedia2(_ json: FHIRJSON? = nil) throws -> FireKit.Media {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example-sound.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("media-example-sound.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "audio/mpeg")
 		XCTAssertTrue(inst.content?.data! == Base64Binary(val: "dG9vIGJpZyB0b28gaW5jbHVkZSB0aGUgd2hvbGU="))
@@ -247,7 +247,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
 		}
 
-		testMediaRealm3(instance: instance!)
+		testMediaRealm3(instance!)
 	}
 
     func testMedia3RealmPK() {        
@@ -269,7 +269,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testMediaRealm3(instance: FireKit.Media) {
+	func testMediaRealm3(_ instance: FireKit.Media) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -307,7 +307,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runMedia3(_ json: FHIRJSON? = nil) throws -> FireKit.Media {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "media-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("media-example.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "image/gif")
 		XCTAssertEqual(inst.content?.creation?.description, "2009-09-03")

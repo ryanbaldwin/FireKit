@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ImplementationGuide {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ImplementationGuide {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ImplementationGuide {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImplementationGuide {
 		let instance = FireKit.ImplementationGuide(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ImplementationGuide successfully, but threw")
 		}
 
-		testImplementationGuideRealm1(instance: instance!)
+		testImplementationGuideRealm1(instance!)
 	}
 
     func testImplementationGuide1RealmPK() {        
@@ -67,7 +67,7 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testImplementationGuideRealm1(instance: FireKit.ImplementationGuide) {
+	func testImplementationGuideRealm1(_ instance: FireKit.ImplementationGuide) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runImplementationGuide1(_ json: FHIRJSON? = nil) throws -> FireKit.ImplementationGuide {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "implementationguide-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("implementationguide-example.json")
 		
 		XCTAssertEqual(inst.binary[0].value, "http://h7.org/fhir/fhir.css")
 		XCTAssertEqual(inst.contact[0].name, "ONC")

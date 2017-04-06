@@ -2,7 +2,7 @@
 //  ParametersTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Parameters {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Parameters {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Parameters {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Parameters {
 		let instance = FireKit.Parameters(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw")
 		}
 
-		testParametersRealm1(instance: instance!)
+		testParametersRealm1(instance!)
 	}
 
     func testParameters1RealmPK() {        
@@ -67,7 +67,7 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testParametersRealm1(instance: FireKit.Parameters) {
+	func testParametersRealm1(_ instance: FireKit.Parameters) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runParameters1(_ json: FHIRJSON? = nil) throws -> FireKit.Parameters {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "parameters-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("parameters-example.json")
 		
 		XCTAssertEqual(inst.id, "example")
 		XCTAssertEqual(inst.parameter[0].name, "start")

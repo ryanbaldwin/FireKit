@@ -2,7 +2,7 @@
 //  AppointmentTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Appointment {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Appointment {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Appointment {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Appointment {
 		let instance = FireKit.Appointment(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
 		}
 
-		testAppointmentRealm1(instance: instance!)
+		testAppointmentRealm1(instance!)
 	}
 
     func testAppointment1RealmPK() {        
@@ -67,7 +67,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAppointmentRealm1(instance: FireKit.Appointment) {
+	func testAppointmentRealm1(_ instance: FireKit.Appointment) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAppointment1(_ json: FHIRJSON? = nil) throws -> FireKit.Appointment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example-request.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointment-example-request.json")
 		
 		XCTAssertEqual(inst.comment, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
 		XCTAssertEqual(inst.description_fhir, "Discussion on the results of your recent MRI")
@@ -152,7 +152,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
 		}
 
-		testAppointmentRealm2(instance: instance!)
+		testAppointmentRealm2(instance!)
 	}
 
     func testAppointment2RealmPK() {        
@@ -174,7 +174,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAppointmentRealm2(instance: FireKit.Appointment) {
+	func testAppointmentRealm2(_ instance: FireKit.Appointment) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -212,7 +212,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAppointment2(_ json: FHIRJSON? = nil) throws -> FireKit.Appointment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointment-example.json")
 		
 		XCTAssertEqual(inst.comment, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
 		XCTAssertEqual(inst.description_fhir, "Discussion on the results of your recent MRI")
@@ -258,7 +258,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
 		}
 
-		testAppointmentRealm3(instance: instance!)
+		testAppointmentRealm3(instance!)
 	}
 
     func testAppointment3RealmPK() {        
@@ -280,7 +280,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testAppointmentRealm3(instance: FireKit.Appointment) {
+	func testAppointmentRealm3(_ instance: FireKit.Appointment) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -318,7 +318,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runAppointment3(_ json: FHIRJSON? = nil) throws -> FireKit.Appointment {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "appointment-example2doctors.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointment-example2doctors.json")
 		
 		XCTAssertEqual(inst.comment, "Clarify the results of the MRI to ensure context of test was correct")
 		XCTAssertEqual(inst.description_fhir, "Discussion about Peter Chalmers MRI results")

@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.NutritionOrder {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.NutritionOrder {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.NutritionOrder {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.NutritionOrder {
 		let instance = FireKit.NutritionOrder(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm1(instance: instance!)
+		testNutritionOrderRealm1(instance!)
 	}
 
     func testNutritionOrder1RealmPK() {        
@@ -67,7 +67,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm1(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm1(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder1(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-cardiacdiet.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-cardiacdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance[0].reference, "AllergyIntolerance/example")
@@ -176,7 +176,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm2(instance: instance!)
+		testNutritionOrderRealm2(instance!)
 	}
 
     func testNutritionOrder2RealmPK() {        
@@ -198,7 +198,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm2(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm2(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -236,7 +236,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder2(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-diabeticdiet.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-diabeticdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance[0].reference, "AllergyIntolerance/example")
@@ -296,7 +296,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm3(instance: instance!)
+		testNutritionOrderRealm3(instance!)
 	}
 
     func testNutritionOrder3RealmPK() {        
@@ -318,7 +318,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm3(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm3(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -356,7 +356,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder3(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-diabeticsupplement.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-diabeticsupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance[0].reference, "AllergyIntolerance/example")
@@ -415,7 +415,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm4(instance: instance!)
+		testNutritionOrderRealm4(instance!)
 	}
 
     func testNutritionOrder4RealmPK() {        
@@ -437,7 +437,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm4(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm4(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -475,7 +475,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder4(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-energysupplement.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-energysupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance[0].reference, "AllergyIntolerance/example")
@@ -531,7 +531,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm5(instance: instance!)
+		testNutritionOrderRealm5(instance!)
 	}
 
     func testNutritionOrder5RealmPK() {        
@@ -553,7 +553,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm5(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm5(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -591,7 +591,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder5(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-enteralbolus.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-enteralbolus.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance[0].reference, "AllergyIntolerance/example")
@@ -661,7 +661,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm6(instance: instance!)
+		testNutritionOrderRealm6(instance!)
 	}
 
     func testNutritionOrder6RealmPK() {        
@@ -683,7 +683,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm6(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm6(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -721,7 +721,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder6(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-enteralcontinuous.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-enteralcontinuous.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.encounter?.display, "Inpatient")
@@ -786,7 +786,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm7(instance: instance!)
+		testNutritionOrderRealm7(instance!)
 	}
 
     func testNutritionOrder7RealmPK() {        
@@ -808,7 +808,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm7(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm7(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -846,7 +846,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder7(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-fiberrestricteddiet.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-fiberrestricteddiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
 		XCTAssertEqual(inst.allergyIntolerance[0].reference, "AllergyIntolerance/example")
@@ -913,7 +913,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm8(instance: instance!)
+		testNutritionOrderRealm8(instance!)
 	}
 
     func testNutritionOrder8RealmPK() {        
@@ -935,7 +935,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm8(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm8(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -973,7 +973,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder8(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-infantenteral.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-infantenteral.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.encounter?.display, "Inpatient")
@@ -1036,7 +1036,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm9(instance: instance!)
+		testNutritionOrderRealm9(instance!)
 	}
 
     func testNutritionOrder9RealmPK() {        
@@ -1058,7 +1058,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm9(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm9(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1096,7 +1096,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder9(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-proteinsupplement.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-proteinsupplement.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.encounter?.display, "Inpatient")
@@ -1145,7 +1145,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
 		}
 
-		testNutritionOrderRealm10(instance: instance!)
+		testNutritionOrderRealm10(instance!)
 	}
 
     func testNutritionOrder10RealmPK() {        
@@ -1167,7 +1167,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testNutritionOrderRealm10(instance: FireKit.NutritionOrder) {
+	func testNutritionOrderRealm10(_ instance: FireKit.NutritionOrder) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1205,7 +1205,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runNutritionOrder10(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "nutritionorder-example-pureeddiet-simple.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-pureeddiet-simple.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
 		XCTAssertEqual(inst.id, "pureeddiet-simple")

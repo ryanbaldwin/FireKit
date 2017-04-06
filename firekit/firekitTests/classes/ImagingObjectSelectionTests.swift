@@ -2,7 +2,7 @@
 //  ImagingObjectSelectionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.ImagingObjectSelection {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.ImagingObjectSelection {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.ImagingObjectSelection {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImagingObjectSelection {
 		let instance = FireKit.ImagingObjectSelection(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test ImagingObjectSelection successfully, but threw")
 		}
 
-		testImagingObjectSelectionRealm1(instance: instance!)
+		testImagingObjectSelectionRealm1(instance!)
 	}
 
     func testImagingObjectSelection1RealmPK() {        
@@ -67,7 +67,7 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testImagingObjectSelectionRealm1(instance: FireKit.ImagingObjectSelection) {
+	func testImagingObjectSelectionRealm1(_ instance: FireKit.ImagingObjectSelection) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runImagingObjectSelection1(_ json: FHIRJSON? = nil) throws -> FireKit.ImagingObjectSelection {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "imagingobjectselection-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("imagingobjectselection-example.json")
 		
 		XCTAssertEqual(inst.authoringTime?.description, "2014-11-20T11:01:20-08:00")
 		XCTAssertEqual(inst.description_fhir, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")

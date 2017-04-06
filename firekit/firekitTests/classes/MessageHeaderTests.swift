@@ -2,7 +2,7 @@
 //  MessageHeaderTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.MessageHeader {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.MessageHeader {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.MessageHeader {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.MessageHeader {
 		let instance = FireKit.MessageHeader(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test MessageHeader successfully, but threw")
 		}
 
-		testMessageHeaderRealm1(instance: instance!)
+		testMessageHeaderRealm1(instance!)
 	}
 
     func testMessageHeader1RealmPK() {        
@@ -67,7 +67,7 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testMessageHeaderRealm1(instance: FireKit.MessageHeader) {
+	func testMessageHeaderRealm1(_ instance: FireKit.MessageHeader) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runMessageHeader1(_ json: FHIRJSON? = nil) throws -> FireKit.MessageHeader {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "messageheader-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("messageheader-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
 		XCTAssertEqual(inst.data[0].reference, "Patient/example")

@@ -2,7 +2,7 @@
 //  SearchParameterTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.SearchParameter {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.SearchParameter {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.SearchParameter {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.SearchParameter {
 		let instance = FireKit.SearchParameter(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw")
 		}
 
-		testSearchParameterRealm1(instance: instance!)
+		testSearchParameterRealm1(instance!)
 	}
 
     func testSearchParameter1RealmPK() {        
@@ -67,7 +67,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSearchParameterRealm1(instance: FireKit.SearchParameter) {
+	func testSearchParameterRealm1(_ instance: FireKit.SearchParameter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSearchParameter1(_ json: FHIRJSON? = nil) throws -> FireKit.SearchParameter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example-extension.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("searchparameter-example-extension.json")
 		
 		XCTAssertEqual(inst.base, "Patient")
 		XCTAssertEqual(inst.code, "part-agree")
@@ -141,7 +141,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test SearchParameter successfully, but threw")
 		}
 
-		testSearchParameterRealm2(instance: instance!)
+		testSearchParameterRealm2(instance!)
 	}
 
     func testSearchParameter2RealmPK() {        
@@ -163,7 +163,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSearchParameterRealm2(instance: FireKit.SearchParameter) {
+	func testSearchParameterRealm2(_ instance: FireKit.SearchParameter) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -201,7 +201,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runSearchParameter2(_ json: FHIRJSON? = nil) throws -> FireKit.SearchParameter {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "searchparameter-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("searchparameter-example.json")
 		
 		XCTAssertEqual(inst.base, "Resource")
 		XCTAssertEqual(inst.code, "_id")

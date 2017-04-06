@@ -2,7 +2,7 @@
 //  GroupTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Group {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Group {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Group {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Group {
 		let instance = FireKit.Group(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
 		}
 
-		testGroupRealm1(instance: instance!)
+		testGroupRealm1(instance!)
 	}
 
     func testGroup1RealmPK() {        
@@ -67,7 +67,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testGroupRealm1(instance: FireKit.Group) {
+	func testGroupRealm1(_ instance: FireKit.Group) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runGroup1(_ json: FHIRJSON? = nil) throws -> FireKit.Group {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example-member.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("group-example-member.json")
 		
 		XCTAssertTrue(inst.actual.value ?? false)
 		XCTAssertEqual(inst.id, "102")
@@ -140,7 +140,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
 		}
 
-		testGroupRealm2(instance: instance!)
+		testGroupRealm2(instance!)
 	}
 
     func testGroup2RealmPK() {        
@@ -162,7 +162,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testGroupRealm2(instance: FireKit.Group) {
+	func testGroupRealm2(_ instance: FireKit.Group) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -200,7 +200,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runGroup2(_ json: FHIRJSON? = nil) throws -> FireKit.Group {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "group-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("group-example.json")
 		
 		XCTAssertTrue(inst.actual.value ?? false)
 		XCTAssertEqual(inst.characteristic[0].code?.text, "gender")

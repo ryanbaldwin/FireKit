@@ -2,7 +2,7 @@
 //  EpisodeOfCareTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.EpisodeOfCare {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.EpisodeOfCare {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.EpisodeOfCare {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.EpisodeOfCare {
 		let instance = FireKit.EpisodeOfCare(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test EpisodeOfCare successfully, but threw")
 		}
 
-		testEpisodeOfCareRealm1(instance: instance!)
+		testEpisodeOfCareRealm1(instance!)
 	}
 
     func testEpisodeOfCare1RealmPK() {        
@@ -67,7 +67,7 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testEpisodeOfCareRealm1(instance: FireKit.EpisodeOfCare) {
+	func testEpisodeOfCareRealm1(_ instance: FireKit.EpisodeOfCare) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runEpisodeOfCare1(_ json: FHIRJSON? = nil) throws -> FireKit.EpisodeOfCare {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "episodeofcare-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("episodeofcare-example.json")
 		
 		XCTAssertEqual(inst.careManager?.display, "Amanda Assigned")
 		XCTAssertEqual(inst.careManager?.reference, "Practitioner/14")

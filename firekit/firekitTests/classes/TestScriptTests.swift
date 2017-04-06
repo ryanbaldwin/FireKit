@@ -2,7 +2,7 @@
 //  TestScriptTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.TestScript {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.TestScript {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.TestScript {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.TestScript {
 		let instance = FireKit.TestScript(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
 		}
 
-		testTestScriptRealm1(instance: instance!)
+		testTestScriptRealm1(instance!)
 	}
 
     func testTestScript1RealmPK() {        
@@ -67,7 +67,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testTestScriptRealm1(instance: FireKit.TestScript) {
+	func testTestScriptRealm1(_ instance: FireKit.TestScript) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runTestScript1(_ json: FHIRJSON? = nil) throws -> FireKit.TestScript {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example-multiserver.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("testscript-example-multiserver.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Multiserver Test Script")
 		XCTAssertEqual(inst.fixture[0].id, "F1")
@@ -216,7 +216,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
 		}
 
-		testTestScriptRealm2(instance: instance!)
+		testTestScriptRealm2(instance!)
 	}
 
     func testTestScript2RealmPK() {        
@@ -238,7 +238,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testTestScriptRealm2(instance: FireKit.TestScript) {
+	func testTestScriptRealm2(_ instance: FireKit.TestScript) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -276,7 +276,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runTestScript2(_ json: FHIRJSON? = nil) throws -> FireKit.TestScript {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "testscript-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("testscript-example.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "Support")
 		XCTAssertEqual(inst.contact[0].telecom[0].system, "email")

@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.Location {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.Location {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.Location {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Location {
 		let instance = FireKit.Location(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 
-		testLocationRealm1(instance: instance!)
+		testLocationRealm1(instance!)
 	}
 
     func testLocation1RealmPK() {        
@@ -67,7 +67,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testLocationRealm1(instance: FireKit.Location) {
+	func testLocationRealm1(_ instance: FireKit.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runLocation1(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ambulance.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-ambulance.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Ambulance provided by Burgers University Medical Center")
 		XCTAssertEqual(inst.id, "amb")
@@ -144,7 +144,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 
-		testLocationRealm2(instance: instance!)
+		testLocationRealm2(instance!)
 	}
 
     func testLocation2RealmPK() {        
@@ -166,7 +166,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testLocationRealm2(instance: FireKit.Location) {
+	func testLocationRealm2(_ instance: FireKit.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -204,7 +204,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runLocation2(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-hl7hq.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-hl7hq.json")
 		
 		XCTAssertEqual(inst.address?.city, "Ann Arbor")
 		XCTAssertEqual(inst.address?.country, "USA")
@@ -251,7 +251,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 
-		testLocationRealm3(instance: instance!)
+		testLocationRealm3(instance!)
 	}
 
     func testLocation3RealmPK() {        
@@ -273,7 +273,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testLocationRealm3(instance: FireKit.Location) {
+	func testLocationRealm3(_ instance: FireKit.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -311,7 +311,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runLocation3(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-patients-home.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-patients-home.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Patient's Home")
 		XCTAssertEqual(inst.id, "ph")
@@ -347,7 +347,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 
-		testLocationRealm4(instance: instance!)
+		testLocationRealm4(instance!)
 	}
 
     func testLocation4RealmPK() {        
@@ -369,7 +369,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testLocationRealm4(instance: FireKit.Location) {
+	func testLocationRealm4(_ instance: FireKit.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -407,7 +407,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runLocation4(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-room.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-room.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
 		XCTAssertEqual(inst.id, "2")
@@ -447,7 +447,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 
-		testLocationRealm5(instance: instance!)
+		testLocationRealm5(instance!)
 	}
 
     func testLocation5RealmPK() {        
@@ -469,7 +469,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testLocationRealm5(instance: FireKit.Location) {
+	func testLocationRealm5(_ instance: FireKit.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -507,7 +507,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runLocation5(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example-ukpharmacy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-ukpharmacy.json")
 		
 		XCTAssertEqual(inst.description_fhir, "All Pharmacies in the United Kingdom covered by the National Pharmacy Association")
 		XCTAssertEqual(inst.id, "ukp")
@@ -542,7 +542,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
 		}
 
-		testLocationRealm6(instance: instance!)
+		testLocationRealm6(instance!)
 	}
 
     func testLocation6RealmPK() {        
@@ -564,7 +564,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testLocationRealm6(instance: FireKit.Location) {
+	func testLocationRealm6(_ instance: FireKit.Location) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -602,7 +602,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runLocation6(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "location-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example.json")
 		
 		XCTAssertEqual(inst.address?.city, "Den Burg")
 		XCTAssertEqual(inst.address?.country, "NLD")

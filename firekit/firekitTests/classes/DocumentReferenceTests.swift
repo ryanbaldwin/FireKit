@@ -2,7 +2,7 @@
 //  DocumentReferenceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.DocumentReference {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.DocumentReference {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.DocumentReference {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DocumentReference {
 		let instance = FireKit.DocumentReference(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test DocumentReference successfully, but threw")
 		}
 
-		testDocumentReferenceRealm1(instance: instance!)
+		testDocumentReferenceRealm1(instance!)
 	}
 
     func testDocumentReference1RealmPK() {        
@@ -67,7 +67,7 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDocumentReferenceRealm1(instance: FireKit.DocumentReference) {
+	func testDocumentReferenceRealm1(_ instance: FireKit.DocumentReference) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runDocumentReference1(_ json: FHIRJSON? = nil) throws -> FireKit.DocumentReference {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "documentreference-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("documentreference-example.json")
 		
 		XCTAssertEqual(inst.authenticator?.reference, "Organization/organization-example")
 		XCTAssertEqual(inst.author[0].reference, "Practitioner/xcda1")

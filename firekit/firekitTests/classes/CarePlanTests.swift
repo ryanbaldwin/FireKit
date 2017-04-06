@@ -2,7 +2,7 @@
 //  CarePlanTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-03.
+//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -19,11 +19,11 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 		realm = makeRealm()
 	}
 
-	func instantiateFrom(filename: String) throws -> FireKit.CarePlan {
-		return instantiateFrom(json: try readJSONFile(filename))
+	func instantiateFrom(_ filename: String) throws -> FireKit.CarePlan {
+		return instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(json: FHIRJSON) -> FireKit.CarePlan {
+	func instantiateFrom(_ json: FHIRJSON) -> FireKit.CarePlan {
 		let instance = FireKit.CarePlan(json: json)
 		XCTAssertNotNil(instance, "Must have instantiated a test instance")
 		return instance
@@ -45,7 +45,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm1(instance: instance!)
+		testCarePlanRealm1(instance!)
 	}
 
     func testCarePlan1RealmPK() {        
@@ -67,7 +67,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm1(instance: FireKit.CarePlan) {
+	func testCarePlanRealm1(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -105,7 +105,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan1(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f001-heart.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "procedure")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
@@ -154,7 +154,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm2(instance: instance!)
+		testCarePlanRealm2(instance!)
 	}
 
     func testCarePlan2RealmPK() {        
@@ -176,7 +176,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm2(instance: FireKit.CarePlan) {
+	func testCarePlanRealm2(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -214,7 +214,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan2(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f002-lung.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "procedure")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
@@ -263,7 +263,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm3(instance: instance!)
+		testCarePlanRealm3(instance!)
 	}
 
     func testCarePlan3RealmPK() {        
@@ -285,7 +285,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm3(instance: FireKit.CarePlan) {
+	func testCarePlanRealm3(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -323,7 +323,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan3(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f003-pharynx.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f003-pharynx.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "procedure")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
@@ -372,7 +372,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm4(instance: instance!)
+		testCarePlanRealm4(instance!)
 	}
 
     func testCarePlan4RealmPK() {        
@@ -394,7 +394,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm4(instance: FireKit.CarePlan) {
+	func testCarePlanRealm4(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -432,7 +432,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan4(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f201-renal.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f201-renal.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "diet")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
@@ -497,7 +497,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm5(instance: instance!)
+		testCarePlanRealm5(instance!)
 	}
 
     func testCarePlan5RealmPK() {        
@@ -519,7 +519,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm5(instance: FireKit.CarePlan) {
+	func testCarePlanRealm5(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -557,7 +557,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan5(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f202-malignancy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.activity[0].actionResulting[0].display, "Roel's Chemotherapy")
 		XCTAssertEqual(inst.activity[0].actionResulting[0].reference, "Procedure/f201")
@@ -607,7 +607,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm6(instance: instance!)
+		testCarePlanRealm6(instance!)
 	}
 
     func testCarePlan6RealmPK() {        
@@ -629,7 +629,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm6(instance: FireKit.CarePlan) {
+	func testCarePlanRealm6(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -667,7 +667,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan6(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-f203-sepsis.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "observation")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
@@ -718,7 +718,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm7(instance: instance!)
+		testCarePlanRealm7(instance!)
 	}
 
     func testCarePlan7RealmPK() {        
@@ -740,7 +740,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm7(instance: FireKit.CarePlan) {
+	func testCarePlanRealm7(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -778,7 +778,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan7(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-GPVisit.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-GPVisit.json")
 		
 		XCTAssertEqual(inst.activity[0].actionResulting[0].reference, "Encounter/example")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "encounter")
@@ -844,7 +844,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm8(instance: instance!)
+		testCarePlanRealm8(instance!)
 	}
 
     func testCarePlan8RealmPK() {        
@@ -866,7 +866,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm8(instance: FireKit.CarePlan) {
+	func testCarePlanRealm8(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -904,7 +904,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan8(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-integrated.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-integrated.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "other")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
@@ -1064,7 +1064,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm9(instance: instance!)
+		testCarePlanRealm9(instance!)
 	}
 
     func testCarePlan9RealmPK() {        
@@ -1086,7 +1086,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm9(instance: FireKit.CarePlan) {
+	func testCarePlanRealm9(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1124,7 +1124,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan9(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example-pregnancy.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-pregnancy.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "encounter")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
@@ -1210,7 +1210,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 			XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw")
 		}
 
-		testCarePlanRealm10(instance: instance!)
+		testCarePlanRealm10(instance!)
 	}
 
     func testCarePlan10RealmPK() {        
@@ -1232,7 +1232,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCarePlanRealm10(instance: FireKit.CarePlan) {
+	func testCarePlanRealm10(_ instance: FireKit.CarePlan) {
 		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
 		try! realm.write {
@@ -1270,7 +1270,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	
 	@discardableResult
 	func runCarePlan10(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
-		let inst = (nil != json) ? instantiateFrom(json: json!) : try instantiateFrom(filename: "careplan-example.json")
+		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "observation")
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].system, "http://hl7.org/fhir/care-plan-activity-category")
