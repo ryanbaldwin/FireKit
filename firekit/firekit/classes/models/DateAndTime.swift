@@ -12,16 +12,13 @@ import RealmSwift
 /**
 A protocol for all our date and time structs.
 */
-protocol DateAndTime: CustomStringConvertible, Comparable, Equatable, RealmOptionalType {
+protocol DateAndTime: CustomStringConvertible, Comparable, Equatable {
 	
 	var nsDate: Date { get }
 }
 
-/**
-A date for use in human communication. Named `FHIRDate` to avoid the numerous collisions with `Foundation.Date`.
-
-Month and day are optional and there are no timezones.
-*/
+/// A date for use in human communication. Named `FHIRDate` to avoid the numerous collisions with `Foundation.Date`.
+/// Month and day are optional and there are no timezones.
 final public class FHIRDate: Object, DateAndTime {
 	
 	/// The year.
@@ -69,7 +66,7 @@ final public class FHIRDate: Object, DateAndTime {
 	- parameter day:   The day of the month – your responsibility to ensure the month has the desired number of days; ignored if no month is
 	                   given
 	*/
-	convenience public init(year: Int, month: Int8?, day: Int8?) {
+	convenience public init(year: Int, month: Int8? = nil, day: Int8? = nil) {
         self.init()
 		self.year = year
         self.month = month
@@ -317,11 +314,22 @@ final public class DateTime: Object, DateAndTime {
 	
 	/// The timezone
     public var timeZone: TimeZone? {
-        didSet {
-            timeZoneString = timeZone?.offset();
+        get {
+            if let identifier = timeZoneIdentifier {
+                return TimeZone(identifier: identifier)
+            }
+            
+            return nil
+        }
+        
+        set {
+            timeZoneIdentifier = newValue?.identifier
+            timeZoneString = newValue?.offset();
         }
     }
 	
+    private(set) dynamic var timeZoneIdentifier: String?
+    
     /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
 	private(set) dynamic var timeZoneString: String?
 	
@@ -332,11 +340,11 @@ final public class DateTime: Object, DateAndTime {
 	/**
 	This very date and time.
 	
-	- returns: A DateTime instance representing current date and time.
+	- returns: A DateTime instance representing current date and time, in the current timezone.
 	*/
 	public static var now: DateTime {
-		let (date, time, tz) = DateNSDateConverter.sharedConverter.parse(date: Date())
-		return DateTime(date: date, time: time, timeZone: tz)
+		let (date, time, _) = DateNSDateConverter.sharedConverter.parse(date: Date())
+		return DateTime(date: date, time: time)
 	}
 	
 	/**
@@ -348,18 +356,13 @@ final public class DateTime: Object, DateAndTime {
 	- parameter time:     The time of the date-time
 	- parameter timeZone: The timezone
 	*/
-	public convenience init(date: FHIRDate, time: FHIRTime?, timeZone: TimeZone?) {
+	public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone? = nil) {
         self.init()
 		self.date = date
-		self.time = time
-		if nil != time && nil == timeZone {
-			self.timeZone = TimeZone.current
-		}
-		else {
-			self.timeZone = timeZone
-		}
-
-		self.timeZoneString = self.timeZone?.offset()
+        if let time = time {
+            self.time = time
+            self.timeZone = timeZone ?? TimeZone.current
+        }
 	}
 	
 	/**
@@ -370,17 +373,14 @@ final public class DateTime: Object, DateAndTime {
 	- parameter string: The string the date-time is parsed from
 	*/
 	public convenience init?(string: String) {
-        self.init()
-		let (date, time, tz, tzString) = DateAndTimeParser.sharedParser.parse(string: string)
-		if nil == date {
-			return nil
-		}
-		self.date = date!
-		if let time = time {
-			self.time = time
-			self.timeZone = tz ?? TimeZone.current
-			self.timeZoneString = tzString
-		}
+        let (date, time, tz, tzString) = DateAndTimeParser.sharedParser.parse(string: string)
+        
+        guard let d = date else {
+            return nil
+        }
+		
+        self.init(date: d, time: time, timeZone: tz)
+        self.timeZoneString = tzString
 	}
 	
 	
@@ -802,13 +802,25 @@ extension TimeZone {
 		}
 		
 		let secsFromGMT = secondsFromGMT()
-		let hr = abs((secsFromGMT / 3600) - (secsFromGMT % 3600))
+		let hr = abs((secsFromGMT / 3600) - (((secsFromGMT % 3600) / 3600) * 60))
 		let min = abs((secsFromGMT % 3600) / 60)
 		
 		return (secsFromGMT >= 0 ? "+" : "-") + String(format: "%02d:%02d", hr, min)
 	}
 }
 
+extension Formatter {
+    static let iso8601Extended: DateFormatter = {
+        let formatter = DateFormatter()
+        
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        
+        return formatter
+    }()
+}
 
 /**
 Extend Scanner to account for interface differences between macOS and Linux (as of November 2016)
