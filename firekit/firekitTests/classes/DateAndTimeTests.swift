@@ -516,7 +516,6 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 	}
     
     func testTimezoneIsPersistedWhenDateIsSaved() {
-        
         let date = DateTime.now
         
         XCTAssertNotNil(date.time)
@@ -541,10 +540,16 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         XCTAssertNotNil(date2.date)
         XCTAssertNotNil(date2.nsDate)
         XCTAssertNotNil(date2.timeZoneString)
-        XCTAssertNotNil(date2.timeZone) // FAILS
-        XCTAssertEqual(date.nsDate, date2.nsDate) // FAILS
+        XCTAssertNotNil(date2.timeZone)
+        XCTAssertEqual(date.nsDate, date2.nsDate)
         XCTAssertEqual(date, date2)
-        
+    }
+    
+    func testDateTimeNowIsCorrectlySetToLocalTime() {
+        let dtNow = DateTime.now
+        let nsNow = Date()
+        let result = Calendar.current.compare(dtNow.nsDate, to: nsNow, toGranularity: .second)
+        XCTAssertEqual(result, ComparisonResult.orderedSame)
     }
 }
 

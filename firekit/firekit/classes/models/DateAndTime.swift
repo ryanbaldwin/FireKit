@@ -343,8 +343,19 @@ final public class DateTime: Object, DateAndTime {
 	- returns: A DateTime instance representing current date and time, in the current timezone.
 	*/
 	public static var now: DateTime {
-		let (date, time, _) = DateNSDateConverter.sharedConverter.parse(date: Date())
-		return DateTime(date: date, time: time)
+        // we need to shift the date over such that when assigned the local timezone 
+        // the date/time is actually right. Without doing this then we will be off by 
+        // whatever the actual timezone offset is.
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.timeZone = TimeZone.current
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        
+        let comp = Calendar.current.dateComponents(in: TimeZone.current, from: Date())
+        let localDate = Calendar.current.date(from: comp)!
+        return DateTime(string: formatter.string(from: localDate))!
+//		let (date, time, _) = DateNSDateConverter.sharedConverter.parse(date: localDate)
+//		return DateTime(date: date, time: time)
 	}
 	
 	/**
@@ -807,19 +818,6 @@ extension TimeZone {
 		
 		return (secsFromGMT >= 0 ? "+" : "-") + String(format: "%02d:%02d", hr, min)
 	}
-}
-
-extension Formatter {
-    static let iso8601Extended: DateFormatter = {
-        let formatter = DateFormatter()
-        
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-        
-        return formatter
-    }()
 }
 
 /**
