@@ -550,6 +550,13 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         let nsNow = Date()
         let result = Calendar.current.compare(dtNow.nsDate, to: nsNow, toGranularity: .second)
         XCTAssertEqual(result, ComparisonResult.orderedSame)
+        
+        // make sure it's still equal after we re-inflate it from Realm
+        let realm = makeRealm()
+        try! realm.write { realm.add(dtNow) }
+        let dtNow2 = realm.objects(DateTime.self).first!
+        let result2 = Calendar.current.compare(dtNow2.nsDate, to: nsNow, toGranularity: .second)
+        XCTAssertEqual(result2, ComparisonResult.orderedSame)
     }
 }
 
