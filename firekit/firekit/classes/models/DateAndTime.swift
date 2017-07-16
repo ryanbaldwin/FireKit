@@ -300,19 +300,33 @@ final public class FHIRTime: Object, DateAndTime {
 
 
 /**
-A date, optionally with time, as used in human communication.
-
-If a time is specified there must be a timezone; defaults to the system reported local timezone.
-*/
+ A date, optionally with time, as used in human communication.
+ 
+ If a time is specified there must be a timezone; defaults to the system reported local timezone.
+ */
 final public class DateTime: Object, DateAndTime {
-	
-	/// The date.
-	public dynamic var date: FHIRDate?
-	
-	/// The time.
-	public dynamic var time: FHIRTime?
-	
-	/// The timezone
+    
+    private dynamic var _date: FHIRDate?
+    /// The date.
+    public dynamic var date: FHIRDate? {
+        get { return _date }
+        set {
+            _date = newValue
+            updateDateIfNeeded()
+        }
+    }
+    
+    private dynamic var _time: FHIRTime?
+    /// The time.
+    public dynamic var time: FHIRTime? {
+        get { return _time }
+        set {
+            _time = newValue
+            updateDateIfNeeded()
+        }
+    }
+    
+    /// The timezone
     public var timeZone: TimeZone? {
         get {
             if let identifier = timeZoneIdentifier {
@@ -325,26 +339,29 @@ final public class DateTime: Object, DateAndTime {
         set {
             timeZoneIdentifier = newValue?.identifier
             timeZoneString = newValue?.offset();
+            updateDateIfNeeded()
         }
     }
-	
+    
     private(set) dynamic var timeZoneIdentifier: String?
     
     /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
-	private(set) dynamic var timeZoneString: String?
-	
+    private(set) dynamic var timeZoneString: String?
+    
+    public dynamic var nsDate: Date = Date()
+    
     public override class func ignoredProperties() -> [String] {
-        return ["timeZone", "nsDate"]
+        return ["date", "time", "timeZone"]
     }
     
-	/**
-	This very date and time.
-	
-	- returns: A DateTime instance representing current date and time, in the current timezone.
-	*/
-	public static var now: DateTime {
-        // we need to shift the date over such that when assigned the local timezone 
-        // the date/time is actually right. Without doing this then we will be off by 
+    /**
+     This very date and time.
+     
+     - returns: A DateTime instance representing current date and time, in the current timezone.
+     */
+    public static var now: DateTime {
+        // we need to shift the date over such that when assigned the local timezone
+        // the date/time is actually right. Without doing this then we will be off by
         // whatever the actual timezone offset is.
         let formatter = DateFormatter()
         formatter.calendar = Calendar(identifier: .iso8601)
@@ -354,77 +371,77 @@ final public class DateTime: Object, DateAndTime {
         let comp = Calendar.current.dateComponents(in: TimeZone.current, from: Date())
         let localDate = Calendar.current.date(from: comp)!
         return DateTime(string: formatter.string(from: localDate))!
-//		let (date, time, _) = DateNSDateConverter.sharedConverter.parse(date: localDate)
-//		return DateTime(date: date, time: time)
-	}
-	
-	/**
-	Designated initializer, takes a date and optionally a time and a timezone.
-	
-	If time is given but no timezone, the instance is assigned the local time zone.
-	
-	- parameter date:     The date of the date-time
-	- parameter time:     The time of the date-time
-	- parameter timeZone: The timezone
-	*/
-	public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone? = nil) {
+    }
+    
+    /**
+     Designated initializer, takes a date and optionally a time and a timezone.
+     
+     If time is given but no timezone, the instance is assigned the local time zone.
+     
+     - parameter date:     The date of the date-time
+     - parameter time:     The time of the date-time
+     - parameter timeZone: The timezone
+     */
+    public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone? = nil) {
         self.init()
-		self.date = date
+        _date = date
         if let time = time {
-            self.time = time
+            _time = time
             self.timeZone = timeZone ?? TimeZone.current
         }
-	}
-	
-	/**
-	Uses `DateAndTimeParser` to initialize from a date-time string.
-	
-	If time is given but no timezone, the instance is assigned the local time zone.
-	
-	- parameter string: The string the date-time is parsed from
-	*/
-	public convenience init?(string: String) {
+    }
+    
+    /**
+     Uses `DateAndTimeParser` to initialize from a date-time string.
+     
+     If time is given but no timezone, the instance is assigned the local time zone.
+     
+     - parameter string: The string the date-time is parsed from
+     */
+    public convenience init?(string: String) {
         let (date, time, tz, tzString) = DateAndTimeParser.sharedParser.parse(string: string)
         
         guard let d = date else {
             return nil
         }
-		
+        
         self.init(date: d, time: time, timeZone: tz)
         self.timeZoneString = tzString
-	}
-	
-	
-	// MARK: Protocols
-	public var nsDate: Date {
-		if let time = time, let tz = timeZone {
-			return DateNSDateConverter.sharedConverter.create(date: date ?? FHIRDate.today, time: time, timeZone: tz)
-		}
-		return DateNSDateConverter.sharedConverter.create(fromDate: date ?? FHIRDate.today)
-	}
-	
-	public override var description: String {
-		if let tm = time {
-			if let tz = timeZoneString ?? timeZone?.offset() {
-				return "\(date?.description ?? FHIRDate.today.description)T\(tm.description)\(tz)"
-			}
-		}
-		return date?.description ?? FHIRDate.today.description
-	}
-	
-	public static func <(lhs: DateTime, rhs: DateTime) -> Bool {
-		let lhd = lhs.nsDate
-		let rhd = rhs.nsDate
-		return (lhd.compare(rhd) == .orderedAscending)
-	}
-	
-	public static func ==(lhs: DateTime, rhs: DateTime) -> Bool {
-		let lhd = lhs.nsDate
-		let rhd = rhs.nsDate
-		return (lhd.compare(rhd) == .orderedSame)
-	}
+    }
+    
+    public override var description: String {
+        if let tm = time {
+            if let tz = timeZoneString ?? timeZone?.offset() {
+                return "\(date?.description ?? FHIRDate.today.description)T\(tm.description)\(tz)"
+            }
+        }
+        return date?.description ?? FHIRDate.today.description
+    }
+    
+    public static func <(lhs: DateTime, rhs: DateTime) -> Bool {
+        let lhd = lhs.nsDate
+        let rhd = rhs.nsDate
+        return (lhd.compare(rhd) == .orderedAscending)
+    }
+    
+    public static func ==(lhs: DateTime, rhs: DateTime) -> Bool {
+        let lhd = lhs.nsDate
+        let rhd = rhs.nsDate
+        return (lhd.compare(rhd) == .orderedSame)
+    }
+    
+    private func makeDate() -> Date {
+        if let time = time, let tz = timeZone {
+            return DateNSDateConverter.sharedConverter.create(date: date ?? FHIRDate.today, time: time, timeZone: tz)
+        }
+        return DateNSDateConverter.sharedConverter.create(fromDate: date ?? FHIRDate.today)
+    }
+    
+    private func updateDateIfNeeded() {
+        let d = makeDate()
+        if d != nsDate { nsDate = d }
+    }
 }
-
 
 /**
 An instant in time, known at least to the second and with a timezone, for machine times.
@@ -546,7 +563,6 @@ final public class Instant: Object, DateAndTime {
 		return (lhd.compare(rhd) == .orderedSame)
 	}
 }
-
 
 extension Instant {
 	

@@ -517,7 +517,8 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
     
     func testTimezoneIsPersistedWhenDateIsSaved() {
         let date = DateTime.now
-        
+        print("------------")
+        print(Calendar.current.dateComponents([.year, .day, .month, .hour, .day, .second, .nanosecond], from: date.nsDate))
         XCTAssertNotNil(date.time)
         XCTAssertNotNil(date.date)
         XCTAssertNotNil(date.nsDate)
@@ -534,6 +535,9 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
             XCTFail("Unable to load persisted date")
             return
         }
+        
+        print(Calendar.current.dateComponents([.year, .day, .month, .hour, .day, .second, .nanosecond], from: date2.nsDate))
+        print("------------")
         
         XCTAssertNotNil(date2.time)
         XCTAssertEqual(date.time, date2.time)
