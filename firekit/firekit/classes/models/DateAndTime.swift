@@ -306,22 +306,22 @@ final public class FHIRTime: Object, DateAndTime {
  */
 final public class DateTime: Object, DateAndTime {
     
-    private dynamic var _date: FHIRDate?
+    private dynamic var fhirDate: FHIRDate?
     /// The date.
     public dynamic var date: FHIRDate? {
-        get { return _date }
+        get { return fhirDate }
         set {
-            _date = newValue
+            fhirDate = newValue
             updateDateIfNeeded()
         }
     }
     
-    private dynamic var _time: FHIRTime?
+    private dynamic var fhirTime: FHIRTime?
     /// The time.
     public dynamic var time: FHIRTime? {
-        get { return _time }
+        get { return fhirTime }
         set {
-            _time = newValue
+            fhirTime = newValue
             updateDateIfNeeded()
         }
     }
@@ -384,11 +384,16 @@ final public class DateTime: Object, DateAndTime {
      */
     public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone? = nil) {
         self.init()
-        _date = date
+        
+        fhirDate = date
         if let time = time {
-            _time = time
-            self.timeZone = timeZone ?? TimeZone.current
+            fhirTime = time
+            
+            let tz = timeZone ?? TimeZone.current
+            timeZoneIdentifier = tz.identifier
+            timeZoneString = tz.offset();
         }
+        updateDateIfNeeded()
     }
     
     /**
@@ -431,10 +436,11 @@ final public class DateTime: Object, DateAndTime {
     }
     
     private func makeDate() -> Date {
-        if let time = time, let tz = timeZone {
-            return DateNSDateConverter.sharedConverter.create(date: date ?? FHIRDate.today, time: time, timeZone: tz)
+        if let time = fhirTime, let tz = timeZone {
+            return DateNSDateConverter.sharedConverter.create(date: fhirDate ?? FHIRDate.today,
+                                                              time: time, timeZone: tz)
         }
-        return DateNSDateConverter.sharedConverter.create(fromDate: date ?? FHIRDate.today)
+        return DateNSDateConverter.sharedConverter.create(fromDate: fhirDate ?? FHIRDate.today)
     }
     
     private func updateDateIfNeeded() {
