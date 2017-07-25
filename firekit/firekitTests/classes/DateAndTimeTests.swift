@@ -562,6 +562,38 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         let result2 = Calendar.current.compare(dtNow2.nsDate, to: nsNow, toGranularity: .second)
         XCTAssertEqual(result2, ComparisonResult.orderedSame)
     }
+    
+    func testUpdatingTimezoneUpdatesNsDate() {
+        let now = DateTime.now
+        
+        // shift the timezone over by an hour so that this test isn't as geographically fragile
+        let nextTimezone = TimeZone(secondsFromGMT: (now.timeZone?.secondsFromGMT() ?? 0) + 3600)
+        XCTAssertNotNil(nextTimezone)
+        let originalNsDate = now.nsDate
+        now.timeZone = nextTimezone
+        XCTAssertNotEqual(now.nsDate, originalNsDate)
+    }
+    
+    func testUpdatingDateUpdatesNsDate() {
+        let now = DateTime.now
+        let originalNsDate = now.nsDate
+        
+        now.date = FHIRDate(year: 2017, month: 06, day: 15)
+        let updatedNsDate = now.nsDate
+        XCTAssertNotEqual(originalNsDate, updatedNsDate)
+        
+        now.date!.year = 2015
+        now.date = now.date!
+        print(now.nsDate)
+        XCTAssertNotEqual(updatedNsDate, now.nsDate)
+    }
+    
+    func testUpdatingTimeUpdatesNsDate() {
+        let now = DateTime.now
+        let originalNsDate = now.nsDate
+        now.time = FHIRTime(hour: 15, minute: 7, second: 32)
+        XCTAssertNotEqual(originalNsDate, now.nsDate)
+    }
 }
 
 

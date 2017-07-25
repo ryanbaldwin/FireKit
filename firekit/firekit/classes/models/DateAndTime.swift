@@ -307,8 +307,30 @@ final public class FHIRTime: Object, DateAndTime {
 final public class DateTime: Object, DateAndTime {
     
     private dynamic var fhirDate: FHIRDate?
-    /// The date.
-    public dynamic var date: FHIRDate? {
+    /// The FHIRDate of this DateTime
+    /// - Warning: If you wish to update a DateTime's `date` directly, it is strongly advised that you re-set
+    ///             the DateTime's `date` to itself afterwards. Failing to do so will fail to synchronize the DateTime
+    ///             internals and you will enter a world of pain.
+    ///     ```
+    ///     // do this
+    ///     let now = DateTime.now
+    ///     let now.date = FHIRDate(year: 2017, month: 6, day: 15)
+    ///     print(now.nsDate)
+    ///     > 2017-06-15T17:52:17.764-04:00
+    ///
+    ///     // or this
+    ///     now.date!.year = 2015
+    ///     now.date = now.date!
+    ///     print(now.nsDate)
+    ///     > 2015-06-15T17:52:17.764-04:00
+    ///
+    ///     // but don't just do this or else you will eventually cry at 2am.
+    ///     // note how the `nsDate` is now out of synch, and still sitting around in 2015
+    ///     now.date!.year = 2013
+    ///     print(now.nsDate)
+    ///     > 2015-06-15T17:52:17.764-04:00
+    ///     ```
+    public var date: FHIRDate? {
         get { return fhirDate }
         set {
             fhirDate = newValue
@@ -316,9 +338,32 @@ final public class DateTime: Object, DateAndTime {
         }
     }
     
+    /// The FHIRTime of this DateTime
+    /// - Warning: If you wish to update a DateTime's `time` directly, it is strongly advised that you re-set
+    ///             the DateTime's `time` to itself afterwards. Failing to do so will fail to synchronize the DateTime
+    ///             internals and you will enter a world of pain.
+    ///     ```
+    ///     // do this
+    ///     let now = DateTime.now
+    ///     let now.time = FHIRTime(hour: 15, minute: 7, second: 32)
+    ///     print(now.nsDate)
+    ///     > 2017-06-15T17:07:32.764-04:00
+    ///
+    ///     // or this
+    ///     now.time!.hour = 12
+    ///     now.time = now.time!
+    ///     print(now.nsDate)
+    ///     > 2017-06-15T17:07:32.764-04:00
+    ///
+    ///     // but don't just do this or else you will eventually cry at 2am.
+    ///     // note how the `nsDate` is now out of synch, and still sitting around in 12 O'clock
+    ///     now.time!.hour = 9
+    ///     print(now.nsDate)
+    ///     > 2017-06-15T12:07:32.764-04:00
+    ///     ```
     private dynamic var fhirTime: FHIRTime?
     /// The time.
-    public dynamic var time: FHIRTime? {
+    public var time: FHIRTime? {
         get { return fhirTime }
         set {
             fhirTime = newValue
@@ -326,7 +371,7 @@ final public class DateTime: Object, DateAndTime {
         }
     }
     
-    /// The timezone
+    /// The timezone. When set will update the `nsDate`, `timeZoneIdentifier`, and `timeZoneString` internals.
     public var timeZone: TimeZone? {
         get {
             if let identifier = timeZoneIdentifier {
