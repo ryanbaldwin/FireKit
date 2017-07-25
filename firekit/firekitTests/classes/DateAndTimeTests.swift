@@ -516,37 +516,21 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 	}
     
     func testTimezoneIsPersistedWhenDateIsSaved() {
-        let date = DateTime.now
-        print("------------")
-        print(Calendar.current.dateComponents([.year, .day, .month, .hour, .day, .second, .nanosecond], from: date.nsDate))
-        XCTAssertNotNil(date.time)
-        XCTAssertNotNil(date.date)
-        XCTAssertNotNil(date.nsDate)
-        XCTAssertNotNil(date.timeZoneString)
-        XCTAssertNotNil(date.timeZone)
-        
         let realm = makeRealm()
+        let now = DateTime.now
+        XCTAssertNotNil(now.timeZone)
+        
+        try! realm.write { realm.add(now) }
+        
+        let then = realm.objects(DateTime.self).first!
+        XCTAssertNotNil(then.timeZone)
         
         try! realm.write {
-            realm.add(date)
+            then.timeZone = TimeZone(secondsFromGMT: 3600)
         }
         
-        guard let date2 = realm.objects(DateTime.self).first else {
-            XCTFail("Unable to load persisted date")
-            return
-        }
-        
-        print(Calendar.current.dateComponents([.year, .day, .month, .hour, .day, .second, .nanosecond], from: date2.nsDate))
-        print("------------")
-        
-        XCTAssertNotNil(date2.time)
-        XCTAssertEqual(date.time, date2.time)
-        XCTAssertNotNil(date2.date)
-        XCTAssertNotNil(date2.nsDate)
-        XCTAssertNotNil(date2.timeZoneString)
-        XCTAssertNotNil(date2.timeZone)
-        XCTAssertEqual(date.nsDate, date2.nsDate)
-        XCTAssertEqual(date, date2)
+        let neverland = realm.objects(DateTime.self).first!
+        XCTAssertNotNil(neverland.timeZone)
     }
     
     func testDateTimeNowIsCorrectlySetToLocalTime() {
@@ -570,8 +554,13 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         let nextTimezone = TimeZone(secondsFromGMT: (now.timeZone?.secondsFromGMT() ?? 0) + 3600)
         XCTAssertNotNil(nextTimezone)
         let originalNsDate = now.nsDate
+        
         now.timeZone = nextTimezone
-        XCTAssertNotEqual(now.nsDate, originalNsDate)
+        let updatedNsDate = now.nsDate
+        XCTAssertNotEqual(updatedNsDate, originalNsDate)
+        
+        now.timeZone = nil
+        XCTAssertNotEqual(now.nsDate, updatedNsDate)
     }
     
     func testUpdatingDateUpdatesNsDate() {
