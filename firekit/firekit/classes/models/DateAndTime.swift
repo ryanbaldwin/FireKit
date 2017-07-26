@@ -306,25 +306,15 @@ final public class FHIRTime: Object, DateAndTime {
  */
 final public class DateTime: Object, DateAndTime {
     
-    private dynamic var fhirDate: FHIRDate?
-    /// The date.
-    public dynamic var date: FHIRDate? {
-        get { return fhirDate }
-        set {
-            fhirDate = newValue
-            updateDateIfNeeded()
-        }
-    }
+    /// The original date string representing this DateTime. 
+    /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
+    private dynamic var dateString: String = "\(localFormatter.string(from: Calendar.current.date(from: Calendar.current.dateComponents(in: TimeZone.current, from: Date()))!))"
     
-    private dynamic var fhirTime: FHIRTime?
-    /// The time.
-    public dynamic var time: FHIRTime? {
-        get { return fhirTime }
-        set {
-            fhirTime = newValue
-            updateDateIfNeeded()
-        }
-    }
+    /// The identifier for the timezone
+    private(set) dynamic var timeZoneIdentifier: String?
+    
+    /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
+    private(set) dynamic var timeZoneString: String?
     
     /// The timezone
     public var timeZone: TimeZone? {
@@ -339,61 +329,82 @@ final public class DateTime: Object, DateAndTime {
         set {
             timeZoneIdentifier = newValue?.identifier
             timeZoneString = newValue?.offset();
-            updateDateIfNeeded()
         }
     }
     
-    private(set) dynamic var timeZoneIdentifier: String?
-    
-    /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
-    private(set) dynamic var timeZoneString: String?
-    
-    public dynamic var nsDate: Date = Date()
-    
-    public override class func ignoredProperties() -> [String] {
-        return ["date", "time", "timeZone"]
+    private dynamic var value: Date = Date()
+    /// The actual Date object representing this DateTime under the hood.
+    /// Since only a year is required for a DateTime, any missing value (such as month, or minute)
+    /// will default to the lowest possible value.
+    public var nsDate: Date {
+        get {
+            return value
+        }
+        
+        set {
+            value = newValue
+        }
     }
     
-    /**
-     This very date and time.
-     
-     - returns: A DateTime instance representing current date and time, in the current timezone.
-     */
+    /// The date.
+    lazy public private(set) var date: FHIRDate? = { [unowned self] in
+        let (date, _, _, _) = DateAndTimeParser.sharedParser.parse(string: self.dateString)
+        return date
+    }()
+    
+    /// The time.
+    lazy public private(set) var time: FHIRTime? = { [unowned self] in
+        let (_, time, _, _) = DateAndTimeParser.sharedParser.parse(string: self.dateString)
+            return time
+    }()
+    
+    public override class func ignoredProperties() -> [String] {
+        return ["date", "time", "timeZone", "nsDate"]
+    }
+    
+    private static func makeFormatter(in timeZone: TimeZone) -> DateFormatter {
+        let f = DateFormatter()
+        f.calendar = Calendar(identifier: .iso8601)
+        f.timeZone = timeZone
+        f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        return f
+    }
+    
+    private static var localFormatter: DateFormatter {
+        return makeFormatter(in: TimeZone.current)
+    }
+    
+    /// A DateTime instance representing current date and time, in the current timezone.
     public static var now: DateTime {
         // we need to shift the date over such that when assigned the local timezone
         // the date/time is actually right. Without doing this then we will be off by
         // whatever the actual timezone offset is.
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-        
         let comp = Calendar.current.dateComponents(in: TimeZone.current, from: Date())
         let localDate = Calendar.current.date(from: comp)!
-        return DateTime(string: formatter.string(from: localDate))!
+        return DateTime(string: localFormatter.string(from: localDate))!
     }
     
-    /**
-     Designated initializer, takes a date and optionally a time and a timezone.
-     
-     If time is given but no timezone, the instance is assigned the local time zone.
-     
-     - parameter date:     The date of the date-time
-     - parameter time:     The time of the date-time
-     - parameter timeZone: The timezone
-     */
-    public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone? = nil) {
+    /// Designated initializer, takes a date and optionally a time and a timezone.
+    ///
+    /// If time is given but no timezone, the instance is assigned the local time zone.
+    ///
+    /// - Parameters:
+    ///   - date: The date of the DateTime
+    ///   - time: The time of the DateTime
+    ///   - timeZone: The timezone. Will default to TimeZone.current if not provided.
+    public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone?) {
         self.init()
+        self.date = date
         
-        fhirDate = date
-        if let time = time {
-            fhirTime = time
-            
+        if time != nil {
+            self.time = time
             let tz = timeZone ?? TimeZone.current
             timeZoneIdentifier = tz.identifier
-            timeZoneString = tz.offset();
+            timeZoneString = tz.offset()
         }
-        updateDateIfNeeded()
+
+        self.dateString = makeDescription(date: date, time: time)
+        self.value = makeDate(date, time: time, timeZone: timeZone ?? TimeZone.current)
     }
     
     /**
@@ -411,16 +422,20 @@ final public class DateTime: Object, DateAndTime {
         }
         
         self.init(date: d, time: time, timeZone: tz)
+        self.dateString = string
         self.timeZoneString = tzString
     }
     
-    public override var description: String {
-        if let tm = time {
-            if let tz = timeZoneString ?? timeZone?.offset() {
-                return "\(date?.description ?? FHIRDate.today.description)T\(tm.description)\(tz)"
-            }
+    private func makeDescription(date: FHIRDate?, time: FHIRTime?) -> String {
+        if let tm = time, let tz = timeZoneString ?? timeZone?.offset() {
+            return "\((date ?? FHIRDate.today).description)T\(tm.description)\(tz)"
         }
-        return date?.description ?? FHIRDate.today.description
+        
+        return (date ?? FHIRDate.today).description
+    }
+    
+    public override var description: String {
+        return makeDescription(date: date, time: time)
     }
     
     public static func <(lhs: DateTime, rhs: DateTime) -> Bool {
@@ -436,16 +451,15 @@ final public class DateTime: Object, DateAndTime {
     }
     
     private func makeDate() -> Date {
-        if let time = fhirTime, let tz = timeZone {
-            return DateNSDateConverter.sharedConverter.create(date: fhirDate ?? FHIRDate.today,
-                                                              time: time, timeZone: tz)
-        }
-        return DateNSDateConverter.sharedConverter.create(fromDate: fhirDate ?? FHIRDate.today)
+        return makeDate(date, time: time, timeZone: timeZone)
     }
     
-    private func updateDateIfNeeded() {
-        let d = makeDate()
-        if d != nsDate { nsDate = d }
+    private func makeDate(_ date: FHIRDate?, time: FHIRTime?, timeZone: TimeZone?) -> Date {
+        if let time = time, let tz = timeZone {
+            return DateNSDateConverter.sharedConverter.create(date: date ?? FHIRDate.today,
+                                                              time: time, timeZone: tz)
+        }
+        return DateNSDateConverter.sharedConverter.create(fromDate: date ?? FHIRDate.today)
     }
 }
 

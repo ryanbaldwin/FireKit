@@ -258,7 +258,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(2015, d!.date?.year)
 		XCTAssertEqual(Int8(3), d!.date?.month!)
 		XCTAssertEqual(Int8(28), d!.date?.day!)
-		XCTAssertFalse(nil == d!.time)
+        XCTAssertNotNil(d!.time)
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertTrue(0 == d!.time!.second)
@@ -561,6 +561,18 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         let dtNow2 = realm.objects(DateTime.self).first!
         let result2 = Calendar.current.compare(dtNow2.nsDate, to: nsNow, toGranularity: .second)
         XCTAssertEqual(result2, ComparisonResult.orderedSame)
+    }
+    
+    func testNSDateUpdatedWhenDateUpdated() {
+        var newDay: Int8 = 1
+        if Calendar.current.component(.day, from: Date()) == 1 {
+            newDay = 2
+        }
+        
+        let dtNow = DateTime.now
+        let nsDate = dtNow.nsDate
+        dtNow.date?.day = newDay
+        XCTAssertNotEqual(dtNow.nsDate, nsDate)
     }
 }
 
