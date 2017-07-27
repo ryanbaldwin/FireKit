@@ -258,7 +258,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(2015, d!.date?.year)
 		XCTAssertEqual(Int8(3), d!.date?.month!)
 		XCTAssertEqual(Int8(28), d!.date?.day!)
-		XCTAssertFalse(nil == d!.time)
+        XCTAssertNotNil(d!.time)
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertTrue(0 == d!.time!.second)
@@ -547,41 +547,42 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         XCTAssertEqual(result2, ComparisonResult.orderedSame)
     }
     
-    func testUpdatingTimezoneUpdatesNsDate() {
+    func testUpdatingTimeZoneUpdatesTheNsDate() {
         let now = DateTime.now
+        let nowDate = now.nsDate
+        let nowString = now.dateString
         
-        // shift the timezone over by an hour so that this test isn't as geographically fragile
-        let nextTimezone = TimeZone(secondsFromGMT: (now.timeZone?.secondsFromGMT() ?? 0) + 3600)
-        XCTAssertNotNil(nextTimezone)
-        let originalNsDate = now.nsDate
-        
-        now.timeZone = nextTimezone
-        let updatedNsDate = now.nsDate
-        XCTAssertNotEqual(updatedNsDate, originalNsDate)
-        
-        now.timeZone = nil
-        XCTAssertNotEqual(now.nsDate, updatedNsDate)
+        now.timeZone = TimeZone(secondsFromGMT: now.timeZone!.secondsFromGMT() - 3600) // go one hour into the past
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
     }
     
     func testUpdatingDateUpdatesNsDate() {
         let now = DateTime.now
-        let originalNsDate = now.nsDate
+        let nowDate = now.nsDate
+        let nowString = now.dateString
         
-        now.date = FHIRDate(year: 2017, month: 06, day: 15)
-        let updatedNsDate = now.nsDate
-        XCTAssertNotEqual(originalNsDate, updatedNsDate)
-        
-        now.date!.year = 2015
-        now.date = now.date!
-        print(now.nsDate)
-        XCTAssertNotEqual(updatedNsDate, now.nsDate)
+        now.date = FHIRDate(year: 2000, month: 01, day: 15)
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
     }
     
-    func testUpdatingTimeUpdatesNsDate() {
+    func testUpdatingTimeUpdatesNSDate() {
         let now = DateTime.now
-        let originalNsDate = now.nsDate
-        now.time = FHIRTime(hour: 15, minute: 7, second: 32)
-        XCTAssertNotEqual(originalNsDate, now.nsDate)
+        let nowDate = now.nsDate
+        let nowString = now.dateString
+        
+        now.time = FHIRTime(hour: 1, minute: 13, second: 25)
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testUpdatingNsDateUpdatesDateString() {
+        let now = DateTime.now
+        let nowString = now.dateString
+        
+        now.nsDate = Calendar.current.date(byAdding: .hour, value: -2, to: now.nsDate)!
+        XCTAssertNotEqual(now.dateString, nowString)
     }
 }
 

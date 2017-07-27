@@ -306,9 +306,8 @@ final public class FHIRTime: Object, DateAndTime {
  */
 final public class DateTime: Object, DateAndTime {
     
-    private dynamic var fhirDate: FHIRDate?
     /// The FHIRDate of this DateTime
-    /// - Warning: If you wish to update a DateTime's `date` directly, it is strongly advised that you re-set
+    /// - Warning: If you wish to update a DateTime's `date` directly, you _must_ re-set
     ///             the DateTime's `date` to itself afterwards. Failing to do so will fail to synchronize the DateTime
     ///             internals and you will enter a world of pain.
     ///     ```
@@ -324,7 +323,7 @@ final public class DateTime: Object, DateAndTime {
     ///     let now.date = newDate
     ///     print(now.nsDate)
     ///     > 2017-06-15T17:52:17.764-04:00
-    ///     // if the DateTime is already saved you'll need to delete the now.date before assigning now.date, 
+    ///     // if the DateTime is already saved you'll need to delete the now.date before assigning now.date,
     ///     // otherwise Realm will orphan that date time.
     ///
     ///     // but don't just do this or else you will eventually cry at 2am.
@@ -333,96 +332,51 @@ final public class DateTime: Object, DateAndTime {
     ///     print(now.nsDate)
     ///     > 2015-06-15T17:52:17.764-04:00
     ///     ```
+    /// - Attention: This property is not persisted, and is instead computed from the DateTime internals.
     public var date: FHIRDate? {
-        get { return fhirDate }
+        get {
+            let (date, _, _, _) = DateAndTimeParser.sharedParser.parse(string: self.dateString)
+            return date
+        
         set {
-            fhirDate = newValue
-            updateDateIfNeeded()
+            let d = makeDate(newValue, time: time, timeZone: timeZone)
+            nsDate = d
         }
     }
     
-    private dynamic var fhirTime: FHIRTime?
     /// The FHIRTime of this DateTime
-    /// - Warning: If you wish to update a DateTime's `time` directly, it is strongly advised that you re-set
     ///             the DateTime's `time` to itself afterwards. Failing to do so will fail to synchronize the DateTime
     ///             internals and you will enter a world of pain. This works identically to `date`.
     ///             See `date` for further details.
     public var time: FHIRTime? {
-        get { return fhirTime }
         set {
-            fhirTime = newValue
-            updateDateIfNeeded()
         }
     }
     
-    /// The timezone. When set will update the `nsDate`, `timeZoneIdentifier`, and `timeZoneString` internals.
-    public var timeZone: TimeZone? {
         get {
-            if let identifier = timeZoneIdentifier {
-                return TimeZone(identifier: identifier)
-            }
-            
-            return nil
         }
         
         set {
-            timeZoneIdentifier = newValue?.identifier
-            timeZoneString = newValue?.offset();
-            updateDateIfNeeded()
         }
     }
     
-    private(set) dynamic var timeZoneIdentifier: String?
     
-    /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
-    private(set) dynamic var timeZoneString: String?
     
-    public dynamic var nsDate: Date = Date()
-    
-    public override class func ignoredProperties() -> [String] {
-        return ["date", "time", "timeZone"]
     }
     
-    /**
-     This very date and time.
-     
-     - returns: A DateTime instance representing current date and time, in the current timezone.
-     */
     public static var now: DateTime {
         // we need to shift the date over such that when assigned the local timezone
         // the date/time is actually right. Without doing this then we will be off by
         // whatever the actual timezone offset is.
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .iso8601)
-        formatter.timeZone = TimeZone.current
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-        
         let comp = Calendar.current.dateComponents(in: TimeZone.current, from: Date())
         let localDate = Calendar.current.date(from: comp)!
-        return DateTime(string: formatter.string(from: localDate))!
     }
     
-    /**
-     Designated initializer, takes a date and optionally a time and a timezone.
-     
-     If time is given but no timezone, the instance is assigned the local time zone.
-     
-     - parameter date:     The date of the date-time
-     - parameter time:     The time of the date-time
-     - parameter timeZone: The timezone
-     */
-    public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone? = nil) {
         self.init()
         
-        fhirDate = date
-        if let time = time {
-            fhirTime = time
-            
             let tz = timeZone ?? TimeZone.current
             timeZoneIdentifier = tz.identifier
-            timeZoneString = tz.offset();
         }
-        updateDateIfNeeded()
     }
     
     /**
@@ -443,13 +397,7 @@ final public class DateTime: Object, DateAndTime {
         self.timeZoneString = tzString
     }
     
-    public override var description: String {
-        if let tm = time {
-            if let tz = timeZoneString ?? timeZone?.offset() {
-                return "\(date?.description ?? FHIRDate.today.description)T\(tm.description)\(tz)"
-            }
         }
-        return date?.description ?? FHIRDate.today.description
     }
     
     public static func <(lhs: DateTime, rhs: DateTime) -> Bool {
@@ -465,11 +413,8 @@ final public class DateTime: Object, DateAndTime {
     }
     
     private func makeDate() -> Date {
-        if let time = fhirTime, let tz = timeZone {
-            return DateNSDateConverter.sharedConverter.create(date: fhirDate ?? FHIRDate.today,
                                                               time: time, timeZone: tz)
         }
-        return DateNSDateConverter.sharedConverter.create(fromDate: fhirDate ?? FHIRDate.today)
     }
     
     private func updateDateIfNeeded() {
