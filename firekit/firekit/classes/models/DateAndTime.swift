@@ -306,6 +306,54 @@ final public class FHIRTime: Object, DateAndTime {
  */
 final public class DateTime: Object, DateAndTime {
     
+    /// The original date string representing this DateTime. 
+    /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
+    public private(set) dynamic var dateString: String = ""
+    
+    /// The identifier for the timezone
+    public private(set) dynamic var timeZoneIdentifier: String?
+    
+    /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
+    public private(set) dynamic var timeZoneString: String?
+    
+    /// The timezone. When set will update the `nsDate`, `timeZoneIdentifier`, and `timeZoneString` internals.
+    public var timeZone: TimeZone? {
+        get {
+            if let identifier = timeZoneIdentifier {
+                return TimeZone(identifier: identifier)
+            }
+            
+            return nil
+        }
+        
+        set {
+            timeZoneIdentifier = newValue?.identifier
+            timeZoneString = newValue?.offset();
+            updateDateIfNeeded()
+        }
+    }
+    
+    private dynamic var value: Date = Date()
+    /// The actual Date object representing this DateTime under the hood.
+    /// Since only a year is required for a DateTime, any missing value (such as month, or minute)
+    /// will default to the lowest possible value.
+    /// - Attention: When querying a DateTime via `nsDate`, use `value`. For example:
+    ///
+    /// ```
+    /// // this isn't going to return much unless you have DateTimes in the future
+    /// realm.objects(DateTime.self).filter('value > %@', Date())
+    /// ```
+    public var nsDate: Date {
+        get {
+            return value
+        }
+        
+        set {
+            value = newValue
+            dateString = makeFormatter(in: self.timeZone).string(from: value)
+        }
+    }
+    
     /// The FHIRDate of this DateTime
     /// - Warning: If you wish to update a DateTime's `date` directly, you _must_ re-set
     ///             the DateTime's `date` to itself afterwards. Failing to do so will fail to synchronize the DateTime
@@ -337,6 +385,7 @@ final public class DateTime: Object, DateAndTime {
         get {
             let (date, _, _, _) = DateAndTimeParser.sharedParser.parse(string: self.dateString)
             return date
+        }
         
         set {
             let d = makeDate(newValue, time: time, timeZone: timeZone)
@@ -345,38 +394,56 @@ final public class DateTime: Object, DateAndTime {
     }
     
     /// The FHIRTime of this DateTime
+    /// - Warning: If you wish to update a DateTime's `time` directly, you _must_ re-set
     ///             the DateTime's `time` to itself afterwards. Failing to do so will fail to synchronize the DateTime
     ///             internals and you will enter a world of pain. This works identically to `date`.
     ///             See `date` for further details.
+    /// - Attention: This property is not persisted, and is instead computed from the DateTime internals.
     public var time: FHIRTime? {
-        set {
-        }
-    }
-    
         get {
+            let (_, time, _, _) = DateAndTimeParser.sharedParser.parse(string: self.dateString)
+            return time
         }
         
         set {
+            let d = makeDate(date, time: newValue, timeZone: timeZone)
+            nsDate = d
         }
     }
     
-    
-    
+    public override class func ignoredProperties() -> [String] {
+        return ["date", "time", "timeZone", "nsDate"]
     }
     
+    /// A DateTime instance representing current date and time, in the current timezone.
     public static var now: DateTime {
         // we need to shift the date over such that when assigned the local timezone
         // the date/time is actually right. Without doing this then we will be off by
         // whatever the actual timezone offset is.
         let comp = Calendar.current.dateComponents(in: TimeZone.current, from: Date())
         let localDate = Calendar.current.date(from: comp)!
+        return DateTime(string: localFormatter.string(from: localDate))!
     }
     
+    /// Designated initializer, takes a date and optionally a time and a timezone.
+    ///
+    /// If time is given but no timezone, the instance is assigned the local time zone.
+    ///
+    /// - Parameters:
+    ///   - date: The date of the DateTime
+    ///   - time: The time of the DateTime
+    ///   - timeZone: The timezone. Will default to TimeZone.current if not provided.
+    public convenience init(date: FHIRDate, time: FHIRTime? = nil, timeZone: TimeZone?) {
         self.init()
         
+        if time != nil {
             let tz = timeZone ?? TimeZone.current
             timeZoneIdentifier = tz.identifier
+            timeZoneString = tz.offset()
         }
+
+        self.dateString = makeDescription(date: date, time: time)
+        self.value = makeDate(date, time: time, timeZone: timeZone ?? TimeZone.current)
     }
     
     /**
@@ -394,10 +461,20 @@ final public class DateTime: Object, DateAndTime {
         }
         
         self.init(date: d, time: time, timeZone: tz)
+        self.dateString = string
         self.timeZoneString = tzString
     }
     
+    private func makeDescription(date: FHIRDate?, time: FHIRTime?) -> String {
+        if let tm = time, let tz = timeZoneString ?? timeZone?.offset() {
+            return "\((date ?? FHIRDate.today).description)T\(tm.description)\(tz)"
         }
+        
+        return (date ?? FHIRDate.today).description
+    }
+    
+    public override var description: String {
+        return makeDescription(date: date, time: time)
     }
     
     public static func <(lhs: DateTime, rhs: DateTime) -> Bool {
@@ -412,13 +489,8 @@ final public class DateTime: Object, DateAndTime {
         return (lhd.compare(rhd) == .orderedSame)
     }
     
-    private func makeDate() -> Date {
-                                                              time: time, timeZone: tz)
-        }
-    }
-    
     private func updateDateIfNeeded() {
-        let d = makeDate()
+        let d = makeDate(date, time: time, timeZone: timeZone)
         if d != nsDate { nsDate = d }
     }
 }
@@ -427,61 +499,147 @@ final public class DateTime: Object, DateAndTime {
 An instant in time, known at least to the second and with a timezone, for machine times.
 */
 final public class Instant: Object, DateAndTime {
-	
-	/// The date.
-    private dynamic var _date: FHIRDate? = FHIRDate.today {
-        didSet {
-            if nil == _date?.month {
-                _date?.month = 1
-            }
-            if nil == _date?.day {
-                _date?.day = 1
-            }
-        }
-    }
+    /// The original date string representing this DateTime.
+    /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
+	public private(set) dynamic var dateString = ""
     
+    /// The FHIRDate of this `Instant`
+    /// - Warning: If you wish to update a DateTime's `date` directly, you _must_ re-set
+    ///             the DateTime's `date` to itself afterwards. Failing to do so will fail to synchronize the DateTime
+    ///             internals and you will enter a world of pain.
+    ///     ```
+    ///     // do this
+    ///     now.date!.year = 2015
+    ///     now.date = now.date!
+    ///     print(now.nsDate)
+    ///     > 2015-06-15T17:52:17.764-04:00
+    ///
+    ///     // or this
+    ///     let now = DateTime.now
+    ///     let newDate = FHIRDate(year: 2017, month: 6, day: 15)
+    ///     let now.date = newDate
+    ///     print(now.nsDate)
+    ///     > 2017-06-15T17:52:17.764-04:00
+    ///     // if the DateTime is already saved you'll need to delete the now.date before assigning now.date,
+    ///     // otherwise Realm will orphan that date time.
+    ///
+    ///     // but don't just do this or else you will eventually cry at 2am.
+    ///     // note how the `nsDate` is now out of synch, and still sitting around in 2015
+    ///     now.date!.year = 2013
+    ///     print(now.nsDate)
+    ///     > 2015-06-15T17:52:17.764-04:00
+    ///     ```
+    /// - Attention: This property is not persisted, and is instead computed from the DateTime internals.
     public var date: FHIRDate {
         get {
-            return _date!
+            let (date, _, _, _) = DateAndTimeParser.sharedParser.parse(string: self.dateString)
+            return date ?? FHIRDate.today
         }
+        
         set {
-            _date = newValue
+            if nil == newValue.day {
+                newValue.day = 1
+            }
+            
+            if nil == newValue.month {
+                newValue.month = 1
+            }
+            
+            let d = makeDate(newValue, time: time, timeZone: timeZone)
+            nsDate = d
         }
-    }
-	
-	/// The time, including seconds.
-	private dynamic var _time: FHIRTime? = FHIRTime.now
-    public var time: FHIRTime {
-        get {
-            return _time!
-        }
-        set {
-            _time = newValue
-        }
-    }
-	
-	/// The timezone.
-    public var timeZone: TimeZone = TimeZone.current {
-		didSet {
-			timeZoneString = nil
-		}
-	}
-	
-    public override class func ignoredProperties() -> [String] {
-        return ["timeZone", "date", "time"]
     }
     
-	/// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
-	private dynamic var timeZoneString: String?
+    /// The FHIRTime of this `Instant`
+    /// - Warning: If you wish to update a DateTime's `time` directly, you _must_ re-set
+    ///             the DateTime's `time` to itself afterwards. Failing to do so will fail to synchronize the DateTime
+    ///             internals and you will enter a world of pain. This works identically to `date`.
+    ///             See `date` for further details.
+    /// - Attention: This property is not persisted, and is instead computed from the DateTime internals.
+    public var time: FHIRTime {
+        get {
+            let (_, time, _, _) = DateAndTimeParser.sharedParser.parse(string: self.dateString)
+            return time!
+        }
+        
+        set {
+            let d = makeDate(date, time: newValue, timeZone: timeZone)
+            nsDate = d
+        }
+    }
+    
+    /// The identifier for the timezone
+    public private(set) dynamic var timeZoneIdentifier: String = TimeZone.current.identifier
+    
+    /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
+    public private(set) dynamic var timeZoneString: String = TimeZone.current.offset()
+    
+    /// The timezone. When set will update the `nsDate`, `timeZoneIdentifier`, and `timeZoneString` internals.
+    public var timeZone: TimeZone {
+        get {
+            return TimeZone(identifier: timeZoneIdentifier)!
+        }
+        
+        set {
+            timeZoneIdentifier = newValue.identifier
+            timeZoneString = newValue.offset();
+            updateDateIfNeeded()
+        }
+    }
+    
+    private dynamic var value: Date = Date()
+    /// The actual Date object representing this DateTime under the hood.
+    /// Since only a year is required for a DateTime, any missing value (such as month, or minute)
+    /// will default to the lowest possible value.
+    /// - Attention: When querying a DateTime via `nsDate`, use `value`. For example:
+    ///
+    /// ```
+    /// // this isn't going to return much unless you have DateTimes in the future
+    /// realm.objects(DateTime.self).filter('value > %@', Date())
+    /// ```
+    public var nsDate: Date {
+        get {
+            return value
+        }
+        
+        set {
+            value = newValue
+            dateString = Instant.makeFormatter(in: self.timeZone).string(from: value)
+        }
+    }
 	
+    public override class func ignoredProperties() -> [String] {
+        return ["date", "time", "timeZone", "nsDate"]
+    }
+    
+    private static func makeFormatter(in timeZone: TimeZone?) -> DateFormatter {
+        let f = DateFormatter()
+        f.calendar = Calendar(identifier: .iso8601)
+        f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        
+        if timeZone != nil {
+            f.timeZone = timeZone
+        }
+        
+        return f
+    }
+    
+    private static var localFormatter: DateFormatter {
+        return makeFormatter(in: TimeZone.current)
+    }
+    
 	/**
 	This very instant.
 	
-	- returns: An Instant instance representing current date and time.
+	- returns: An Instant instance representing current date and time in the current timezone.
 	*/
 	public static var now: Instant {
-		let (date, time, tz) = DateNSDateConverter.sharedConverter.parse(date: Date())
-		return Instant(date: date, time: time, timeZone: tz)
+        // we need to shift the date over such that when assigned the local timezone
+        // the date/time is actually right. Without doing this then we will be off by
+        // twice as much as to whatever the actual timezone offset is.
+        let comp = Calendar.current.dateComponents(in: TimeZone.current, from: Date())
+        let localDate = Calendar.current.date(from: comp)!
+        return Instant(string: localFormatter.string(from: localDate))!
 	}
 	
 	/**
@@ -493,15 +651,16 @@ final public class Instant: Object, DateAndTime {
 	*/
 	public convenience init(date: FHIRDate, time: FHIRTime, timeZone: TimeZone) {
         self.init()
-		self.date = date
-		if nil == self.date.month {
-			self.date.month = 1
-		}
-		if nil == self.date.day {
-			self.date.day = 1
-		}
-		self.time = time
-		self.timeZone = timeZone
+        if date.month == nil { date.month = 1 }
+        if date.day == nil { date.day = 1 }
+        
+        self.value = makeDate(date, time: time, timeZone: timeZone)
+        self.timeZoneIdentifier = timeZone.identifier
+        self.timeZoneString = timeZone.offset()
+        
+        if dateString == "" {
+            self.dateString = makeDescription(date: date, time: time, timeZoneString: timeZoneString)
+        }
 	}
 	
 	/** Uses `DateAndTimeParser` to initialize from a date-time string.
@@ -510,25 +669,28 @@ final public class Instant: Object, DateAndTime {
 	*/
 	public convenience init?(string: String) {
         self.init()
-		let (date, time, tz, tzString) = DateAndTimeParser.sharedParser.parse(string: string)
-		if nil == date || nil == date!.month || nil == date!.day || nil == time || nil == tz {
-			return nil
-		}
-		self.date = date!
-		self.time = time!
-		self.timeZone = tz!
-		self.timeZoneString = tzString!
+        let (d, t, tz, tzString) = DateAndTimeParser.sharedParser.parse(string: string)
+        guard let date = d, date.month != nil, date.day != nil, let time = t, let timeZone = tz else {
+            return nil
+        }
+		
+        self.dateString = string
+        self.value = makeDate(date, time: time, timeZone: timeZone)
+        self.timeZoneIdentifier = timeZone.identifier
+        self.timeZoneString = tzString!
 	}
-	
-	// MARK: Protocols
-	
-	public var nsDate: Date {
-		return DateNSDateConverter.sharedConverter.create(date: date, time: time, timeZone: timeZone)
-	}
-	
+    
+    private func updateDateIfNeeded() {
+        let d = makeDate(date, time: time, timeZone: timeZone)
+        if d != nsDate { nsDate = d }
+    }
+    
+    private func makeDescription(date: FHIRDate, time: FHIRTime, timeZoneString: String) -> String{
+        return "\(date.description)T\(time.description)\(timeZoneString)"
+    }
+    
 	public override var description: String {
-		let tz = timeZoneString ?? timeZone.offset()
-		return "\(date.description)T\(time.description)\(tz)"
+		return makeDescription(date: date, time: time, timeZoneString: timeZoneString)
 	}
 	
 	public static func <(lhs: Instant, rhs: Instant) -> Bool {
@@ -862,4 +1024,28 @@ extension Scanner {
 		#endif
 		return flag ? int : nil
 	}
+}
+
+fileprivate func makeFormatter(in timeZone: TimeZone?) -> DateFormatter {
+    let f = DateFormatter()
+    f.calendar = Calendar(identifier: .iso8601)
+    f.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+    
+    if timeZone != nil {
+        f.timeZone = timeZone
+    }
+    
+    return f
+}
+
+fileprivate var localFormatter: DateFormatter {
+    return makeFormatter(in: TimeZone.current)
+}
+
+fileprivate func makeDate(_ date: FHIRDate?, time: FHIRTime?, timeZone: TimeZone?) -> Date {
+    if let time = time, let tz = timeZone {
+        return DateNSDateConverter.sharedConverter.create(date: date ?? FHIRDate.today,
+                                                          time: time, timeZone: tz)
+    }
+    return DateNSDateConverter.sharedConverter.create(fromDate: date ?? FHIRDate.today)
 }
