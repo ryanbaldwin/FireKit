@@ -313,16 +313,19 @@ final public class DateTime: Object, DateAndTime {
     ///             internals and you will enter a world of pain.
     ///     ```
     ///     // do this
-    ///     let now = DateTime.now
-    ///     let now.date = FHIRDate(year: 2017, month: 6, day: 15)
-    ///     print(now.nsDate)
-    ///     > 2017-06-15T17:52:17.764-04:00
-    ///
-    ///     // or this
     ///     now.date!.year = 2015
     ///     now.date = now.date!
     ///     print(now.nsDate)
     ///     > 2015-06-15T17:52:17.764-04:00
+    ///
+    ///     // or this
+    ///     let now = DateTime.now
+    ///     let newDate = FHIRDate(year: 2017, month: 6, day: 15)
+    ///     let now.date = newDate
+    ///     print(now.nsDate)
+    ///     > 2017-06-15T17:52:17.764-04:00
+    ///     // if the DateTime is already saved you'll need to delete the now.date before assigning now.date, 
+    ///     // otherwise Realm will orphan that date time.
     ///
     ///     // but don't just do this or else you will eventually cry at 2am.
     ///     // note how the `nsDate` is now out of synch, and still sitting around in 2015
@@ -338,31 +341,12 @@ final public class DateTime: Object, DateAndTime {
         }
     }
     
+    private dynamic var fhirTime: FHIRTime?
     /// The FHIRTime of this DateTime
     /// - Warning: If you wish to update a DateTime's `time` directly, it is strongly advised that you re-set
     ///             the DateTime's `time` to itself afterwards. Failing to do so will fail to synchronize the DateTime
-    ///             internals and you will enter a world of pain.
-    ///     ```
-    ///     // do this
-    ///     let now = DateTime.now
-    ///     let now.time = FHIRTime(hour: 15, minute: 7, second: 32)
-    ///     print(now.nsDate)
-    ///     > 2017-06-15T17:07:32.764-04:00
-    ///
-    ///     // or this
-    ///     now.time!.hour = 12
-    ///     now.time = now.time!
-    ///     print(now.nsDate)
-    ///     > 2017-06-15T17:07:32.764-04:00
-    ///
-    ///     // but don't just do this or else you will eventually cry at 2am.
-    ///     // note how the `nsDate` is now out of synch, and still sitting around in 12 O'clock
-    ///     now.time!.hour = 9
-    ///     print(now.nsDate)
-    ///     > 2017-06-15T12:07:32.764-04:00
-    ///     ```
-    private dynamic var fhirTime: FHIRTime?
-    /// The time.
+    ///             internals and you will enter a world of pain. This works identically to `date`.
+    ///             See `date` for further details.
     public var time: FHIRTime? {
         get { return fhirTime }
         set {
