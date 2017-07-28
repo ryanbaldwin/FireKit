@@ -584,10 +584,40 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         now.nsDate = Calendar.current.date(byAdding: .hour, value: -2, to: now.nsDate)!
         XCTAssertNotEqual(now.dateString, nowString)
     }
+    
+    func testCanRealmFilterOnValue() {
+        let realm = makeRealm()
+        
+        let oldest = DateTime.now
+        oldest.nsDate = Calendar.current.date(byAdding: .day, value: -3, to: oldest.nsDate)!
+        
+        let current = DateTime.now
+        
+        let newest = DateTime.now
+        newest.nsDate = Calendar.current.date(byAdding: .day, value: 3, to: newest.nsDate)!
+        
+        
+        try! realm.write {
+            realm.add([oldest, current, newest])
+        }
+        
+        let fetchedOldest = realm.objects(DateTime.self).filter("value < %@", current.nsDate)
+        let fetchedCurrent = realm.objects(DateTime.self).filter("value = %@", current.nsDate)
+        let fetchedNewest = realm.objects(DateTime.self).filter("value > %@", current.nsDate)
+        
+        XCTAssertEqual(fetchedOldest.count, 1)
+        XCTAssertEqual(fetchedOldest.first?.nsDate, oldest.nsDate)
+        
+        XCTAssertEqual(fetchedCurrent.count, 1)
+        XCTAssertEqual(fetchedCurrent.first?.nsDate, current.nsDate)
+        
+        XCTAssertEqual(fetchedNewest.count, 1)
+        XCTAssertEqual(fetchedNewest.first?.nsDate, newest.nsDate)
+    }
 }
 
 
-class InstantTests: XCTestCase {
+class InstantTests: XCTestCase, RealmPersistenceTesting {
 	
 	func testParseSuccess() {
 		var d = Instant(string: "2015")
@@ -718,5 +748,35 @@ class InstantTests: XCTestCase {
 			XCTAssertTrue(false, "Failed to parse perfectly fine HTTP date")
 		}
 	}
+    
+    func testCanRealmFilterOnValue() {
+        let realm = makeRealm()
+        
+        let oldest = Instant.now
+        oldest.nsDate = Calendar.current.date(byAdding: .day, value: -3, to: oldest.nsDate)!
+        
+        let current = Instant.now
+        
+        let newest = Instant.now
+        newest.nsDate = Calendar.current.date(byAdding: .day, value: 3, to: newest.nsDate)!
+        
+        
+        try! realm.write {
+            realm.add([oldest, current, newest])
+        }
+        
+        let fetchedOldest = realm.objects(Instant.self).filter("value < %@", current.nsDate)
+        let fetchedCurrent = realm.objects(Instant.self).filter("value = %@", current.nsDate)
+        let fetchedNewest = realm.objects(Instant.self).filter("value > %@", current.nsDate)
+        
+        XCTAssertEqual(fetchedOldest.count, 1)
+        XCTAssertEqual(fetchedOldest.first?.nsDate, oldest.nsDate)
+        
+        XCTAssertEqual(fetchedCurrent.count, 1)
+        XCTAssertEqual(fetchedCurrent.first?.nsDate, current.nsDate)
+        
+        XCTAssertEqual(fetchedNewest.count, 1)
+        XCTAssertEqual(fetchedNewest.first?.nsDate, newest.nsDate)
+    }
 }
 
