@@ -18,7 +18,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	override func setUp() {
 		realm = makeRealm()
 	}
-
+    
 	func instantiateFrom(_ filename: String) throws -> FireKit.Bundle {
 		return instantiateFrom(try readJSONFile(filename))
 	}

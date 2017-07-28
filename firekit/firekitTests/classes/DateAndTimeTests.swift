@@ -232,6 +232,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(2015, d!.date?.year)
 		XCTAssertTrue(nil == d!.date?.month)
 		XCTAssertTrue(nil == d!.time)
+        XCTAssertEqual("2015", d!.description)
 		XCTAssertTrue(nil == d!.timeZone)
 		
 		d = DateTime(string: "2015-03")
@@ -240,6 +241,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(3), d!.date?.month!)
 		XCTAssertTrue(nil == d!.date?.day)
 		XCTAssertTrue(nil == d!.time)
+        XCTAssertEqual("2015-03", d!.description)
 		XCTAssertTrue(nil == d!.timeZone)
 		
 		d = DateTime(string: "2015-03-28")
@@ -248,6 +250,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(3), d!.date?.month!)
 		XCTAssertEqual(Int8(28), d!.date?.day!)
 		XCTAssertTrue(nil == d!.time)
+        XCTAssertEqual("2015-03-28", d!.description)
 		XCTAssertTrue(nil == d!.timeZone)
 		
 		d = DateTime(string: "2015-03-28T02:33")
@@ -255,7 +258,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(2015, d!.date?.year)
 		XCTAssertEqual(Int8(3), d!.date?.month!)
 		XCTAssertEqual(Int8(28), d!.date?.day!)
-		XCTAssertFalse(nil == d!.time)
+        XCTAssertNotNil(d!.time)
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertTrue(0 == d!.time!.second)
@@ -283,7 +286,8 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertEqual(29, d!.time!.second)
-		XCTAssertFalse(nil == d!.timeZone)
+        XCTAssertEqual("2015-03-28T02:33:29+01:00", d!.description)
+        XCTAssertNotNil(d!.timeZone)
 		XCTAssertTrue(3600 == d!.timeZone!.secondsFromGMT(), "Should be 3600 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 		
 		d = DateTime(string: "2015-03-28T02:33:29-05:00")
@@ -295,6 +299,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertEqual(29, d!.time!.second)
+        XCTAssertEqual("2015-03-28T02:33:29-05:00", d!.description)
 		XCTAssertFalse(nil == d!.timeZone)
 		XCTAssertTrue(-18000 == d!.timeZone!.secondsFromGMT(), "Should be 18000 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 		
@@ -307,6 +312,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertEqual(29.1285, d!.time!.second)
+        XCTAssertEqual("2015-03-28T02:33:29.1285-05:00", d!.description)
 		XCTAssertFalse(nil == d!.timeZone)
 		XCTAssertTrue(-18000 == d!.timeZone!.secondsFromGMT(), "Should be 18000 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 		
@@ -319,6 +325,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertEqual(29.1285, d!.time!.second)
+        XCTAssertEqual("2015-03-28T02:33:29.1285-05:30", d!.description)
 		XCTAssertFalse(nil == d!.timeZone)
 		XCTAssertTrue(-19800 == d!.timeZone!.secondsFromGMT(), "Should be 19800 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 		
@@ -344,6 +351,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertEqual(29, d!.time!.second)
+        XCTAssertEqual("2015-03-28T02:33:29-05", d!.description)
 		XCTAssertFalse(nil == d!.timeZone)
 		XCTAssertTrue(-18000 == d!.timeZone!.secondsFromGMT(), "Should be 18000 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 		
@@ -356,6 +364,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertEqual(29.1285, d!.time!.second)
+        XCTAssertEqual("2015-03-28T02:33:29.1285-0500", d!.description)
 		XCTAssertFalse(nil == d!.timeZone)
 		XCTAssertTrue(-18000 == d!.timeZone!.secondsFromGMT(), "Should be 18000 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 		
@@ -368,6 +377,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertEqual(29.1285, d!.time!.second)
+        XCTAssertEqual("2015-03-28T02:33:29.1285-0530", d!.description)
 		XCTAssertFalse(nil == d!.timeZone)
 		XCTAssertTrue(-19800 == d!.timeZone!.secondsFromGMT(), "Should be 19800 seconds ahead, but am \(d!.timeZone!.secondsFromGMT()) seconds")
 	}
@@ -385,7 +395,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         
         XCTAssertEqual(inMemJSON, fetched?.asJSON())
         
-        try! realm.write { fetched?.timeZone = TimeZone(abbreviation: "EDT") }
+        try! realm.write { fetched?.timeZone = TimeZone(abbreviation: "GMT") }
         XCTAssertNotEqual(inMemJSON, fetched?.asJSON())
     }
 
@@ -504,6 +514,76 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		let ns2 = dt2.nsDate
         XCTAssertTrue(dt2 == ns2.fhir_asDateTime(), "Conversion to NSDate and back again must not alter `DateTime`")		
 	}
+    
+    func testTimezoneIsPersistedWhenDateIsSaved() {
+        let realm = makeRealm()
+        let now = DateTime.now
+        XCTAssertNotNil(now.timeZone)
+        
+        try! realm.write { realm.add(now) }
+        
+        let then = realm.objects(DateTime.self).first!
+        XCTAssertNotNil(then.timeZone)
+        
+        try! realm.write {
+            then.timeZone = TimeZone(secondsFromGMT: 3600)
+        }
+        
+        let neverland = realm.objects(DateTime.self).first!
+        XCTAssertNotNil(neverland.timeZone)
+    }
+    
+    func testDateTimeNowIsCorrectlySetToLocalTime() {
+        let dtNow = DateTime.now
+        let nsNow = Date()
+        let result = Calendar.current.compare(dtNow.nsDate, to: nsNow, toGranularity: .second)
+        XCTAssertEqual(result, ComparisonResult.orderedSame)
+        
+        // make sure it's still equal after we re-inflate it from Realm
+        let realm = makeRealm()
+        try! realm.write { realm.add(dtNow) }
+        let dtNow2 = realm.objects(DateTime.self).first!
+        let result2 = Calendar.current.compare(dtNow2.nsDate, to: nsNow, toGranularity: .second)
+        XCTAssertEqual(result2, ComparisonResult.orderedSame)
+    }
+    
+    func testUpdatingTimeZoneUpdatesTheNsDate() {
+        let now = DateTime.now
+        let nowDate = now.nsDate
+        let nowString = now.dateString
+        
+        now.timeZone = TimeZone(secondsFromGMT: now.timeZone!.secondsFromGMT() - 3600) // go one hour into the past
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testUpdatingDateUpdatesNsDate() {
+        let now = DateTime.now
+        let nowDate = now.nsDate
+        let nowString = now.dateString
+        
+        now.date = FHIRDate(year: 2000, month: 01, day: 15)
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testUpdatingTimeUpdatesNSDate() {
+        let now = DateTime.now
+        let nowDate = now.nsDate
+        let nowString = now.dateString
+        
+        now.time = FHIRTime(hour: 1, minute: 13, second: 25)
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testUpdatingNsDateUpdatesDateString() {
+        let now = DateTime.now
+        let nowString = now.dateString
+        
+        now.nsDate = Calendar.current.date(byAdding: .hour, value: -2, to: now.nsDate)!
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
 }
 
 
