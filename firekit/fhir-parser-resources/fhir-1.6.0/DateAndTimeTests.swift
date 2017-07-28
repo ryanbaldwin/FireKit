@@ -258,7 +258,7 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 		XCTAssertEqual(2015, d!.date?.year)
 		XCTAssertEqual(Int8(3), d!.date?.month!)
 		XCTAssertEqual(Int8(28), d!.date?.day!)
-		XCTAssertFalse(nil == d!.time)
+        XCTAssertNotNil(d!.time)
 		XCTAssertEqual(Int8(2), d!.time!.hour)
 		XCTAssertEqual(Int8(33), d!.time!.minute)
 		XCTAssertTrue(0 == d!.time!.second)
@@ -516,33 +516,21 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
 	}
     
     func testTimezoneIsPersistedWhenDateIsSaved() {
-        let date = DateTime.now
-        
-        XCTAssertNotNil(date.time)
-        XCTAssertNotNil(date.date)
-        XCTAssertNotNil(date.nsDate)
-        XCTAssertNotNil(date.timeZoneString)
-        XCTAssertNotNil(date.timeZone)
-        
         let realm = makeRealm()
+        let now = DateTime.now
+        XCTAssertNotNil(now.timeZone)
+        
+        try! realm.write { realm.add(now) }
+        
+        let then = realm.objects(DateTime.self).first!
+        XCTAssertNotNil(then.timeZone)
         
         try! realm.write {
-            realm.add(date)
+            then.timeZone = TimeZone(secondsFromGMT: 3600)
         }
         
-        guard let date2 = realm.objects(DateTime.self).first else {
-            XCTFail("Unable to load persisted date")
-            return
-        }
-        
-        XCTAssertNotNil(date2.time)
-        XCTAssertEqual(date.time, date2.time)
-        XCTAssertNotNil(date2.date)
-        XCTAssertNotNil(date2.nsDate)
-        XCTAssertNotNil(date2.timeZoneString)
-        XCTAssertNotNil(date2.timeZone)
-        XCTAssertEqual(date.nsDate, date2.nsDate)
-        XCTAssertEqual(date, date2)
+        let neverland = realm.objects(DateTime.self).first!
+        XCTAssertNotNil(neverland.timeZone)
     }
     
     func testDateTimeNowIsCorrectlySetToLocalTime() {
@@ -558,10 +546,78 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         let result2 = Calendar.current.compare(dtNow2.nsDate, to: nsNow, toGranularity: .second)
         XCTAssertEqual(result2, ComparisonResult.orderedSame)
     }
+    
+    func testUpdatingTimeZoneUpdatesTheNsDate() {
+        let now = DateTime.now
+        let nowDate = now.nsDate
+        let nowString = now.dateString
+        
+        now.timeZone = TimeZone(secondsFromGMT: now.timeZone!.secondsFromGMT() - 3600) // go one hour into the past
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testUpdatingDateUpdatesNsDate() {
+        let now = DateTime.now
+        let nowDate = now.nsDate
+        let nowString = now.dateString
+        
+        now.date = FHIRDate(year: 2000, month: 01, day: 15)
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testUpdatingTimeUpdatesNSDate() {
+        let now = DateTime.now
+        let nowDate = now.nsDate
+        let nowString = now.dateString
+        
+        now.time = FHIRTime(hour: 1, minute: 13, second: 25)
+        XCTAssertNotEqual(now.nsDate, nowDate)
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testUpdatingNsDateUpdatesDateString() {
+        let now = DateTime.now
+        let nowString = now.dateString
+        
+        now.nsDate = Calendar.current.date(byAdding: .hour, value: -2, to: now.nsDate)!
+        XCTAssertNotEqual(now.dateString, nowString)
+    }
+    
+    func testCanRealmFilterOnValue() {
+        let realm = makeRealm()
+        
+        let oldest = DateTime.now
+        oldest.nsDate = Calendar.current.date(byAdding: .day, value: -3, to: oldest.nsDate)!
+        
+        let current = DateTime.now
+        
+        let newest = DateTime.now
+        newest.nsDate = Calendar.current.date(byAdding: .day, value: 3, to: newest.nsDate)!
+        
+        
+        try! realm.write {
+            realm.add([oldest, current, newest])
+        }
+        
+        let fetchedOldest = realm.objects(DateTime.self).filter("value < %@", current.nsDate)
+        let fetchedCurrent = realm.objects(DateTime.self).filter("value = %@", current.nsDate)
+        let fetchedNewest = realm.objects(DateTime.self).filter("value > %@", current.nsDate)
+        
+        XCTAssertEqual(fetchedOldest.count, 1)
+        XCTAssertEqual(fetchedOldest.first?.nsDate, oldest.nsDate)
+        
+        XCTAssertEqual(fetchedCurrent.count, 1)
+        XCTAssertEqual(fetchedCurrent.first?.nsDate, current.nsDate)
+        
+        XCTAssertEqual(fetchedNewest.count, 1)
+        XCTAssertEqual(fetchedNewest.first?.nsDate, newest.nsDate)
+    }
 }
 
 
-class InstantTests: XCTestCase {
+class InstantTests: XCTestCase, RealmPersistenceTesting {
 	
 	func testParseSuccess() {
 		var d = Instant(string: "2015")
@@ -692,5 +748,35 @@ class InstantTests: XCTestCase {
 			XCTAssertTrue(false, "Failed to parse perfectly fine HTTP date")
 		}
 	}
+    
+    func testCanRealmFilterOnValue() {
+        let realm = makeRealm()
+        
+        let oldest = Instant.now
+        oldest.nsDate = Calendar.current.date(byAdding: .day, value: -3, to: oldest.nsDate)!
+        
+        let current = Instant.now
+        
+        let newest = Instant.now
+        newest.nsDate = Calendar.current.date(byAdding: .day, value: 3, to: newest.nsDate)!
+        
+        
+        try! realm.write {
+            realm.add([oldest, current, newest])
+        }
+        
+        let fetchedOldest = realm.objects(Instant.self).filter("value < %@", current.nsDate)
+        let fetchedCurrent = realm.objects(Instant.self).filter("value = %@", current.nsDate)
+        let fetchedNewest = realm.objects(Instant.self).filter("value > %@", current.nsDate)
+        
+        XCTAssertEqual(fetchedOldest.count, 1)
+        XCTAssertEqual(fetchedOldest.first?.nsDate, oldest.nsDate)
+        
+        XCTAssertEqual(fetchedCurrent.count, 1)
+        XCTAssertEqual(fetchedCurrent.first?.nsDate, current.nsDate)
+        
+        XCTAssertEqual(fetchedNewest.count, 1)
+        XCTAssertEqual(fetchedNewest.first?.nsDate, newest.nsDate)
+    }
 }
 
