@@ -45,6 +45,7 @@ manual_profiles = [                                     # all these profiles sho
     (tpl_source + '/DateAndTime.swift', None, [
         'date', 'dateTime', 'time', 'instant',
     ]),
+    (tpl_source + '/CascadeDeletable.swift', None, [])
     (tpl_source + '/JSON-extensions.swift', None, []),
     (tpl_source + '/FHIRServer.swift', None, []),
     (tpl_source + '/FHIRServerResponse.swift', None, []),
@@ -67,7 +68,8 @@ tpl_unittest_source = tpl_source + '/template-unittest.swift'
 unittest_copyfiles = [
     tpl_source + '/XCTestCase+FHIR.swift',
     tpl_source + '/DateAndTimeTests.swift',
-    tpl_source + '/RealmTestingProtocols.swift'
+    tpl_source + '/RealmTestingProtocols.swift',
+    tpl_source + '/CascadeDeletableTests.swift'
 ]
 unittest_format_path_prepare = '{}?'            # used to format `path` before appending another path element - one placeholder for `path`
 unittest_format_path_key = '{}.{}'              # used to create property paths by appending `key` to the existing `path` - two placeholders
