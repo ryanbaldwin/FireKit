@@ -47,7 +47,8 @@ extension FHIRAbstractBase: CascadeDeletable {
 
 extension RealmSwift.List: CascadeDeletable {
     
-    /// Iterates through the list and calls `cascadeDelete` on each element.
+    /// Iterates through the list and calls `cascadeDelete` on each element, if the element is `CascadeDeletable`,
+    /// otherwise it will attempt to delete the element using the realm managing the element.
     ///
     /// - Warning: This method may only be called during a write transaction.
     public func cascadeDelete() throws {
