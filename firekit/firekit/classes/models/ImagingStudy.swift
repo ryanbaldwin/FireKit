@@ -2,11 +2,12 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -22,50 +23,109 @@ open class ImagingStudy: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImagingStudy" }
 	}
-    
-    public dynamic var accession: Identifier?        
+
+    @objc public dynamic var accession: Identifier?
     public func upsert(accession: Identifier?) {
         upsert(prop: &self.accession, val: accession)
-    }    
-    public dynamic var availability: String?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var interpreter: Reference?        
+    }
+    @objc public dynamic var availability: String?
+    @objc public dynamic var description_fhir: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var interpreter: Reference?
     public func upsert(interpreter: Reference?) {
         upsert(prop: &self.interpreter, val: interpreter)
-    }    
-    public let modalityList = RealmSwift.List<Coding>()    
-    public let numberOfInstances = RealmOptional<Int>()    
-    public let numberOfSeries = RealmOptional<Int>()    
-    public let order = RealmSwift.List<Reference>()    
-    public dynamic var patient: Reference?        
+    }
+    public let modalityList = RealmSwift.List<Coding>()
+    public let numberOfInstances = RealmOptional<Int>()
+    public let numberOfSeries = RealmOptional<Int>()
+    public let order = RealmSwift.List<Reference>()
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public let procedure = RealmSwift.List<Reference>()    
-    public dynamic var referrer: Reference?        
+    }
+    public let procedure = RealmSwift.List<Reference>()
+    @objc public dynamic var referrer: Reference?
     public func upsert(referrer: Reference?) {
         upsert(prop: &self.referrer, val: referrer)
-    }    
-    public let series = RealmSwift.List<ImagingStudySeries>()    
-    public dynamic var started: DateTime?        
-        
-    public dynamic var uid: String?        
-        
-    public dynamic var url: String?        
-    
+    }
+    public let series = RealmSwift.List<ImagingStudySeries>()
+    @objc public dynamic var started: DateTime?
+    @objc public dynamic var uid: String?
+    @objc public dynamic var url: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(numberOfInstances: Int, numberOfSeries: Int, patient: Reference, uid: String) {
-        self.init(json: nil)
+        self.init()
         self.numberOfInstances.value = numberOfInstances
         self.numberOfSeries.value = numberOfSeries
         self.patient = patient
         self.uid = uid
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case accession = "accession"
+        case availability = "availability"
+        case description_fhir = "description"
+        case identifier = "identifier"
+        case interpreter = "interpreter"
+        case modalityList = "modalityList"
+        case numberOfInstances = "numberOfInstances"
+        case numberOfSeries = "numberOfSeries"
+        case order = "order"
+        case patient = "patient"
+        case procedure = "procedure"
+        case referrer = "referrer"
+        case series = "series"
+        case started = "started"
+        case uid = "uid"
+        case url = "url"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.availability = try container.decodeIfPresent(String.self, forKey: .availability)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.numberOfInstances.value = try container.decodeIfPresent(Int.self, forKey: .numberOfInstances)
+        self.numberOfSeries.value = try container.decodeIfPresent(Int.self, forKey: .numberOfSeries)
+        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.accession, forKey: .accession)
+        try container.encodeIfPresent(self.availability, forKey: .availability)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.interpreter, forKey: .interpreter)
+        try container.encode(self.modalityList.flatMap { $0 }, forKey: .modalityList)
+        try container.encodeIfPresent(self.numberOfInstances.value, forKey: .numberOfInstances)
+        try container.encodeIfPresent(self.numberOfSeries.value, forKey: .numberOfSeries)
+        try container.encode(self.order.flatMap { $0 }, forKey: .order)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encode(self.procedure.flatMap { $0 }, forKey: .procedure)
+        try container.encodeIfPresent(self.referrer, forKey: .referrer)
+        try container.encode(self.series.flatMap { $0 }, forKey: .series)
+        try container.encodeIfPresent(self.started, forKey: .started)
+        try container.encodeIfPresent(self.uid, forKey: .uid)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -299,6 +359,7 @@ open class ImagingStudy: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -311,41 +372,90 @@ open class ImagingStudySeries: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudySeries" }
 	}
-    
-    public dynamic var availability: String?        
-        
-    public dynamic var bodySite: Coding?        
+
+    @objc public dynamic var availability: String?
+    @objc public dynamic var bodySite: Coding?
     public func upsert(bodySite: Coding?) {
         upsert(prop: &self.bodySite, val: bodySite)
-    }    
-    public dynamic var description_fhir: String?        
-        
-    public let instance = RealmSwift.List<ImagingStudySeriesInstance>()    
-    public dynamic var laterality: Coding?        
+    }
+    @objc public dynamic var description_fhir: String?
+    public let instance = RealmSwift.List<ImagingStudySeriesInstance>()
+    @objc public dynamic var laterality: Coding?
     public func upsert(laterality: Coding?) {
         upsert(prop: &self.laterality, val: laterality)
-    }    
-    public dynamic var modality: Coding?        
+    }
+    @objc public dynamic var modality: Coding?
     public func upsert(modality: Coding?) {
         upsert(prop: &self.modality, val: modality)
-    }    
-    public let number = RealmOptional<Int>()    
-    public let numberOfInstances = RealmOptional<Int>()    
-    public dynamic var started: DateTime?        
-        
-    public dynamic var uid: String?        
-        
-    public dynamic var url: String?        
-    
+    }
+    public let number = RealmOptional<Int>()
+    public let numberOfInstances = RealmOptional<Int>()
+    @objc public dynamic var started: DateTime?
+    @objc public dynamic var uid: String?
+    @objc public dynamic var url: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(modality: Coding, numberOfInstances: Int, uid: String) {
-        self.init(json: nil)
+        self.init()
         self.modality = modality
         self.numberOfInstances.value = numberOfInstances
         self.uid = uid
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case availability = "availability"
+        case bodySite = "bodySite"
+        case description_fhir = "description"
+        case instance = "instance"
+        case laterality = "laterality"
+        case modality = "modality"
+        case number = "number"
+        case numberOfInstances = "numberOfInstances"
+        case started = "started"
+        case uid = "uid"
+        case url = "url"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.availability = try container.decodeIfPresent(String.self, forKey: .availability)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.number.value = try container.decodeIfPresent(Int.self, forKey: .number)
+        self.numberOfInstances.value = try container.decodeIfPresent(Int.self, forKey: .numberOfInstances)
+        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.availability, forKey: .availability)
+        try container.encodeIfPresent(self.bodySite, forKey: .bodySite)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(self.instance.flatMap { $0 }, forKey: .instance)
+        try container.encodeIfPresent(self.laterality, forKey: .laterality)
+        try container.encodeIfPresent(self.modality, forKey: .modality)
+        try container.encodeIfPresent(self.number.value, forKey: .number)
+        try container.encodeIfPresent(self.numberOfInstances.value, forKey: .numberOfInstances)
+        try container.encodeIfPresent(self.started, forKey: .started)
+        try container.encodeIfPresent(self.uid, forKey: .uid)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -504,6 +614,7 @@ open class ImagingStudySeries: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -516,25 +627,64 @@ open class ImagingStudySeriesInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingStudySeriesInstance" }
 	}
-    
-    public let content = RealmSwift.List<Attachment>()    
-    public let number = RealmOptional<Int>()    
-    public dynamic var sopClass: String?        
-        
-    public dynamic var title: String?        
-        
-    public dynamic var type: String?        
-        
-    public dynamic var uid: String?        
-    
+
+    public let content = RealmSwift.List<Attachment>()
+    public let number = RealmOptional<Int>()
+    @objc public dynamic var sopClass: String?
+    @objc public dynamic var title: String?
+    @objc public dynamic var type: String?
+    @objc public dynamic var uid: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(sopClass: String, uid: String) {
-        self.init(json: nil)
+        self.init()
         self.sopClass = sopClass
         self.uid = uid
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case content = "content"
+        case number = "number"
+        case sopClass = "sopClass"
+        case title = "title"
+        case type = "type"
+        case uid = "uid"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.number.value = try container.decodeIfPresent(Int.self, forKey: .number)
+        self.sopClass = try container.decodeIfPresent(String.self, forKey: .sopClass)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.content.flatMap { $0 }, forKey: .content)
+        try container.encodeIfPresent(self.number.value, forKey: .number)
+        try container.encodeIfPresent(self.sopClass, forKey: .sopClass)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encodeIfPresent(self.uid, forKey: .uid)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -630,5 +780,6 @@ open class ImagingStudySeriesInstance: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

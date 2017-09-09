@@ -2,11 +2,12 @@
 //  PaymentReconciliation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentReconciliation) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,59 +20,114 @@ open class PaymentReconciliation: DomainResource {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliation" }
 	}
-    
-    public dynamic var created: DateTime?        
-        
-    public let detail = RealmSwift.List<PaymentReconciliationDetail>()    
-    public dynamic var disposition: String?        
-        
-    public dynamic var form: Coding?        
+
+    @objc public dynamic var created: DateTime?
+    public let detail = RealmSwift.List<PaymentReconciliationDetail>()
+    @objc public dynamic var disposition: String?
+    @objc public dynamic var form: Coding?
     public func upsert(form: Coding?) {
         upsert(prop: &self.form, val: form)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let note = RealmSwift.List<PaymentReconciliationNote>()    
-    public dynamic var organization: Reference?        
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    public let note = RealmSwift.List<PaymentReconciliationNote>()
+    @objc public dynamic var organization: Reference?
     public func upsert(organization: Reference?) {
         upsert(prop: &self.organization, val: organization)
-    }    
-    public dynamic var originalRuleset: Coding?        
+    }
+    @objc public dynamic var originalRuleset: Coding?
     public func upsert(originalRuleset: Coding?) {
         upsert(prop: &self.originalRuleset, val: originalRuleset)
-    }    
-    public dynamic var outcome: String?        
-        
-    public dynamic var period: Period?        
+    }
+    @objc public dynamic var outcome: String?
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public dynamic var request: Reference?        
+    }
+    @objc public dynamic var request: Reference?
     public func upsert(request: Reference?) {
         upsert(prop: &self.request, val: request)
-    }    
-    public dynamic var requestOrganization: Reference?        
+    }
+    @objc public dynamic var requestOrganization: Reference?
     public func upsert(requestOrganization: Reference?) {
         upsert(prop: &self.requestOrganization, val: requestOrganization)
-    }    
-    public dynamic var requestProvider: Reference?        
+    }
+    @objc public dynamic var requestProvider: Reference?
     public func upsert(requestProvider: Reference?) {
         upsert(prop: &self.requestProvider, val: requestProvider)
-    }    
-    public dynamic var ruleset: Coding?        
+    }
+    @objc public dynamic var ruleset: Coding?
     public func upsert(ruleset: Coding?) {
         upsert(prop: &self.ruleset, val: ruleset)
-    }    
-    public dynamic var total: Quantity?        
+    }
+    @objc public dynamic var total: Quantity?
     public func upsert(total: Quantity?) {
         upsert(prop: &self.total, val: total)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(total: Quantity) {
-        self.init(json: nil)
+        self.init()
         self.total = total
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case created = "created"
+        case detail = "detail"
+        case disposition = "disposition"
+        case form = "form"
+        case identifier = "identifier"
+        case note = "note"
+        case organization = "organization"
+        case originalRuleset = "originalRuleset"
+        case outcome = "outcome"
+        case period = "period"
+        case request = "request"
+        case requestOrganization = "requestOrganization"
+        case requestProvider = "requestProvider"
+        case ruleset = "ruleset"
+        case total = "total"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.disposition = try container.decodeIfPresent(String.self, forKey: .disposition)
+        self.outcome = try container.decodeIfPresent(String.self, forKey: .outcome)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.created, forKey: .created)
+        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encodeIfPresent(self.disposition, forKey: .disposition)
+        try container.encodeIfPresent(self.form, forKey: .form)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.note.flatMap { $0 }, forKey: .note)
+        try container.encodeIfPresent(self.organization, forKey: .organization)
+        try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
+        try container.encodeIfPresent(self.outcome, forKey: .outcome)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encodeIfPresent(self.request, forKey: .request)
+        try container.encodeIfPresent(self.requestOrganization, forKey: .requestOrganization)
+        try container.encodeIfPresent(self.requestProvider, forKey: .requestProvider)
+        try container.encodeIfPresent(self.ruleset, forKey: .ruleset)
+        try container.encodeIfPresent(self.total, forKey: .total)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -278,6 +334,7 @@ open class PaymentReconciliation: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -290,40 +347,79 @@ open class PaymentReconciliationDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliationDetail" }
 	}
-    
-    public dynamic var amount: Quantity?        
+
+    @objc public dynamic var amount: Quantity?
     public func upsert(amount: Quantity?) {
         upsert(prop: &self.amount, val: amount)
-    }    
-    public dynamic var date: FHIRDate?        
-        
-    public dynamic var payee: Reference?        
+    }
+    @objc public dynamic var date: FHIRDate?
+    @objc public dynamic var payee: Reference?
     public func upsert(payee: Reference?) {
         upsert(prop: &self.payee, val: payee)
-    }    
-    public dynamic var request: Reference?        
+    }
+    @objc public dynamic var request: Reference?
     public func upsert(request: Reference?) {
         upsert(prop: &self.request, val: request)
-    }    
-    public dynamic var responce: Reference?        
+    }
+    @objc public dynamic var responce: Reference?
     public func upsert(responce: Reference?) {
         upsert(prop: &self.responce, val: responce)
-    }    
-    public dynamic var submitter: Reference?        
+    }
+    @objc public dynamic var submitter: Reference?
     public func upsert(submitter: Reference?) {
         upsert(prop: &self.submitter, val: submitter)
-    }    
-    public dynamic var type: Coding?        
+    }
+    @objc public dynamic var type: Coding?
     public func upsert(type: Coding?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(type: Coding) {
-        self.init(json: nil)
+        self.init()
         self.type = type
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case date = "date"
+        case payee = "payee"
+        case request = "request"
+        case responce = "responce"
+        case submitter = "submitter"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.payee, forKey: .payee)
+        try container.encodeIfPresent(self.request, forKey: .request)
+        try container.encodeIfPresent(self.responce, forKey: .responce)
+        try container.encodeIfPresent(self.submitter, forKey: .submitter)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -425,6 +521,7 @@ open class PaymentReconciliationDetail: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -437,14 +534,44 @@ open class PaymentReconciliationNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PaymentReconciliationNote" }
 	}
-    
-    public dynamic var text: String?        
-        
-    public dynamic var type: Coding?        
+
+    @objc public dynamic var text: String?
+    @objc public dynamic var type: Coding?
     public func upsert(type: Coding?) {
         upsert(prop: &self.type, val: type)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case text = "text"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -483,5 +610,6 @@ open class PaymentReconciliationNote: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

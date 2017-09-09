@@ -2,11 +2,12 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,29 +21,64 @@ open class Basic: DomainResource {
 	override open class var resourceType: String {
 		get { return "Basic" }
 	}
-    
-    public dynamic var author: Reference?        
+
+    @objc public dynamic var author: Reference?
     public func upsert(author: Reference?) {
         upsert(prop: &self.author, val: author)
-    }    
-    public dynamic var code: CodeableConcept?        
+    }
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var created: FHIRDate?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var subject: Reference?        
+    }
+    @objc public dynamic var created: FHIRDate?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case author = "author"
+        case code = "code"
+        case created = "created"
+        case identifier = "identifier"
+        case subject = "subject"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.author, forKey: .author)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.created, forKey: .created)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -123,5 +159,6 @@ open class Basic: DomainResource {
 		
 		return json
 	}
+*/
 }
 

@@ -2,11 +2,12 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,46 +20,102 @@ open class Coverage: DomainResource {
 	override open class var resourceType: String {
 		get { return "Coverage" }
 	}
-    
-    public dynamic var bin: Identifier?        
+
+    @objc public dynamic var bin: Identifier?
     public func upsert(bin: Identifier?) {
         upsert(prop: &self.bin, val: bin)
-    }    
-    public let contract = RealmSwift.List<Reference>()    
-    public let dependent = RealmOptional<Int>()    
-    public dynamic var group: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var issuer: Reference?        
+    }
+    public let contract = RealmSwift.List<Reference>()
+    public let dependent = RealmOptional<Int>()
+    @objc public dynamic var group: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var issuer: Reference?
     public func upsert(issuer: Reference?) {
         upsert(prop: &self.issuer, val: issuer)
-    }    
-    public dynamic var network: Identifier?        
+    }
+    @objc public dynamic var network: Identifier?
     public func upsert(network: Identifier?) {
         upsert(prop: &self.network, val: network)
-    }    
-    public dynamic var period: Period?        
+    }
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public dynamic var plan: String?        
-        
-    public let sequence = RealmOptional<Int>()    
-    public dynamic var subPlan: String?        
-        
-    public dynamic var subscriber: Reference?        
+    }
+    @objc public dynamic var plan: String?
+    public let sequence = RealmOptional<Int>()
+    @objc public dynamic var subPlan: String?
+    @objc public dynamic var subscriber: Reference?
     public func upsert(subscriber: Reference?) {
         upsert(prop: &self.subscriber, val: subscriber)
-    }    
-    public dynamic var subscriberId: Identifier?        
+    }
+    @objc public dynamic var subscriberId: Identifier?
     public func upsert(subscriberId: Identifier?) {
         upsert(prop: &self.subscriberId, val: subscriberId)
-    }    
-    public dynamic var type: Coding?        
+    }
+    @objc public dynamic var type: Coding?
     public func upsert(type: Coding?) {
         upsert(prop: &self.type, val: type)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case bin = "bin"
+        case contract = "contract"
+        case dependent = "dependent"
+        case group = "group"
+        case identifier = "identifier"
+        case issuer = "issuer"
+        case network = "network"
+        case period = "period"
+        case plan = "plan"
+        case sequence = "sequence"
+        case subPlan = "subPlan"
+        case subscriber = "subscriber"
+        case subscriberId = "subscriberId"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.dependent.value = try container.decodeIfPresent(Int.self, forKey: .dependent)
+        self.group = try container.decodeIfPresent(String.self, forKey: .group)
+        self.plan = try container.decodeIfPresent(String.self, forKey: .plan)
+        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
+        self.subPlan = try container.decodeIfPresent(String.self, forKey: .subPlan)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.bin, forKey: .bin)
+        try container.encode(self.contract.flatMap { $0 }, forKey: .contract)
+        try container.encodeIfPresent(self.dependent.value, forKey: .dependent)
+        try container.encodeIfPresent(self.group, forKey: .group)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.issuer, forKey: .issuer)
+        try container.encodeIfPresent(self.network, forKey: .network)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encodeIfPresent(self.plan, forKey: .plan)
+        try container.encodeIfPresent(self.sequence.value, forKey: .sequence)
+        try container.encodeIfPresent(self.subPlan, forKey: .subPlan)
+        try container.encodeIfPresent(self.subscriber, forKey: .subscriber)
+        try container.encodeIfPresent(self.subscriberId, forKey: .subscriberId)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -247,5 +304,6 @@ open class Coverage: DomainResource {
 		
 		return json
 	}
+*/
 }
 

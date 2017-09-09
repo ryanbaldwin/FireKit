@@ -2,11 +2,12 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -17,31 +18,70 @@ open class OrderResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "OrderResponse" }
 	}
-    
-    public dynamic var date: DateTime?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public let fulfillment = RealmSwift.List<Reference>()    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var orderStatus: String?        
-        
-    public dynamic var request: Reference?        
+
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var description_fhir: String?
+    public let fulfillment = RealmSwift.List<Reference>()
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var orderStatus: String?
+    @objc public dynamic var request: Reference?
     public func upsert(request: Reference?) {
         upsert(prop: &self.request, val: request)
-    }    
-    public dynamic var who: Reference?        
+    }
+    @objc public dynamic var who: Reference?
     public func upsert(who: Reference?) {
         upsert(prop: &self.who, val: who)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(orderStatus: String, request: Reference) {
-        self.init(json: nil)
+        self.init()
         self.orderStatus = orderStatus
         self.request = request
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case date = "date"
+        case description_fhir = "description"
+        case fulfillment = "fulfillment"
+        case identifier = "identifier"
+        case orderStatus = "orderStatus"
+        case request = "request"
+        case who = "who"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.orderStatus = try container.decodeIfPresent(String.self, forKey: .orderStatus)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(self.fulfillment.flatMap { $0 }, forKey: .fulfillment)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.orderStatus, forKey: .orderStatus)
+        try container.encodeIfPresent(self.request, forKey: .request)
+        try container.encodeIfPresent(self.who, forKey: .who)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -152,5 +192,6 @@ open class OrderResponse: DomainResource {
 		
 		return json
 	}
+*/
 }
 

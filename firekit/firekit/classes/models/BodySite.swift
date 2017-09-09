@@ -2,11 +2,12 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,27 +21,65 @@ open class BodySite: DomainResource {
 	override open class var resourceType: String {
 		get { return "BodySite" }
 	}
-    
-    public dynamic var code: CodeableConcept?        
+
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var description_fhir: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let image = RealmSwift.List<Attachment>()    
-    public let modifier = RealmSwift.List<CodeableConcept>()    
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var description_fhir: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    public let image = RealmSwift.List<Attachment>()
+    public let modifier = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(patient: Reference) {
-        self.init(json: nil)
+        self.init()
         self.patient = patient
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case description_fhir = "description"
+        case identifier = "identifier"
+        case image = "image"
+        case modifier = "modifier"
+        case patient = "patient"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.image.flatMap { $0 }, forKey: .image)
+        try container.encode(self.modifier.flatMap { $0 }, forKey: .modifier)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -139,5 +178,6 @@ open class BodySite: DomainResource {
 		
 		return json
 	}
+*/
 }
 

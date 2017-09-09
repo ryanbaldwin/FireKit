@@ -2,11 +2,12 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,32 +20,73 @@ open class VisionPrescription: DomainResource {
 	override open class var resourceType: String {
 		get { return "VisionPrescription" }
 	}
-    
-    public dynamic var dateWritten: DateTime?        
-        
-    public let dispense = RealmSwift.List<VisionPrescriptionDispense>()    
-    public dynamic var encounter: Reference?        
+
+    @objc public dynamic var dateWritten: DateTime?
+    public let dispense = RealmSwift.List<VisionPrescriptionDispense>()
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var patient: Reference?        
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var prescriber: Reference?        
+    }
+    @objc public dynamic var prescriber: Reference?
     public func upsert(prescriber: Reference?) {
         upsert(prop: &self.prescriber, val: prescriber)
-    }    
-    public dynamic var reasonCodeableConcept: CodeableConcept?        
+    }
+    @objc public dynamic var reasonCodeableConcept: CodeableConcept?
     public func upsert(reasonCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
-    }    
-    public dynamic var reasonReference: Reference?        
+    }
+    @objc public dynamic var reasonReference: Reference?
     public func upsert(reasonReference: Reference?) {
         upsert(prop: &self.reasonReference, val: reasonReference)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case dateWritten = "dateWritten"
+        case dispense = "dispense"
+        case encounter = "encounter"
+        case identifier = "identifier"
+        case patient = "patient"
+        case prescriber = "prescriber"
+        case reasonCodeableConcept = "reasonCodeableConcept"
+        case reasonReference = "reasonReference"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.dateWritten, forKey: .dateWritten)
+        try container.encode(self.dispense.flatMap { $0 }, forKey: .dispense)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.prescriber, forKey: .prescriber)
+        try container.encodeIfPresent(self.reasonCodeableConcept, forKey: .reasonCodeableConcept)
+        try container.encodeIfPresent(self.reasonReference, forKey: .reasonReference)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -161,6 +203,7 @@ open class VisionPrescription: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -173,47 +216,97 @@ open class VisionPrescriptionDispense: BackboneElement {
 	override open class var resourceType: String {
 		get { return "VisionPrescriptionDispense" }
 	}
-    
-    public dynamic var add: RealmDecimal?        
-        
-    public let axis = RealmOptional<Int>()    
-    public dynamic var backCurve: RealmDecimal?        
-        
-    public dynamic var base: String?        
-        
-    public dynamic var brand: String?        
-        
-    public dynamic var color: String?        
-        
-    public dynamic var cylinder: RealmDecimal?        
-        
-    public dynamic var diameter: RealmDecimal?        
-        
-    public dynamic var duration: Quantity?        
+
+    @objc public dynamic var add: RealmDecimal?
+    public let axis = RealmOptional<Int>()
+    @objc public dynamic var backCurve: RealmDecimal?
+    @objc public dynamic var base: String?
+    @objc public dynamic var brand: String?
+    @objc public dynamic var color: String?
+    @objc public dynamic var cylinder: RealmDecimal?
+    @objc public dynamic var diameter: RealmDecimal?
+    @objc public dynamic var duration: Quantity?
     public func upsert(duration: Quantity?) {
         upsert(prop: &self.duration, val: duration)
-    }    
-    public dynamic var eye: String?        
-        
-    public dynamic var notes: String?        
-        
-    public dynamic var power: RealmDecimal?        
-        
-    public dynamic var prism: RealmDecimal?        
-        
-    public dynamic var product: Coding?        
+    }
+    @objc public dynamic var eye: String?
+    @objc public dynamic var notes: String?
+    @objc public dynamic var power: RealmDecimal?
+    @objc public dynamic var prism: RealmDecimal?
+    @objc public dynamic var product: Coding?
     public func upsert(product: Coding?) {
         upsert(prop: &self.product, val: product)
-    }    
-    public dynamic var sphere: RealmDecimal?        
-    
+    }
+    @objc public dynamic var sphere: RealmDecimal?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(product: Coding) {
-        self.init(json: nil)
+        self.init()
         self.product = product
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case add = "add"
+        case axis = "axis"
+        case backCurve = "backCurve"
+        case base = "base"
+        case brand = "brand"
+        case color = "color"
+        case cylinder = "cylinder"
+        case diameter = "diameter"
+        case duration = "duration"
+        case eye = "eye"
+        case notes = "notes"
+        case power = "power"
+        case prism = "prism"
+        case product = "product"
+        case sphere = "sphere"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.axis.value = try container.decodeIfPresent(Int.self, forKey: .axis)
+        self.base = try container.decodeIfPresent(String.self, forKey: .base)
+        self.brand = try container.decodeIfPresent(String.self, forKey: .brand)
+        self.color = try container.decodeIfPresent(String.self, forKey: .color)
+        self.eye = try container.decodeIfPresent(String.self, forKey: .eye)
+        self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.add, forKey: .add)
+        try container.encodeIfPresent(self.axis.value, forKey: .axis)
+        try container.encodeIfPresent(self.backCurve, forKey: .backCurve)
+        try container.encodeIfPresent(self.base, forKey: .base)
+        try container.encodeIfPresent(self.brand, forKey: .brand)
+        try container.encodeIfPresent(self.color, forKey: .color)
+        try container.encodeIfPresent(self.cylinder, forKey: .cylinder)
+        try container.encodeIfPresent(self.diameter, forKey: .diameter)
+        try container.encodeIfPresent(self.duration, forKey: .duration)
+        try container.encodeIfPresent(self.eye, forKey: .eye)
+        try container.encodeIfPresent(self.notes, forKey: .notes)
+        try container.encodeIfPresent(self.power, forKey: .power)
+        try container.encodeIfPresent(self.prism, forKey: .prism)
+        try container.encodeIfPresent(self.product, forKey: .product)
+        try container.encodeIfPresent(self.sphere, forKey: .sphere)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -411,5 +504,6 @@ open class VisionPrescriptionDispense: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

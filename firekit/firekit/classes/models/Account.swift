@@ -2,11 +2,12 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,43 +21,91 @@ open class Account: DomainResource {
 	override open class var resourceType: String {
 		get { return "Account" }
 	}
-    
-    public dynamic var activePeriod: Period?        
+
+    @objc public dynamic var activePeriod: Period?
     public func upsert(activePeriod: Period?) {
         upsert(prop: &self.activePeriod, val: activePeriod)
-    }    
-    public dynamic var balance: Quantity?        
+    }
+    @objc public dynamic var balance: Quantity?
     public func upsert(balance: Quantity?) {
         upsert(prop: &self.balance, val: balance)
-    }    
-    public dynamic var coveragePeriod: Period?        
+    }
+    @objc public dynamic var coveragePeriod: Period?
     public func upsert(coveragePeriod: Period?) {
         upsert(prop: &self.coveragePeriod, val: coveragePeriod)
-    }    
-    public dynamic var currency: Coding?        
+    }
+    @objc public dynamic var currency: Coding?
     public func upsert(currency: Coding?) {
         upsert(prop: &self.currency, val: currency)
-    }    
-    public dynamic var description_fhir: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var name: String?        
-        
-    public dynamic var owner: Reference?        
+    }
+    @objc public dynamic var description_fhir: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var name: String?
+    @objc public dynamic var owner: Reference?
     public func upsert(owner: Reference?) {
         upsert(prop: &self.owner, val: owner)
-    }    
-    public dynamic var status: String?        
-        
-    public dynamic var subject: Reference?        
+    }
+    @objc public dynamic var status: String?
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case activePeriod = "activePeriod"
+        case balance = "balance"
+        case coveragePeriod = "coveragePeriod"
+        case currency = "currency"
+        case description_fhir = "description"
+        case identifier = "identifier"
+        case name = "name"
+        case owner = "owner"
+        case status = "status"
+        case subject = "subject"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.activePeriod, forKey: .activePeriod)
+        try container.encodeIfPresent(self.balance, forKey: .balance)
+        try container.encodeIfPresent(self.coveragePeriod, forKey: .coveragePeriod)
+        try container.encodeIfPresent(self.currency, forKey: .currency)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.owner, forKey: .owner)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -206,5 +255,6 @@ open class Account: DomainResource {
 		
 		return json
 	}
+*/
 }
 

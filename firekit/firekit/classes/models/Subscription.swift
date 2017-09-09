@@ -2,11 +2,12 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -22,33 +23,74 @@ open class Subscription: DomainResource {
 	override open class var resourceType: String {
 		get { return "Subscription" }
 	}
-    
-    public dynamic var channel: SubscriptionChannel?        
+
+    @objc public dynamic var channel: SubscriptionChannel?
     public func upsert(channel: SubscriptionChannel?) {
         upsert(prop: &self.channel, val: channel)
-    }    
-    public let contact = RealmSwift.List<ContactPoint>()    
-    public dynamic var criteria: String?        
-        
-    public dynamic var end: Instant?        
-        
-    public dynamic var error: String?        
-        
-    public dynamic var reason: String?        
-        
-    public dynamic var status: String?        
-        
+    }
+    public let contact = RealmSwift.List<ContactPoint>()
+    @objc public dynamic var criteria: String?
+    @objc public dynamic var end: Instant?
+    @objc public dynamic var error: String?
+    @objc public dynamic var reason: String?
+    @objc public dynamic var status: String?
     public let tag = RealmSwift.List<Coding>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(channel: SubscriptionChannel, criteria: String, reason: String, status: String) {
-        self.init(json: nil)
+        self.init()
         self.channel = channel
         self.criteria = criteria
         self.reason = reason
         self.status = status
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case channel = "channel"
+        case contact = "contact"
+        case criteria = "criteria"
+        case end = "end"
+        case error = "error"
+        case reason = "reason"
+        case status = "status"
+        case tag = "tag"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.criteria = try container.decodeIfPresent(String.self, forKey: .criteria)
+        self.error = try container.decodeIfPresent(String.self, forKey: .error)
+        self.reason = try container.decodeIfPresent(String.self, forKey: .reason)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.channel, forKey: .channel)
+        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encodeIfPresent(self.criteria, forKey: .criteria)
+        try container.encodeIfPresent(self.end, forKey: .end)
+        try container.encodeIfPresent(self.error, forKey: .error)
+        try container.encodeIfPresent(self.reason, forKey: .reason)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encode(self.tag.flatMap { $0 }, forKey: .tag)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -177,6 +219,7 @@ open class Subscription: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -189,23 +232,57 @@ open class SubscriptionChannel: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubscriptionChannel" }
 	}
-    
-    public dynamic var endpoint: String?        
-        
-    public dynamic var header: String?        
-        
-    public dynamic var payload: String?        
-        
-    public dynamic var type: String?        
-    
+
+    @objc public dynamic var endpoint: String?
+    @objc public dynamic var header: String?
+    @objc public dynamic var payload: String?
+    @objc public dynamic var type: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(payload: String, type: String) {
-        self.init(json: nil)
+        self.init()
         self.payload = payload
         self.type = type
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case endpoint = "endpoint"
+        case header = "header"
+        case payload = "payload"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.endpoint = try container.decodeIfPresent(String.self, forKey: .endpoint)
+        self.header = try container.decodeIfPresent(String.self, forKey: .header)
+        self.payload = try container.decodeIfPresent(String.self, forKey: .payload)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.endpoint, forKey: .endpoint)
+        try container.encodeIfPresent(self.header, forKey: .header)
+        try container.encodeIfPresent(self.payload, forKey: .payload)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -274,5 +351,6 @@ open class SubscriptionChannel: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

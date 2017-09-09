@@ -2,11 +2,12 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,26 +20,72 @@ open class Person: DomainResource {
 	override open class var resourceType: String {
 		get { return "Person" }
 	}
-    
-    public let active = RealmOptional<Bool>()    
-    public let address = RealmSwift.List<Address>()    
-    public dynamic var birthDate: FHIRDate?        
-        
-    public dynamic var gender: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let link = RealmSwift.List<PersonLink>()    
-    public dynamic var managingOrganization: Reference?        
+
+    public let active = RealmOptional<Bool>()
+    public let address = RealmSwift.List<Address>()
+    @objc public dynamic var birthDate: FHIRDate?
+    @objc public dynamic var gender: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    public let link = RealmSwift.List<PersonLink>()
+    @objc public dynamic var managingOrganization: Reference?
     public func upsert(managingOrganization: Reference?) {
         upsert(prop: &self.managingOrganization, val: managingOrganization)
-    }    
-    public let name = RealmSwift.List<HumanName>()    
-    public dynamic var photo: Attachment?        
+    }
+    public let name = RealmSwift.List<HumanName>()
+    @objc public dynamic var photo: Attachment?
     public func upsert(photo: Attachment?) {
         upsert(prop: &self.photo, val: photo)
-    }    
+    }
     public let telecom = RealmSwift.List<ContactPoint>()
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case active = "active"
+        case address = "address"
+        case birthDate = "birthDate"
+        case gender = "gender"
+        case identifier = "identifier"
+        case link = "link"
+        case managingOrganization = "managingOrganization"
+        case name = "name"
+        case photo = "photo"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.active.value = try container.decodeIfPresent(Bool.self, forKey: .active)
+        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.active.value, forKey: .active)
+        try container.encode(self.address.flatMap { $0 }, forKey: .address)
+        try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
+        try container.encodeIfPresent(self.gender, forKey: .gender)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.link.flatMap { $0 }, forKey: .link)
+        try container.encodeIfPresent(self.managingOrganization, forKey: .managingOrganization)
+        try container.encode(self.name.flatMap { $0 }, forKey: .name)
+        try container.encodeIfPresent(self.photo, forKey: .photo)
+        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -188,6 +235,7 @@ open class Person: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -198,20 +246,50 @@ open class PersonLink: BackboneElement {
 	override open class var resourceType: String {
 		get { return "PersonLink" }
 	}
-    
-    public dynamic var assurance: String?        
-        
-    public dynamic var target: Reference?        
+
+    @objc public dynamic var assurance: String?
+    @objc public dynamic var target: Reference?
     public func upsert(target: Reference?) {
         upsert(prop: &self.target, val: target)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(target: Reference) {
-        self.init(json: nil)
+        self.init()
         self.target = target
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case assurance = "assurance"
+        case target = "target"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.assurance = try container.decodeIfPresent(String.self, forKey: .assurance)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.assurance, forKey: .assurance)
+        try container.encodeIfPresent(self.target, forKey: .target)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -253,5 +331,6 @@ open class PersonLink: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

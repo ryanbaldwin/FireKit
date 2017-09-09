@@ -2,11 +2,12 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,31 +21,70 @@ open class EligibilityRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "EligibilityRequest" }
 	}
-    
-    public dynamic var created: DateTime?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var organization: Reference?        
+
+    @objc public dynamic var created: DateTime?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var organization: Reference?
     public func upsert(organization: Reference?) {
         upsert(prop: &self.organization, val: organization)
-    }    
-    public dynamic var originalRuleset: Coding?        
+    }
+    @objc public dynamic var originalRuleset: Coding?
     public func upsert(originalRuleset: Coding?) {
         upsert(prop: &self.originalRuleset, val: originalRuleset)
-    }    
-    public dynamic var provider: Reference?        
+    }
+    @objc public dynamic var provider: Reference?
     public func upsert(provider: Reference?) {
         upsert(prop: &self.provider, val: provider)
-    }    
-    public dynamic var ruleset: Coding?        
+    }
+    @objc public dynamic var ruleset: Coding?
     public func upsert(ruleset: Coding?) {
         upsert(prop: &self.ruleset, val: ruleset)
-    }    
-    public dynamic var target: Reference?        
+    }
+    @objc public dynamic var target: Reference?
     public func upsert(target: Reference?) {
         upsert(prop: &self.target, val: target)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case created = "created"
+        case identifier = "identifier"
+        case organization = "organization"
+        case originalRuleset = "originalRuleset"
+        case provider = "provider"
+        case ruleset = "ruleset"
+        case target = "target"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.created, forKey: .created)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.organization, forKey: .organization)
+        try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
+        try container.encodeIfPresent(self.provider, forKey: .provider)
+        try container.encodeIfPresent(self.ruleset, forKey: .ruleset)
+        try container.encodeIfPresent(self.target, forKey: .target)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -146,5 +186,6 @@ open class EligibilityRequest: DomainResource {
 		
 		return json
 	}
+*/
 }
 

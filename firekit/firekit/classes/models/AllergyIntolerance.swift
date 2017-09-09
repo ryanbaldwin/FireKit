@@ -2,11 +2,12 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,51 +21,102 @@ open class AllergyIntolerance: DomainResource {
 	override open class var resourceType: String {
 		get { return "AllergyIntolerance" }
 	}
-    
-    public dynamic var category: String?        
-        
-    public dynamic var criticality: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var lastOccurence: DateTime?        
-        
-    public dynamic var note: Annotation?        
+
+    @objc public dynamic var category: String?
+    @objc public dynamic var criticality: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var lastOccurence: DateTime?
+    @objc public dynamic var note: Annotation?
     public func upsert(note: Annotation?) {
         upsert(prop: &self.note, val: note)
-    }    
-    public dynamic var onset: DateTime?        
-        
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var onset: DateTime?
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public let reaction = RealmSwift.List<AllergyIntoleranceReaction>()    
-    public dynamic var recordedDate: DateTime?        
-        
-    public dynamic var recorder: Reference?        
+    }
+    public let reaction = RealmSwift.List<AllergyIntoleranceReaction>()
+    @objc public dynamic var recordedDate: DateTime?
+    @objc public dynamic var recorder: Reference?
     public func upsert(recorder: Reference?) {
         upsert(prop: &self.recorder, val: recorder)
-    }    
-    public dynamic var reporter: Reference?        
+    }
+    @objc public dynamic var reporter: Reference?
     public func upsert(reporter: Reference?) {
         upsert(prop: &self.reporter, val: reporter)
-    }    
-    public dynamic var status: String?        
-        
-    public dynamic var substance: CodeableConcept?        
+    }
+    @objc public dynamic var status: String?
+    @objc public dynamic var substance: CodeableConcept?
     public func upsert(substance: CodeableConcept?) {
         upsert(prop: &self.substance, val: substance)
-    }    
-    public dynamic var type: String?        
-    
+    }
+    @objc public dynamic var type: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(patient: Reference, substance: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.patient = patient
         self.substance = substance
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case category = "category"
+        case criticality = "criticality"
+        case identifier = "identifier"
+        case lastOccurence = "lastOccurence"
+        case note = "note"
+        case onset = "onset"
+        case patient = "patient"
+        case reaction = "reaction"
+        case recordedDate = "recordedDate"
+        case recorder = "recorder"
+        case reporter = "reporter"
+        case status = "status"
+        case substance = "substance"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.category = try container.decodeIfPresent(String.self, forKey: .category)
+        self.criticality = try container.decodeIfPresent(String.self, forKey: .criticality)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.category, forKey: .category)
+        try container.encodeIfPresent(self.criticality, forKey: .criticality)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.lastOccurence, forKey: .lastOccurence)
+        try container.encodeIfPresent(self.note, forKey: .note)
+        try container.encodeIfPresent(self.onset, forKey: .onset)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encode(self.reaction.flatMap { $0 }, forKey: .reaction)
+        try container.encodeIfPresent(self.recordedDate, forKey: .recordedDate)
+        try container.encodeIfPresent(self.recorder, forKey: .recorder)
+        try container.encodeIfPresent(self.reporter, forKey: .reporter)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.substance, forKey: .substance)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -259,6 +311,7 @@ open class AllergyIntolerance: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -271,35 +324,76 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AllergyIntoleranceReaction" }
 	}
-    
-    public dynamic var certainty: String?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public dynamic var exposureRoute: CodeableConcept?        
+
+    @objc public dynamic var certainty: String?
+    @objc public dynamic var description_fhir: String?
+    @objc public dynamic var exposureRoute: CodeableConcept?
     public func upsert(exposureRoute: CodeableConcept?) {
         upsert(prop: &self.exposureRoute, val: exposureRoute)
-    }    
-    public let manifestation = RealmSwift.List<CodeableConcept>()    
-    public dynamic var note: Annotation?        
+    }
+    public let manifestation = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var note: Annotation?
     public func upsert(note: Annotation?) {
         upsert(prop: &self.note, val: note)
-    }    
-    public dynamic var onset: DateTime?        
-        
-    public dynamic var severity: String?        
-        
-    public dynamic var substance: CodeableConcept?        
+    }
+    @objc public dynamic var onset: DateTime?
+    @objc public dynamic var severity: String?
+    @objc public dynamic var substance: CodeableConcept?
     public func upsert(substance: CodeableConcept?) {
         upsert(prop: &self.substance, val: substance)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(manifestation: [CodeableConcept]) {
-        self.init(json: nil)
+        self.init()
         self.manifestation.append(objectsIn: manifestation)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case certainty = "certainty"
+        case description_fhir = "description"
+        case exposureRoute = "exposureRoute"
+        case manifestation = "manifestation"
+        case note = "note"
+        case onset = "onset"
+        case severity = "severity"
+        case substance = "substance"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.certainty = try container.decodeIfPresent(String.self, forKey: .certainty)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.severity = try container.decodeIfPresent(String.self, forKey: .severity)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.certainty, forKey: .certainty)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.exposureRoute, forKey: .exposureRoute)
+        try container.encode(self.manifestation.flatMap { $0 }, forKey: .manifestation)
+        try container.encodeIfPresent(self.note, forKey: .note)
+        try container.encodeIfPresent(self.onset, forKey: .onset)
+        try container.encodeIfPresent(self.severity, forKey: .severity)
+        try container.encodeIfPresent(self.substance, forKey: .substance)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -416,5 +510,6 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

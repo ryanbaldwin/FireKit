@@ -2,11 +2,12 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,32 +21,69 @@ open class SampledData: Element {
 	override open class var resourceType: String {
 		get { return "SampledData" }
 	}
-    
-    public dynamic var data: String?        
-        
-    public let dimensions = RealmOptional<Int>()    
-    public dynamic var factor: RealmDecimal?        
-        
-    public dynamic var lowerLimit: RealmDecimal?        
-        
-    public dynamic var origin: Quantity?        
+
+    @objc public dynamic var data: String?
+    public let dimensions = RealmOptional<Int>()
+    @objc public dynamic var factor: RealmDecimal?
+    @objc public dynamic var lowerLimit: RealmDecimal?
+    @objc public dynamic var origin: Quantity?
     public func upsert(origin: Quantity?) {
         upsert(prop: &self.origin, val: origin)
-    }    
-    public dynamic var period: RealmDecimal?        
-        
-    public dynamic var upperLimit: RealmDecimal?        
-    
+    }
+    @objc public dynamic var period: RealmDecimal?
+    @objc public dynamic var upperLimit: RealmDecimal?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(data: String, dimensions: Int, origin: Quantity, period: RealmDecimal) {
-        self.init(json: nil)
+        self.init()
         self.data = data
         self.dimensions.value = dimensions
         self.origin = origin
         self.period = period
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case data = "data"
+        case dimensions = "dimensions"
+        case factor = "factor"
+        case lowerLimit = "lowerLimit"
+        case origin = "origin"
+        case period = "period"
+        case upperLimit = "upperLimit"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.data = try container.decodeIfPresent(String.self, forKey: .data)
+        self.dimensions.value = try container.decodeIfPresent(Int.self, forKey: .dimensions)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.data, forKey: .data)
+        try container.encodeIfPresent(self.dimensions.value, forKey: .dimensions)
+        try container.encodeIfPresent(self.factor, forKey: .factor)
+        try container.encodeIfPresent(self.lowerLimit, forKey: .lowerLimit)
+        try container.encodeIfPresent(self.origin, forKey: .origin)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encodeIfPresent(self.upperLimit, forKey: .upperLimit)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -156,5 +194,6 @@ open class SampledData: Element {
 		
 		return json
 	}
+*/
 }
 

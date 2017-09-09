@@ -2,11 +2,12 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -23,47 +24,43 @@ open class Composition: DomainResource {
 	override open class var resourceType: String {
 		get { return "Composition" }
 	}
-    
-    public let attester = RealmSwift.List<CompositionAttester>()    
-    public let author = RealmSwift.List<Reference>()    
-    public dynamic var class_fhir: CodeableConcept?        
+
+    public let attester = RealmSwift.List<CompositionAttester>()
+    public let author = RealmSwift.List<Reference>()
+    @objc public dynamic var class_fhir: CodeableConcept?
     public func upsert(class_fhir: CodeableConcept?) {
         upsert(prop: &self.class_fhir, val: class_fhir)
-    }    
-    public dynamic var confidentiality: String?        
-        
-    public dynamic var custodian: Reference?        
+    }
+    @objc public dynamic var confidentiality: String?
+    @objc public dynamic var custodian: Reference?
     public func upsert(custodian: Reference?) {
         upsert(prop: &self.custodian, val: custodian)
-    }    
-    public dynamic var date: DateTime?        
-        
-    public dynamic var encounter: Reference?        
+    }
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public let event = RealmSwift.List<CompositionEvent>()    
-    public dynamic var identifier: Identifier?        
+    }
+    public let event = RealmSwift.List<CompositionEvent>()
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public let section = RealmSwift.List<CompositionSection>()    
-    public dynamic var status: String?        
-        
-    public dynamic var subject: Reference?        
+    }
+    public let section = RealmSwift.List<CompositionSection>()
+    @objc public dynamic var status: String?
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var title: String?        
-        
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var title: String?
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(author: [Reference], date: DateTime, status: String, subject: Reference, title: String, type: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.author.append(objectsIn: author)
         self.date = date
         self.status = status
@@ -72,6 +69,63 @@ open class Composition: DomainResource {
         self.type = type
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case attester = "attester"
+        case author = "author"
+        case class_fhir = "class"
+        case confidentiality = "confidentiality"
+        case custodian = "custodian"
+        case date = "date"
+        case encounter = "encounter"
+        case event = "event"
+        case identifier = "identifier"
+        case section = "section"
+        case status = "status"
+        case subject = "subject"
+        case title = "title"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.confidentiality = try container.decodeIfPresent(String.self, forKey: .confidentiality)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.attester.flatMap { $0 }, forKey: .attester)
+        try container.encode(self.author.flatMap { $0 }, forKey: .author)
+        try container.encodeIfPresent(self.class_fhir, forKey: .class_fhir)
+        try container.encodeIfPresent(self.confidentiality, forKey: .confidentiality)
+        try container.encodeIfPresent(self.custodian, forKey: .custodian)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encode(self.event.flatMap { $0 }, forKey: .event)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encode(self.section.flatMap { $0 }, forKey: .section)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -284,6 +338,7 @@ open class Composition: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -296,21 +351,52 @@ open class CompositionAttester: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionAttester" }
 	}
-    
-    public let mode = RealmSwift.List<RealmString>()    
-    public dynamic var party: Reference?        
+
+    public let mode = RealmSwift.List<RealmString>()
+    @objc public dynamic var party: Reference?
     public func upsert(party: Reference?) {
         upsert(prop: &self.party, val: party)
-    }    
-    public dynamic var time: DateTime?        
-    
+    }
+    @objc public dynamic var time: DateTime?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(mode: [String]) {
-        self.init(json: nil)
+        self.init()
         self.mode.append(objectsIn: mode.map{ RealmString(value: [$0]) })
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case mode = "mode"
+        case party = "party"
+        case time = "time"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.mode.flatMap { $0.value }, forKey: .mode)
+        try container.encodeIfPresent(self.party, forKey: .party)
+        try container.encodeIfPresent(self.time, forKey: .time)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -364,6 +450,7 @@ open class CompositionAttester: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -376,14 +463,46 @@ open class CompositionEvent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionEvent" }
 	}
-    
-    public let code = RealmSwift.List<CodeableConcept>()    
-    public let detail = RealmSwift.List<Reference>()    
-    public dynamic var period: Period?        
+
+    public let code = RealmSwift.List<CodeableConcept>()
+    public let detail = RealmSwift.List<Reference>()
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case detail = "detail"
+        case period = "period"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.code.flatMap { $0 }, forKey: .code)
+        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encodeIfPresent(self.period, forKey: .period)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -440,6 +559,7 @@ open class CompositionEvent: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -452,30 +572,72 @@ open class CompositionSection: BackboneElement {
 	override open class var resourceType: String {
 		get { return "CompositionSection" }
 	}
-    
-    public dynamic var code: CodeableConcept?        
+
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var emptyReason: CodeableConcept?        
+    }
+    @objc public dynamic var emptyReason: CodeableConcept?
     public func upsert(emptyReason: CodeableConcept?) {
         upsert(prop: &self.emptyReason, val: emptyReason)
-    }    
-    public let entry = RealmSwift.List<Reference>()    
-    public dynamic var mode: String?        
-        
-    public dynamic var orderedBy: CodeableConcept?        
+    }
+    public let entry = RealmSwift.List<Reference>()
+    @objc public dynamic var mode: String?
+    @objc public dynamic var orderedBy: CodeableConcept?
     public func upsert(orderedBy: CodeableConcept?) {
         upsert(prop: &self.orderedBy, val: orderedBy)
-    }    
-    public let section = RealmSwift.List<CompositionSection>()    
-    public dynamic var text: Narrative?        
+    }
+    public let section = RealmSwift.List<CompositionSection>()
+    @objc public dynamic var text: Narrative?
     public func upsert(text: Narrative?) {
         upsert(prop: &self.text, val: text)
-    }    
-    public dynamic var title: String?        
-    
+    }
+    @objc public dynamic var title: String?
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case emptyReason = "emptyReason"
+        case entry = "entry"
+        case mode = "mode"
+        case orderedBy = "orderedBy"
+        case section = "section"
+        case text = "text"
+        case title = "title"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.emptyReason, forKey: .emptyReason)
+        try container.encode(self.entry.flatMap { $0 }, forKey: .entry)
+        try container.encodeIfPresent(self.mode, forKey: .mode)
+        try container.encodeIfPresent(self.orderedBy, forKey: .orderedBy)
+        try container.encode(self.section.flatMap { $0 }, forKey: .section)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.title, forKey: .title)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -592,5 +754,6 @@ open class CompositionSection: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

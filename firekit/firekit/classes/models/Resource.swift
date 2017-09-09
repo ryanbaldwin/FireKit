@@ -2,11 +2,12 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,21 +20,54 @@ open class Resource: FHIRAbstractResource {
 	override open class var resourceType: String {
 		get { return "Resource" }
 	}
-    
-    public dynamic var id: String?        
-    public dynamic var pk = UUID().uuidString
-        override open static func primaryKey() -> String? {
-            return "pk"
-        }    
-    public dynamic var implicitRules: String?        
-        
-    public dynamic var language: String?        
-        
-    public dynamic var meta: Meta?        
+
+    @objc public dynamic var id: String?
+    @objc public dynamic var pk = UUID().uuidString
+    override open static func primaryKey() -> String? { return "pk" }
+    @objc public dynamic var implicitRules: String?
+    @objc public dynamic var language: String?
+    @objc public dynamic var meta: Meta?
     public func upsert(meta: Meta?) {
         upsert(prop: &self.meta, val: meta)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case implicitRules = "implicitRules"
+        case language = "language"
+        case meta = "meta"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(String.self, forKey: .id)
+        self.implicitRules = try container.decodeIfPresent(String.self, forKey: .implicitRules)
+        self.language = try container.decodeIfPresent(String.self, forKey: .language)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.id, forKey: .id)
+        try container.encodeIfPresent(self.implicitRules, forKey: .implicitRules)
+        try container.encodeIfPresent(self.language, forKey: .language)
+        try container.encodeIfPresent(self.meta, forKey: .meta)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -96,5 +130,6 @@ open class Resource: FHIRAbstractResource {
 		
 		return json
 	}
+*/
 }
 

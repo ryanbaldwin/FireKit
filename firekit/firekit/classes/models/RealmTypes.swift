@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 public class RealmString: Object {
@@ -98,49 +99,82 @@ public class RealmURL: Object {
 /// Which will store the same information as `Resource`, but will also provide functionality
 /// to store the original JSON and inflate it on demand into the proper type.
 public class ContainedResource: Resource {
-    public dynamic var resourceType: String?
+    private enum CodingKeys: String, CodingKey {
+        case resourceType
+    }
     
+    public dynamic var resourceType: String?
     private dynamic var json: Data?
     
-    private var _resource: FHIRAbstractBase? = nil
-    public var resource: FHIRAbstractBase? {
-        guard let resourceType = resourceType,
-              let json = json else {
+    lazy public var resource: FHIRAbstractBase? = {
+        guard let resourceType = self.resourceType, let json = self.json else {
             return nil
         }
         
-        if _resource == nil {
-            let js = NSKeyedUnarchiver.unarchiveObject(with: json) as! FHIRJSON
-            _resource = FHIRAbstractBase.factory(resourceType, json: js, owner: nil)
+        let t = FHIRAbstractBase.resourceType(from: resourceType)
+        do {
+            return try JSONDecoder().decode(t, from: json)
+        } catch let error {
+            print("Failed to decode contained resource. Returning nil: \(error)")
         }
         
-        return _resource
+        return nil
+    }()
+    
+    public override class func ignoredProperties() -> [String] {
+        return ["resource"]
     }
     
-    public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-        var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()        
-        if let js = json {
-            if let exist = js["resourceType"] {
-                presentKeys.insert("resourceType")
-                if let val = exist as? String {
-                    self.resourceType = val
-                }
-                else {
-                    errors.append(FHIRJSONError(key: "resourceType", wants: String.self, has: type(of: exist)))
-                }
-            }
-            
-            self.json = NSKeyedArchiver.archivedData(withRootObject: js)
-        }
-        
-        return errors.isEmpty ? nil : errors
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        resourceType = try container.decodeIfPresent(String.self, forKey: .resourceType)
     }
     
-    public override func asJSON() -> FHIRJSON {
+    public required init() {
+        super.init()
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+    
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public override func encode(to encoder: Encoder) throws {
         guard let resource = resource else {
-            return ["fhir_comments": "Failed to serialize ContainedResource (\(String(describing: self.resourceType))) because the resource was not set."]
+            return
         }
         
-        return resource.asJSON()
+        try resource.encode(to: encoder)
     }
+    
+    // public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
+    //     var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()        
+    //     if let js = json {
+    //         if let exist = js["resourceType"] {
+    //             presentKeys.insert("resourceType")
+    //             if let val = exist as? String {
+    //                 self.resourceType = val
+    //             }
+    //             else {
+    //                 errors.append(FHIRJSONError(key: "resourceType", wants: String.self, has: type(of: exist)))
+    //             }
+    //         }
+            
+    //         self.json = NSKeyedArchiver.archivedData(withRootObject: js)
+    //     }
+        
+    //     return errors.isEmpty ? nil : errors
+    // }
+    
+    // public override func asJSON() -> FHIRJSON {
+    //     guard let resource = resource else {
+    //         return ["fhir_comments": "Failed to serialize ContainedResource (\(String(describing: self.resourceType))) because the resource was not set."]
+    //     }
+        
+    //     return resource.asJSON()
+    // }
 }

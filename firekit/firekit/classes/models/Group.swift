@@ -2,11 +2,12 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -21,28 +22,72 @@ open class Group: DomainResource {
 	override open class var resourceType: String {
 		get { return "Group" }
 	}
-    
-    public let actual = RealmOptional<Bool>()    
-    public let characteristic = RealmSwift.List<GroupCharacteristic>()    
-    public dynamic var code: CodeableConcept?        
+
+    public let actual = RealmOptional<Bool>()
+    public let characteristic = RealmSwift.List<GroupCharacteristic>()
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let member = RealmSwift.List<GroupMember>()    
-    public dynamic var name: String?        
-        
-    public let quantity = RealmOptional<Int>()    
-    public dynamic var type: String?        
-    
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    public let member = RealmSwift.List<GroupMember>()
+    @objc public dynamic var name: String?
+    public let quantity = RealmOptional<Int>()
+    @objc public dynamic var type: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(actual: Bool, type: String) {
-        self.init(json: nil)
+        self.init()
         self.actual.value = actual
         self.type = type
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case actual = "actual"
+        case characteristic = "characteristic"
+        case code = "code"
+        case identifier = "identifier"
+        case member = "member"
+        case name = "name"
+        case quantity = "quantity"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.actual.value = try container.decodeIfPresent(Bool.self, forKey: .actual)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.quantity.value = try container.decodeIfPresent(Int.self, forKey: .quantity)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.actual.value, forKey: .actual)
+        try container.encode(self.characteristic.flatMap { $0 }, forKey: .characteristic)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.member.flatMap { $0 }, forKey: .member)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.quantity.value, forKey: .quantity)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -168,6 +213,7 @@ open class Group: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -180,33 +226,33 @@ open class GroupCharacteristic: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GroupCharacteristic" }
 	}
-    
-    public dynamic var code: CodeableConcept?        
+
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public let exclude = RealmOptional<Bool>()    
-    public dynamic var period: Period?        
+    }
+    public let exclude = RealmOptional<Bool>()
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public let valueBoolean = RealmOptional<Bool>()    
-    public dynamic var valueCodeableConcept: CodeableConcept?        
+    }
+    public let valueBoolean = RealmOptional<Bool>()
+    @objc public dynamic var valueCodeableConcept: CodeableConcept?
     public func upsert(valueCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
-    }    
-    public dynamic var valueQuantity: Quantity?        
+    }
+    @objc public dynamic var valueQuantity: Quantity?
     public func upsert(valueQuantity: Quantity?) {
         upsert(prop: &self.valueQuantity, val: valueQuantity)
-    }    
-    public dynamic var valueRange: Range?        
+    }
+    @objc public dynamic var valueRange: Range?
     public func upsert(valueRange: Range?) {
         upsert(prop: &self.valueRange, val: valueRange)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: CodeableConcept, exclude: Bool, valueBoolean: Bool, valueCodeableConcept: CodeableConcept, valueQuantity: Quantity, valueRange: Range) {
-        self.init(json: nil)
+        self.init()
         self.code = code
         self.exclude.value = exclude
         self.valueBoolean.value = valueBoolean
@@ -215,6 +261,48 @@ open class GroupCharacteristic: BackboneElement {
         self.valueRange = valueRange
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case exclude = "exclude"
+        case period = "period"
+        case valueBoolean = "valueBoolean"
+        case valueCodeableConcept = "valueCodeableConcept"
+        case valueQuantity = "valueQuantity"
+        case valueRange = "valueRange"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.exclude.value = try container.decodeIfPresent(Bool.self, forKey: .exclude)
+        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.exclude.value, forKey: .exclude)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encodeIfPresent(self.valueBoolean.value, forKey: .valueBoolean)
+        try container.encodeIfPresent(self.valueCodeableConcept, forKey: .valueCodeableConcept)
+        try container.encodeIfPresent(self.valueQuantity, forKey: .valueQuantity)
+        try container.encodeIfPresent(self.valueRange, forKey: .valueRange)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -324,6 +412,7 @@ open class GroupCharacteristic: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -336,23 +425,56 @@ open class GroupMember: BackboneElement {
 	override open class var resourceType: String {
 		get { return "GroupMember" }
 	}
-    
-    public dynamic var entity: Reference?        
+
+    @objc public dynamic var entity: Reference?
     public func upsert(entity: Reference?) {
         upsert(prop: &self.entity, val: entity)
-    }    
-    public let inactive = RealmOptional<Bool>()    
-    public dynamic var period: Period?        
+    }
+    public let inactive = RealmOptional<Bool>()
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(entity: Reference) {
-        self.init(json: nil)
+        self.init()
         self.entity = entity
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case entity = "entity"
+        case inactive = "inactive"
+        case period = "period"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.inactive.value = try container.decodeIfPresent(Bool.self, forKey: .inactive)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.entity, forKey: .entity)
+        try container.encodeIfPresent(self.inactive.value, forKey: .inactive)
+        try container.encodeIfPresent(self.period, forKey: .period)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -406,5 +528,6 @@ open class GroupMember: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

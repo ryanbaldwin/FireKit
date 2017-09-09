@@ -2,11 +2,12 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -17,19 +18,49 @@ open class Narrative: Element {
 	override open class var resourceType: String {
 		get { return "Narrative" }
 	}
-    
-    public dynamic var div: String?        
-        
-    public dynamic var status: String?        
-    
+
+    @objc public dynamic var div: String?
+    @objc public dynamic var status: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(div: String, status: String) {
-        self.init(json: nil)
+        self.init()
         self.div = div
         self.status = status
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case div = "div"
+        case status = "status"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.div = try container.decodeIfPresent(String.self, forKey: .div)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.div, forKey: .div)
+        try container.encodeIfPresent(self.status, forKey: .status)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -74,5 +105,6 @@ open class Narrative: Element {
 		
 		return json
 	}
+*/
 }
 

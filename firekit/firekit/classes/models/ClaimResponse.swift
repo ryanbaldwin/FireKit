@@ -2,11 +2,12 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,86 +20,162 @@ open class ClaimResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "ClaimResponse" }
 	}
-    
-    public let addItem = RealmSwift.List<ClaimResponseAddItem>()    
-    public let coverage = RealmSwift.List<ClaimResponseCoverage>()    
-    public dynamic var created: DateTime?        
-        
-    public dynamic var disposition: String?        
-        
-    public let error = RealmSwift.List<ClaimResponseError>()    
-    public dynamic var form: Coding?        
+
+    public let addItem = RealmSwift.List<ClaimResponseAddItem>()
+    public let coverage = RealmSwift.List<ClaimResponseCoverage>()
+    @objc public dynamic var created: DateTime?
+    @objc public dynamic var disposition: String?
+    public let error = RealmSwift.List<ClaimResponseError>()
+    @objc public dynamic var form: Coding?
     public func upsert(form: Coding?) {
         upsert(prop: &self.form, val: form)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let item = RealmSwift.List<ClaimResponseItem>()    
-    public let note = RealmSwift.List<ClaimResponseNote>()    
-    public dynamic var organization: Reference?        
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    public let item = RealmSwift.List<ClaimResponseItem>()
+    public let note = RealmSwift.List<ClaimResponseNote>()
+    @objc public dynamic var organization: Reference?
     public func upsert(organization: Reference?) {
         upsert(prop: &self.organization, val: organization)
-    }    
-    public dynamic var originalRuleset: Coding?        
+    }
+    @objc public dynamic var originalRuleset: Coding?
     public func upsert(originalRuleset: Coding?) {
         upsert(prop: &self.originalRuleset, val: originalRuleset)
-    }    
-    public dynamic var outcome: String?        
-        
-    public dynamic var payeeType: Coding?        
+    }
+    @objc public dynamic var outcome: String?
+    @objc public dynamic var payeeType: Coding?
     public func upsert(payeeType: Coding?) {
         upsert(prop: &self.payeeType, val: payeeType)
-    }    
-    public dynamic var paymentAdjustment: Quantity?        
+    }
+    @objc public dynamic var paymentAdjustment: Quantity?
     public func upsert(paymentAdjustment: Quantity?) {
         upsert(prop: &self.paymentAdjustment, val: paymentAdjustment)
-    }    
-    public dynamic var paymentAdjustmentReason: Coding?        
+    }
+    @objc public dynamic var paymentAdjustmentReason: Coding?
     public func upsert(paymentAdjustmentReason: Coding?) {
         upsert(prop: &self.paymentAdjustmentReason, val: paymentAdjustmentReason)
-    }    
-    public dynamic var paymentAmount: Quantity?        
+    }
+    @objc public dynamic var paymentAmount: Quantity?
     public func upsert(paymentAmount: Quantity?) {
         upsert(prop: &self.paymentAmount, val: paymentAmount)
-    }    
-    public dynamic var paymentDate: FHIRDate?        
-        
-    public dynamic var paymentRef: Identifier?        
+    }
+    @objc public dynamic var paymentDate: FHIRDate?
+    @objc public dynamic var paymentRef: Identifier?
     public func upsert(paymentRef: Identifier?) {
         upsert(prop: &self.paymentRef, val: paymentRef)
-    }    
-    public dynamic var request: Reference?        
+    }
+    @objc public dynamic var request: Reference?
     public func upsert(request: Reference?) {
         upsert(prop: &self.request, val: request)
-    }    
-    public dynamic var requestOrganization: Reference?        
+    }
+    @objc public dynamic var requestOrganization: Reference?
     public func upsert(requestOrganization: Reference?) {
         upsert(prop: &self.requestOrganization, val: requestOrganization)
-    }    
-    public dynamic var requestProvider: Reference?        
+    }
+    @objc public dynamic var requestProvider: Reference?
     public func upsert(requestProvider: Reference?) {
         upsert(prop: &self.requestProvider, val: requestProvider)
-    }    
-    public dynamic var reserved: Coding?        
+    }
+    @objc public dynamic var reserved: Coding?
     public func upsert(reserved: Coding?) {
         upsert(prop: &self.reserved, val: reserved)
-    }    
-    public dynamic var ruleset: Coding?        
+    }
+    @objc public dynamic var ruleset: Coding?
     public func upsert(ruleset: Coding?) {
         upsert(prop: &self.ruleset, val: ruleset)
-    }    
-    public dynamic var totalBenefit: Quantity?        
+    }
+    @objc public dynamic var totalBenefit: Quantity?
     public func upsert(totalBenefit: Quantity?) {
         upsert(prop: &self.totalBenefit, val: totalBenefit)
-    }    
-    public dynamic var totalCost: Quantity?        
+    }
+    @objc public dynamic var totalCost: Quantity?
     public func upsert(totalCost: Quantity?) {
         upsert(prop: &self.totalCost, val: totalCost)
-    }    
-    public dynamic var unallocDeductable: Quantity?        
+    }
+    @objc public dynamic var unallocDeductable: Quantity?
     public func upsert(unallocDeductable: Quantity?) {
         upsert(prop: &self.unallocDeductable, val: unallocDeductable)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case addItem = "addItem"
+        case coverage = "coverage"
+        case created = "created"
+        case disposition = "disposition"
+        case error = "error"
+        case form = "form"
+        case identifier = "identifier"
+        case item = "item"
+        case note = "note"
+        case organization = "organization"
+        case originalRuleset = "originalRuleset"
+        case outcome = "outcome"
+        case payeeType = "payeeType"
+        case paymentAdjustment = "paymentAdjustment"
+        case paymentAdjustmentReason = "paymentAdjustmentReason"
+        case paymentAmount = "paymentAmount"
+        case paymentDate = "paymentDate"
+        case paymentRef = "paymentRef"
+        case request = "request"
+        case requestOrganization = "requestOrganization"
+        case requestProvider = "requestProvider"
+        case reserved = "reserved"
+        case ruleset = "ruleset"
+        case totalBenefit = "totalBenefit"
+        case totalCost = "totalCost"
+        case unallocDeductable = "unallocDeductable"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.disposition = try container.decodeIfPresent(String.self, forKey: .disposition)
+        self.outcome = try container.decodeIfPresent(String.self, forKey: .outcome)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.addItem.flatMap { $0 }, forKey: .addItem)
+        try container.encode(self.coverage.flatMap { $0 }, forKey: .coverage)
+        try container.encodeIfPresent(self.created, forKey: .created)
+        try container.encodeIfPresent(self.disposition, forKey: .disposition)
+        try container.encode(self.error.flatMap { $0 }, forKey: .error)
+        try container.encodeIfPresent(self.form, forKey: .form)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.item.flatMap { $0 }, forKey: .item)
+        try container.encode(self.note.flatMap { $0 }, forKey: .note)
+        try container.encodeIfPresent(self.organization, forKey: .organization)
+        try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
+        try container.encodeIfPresent(self.outcome, forKey: .outcome)
+        try container.encodeIfPresent(self.payeeType, forKey: .payeeType)
+        try container.encodeIfPresent(self.paymentAdjustment, forKey: .paymentAdjustment)
+        try container.encodeIfPresent(self.paymentAdjustmentReason, forKey: .paymentAdjustmentReason)
+        try container.encodeIfPresent(self.paymentAmount, forKey: .paymentAmount)
+        try container.encodeIfPresent(self.paymentDate, forKey: .paymentDate)
+        try container.encodeIfPresent(self.paymentRef, forKey: .paymentRef)
+        try container.encodeIfPresent(self.request, forKey: .request)
+        try container.encodeIfPresent(self.requestOrganization, forKey: .requestOrganization)
+        try container.encodeIfPresent(self.requestProvider, forKey: .requestProvider)
+        try container.encodeIfPresent(self.reserved, forKey: .reserved)
+        try container.encodeIfPresent(self.ruleset, forKey: .ruleset)
+        try container.encodeIfPresent(self.totalBenefit, forKey: .totalBenefit)
+        try container.encodeIfPresent(self.totalCost, forKey: .totalCost)
+        try container.encodeIfPresent(self.unallocDeductable, forKey: .unallocDeductable)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -443,6 +520,7 @@ open class ClaimResponse: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -455,26 +533,64 @@ open class ClaimResponseAddItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItem" }
 	}
-    
-    public let adjudication = RealmSwift.List<ClaimResponseAddItemAdjudication>()    
-    public let detail = RealmSwift.List<ClaimResponseAddItemDetail>()    
-    public dynamic var fee: Quantity?        
+
+    public let adjudication = RealmSwift.List<ClaimResponseAddItemAdjudication>()
+    public let detail = RealmSwift.List<ClaimResponseAddItemDetail>()
+    @objc public dynamic var fee: Quantity?
     public func upsert(fee: Quantity?) {
         upsert(prop: &self.fee, val: fee)
-    }    
-    public let noteNumberLinkId = RealmSwift.List<RealmInt>()    
-    public let sequenceLinkId = RealmSwift.List<RealmInt>()    
-    public dynamic var service: Coding?        
+    }
+    public let noteNumberLinkId = RealmSwift.List<RealmInt>()
+    public let sequenceLinkId = RealmSwift.List<RealmInt>()
+    @objc public dynamic var service: Coding?
     public func upsert(service: Coding?) {
         upsert(prop: &self.service, val: service)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(service: Coding) {
-        self.init(json: nil)
+        self.init()
         self.service = service
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case adjudication = "adjudication"
+        case detail = "detail"
+        case fee = "fee"
+        case noteNumberLinkId = "noteNumberLinkId"
+        case sequenceLinkId = "sequenceLinkId"
+        case service = "service"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encodeIfPresent(self.fee, forKey: .fee)
+        try container.encode(self.noteNumberLinkId.flatMap { $0.value }, forKey: .noteNumberLinkId)
+        try container.encode(self.sequenceLinkId.flatMap { $0.value }, forKey: .sequenceLinkId)
+        try container.encodeIfPresent(self.service, forKey: .service)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -570,6 +686,7 @@ open class ClaimResponseAddItem: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -582,24 +699,55 @@ open class ClaimResponseAddItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemAdjudication" }
 	}
-    
-    public dynamic var amount: Quantity?        
+
+    @objc public dynamic var amount: Quantity?
     public func upsert(amount: Quantity?) {
         upsert(prop: &self.amount, val: amount)
-    }    
-    public dynamic var code: Coding?        
+    }
+    @objc public dynamic var code: Coding?
     public func upsert(code: Coding?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var value: RealmDecimal?        
-    
+    }
+    @objc public dynamic var value: RealmDecimal?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: Coding) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case code = "code"
+        case value = "value"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.value, forKey: .value)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -653,6 +801,7 @@ open class ClaimResponseAddItemAdjudication: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -665,23 +814,55 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemDetail" }
 	}
-    
-    public let adjudication = RealmSwift.List<ClaimResponseAddItemDetailAdjudication>()    
-    public dynamic var fee: Quantity?        
+
+    public let adjudication = RealmSwift.List<ClaimResponseAddItemDetailAdjudication>()
+    @objc public dynamic var fee: Quantity?
     public func upsert(fee: Quantity?) {
         upsert(prop: &self.fee, val: fee)
-    }    
-    public dynamic var service: Coding?        
+    }
+    @objc public dynamic var service: Coding?
     public func upsert(service: Coding?) {
         upsert(prop: &self.service, val: service)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(service: Coding) {
-        self.init(json: nil)
+        self.init()
         self.service = service
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case adjudication = "adjudication"
+        case fee = "fee"
+        case service = "service"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encodeIfPresent(self.fee, forKey: .fee)
+        try container.encodeIfPresent(self.service, forKey: .service)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -738,6 +919,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -750,24 +932,55 @@ open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseAddItemDetailAdjudication" }
 	}
-    
-    public dynamic var amount: Quantity?        
+
+    @objc public dynamic var amount: Quantity?
     public func upsert(amount: Quantity?) {
         upsert(prop: &self.amount, val: amount)
-    }    
-    public dynamic var code: Coding?        
+    }
+    @objc public dynamic var code: Coding?
     public func upsert(code: Coding?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var value: RealmDecimal?        
-    
+    }
+    @objc public dynamic var value: RealmDecimal?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: Coding) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case code = "code"
+        case value = "value"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.value, forKey: .value)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -821,6 +1034,7 @@ open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -833,38 +1047,82 @@ open class ClaimResponseCoverage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseCoverage" }
 	}
-    
-    public dynamic var businessArrangement: String?        
-        
-    public dynamic var claimResponse: Reference?        
+
+    @objc public dynamic var businessArrangement: String?
+    @objc public dynamic var claimResponse: Reference?
     public func upsert(claimResponse: Reference?) {
         upsert(prop: &self.claimResponse, val: claimResponse)
-    }    
-    public dynamic var coverage: Reference?        
+    }
+    @objc public dynamic var coverage: Reference?
     public func upsert(coverage: Reference?) {
         upsert(prop: &self.coverage, val: coverage)
-    }    
-    public let focal = RealmOptional<Bool>()    
-    public dynamic var originalRuleset: Coding?        
+    }
+    public let focal = RealmOptional<Bool>()
+    @objc public dynamic var originalRuleset: Coding?
     public func upsert(originalRuleset: Coding?) {
         upsert(prop: &self.originalRuleset, val: originalRuleset)
-    }    
-    public let preAuthRef = RealmSwift.List<RealmString>()    
-    public dynamic var relationship: Coding?        
+    }
+    public let preAuthRef = RealmSwift.List<RealmString>()
+    @objc public dynamic var relationship: Coding?
     public func upsert(relationship: Coding?) {
         upsert(prop: &self.relationship, val: relationship)
-    }    
+    }
     public let sequence = RealmOptional<Int>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(coverage: Reference, focal: Bool, relationship: Coding, sequence: Int) {
-        self.init(json: nil)
+        self.init()
         self.coverage = coverage
         self.focal.value = focal
         self.relationship = relationship
         self.sequence.value = sequence
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case businessArrangement = "businessArrangement"
+        case claimResponse = "claimResponse"
+        case coverage = "coverage"
+        case focal = "focal"
+        case originalRuleset = "originalRuleset"
+        case preAuthRef = "preAuthRef"
+        case relationship = "relationship"
+        case sequence = "sequence"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.businessArrangement = try container.decodeIfPresent(String.self, forKey: .businessArrangement)
+        self.focal.value = try container.decodeIfPresent(Bool.self, forKey: .focal)
+        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.businessArrangement, forKey: .businessArrangement)
+        try container.encodeIfPresent(self.claimResponse, forKey: .claimResponse)
+        try container.encodeIfPresent(self.coverage, forKey: .coverage)
+        try container.encodeIfPresent(self.focal.value, forKey: .focal)
+        try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
+        try container.encode(self.preAuthRef.flatMap { $0.value }, forKey: .preAuthRef)
+        try container.encodeIfPresent(self.relationship, forKey: .relationship)
+        try container.encodeIfPresent(self.sequence.value, forKey: .sequence)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -987,6 +1245,7 @@ open class ClaimResponseCoverage: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -999,21 +1258,58 @@ open class ClaimResponseError: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseError" }
 	}
-    
-    public dynamic var code: Coding?        
+
+    @objc public dynamic var code: Coding?
     public func upsert(code: Coding?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public let detailSequenceLinkId = RealmOptional<Int>()    
-    public let sequenceLinkId = RealmOptional<Int>()    
+    }
+    public let detailSequenceLinkId = RealmOptional<Int>()
+    public let sequenceLinkId = RealmOptional<Int>()
     public let subdetailSequenceLinkId = RealmOptional<Int>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: Coding) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case detailSequenceLinkId = "detailSequenceLinkId"
+        case sequenceLinkId = "sequenceLinkId"
+        case subdetailSequenceLinkId = "subdetailSequenceLinkId"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.detailSequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .detailSequenceLinkId)
+        self.sequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId)
+        self.subdetailSequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .subdetailSequenceLinkId)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.detailSequenceLinkId.value, forKey: .detailSequenceLinkId)
+        try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
+        try container.encodeIfPresent(self.subdetailSequenceLinkId.value, forKey: .subdetailSequenceLinkId)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1079,6 +1375,7 @@ open class ClaimResponseError: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -1091,18 +1388,53 @@ open class ClaimResponseItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItem" }
 	}
-    
-    public let adjudication = RealmSwift.List<ClaimResponseItemAdjudication>()    
-    public let detail = RealmSwift.List<ClaimResponseItemDetail>()    
-    public let noteNumber = RealmSwift.List<RealmInt>()    
+
+    public let adjudication = RealmSwift.List<ClaimResponseItemAdjudication>()
+    public let detail = RealmSwift.List<ClaimResponseItemDetail>()
+    public let noteNumber = RealmSwift.List<RealmInt>()
     public let sequenceLinkId = RealmOptional<Int>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(sequenceLinkId: Int) {
-        self.init(json: nil)
+        self.init()
         self.sequenceLinkId.value = sequenceLinkId
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case adjudication = "adjudication"
+        case detail = "detail"
+        case noteNumber = "noteNumber"
+        case sequenceLinkId = "sequenceLinkId"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encode(self.noteNumber.flatMap { $0.value }, forKey: .noteNumber)
+        try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1174,6 +1506,7 @@ open class ClaimResponseItem: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -1186,24 +1519,55 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemAdjudication" }
 	}
-    
-    public dynamic var amount: Quantity?        
+
+    @objc public dynamic var amount: Quantity?
     public func upsert(amount: Quantity?) {
         upsert(prop: &self.amount, val: amount)
-    }    
-    public dynamic var code: Coding?        
+    }
+    @objc public dynamic var code: Coding?
     public func upsert(code: Coding?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var value: RealmDecimal?        
-    
+    }
+    @objc public dynamic var value: RealmDecimal?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: Coding) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case code = "code"
+        case value = "value"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.value, forKey: .value)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1257,6 +1621,7 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -1269,17 +1634,50 @@ open class ClaimResponseItemDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetail" }
 	}
-    
-    public let adjudication = RealmSwift.List<ClaimResponseItemDetailAdjudication>()    
-    public let sequenceLinkId = RealmOptional<Int>()    
+
+    public let adjudication = RealmSwift.List<ClaimResponseItemDetailAdjudication>()
+    public let sequenceLinkId = RealmOptional<Int>()
     public let subDetail = RealmSwift.List<ClaimResponseItemDetailSubDetail>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(sequenceLinkId: Int) {
-        self.init(json: nil)
+        self.init()
         self.sequenceLinkId.value = sequenceLinkId
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case adjudication = "adjudication"
+        case sequenceLinkId = "sequenceLinkId"
+        case subDetail = "subDetail"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
+        try container.encode(self.subDetail.flatMap { $0 }, forKey: .subDetail)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1339,6 +1737,7 @@ open class ClaimResponseItemDetail: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -1351,24 +1750,55 @@ open class ClaimResponseItemDetailAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailAdjudication" }
 	}
-    
-    public dynamic var amount: Quantity?        
+
+    @objc public dynamic var amount: Quantity?
     public func upsert(amount: Quantity?) {
         upsert(prop: &self.amount, val: amount)
-    }    
-    public dynamic var code: Coding?        
+    }
+    @objc public dynamic var code: Coding?
     public func upsert(code: Coding?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var value: RealmDecimal?        
-    
+    }
+    @objc public dynamic var value: RealmDecimal?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: Coding) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case code = "code"
+        case value = "value"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.value, forKey: .value)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1422,6 +1852,7 @@ open class ClaimResponseItemDetailAdjudication: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -1434,16 +1865,47 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailSubDetail" }
 	}
-    
-    public let adjudication = RealmSwift.List<ClaimResponseItemDetailSubDetailAdjudication>()    
+
+    public let adjudication = RealmSwift.List<ClaimResponseItemDetailSubDetailAdjudication>()
     public let sequenceLinkId = RealmOptional<Int>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(sequenceLinkId: Int) {
-        self.init(json: nil)
+        self.init()
         self.sequenceLinkId.value = sequenceLinkId
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case adjudication = "adjudication"
+        case sequenceLinkId = "sequenceLinkId"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1488,6 +1950,7 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -1500,24 +1963,55 @@ open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseItemDetailSubDetailAdjudication" }
 	}
-    
-    public dynamic var amount: Quantity?        
+
+    @objc public dynamic var amount: Quantity?
     public func upsert(amount: Quantity?) {
         upsert(prop: &self.amount, val: amount)
-    }    
-    public dynamic var code: Coding?        
+    }
+    @objc public dynamic var code: Coding?
     public func upsert(code: Coding?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var value: RealmDecimal?        
-    
+    }
+    @objc public dynamic var value: RealmDecimal?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: Coding) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case code = "code"
+        case value = "value"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.value, forKey: .value)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1571,6 +2065,7 @@ open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -1583,15 +2078,48 @@ open class ClaimResponseNote: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ClaimResponseNote" }
 	}
-    
-    public let number = RealmOptional<Int>()    
-    public dynamic var text: String?        
-        
-    public dynamic var type: Coding?        
+
+    public let number = RealmOptional<Int>()
+    @objc public dynamic var text: String?
+    @objc public dynamic var type: Coding?
     public func upsert(type: Coding?) {
         upsert(prop: &self.type, val: type)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case number = "number"
+        case text = "text"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.number.value = try container.decodeIfPresent(Int.self, forKey: .number)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.number.value, forKey: .number)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -1642,5 +2170,6 @@ open class ClaimResponseNote: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

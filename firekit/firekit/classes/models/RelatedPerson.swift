@@ -2,11 +2,12 @@
 //  RelatedPerson.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RelatedPerson) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,38 +21,83 @@ open class RelatedPerson: DomainResource {
 	override open class var resourceType: String {
 		get { return "RelatedPerson" }
 	}
-    
-    public let address = RealmSwift.List<Address>()    
-    public dynamic var birthDate: FHIRDate?        
-        
-    public dynamic var gender: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var name: HumanName?        
+
+    public let address = RealmSwift.List<Address>()
+    @objc public dynamic var birthDate: FHIRDate?
+    @objc public dynamic var gender: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var name: HumanName?
     public func upsert(name: HumanName?) {
         upsert(prop: &self.name, val: name)
-    }    
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var period: Period?        
+    }
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public let photo = RealmSwift.List<Attachment>()    
-    public dynamic var relationship: CodeableConcept?        
+    }
+    public let photo = RealmSwift.List<Attachment>()
+    @objc public dynamic var relationship: CodeableConcept?
     public func upsert(relationship: CodeableConcept?) {
         upsert(prop: &self.relationship, val: relationship)
-    }    
+    }
     public let telecom = RealmSwift.List<ContactPoint>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(patient: Reference) {
-        self.init(json: nil)
+        self.init()
         self.patient = patient
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case address = "address"
+        case birthDate = "birthDate"
+        case gender = "gender"
+        case identifier = "identifier"
+        case name = "name"
+        case patient = "patient"
+        case period = "period"
+        case photo = "photo"
+        case relationship = "relationship"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.address.flatMap { $0 }, forKey: .address)
+        try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
+        try container.encodeIfPresent(self.gender, forKey: .gender)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encode(self.photo.flatMap { $0 }, forKey: .photo)
+        try container.encodeIfPresent(self.relationship, forKey: .relationship)
+        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -201,5 +247,6 @@ open class RelatedPerson: DomainResource {
 		
 		return json
 	}
+*/
 }
 

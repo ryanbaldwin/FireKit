@@ -2,11 +2,12 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -17,24 +18,62 @@ open class Substance: DomainResource {
 	override open class var resourceType: String {
 		get { return "Substance" }
 	}
-    
-    public let category = RealmSwift.List<CodeableConcept>()    
-    public dynamic var code: CodeableConcept?        
+
+    public let category = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var description_fhir: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let ingredient = RealmSwift.List<SubstanceIngredient>()    
+    }
+    @objc public dynamic var description_fhir: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    public let ingredient = RealmSwift.List<SubstanceIngredient>()
     public let instance = RealmSwift.List<SubstanceInstance>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case category = "category"
+        case code = "code"
+        case description_fhir = "description"
+        case identifier = "identifier"
+        case ingredient = "ingredient"
+        case instance = "instance"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.category.flatMap { $0 }, forKey: .category)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.ingredient.flatMap { $0 }, forKey: .ingredient)
+        try container.encode(self.instance.flatMap { $0 }, forKey: .instance)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -136,6 +175,7 @@ open class Substance: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -148,22 +188,52 @@ open class SubstanceIngredient: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubstanceIngredient" }
 	}
-    
-    public dynamic var quantity: Ratio?        
+
+    @objc public dynamic var quantity: Ratio?
     public func upsert(quantity: Ratio?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public dynamic var substance: Reference?        
+    }
+    @objc public dynamic var substance: Reference?
     public func upsert(substance: Reference?) {
         upsert(prop: &self.substance, val: substance)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(substance: Reference) {
-        self.init(json: nil)
+        self.init()
         self.substance = substance
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case quantity = "quantity"
+        case substance = "substance"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encodeIfPresent(self.substance, forKey: .substance)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -205,6 +275,7 @@ open class SubstanceIngredient: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -218,18 +289,49 @@ open class SubstanceInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubstanceInstance" }
 	}
-    
-    public dynamic var expiry: DateTime?        
-        
-    public dynamic var identifier: Identifier?        
+
+    @objc public dynamic var expiry: DateTime?
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var quantity: Quantity?        
+    }
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case expiry = "expiry"
+        case identifier = "identifier"
+        case quantity = "quantity"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.expiry, forKey: .expiry)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -280,5 +382,6 @@ open class SubstanceInstance: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

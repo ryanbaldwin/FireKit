@@ -2,11 +2,12 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,44 +20,93 @@ open class NutritionOrder: DomainResource {
 	override open class var resourceType: String {
 		get { return "NutritionOrder" }
 	}
-    
-    public let allergyIntolerance = RealmSwift.List<Reference>()    
-    public dynamic var dateTime: DateTime?        
-        
-    public dynamic var encounter: Reference?        
+
+    public let allergyIntolerance = RealmSwift.List<Reference>()
+    @objc public dynamic var dateTime: DateTime?
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public dynamic var enteralFormula: NutritionOrderEnteralFormula?        
+    }
+    @objc public dynamic var enteralFormula: NutritionOrderEnteralFormula?
     public func upsert(enteralFormula: NutritionOrderEnteralFormula?) {
         upsert(prop: &self.enteralFormula, val: enteralFormula)
-    }    
-    public let excludeFoodModifier = RealmSwift.List<CodeableConcept>()    
-    public let foodPreferenceModifier = RealmSwift.List<CodeableConcept>()    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var oralDiet: NutritionOrderOralDiet?        
+    }
+    public let excludeFoodModifier = RealmSwift.List<CodeableConcept>()
+    public let foodPreferenceModifier = RealmSwift.List<CodeableConcept>()
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var oralDiet: NutritionOrderOralDiet?
     public func upsert(oralDiet: NutritionOrderOralDiet?) {
         upsert(prop: &self.oralDiet, val: oralDiet)
-    }    
-    public dynamic var orderer: Reference?        
+    }
+    @objc public dynamic var orderer: Reference?
     public func upsert(orderer: Reference?) {
         upsert(prop: &self.orderer, val: orderer)
-    }    
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var status: String?        
-        
+    }
+    @objc public dynamic var status: String?
     public let supplement = RealmSwift.List<NutritionOrderSupplement>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(dateTime: DateTime, patient: Reference) {
-        self.init(json: nil)
+        self.init()
         self.dateTime = dateTime
         self.patient = patient
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case allergyIntolerance = "allergyIntolerance"
+        case dateTime = "dateTime"
+        case encounter = "encounter"
+        case enteralFormula = "enteralFormula"
+        case excludeFoodModifier = "excludeFoodModifier"
+        case foodPreferenceModifier = "foodPreferenceModifier"
+        case identifier = "identifier"
+        case oralDiet = "oralDiet"
+        case orderer = "orderer"
+        case patient = "patient"
+        case status = "status"
+        case supplement = "supplement"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.allergyIntolerance.flatMap { $0 }, forKey: .allergyIntolerance)
+        try container.encodeIfPresent(self.dateTime, forKey: .dateTime)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encodeIfPresent(self.enteralFormula, forKey: .enteralFormula)
+        try container.encode(self.excludeFoodModifier.flatMap { $0 }, forKey: .excludeFoodModifier)
+        try container.encode(self.foodPreferenceModifier.flatMap { $0 }, forKey: .foodPreferenceModifier)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.oralDiet, forKey: .oralDiet)
+        try container.encodeIfPresent(self.orderer, forKey: .orderer)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encode(self.supplement.flatMap { $0 }, forKey: .supplement)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -236,6 +286,7 @@ open class NutritionOrder: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -249,35 +300,79 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderEnteralFormula" }
 	}
-    
-    public dynamic var additiveProductName: String?        
-        
-    public dynamic var additiveType: CodeableConcept?        
+
+    @objc public dynamic var additiveProductName: String?
+    @objc public dynamic var additiveType: CodeableConcept?
     public func upsert(additiveType: CodeableConcept?) {
         upsert(prop: &self.additiveType, val: additiveType)
-    }    
-    public let administration = RealmSwift.List<NutritionOrderEnteralFormulaAdministration>()    
-    public dynamic var administrationInstruction: String?        
-        
-    public dynamic var baseFormulaProductName: String?        
-        
-    public dynamic var baseFormulaType: CodeableConcept?        
+    }
+    public let administration = RealmSwift.List<NutritionOrderEnteralFormulaAdministration>()
+    @objc public dynamic var administrationInstruction: String?
+    @objc public dynamic var baseFormulaProductName: String?
+    @objc public dynamic var baseFormulaType: CodeableConcept?
     public func upsert(baseFormulaType: CodeableConcept?) {
         upsert(prop: &self.baseFormulaType, val: baseFormulaType)
-    }    
-    public dynamic var caloricDensity: Quantity?        
+    }
+    @objc public dynamic var caloricDensity: Quantity?
     public func upsert(caloricDensity: Quantity?) {
         upsert(prop: &self.caloricDensity, val: caloricDensity)
-    }    
-    public dynamic var maxVolumeToDeliver: Quantity?        
+    }
+    @objc public dynamic var maxVolumeToDeliver: Quantity?
     public func upsert(maxVolumeToDeliver: Quantity?) {
         upsert(prop: &self.maxVolumeToDeliver, val: maxVolumeToDeliver)
-    }    
-    public dynamic var routeofAdministration: CodeableConcept?        
+    }
+    @objc public dynamic var routeofAdministration: CodeableConcept?
     public func upsert(routeofAdministration: CodeableConcept?) {
         upsert(prop: &self.routeofAdministration, val: routeofAdministration)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case additiveProductName = "additiveProductName"
+        case additiveType = "additiveType"
+        case administration = "administration"
+        case administrationInstruction = "administrationInstruction"
+        case baseFormulaProductName = "baseFormulaProductName"
+        case baseFormulaType = "baseFormulaType"
+        case caloricDensity = "caloricDensity"
+        case maxVolumeToDeliver = "maxVolumeToDeliver"
+        case routeofAdministration = "routeofAdministration"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.additiveProductName = try container.decodeIfPresent(String.self, forKey: .additiveProductName)
+        self.administrationInstruction = try container.decodeIfPresent(String.self, forKey: .administrationInstruction)
+        self.baseFormulaProductName = try container.decodeIfPresent(String.self, forKey: .baseFormulaProductName)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.additiveProductName, forKey: .additiveProductName)
+        try container.encodeIfPresent(self.additiveType, forKey: .additiveType)
+        try container.encode(self.administration.flatMap { $0 }, forKey: .administration)
+        try container.encodeIfPresent(self.administrationInstruction, forKey: .administrationInstruction)
+        try container.encodeIfPresent(self.baseFormulaProductName, forKey: .baseFormulaProductName)
+        try container.encodeIfPresent(self.baseFormulaType, forKey: .baseFormulaType)
+        try container.encodeIfPresent(self.caloricDensity, forKey: .caloricDensity)
+        try container.encodeIfPresent(self.maxVolumeToDeliver, forKey: .maxVolumeToDeliver)
+        try container.encodeIfPresent(self.routeofAdministration, forKey: .routeofAdministration)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -403,6 +498,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -417,24 +513,58 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderEnteralFormulaAdministration" }
 	}
-    
-    public dynamic var quantity: Quantity?        
+
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public dynamic var rateQuantity: Quantity?        
+    }
+    @objc public dynamic var rateQuantity: Quantity?
     public func upsert(rateQuantity: Quantity?) {
         upsert(prop: &self.rateQuantity, val: rateQuantity)
-    }    
-    public dynamic var rateRatio: Ratio?        
+    }
+    @objc public dynamic var rateRatio: Ratio?
     public func upsert(rateRatio: Ratio?) {
         upsert(prop: &self.rateRatio, val: rateRatio)
-    }    
-    public dynamic var schedule: Timing?        
+    }
+    @objc public dynamic var schedule: Timing?
     public func upsert(schedule: Timing?) {
         upsert(prop: &self.schedule, val: schedule)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case quantity = "quantity"
+        case rateQuantity = "rateQuantity"
+        case rateRatio = "rateRatio"
+        case schedule = "schedule"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encodeIfPresent(self.rateQuantity, forKey: .rateQuantity)
+        try container.encodeIfPresent(self.rateRatio, forKey: .rateRatio)
+        try container.encodeIfPresent(self.schedule, forKey: .schedule)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -497,6 +627,7 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -509,15 +640,53 @@ open class NutritionOrderOralDiet: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderOralDiet" }
 	}
-    
-    public let fluidConsistencyType = RealmSwift.List<CodeableConcept>()    
-    public dynamic var instruction: String?        
-        
-    public let nutrient = RealmSwift.List<NutritionOrderOralDietNutrient>()    
-    public let schedule = RealmSwift.List<Timing>()    
-    public let texture = RealmSwift.List<NutritionOrderOralDietTexture>()    
+
+    public let fluidConsistencyType = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var instruction: String?
+    public let nutrient = RealmSwift.List<NutritionOrderOralDietNutrient>()
+    public let schedule = RealmSwift.List<Timing>()
+    public let texture = RealmSwift.List<NutritionOrderOralDietTexture>()
     public let type = RealmSwift.List<CodeableConcept>()
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case fluidConsistencyType = "fluidConsistencyType"
+        case instruction = "instruction"
+        case nutrient = "nutrient"
+        case schedule = "schedule"
+        case texture = "texture"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.instruction = try container.decodeIfPresent(String.self, forKey: .instruction)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.fluidConsistencyType.flatMap { $0 }, forKey: .fluidConsistencyType)
+        try container.encodeIfPresent(self.instruction, forKey: .instruction)
+        try container.encode(self.nutrient.flatMap { $0 }, forKey: .nutrient)
+        try container.encode(self.schedule.flatMap { $0 }, forKey: .schedule)
+        try container.encode(self.texture.flatMap { $0 }, forKey: .texture)
+        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -619,6 +788,7 @@ open class NutritionOrderOralDiet: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -631,16 +801,46 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderOralDietNutrient" }
 	}
-    
-    public dynamic var amount: Quantity?        
+
+    @objc public dynamic var amount: Quantity?
     public func upsert(amount: Quantity?) {
         upsert(prop: &self.amount, val: amount)
-    }    
-    public dynamic var modifier: CodeableConcept?        
+    }
+    @objc public dynamic var modifier: CodeableConcept?
     public func upsert(modifier: CodeableConcept?) {
         upsert(prop: &self.modifier, val: modifier)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case amount = "amount"
+        case modifier = "modifier"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.amount, forKey: .amount)
+        try container.encodeIfPresent(self.modifier, forKey: .modifier)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -679,6 +879,7 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -692,16 +893,46 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderOralDietTexture" }
 	}
-    
-    public dynamic var foodType: CodeableConcept?        
+
+    @objc public dynamic var foodType: CodeableConcept?
     public func upsert(foodType: CodeableConcept?) {
         upsert(prop: &self.foodType, val: foodType)
-    }    
-    public dynamic var modifier: CodeableConcept?        
+    }
+    @objc public dynamic var modifier: CodeableConcept?
     public func upsert(modifier: CodeableConcept?) {
         upsert(prop: &self.modifier, val: modifier)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case foodType = "foodType"
+        case modifier = "modifier"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.foodType, forKey: .foodType)
+        try container.encodeIfPresent(self.modifier, forKey: .modifier)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -740,6 +971,7 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -752,21 +984,57 @@ open class NutritionOrderSupplement: BackboneElement {
 	override open class var resourceType: String {
 		get { return "NutritionOrderSupplement" }
 	}
-    
-    public dynamic var instruction: String?        
-        
-    public dynamic var productName: String?        
-        
-    public dynamic var quantity: Quantity?        
+
+    @objc public dynamic var instruction: String?
+    @objc public dynamic var productName: String?
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public let schedule = RealmSwift.List<Timing>()    
-    public dynamic var type: CodeableConcept?        
+    }
+    public let schedule = RealmSwift.List<Timing>()
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case instruction = "instruction"
+        case productName = "productName"
+        case quantity = "quantity"
+        case schedule = "schedule"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.instruction = try container.decodeIfPresent(String.self, forKey: .instruction)
+        self.productName = try container.decodeIfPresent(String.self, forKey: .productName)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.instruction, forKey: .instruction)
+        try container.encodeIfPresent(self.productName, forKey: .productName)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encode(self.schedule.flatMap { $0 }, forKey: .schedule)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -844,5 +1112,6 @@ open class NutritionOrderSupplement: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

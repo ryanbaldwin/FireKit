@@ -2,11 +2,12 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -21,88 +22,162 @@ open class Condition: DomainResource {
 	override open class var resourceType: String {
 		get { return "Condition" }
 	}
-    
-    public let abatementBoolean = RealmOptional<Bool>()    
-    public dynamic var abatementDateTime: DateTime?        
-        
-    public dynamic var abatementPeriod: Period?        
+
+    public let abatementBoolean = RealmOptional<Bool>()
+    @objc public dynamic var abatementDateTime: DateTime?
+    @objc public dynamic var abatementPeriod: Period?
     public func upsert(abatementPeriod: Period?) {
         upsert(prop: &self.abatementPeriod, val: abatementPeriod)
-    }    
-    public dynamic var abatementQuantity: Quantity?        
+    }
+    @objc public dynamic var abatementQuantity: Quantity?
     public func upsert(abatementQuantity: Quantity?) {
         upsert(prop: &self.abatementQuantity, val: abatementQuantity)
-    }    
-    public dynamic var abatementRange: Range?        
+    }
+    @objc public dynamic var abatementRange: Range?
     public func upsert(abatementRange: Range?) {
         upsert(prop: &self.abatementRange, val: abatementRange)
-    }    
-    public dynamic var abatementString: String?        
-        
-    public dynamic var asserter: Reference?        
+    }
+    @objc public dynamic var abatementString: String?
+    @objc public dynamic var asserter: Reference?
     public func upsert(asserter: Reference?) {
         upsert(prop: &self.asserter, val: asserter)
-    }    
-    public let bodySite = RealmSwift.List<CodeableConcept>()    
-    public dynamic var category: CodeableConcept?        
+    }
+    public let bodySite = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var category: CodeableConcept?
     public func upsert(category: CodeableConcept?) {
         upsert(prop: &self.category, val: category)
-    }    
-    public dynamic var clinicalStatus: String?        
-        
-    public dynamic var code: CodeableConcept?        
+    }
+    @objc public dynamic var clinicalStatus: String?
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var dateRecorded: FHIRDate?        
-        
-    public dynamic var encounter: Reference?        
+    }
+    @objc public dynamic var dateRecorded: FHIRDate?
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public let evidence = RealmSwift.List<ConditionEvidence>()    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var notes: String?        
-        
-    public dynamic var onsetDateTime: DateTime?        
-        
-    public dynamic var onsetPeriod: Period?        
+    }
+    public let evidence = RealmSwift.List<ConditionEvidence>()
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var notes: String?
+    @objc public dynamic var onsetDateTime: DateTime?
+    @objc public dynamic var onsetPeriod: Period?
     public func upsert(onsetPeriod: Period?) {
         upsert(prop: &self.onsetPeriod, val: onsetPeriod)
-    }    
-    public dynamic var onsetQuantity: Quantity?        
+    }
+    @objc public dynamic var onsetQuantity: Quantity?
     public func upsert(onsetQuantity: Quantity?) {
         upsert(prop: &self.onsetQuantity, val: onsetQuantity)
-    }    
-    public dynamic var onsetRange: Range?        
+    }
+    @objc public dynamic var onsetRange: Range?
     public func upsert(onsetRange: Range?) {
         upsert(prop: &self.onsetRange, val: onsetRange)
-    }    
-    public dynamic var onsetString: String?        
-        
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var onsetString: String?
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var severity: CodeableConcept?        
+    }
+    @objc public dynamic var severity: CodeableConcept?
     public func upsert(severity: CodeableConcept?) {
         upsert(prop: &self.severity, val: severity)
-    }    
-    public dynamic var stage: ConditionStage?        
+    }
+    @objc public dynamic var stage: ConditionStage?
     public func upsert(stage: ConditionStage?) {
         upsert(prop: &self.stage, val: stage)
-    }    
-    public dynamic var verificationStatus: String?        
-    
+    }
+    @objc public dynamic var verificationStatus: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: CodeableConcept, patient: Reference, verificationStatus: String) {
-        self.init(json: nil)
+        self.init()
         self.code = code
         self.patient = patient
         self.verificationStatus = verificationStatus
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case abatementBoolean = "abatementBoolean"
+        case abatementDateTime = "abatementDateTime"
+        case abatementPeriod = "abatementPeriod"
+        case abatementQuantity = "abatementQuantity"
+        case abatementRange = "abatementRange"
+        case abatementString = "abatementString"
+        case asserter = "asserter"
+        case bodySite = "bodySite"
+        case category = "category"
+        case clinicalStatus = "clinicalStatus"
+        case code = "code"
+        case dateRecorded = "dateRecorded"
+        case encounter = "encounter"
+        case evidence = "evidence"
+        case identifier = "identifier"
+        case notes = "notes"
+        case onsetDateTime = "onsetDateTime"
+        case onsetPeriod = "onsetPeriod"
+        case onsetQuantity = "onsetQuantity"
+        case onsetRange = "onsetRange"
+        case onsetString = "onsetString"
+        case patient = "patient"
+        case severity = "severity"
+        case stage = "stage"
+        case verificationStatus = "verificationStatus"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.abatementBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .abatementBoolean)
+        self.abatementString = try container.decodeIfPresent(String.self, forKey: .abatementString)
+        self.clinicalStatus = try container.decodeIfPresent(String.self, forKey: .clinicalStatus)
+        self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
+        self.onsetString = try container.decodeIfPresent(String.self, forKey: .onsetString)
+        self.verificationStatus = try container.decodeIfPresent(String.self, forKey: .verificationStatus)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.abatementBoolean.value, forKey: .abatementBoolean)
+        try container.encodeIfPresent(self.abatementDateTime, forKey: .abatementDateTime)
+        try container.encodeIfPresent(self.abatementPeriod, forKey: .abatementPeriod)
+        try container.encodeIfPresent(self.abatementQuantity, forKey: .abatementQuantity)
+        try container.encodeIfPresent(self.abatementRange, forKey: .abatementRange)
+        try container.encodeIfPresent(self.abatementString, forKey: .abatementString)
+        try container.encodeIfPresent(self.asserter, forKey: .asserter)
+        try container.encode(self.bodySite.flatMap { $0 }, forKey: .bodySite)
+        try container.encodeIfPresent(self.category, forKey: .category)
+        try container.encodeIfPresent(self.clinicalStatus, forKey: .clinicalStatus)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.dateRecorded, forKey: .dateRecorded)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encode(self.evidence.flatMap { $0 }, forKey: .evidence)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.notes, forKey: .notes)
+        try container.encodeIfPresent(self.onsetDateTime, forKey: .onsetDateTime)
+        try container.encodeIfPresent(self.onsetPeriod, forKey: .onsetPeriod)
+        try container.encodeIfPresent(self.onsetQuantity, forKey: .onsetQuantity)
+        try container.encodeIfPresent(self.onsetRange, forKey: .onsetRange)
+        try container.encodeIfPresent(self.onsetString, forKey: .onsetString)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.severity, forKey: .severity)
+        try container.encodeIfPresent(self.stage, forKey: .stage)
+        try container.encodeIfPresent(self.verificationStatus, forKey: .verificationStatus)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -435,6 +510,7 @@ open class Condition: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -447,13 +523,43 @@ open class ConditionEvidence: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConditionEvidence" }
 	}
-    
-    public dynamic var code: CodeableConcept?        
+
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
+    }
     public let detail = RealmSwift.List<Reference>()
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case detail = "detail"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -495,6 +601,7 @@ open class ConditionEvidence: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -507,13 +614,43 @@ open class ConditionStage: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConditionStage" }
 	}
-    
-    public let assessment = RealmSwift.List<Reference>()    
-    public dynamic var summary: CodeableConcept?        
+
+    public let assessment = RealmSwift.List<Reference>()
+    @objc public dynamic var summary: CodeableConcept?
     public func upsert(summary: CodeableConcept?) {
         upsert(prop: &self.summary, val: summary)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case assessment = "assessment"
+        case summary = "summary"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.assessment.flatMap { $0 }, forKey: .assessment)
+        try container.encodeIfPresent(self.summary, forKey: .summary)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -555,5 +692,6 @@ open class ConditionStage: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

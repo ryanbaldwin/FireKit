@@ -2,11 +2,12 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,50 +21,98 @@ open class DeviceUseStatement: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceUseStatement" }
 	}
-    
-    public dynamic var bodySiteCodeableConcept: CodeableConcept?        
+
+    @objc public dynamic var bodySiteCodeableConcept: CodeableConcept?
     public func upsert(bodySiteCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.bodySiteCodeableConcept, val: bodySiteCodeableConcept)
-    }    
-    public dynamic var bodySiteReference: Reference?        
+    }
+    @objc public dynamic var bodySiteReference: Reference?
     public func upsert(bodySiteReference: Reference?) {
         upsert(prop: &self.bodySiteReference, val: bodySiteReference)
-    }    
-    public dynamic var device: Reference?        
+    }
+    @objc public dynamic var device: Reference?
     public func upsert(device: Reference?) {
         upsert(prop: &self.device, val: device)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let indication = RealmSwift.List<CodeableConcept>()    
-    public let notes = RealmSwift.List<RealmString>()    
-    public dynamic var recordedOn: DateTime?        
-        
-    public dynamic var subject: Reference?        
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    public let indication = RealmSwift.List<CodeableConcept>()
+    public let notes = RealmSwift.List<RealmString>()
+    @objc public dynamic var recordedOn: DateTime?
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var timingDateTime: DateTime?        
-        
-    public dynamic var timingPeriod: Period?        
+    }
+    @objc public dynamic var timingDateTime: DateTime?
+    @objc public dynamic var timingPeriod: Period?
     public func upsert(timingPeriod: Period?) {
         upsert(prop: &self.timingPeriod, val: timingPeriod)
-    }    
-    public dynamic var timingTiming: Timing?        
+    }
+    @objc public dynamic var timingTiming: Timing?
     public func upsert(timingTiming: Timing?) {
         upsert(prop: &self.timingTiming, val: timingTiming)
-    }    
-    public dynamic var whenUsed: Period?        
+    }
+    @objc public dynamic var whenUsed: Period?
     public func upsert(whenUsed: Period?) {
         upsert(prop: &self.whenUsed, val: whenUsed)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(device: Reference, subject: Reference) {
-        self.init(json: nil)
+        self.init()
         self.device = device
         self.subject = subject
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case bodySiteCodeableConcept = "bodySiteCodeableConcept"
+        case bodySiteReference = "bodySiteReference"
+        case device = "device"
+        case identifier = "identifier"
+        case indication = "indication"
+        case notes = "notes"
+        case recordedOn = "recordedOn"
+        case subject = "subject"
+        case timingDateTime = "timingDateTime"
+        case timingPeriod = "timingPeriod"
+        case timingTiming = "timingTiming"
+        case whenUsed = "whenUsed"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.bodySiteCodeableConcept, forKey: .bodySiteCodeableConcept)
+        try container.encodeIfPresent(self.bodySiteReference, forKey: .bodySiteReference)
+        try container.encodeIfPresent(self.device, forKey: .device)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.indication.flatMap { $0 }, forKey: .indication)
+        try container.encode(self.notes.flatMap { $0.value }, forKey: .notes)
+        try container.encodeIfPresent(self.recordedOn, forKey: .recordedOn)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.timingDateTime, forKey: .timingDateTime)
+        try container.encodeIfPresent(self.timingPeriod, forKey: .timingPeriod)
+        try container.encodeIfPresent(self.timingTiming, forKey: .timingTiming)
+        try container.encodeIfPresent(self.whenUsed, forKey: .whenUsed)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -234,5 +283,6 @@ open class DeviceUseStatement: DomainResource {
 		
 		return json
 	}
+*/
 }
 

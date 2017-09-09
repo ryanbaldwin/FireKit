@@ -2,11 +2,12 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,57 +21,42 @@ open class StructureDefinition: DomainResource {
 	override open class var resourceType: String {
 		get { return "StructureDefinition" }
 	}
-    
-    public let abstract = RealmOptional<Bool>()    
-    public dynamic var base: String?        
-        
-    public let code = RealmSwift.List<Coding>()    
-    public dynamic var constrainedType: String?        
-        
-    public let contact = RealmSwift.List<StructureDefinitionContact>()    
-    public let context = RealmSwift.List<RealmString>()    
-    public dynamic var contextType: String?        
-        
-    public dynamic var copyright: String?        
-        
-    public dynamic var date: DateTime?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public dynamic var differential: StructureDefinitionDifferential?        
+
+    public let abstract = RealmOptional<Bool>()
+    @objc public dynamic var base: String?
+    public let code = RealmSwift.List<Coding>()
+    @objc public dynamic var constrainedType: String?
+    public let contact = RealmSwift.List<StructureDefinitionContact>()
+    public let context = RealmSwift.List<RealmString>()
+    @objc public dynamic var contextType: String?
+    @objc public dynamic var copyright: String?
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var description_fhir: String?
+    @objc public dynamic var differential: StructureDefinitionDifferential?
     public func upsert(differential: StructureDefinitionDifferential?) {
         upsert(prop: &self.differential, val: differential)
-    }    
-    public dynamic var display: String?        
-        
-    public let experimental = RealmOptional<Bool>()    
-    public dynamic var fhirVersion: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var kind: String?        
-        
-    public let mapping = RealmSwift.List<StructureDefinitionMapping>()    
-    public dynamic var name: String?        
-        
-    public dynamic var publisher: String?        
-        
-    public dynamic var requirements: String?        
-        
-    public dynamic var snapshot: StructureDefinitionSnapshot?        
+    }
+    @objc public dynamic var display: String?
+    public let experimental = RealmOptional<Bool>()
+    @objc public dynamic var fhirVersion: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var kind: String?
+    public let mapping = RealmSwift.List<StructureDefinitionMapping>()
+    @objc public dynamic var name: String?
+    @objc public dynamic var publisher: String?
+    @objc public dynamic var requirements: String?
+    @objc public dynamic var snapshot: StructureDefinitionSnapshot?
     public func upsert(snapshot: StructureDefinitionSnapshot?) {
         upsert(prop: &self.snapshot, val: snapshot)
-    }    
-    public dynamic var status: String?        
-        
-    public dynamic var url: String?        
-        
-    public let useContext = RealmSwift.List<CodeableConcept>()    
-    public dynamic var version: String?        
-    
+    }
+    @objc public dynamic var status: String?
+    @objc public dynamic var url: String?
+    public let useContext = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var version: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(abstract: Bool, kind: String, name: String, status: String, url: String) {
-        self.init(json: nil)
+        self.init()
         self.abstract.value = abstract
         self.kind = kind
         self.name = name
@@ -78,6 +64,98 @@ open class StructureDefinition: DomainResource {
         self.url = url
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case abstract = "abstract"
+        case base = "base"
+        case code = "code"
+        case constrainedType = "constrainedType"
+        case contact = "contact"
+        case context = "context"
+        case contextType = "contextType"
+        case copyright = "copyright"
+        case date = "date"
+        case description_fhir = "description"
+        case differential = "differential"
+        case display = "display"
+        case experimental = "experimental"
+        case fhirVersion = "fhirVersion"
+        case identifier = "identifier"
+        case kind = "kind"
+        case mapping = "mapping"
+        case name = "name"
+        case publisher = "publisher"
+        case requirements = "requirements"
+        case snapshot = "snapshot"
+        case status = "status"
+        case url = "url"
+        case useContext = "useContext"
+        case version = "version"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.abstract.value = try container.decodeIfPresent(Bool.self, forKey: .abstract)
+        self.base = try container.decodeIfPresent(String.self, forKey: .base)
+        self.constrainedType = try container.decodeIfPresent(String.self, forKey: .constrainedType)
+        self.contextType = try container.decodeIfPresent(String.self, forKey: .contextType)
+        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
+        self.fhirVersion = try container.decodeIfPresent(String.self, forKey: .fhirVersion)
+        self.kind = try container.decodeIfPresent(String.self, forKey: .kind)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
+        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.abstract.value, forKey: .abstract)
+        try container.encodeIfPresent(self.base, forKey: .base)
+        try container.encode(self.code.flatMap { $0 }, forKey: .code)
+        try container.encodeIfPresent(self.constrainedType, forKey: .constrainedType)
+        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(self.context.flatMap { $0.value }, forKey: .context)
+        try container.encodeIfPresent(self.contextType, forKey: .contextType)
+        try container.encodeIfPresent(self.copyright, forKey: .copyright)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.differential, forKey: .differential)
+        try container.encodeIfPresent(self.display, forKey: .display)
+        try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
+        try container.encodeIfPresent(self.fhirVersion, forKey: .fhirVersion)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.kind, forKey: .kind)
+        try container.encode(self.mapping.flatMap { $0 }, forKey: .mapping)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.publisher, forKey: .publisher)
+        try container.encodeIfPresent(self.requirements, forKey: .requirements)
+        try container.encodeIfPresent(self.snapshot, forKey: .snapshot)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.url, forKey: .url)
+        try container.encode(self.useContext.flatMap { $0 }, forKey: .useContext)
+        try container.encodeIfPresent(self.version, forKey: .version)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -422,6 +500,7 @@ open class StructureDefinition: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -434,11 +513,41 @@ open class StructureDefinitionContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionContact" }
 	}
-    
-    public dynamic var name: String?        
-        
+
+    @objc public dynamic var name: String?
     public let telecom = RealmSwift.List<ContactPoint>()
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -480,6 +589,7 @@ open class StructureDefinitionContact: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -493,15 +603,43 @@ open class StructureDefinitionDifferential: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionDifferential" }
 	}
-    
+
     public let element = RealmSwift.List<ElementDefinition>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(element: [ElementDefinition]) {
-        self.init(json: nil)
+        self.init()
         self.element.append(objectsIn: element)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case element = "element"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.element.flatMap { $0 }, forKey: .element)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -534,6 +672,7 @@ open class StructureDefinitionDifferential: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -546,22 +685,56 @@ open class StructureDefinitionMapping: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionMapping" }
 	}
-    
-    public dynamic var comments: String?        
-        
-    public dynamic var identity: String?        
-        
-    public dynamic var name: String?        
-        
-    public dynamic var uri: String?        
-    
+
+    @objc public dynamic var comments: String?
+    @objc public dynamic var identity: String?
+    @objc public dynamic var name: String?
+    @objc public dynamic var uri: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(identity: String) {
-        self.init(json: nil)
+        self.init()
         self.identity = identity
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case comments = "comments"
+        case identity = "identity"
+        case name = "name"
+        case uri = "uri"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
+        self.identity = try container.decodeIfPresent(String.self, forKey: .identity)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.uri = try container.decodeIfPresent(String.self, forKey: .uri)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.comments, forKey: .comments)
+        try container.encodeIfPresent(self.identity, forKey: .identity)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.uri, forKey: .uri)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -627,6 +800,7 @@ open class StructureDefinitionMapping: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -640,15 +814,43 @@ open class StructureDefinitionSnapshot: BackboneElement {
 	override open class var resourceType: String {
 		get { return "StructureDefinitionSnapshot" }
 	}
-    
+
     public let element = RealmSwift.List<ElementDefinition>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(element: [ElementDefinition]) {
-        self.init(json: nil)
+        self.init()
         self.element.append(objectsIn: element)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case element = "element"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.element.flatMap { $0 }, forKey: .element)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -681,5 +883,6 @@ open class StructureDefinitionSnapshot: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

@@ -2,11 +2,12 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,38 +20,83 @@ open class RiskAssessment: DomainResource {
 	override open class var resourceType: String {
 		get { return "RiskAssessment" }
 	}
-    
-    public let basis = RealmSwift.List<Reference>()    
-    public dynamic var condition: Reference?        
+
+    public let basis = RealmSwift.List<Reference>()
+    @objc public dynamic var condition: Reference?
     public func upsert(condition: Reference?) {
         upsert(prop: &self.condition, val: condition)
-    }    
-    public dynamic var date: DateTime?        
-        
-    public dynamic var encounter: Reference?        
+    }
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public dynamic var identifier: Identifier?        
+    }
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var method: CodeableConcept?        
+    }
+    @objc public dynamic var method: CodeableConcept?
     public func upsert(method: CodeableConcept?) {
         upsert(prop: &self.method, val: method)
-    }    
-    public dynamic var mitigation: String?        
-        
-    public dynamic var performer: Reference?        
+    }
+    @objc public dynamic var mitigation: String?
+    @objc public dynamic var performer: Reference?
     public func upsert(performer: Reference?) {
         upsert(prop: &self.performer, val: performer)
-    }    
-    public let prediction = RealmSwift.List<RiskAssessmentPrediction>()    
-    public dynamic var subject: Reference?        
+    }
+    public let prediction = RealmSwift.List<RiskAssessmentPrediction>()
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case basis = "basis"
+        case condition = "condition"
+        case date = "date"
+        case encounter = "encounter"
+        case identifier = "identifier"
+        case method = "method"
+        case mitigation = "mitigation"
+        case performer = "performer"
+        case prediction = "prediction"
+        case subject = "subject"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.mitigation = try container.decodeIfPresent(String.self, forKey: .mitigation)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.basis.flatMap { $0 }, forKey: .basis)
+        try container.encodeIfPresent(self.condition, forKey: .condition)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.method, forKey: .method)
+        try container.encodeIfPresent(self.mitigation, forKey: .mitigation)
+        try container.encodeIfPresent(self.performer, forKey: .performer)
+        try container.encode(self.prediction.flatMap { $0 }, forKey: .prediction)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -191,6 +237,7 @@ open class RiskAssessment: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -203,40 +250,80 @@ open class RiskAssessmentPrediction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "RiskAssessmentPrediction" }
 	}
-    
-    public dynamic var outcome: CodeableConcept?        
+
+    @objc public dynamic var outcome: CodeableConcept?
     public func upsert(outcome: CodeableConcept?) {
         upsert(prop: &self.outcome, val: outcome)
-    }    
-    public dynamic var probabilityCodeableConcept: CodeableConcept?        
+    }
+    @objc public dynamic var probabilityCodeableConcept: CodeableConcept?
     public func upsert(probabilityCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.probabilityCodeableConcept, val: probabilityCodeableConcept)
-    }    
-    public dynamic var probabilityDecimal: RealmDecimal?        
-        
-    public dynamic var probabilityRange: Range?        
+    }
+    @objc public dynamic var probabilityDecimal: RealmDecimal?
+    @objc public dynamic var probabilityRange: Range?
     public func upsert(probabilityRange: Range?) {
         upsert(prop: &self.probabilityRange, val: probabilityRange)
-    }    
-    public dynamic var rationale: String?        
-        
-    public dynamic var relativeRisk: RealmDecimal?        
-        
-    public dynamic var whenPeriod: Period?        
+    }
+    @objc public dynamic var rationale: String?
+    @objc public dynamic var relativeRisk: RealmDecimal?
+    @objc public dynamic var whenPeriod: Period?
     public func upsert(whenPeriod: Period?) {
         upsert(prop: &self.whenPeriod, val: whenPeriod)
-    }    
-    public dynamic var whenRange: Range?        
+    }
+    @objc public dynamic var whenRange: Range?
     public func upsert(whenRange: Range?) {
         upsert(prop: &self.whenRange, val: whenRange)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(outcome: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.outcome = outcome
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case outcome = "outcome"
+        case probabilityCodeableConcept = "probabilityCodeableConcept"
+        case probabilityDecimal = "probabilityDecimal"
+        case probabilityRange = "probabilityRange"
+        case rationale = "rationale"
+        case relativeRisk = "relativeRisk"
+        case whenPeriod = "whenPeriod"
+        case whenRange = "whenRange"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.rationale = try container.decodeIfPresent(String.self, forKey: .rationale)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.outcome, forKey: .outcome)
+        try container.encodeIfPresent(self.probabilityCodeableConcept, forKey: .probabilityCodeableConcept)
+        try container.encodeIfPresent(self.probabilityDecimal, forKey: .probabilityDecimal)
+        try container.encodeIfPresent(self.probabilityRange, forKey: .probabilityRange)
+        try container.encodeIfPresent(self.rationale, forKey: .rationale)
+        try container.encodeIfPresent(self.relativeRisk, forKey: .relativeRisk)
+        try container.encodeIfPresent(self.whenPeriod, forKey: .whenPeriod)
+        try container.encodeIfPresent(self.whenRange, forKey: .whenRange)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -350,5 +437,6 @@ open class RiskAssessmentPrediction: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

@@ -2,11 +2,12 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -23,51 +24,107 @@ open class Device: DomainResource {
 	override open class var resourceType: String {
 		get { return "Device" }
 	}
-    
-    public let contact = RealmSwift.List<ContactPoint>()    
-    public dynamic var expiry: DateTime?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var location: Reference?        
+
+    public let contact = RealmSwift.List<ContactPoint>()
+    @objc public dynamic var expiry: DateTime?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var location: Reference?
     public func upsert(location: Reference?) {
         upsert(prop: &self.location, val: location)
-    }    
-    public dynamic var lotNumber: String?        
-        
-    public dynamic var manufactureDate: DateTime?        
-        
-    public dynamic var manufacturer: String?        
-        
-    public dynamic var model: String?        
-        
-    public let note = RealmSwift.List<Annotation>()    
-    public dynamic var owner: Reference?        
+    }
+    @objc public dynamic var lotNumber: String?
+    @objc public dynamic var manufactureDate: DateTime?
+    @objc public dynamic var manufacturer: String?
+    @objc public dynamic var model: String?
+    public let note = RealmSwift.List<Annotation>()
+    @objc public dynamic var owner: Reference?
     public func upsert(owner: Reference?) {
         upsert(prop: &self.owner, val: owner)
-    }    
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var status: String?        
-        
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var status: String?
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
-    }    
-    public dynamic var udi: String?        
-        
-    public dynamic var url: String?        
-        
-    public dynamic var version: String?        
-    
+    }
+    @objc public dynamic var udi: String?
+    @objc public dynamic var url: String?
+    @objc public dynamic var version: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(type: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.type = type
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case contact = "contact"
+        case expiry = "expiry"
+        case identifier = "identifier"
+        case location = "location"
+        case lotNumber = "lotNumber"
+        case manufactureDate = "manufactureDate"
+        case manufacturer = "manufacturer"
+        case model = "model"
+        case note = "note"
+        case owner = "owner"
+        case patient = "patient"
+        case status = "status"
+        case type = "type"
+        case udi = "udi"
+        case url = "url"
+        case version = "version"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.lotNumber = try container.decodeIfPresent(String.self, forKey: .lotNumber)
+        self.manufacturer = try container.decodeIfPresent(String.self, forKey: .manufacturer)
+        self.model = try container.decodeIfPresent(String.self, forKey: .model)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.udi = try container.decodeIfPresent(String.self, forKey: .udi)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encodeIfPresent(self.expiry, forKey: .expiry)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encodeIfPresent(self.lotNumber, forKey: .lotNumber)
+        try container.encodeIfPresent(self.manufactureDate, forKey: .manufactureDate)
+        try container.encodeIfPresent(self.manufacturer, forKey: .manufacturer)
+        try container.encodeIfPresent(self.model, forKey: .model)
+        try container.encode(self.note.flatMap { $0 }, forKey: .note)
+        try container.encodeIfPresent(self.owner, forKey: .owner)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encodeIfPresent(self.udi, forKey: .udi)
+        try container.encodeIfPresent(self.url, forKey: .url)
+        try container.encodeIfPresent(self.version, forKey: .version)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -286,5 +343,6 @@ open class Device: DomainResource {
 		
 		return json
 	}
+*/
 }
 

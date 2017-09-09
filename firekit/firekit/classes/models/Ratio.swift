@@ -2,11 +2,12 @@
 //  Ratio.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,16 +20,46 @@ open class Ratio: Element {
 	override open class var resourceType: String {
 		get { return "Ratio" }
 	}
-    
-    public dynamic var denominator: Quantity?        
+
+    @objc public dynamic var denominator: Quantity?
     public func upsert(denominator: Quantity?) {
         upsert(prop: &self.denominator, val: denominator)
-    }    
-    public dynamic var numerator: Quantity?        
+    }
+    @objc public dynamic var numerator: Quantity?
     public func upsert(numerator: Quantity?) {
         upsert(prop: &self.numerator, val: numerator)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case denominator = "denominator"
+        case numerator = "numerator"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.denominator, forKey: .denominator)
+        try container.encodeIfPresent(self.numerator, forKey: .numerator)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -67,5 +98,6 @@ open class Ratio: Element {
 		
 		return json
 	}
+*/
 }
 

@@ -2,7 +2,7 @@
 //  ProcessResponseTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-09.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.

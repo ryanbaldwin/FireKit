@@ -2,11 +2,12 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,9 +21,37 @@ open class Parameters: Resource {
 	override open class var resourceType: String {
 		get { return "Parameters" }
 	}
-    
+
     public let parameter = RealmSwift.List<ParametersParameter>()
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case parameter = "parameter"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.parameter.flatMap { $0 }, forKey: .parameter)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -52,6 +81,7 @@ open class Parameters: Resource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -64,117 +94,213 @@ open class ParametersParameter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ParametersParameter" }
 	}
-    
-    public dynamic var name: String?        
-        
-    public let part = RealmSwift.List<ParametersParameter>()    
-    public dynamic var resource: Resource?        
+
+    @objc public dynamic var name: String?
+    public let part = RealmSwift.List<ParametersParameter>()
+    @objc public dynamic var resource: Resource?
     public func upsert(resource: Resource?) {
         upsert(prop: &self.resource, val: resource)
-    }    
-    public dynamic var valueAddress: Address?        
+    }
+    @objc public dynamic var valueAddress: Address?
     public func upsert(valueAddress: Address?) {
         upsert(prop: &self.valueAddress, val: valueAddress)
-    }    
-    public dynamic var valueAnnotation: Annotation?        
+    }
+    @objc public dynamic var valueAnnotation: Annotation?
     public func upsert(valueAnnotation: Annotation?) {
         upsert(prop: &self.valueAnnotation, val: valueAnnotation)
-    }    
-    public dynamic var valueAttachment: Attachment?        
+    }
+    @objc public dynamic var valueAttachment: Attachment?
     public func upsert(valueAttachment: Attachment?) {
         upsert(prop: &self.valueAttachment, val: valueAttachment)
-    }    
-    public dynamic var valueBase64Binary: Base64Binary?        
-        
-    public let valueBoolean = RealmOptional<Bool>()    
-    public dynamic var valueCode: String?        
-        
-    public dynamic var valueCodeableConcept: CodeableConcept?        
+    }
+    @objc public dynamic var valueBase64Binary: Base64Binary?
+    public let valueBoolean = RealmOptional<Bool>()
+    @objc public dynamic var valueCode: String?
+    @objc public dynamic var valueCodeableConcept: CodeableConcept?
     public func upsert(valueCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.valueCodeableConcept, val: valueCodeableConcept)
-    }    
-    public dynamic var valueCoding: Coding?        
+    }
+    @objc public dynamic var valueCoding: Coding?
     public func upsert(valueCoding: Coding?) {
         upsert(prop: &self.valueCoding, val: valueCoding)
-    }    
-    public dynamic var valueContactPoint: ContactPoint?        
+    }
+    @objc public dynamic var valueContactPoint: ContactPoint?
     public func upsert(valueContactPoint: ContactPoint?) {
         upsert(prop: &self.valueContactPoint, val: valueContactPoint)
-    }    
-    public dynamic var valueDate: FHIRDate?        
-        
-    public dynamic var valueDateTime: DateTime?        
-        
-    public dynamic var valueDecimal: RealmDecimal?        
-        
-    public dynamic var valueHumanName: HumanName?        
+    }
+    @objc public dynamic var valueDate: FHIRDate?
+    @objc public dynamic var valueDateTime: DateTime?
+    @objc public dynamic var valueDecimal: RealmDecimal?
+    @objc public dynamic var valueHumanName: HumanName?
     public func upsert(valueHumanName: HumanName?) {
         upsert(prop: &self.valueHumanName, val: valueHumanName)
-    }    
-    public dynamic var valueId: String?        
-        
-    public dynamic var valueIdentifier: Identifier?        
+    }
+    @objc public dynamic var valueId: String?
+    @objc public dynamic var valueIdentifier: Identifier?
     public func upsert(valueIdentifier: Identifier?) {
         upsert(prop: &self.valueIdentifier, val: valueIdentifier)
-    }    
-    public dynamic var valueInstant: Instant?        
-        
-    public let valueInteger = RealmOptional<Int>()    
-    public dynamic var valueMarkdown: String?        
-        
-    public dynamic var valueMeta: Meta?        
+    }
+    @objc public dynamic var valueInstant: Instant?
+    public let valueInteger = RealmOptional<Int>()
+    @objc public dynamic var valueMarkdown: String?
+    @objc public dynamic var valueMeta: Meta?
     public func upsert(valueMeta: Meta?) {
         upsert(prop: &self.valueMeta, val: valueMeta)
-    }    
-    public dynamic var valueOid: String?        
-        
-    public dynamic var valuePeriod: Period?        
+    }
+    @objc public dynamic var valueOid: String?
+    @objc public dynamic var valuePeriod: Period?
     public func upsert(valuePeriod: Period?) {
         upsert(prop: &self.valuePeriod, val: valuePeriod)
-    }    
-    public let valuePositiveInt = RealmOptional<Int>()    
-    public dynamic var valueQuantity: Quantity?        
+    }
+    public let valuePositiveInt = RealmOptional<Int>()
+    @objc public dynamic var valueQuantity: Quantity?
     public func upsert(valueQuantity: Quantity?) {
         upsert(prop: &self.valueQuantity, val: valueQuantity)
-    }    
-    public dynamic var valueRange: Range?        
+    }
+    @objc public dynamic var valueRange: Range?
     public func upsert(valueRange: Range?) {
         upsert(prop: &self.valueRange, val: valueRange)
-    }    
-    public dynamic var valueRatio: Ratio?        
+    }
+    @objc public dynamic var valueRatio: Ratio?
     public func upsert(valueRatio: Ratio?) {
         upsert(prop: &self.valueRatio, val: valueRatio)
-    }    
-    public dynamic var valueReference: Reference?        
+    }
+    @objc public dynamic var valueReference: Reference?
     public func upsert(valueReference: Reference?) {
         upsert(prop: &self.valueReference, val: valueReference)
-    }    
-    public dynamic var valueSampledData: SampledData?        
+    }
+    @objc public dynamic var valueSampledData: SampledData?
     public func upsert(valueSampledData: SampledData?) {
         upsert(prop: &self.valueSampledData, val: valueSampledData)
-    }    
-    public dynamic var valueSignature: Signature?        
+    }
+    @objc public dynamic var valueSignature: Signature?
     public func upsert(valueSignature: Signature?) {
         upsert(prop: &self.valueSignature, val: valueSignature)
-    }    
-    public dynamic var valueString: String?        
-        
-    public dynamic var valueTime: FHIRTime?        
-        
-    public dynamic var valueTiming: Timing?        
+    }
+    @objc public dynamic var valueString: String?
+    @objc public dynamic var valueTime: FHIRTime?
+    @objc public dynamic var valueTiming: Timing?
     public func upsert(valueTiming: Timing?) {
         upsert(prop: &self.valueTiming, val: valueTiming)
-    }    
-    public let valueUnsignedInt = RealmOptional<Int>()    
-    public dynamic var valueUri: String?        
-    
+    }
+    public let valueUnsignedInt = RealmOptional<Int>()
+    @objc public dynamic var valueUri: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(name: String) {
-        self.init(json: nil)
+        self.init()
         self.name = name
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case part = "part"
+        case resource = "resource"
+        case valueAddress = "valueAddress"
+        case valueAnnotation = "valueAnnotation"
+        case valueAttachment = "valueAttachment"
+        case valueBase64Binary = "valueBase64Binary"
+        case valueBoolean = "valueBoolean"
+        case valueCode = "valueCode"
+        case valueCodeableConcept = "valueCodeableConcept"
+        case valueCoding = "valueCoding"
+        case valueContactPoint = "valueContactPoint"
+        case valueDate = "valueDate"
+        case valueDateTime = "valueDateTime"
+        case valueDecimal = "valueDecimal"
+        case valueHumanName = "valueHumanName"
+        case valueId = "valueId"
+        case valueIdentifier = "valueIdentifier"
+        case valueInstant = "valueInstant"
+        case valueInteger = "valueInteger"
+        case valueMarkdown = "valueMarkdown"
+        case valueMeta = "valueMeta"
+        case valueOid = "valueOid"
+        case valuePeriod = "valuePeriod"
+        case valuePositiveInt = "valuePositiveInt"
+        case valueQuantity = "valueQuantity"
+        case valueRange = "valueRange"
+        case valueRatio = "valueRatio"
+        case valueReference = "valueReference"
+        case valueSampledData = "valueSampledData"
+        case valueSignature = "valueSignature"
+        case valueString = "valueString"
+        case valueTime = "valueTime"
+        case valueTiming = "valueTiming"
+        case valueUnsignedInt = "valueUnsignedInt"
+        case valueUri = "valueUri"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
+        self.valueCode = try container.decodeIfPresent(String.self, forKey: .valueCode)
+        self.valueId = try container.decodeIfPresent(String.self, forKey: .valueId)
+        self.valueInteger.value = try container.decodeIfPresent(Int.self, forKey: .valueInteger)
+        self.valueMarkdown = try container.decodeIfPresent(String.self, forKey: .valueMarkdown)
+        self.valueOid = try container.decodeIfPresent(String.self, forKey: .valueOid)
+        self.valuePositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .valuePositiveInt)
+        self.valueString = try container.decodeIfPresent(String.self, forKey: .valueString)
+        self.valueUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .valueUnsignedInt)
+        self.valueUri = try container.decodeIfPresent(String.self, forKey: .valueUri)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encode(self.part.flatMap { $0 }, forKey: .part)
+        try container.encodeIfPresent(self.resource, forKey: .resource)
+        try container.encodeIfPresent(self.valueAddress, forKey: .valueAddress)
+        try container.encodeIfPresent(self.valueAnnotation, forKey: .valueAnnotation)
+        try container.encodeIfPresent(self.valueAttachment, forKey: .valueAttachment)
+        try container.encodeIfPresent(self.valueBase64Binary, forKey: .valueBase64Binary)
+        try container.encodeIfPresent(self.valueBoolean.value, forKey: .valueBoolean)
+        try container.encodeIfPresent(self.valueCode, forKey: .valueCode)
+        try container.encodeIfPresent(self.valueCodeableConcept, forKey: .valueCodeableConcept)
+        try container.encodeIfPresent(self.valueCoding, forKey: .valueCoding)
+        try container.encodeIfPresent(self.valueContactPoint, forKey: .valueContactPoint)
+        try container.encodeIfPresent(self.valueDate, forKey: .valueDate)
+        try container.encodeIfPresent(self.valueDateTime, forKey: .valueDateTime)
+        try container.encodeIfPresent(self.valueDecimal, forKey: .valueDecimal)
+        try container.encodeIfPresent(self.valueHumanName, forKey: .valueHumanName)
+        try container.encodeIfPresent(self.valueId, forKey: .valueId)
+        try container.encodeIfPresent(self.valueIdentifier, forKey: .valueIdentifier)
+        try container.encodeIfPresent(self.valueInstant, forKey: .valueInstant)
+        try container.encodeIfPresent(self.valueInteger.value, forKey: .valueInteger)
+        try container.encodeIfPresent(self.valueMarkdown, forKey: .valueMarkdown)
+        try container.encodeIfPresent(self.valueMeta, forKey: .valueMeta)
+        try container.encodeIfPresent(self.valueOid, forKey: .valueOid)
+        try container.encodeIfPresent(self.valuePeriod, forKey: .valuePeriod)
+        try container.encodeIfPresent(self.valuePositiveInt.value, forKey: .valuePositiveInt)
+        try container.encodeIfPresent(self.valueQuantity, forKey: .valueQuantity)
+        try container.encodeIfPresent(self.valueRange, forKey: .valueRange)
+        try container.encodeIfPresent(self.valueRatio, forKey: .valueRatio)
+        try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
+        try container.encodeIfPresent(self.valueSampledData, forKey: .valueSampledData)
+        try container.encodeIfPresent(self.valueSignature, forKey: .valueSignature)
+        try container.encodeIfPresent(self.valueString, forKey: .valueString)
+        try container.encodeIfPresent(self.valueTime, forKey: .valueTime)
+        try container.encodeIfPresent(self.valueTiming, forKey: .valueTiming)
+        try container.encodeIfPresent(self.valueUnsignedInt.value, forKey: .valueUnsignedInt)
+        try container.encodeIfPresent(self.valueUri, forKey: .valueUri)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -627,5 +753,6 @@ open class ParametersParameter: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

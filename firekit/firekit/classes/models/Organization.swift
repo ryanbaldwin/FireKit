@@ -2,11 +2,12 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -21,23 +22,66 @@ open class Organization: DomainResource {
 	override open class var resourceType: String {
 		get { return "Organization" }
 	}
-    
-    public let active = RealmOptional<Bool>()    
-    public let address = RealmSwift.List<Address>()    
-    public let contact = RealmSwift.List<OrganizationContact>()    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var name: String?        
-        
-    public dynamic var partOf: Reference?        
+
+    public let active = RealmOptional<Bool>()
+    public let address = RealmSwift.List<Address>()
+    public let contact = RealmSwift.List<OrganizationContact>()
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var name: String?
+    @objc public dynamic var partOf: Reference?
     public func upsert(partOf: Reference?) {
         upsert(prop: &self.partOf, val: partOf)
-    }    
-    public let telecom = RealmSwift.List<ContactPoint>()    
-    public dynamic var type: CodeableConcept?        
+    }
+    public let telecom = RealmSwift.List<ContactPoint>()
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case active = "active"
+        case address = "address"
+        case contact = "contact"
+        case identifier = "identifier"
+        case name = "name"
+        case partOf = "partOf"
+        case telecom = "telecom"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.active.value = try container.decodeIfPresent(Bool.self, forKey: .active)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.active.value, forKey: .active)
+        try container.encode(self.address.flatMap { $0 }, forKey: .address)
+        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.partOf, forKey: .partOf)
+        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -160,6 +204,7 @@ open class Organization: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -170,21 +215,55 @@ open class OrganizationContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OrganizationContact" }
 	}
-    
-    public dynamic var address: Address?        
+
+    @objc public dynamic var address: Address?
     public func upsert(address: Address?) {
         upsert(prop: &self.address, val: address)
-    }    
-    public dynamic var name: HumanName?        
+    }
+    @objc public dynamic var name: HumanName?
     public func upsert(name: HumanName?) {
         upsert(prop: &self.name, val: name)
-    }    
-    public dynamic var purpose: CodeableConcept?        
+    }
+    @objc public dynamic var purpose: CodeableConcept?
     public func upsert(purpose: CodeableConcept?) {
         upsert(prop: &self.purpose, val: purpose)
-    }    
+    }
     public let telecom = RealmSwift.List<ContactPoint>()
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case address = "address"
+        case name = "name"
+        case purpose = "purpose"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.address, forKey: .address)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.purpose, forKey: .purpose)
+        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -250,5 +329,6 @@ open class OrganizationContact: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

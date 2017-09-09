@@ -2,11 +2,12 @@
 //  Flag.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Flag) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Flag) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,43 +20,85 @@ open class Flag: DomainResource {
 	override open class var resourceType: String {
 		get { return "Flag" }
 	}
-    
-    public dynamic var author: Reference?        
+
+    @objc public dynamic var author: Reference?
     public func upsert(author: Reference?) {
         upsert(prop: &self.author, val: author)
-    }    
-    public dynamic var category: CodeableConcept?        
+    }
+    @objc public dynamic var category: CodeableConcept?
     public func upsert(category: CodeableConcept?) {
         upsert(prop: &self.category, val: category)
-    }    
-    public dynamic var code: CodeableConcept?        
+    }
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var encounter: Reference?        
+    }
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var period: Period?        
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public dynamic var status: String?        
-        
-    public dynamic var subject: Reference?        
+    }
+    @objc public dynamic var status: String?
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: CodeableConcept, status: String, subject: Reference) {
-        self.init(json: nil)
+        self.init()
         self.code = code
         self.status = status
         self.subject = subject
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case author = "author"
+        case category = "category"
+        case code = "code"
+        case encounter = "encounter"
+        case identifier = "identifier"
+        case period = "period"
+        case status = "status"
+        case subject = "subject"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.author, forKey: .author)
+        try container.encodeIfPresent(self.category, forKey: .category)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -178,5 +221,6 @@ open class Flag: DomainResource {
 		
 		return json
 	}
+*/
 }
 

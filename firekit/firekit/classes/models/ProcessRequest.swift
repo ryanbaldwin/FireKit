@@ -2,11 +2,12 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,57 +21,115 @@ open class ProcessRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "ProcessRequest" }
 	}
-    
-    public dynamic var action: String?        
-        
-    public dynamic var created: DateTime?        
-        
-    public let exclude = RealmSwift.List<RealmString>()    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let include = RealmSwift.List<RealmString>()    
-    public let item = RealmSwift.List<ProcessRequestItem>()    
-    public let nullify = RealmOptional<Bool>()    
-    public dynamic var organization: Reference?        
+
+    @objc public dynamic var action: String?
+    @objc public dynamic var created: DateTime?
+    public let exclude = RealmSwift.List<RealmString>()
+    public let identifier = RealmSwift.List<Identifier>()
+    public let include = RealmSwift.List<RealmString>()
+    public let item = RealmSwift.List<ProcessRequestItem>()
+    public let nullify = RealmOptional<Bool>()
+    @objc public dynamic var organization: Reference?
     public func upsert(organization: Reference?) {
         upsert(prop: &self.organization, val: organization)
-    }    
-    public dynamic var originalRuleset: Coding?        
+    }
+    @objc public dynamic var originalRuleset: Coding?
     public func upsert(originalRuleset: Coding?) {
         upsert(prop: &self.originalRuleset, val: originalRuleset)
-    }    
-    public dynamic var period: Period?        
+    }
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public dynamic var provider: Reference?        
+    }
+    @objc public dynamic var provider: Reference?
     public func upsert(provider: Reference?) {
         upsert(prop: &self.provider, val: provider)
-    }    
-    public dynamic var reference: String?        
-        
-    public dynamic var request: Reference?        
+    }
+    @objc public dynamic var reference: String?
+    @objc public dynamic var request: Reference?
     public func upsert(request: Reference?) {
         upsert(prop: &self.request, val: request)
-    }    
-    public dynamic var response: Reference?        
+    }
+    @objc public dynamic var response: Reference?
     public func upsert(response: Reference?) {
         upsert(prop: &self.response, val: response)
-    }    
-    public dynamic var ruleset: Coding?        
+    }
+    @objc public dynamic var ruleset: Coding?
     public func upsert(ruleset: Coding?) {
         upsert(prop: &self.ruleset, val: ruleset)
-    }    
-    public dynamic var target: Reference?        
+    }
+    @objc public dynamic var target: Reference?
     public func upsert(target: Reference?) {
         upsert(prop: &self.target, val: target)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(action: String) {
-        self.init(json: nil)
+        self.init()
         self.action = action
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case action = "action"
+        case created = "created"
+        case exclude = "exclude"
+        case identifier = "identifier"
+        case include = "include"
+        case item = "item"
+        case nullify = "nullify"
+        case organization = "organization"
+        case originalRuleset = "originalRuleset"
+        case period = "period"
+        case provider = "provider"
+        case reference = "reference"
+        case request = "request"
+        case response = "response"
+        case ruleset = "ruleset"
+        case target = "target"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.action = try container.decodeIfPresent(String.self, forKey: .action)
+        self.nullify.value = try container.decodeIfPresent(Bool.self, forKey: .nullify)
+        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.action, forKey: .action)
+        try container.encodeIfPresent(self.created, forKey: .created)
+        try container.encode(self.exclude.flatMap { $0.value }, forKey: .exclude)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(self.include.flatMap { $0.value }, forKey: .include)
+        try container.encode(self.item.flatMap { $0 }, forKey: .item)
+        try container.encodeIfPresent(self.nullify.value, forKey: .nullify)
+        try container.encodeIfPresent(self.organization, forKey: .organization)
+        try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encodeIfPresent(self.provider, forKey: .provider)
+        try container.encodeIfPresent(self.reference, forKey: .reference)
+        try container.encodeIfPresent(self.request, forKey: .request)
+        try container.encodeIfPresent(self.response, forKey: .response)
+        try container.encodeIfPresent(self.ruleset, forKey: .ruleset)
+        try container.encodeIfPresent(self.target, forKey: .target)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -286,6 +345,7 @@ open class ProcessRequest: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -298,15 +358,44 @@ open class ProcessRequestItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProcessRequestItem" }
 	}
-    
+
     public let sequenceLinkId = RealmOptional<Int>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(sequenceLinkId: Int) {
-        self.init(json: nil)
+        self.init()
         self.sequenceLinkId.value = sequenceLinkId
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case sequenceLinkId = "sequenceLinkId"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -336,5 +425,6 @@ open class ProcessRequestItem: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

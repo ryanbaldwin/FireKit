@@ -2,11 +2,12 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,45 +20,92 @@ open class SupplyDelivery: DomainResource {
 	override open class var resourceType: String {
 		get { return "SupplyDelivery" }
 	}
-    
-    public dynamic var destination: Reference?        
+
+    @objc public dynamic var destination: Reference?
     public func upsert(destination: Reference?) {
         upsert(prop: &self.destination, val: destination)
-    }    
-    public dynamic var identifier: Identifier?        
+    }
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var quantity: Quantity?        
+    }
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public let receiver = RealmSwift.List<Reference>()    
-    public dynamic var status: String?        
-        
-    public dynamic var suppliedItem: Reference?        
+    }
+    public let receiver = RealmSwift.List<Reference>()
+    @objc public dynamic var status: String?
+    @objc public dynamic var suppliedItem: Reference?
     public func upsert(suppliedItem: Reference?) {
         upsert(prop: &self.suppliedItem, val: suppliedItem)
-    }    
-    public dynamic var supplier: Reference?        
+    }
+    @objc public dynamic var supplier: Reference?
     public func upsert(supplier: Reference?) {
         upsert(prop: &self.supplier, val: supplier)
-    }    
-    public dynamic var time: DateTime?        
-        
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var time: DateTime?
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
-    }    
-    public dynamic var whenPrepared: Period?        
+    }
+    @objc public dynamic var whenPrepared: Period?
     public func upsert(whenPrepared: Period?) {
         upsert(prop: &self.whenPrepared, val: whenPrepared)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case destination = "destination"
+        case identifier = "identifier"
+        case patient = "patient"
+        case quantity = "quantity"
+        case receiver = "receiver"
+        case status = "status"
+        case suppliedItem = "suppliedItem"
+        case supplier = "supplier"
+        case time = "time"
+        case type = "type"
+        case whenPrepared = "whenPrepared"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.destination, forKey: .destination)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encode(self.receiver.flatMap { $0 }, forKey: .receiver)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.suppliedItem, forKey: .suppliedItem)
+        try container.encodeIfPresent(self.supplier, forKey: .supplier)
+        try container.encodeIfPresent(self.time, forKey: .time)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encodeIfPresent(self.whenPrepared, forKey: .whenPrepared)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -207,5 +255,6 @@ open class SupplyDelivery: DomainResource {
 		
 		return json
 	}
+*/
 }
 

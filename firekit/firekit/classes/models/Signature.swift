@@ -2,11 +2,12 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -21,24 +22,20 @@ open class Signature: Element {
 	override open class var resourceType: String {
 		get { return "Signature" }
 	}
-    
-    public dynamic var blob: Base64Binary?        
-        
-    public dynamic var contentType: String?        
-        
-    public let type = RealmSwift.List<Coding>()    
-    public dynamic var when: Instant?        
-        
-    public dynamic var whoReference: Reference?        
+
+    @objc public dynamic var blob: Base64Binary?
+    @objc public dynamic var contentType: String?
+    public let type = RealmSwift.List<Coding>()
+    @objc public dynamic var when: Instant?
+    @objc public dynamic var whoReference: Reference?
     public func upsert(whoReference: Reference?) {
         upsert(prop: &self.whoReference, val: whoReference)
-    }    
-    public dynamic var whoUri: String?        
-    
+    }
+    @objc public dynamic var whoUri: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(blob: Base64Binary, contentType: String, type: [Coding], when: Instant, whoReference: Reference, whoUri: String) {
-        self.init(json: nil)
+        self.init()
         self.blob = blob
         self.contentType = contentType
         self.type.append(objectsIn: type)
@@ -47,6 +44,46 @@ open class Signature: Element {
         self.whoUri = whoUri
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case blob = "blob"
+        case contentType = "contentType"
+        case type = "type"
+        case when = "when"
+        case whoReference = "whoReference"
+        case whoUri = "whoUri"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
+        self.whoUri = try container.decodeIfPresent(String.self, forKey: .whoUri)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.blob, forKey: .blob)
+        try container.encodeIfPresent(self.contentType, forKey: .contentType)
+        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encodeIfPresent(self.when, forKey: .when)
+        try container.encodeIfPresent(self.whoReference, forKey: .whoReference)
+        try container.encodeIfPresent(self.whoUri, forKey: .whoUri)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -153,5 +190,6 @@ open class Signature: Element {
 		
 		return json
 	}
+*/
 }
 

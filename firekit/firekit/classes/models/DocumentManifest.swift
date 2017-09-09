@@ -2,11 +2,12 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-09-09.
 //  2017, SMART Health IT.
 //
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -17,40 +18,89 @@ open class DocumentManifest: DomainResource {
 	override open class var resourceType: String {
 		get { return "DocumentManifest" }
 	}
-    
-    public let author = RealmSwift.List<Reference>()    
-    public let content = RealmSwift.List<DocumentManifestContent>()    
-    public dynamic var created: DateTime?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var masterIdentifier: Identifier?        
+
+    public let author = RealmSwift.List<Reference>()
+    public let content = RealmSwift.List<DocumentManifestContent>()
+    @objc public dynamic var created: DateTime?
+    @objc public dynamic var description_fhir: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var masterIdentifier: Identifier?
     public func upsert(masterIdentifier: Identifier?) {
         upsert(prop: &self.masterIdentifier, val: masterIdentifier)
-    }    
-    public let recipient = RealmSwift.List<Reference>()    
-    public let related = RealmSwift.List<DocumentManifestRelated>()    
-    public dynamic var source: String?        
-        
-    public dynamic var status: String?        
-        
-    public dynamic var subject: Reference?        
+    }
+    public let recipient = RealmSwift.List<Reference>()
+    public let related = RealmSwift.List<DocumentManifestRelated>()
+    @objc public dynamic var source: String?
+    @objc public dynamic var status: String?
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(content: [DocumentManifestContent], status: String) {
-        self.init(json: nil)
+        self.init()
         self.content.append(objectsIn: content)
         self.status = status
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case author = "author"
+        case content = "content"
+        case created = "created"
+        case description_fhir = "description"
+        case identifier = "identifier"
+        case masterIdentifier = "masterIdentifier"
+        case recipient = "recipient"
+        case related = "related"
+        case source = "source"
+        case status = "status"
+        case subject = "subject"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.source = try container.decodeIfPresent(String.self, forKey: .source)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(self.author.flatMap { $0 }, forKey: .author)
+        try container.encode(self.content.flatMap { $0 }, forKey: .content)
+        try container.encodeIfPresent(self.created, forKey: .created)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encodeIfPresent(self.masterIdentifier, forKey: .masterIdentifier)
+        try container.encode(self.recipient.flatMap { $0 }, forKey: .recipient)
+        try container.encode(self.related.flatMap { $0 }, forKey: .related)
+        try container.encodeIfPresent(self.source, forKey: .source)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -230,6 +280,7 @@ open class DocumentManifest: DomainResource {
 		
 		return json
 	}
+*/
 }
 
 
@@ -242,23 +293,53 @@ open class DocumentManifestContent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentManifestContent" }
 	}
-    
-    public dynamic var pAttachment: Attachment?        
+
+    @objc public dynamic var pAttachment: Attachment?
     public func upsert(pAttachment: Attachment?) {
         upsert(prop: &self.pAttachment, val: pAttachment)
-    }    
-    public dynamic var pReference: Reference?        
+    }
+    @objc public dynamic var pReference: Reference?
     public func upsert(pReference: Reference?) {
         upsert(prop: &self.pReference, val: pReference)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(pAttachment: Attachment, pReference: Reference) {
-        self.init(json: nil)
+        self.init()
         self.pAttachment = pAttachment
         self.pReference = pReference
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case pAttachment = "pAttachment"
+        case pReference = "pReference"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.pAttachment, forKey: .pAttachment)
+        try container.encodeIfPresent(self.pReference, forKey: .pReference)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -302,6 +383,7 @@ open class DocumentManifestContent: BackboneElement {
 		
 		return json
 	}
+*/
 }
 
 
@@ -314,16 +396,46 @@ open class DocumentManifestRelated: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DocumentManifestRelated" }
 	}
-    
-    public dynamic var identifier: Identifier?        
+
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var ref: Reference?        
+    }
+    @objc public dynamic var ref: Reference?
     public func upsert(ref: Reference?) {
         upsert(prop: &self.ref, val: ref)
     }
 
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case identifier = "identifier"
+        case ref = "ref"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.ref, forKey: .ref)
+    }
+/*
 	
 	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
 		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
@@ -362,5 +474,6 @@ open class DocumentManifestRelated: BackboneElement {
 		
 		return json
 	}
+*/
 }
 

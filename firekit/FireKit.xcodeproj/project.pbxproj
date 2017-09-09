@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D37E59B1F644FF30012355C /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37E5991F644FF20012355C /* Factories.swift */; };
+		7D37E59E1F64508F0012355C /* CascadeDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37E59D1F64508F0012355C /* CascadeDeletable.swift */; };
 		C2018C201E5D0BCD00523626 /* Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2018C1F1E5D0BCD00523626 /* Copying.swift */; };
 		C20D20E61E3A7FB100027316 /* RealmTestingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */; };
 		C23F08881E54DA2900B1F9B1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430D1E37C96C00EE1AEE /* Realm.framework */; };
 		C23F08891E54DA2C00B1F9B1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430E1E37C96C00EE1AEE /* RealmSwift.framework */; };
-		C2478ADB1F3B712A001A3E67 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2478ADA1F3B712A001A3E67 /* Realm+Extensions.swift */; };
 		C2478ADD1F3B715F001A3E67 /* CascadeDeletableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2478ADC1F3B715F001A3E67 /* CascadeDeletableTests.swift */; };
 		C250E2A81E3808B300C9631E /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42011E37C6D200EE1AEE /* Account.swift */; };
 		C250E2A91E3808B300C9631E /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42021E37C6D200EE1AEE /* Address.swift */; };
@@ -70,7 +71,6 @@
 		C250E2DE1E3808B300C9631E /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42371E37C6D200EE1AEE /* Extension.swift */; };
 		C250E2DF1E3808B300C9631E /* FamilyMemberHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42381E37C6D200EE1AEE /* FamilyMemberHistory.swift */; };
 		C250E2E01E3808B300C9631E /* FHIRAbstractBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42391E37C6D200EE1AEE /* FHIRAbstractBase.swift */; };
-		C250E2E11E3808B300C9631E /* FHIRAbstractBase+Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF423A1E37C6D200EE1AEE /* FHIRAbstractBase+Factory.swift */; };
 		C250E2E21E3808B300C9631E /* FHIRAbstractResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF423B1E37C6D200EE1AEE /* FHIRAbstractResource.swift */; };
 		C250E2E31E3808B300C9631E /* FHIRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF423C1E37C6D200EE1AEE /* FHIRError.swift */; };
 		C250E2E41E3808B300C9631E /* FHIRServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF423D1E37C6D200EE1AEE /* FHIRServer.swift */; };
@@ -2934,9 +2934,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7D37E5991F644FF20012355C /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Factories.swift; path = classes/models/Factories.swift; sourceTree = "<group>"; };
+		7D37E59D1F64508F0012355C /* CascadeDeletable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CascadeDeletable.swift; path = classes/models/CascadeDeletable.swift; sourceTree = "<group>"; };
 		C2018C1F1E5D0BCD00523626 /* Copying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Copying.swift; path = classes/models/Copying.swift; sourceTree = "<group>"; };
 		C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmTestingProtocols.swift; path = classes/RealmTestingProtocols.swift; sourceTree = "<group>"; };
-		C2478ADA1F3B712A001A3E67 /* Realm+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Realm+Extensions.swift"; path = "classes/models/Realm+Extensions.swift"; sourceTree = "<group>"; };
 		C2478ADC1F3B715F001A3E67 /* CascadeDeletableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CascadeDeletableTests.swift; path = classes/CascadeDeletableTests.swift; sourceTree = "<group>"; };
 		C2AF41E51E37C4E300EE1AEE /* FireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF41E81E37C4E300EE1AEE /* realm-swift-fhir.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "realm-swift-fhir.h"; sourceTree = "<group>"; };
@@ -3000,7 +3001,6 @@
 		C2AF42371E37C6D200EE1AEE /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extension.swift; path = classes/models/Extension.swift; sourceTree = "<group>"; };
 		C2AF42381E37C6D200EE1AEE /* FamilyMemberHistory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FamilyMemberHistory.swift; path = classes/models/FamilyMemberHistory.swift; sourceTree = "<group>"; };
 		C2AF42391E37C6D200EE1AEE /* FHIRAbstractBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FHIRAbstractBase.swift; path = classes/models/FHIRAbstractBase.swift; sourceTree = "<group>"; };
-		C2AF423A1E37C6D200EE1AEE /* FHIRAbstractBase+Factory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FHIRAbstractBase+Factory.swift"; path = "classes/models/FHIRAbstractBase+Factory.swift"; sourceTree = "<group>"; };
 		C2AF423B1E37C6D200EE1AEE /* FHIRAbstractResource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FHIRAbstractResource.swift; path = classes/models/FHIRAbstractResource.swift; sourceTree = "<group>"; };
 		C2AF423C1E37C6D200EE1AEE /* FHIRError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FHIRError.swift; path = classes/models/FHIRError.swift; sourceTree = "<group>"; };
 		C2AF423D1E37C6D200EE1AEE /* FHIRServer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FHIRServer.swift; path = classes/models/FHIRServer.swift; sourceTree = "<group>"; };
@@ -5920,6 +5920,8 @@
 		C2AF41FF1E37C50100EE1AEE /* models */ = {
 			isa = PBXGroup;
 			children = (
+				7D37E59D1F64508F0012355C /* CascadeDeletable.swift */,
+				7D37E5991F644FF20012355C /* Factories.swift */,
 				C2AF42011E37C6D200EE1AEE /* Account.swift */,
 				C2AF42021E37C6D200EE1AEE /* Address.swift */,
 				C2AF42031E37C6D200EE1AEE /* Age.swift */,
@@ -5978,7 +5980,6 @@
 				C2AF42371E37C6D200EE1AEE /* Extension.swift */,
 				C2AF42381E37C6D200EE1AEE /* FamilyMemberHistory.swift */,
 				C2AF42391E37C6D200EE1AEE /* FHIRAbstractBase.swift */,
-				C2AF423A1E37C6D200EE1AEE /* FHIRAbstractBase+Factory.swift */,
 				C2AF423B1E37C6D200EE1AEE /* FHIRAbstractResource.swift */,
 				C2AF423C1E37C6D200EE1AEE /* FHIRError.swift */,
 				C2AF423D1E37C6D200EE1AEE /* FHIRServer.swift */,
@@ -6033,7 +6034,6 @@
 				C2AF426E1E37C6D200EE1AEE /* QuestionnaireResponse.swift */,
 				C2AF426F1E37C6D200EE1AEE /* Range.swift */,
 				C2AF42701E37C6D200EE1AEE /* Ratio.swift */,
-				C2478ADA1F3B712A001A3E67 /* Realm+Extensions.swift */,
 				C2AF42711E37C6D200EE1AEE /* RealmTypes.swift */,
 				C2AF42721E37C6D200EE1AEE /* Reference.swift */,
 				C2AF42731E37C6D200EE1AEE /* ReferralRequest.swift */,
@@ -11675,7 +11675,6 @@
 			files = (
 				C250E31C1E3808B300C9631E /* Resource.swift in Sources */,
 				C250E3231E3808B300C9631E /* Specimen.swift in Sources */,
-				C250E2E11E3808B300C9631E /* FHIRAbstractBase+Factory.swift in Sources */,
 				C250E2EF1E3808B300C9631E /* Immunization.swift in Sources */,
 				C250E2AA1E3808B300C9631E /* Age.swift in Sources */,
 				C250E30F1E3808B300C9631E /* ProcedureRequest.swift in Sources */,
@@ -11726,6 +11725,7 @@
 				C250E2DA1E3808B300C9631E /* EnrollmentRequest.swift in Sources */,
 				C250E2A91E3808B300C9631E /* Address.swift in Sources */,
 				C250E2F81E3808B300C9631E /* MedicationDispense.swift in Sources */,
+				7D37E59E1F64508F0012355C /* CascadeDeletable.swift in Sources */,
 				C250E2DF1E3808B300C9631E /* FamilyMemberHistory.swift in Sources */,
 				C250E2F41E3808B300C9631E /* Location.swift in Sources */,
 				C250E3221E3808B300C9631E /* Slot.swift in Sources */,
@@ -11737,7 +11737,6 @@
 				C250E2BE1E3808B300C9631E /* Composition.swift in Sources */,
 				C250E3251E3808B300C9631E /* Subscription.swift in Sources */,
 				C250E31D1E3808B300C9631E /* RiskAssessment.swift in Sources */,
-				C2478ADB1F3B712A001A3E67 /* Realm+Extensions.swift in Sources */,
 				C250E2F61E3808B300C9631E /* Medication.swift in Sources */,
 				C250E3271E3808B300C9631E /* SupplyDelivery.swift in Sources */,
 				C250E30C1E3808B300C9631E /* Person.swift in Sources */,
@@ -11782,6 +11781,7 @@
 				C250E2FE1E3808B300C9631E /* NamingSystem.swift in Sources */,
 				C250E2E61E3808B300C9631E /* FHIRTypes.swift in Sources */,
 				C250E2FA1E3808B300C9631E /* MedicationStatement.swift in Sources */,
+				7D37E59B1F644FF30012355C /* Factories.swift in Sources */,
 				C250E3201E3808B300C9631E /* SearchParameter.swift in Sources */,
 				C250E2B91E3808B300C9631E /* ClinicalImpression.swift in Sources */,
 				C250E2DB1E3808B300C9631E /* EnrollmentResponse.swift in Sources */,
