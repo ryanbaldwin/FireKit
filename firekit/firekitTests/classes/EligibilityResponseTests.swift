@@ -20,13 +20,14 @@ class EligibilityResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.EligibilityResponse {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.EligibilityResponse {
-		let instance = FireKit.EligibilityResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.EligibilityResponse {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.EligibilityResponse.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testEligibilityResponse1() {		
@@ -104,7 +105,7 @@ class EligibilityResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEligibilityResponse1(_ json: FHIRJSON? = nil) throws -> FireKit.EligibilityResponse {
+	func runEligibilityResponse1(_ data: Data? = nil) throws -> FireKit.EligibilityResponse {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("eligibilityresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

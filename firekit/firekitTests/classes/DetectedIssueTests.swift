@@ -20,13 +20,14 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DetectedIssue {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DetectedIssue {
-		let instance = FireKit.DetectedIssue(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DetectedIssue {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DetectedIssue.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDetectedIssue1() {		
@@ -104,7 +105,7 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDetectedIssue1(_ json: FHIRJSON? = nil) throws -> FireKit.DetectedIssue {
+	func runDetectedIssue1(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("detectedissue-example-allergy.json")
 		
 		XCTAssertEqual(inst.id, "allergy")
@@ -189,7 +190,7 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDetectedIssue2(_ json: FHIRJSON? = nil) throws -> FireKit.DetectedIssue {
+	func runDetectedIssue2(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("detectedissue-example-dup.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Device/dsp")
@@ -283,7 +284,7 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDetectedIssue3(_ json: FHIRJSON? = nil) throws -> FireKit.DetectedIssue {
+	func runDetectedIssue3(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("detectedissue-example-lab.json")
 		
 		XCTAssertEqual(inst.id, "lab")
@@ -368,7 +369,7 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDetectedIssue4(_ json: FHIRJSON? = nil) throws -> FireKit.DetectedIssue {
+	func runDetectedIssue4(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("detectedissue-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Device/dsp")

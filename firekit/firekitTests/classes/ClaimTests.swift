@@ -20,13 +20,14 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Claim {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Claim {
-		let instance = FireKit.Claim(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Claim {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Claim.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testClaim1() {		
@@ -104,7 +105,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim1(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim1(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-institutional.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
@@ -217,7 +218,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim2(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim2(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-oral-average.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
@@ -380,7 +381,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim3(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim3(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-oral-contained.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "organization-1")
@@ -497,7 +498,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim4(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim4(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-oral-orthoplan.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
@@ -714,7 +715,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim5(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim5(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-pharmacy.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
@@ -827,7 +828,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim6(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim6(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-professional.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
@@ -940,7 +941,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim7(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim7(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-vision-glasses.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
@@ -1086,7 +1087,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim8(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim8(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example-vision.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")
@@ -1199,7 +1200,7 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClaim9(_ json: FHIRJSON? = nil) throws -> FireKit.Claim {
+	func runClaim9(_ data: Data? = nil) throws -> FireKit.Claim {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("claim-example.json")
 		
 		XCTAssertEqual(inst.coverage[0].coverage?.reference, "Coverage/9876B1")

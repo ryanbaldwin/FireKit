@@ -20,13 +20,14 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Basic {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Basic {
-		let instance = FireKit.Basic(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Basic {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Basic.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testBasic1() {		
@@ -104,7 +105,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBasic1(_ json: FHIRJSON? = nil) throws -> FireKit.Basic {
+	func runBasic1(_ data: Data? = nil) throws -> FireKit.Basic {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("basic-example-narrative.json")
 		
 		XCTAssertEqual(inst.code?.text, "Example Narrative Tester")
@@ -189,7 +190,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBasic2(_ json: FHIRJSON? = nil) throws -> FireKit.Basic {
+	func runBasic2(_ data: Data? = nil) throws -> FireKit.Basic {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("basic-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")
@@ -295,7 +296,7 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBasic3(_ json: FHIRJSON? = nil) throws -> FireKit.Basic {
+	func runBasic3(_ data: Data? = nil) throws -> FireKit.Basic {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("basic-example2.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "UMLCLASSMODEL")

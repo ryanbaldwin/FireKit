@@ -129,6 +129,7 @@ public class ContainedResource: Resource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         resourceType = try container.decodeIfPresent(String.self, forKey: .resourceType)
+        
     }
     
     public required init() {

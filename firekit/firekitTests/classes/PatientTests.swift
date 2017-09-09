@@ -20,13 +20,14 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Patient {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Patient {
-		let instance = FireKit.Patient(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Patient {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Patient.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testPatient1() {		
@@ -104,7 +105,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient1(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient1(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-a.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -208,7 +209,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient2(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient2(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-animal.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -322,7 +323,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient3(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient3(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-b.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -423,7 +424,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient4(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient4(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-c.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -522,7 +523,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient5(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient5(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-d.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -621,7 +622,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient6(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient6(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-dicom.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -721,7 +722,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient7(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient7(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-f001-pieter.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -849,7 +850,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient8(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient8(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-f201-roel.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -986,7 +987,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient9(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient9(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-ihe-pcd.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -1076,7 +1077,7 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPatient10(_ json: FHIRJSON? = nil) throws -> FireKit.Patient {
+	func runPatient10(_ data: Data? = nil) throws -> FireKit.Patient {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-example-proband.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)

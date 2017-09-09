@@ -20,13 +20,14 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.FamilyMemberHistory {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.FamilyMemberHistory {
-		let instance = FireKit.FamilyMemberHistory(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.FamilyMemberHistory {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.FamilyMemberHistory.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testFamilyMemberHistory1() {		
@@ -104,7 +105,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runFamilyMemberHistory1(_ json: FHIRJSON? = nil) throws -> FireKit.FamilyMemberHistory {
+	func runFamilyMemberHistory1(_ data: Data? = nil) throws -> FireKit.FamilyMemberHistory {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("familymemberhistory-example-mother.json")
 		
 		XCTAssertEqual(inst.condition[0].code?.coding[0].code, "371041009")
@@ -201,7 +202,7 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runFamilyMemberHistory2(_ json: FHIRJSON? = nil) throws -> FireKit.FamilyMemberHistory {
+	func runFamilyMemberHistory2(_ data: Data? = nil) throws -> FireKit.FamilyMemberHistory {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("familymemberhistory-example.json")
 		
 		XCTAssertEqual(inst.condition[0].code?.coding[0].code, "315619001")

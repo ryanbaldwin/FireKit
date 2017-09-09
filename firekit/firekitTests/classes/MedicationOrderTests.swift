@@ -20,13 +20,14 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.MedicationOrder {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.MedicationOrder {
-		let instance = FireKit.MedicationOrder(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.MedicationOrder {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.MedicationOrder.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testMedicationOrder1() {		
@@ -104,7 +105,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder1(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder1(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f001-combivent.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2013-05-25T19:32:52+01:00")
@@ -232,7 +233,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder2(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder2(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f002-crestor.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2013-04-08")
@@ -350,7 +351,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder3(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder3(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f003-tolbutamide.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2011-05-01")
@@ -468,7 +469,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder4(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder4(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f004-metoprolol.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2011-05-01")
@@ -586,7 +587,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder5(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder5(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f005-enalapril.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2011-05-01")
@@ -704,7 +705,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder6(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder6(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f201-salmeterol.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2013-03-11")
@@ -824,7 +825,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder7(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder7(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f202-flucloxacilline.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2013-03-11")
@@ -936,7 +937,7 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedicationOrder8(_ json: FHIRJSON? = nil) throws -> FireKit.MedicationOrder {
+	func runMedicationOrder8(_ data: Data? = nil) throws -> FireKit.MedicationOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medicationorder-example-f203-paracetamol.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2013-04-04")

@@ -47,13 +47,15 @@ public protocol Populatable {
 
 extension Populatable where Self: Resource {
     public func populate(from other: Self) {
-        _ = self.populate(from: other.asJSON())
+        // TODO: FIX
+//        _ = self.populate(from: other.asJSON())
     }
 }
 
 extension Populatable where Self: Element {
     public func populate(from other: Self) {
-        _ = self.populate(from: other.asJSON())
+        // TODO: FIX
+//        _ = self.populate(from: other.asJSON())
     }
 }
 

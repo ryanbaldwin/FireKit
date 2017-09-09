@@ -20,13 +20,14 @@ class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DeviceUseRequest {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DeviceUseRequest {
-		let instance = FireKit.DeviceUseRequest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DeviceUseRequest {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DeviceUseRequest.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDeviceUseRequest1() {		
@@ -104,7 +105,7 @@ class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDeviceUseRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.DeviceUseRequest {
+	func runDeviceUseRequest1(_ data: Data? = nil) throws -> FireKit.DeviceUseRequest {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("deviceuserequest-example.json")
 		
 		XCTAssertEqual(inst.device?.reference, "Device/example")

@@ -20,13 +20,14 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Group {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Group {
-		let instance = FireKit.Group(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Group {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Group.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testGroup1() {		
@@ -104,7 +105,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runGroup1(_ json: FHIRJSON? = nil) throws -> FireKit.Group {
+	func runGroup1(_ data: Data? = nil) throws -> FireKit.Group {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("group-example-member.json")
 		
 		XCTAssertTrue(inst.actual.value ?? false)
@@ -199,7 +200,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runGroup2(_ json: FHIRJSON? = nil) throws -> FireKit.Group {
+	func runGroup2(_ data: Data? = nil) throws -> FireKit.Group {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("group-example.json")
 		
 		XCTAssertTrue(inst.actual.value ?? false)

@@ -20,13 +20,14 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.OperationDefinition {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.OperationDefinition {
-		let instance = FireKit.OperationDefinition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.OperationDefinition {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.OperationDefinition.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testOperationDefinition1() {		
@@ -104,7 +105,7 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOperationDefinition1(_ json: FHIRJSON? = nil) throws -> FireKit.OperationDefinition {
+	func runOperationDefinition1(_ data: Data? = nil) throws -> FireKit.OperationDefinition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationdefinition-example.json")
 		
 		XCTAssertEqual(inst.base?.reference, "OperationDefinition/Questionnaire-populate")

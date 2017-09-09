@@ -20,13 +20,14 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.RiskAssessment {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.RiskAssessment {
-		let instance = FireKit.RiskAssessment(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.RiskAssessment {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.RiskAssessment.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testRiskAssessment1() {		
@@ -104,7 +105,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRiskAssessment1(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
+	func runRiskAssessment1(_ data: Data? = nil) throws -> FireKit.RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example-cardiac.json")
 		
 		XCTAssertEqual(inst.basis[0].reference, "Patient/example")
@@ -203,7 +204,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRiskAssessment2(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
+	func runRiskAssessment2(_ data: Data? = nil) throws -> FireKit.RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example-population.json")
 		
 		XCTAssertEqual(inst.id, "population")
@@ -288,7 +289,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRiskAssessment3(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
+	func runRiskAssessment3(_ data: Data? = nil) throws -> FireKit.RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example-prognosis.json")
 		
 		XCTAssertEqual(inst.condition?.display, "Ischemic Stroke")
@@ -382,7 +383,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRiskAssessment4(_ json: FHIRJSON? = nil) throws -> FireKit.RiskAssessment {
+	func runRiskAssessment4(_ data: Data? = nil) throws -> FireKit.RiskAssessment {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("riskassessment-example.json")
 		
 		XCTAssertEqual(inst.basis[0].reference, "List/prognosis")

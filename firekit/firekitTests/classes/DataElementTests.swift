@@ -20,13 +20,14 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DataElement {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DataElement {
-		let instance = FireKit.DataElement(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DataElement {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DataElement.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDataElement1() {		
@@ -104,7 +105,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDataElement1(_ json: FHIRJSON? = nil) throws -> FireKit.DataElement {
+	func runDataElement1(_ data: Data? = nil) throws -> FireKit.DataElement {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("dataelement-example.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "2179414")
@@ -230,7 +231,7 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDataElement2(_ json: FHIRJSON? = nil) throws -> FireKit.DataElement {
+	func runDataElement2(_ data: Data? = nil) throws -> FireKit.DataElement {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("dataelement-labtestmaster-example.json")
 		
 		XCTAssertEqual(inst.element[0].alias[0].value, "Protime, PT")

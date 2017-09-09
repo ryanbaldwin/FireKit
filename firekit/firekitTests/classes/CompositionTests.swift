@@ -20,13 +20,14 @@ class CompositionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Composition {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Composition {
-		let instance = FireKit.Composition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Composition {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Composition.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testComposition1() {		
@@ -104,7 +105,7 @@ class CompositionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runComposition1(_ json: FHIRJSON? = nil) throws -> FireKit.Composition {
+	func runComposition1(_ data: Data? = nil) throws -> FireKit.Composition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("composition-example.json")
 		
 		XCTAssertEqual(inst.attester[0].mode[0].value, "legal")

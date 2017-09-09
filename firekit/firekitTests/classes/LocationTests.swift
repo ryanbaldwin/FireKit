@@ -20,13 +20,14 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Location {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Location {
-		let instance = FireKit.Location(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Location {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Location.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testLocation1() {		
@@ -104,7 +105,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runLocation1(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
+	func runLocation1(_ data: Data? = nil) throws -> FireKit.Location {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-ambulance.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Ambulance provided by Burgers University Medical Center")
@@ -203,7 +204,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runLocation2(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
+	func runLocation2(_ data: Data? = nil) throws -> FireKit.Location {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-hl7hq.json")
 		
 		XCTAssertEqual(inst.address?.city, "Ann Arbor")
@@ -310,7 +311,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runLocation3(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
+	func runLocation3(_ data: Data? = nil) throws -> FireKit.Location {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-patients-home.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Patient's Home")
@@ -406,7 +407,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runLocation4(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
+	func runLocation4(_ data: Data? = nil) throws -> FireKit.Location {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-room.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Old South Wing, Neuro Radiology Operation Room 1 on second floor")
@@ -506,7 +507,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runLocation5(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
+	func runLocation5(_ data: Data? = nil) throws -> FireKit.Location {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example-ukpharmacy.json")
 		
 		XCTAssertEqual(inst.description_fhir, "All Pharmacies in the United Kingdom covered by the National Pharmacy Association")
@@ -601,7 +602,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runLocation6(_ json: FHIRJSON? = nil) throws -> FireKit.Location {
+	func runLocation6(_ data: Data? = nil) throws -> FireKit.Location {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("location-example.json")
 		
 		XCTAssertEqual(inst.address?.city, "Den Burg")

@@ -20,13 +20,14 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Bundle {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Bundle {
-		let instance = FireKit.Bundle(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Bundle {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Bundle.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testBundle1() {		
@@ -104,7 +105,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle1(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle1(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("bundle-example.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "https://example.com/base/MedicationOrder/3123")
@@ -201,7 +202,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle2(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle2(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-examples-general.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/DiagnosticReport/3")
@@ -316,7 +317,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle3(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle3(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-examples-lab-text.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/DiagnosticReport/103")
@@ -431,7 +432,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle4(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle4(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("document-example-dischargesummary.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://fhir.healthintersections.com.au/open/Composition/180f219f-97a8-486d-99d9-ed631fe4fc57")
@@ -540,7 +541,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle5(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle5(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-examples-cypress-template.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/Patient/71")
@@ -655,7 +656,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle6(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle6(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("patient-examples-general.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/Patient/1")
@@ -770,7 +771,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle7(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle7(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-examples-general.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "http://hl7.org/fhir/Practitioner/13")
@@ -885,7 +886,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBundle8(_ json: FHIRJSON? = nil) throws -> FireKit.Bundle {
+	func runBundle8(_ data: Data? = nil) throws -> FireKit.Bundle {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("xds-example.json")
 		
 		XCTAssertEqual(inst.entry[0].fullUrl, "urn:uuid:3fdc72f4-a11d-4a9d-9260-a9f745779e1d")

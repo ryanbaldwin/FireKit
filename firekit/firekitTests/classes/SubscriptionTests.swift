@@ -20,13 +20,14 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Subscription {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Subscription {
-		let instance = FireKit.Subscription(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Subscription {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Subscription.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSubscription1() {		
@@ -104,7 +105,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubscription1(_ json: FHIRJSON? = nil) throws -> FireKit.Subscription {
+	func runSubscription1(_ data: Data? = nil) throws -> FireKit.Subscription {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("subscription-example-error.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
@@ -202,7 +203,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubscription2(_ json: FHIRJSON? = nil) throws -> FireKit.Subscription {
+	func runSubscription2(_ data: Data? = nil) throws -> FireKit.Subscription {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("subscription-example.json")
 		
 		XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")

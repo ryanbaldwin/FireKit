@@ -20,13 +20,14 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Goal {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Goal {
-		let instance = FireKit.Goal(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Goal {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Goal.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testGoal1() {		
@@ -104,7 +105,7 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runGoal1(_ json: FHIRJSON? = nil) throws -> FireKit.Goal {
+	func runGoal1(_ data: Data? = nil) throws -> FireKit.Goal {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("goal-example.json")
 		
 		XCTAssertEqual(inst.addresses[0].display, "obesity")

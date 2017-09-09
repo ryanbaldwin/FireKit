@@ -20,13 +20,14 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DeviceComponent {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DeviceComponent {
-		let instance = FireKit.DeviceComponent(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DeviceComponent {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DeviceComponent.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDeviceComponent1() {		
@@ -104,7 +105,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDeviceComponent1(_ json: FHIRJSON? = nil) throws -> FireKit.DeviceComponent {
+	func runDeviceComponent1(_ data: Data? = nil) throws -> FireKit.DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("devicecomponent-example-prodspec.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "d1")
@@ -214,7 +215,7 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDeviceComponent2(_ json: FHIRJSON? = nil) throws -> FireKit.DeviceComponent {
+	func runDeviceComponent2(_ data: Data? = nil) throws -> FireKit.DeviceComponent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("devicecomponent-example.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "d1")

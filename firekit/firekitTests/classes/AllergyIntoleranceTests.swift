@@ -20,13 +20,14 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.AllergyIntolerance {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.AllergyIntolerance {
-		let instance = FireKit.AllergyIntolerance(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.AllergyIntolerance {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.AllergyIntolerance.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testAllergyIntolerance1() {		
@@ -104,7 +105,7 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAllergyIntolerance1(_ json: FHIRJSON? = nil) throws -> FireKit.AllergyIntolerance {
+	func runAllergyIntolerance1(_ data: Data? = nil) throws -> FireKit.AllergyIntolerance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("allergyintolerance-example.json")
 		
 		XCTAssertEqual(inst.category, "food")

@@ -20,13 +20,14 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.MessageHeader {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.MessageHeader {
-		let instance = FireKit.MessageHeader(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.MessageHeader {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.MessageHeader.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testMessageHeader1() {		
@@ -104,7 +105,7 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMessageHeader1(_ json: FHIRJSON? = nil) throws -> FireKit.MessageHeader {
+	func runMessageHeader1(_ data: Data? = nil) throws -> FireKit.MessageHeader {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("messageheader-example.json")
 		
 		XCTAssertEqual(inst.author?.reference, "Practitioner/example")

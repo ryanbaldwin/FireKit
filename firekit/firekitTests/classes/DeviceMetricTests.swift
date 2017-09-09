@@ -20,13 +20,14 @@ class DeviceMetricTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DeviceMetric {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DeviceMetric {
-		let instance = FireKit.DeviceMetric(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DeviceMetric {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DeviceMetric.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDeviceMetric1() {		
@@ -104,7 +105,7 @@ class DeviceMetricTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDeviceMetric1(_ json: FHIRJSON? = nil) throws -> FireKit.DeviceMetric {
+	func runDeviceMetric1(_ data: Data? = nil) throws -> FireKit.DeviceMetric {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("devicemetric-example.json")
 		
 		XCTAssertEqual(inst.category, "measurement")

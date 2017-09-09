@@ -20,13 +20,14 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Encounter {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Encounter {
-		let instance = FireKit.Encounter(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Encounter {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Encounter.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testEncounter1() {		
@@ -104,7 +105,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter1(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter1(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.class_fhir, "outpatient")
@@ -221,7 +222,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter2(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter2(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.class_fhir, "outpatient")
@@ -338,7 +339,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter3(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter3(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.class_fhir, "outpatient")
@@ -456,7 +457,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter4(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter4(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-f201-20130404.json")
 		
 		XCTAssertEqual(inst.class_fhir, "outpatient")
@@ -555,7 +556,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter5(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter5(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-f202-20130128.json")
 		
 		XCTAssertEqual(inst.class_fhir, "outpatient")
@@ -664,7 +665,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter6(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter6(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-f203-20130311.json")
 		
 		XCTAssertEqual(inst.class_fhir, "inpatient")
@@ -772,7 +773,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter7(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter7(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-home.json")
 		
 		XCTAssertEqual(inst.class_fhir, "virtual")
@@ -872,7 +873,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter8(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter8(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example-xcda.json")
 		
 		XCTAssertEqual(inst.class_fhir, "outpatient")
@@ -966,7 +967,7 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEncounter9(_ json: FHIRJSON? = nil) throws -> FireKit.Encounter {
+	func runEncounter9(_ data: Data? = nil) throws -> FireKit.Encounter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("encounter-example.json")
 		
 		XCTAssertEqual(inst.class_fhir, "inpatient")

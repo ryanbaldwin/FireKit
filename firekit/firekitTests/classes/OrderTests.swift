@@ -20,13 +20,14 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Order {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Order {
-		let instance = FireKit.Order(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Order {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Order.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testOrder1() {		
@@ -104,7 +105,7 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrder1(_ json: FHIRJSON? = nil) throws -> FireKit.Order {
+	func runOrder1(_ data: Data? = nil) throws -> FireKit.Order {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("order-example-f201-physiotherapy.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-03-05T12:00:00+01:00")
@@ -199,7 +200,7 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrder2(_ json: FHIRJSON? = nil) throws -> FireKit.Order {
+	func runOrder2(_ data: Data? = nil) throws -> FireKit.Order {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("order-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-12-28T09:03:04+11:00")

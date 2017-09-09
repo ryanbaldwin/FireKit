@@ -20,13 +20,14 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.HealthcareService {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.HealthcareService {
-		let instance = FireKit.HealthcareService(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.HealthcareService {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.HealthcareService.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testHealthcareService1() {		
@@ -104,7 +105,7 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runHealthcareService1(_ json: FHIRJSON? = nil) throws -> FireKit.HealthcareService {
+	func runHealthcareService1(_ data: Data? = nil) throws -> FireKit.HealthcareService {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("healthcareservice-example.json")
 		
 		XCTAssertFalse(inst.appointmentRequired.value ?? true)

@@ -20,13 +20,14 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.SupplyRequest {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.SupplyRequest {
-		let instance = FireKit.SupplyRequest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.SupplyRequest {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.SupplyRequest.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSupplyRequest1() {		
@@ -104,7 +105,7 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSupplyRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.SupplyRequest {
+	func runSupplyRequest1(_ data: Data? = nil) throws -> FireKit.SupplyRequest {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("supplyrequest-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

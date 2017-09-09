@@ -20,13 +20,14 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ExplanationOfBenefit {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ExplanationOfBenefit {
-		let instance = FireKit.ExplanationOfBenefit(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ExplanationOfBenefit {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ExplanationOfBenefit.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testExplanationOfBenefit1() {		
@@ -104,7 +105,7 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runExplanationOfBenefit1(_ json: FHIRJSON? = nil) throws -> FireKit.ExplanationOfBenefit {
+	func runExplanationOfBenefit1(_ data: Data? = nil) throws -> FireKit.ExplanationOfBenefit {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("explanationofbenefit-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

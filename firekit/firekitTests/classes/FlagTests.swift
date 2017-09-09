@@ -20,13 +20,14 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Flag {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Flag {
-		let instance = FireKit.Flag(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Flag {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Flag.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testFlag1() {		
@@ -104,7 +105,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runFlag1(_ json: FHIRJSON? = nil) throws -> FireKit.Flag {
+	func runFlag1(_ data: Data? = nil) throws -> FireKit.Flag {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("flag-example-encounter.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "infection")
@@ -199,7 +200,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runFlag2(_ json: FHIRJSON? = nil) throws -> FireKit.Flag {
+	func runFlag2(_ data: Data? = nil) throws -> FireKit.Flag {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("flag-example.json")
 		
 		XCTAssertEqual(inst.author?.display, "Nancy Nurse")

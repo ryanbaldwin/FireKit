@@ -20,13 +20,14 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Coverage {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Coverage {
-		let instance = FireKit.Coverage(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Coverage {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Coverage.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testCoverage1() {		
@@ -104,7 +105,7 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCoverage1(_ json: FHIRJSON? = nil) throws -> FireKit.Coverage {
+	func runCoverage1(_ data: Data? = nil) throws -> FireKit.Coverage {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("coverage-example-2.json")
 		
 		XCTAssertEqual(inst.dependent.value, 1)
@@ -201,7 +202,7 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCoverage2(_ json: FHIRJSON? = nil) throws -> FireKit.Coverage {
+	func runCoverage2(_ data: Data? = nil) throws -> FireKit.Coverage {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("coverage-example.json")
 		
 		XCTAssertEqual(inst.dependent.value, 1)

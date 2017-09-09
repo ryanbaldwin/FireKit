@@ -20,13 +20,14 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ClinicalImpression {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ClinicalImpression {
-		let instance = FireKit.ClinicalImpression(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ClinicalImpression {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ClinicalImpression.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testClinicalImpression1() {		
@@ -104,7 +105,7 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runClinicalImpression1(_ json: FHIRJSON? = nil) throws -> FireKit.ClinicalImpression {
+	func runClinicalImpression1(_ data: Data? = nil) throws -> FireKit.ClinicalImpression {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("clinicalimpression-example.json")
 		
 		XCTAssertEqual(inst.assessor?.reference, "Practitioner/example")

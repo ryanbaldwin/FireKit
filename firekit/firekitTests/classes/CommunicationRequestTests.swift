@@ -20,13 +20,14 @@ class CommunicationRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.CommunicationRequest {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.CommunicationRequest {
-		let instance = FireKit.CommunicationRequest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.CommunicationRequest {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.CommunicationRequest.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testCommunicationRequest1() {		
@@ -104,7 +105,7 @@ class CommunicationRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCommunicationRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.CommunicationRequest {
+	func runCommunicationRequest1(_ data: Data? = nil) throws -> FireKit.CommunicationRequest {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("communicationrequest-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

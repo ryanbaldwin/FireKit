@@ -20,13 +20,14 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ImagingObjectSelection {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImagingObjectSelection {
-		let instance = FireKit.ImagingObjectSelection(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ImagingObjectSelection {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ImagingObjectSelection.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testImagingObjectSelection1() {		
@@ -104,7 +105,7 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runImagingObjectSelection1(_ json: FHIRJSON? = nil) throws -> FireKit.ImagingObjectSelection {
+	func runImagingObjectSelection1(_ data: Data? = nil) throws -> FireKit.ImagingObjectSelection {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("imagingobjectselection-example.json")
 		
 		XCTAssertEqual(inst.authoringTime?.description, "2014-11-20T11:01:20-08:00")

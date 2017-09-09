@@ -20,13 +20,14 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Substance {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Substance {
-		let instance = FireKit.Substance(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Substance {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Substance.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSubstance1() {		
@@ -104,7 +105,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubstance1(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
+	func runSubstance1(_ data: Data? = nil) throws -> FireKit.Substance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-amoxicillin-clavulanate.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "drug")
@@ -215,7 +216,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubstance2(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
+	func runSubstance2(_ data: Data? = nil) throws -> FireKit.Substance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-f201-dust.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "406466009")
@@ -302,7 +303,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubstance3(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
+	func runSubstance3(_ data: Data? = nil) throws -> FireKit.Substance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-f202-staphylococcus.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "3092008")
@@ -389,7 +390,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubstance4(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
+	func runSubstance4(_ data: Data? = nil) throws -> FireKit.Substance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-f203-potassium.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "chemical")
@@ -481,7 +482,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubstance5(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
+	func runSubstance5(_ data: Data? = nil) throws -> FireKit.Substance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example-silver-nitrate-product.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "chemical")
@@ -581,7 +582,7 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSubstance6(_ json: FHIRJSON? = nil) throws -> FireKit.Substance {
+	func runSubstance6(_ data: Data? = nil) throws -> FireKit.Substance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("substance-example.json")
 		
 		XCTAssertEqual(inst.category[0].coding[0].code, "allergen")

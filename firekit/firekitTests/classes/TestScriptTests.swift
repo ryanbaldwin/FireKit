@@ -20,13 +20,14 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.TestScript {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.TestScript {
-		let instance = FireKit.TestScript(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.TestScript {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.TestScript.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testTestScript1() {		
@@ -104,7 +105,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runTestScript1(_ json: FHIRJSON? = nil) throws -> FireKit.TestScript {
+	func runTestScript1(_ data: Data? = nil) throws -> FireKit.TestScript {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("testscript-example-multiserver.json")
 		
 		XCTAssertEqual(inst.description_fhir, "Multiserver Test Script")
@@ -275,7 +276,7 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runTestScript2(_ json: FHIRJSON? = nil) throws -> FireKit.TestScript {
+	func runTestScript2(_ data: Data? = nil) throws -> FireKit.TestScript {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("testscript-example.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "Support")

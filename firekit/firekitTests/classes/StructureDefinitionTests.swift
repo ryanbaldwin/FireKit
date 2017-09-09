@@ -20,13 +20,14 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.StructureDefinition {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.StructureDefinition {
-		let instance = FireKit.StructureDefinition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.StructureDefinition {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.StructureDefinition.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testStructureDefinition1() {		
@@ -104,7 +105,7 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runStructureDefinition1(_ json: FHIRJSON? = nil) throws -> FireKit.StructureDefinition {
+	func runStructureDefinition1(_ data: Data? = nil) throws -> FireKit.StructureDefinition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("structuredefinition-example.json")
 		
 		XCTAssertFalse(inst.abstract.value ?? true)

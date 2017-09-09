@@ -20,13 +20,14 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Provenance {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Provenance {
-		let instance = FireKit.Provenance(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Provenance {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Provenance.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testProvenance1() {		
@@ -104,7 +105,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProvenance1(_ json: FHIRJSON? = nil) throws -> FireKit.Provenance {
+	func runProvenance1(_ data: Data? = nil) throws -> FireKit.Provenance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("provenance-example-sig.json")
 		
 		XCTAssertEqual(inst.activity?.coding[0].code, "AU")
@@ -209,7 +210,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProvenance2(_ json: FHIRJSON? = nil) throws -> FireKit.Provenance {
+	func runProvenance2(_ data: Data? = nil) throws -> FireKit.Provenance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("provenance-example.json")
 		
 		XCTAssertEqual(inst.agent[0].actor?.reference, "Practitioner/xcda-author")

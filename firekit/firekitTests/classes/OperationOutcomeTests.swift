@@ -20,13 +20,14 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.OperationOutcome {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.OperationOutcome {
-		let instance = FireKit.OperationOutcome(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.OperationOutcome {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.OperationOutcome.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testOperationOutcome1() {		
@@ -104,7 +105,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOperationOutcome1(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
+	func runOperationOutcome1(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-allok.json")
 		
 		XCTAssertEqual(inst.id, "allok")
@@ -192,7 +193,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOperationOutcome2(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
+	func runOperationOutcome2(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-break-the-glass.json")
 		
 		XCTAssertEqual(inst.id, "break-the-glass")
@@ -283,7 +284,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOperationOutcome3(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
+	func runOperationOutcome3(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-exception.json")
 		
 		XCTAssertEqual(inst.id, "exception")
@@ -371,7 +372,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOperationOutcome4(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
+	func runOperationOutcome4(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-searchfail.json")
 		
 		XCTAssertEqual(inst.id, "searchfail")
@@ -460,7 +461,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOperationOutcome5(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
+	func runOperationOutcome5(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example-validationfail.json")
 		
 		XCTAssertEqual(inst.id, "validationfail")
@@ -549,7 +550,7 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOperationOutcome6(_ json: FHIRJSON? = nil) throws -> FireKit.OperationOutcome {
+	func runOperationOutcome6(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("operationoutcome-example.json")
 		
 		XCTAssertEqual(inst.id, "101")

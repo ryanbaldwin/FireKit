@@ -20,13 +20,14 @@ class PersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Person {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Person {
-		let instance = FireKit.Person(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Person {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Person.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testPerson1() {		
@@ -104,7 +105,7 @@ class PersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPerson1(_ json: FHIRJSON? = nil) throws -> FireKit.Person {
+	func runPerson1(_ data: Data? = nil) throws -> FireKit.Person {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("person-example-f002-ariadne.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -200,7 +201,7 @@ class PersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPerson2(_ json: FHIRJSON? = nil) throws -> FireKit.Person {
+	func runPerson2(_ data: Data? = nil) throws -> FireKit.Person {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("person-example.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)

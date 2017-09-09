@@ -20,13 +20,14 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Conformance {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Conformance {
-		let instance = FireKit.Conformance(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Conformance {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Conformance.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testConformance1() {		
@@ -104,7 +105,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runConformance1(_ json: FHIRJSON? = nil) throws -> FireKit.Conformance {
+	func runConformance1(_ data: Data? = nil) throws -> FireKit.Conformance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conformance-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "both")
@@ -266,7 +267,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runConformance2(_ json: FHIRJSON? = nil) throws -> FireKit.Conformance {
+	func runConformance2(_ data: Data? = nil) throws -> FireKit.Conformance {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conformance-phr-example.json")
 		
 		XCTAssertEqual(inst.acceptUnknown, "no")

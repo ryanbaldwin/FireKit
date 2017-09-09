@@ -20,13 +20,14 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Media {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Media {
-		let instance = FireKit.Media(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Media {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Media.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testMedia1() {		
@@ -104,7 +105,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedia1(_ json: FHIRJSON? = nil) throws -> FireKit.Media {
+	func runMedia1(_ data: Data? = nil) throws -> FireKit.Media {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("media-example-dicom.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "application/dicom")
@@ -214,7 +215,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedia2(_ json: FHIRJSON? = nil) throws -> FireKit.Media {
+	func runMedia2(_ data: Data? = nil) throws -> FireKit.Media {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("media-example-sound.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "audio/mpeg")
@@ -306,7 +307,7 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedia3(_ json: FHIRJSON? = nil) throws -> FireKit.Media {
+	func runMedia3(_ data: Data? = nil) throws -> FireKit.Media {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("media-example.json")
 		
 		XCTAssertEqual(inst.content?.contentType, "image/gif")

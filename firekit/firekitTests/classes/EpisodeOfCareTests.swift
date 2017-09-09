@@ -20,13 +20,14 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.EpisodeOfCare {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.EpisodeOfCare {
-		let instance = FireKit.EpisodeOfCare(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.EpisodeOfCare {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.EpisodeOfCare.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testEpisodeOfCare1() {		
@@ -104,7 +105,7 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runEpisodeOfCare1(_ json: FHIRJSON? = nil) throws -> FireKit.EpisodeOfCare {
+	func runEpisodeOfCare1(_ data: Data? = nil) throws -> FireKit.EpisodeOfCare {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("episodeofcare-example.json")
 		
 		XCTAssertEqual(inst.careManager?.display, "Amanda Assigned")

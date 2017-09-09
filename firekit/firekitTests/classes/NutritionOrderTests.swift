@@ -20,13 +20,14 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.NutritionOrder {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.NutritionOrder {
-		let instance = FireKit.NutritionOrder(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.NutritionOrder {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.NutritionOrder.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testNutritionOrder1() {		
@@ -104,7 +105,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder1(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder1(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-cardiacdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
@@ -235,7 +236,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder2(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder2(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-diabeticdiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
@@ -355,7 +356,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder3(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder3(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-diabeticsupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
@@ -474,7 +475,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder4(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder4(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-energysupplement.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
@@ -590,7 +591,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder5(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder5(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-enteralbolus.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
@@ -720,7 +721,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder6(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder6(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-enteralcontinuous.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
@@ -845,7 +846,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder7(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder7(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-fiberrestricteddiet.json")
 		
 		XCTAssertEqual(inst.allergyIntolerance[0].display, "Cashew Nuts")
@@ -972,7 +973,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder8(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder8(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-infantenteral.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
@@ -1095,7 +1096,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder9(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder9(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-proteinsupplement.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")
@@ -1204,7 +1205,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNutritionOrder10(_ json: FHIRJSON? = nil) throws -> FireKit.NutritionOrder {
+	func runNutritionOrder10(_ data: Data? = nil) throws -> FireKit.NutritionOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("nutritionorder-example-pureeddiet-simple.json")
 		
 		XCTAssertEqual(inst.dateTime?.description, "2014-09-17")

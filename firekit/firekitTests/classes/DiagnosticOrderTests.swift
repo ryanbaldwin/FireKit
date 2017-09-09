@@ -20,13 +20,14 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DiagnosticOrder {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DiagnosticOrder {
-		let instance = FireKit.DiagnosticOrder(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DiagnosticOrder {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DiagnosticOrder.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDiagnosticOrder1() {		
@@ -104,7 +105,7 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticOrder1(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticOrder {
+	func runDiagnosticOrder1(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticorder-example-di.json")
 		
 		XCTAssertEqual(inst.event[0].dateTime?.description, "2013-05-08T09:33:27+07:00")
@@ -202,7 +203,7 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticOrder2(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticOrder {
+	func runDiagnosticOrder2(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticorder-example-ft4.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "rtt")
@@ -297,7 +298,7 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticOrder3(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticOrder {
+	func runDiagnosticOrder3(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticorder-example.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "fasting")

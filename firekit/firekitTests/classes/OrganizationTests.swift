@@ -20,13 +20,14 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Organization {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Organization {
-		let instance = FireKit.Organization(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Organization {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Organization.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testOrganization1() {		
@@ -104,7 +105,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization1(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization1(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-f001-burgers.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
@@ -222,7 +223,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization2(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization2(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-f002-burgers-card.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -325,7 +326,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization3(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization3(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-f003-burgers-ENT.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -428,7 +429,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization4(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization4(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-f201-aumc.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -547,7 +548,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization5(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization5(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-f203-bumc.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -650,7 +651,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization6(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization6(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-gastro.json")
 		
 		XCTAssertEqual(inst.id, "1")
@@ -746,7 +747,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization7(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization7(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-good-health-care.json")
 		
 		XCTAssertEqual(inst.id, "2.16.840.1.113883.19.5")
@@ -834,7 +835,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization8(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization8(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-insurer.json")
 		
 		XCTAssertEqual(inst.id, "2")
@@ -922,7 +923,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization9(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization9(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example-lab.json")
 		
 		XCTAssertEqual(inst.id, "1832473e-2fe0-452d-abe9-3cdb9879522f")
@@ -1016,7 +1017,7 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrganization10(_ json: FHIRJSON? = nil) throws -> FireKit.Organization {
+	func runOrganization10(_ data: Data? = nil) throws -> FireKit.Organization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("organization-example.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Ann Arbor")

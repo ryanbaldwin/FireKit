@@ -20,13 +20,14 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Parameters {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Parameters {
-		let instance = FireKit.Parameters(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Parameters {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Parameters.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testParameters1() {		
@@ -104,7 +105,7 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runParameters1(_ json: FHIRJSON? = nil) throws -> FireKit.Parameters {
+	func runParameters1(_ data: Data? = nil) throws -> FireKit.Parameters {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("parameters-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

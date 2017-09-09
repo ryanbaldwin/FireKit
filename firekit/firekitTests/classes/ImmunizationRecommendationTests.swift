@@ -20,13 +20,14 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ImmunizationRecommendation {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImmunizationRecommendation {
-		let instance = FireKit.ImmunizationRecommendation(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ImmunizationRecommendation {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ImmunizationRecommendation.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testImmunizationRecommendation1() {		
@@ -104,7 +105,7 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runImmunizationRecommendation1(_ json: FHIRJSON? = nil) throws -> FireKit.ImmunizationRecommendation {
+	func runImmunizationRecommendation1(_ data: Data? = nil) throws -> FireKit.ImmunizationRecommendation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("immunizationrecommendation-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

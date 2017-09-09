@@ -20,13 +20,14 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ProcessResponse {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ProcessResponse {
-		let instance = FireKit.ProcessResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ProcessResponse {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ProcessResponse.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testProcessResponse1() {		
@@ -104,7 +105,7 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcessResponse1(_ json: FHIRJSON? = nil) throws -> FireKit.ProcessResponse {
+	func runProcessResponse1(_ data: Data? = nil) throws -> FireKit.ProcessResponse {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("processresponse-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

@@ -20,13 +20,14 @@ class BodySiteTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.BodySite {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.BodySite {
-		let instance = FireKit.BodySite(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.BodySite {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.BodySite.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testBodySite1() {		
@@ -104,7 +105,7 @@ class BodySiteTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBodySite1(_ json: FHIRJSON? = nil) throws -> FireKit.BodySite {
+	func runBodySite1(_ data: Data? = nil) throws -> FireKit.BodySite {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("bodysite-example.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "53120007")

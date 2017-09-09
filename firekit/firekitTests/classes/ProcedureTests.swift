@@ -20,13 +20,14 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Procedure {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Procedure {
-		let instance = FireKit.Procedure(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Procedure {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Procedure.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testProcedure1() {		
@@ -104,7 +105,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure1(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure1(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-biopsy.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "368225008")
@@ -205,7 +206,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure2(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure2(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "17401000")
@@ -312,7 +313,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure3(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure3(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "39607008")
@@ -419,7 +420,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure4(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure4(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "83030008")
@@ -526,7 +527,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure5(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure5(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f004-tracheotomy.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "83030008")
@@ -633,7 +634,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure6(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure6(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-f201-tpf.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "272676008")
@@ -737,7 +738,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure7(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure7(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example-implant.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "25267002")
@@ -836,7 +837,7 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedure8(_ json: FHIRJSON? = nil) throws -> FireKit.Procedure {
+	func runProcedure8(_ data: Data? = nil) throws -> FireKit.Procedure {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedure-example.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "80146002")

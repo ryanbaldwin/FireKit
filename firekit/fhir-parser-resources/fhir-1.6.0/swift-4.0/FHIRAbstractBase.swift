@@ -57,7 +57,7 @@ open class FHIRAbstractBase: Object, Codable {
     
     // Codable - Default implementations which do nothing.
     public required init(from decoder: Decoder) throws {
-        
+        super.init()
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -219,7 +219,7 @@ open class FHIRAbstractBase: Object, Codable {
 	    }
 	    
 	    if prop?.realm != nil {
-	        _ = prop?.populate(from: val.asJSON())
+	        _ = prop?.populate(from: val)
 	    } else if val.realm != nil {
 	        prop = (val.copy() as! T)
 	    } else {
@@ -235,7 +235,7 @@ open class FHIRAbstractBase: Object, Codable {
 	    }
 	    
 	    if prop?.realm != nil {
-	        _ = prop?.populate(from: val.asJSON())
+	        _ = prop?.populate(from: val)
 	    } else if val.realm != nil {
 	        prop = (val.copy() as! T)
 	    } else {

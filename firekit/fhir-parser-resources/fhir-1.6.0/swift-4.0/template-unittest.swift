@@ -20,13 +20,14 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.{{ class.name }} {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.{{ class.name }} {
-		let instance = FireKit.{{ class.name }}(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.{{ class.name }} {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.{{ class.name }}.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 {%- for tcase in tests %}
@@ -106,7 +107,7 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func run{{ class.name }}{{ loop.index }}(_ json: FHIRJSON? = nil) throws -> FireKit.{{ class.name }} {
+	func run{{ class.name }}{{ loop.index }}(_ data: Data? = nil) throws -> FireKit.{{ class.name }} {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("{{ tcase.filename }}")
 		{% for onetest in tcase.tests %}
 		{%- if "String" == onetest.klass.name %}

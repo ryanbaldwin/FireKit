@@ -20,13 +20,14 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Condition {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Condition {
-		let instance = FireKit.Condition(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Condition {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Condition.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testCondition1() {		
@@ -104,7 +105,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition1(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition1(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.asserter?.display, "P. van de Heuvel")
@@ -213,7 +214,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition2(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition2(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.asserter?.display, "P. van de Heuvel")
@@ -324,7 +325,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition3(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition3(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f003-abscess.json")
 		
 		XCTAssertEqual(inst.asserter?.display, "P. van de Heuvel")
@@ -432,7 +433,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition4(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition4(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f201-fever.json")
 		
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
@@ -543,7 +544,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition5(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition5(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "361355005")
@@ -649,7 +650,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition6(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition6(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
@@ -758,7 +759,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition7(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition7(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f204-renal.json")
 		
 		XCTAssertEqual(inst.abatementDateTime?.description, "2013-03-20")
@@ -869,7 +870,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition8(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition8(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-f205-infection.json")
 		
 		XCTAssertEqual(inst.asserter?.reference, "Practitioner/f201")
@@ -962,7 +963,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition9(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition9(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example-stroke.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "diagnosis")
@@ -1058,7 +1059,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCondition10(_ json: FHIRJSON? = nil) throws -> FireKit.Condition {
+	func runCondition10(_ data: Data? = nil) throws -> FireKit.Condition {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("condition-example.json")
 		
 		XCTAssertEqual(inst.bodySite[0].coding[0].code, "49521004")

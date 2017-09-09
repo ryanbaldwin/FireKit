@@ -20,13 +20,14 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Appointment {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Appointment {
-		let instance = FireKit.Appointment(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Appointment {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Appointment.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testAppointment1() {		
@@ -104,7 +105,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAppointment1(_ json: FHIRJSON? = nil) throws -> FireKit.Appointment {
+	func runAppointment1(_ data: Data? = nil) throws -> FireKit.Appointment {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointment-example-request.json")
 		
 		XCTAssertEqual(inst.comment, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
@@ -211,7 +212,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAppointment2(_ json: FHIRJSON? = nil) throws -> FireKit.Appointment {
+	func runAppointment2(_ data: Data? = nil) throws -> FireKit.Appointment {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointment-example.json")
 		
 		XCTAssertEqual(inst.comment, "Further expand on the results of the MRI and determine the next actions that may be appropriate.")
@@ -317,7 +318,7 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAppointment3(_ json: FHIRJSON? = nil) throws -> FireKit.Appointment {
+	func runAppointment3(_ data: Data? = nil) throws -> FireKit.Appointment {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointment-example2doctors.json")
 		
 		XCTAssertEqual(inst.comment, "Clarify the results of the MRI to ensure context of test was correct")

@@ -20,13 +20,14 @@ class DocumentManifestTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DocumentManifest {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DocumentManifest {
-		let instance = FireKit.DocumentManifest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DocumentManifest {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DocumentManifest.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDocumentManifest1() {		
@@ -104,7 +105,7 @@ class DocumentManifestTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDocumentManifest1(_ json: FHIRJSON? = nil) throws -> FireKit.DocumentManifest {
+	func runDocumentManifest1(_ data: Data? = nil) throws -> FireKit.DocumentManifest {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("documentmanifest-example.json")
 		
 		XCTAssertEqual(inst.author[0].reference, "#a1")

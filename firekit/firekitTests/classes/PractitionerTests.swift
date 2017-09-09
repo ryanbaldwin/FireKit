@@ -20,13 +20,14 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Practitioner {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Practitioner {
-		let instance = FireKit.Practitioner(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Practitioner {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Practitioner.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testPractitioner1() {		
@@ -104,7 +105,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner1(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner1(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f001-evdb.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
@@ -224,7 +225,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner2(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner2(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f002-pv.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
@@ -344,7 +345,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner3(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner3(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f003-mv.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Amsterdam")
@@ -467,7 +468,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner4(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner4(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f004-rb.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Amsterdam")
@@ -591,7 +592,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner5(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner5(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f005-al.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Amsterdam")
@@ -715,7 +716,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner6(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner6(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f006-rvdb.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
@@ -835,7 +836,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner7(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner7(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f007-sh.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Den Burg")
@@ -955,7 +956,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner8(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner8(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f201-ab.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -1071,7 +1072,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner9(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner9(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f202-lm.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)
@@ -1188,7 +1189,7 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPractitioner10(_ json: FHIRJSON? = nil) throws -> FireKit.Practitioner {
+	func runPractitioner10(_ data: Data? = nil) throws -> FireKit.Practitioner {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("practitioner-example-f203-jvg.json")
 		
 		XCTAssertTrue(inst.active.value ?? false)

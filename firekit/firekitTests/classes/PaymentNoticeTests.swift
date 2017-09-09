@@ -20,13 +20,14 @@ class PaymentNoticeTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.PaymentNotice {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.PaymentNotice {
-		let instance = FireKit.PaymentNotice(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.PaymentNotice {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.PaymentNotice.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testPaymentNotice1() {		
@@ -104,7 +105,7 @@ class PaymentNoticeTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runPaymentNotice1(_ json: FHIRJSON? = nil) throws -> FireKit.PaymentNotice {
+	func runPaymentNotice1(_ data: Data? = nil) throws -> FireKit.PaymentNotice {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("paymentnotice-example.json")
 		
 		XCTAssertEqual(inst.created?.description, "2014-08-16")

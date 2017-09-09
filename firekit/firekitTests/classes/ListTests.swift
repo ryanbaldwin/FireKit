@@ -20,13 +20,14 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.List {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.List {
-		let instance = FireKit.List(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.List {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.List.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testList1() {		
@@ -104,7 +105,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runList1(_ json: FHIRJSON? = nil) throws -> FireKit.List {
+	func runList1(_ data: Data? = nil) throws -> FireKit.List {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("list-example-allergies.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "52472-8")
@@ -201,7 +202,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runList2(_ json: FHIRJSON? = nil) throws -> FireKit.List {
+	func runList2(_ data: Data? = nil) throws -> FireKit.List {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("list-example-empty.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "182836005")
@@ -298,7 +299,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runList3(_ json: FHIRJSON? = nil) throws -> FireKit.List {
+	func runList3(_ data: Data? = nil) throws -> FireKit.List {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("list-example-familyhistory-f201-roel.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "8670-2")
@@ -394,7 +395,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runList4(_ json: FHIRJSON? = nil) throws -> FireKit.List {
+	func runList4(_ data: Data? = nil) throws -> FireKit.List {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("list-example-familyhistory-genetics-profile-annie.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "8670-2")
@@ -506,7 +507,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runList5(_ json: FHIRJSON? = nil) throws -> FireKit.List {
+	func runList5(_ data: Data? = nil) throws -> FireKit.List {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("list-example-familyhistory-genetics-profile.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "8670-2")
@@ -614,7 +615,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runList6(_ json: FHIRJSON? = nil) throws -> FireKit.List {
+	func runList6(_ data: Data? = nil) throws -> FireKit.List {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("list-example-medlist.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "182836005")
@@ -716,7 +717,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runList7(_ json: FHIRJSON? = nil) throws -> FireKit.List {
+	func runList7(_ data: Data? = nil) throws -> FireKit.List {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("list-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-11-25T22:17:00+11:00")

@@ -20,13 +20,14 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ImplementationGuide {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImplementationGuide {
-		let instance = FireKit.ImplementationGuide(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ImplementationGuide {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ImplementationGuide.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testImplementationGuide1() {		
@@ -104,7 +105,7 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runImplementationGuide1(_ json: FHIRJSON? = nil) throws -> FireKit.ImplementationGuide {
+	func runImplementationGuide1(_ data: Data? = nil) throws -> FireKit.ImplementationGuide {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("implementationguide-example.json")
 		
 		XCTAssertEqual(inst.binary[0].value, "http://h7.org/fhir/fhir.css")

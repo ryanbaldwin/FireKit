@@ -20,13 +20,14 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.SupplyDelivery {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.SupplyDelivery {
-		let instance = FireKit.SupplyDelivery(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.SupplyDelivery {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.SupplyDelivery.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSupplyDelivery1() {		
@@ -104,7 +105,7 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSupplyDelivery1(_ json: FHIRJSON? = nil) throws -> FireKit.SupplyDelivery {
+	func runSupplyDelivery1(_ data: Data? = nil) throws -> FireKit.SupplyDelivery {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("supplydelivery-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

@@ -20,13 +20,14 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ProcedureRequest {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ProcedureRequest {
-		let instance = FireKit.ProcedureRequest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ProcedureRequest {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ProcedureRequest.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testProcedureRequest1() {		
@@ -104,7 +105,7 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runProcedureRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.ProcedureRequest {
+	func runProcedureRequest1(_ data: Data? = nil) throws -> FireKit.ProcedureRequest {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("procedurerequest-example.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "323418000")

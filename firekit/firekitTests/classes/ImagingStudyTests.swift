@@ -20,13 +20,14 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ImagingStudy {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImagingStudy {
-		let instance = FireKit.ImagingStudy(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ImagingStudy {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ImagingStudy.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testImagingStudy1() {		
@@ -104,7 +105,7 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runImagingStudy1(_ json: FHIRJSON? = nil) throws -> FireKit.ImagingStudy {
+	func runImagingStudy1(_ data: Data? = nil) throws -> FireKit.ImagingStudy {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("imagingstudy-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

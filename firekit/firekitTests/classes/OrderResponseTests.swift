@@ -20,13 +20,14 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.OrderResponse {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.OrderResponse {
-		let instance = FireKit.OrderResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.OrderResponse {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.OrderResponse.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testOrderResponse1() {		
@@ -104,7 +105,7 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runOrderResponse1(_ json: FHIRJSON? = nil) throws -> FireKit.OrderResponse {
+	func runOrderResponse1(_ data: Data? = nil) throws -> FireKit.OrderResponse {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("orderresponse-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2012-12-28T13:10:56+11:00")

@@ -20,13 +20,14 @@ class ReferralRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ReferralRequest {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ReferralRequest {
-		let instance = FireKit.ReferralRequest(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ReferralRequest {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ReferralRequest.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testReferralRequest1() {		
@@ -104,7 +105,7 @@ class ReferralRequestTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runReferralRequest1(_ json: FHIRJSON? = nil) throws -> FireKit.ReferralRequest {
+	func runReferralRequest1(_ data: Data? = nil) throws -> FireKit.ReferralRequest {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("referralrequest-example.json")
 		
 		XCTAssertEqual(inst.dateSent?.description, "2014-02-14")

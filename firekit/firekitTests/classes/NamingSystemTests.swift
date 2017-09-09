@@ -20,13 +20,14 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.NamingSystem {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.NamingSystem {
-		let instance = FireKit.NamingSystem(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.NamingSystem {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.NamingSystem.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testNamingSystem1() {		
@@ -104,7 +105,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNamingSystem1(_ json: FHIRJSON? = nil) throws -> FireKit.NamingSystem {
+	func runNamingSystem1(_ data: Data? = nil) throws -> FireKit.NamingSystem {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("namingsystem-example-id.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "HL7 Australia FHIR Team")
@@ -212,7 +213,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNamingSystem2(_ json: FHIRJSON? = nil) throws -> FireKit.NamingSystem {
+	func runNamingSystem2(_ data: Data? = nil) throws -> FireKit.NamingSystem {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("namingsystem-example-replaced.json")
 		
 		XCTAssertEqual(inst.date?.description, "2005-01-25")
@@ -306,7 +307,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runNamingSystem3(_ json: FHIRJSON? = nil) throws -> FireKit.NamingSystem {
+	func runNamingSystem3(_ data: Data? = nil) throws -> FireKit.NamingSystem {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("namingsystem-example.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "FHIR project team")

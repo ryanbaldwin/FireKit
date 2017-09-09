@@ -20,13 +20,14 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Medication {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Medication {
-		let instance = FireKit.Medication(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Medication {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Medication.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testMedication1() {		
@@ -104,7 +105,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication1(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication1(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f001-combivent.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "320442002")
@@ -202,7 +203,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication2(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication2(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f002-crestor.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "408036003")
@@ -293,7 +294,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication3(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication3(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f003-tolbutamide.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "325267004")
@@ -384,7 +385,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication4(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication4(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f004-metoprolol.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "318475005")
@@ -475,7 +476,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication5(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication5(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f005-enalapril.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "318851002")
@@ -566,7 +567,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication6(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication6(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f201-salmeterol.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "411106009")
@@ -671,7 +672,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication7(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication7(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f202-flucloxacilline.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "387544009")
@@ -762,7 +763,7 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runMedication8(_ json: FHIRJSON? = nil) throws -> FireKit.Medication {
+	func runMedication8(_ data: Data? = nil) throws -> FireKit.Medication {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("medication-example-f203-paracetamol.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "387517004")

@@ -20,13 +20,14 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ConceptMap {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ConceptMap {
-		let instance = FireKit.ConceptMap(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ConceptMap {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ConceptMap.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testConceptMap1() {		
@@ -104,7 +105,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runConceptMap1(_ json: FHIRJSON? = nil) throws -> FireKit.ConceptMap {
+	func runConceptMap1(_ data: Data? = nil) throws -> FireKit.ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conceptmap-example-specimen-type.json")
 		
 		XCTAssertEqual(inst.contact[0].telecom[0].system, "other")
@@ -266,7 +267,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runConceptMap2(_ json: FHIRJSON? = nil) throws -> FireKit.ConceptMap {
+	func runConceptMap2(_ data: Data? = nil) throws -> FireKit.ConceptMap {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("conceptmap-example.json")
 		
 		XCTAssertEqual(inst.contact[0].name, "FHIR project team (example)")

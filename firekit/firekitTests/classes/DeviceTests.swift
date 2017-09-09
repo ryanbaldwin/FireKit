@@ -20,13 +20,14 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Device {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Device {
-		let instance = FireKit.Device(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Device {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Device.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDevice1() {		
@@ -104,7 +105,7 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDevice1(_ json: FHIRJSON? = nil) throws -> FireKit.Device {
+	func runDevice1(_ data: Data? = nil) throws -> FireKit.Device {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("device-example-f001-feedingtube.json")
 		
 		XCTAssertEqual(inst.expiry?.description, "2020-08-08")
@@ -199,7 +200,7 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDevice2(_ json: FHIRJSON? = nil) throws -> FireKit.Device {
+	func runDevice2(_ data: Data? = nil) throws -> FireKit.Device {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("device-example-ihe-pcd.json")
 		
 		XCTAssertEqual(inst.id, "ihe-pcd")
@@ -292,7 +293,7 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDevice3(_ json: FHIRJSON? = nil) throws -> FireKit.Device {
+	func runDevice3(_ data: Data? = nil) throws -> FireKit.Device {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("device-example-pacemaker.json")
 		
 		XCTAssertEqual(inst.contact[0].system, "phone")
@@ -387,7 +388,7 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDevice4(_ json: FHIRJSON? = nil) throws -> FireKit.Device {
+	func runDevice4(_ data: Data? = nil) throws -> FireKit.Device {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("device-example-software.json")
 		
 		XCTAssertEqual(inst.contact[0].system, "other")
@@ -479,7 +480,7 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDevice5(_ json: FHIRJSON? = nil) throws -> FireKit.Device {
+	func runDevice5(_ data: Data? = nil) throws -> FireKit.Device {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("device-example.json")
 		
 		XCTAssertEqual(inst.contact[0].system, "phone")

@@ -20,13 +20,14 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Slot {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Slot {
-		let instance = FireKit.Slot(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Slot {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Slot.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSlot1() {		
@@ -104,7 +105,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSlot1(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
+	func runSlot1(_ data: Data? = nil) throws -> FireKit.Slot {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example-busy.json")
 		
 		XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")
@@ -199,7 +200,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSlot2(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
+	func runSlot2(_ data: Data? = nil) throws -> FireKit.Slot {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example-tentative.json")
 		
 		XCTAssertEqual(inst.comment, "Dr Careful is out of the office")
@@ -291,7 +292,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSlot3(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
+	func runSlot3(_ data: Data? = nil) throws -> FireKit.Slot {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example-unavailable.json")
 		
 		XCTAssertEqual(inst.comment, "Dr Careful is out of the office")
@@ -383,7 +384,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSlot4(_ json: FHIRJSON? = nil) throws -> FireKit.Slot {
+	func runSlot4(_ data: Data? = nil) throws -> FireKit.Slot {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("slot-example.json")
 		
 		XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")

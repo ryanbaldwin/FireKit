@@ -20,13 +20,14 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.SearchParameter {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.SearchParameter {
-		let instance = FireKit.SearchParameter(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.SearchParameter {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.SearchParameter.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSearchParameter1() {		
@@ -104,7 +105,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSearchParameter1(_ json: FHIRJSON? = nil) throws -> FireKit.SearchParameter {
+	func runSearchParameter1(_ data: Data? = nil) throws -> FireKit.SearchParameter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("searchparameter-example-extension.json")
 		
 		XCTAssertEqual(inst.base, "Patient")
@@ -200,7 +201,7 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSearchParameter2(_ json: FHIRJSON? = nil) throws -> FireKit.SearchParameter {
+	func runSearchParameter2(_ data: Data? = nil) throws -> FireKit.SearchParameter {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("searchparameter-example.json")
 		
 		XCTAssertEqual(inst.base, "Resource")

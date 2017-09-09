@@ -20,13 +20,14 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Account {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Account {
-		let instance = FireKit.Account(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Account {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Account.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testAccount1() {		
@@ -104,7 +105,7 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAccount1(_ json: FHIRJSON? = nil) throws -> FireKit.Account {
+	func runAccount1(_ data: Data? = nil) throws -> FireKit.Account {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("account-example.json")
 		
 		XCTAssertEqual(inst.id, "example")

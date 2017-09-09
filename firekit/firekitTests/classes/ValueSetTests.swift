@@ -20,13 +20,14 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.ValueSet {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ValueSet {
-		let instance = FireKit.ValueSet(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.ValueSet {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.ValueSet.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testValueSet1() {		
@@ -104,7 +105,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runValueSet1(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
+	func runValueSet1(_ data: Data? = nil) throws -> FireKit.ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-expansion.json")
 		
 		XCTAssertEqual(inst.compose?.include[0].filter[0].op, "=")
@@ -247,7 +248,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runValueSet2(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
+	func runValueSet2(_ data: Data? = nil) throws -> FireKit.ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-inline.json")
 		
 		XCTAssertTrue(inst.codeSystem?.caseSensitive.value ?? false)
@@ -366,7 +367,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runValueSet3(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
+	func runValueSet3(_ data: Data? = nil) throws -> FireKit.ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-intensional.json")
 		
 		XCTAssertEqual(inst.compose?.exclude[0].concept[0].code, "5932-9")
@@ -471,7 +472,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runValueSet4(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
+	func runValueSet4(_ data: Data? = nil) throws -> FireKit.ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example-yesnodontknow.json")
 		
 		XCTAssertEqual(inst.compose?.import_fhir[0].value, "http://hl7.org/fhir/ValueSet/v2-0136")
@@ -574,7 +575,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runValueSet5(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
+	func runValueSet5(_ data: Data? = nil) throws -> FireKit.ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-example.json")
 		
 		XCTAssertEqual(inst.compose?.include[0].concept[0].code, "14647-2")
@@ -683,7 +684,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runValueSet6(_ json: FHIRJSON? = nil) throws -> FireKit.ValueSet {
+	func runValueSet6(_ data: Data? = nil) throws -> FireKit.ValueSet {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("valueset-list-example-codes.json")
 		
 		XCTAssertTrue(inst.codeSystem?.caseSensitive.value ?? false)

@@ -20,13 +20,14 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Binary {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Binary {
-		let instance = FireKit.Binary(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Binary {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Binary.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testBinary1() {		
@@ -104,7 +105,7 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runBinary1(_ json: FHIRJSON? = nil) throws -> FireKit.Binary {
+	func runBinary1(_ data: Data? = nil) throws -> FireKit.Binary {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("binary-example.json")
 		
 		XCTAssertEqual(inst.contentType, "application/pdf")

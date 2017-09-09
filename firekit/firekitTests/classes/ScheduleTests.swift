@@ -20,13 +20,14 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Schedule {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Schedule {
-		let instance = FireKit.Schedule(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Schedule {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Schedule.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSchedule1() {		
@@ -104,7 +105,7 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSchedule1(_ json: FHIRJSON? = nil) throws -> FireKit.Schedule {
+	func runSchedule1(_ data: Data? = nil) throws -> FireKit.Schedule {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("schedule-example.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Burgers UMC, South Wing, second floor")

@@ -20,13 +20,14 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Immunization {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Immunization {
-		let instance = FireKit.Immunization(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Immunization {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Immunization.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testImmunization1() {		
@@ -104,7 +105,7 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runImmunization1(_ json: FHIRJSON? = nil) throws -> FireKit.Immunization {
+	func runImmunization1(_ data: Data? = nil) throws -> FireKit.Immunization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("immunization-example-refused.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-01-10")
@@ -199,7 +200,7 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runImmunization2(_ json: FHIRJSON? = nil) throws -> FireKit.Immunization {
+	func runImmunization2(_ data: Data? = nil) throws -> FireKit.Immunization {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("immunization-example.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-01-10")

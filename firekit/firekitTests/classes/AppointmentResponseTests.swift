@@ -20,13 +20,14 @@ class AppointmentResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.AppointmentResponse {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.AppointmentResponse {
-		let instance = FireKit.AppointmentResponse(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.AppointmentResponse {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.AppointmentResponse.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testAppointmentResponse1() {		
@@ -104,7 +105,7 @@ class AppointmentResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAppointmentResponse1(_ json: FHIRJSON? = nil) throws -> FireKit.AppointmentResponse {
+	func runAppointmentResponse1(_ data: Data? = nil) throws -> FireKit.AppointmentResponse {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointmentresponse-example-req.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Dr Adam Careful")
@@ -200,7 +201,7 @@ class AppointmentResponseTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAppointmentResponse2(_ json: FHIRJSON? = nil) throws -> FireKit.AppointmentResponse {
+	func runAppointmentResponse2(_ data: Data? = nil) throws -> FireKit.AppointmentResponse {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("appointmentresponse-example.json")
 		
 		XCTAssertEqual(inst.actor?.display, "Peter James Chalmers")

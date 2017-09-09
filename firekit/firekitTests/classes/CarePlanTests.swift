@@ -20,13 +20,14 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.CarePlan {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.CarePlan {
-		let instance = FireKit.CarePlan(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.CarePlan {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.CarePlan.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testCarePlan1() {		
@@ -104,7 +105,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan1(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan1(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f001-heart.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "procedure")
@@ -213,7 +214,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan2(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan2(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f002-lung.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "procedure")
@@ -322,7 +323,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan3(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan3(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f003-pharynx.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "procedure")
@@ -431,7 +432,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan4(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan4(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f201-renal.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "diet")
@@ -556,7 +557,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan5(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan5(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f202-malignancy.json")
 		
 		XCTAssertEqual(inst.activity[0].actionResulting[0].display, "Roel's Chemotherapy")
@@ -666,7 +667,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan6(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan6(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-f203-sepsis.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "observation")
@@ -777,7 +778,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan7(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan7(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-GPVisit.json")
 		
 		XCTAssertEqual(inst.activity[0].actionResulting[0].reference, "Encounter/example")
@@ -903,7 +904,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan8(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan8(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-integrated.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "other")
@@ -1123,7 +1124,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan9(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan9(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example-pregnancy.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "encounter")
@@ -1269,7 +1270,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runCarePlan10(_ json: FHIRJSON? = nil) throws -> FireKit.CarePlan {
+	func runCarePlan10(_ data: Data? = nil) throws -> FireKit.CarePlan {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("careplan-example.json")
 		
 		XCTAssertEqual(inst.activity[0].detail?.category?.coding[0].code, "observation")

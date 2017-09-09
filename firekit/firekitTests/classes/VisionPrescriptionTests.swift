@@ -20,13 +20,14 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.VisionPrescription {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.VisionPrescription {
-		let instance = FireKit.VisionPrescription(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.VisionPrescription {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.VisionPrescription.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testVisionPrescription1() {		
@@ -104,7 +105,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runVisionPrescription1(_ json: FHIRJSON? = nil) throws -> FireKit.VisionPrescription {
+	func runVisionPrescription1(_ data: Data? = nil) throws -> FireKit.VisionPrescription {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("visionprescription-example-1.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")
@@ -224,7 +225,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runVisionPrescription2(_ json: FHIRJSON? = nil) throws -> FireKit.VisionPrescription {
+	func runVisionPrescription2(_ data: Data? = nil) throws -> FireKit.VisionPrescription {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("visionprescription-example.json")
 		
 		XCTAssertEqual(inst.dateWritten?.description, "2014-06-15")

@@ -20,13 +20,14 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Specimen {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Specimen {
-		let instance = FireKit.Specimen(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Specimen {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Specimen.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testSpecimen1() {		
@@ -104,7 +105,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSpecimen1(_ json: FHIRJSON? = nil) throws -> FireKit.Specimen {
+	func runSpecimen1(_ data: Data? = nil) throws -> FireKit.Specimen {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("specimen-example-isolate.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system, "http://lab.acme.org/specimens/2011")
@@ -202,7 +203,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSpecimen2(_ json: FHIRJSON? = nil) throws -> FireKit.Specimen {
+	func runSpecimen2(_ data: Data? = nil) throws -> FireKit.Specimen {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("specimen-example-urine.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system, "http://lab.acme.org/specimens/2015")
@@ -304,7 +305,7 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runSpecimen3(_ json: FHIRJSON? = nil) throws -> FireKit.Specimen {
+	func runSpecimen3(_ data: Data? = nil) throws -> FireKit.Specimen {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("specimen-example.json")
 		
 		XCTAssertEqual(inst.accessionIdentifier?.system, "http://lab.acme.org/specimens/2011")

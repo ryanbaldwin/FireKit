@@ -20,13 +20,14 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.RelatedPerson {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.RelatedPerson {
-		let instance = FireKit.RelatedPerson(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.RelatedPerson {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.RelatedPerson.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testRelatedPerson1() {		
@@ -104,7 +105,7 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRelatedPerson1(_ json: FHIRJSON? = nil) throws -> FireKit.RelatedPerson {
+	func runRelatedPerson1(_ data: Data? = nil) throws -> FireKit.RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("relatedperson-example-f001-sarah.json")
 		
 		XCTAssertEqual(inst.gender, "female")
@@ -205,7 +206,7 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRelatedPerson2(_ json: FHIRJSON? = nil) throws -> FireKit.RelatedPerson {
+	func runRelatedPerson2(_ data: Data? = nil) throws -> FireKit.RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("relatedperson-example-f002-ariadne.json")
 		
 		XCTAssertEqual(inst.birthDate?.description, "1963")
@@ -302,7 +303,7 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRelatedPerson3(_ json: FHIRJSON? = nil) throws -> FireKit.RelatedPerson {
+	func runRelatedPerson3(_ data: Data? = nil) throws -> FireKit.RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("relatedperson-example-peter.json")
 		
 		XCTAssertEqual(inst.address[0].city, "PleasantVille")
@@ -405,7 +406,7 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runRelatedPerson4(_ json: FHIRJSON? = nil) throws -> FireKit.RelatedPerson {
+	func runRelatedPerson4(_ data: Data? = nil) throws -> FireKit.RelatedPerson {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("relatedperson-example.json")
 		
 		XCTAssertEqual(inst.address[0].city, "Paris")

@@ -20,13 +20,14 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Contract {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Contract {
-		let instance = FireKit.Contract(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Contract {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Contract.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testContract1() {		
@@ -104,7 +105,7 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runContract1(_ json: FHIRJSON? = nil) throws -> FireKit.Contract {
+	func runContract1(_ data: Data? = nil) throws -> FireKit.Contract {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("contract-example.json")
 		
 		XCTAssertEqual(inst.id, "C-123")

@@ -20,13 +20,14 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Questionnaire {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Questionnaire {
-		let instance = FireKit.Questionnaire(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Questionnaire {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Questionnaire.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testQuestionnaire1() {		
@@ -104,7 +105,7 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runQuestionnaire1(_ json: FHIRJSON? = nil) throws -> FireKit.Questionnaire {
+	func runQuestionnaire1(_ data: Data? = nil) throws -> FireKit.Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaire-example-bluebook.json")
 		
 		XCTAssertEqual(inst.date?.description, "2013-02-19")
@@ -222,7 +223,7 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runQuestionnaire2(_ json: FHIRJSON? = nil) throws -> FireKit.Questionnaire {
+	func runQuestionnaire2(_ data: Data? = nil) throws -> FireKit.Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaire-example-f201-lifelines.json")
 		
 		XCTAssertEqual(inst.date?.description, "2010")
@@ -333,7 +334,7 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runQuestionnaire3(_ json: FHIRJSON? = nil) throws -> FireKit.Questionnaire {
+	func runQuestionnaire3(_ data: Data? = nil) throws -> FireKit.Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaire-example-gcs.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "motor")
@@ -444,7 +445,7 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runQuestionnaire4(_ json: FHIRJSON? = nil) throws -> FireKit.Questionnaire {
+	func runQuestionnaire4(_ data: Data? = nil) throws -> FireKit.Questionnaire {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("questionnaire-example.json")
 		
 		XCTAssertEqual(inst.contained[0].id, "yesno")

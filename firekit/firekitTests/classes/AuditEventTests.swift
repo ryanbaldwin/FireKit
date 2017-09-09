@@ -20,13 +20,14 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.AuditEvent {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.AuditEvent {
-		let instance = FireKit.AuditEvent(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.AuditEvent {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.AuditEvent.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testAuditEvent1() {		
@@ -104,7 +105,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent1(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent1(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-login.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
@@ -208,7 +209,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent2(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent2(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-logout.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
@@ -312,7 +313,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent3(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent3(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-media.json")
 		
 		XCTAssertEqual(inst.event?.action, "R")
@@ -441,7 +442,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent4(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent4(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-pixQuery.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
@@ -562,7 +563,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent5(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent5(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-search.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")
@@ -671,7 +672,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent6(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent6(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("audit-event-example-vread.json")
 		
 		XCTAssertEqual(inst.event?.action, "R")
@@ -780,7 +781,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent7(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent7(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("auditevent-example-disclosure.json")
 		
 		XCTAssertEqual(inst.event?.action, "R")
@@ -933,7 +934,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runAuditEvent8(_ json: FHIRJSON? = nil) throws -> FireKit.AuditEvent {
+	func runAuditEvent8(_ data: Data? = nil) throws -> FireKit.AuditEvent {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("auditevent-example.json")
 		
 		XCTAssertEqual(inst.event?.action, "E")

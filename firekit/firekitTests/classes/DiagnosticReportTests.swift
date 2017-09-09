@@ -20,13 +20,14 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.DiagnosticReport {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.DiagnosticReport {
-		let instance = FireKit.DiagnosticReport(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.DiagnosticReport {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.DiagnosticReport.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testDiagnosticReport1() {		
@@ -104,7 +105,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport1(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport1(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example-dxa.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "38269-7")
@@ -202,7 +203,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport2(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport2(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example-f001-bloodexam.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "252275004")
@@ -312,7 +313,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport3(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport3(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example-f201-brainct.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "394914008")
@@ -417,7 +418,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport4(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport4(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example-f202-bloodculture.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "15220000")
@@ -524,7 +525,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport5(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport5(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example-ghp.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "GHP")
@@ -642,7 +643,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport6(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport6(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example-lipids.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "HM")
@@ -748,7 +749,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport7(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport7(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example-ultrasound.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "394914008")
@@ -850,7 +851,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runDiagnosticReport8(_ json: FHIRJSON? = nil) throws -> FireKit.DiagnosticReport {
+	func runDiagnosticReport8(_ data: Data? = nil) throws -> FireKit.DiagnosticReport {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("diagnosticreport-example.json")
 		
 		XCTAssertEqual(inst.category?.coding[0].code, "HM")

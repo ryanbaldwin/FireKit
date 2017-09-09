@@ -20,13 +20,14 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 
 	func instantiateFrom(_ filename: String) throws -> FireKit.Observation {
-		return instantiateFrom(try readJSONFile(filename))
+		return try instantiateFrom(try readJSONFile(filename))
 	}
 	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Observation {
-		let instance = FireKit.Observation(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
+	func instantiateFrom(_ json: FHIRJSON) throws -> FireKit.Observation {
+      let data = NSKeyedArchiver.archivedData(withRootObject: json)
+		  let instance = try JSONDecoder().decode(FireKit.Observation.self, from: data)
+		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
+		  return instance
 	}
 	
 	func testObservation1() {		
@@ -104,7 +105,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation1(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation1(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example1-somatic.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "55233-1")
@@ -228,7 +229,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation2(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation2(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example2-germline.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "21636-6")
@@ -348,7 +349,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation3(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation3(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-1.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
@@ -454,7 +455,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation4(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation4(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-2.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
@@ -562,7 +563,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation5(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation5(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-3.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
@@ -668,7 +669,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation6(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation6(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist-4.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
@@ -774,7 +775,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation7(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation7(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("obs-genetics-example3-mutationlist.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "49874-1")
@@ -886,7 +887,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation8(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation8(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("observation-example-bloodpressure-cancel.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding[0].code, "368209003")
@@ -1006,7 +1007,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation9(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation9(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("observation-example-bloodpressure.json")
 		
 		XCTAssertEqual(inst.bodySite?.coding[0].code, "368209003")
@@ -1123,7 +1124,7 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
 	}
 	
 	@discardableResult
-	func runObservation10(_ json: FHIRJSON? = nil) throws -> FireKit.Observation {
+	func runObservation10(_ data: Data? = nil) throws -> FireKit.Observation {
 		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("observation-example-f001-glucose.json")
 		
 		XCTAssertEqual(inst.code?.coding[0].code, "15074-8")
