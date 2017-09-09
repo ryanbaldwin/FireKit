@@ -52,6 +52,21 @@ open class DomainResource: Resource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let containedVals = try container.decodeIfPresent([Resource].self, forKey: .contained) {
+          // Resource: FHIRJSON
+        }
+        if let extension_fhirVals = try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) {
+          // Extension: FHIRJSON
+        }
+        if let modifierExtensionVals = try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) {
+          // Extension: FHIRJSON
+        }
+        // Narrative: FHIRJSON
+        if let textVal = try container.decodeIfPresent(Narrative.self, forKey: .text) {
+          self.text = textVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

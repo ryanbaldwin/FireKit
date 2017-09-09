@@ -65,8 +65,36 @@ open class Organization: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active.value = try container.decodeIfPresent(Bool.self, forKey: .active)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // Bool: Bool
+        if let activeVal = try container.decodeIfPresent(Bool.self, forKey: .active) {
+          self.active.value = activeVal
+        }
+        if let addressVals = try container.decodeIfPresent([Address].self, forKey: .address) {
+          // Address: FHIRJSON
+        }
+        if let contactVals = try container.decodeIfPresent([OrganizationContact].self, forKey: .contact) {
+          // OrganizationContact: FHIRJSON
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // Reference: FHIRJSON
+        if let partOfVal = try container.decodeIfPresent(Reference.self, forKey: .partOf) {
+          self.partOf = partOfVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -253,6 +281,23 @@ open class OrganizationContact: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Address: FHIRJSON
+        if let addressVal = try container.decodeIfPresent(Address.self, forKey: .address) {
+          self.address = addressVal
+        }
+        // HumanName: FHIRJSON
+        if let nameVal = try container.decodeIfPresent(HumanName.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let purposeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .purpose) {
+          self.purpose = purposeVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

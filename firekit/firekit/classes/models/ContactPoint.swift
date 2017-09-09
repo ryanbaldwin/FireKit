@@ -55,10 +55,28 @@ open class ContactPoint: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.rank.value = try container.decodeIfPresent(Int.self, forKey: .rank)
-        self.system = try container.decodeIfPresent(String.self, forKey: .system)
-        self.use = try container.decodeIfPresent(String.self, forKey: .use)
-        self.value = try container.decodeIfPresent(String.self, forKey: .value)
+
+
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // Int: Int
+        if let rankVal = try container.decodeIfPresent(Int.self, forKey: .rank) {
+          self.rank.value = rankVal
+        }
+        // String: String
+        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
+          self.system = systemVal
+        }
+        // String: String
+        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
+          self.use = useVal
+        }
+        // String: String
+        if let valueVal = try container.decodeIfPresent(String.self, forKey: .value) {
+          self.value = valueVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

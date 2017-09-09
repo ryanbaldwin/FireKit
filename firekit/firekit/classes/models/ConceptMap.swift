@@ -97,17 +97,77 @@ open class ConceptMap: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
-        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
-        self.sourceUri = try container.decodeIfPresent(String.self, forKey: .sourceUri)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.targetUri = try container.decodeIfPresent(String.self, forKey: .targetUri)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        if let contactVals = try container.decodeIfPresent([ConceptMapContact].self, forKey: .contact) {
+          // ConceptMapContact: FHIRJSON
+        }
+        // String: String
+        if let copyrightVal = try container.decodeIfPresent(String.self, forKey: .copyright) {
+          self.copyright = copyrightVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let elementVals = try container.decodeIfPresent([ConceptMapElement].self, forKey: .element) {
+          // ConceptMapElement: FHIRJSON
+        }
+        // Bool: Bool
+        if let experimentalVal = try container.decodeIfPresent(Bool.self, forKey: .experimental) {
+          self.experimental.value = experimentalVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // String: String
+        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
+          self.publisher = publisherVal
+        }
+        // String: String
+        if let requirementsVal = try container.decodeIfPresent(String.self, forKey: .requirements) {
+          self.requirements = requirementsVal
+        }
+        // Reference: FHIRJSON
+        if let sourceReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .sourceReference) {
+          self.sourceReference = sourceReferenceVal
+        }
+        // String: String
+        if let sourceUriVal = try container.decodeIfPresent(String.self, forKey: .sourceUri) {
+          self.sourceUri = sourceUriVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // Reference: FHIRJSON
+        if let targetReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .targetReference) {
+          self.targetReference = targetReferenceVal
+        }
+        // String: String
+        if let targetUriVal = try container.decodeIfPresent(String.self, forKey: .targetUri) {
+          self.targetUri = targetUriVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
+        if let useContextVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) {
+          // CodeableConcept: FHIRJSON
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -421,7 +481,15 @@ open class ConceptMapContact: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -512,8 +580,19 @@ open class ConceptMapElement: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.codeSystem = try container.decodeIfPresent(String.self, forKey: .codeSystem)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let codeSystemVal = try container.decodeIfPresent(String.self, forKey: .codeSystem) {
+          self.codeSystem = codeSystemVal
+        }
+        if let targetVals = try container.decodeIfPresent([ConceptMapElementTarget].self, forKey: .target) {
+          // ConceptMapElementTarget: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -629,10 +708,30 @@ open class ConceptMapElementTarget: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.codeSystem = try container.decodeIfPresent(String.self, forKey: .codeSystem)
-        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
-        self.equivalence = try container.decodeIfPresent(String.self, forKey: .equivalence)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let codeSystemVal = try container.decodeIfPresent(String.self, forKey: .codeSystem) {
+          self.codeSystem = codeSystemVal
+        }
+        // String: String
+        if let commentsVal = try container.decodeIfPresent(String.self, forKey: .comments) {
+          self.comments = commentsVal
+        }
+        if let dependsOnVals = try container.decodeIfPresent([ConceptMapElementTargetDependsOn].self, forKey: .dependsOn) {
+          // ConceptMapElementTargetDependsOn: FHIRJSON
+        }
+        // String: String
+        if let equivalenceVal = try container.decodeIfPresent(String.self, forKey: .equivalence) {
+          self.equivalence = equivalenceVal
+        }
+        if let productVals = try container.decodeIfPresent([ConceptMapElementTargetDependsOn].self, forKey: .product) {
+          // ConceptMapElementTargetDependsOn: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -790,9 +889,20 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.codeSystem = try container.decodeIfPresent(String.self, forKey: .codeSystem)
-        self.element = try container.decodeIfPresent(String.self, forKey: .element)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let codeSystemVal = try container.decodeIfPresent(String.self, forKey: .codeSystem) {
+          self.codeSystem = codeSystemVal
+        }
+        // String: String
+        if let elementVal = try container.decodeIfPresent(String.self, forKey: .element) {
+          self.element = elementVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

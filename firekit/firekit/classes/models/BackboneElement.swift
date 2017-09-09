@@ -43,6 +43,11 @@ open class BackboneElement: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let modifierExtensionVals = try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) {
+          // Extension: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

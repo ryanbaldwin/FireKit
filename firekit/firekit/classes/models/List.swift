@@ -92,10 +92,58 @@ open class List: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
-        self.note = try container.decodeIfPresent(String.self, forKey: .note)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let emptyReasonVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .emptyReason) {
+          self.emptyReason = emptyReasonVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        if let entryVals = try container.decodeIfPresent([ListEntry].self, forKey: .entry) {
+          // ListEntry: FHIRJSON
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // String: String
+        if let modeVal = try container.decodeIfPresent(String.self, forKey: .mode) {
+          self.mode = modeVal
+        }
+        // String: String
+        if let noteVal = try container.decodeIfPresent(String.self, forKey: .note) {
+          self.note = noteVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let orderedByVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .orderedBy) {
+          self.orderedBy = orderedByVal
+        }
+        // Reference: FHIRJSON
+        if let sourceVal = try container.decodeIfPresent(Reference.self, forKey: .source) {
+          self.source = sourceVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
+        // String: String
+        if let titleVal = try container.decodeIfPresent(String.self, forKey: .title) {
+          self.title = titleVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -352,7 +400,24 @@ open class ListEntry: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.deleted.value = try container.decodeIfPresent(Bool.self, forKey: .deleted)
+
+
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // Bool: Bool
+        if let deletedVal = try container.decodeIfPresent(Bool.self, forKey: .deleted) {
+          self.deleted.value = deletedVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let flagVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .flag) {
+          self.flag = flagVal
+        }
+        // Reference: FHIRJSON
+        if let itemVal = try container.decodeIfPresent(Reference.self, forKey: .item) {
+          self.item = itemVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

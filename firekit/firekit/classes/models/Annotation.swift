@@ -58,8 +58,24 @@ open class Annotation: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.authorString = try container.decodeIfPresent(String.self, forKey: .authorString)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+
+
+        // Reference: FHIRJSON
+        if let authorReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .authorReference) {
+          self.authorReference = authorReferenceVal
+        }
+        // String: String
+        if let authorStringVal = try container.decodeIfPresent(String.self, forKey: .authorString) {
+          self.authorString = authorStringVal
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // DateTime: String
+        if let timeVal = try container.decodeIfPresent(DateTime.self, forKey: .time) {
+          self.time = timeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

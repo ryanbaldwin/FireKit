@@ -72,10 +72,38 @@ open class Subscription: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.criteria = try container.decodeIfPresent(String.self, forKey: .criteria)
-        self.error = try container.decodeIfPresent(String.self, forKey: .error)
-        self.reason = try container.decodeIfPresent(String.self, forKey: .reason)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // SubscriptionChannel: FHIRJSON
+        if let channelVal = try container.decodeIfPresent(SubscriptionChannel.self, forKey: .channel) {
+          self.channel = channelVal
+        }
+        if let contactVals = try container.decodeIfPresent([ContactPoint].self, forKey: .contact) {
+          // ContactPoint: FHIRJSON
+        }
+        // String: String
+        if let criteriaVal = try container.decodeIfPresent(String.self, forKey: .criteria) {
+          self.criteria = criteriaVal
+        }
+        // Instant: String
+        if let endVal = try container.decodeIfPresent(Instant.self, forKey: .end) {
+          self.end = endVal
+        }
+        // String: String
+        if let errorVal = try container.decodeIfPresent(String.self, forKey: .error) {
+          self.error = errorVal
+        }
+        // String: String
+        if let reasonVal = try container.decodeIfPresent(String.self, forKey: .reason) {
+          self.reason = reasonVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        if let tagVals = try container.decodeIfPresent([Coding].self, forKey: .tag) {
+          // Coding: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -268,10 +296,24 @@ open class SubscriptionChannel: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.endpoint = try container.decodeIfPresent(String.self, forKey: .endpoint)
-        self.header = try container.decodeIfPresent(String.self, forKey: .header)
-        self.payload = try container.decodeIfPresent(String.self, forKey: .payload)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        // String: String
+        if let endpointVal = try container.decodeIfPresent(String.self, forKey: .endpoint) {
+          self.endpoint = endpointVal
+        }
+        // String: String
+        if let headerVal = try container.decodeIfPresent(String.self, forKey: .header) {
+          self.header = headerVal
+        }
+        // String: String
+        if let payloadVal = try container.decodeIfPresent(String.self, forKey: .payload) {
+          self.payload = payloadVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

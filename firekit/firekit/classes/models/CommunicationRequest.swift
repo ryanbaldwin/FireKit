@@ -93,7 +93,63 @@ open class CommunicationRequest: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // CodeableConcept: FHIRJSON
+        if let categoryVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .category) {
+          self.category = categoryVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let mediumVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .medium) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let payloadVals = try container.decodeIfPresent([CommunicationRequestPayload].self, forKey: .payload) {
+          // CommunicationRequestPayload: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let priorityVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .priority) {
+          self.priority = priorityVal
+        }
+        if let reasonVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .reason) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let recipientVals = try container.decodeIfPresent([Reference].self, forKey: .recipient) {
+          // Reference: FHIRJSON
+        }
+        // DateTime: String
+        if let requestedOnVal = try container.decodeIfPresent(DateTime.self, forKey: .requestedOn) {
+          self.requestedOn = requestedOnVal
+        }
+        // Reference: FHIRJSON
+        if let requesterVal = try container.decodeIfPresent(Reference.self, forKey: .requester) {
+          self.requester = requesterVal
+        }
+        // DateTime: String
+        if let scheduledDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .scheduledDateTime) {
+          self.scheduledDateTime = scheduledDateTimeVal
+        }
+        // Period: FHIRJSON
+        if let scheduledPeriodVal = try container.decodeIfPresent(Period.self, forKey: .scheduledPeriod) {
+          self.scheduledPeriod = scheduledPeriodVal
+        }
+        // Reference: FHIRJSON
+        if let senderVal = try container.decodeIfPresent(Reference.self, forKey: .sender) {
+          self.sender = senderVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -379,7 +435,20 @@ open class CommunicationRequestPayload: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.contentString = try container.decodeIfPresent(String.self, forKey: .contentString)
+
+
+        // Attachment: FHIRJSON
+        if let contentAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .contentAttachment) {
+          self.contentAttachment = contentAttachmentVal
+        }
+        // Reference: FHIRJSON
+        if let contentReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .contentReference) {
+          self.contentReference = contentReferenceVal
+        }
+        // String: String
+        if let contentStringVal = try container.decodeIfPresent(String.self, forKey: .contentString) {
+          self.contentString = contentStringVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

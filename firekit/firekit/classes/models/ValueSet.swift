@@ -97,17 +97,82 @@ open class ValueSet: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
-        self.extensible.value = try container.decodeIfPresent(Bool.self, forKey: .extensible)
-        self.immutable.value = try container.decodeIfPresent(Bool.self, forKey: .immutable)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
-        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        // ValueSetCodeSystem: FHIRJSON
+        if let codeSystemVal = try container.decodeIfPresent(ValueSetCodeSystem.self, forKey: .codeSystem) {
+          self.codeSystem = codeSystemVal
+        }
+        // ValueSetCompose: FHIRJSON
+        if let composeVal = try container.decodeIfPresent(ValueSetCompose.self, forKey: .compose) {
+          self.compose = composeVal
+        }
+        if let contactVals = try container.decodeIfPresent([ValueSetContact].self, forKey: .contact) {
+          // ValueSetContact: FHIRJSON
+        }
+        // String: String
+        if let copyrightVal = try container.decodeIfPresent(String.self, forKey: .copyright) {
+          self.copyright = copyrightVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        // ValueSetExpansion: FHIRJSON
+        if let expansionVal = try container.decodeIfPresent(ValueSetExpansion.self, forKey: .expansion) {
+          self.expansion = expansionVal
+        }
+        // Bool: Bool
+        if let experimentalVal = try container.decodeIfPresent(Bool.self, forKey: .experimental) {
+          self.experimental.value = experimentalVal
+        }
+        // Bool: Bool
+        if let extensibleVal = try container.decodeIfPresent(Bool.self, forKey: .extensible) {
+          self.extensible.value = extensibleVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Bool: Bool
+        if let immutableVal = try container.decodeIfPresent(Bool.self, forKey: .immutable) {
+          self.immutable.value = immutableVal
+        }
+        // FHIRDate: String
+        if let lockedDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .lockedDate) {
+          self.lockedDate = lockedDateVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // String: String
+        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
+          self.publisher = publisherVal
+        }
+        // String: String
+        if let requirementsVal = try container.decodeIfPresent(String.self, forKey: .requirements) {
+          self.requirements = requirementsVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
+        if let useContextVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) {
+          // CodeableConcept: FHIRJSON
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -435,9 +500,23 @@ open class ValueSetCodeSystem: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.caseSensitive.value = try container.decodeIfPresent(Bool.self, forKey: .caseSensitive)
-        self.system = try container.decodeIfPresent(String.self, forKey: .system)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        // Bool: Bool
+        if let caseSensitiveVal = try container.decodeIfPresent(Bool.self, forKey: .caseSensitive) {
+          self.caseSensitive.value = caseSensitiveVal
+        }
+        if let conceptVals = try container.decodeIfPresent([ValueSetCodeSystemConcept].self, forKey: .concept) {
+          // ValueSetCodeSystemConcept: FHIRJSON
+        }
+        // String: String
+        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
+          self.system = systemVal
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -573,10 +652,30 @@ open class ValueSetCodeSystemConcept: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.abstract.value = try container.decodeIfPresent(Bool.self, forKey: .abstract)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.definition = try container.decodeIfPresent(String.self, forKey: .definition)
-        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+
+
+        // Bool: Bool
+        if let abstractVal = try container.decodeIfPresent(Bool.self, forKey: .abstract) {
+          self.abstract.value = abstractVal
+        }
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let conceptVals = try container.decodeIfPresent([ValueSetCodeSystemConcept].self, forKey: .concept) {
+          // ValueSetCodeSystemConcept: FHIRJSON
+        }
+        // String: String
+        if let definitionVal = try container.decodeIfPresent(String.self, forKey: .definition) {
+          self.definition = definitionVal
+        }
+        if let designationVals = try container.decodeIfPresent([ValueSetCodeSystemConceptDesignation].self, forKey: .designation) {
+          // ValueSetCodeSystemConceptDesignation: FHIRJSON
+        }
+        // String: String
+        if let displayVal = try container.decodeIfPresent(String.self, forKey: .display) {
+          self.display = displayVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -735,8 +834,20 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.language = try container.decodeIfPresent(String.self, forKey: .language)
-        self.value = try container.decodeIfPresent(String.self, forKey: .value)
+
+
+        // String: String
+        if let languageVal = try container.decodeIfPresent(String.self, forKey: .language) {
+          self.language = languageVal
+        }
+        // Coding: FHIRJSON
+        if let useVal = try container.decodeIfPresent(Coding.self, forKey: .use) {
+          self.use = useVal
+        }
+        // String: String
+        if let valueVal = try container.decodeIfPresent(String.self, forKey: .value) {
+          self.value = valueVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -841,6 +952,17 @@ open class ValueSetCompose: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let excludeVals = try container.decodeIfPresent([ValueSetComposeInclude].self, forKey: .exclude) {
+          // ValueSetComposeInclude: FHIRJSON
+        }
+        if let import_fhirVals = try container.decodeIfPresent([String].self, forKey: .import_fhir) {
+          // String: String
+        }
+        if let includeVals = try container.decodeIfPresent([ValueSetComposeInclude].self, forKey: .include) {
+          // ValueSetComposeInclude: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -953,8 +1075,22 @@ open class ValueSetComposeInclude: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.system = try container.decodeIfPresent(String.self, forKey: .system)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        if let conceptVals = try container.decodeIfPresent([ValueSetComposeIncludeConcept].self, forKey: .concept) {
+          // ValueSetComposeIncludeConcept: FHIRJSON
+        }
+        if let filterVals = try container.decodeIfPresent([ValueSetComposeIncludeFilter].self, forKey: .filter) {
+          // ValueSetComposeIncludeFilter: FHIRJSON
+        }
+        // String: String
+        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
+          self.system = systemVal
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1083,8 +1219,19 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let designationVals = try container.decodeIfPresent([ValueSetCodeSystemConceptDesignation].self, forKey: .designation) {
+          // ValueSetCodeSystemConceptDesignation: FHIRJSON
+        }
+        // String: String
+        if let displayVal = try container.decodeIfPresent(String.self, forKey: .display) {
+          self.display = displayVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1200,9 +1347,20 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.op = try container.decodeIfPresent(String.self, forKey: .op)
-        self.property = try container.decodeIfPresent(String.self, forKey: .property)
-        self.value = try container.decodeIfPresent(String.self, forKey: .value)
+
+
+        // String: String
+        if let opVal = try container.decodeIfPresent(String.self, forKey: .op) {
+          self.op = opVal
+        }
+        // String: String
+        if let propertyVal = try container.decodeIfPresent(String.self, forKey: .property) {
+          self.property = propertyVal
+        }
+        // String: String
+        if let valueVal = try container.decodeIfPresent(String.self, forKey: .value) {
+          self.value = valueVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1310,7 +1468,15 @@ open class ValueSetContact: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1415,9 +1581,30 @@ open class ValueSetExpansion: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
-        self.offset.value = try container.decodeIfPresent(Int.self, forKey: .offset)
-        self.total.value = try container.decodeIfPresent(Int.self, forKey: .total)
+
+
+        if let containsVals = try container.decodeIfPresent([ValueSetExpansionContains].self, forKey: .contains) {
+          // ValueSetExpansionContains: FHIRJSON
+        }
+        // String: String
+        if let identifierVal = try container.decodeIfPresent(String.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Int: Int
+        if let offsetVal = try container.decodeIfPresent(Int.self, forKey: .offset) {
+          self.offset.value = offsetVal
+        }
+        if let parameterVals = try container.decodeIfPresent([ValueSetExpansionParameter].self, forKey: .parameter) {
+          // ValueSetExpansionParameter: FHIRJSON
+        }
+        // DateTime: String
+        if let timestampVal = try container.decodeIfPresent(DateTime.self, forKey: .timestamp) {
+          self.timestamp = timestampVal
+        }
+        // Int: Int
+        if let totalVal = try container.decodeIfPresent(Int.self, forKey: .total) {
+          self.total.value = totalVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1575,11 +1762,31 @@ open class ValueSetExpansionContains: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.abstract.value = try container.decodeIfPresent(Bool.self, forKey: .abstract)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.display = try container.decodeIfPresent(String.self, forKey: .display)
-        self.system = try container.decodeIfPresent(String.self, forKey: .system)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        // Bool: Bool
+        if let abstractVal = try container.decodeIfPresent(Bool.self, forKey: .abstract) {
+          self.abstract.value = abstractVal
+        }
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let containsVals = try container.decodeIfPresent([ValueSetExpansionContains].self, forKey: .contains) {
+          // ValueSetExpansionContains: FHIRJSON
+        }
+        // String: String
+        if let displayVal = try container.decodeIfPresent(String.self, forKey: .display) {
+          self.display = displayVal
+        }
+        // String: String
+        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
+          self.system = systemVal
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1737,12 +1944,36 @@ open class ValueSetExpansionParameter: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
-        self.valueCode = try container.decodeIfPresent(String.self, forKey: .valueCode)
-        self.valueInteger.value = try container.decodeIfPresent(Int.self, forKey: .valueInteger)
-        self.valueString = try container.decodeIfPresent(String.self, forKey: .valueString)
-        self.valueUri = try container.decodeIfPresent(String.self, forKey: .valueUri)
+
+
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // Bool: Bool
+        if let valueBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean) {
+          self.valueBoolean.value = valueBooleanVal
+        }
+        // String: String
+        if let valueCodeVal = try container.decodeIfPresent(String.self, forKey: .valueCode) {
+          self.valueCode = valueCodeVal
+        }
+        // RealmDecimal: NSNumber
+        if let valueDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .valueDecimal) {
+          self.valueDecimal = valueDecimalVal
+        }
+        // Int: Int
+        if let valueIntegerVal = try container.decodeIfPresent(Int.self, forKey: .valueInteger) {
+          self.valueInteger.value = valueIntegerVal
+        }
+        // String: String
+        if let valueStringVal = try container.decodeIfPresent(String.self, forKey: .valueString) {
+          self.valueString = valueStringVal
+        }
+        // String: String
+        if let valueUriVal = try container.decodeIfPresent(String.self, forKey: .valueUri) {
+          self.valueUri = valueUriVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

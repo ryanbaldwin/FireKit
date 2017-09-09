@@ -95,13 +95,69 @@ open class Device: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.lotNumber = try container.decodeIfPresent(String.self, forKey: .lotNumber)
-        self.manufacturer = try container.decodeIfPresent(String.self, forKey: .manufacturer)
-        self.model = try container.decodeIfPresent(String.self, forKey: .model)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.udi = try container.decodeIfPresent(String.self, forKey: .udi)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        if let contactVals = try container.decodeIfPresent([ContactPoint].self, forKey: .contact) {
+          // ContactPoint: FHIRJSON
+        }
+        // DateTime: String
+        if let expiryVal = try container.decodeIfPresent(DateTime.self, forKey: .expiry) {
+          self.expiry = expiryVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let locationVal = try container.decodeIfPresent(Reference.self, forKey: .location) {
+          self.location = locationVal
+        }
+        // String: String
+        if let lotNumberVal = try container.decodeIfPresent(String.self, forKey: .lotNumber) {
+          self.lotNumber = lotNumberVal
+        }
+        // DateTime: String
+        if let manufactureDateVal = try container.decodeIfPresent(DateTime.self, forKey: .manufactureDate) {
+          self.manufactureDate = manufactureDateVal
+        }
+        // String: String
+        if let manufacturerVal = try container.decodeIfPresent(String.self, forKey: .manufacturer) {
+          self.manufacturer = manufacturerVal
+        }
+        // String: String
+        if let modelVal = try container.decodeIfPresent(String.self, forKey: .model) {
+          self.model = modelVal
+        }
+        if let noteVals = try container.decodeIfPresent([Annotation].self, forKey: .note) {
+          // Annotation: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let ownerVal = try container.decodeIfPresent(Reference.self, forKey: .owner) {
+          self.owner = ownerVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // String: String
+        if let udiVal = try container.decodeIfPresent(String.self, forKey: .udi) {
+          self.udi = udiVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

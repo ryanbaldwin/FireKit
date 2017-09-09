@@ -87,7 +87,51 @@ open class NutritionOrder: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        if let allergyIntoleranceVals = try container.decodeIfPresent([Reference].self, forKey: .allergyIntolerance) {
+          // Reference: FHIRJSON
+        }
+        // DateTime: String
+        if let dateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .dateTime) {
+          self.dateTime = dateTimeVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        // NutritionOrderEnteralFormula: FHIRJSON
+        if let enteralFormulaVal = try container.decodeIfPresent(NutritionOrderEnteralFormula.self, forKey: .enteralFormula) {
+          self.enteralFormula = enteralFormulaVal
+        }
+        if let excludeFoodModifierVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .excludeFoodModifier) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let foodPreferenceModifierVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .foodPreferenceModifier) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // NutritionOrderOralDiet: FHIRJSON
+        if let oralDietVal = try container.decodeIfPresent(NutritionOrderOralDiet.self, forKey: .oralDiet) {
+          self.oralDiet = oralDietVal
+        }
+        // Reference: FHIRJSON
+        if let ordererVal = try container.decodeIfPresent(Reference.self, forKey: .orderer) {
+          self.orderer = ordererVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        if let supplementVals = try container.decodeIfPresent([NutritionOrderSupplement].self, forKey: .supplement) {
+          // NutritionOrderSupplement: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -354,9 +398,43 @@ open class NutritionOrderEnteralFormula: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.additiveProductName = try container.decodeIfPresent(String.self, forKey: .additiveProductName)
-        self.administrationInstruction = try container.decodeIfPresent(String.self, forKey: .administrationInstruction)
-        self.baseFormulaProductName = try container.decodeIfPresent(String.self, forKey: .baseFormulaProductName)
+
+
+        // String: String
+        if let additiveProductNameVal = try container.decodeIfPresent(String.self, forKey: .additiveProductName) {
+          self.additiveProductName = additiveProductNameVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let additiveTypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .additiveType) {
+          self.additiveType = additiveTypeVal
+        }
+        if let administrationVals = try container.decodeIfPresent([NutritionOrderEnteralFormulaAdministration].self, forKey: .administration) {
+          // NutritionOrderEnteralFormulaAdministration: FHIRJSON
+        }
+        // String: String
+        if let administrationInstructionVal = try container.decodeIfPresent(String.self, forKey: .administrationInstruction) {
+          self.administrationInstruction = administrationInstructionVal
+        }
+        // String: String
+        if let baseFormulaProductNameVal = try container.decodeIfPresent(String.self, forKey: .baseFormulaProductName) {
+          self.baseFormulaProductName = baseFormulaProductNameVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let baseFormulaTypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .baseFormulaType) {
+          self.baseFormulaType = baseFormulaTypeVal
+        }
+        // Quantity: FHIRJSON
+        if let caloricDensityVal = try container.decodeIfPresent(Quantity.self, forKey: .caloricDensity) {
+          self.caloricDensity = caloricDensityVal
+        }
+        // Quantity: FHIRJSON
+        if let maxVolumeToDeliverVal = try container.decodeIfPresent(Quantity.self, forKey: .maxVolumeToDeliver) {
+          self.maxVolumeToDeliver = maxVolumeToDeliverVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let routeofAdministrationVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .routeofAdministration) {
+          self.routeofAdministration = routeofAdministrationVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -554,6 +632,24 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        // Quantity: FHIRJSON
+        if let rateQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .rateQuantity) {
+          self.rateQuantity = rateQuantityVal
+        }
+        // Ratio: FHIRJSON
+        if let rateRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .rateRatio) {
+          self.rateRatio = rateRatioVal
+        }
+        // Timing: FHIRJSON
+        if let scheduleVal = try container.decodeIfPresent(Timing.self, forKey: .schedule) {
+          self.schedule = scheduleVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -673,7 +769,27 @@ open class NutritionOrderOralDiet: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.instruction = try container.decodeIfPresent(String.self, forKey: .instruction)
+
+
+        if let fluidConsistencyTypeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .fluidConsistencyType) {
+          // CodeableConcept: FHIRJSON
+        }
+        // String: String
+        if let instructionVal = try container.decodeIfPresent(String.self, forKey: .instruction) {
+          self.instruction = instructionVal
+        }
+        if let nutrientVals = try container.decodeIfPresent([NutritionOrderOralDietNutrient].self, forKey: .nutrient) {
+          // NutritionOrderOralDietNutrient: FHIRJSON
+        }
+        if let scheduleVals = try container.decodeIfPresent([Timing].self, forKey: .schedule) {
+          // Timing: FHIRJSON
+        }
+        if let textureVals = try container.decodeIfPresent([NutritionOrderOralDietTexture].self, forKey: .texture) {
+          // NutritionOrderOralDietTexture: FHIRJSON
+        }
+        if let typeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .type) {
+          // CodeableConcept: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -832,6 +948,16 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Quantity: FHIRJSON
+        if let amountVal = try container.decodeIfPresent(Quantity.self, forKey: .amount) {
+          self.amount = amountVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let modifierVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .modifier) {
+          self.modifier = modifierVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -924,6 +1050,16 @@ open class NutritionOrderOralDietTexture: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let foodTypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .foodType) {
+          self.foodType = foodTypeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let modifierVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .modifier) {
+          self.modifier = modifierVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1021,8 +1157,27 @@ open class NutritionOrderSupplement: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.instruction = try container.decodeIfPresent(String.self, forKey: .instruction)
-        self.productName = try container.decodeIfPresent(String.self, forKey: .productName)
+
+
+        // String: String
+        if let instructionVal = try container.decodeIfPresent(String.self, forKey: .instruction) {
+          self.instruction = instructionVal
+        }
+        // String: String
+        if let productNameVal = try container.decodeIfPresent(String.self, forKey: .productName) {
+          self.productName = productNameVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        if let scheduleVals = try container.decodeIfPresent([Timing].self, forKey: .schedule) {
+          // Timing: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

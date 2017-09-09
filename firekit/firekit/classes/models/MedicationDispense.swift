@@ -114,8 +114,73 @@ open class MedicationDispense: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.note = try container.decodeIfPresent(String.self, forKey: .note)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        if let authorizingPrescriptionVals = try container.decodeIfPresent([Reference].self, forKey: .authorizingPrescription) {
+          // Reference: FHIRJSON
+        }
+        // Quantity: FHIRJSON
+        if let daysSupplyVal = try container.decodeIfPresent(Quantity.self, forKey: .daysSupply) {
+          self.daysSupply = daysSupplyVal
+        }
+        // Reference: FHIRJSON
+        if let destinationVal = try container.decodeIfPresent(Reference.self, forKey: .destination) {
+          self.destination = destinationVal
+        }
+        // Reference: FHIRJSON
+        if let dispenserVal = try container.decodeIfPresent(Reference.self, forKey: .dispenser) {
+          self.dispenser = dispenserVal
+        }
+        if let dosageInstructionVals = try container.decodeIfPresent([MedicationDispenseDosageInstruction].self, forKey: .dosageInstruction) {
+          // MedicationDispenseDosageInstruction: FHIRJSON
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let medicationCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .medicationCodeableConcept) {
+          self.medicationCodeableConcept = medicationCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let medicationReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .medicationReference) {
+          self.medicationReference = medicationReferenceVal
+        }
+        // String: String
+        if let noteVal = try container.decodeIfPresent(String.self, forKey: .note) {
+          self.note = noteVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        if let receiverVals = try container.decodeIfPresent([Reference].self, forKey: .receiver) {
+          // Reference: FHIRJSON
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // MedicationDispenseSubstitution: FHIRJSON
+        if let substitutionVal = try container.decodeIfPresent(MedicationDispenseSubstitution.self, forKey: .substitution) {
+          self.substitution = substitutionVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // DateTime: String
+        if let whenHandedOverVal = try container.decodeIfPresent(DateTime.self, forKey: .whenHandedOver) {
+          self.whenHandedOver = whenHandedOverVal
+        }
+        // DateTime: String
+        if let whenPreparedVal = try container.decodeIfPresent(DateTime.self, forKey: .whenPrepared) {
+          self.whenPrepared = whenPreparedVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -470,8 +535,64 @@ open class MedicationDispenseDosageInstruction: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.asNeededBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .asNeededBoolean)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+
+
+        // CodeableConcept: FHIRJSON
+        if let additionalInstructionsVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .additionalInstructions) {
+          self.additionalInstructions = additionalInstructionsVal
+        }
+        // Bool: Bool
+        if let asNeededBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .asNeededBoolean) {
+          self.asNeededBoolean.value = asNeededBooleanVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let asNeededCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .asNeededCodeableConcept) {
+          self.asNeededCodeableConcept = asNeededCodeableConceptVal
+        }
+        // Quantity: FHIRJSON
+        if let doseQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .doseQuantity) {
+          self.doseQuantity = doseQuantityVal
+        }
+        // Range: FHIRJSON
+        if let doseRangeVal = try container.decodeIfPresent(Range.self, forKey: .doseRange) {
+          self.doseRange = doseRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let maxDosePerPeriodVal = try container.decodeIfPresent(Ratio.self, forKey: .maxDosePerPeriod) {
+          self.maxDosePerPeriod = maxDosePerPeriodVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let methodVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .method) {
+          self.method = methodVal
+        }
+        // Range: FHIRJSON
+        if let rateRangeVal = try container.decodeIfPresent(Range.self, forKey: .rateRange) {
+          self.rateRange = rateRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let rateRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .rateRatio) {
+          self.rateRatio = rateRatioVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let routeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .route) {
+          self.route = routeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let siteCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .siteCodeableConcept) {
+          self.siteCodeableConcept = siteCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let siteReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .siteReference) {
+          self.siteReference = siteReferenceVal
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // Timing: FHIRJSON
+        if let timingVal = try container.decodeIfPresent(Timing.self, forKey: .timing) {
+          self.timing = timingVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -726,6 +847,18 @@ open class MedicationDispenseSubstitution: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let reasonVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .reason) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let responsiblePartyVals = try container.decodeIfPresent([Reference].self, forKey: .responsibleParty) {
+          // Reference: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

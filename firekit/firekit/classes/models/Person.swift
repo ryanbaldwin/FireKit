@@ -67,8 +67,43 @@ open class Person: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active.value = try container.decodeIfPresent(Bool.self, forKey: .active)
-        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
+
+
+        // Bool: Bool
+        if let activeVal = try container.decodeIfPresent(Bool.self, forKey: .active) {
+          self.active.value = activeVal
+        }
+        if let addressVals = try container.decodeIfPresent([Address].self, forKey: .address) {
+          // Address: FHIRJSON
+        }
+        // FHIRDate: String
+        if let birthDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .birthDate) {
+          self.birthDate = birthDateVal
+        }
+        // String: String
+        if let genderVal = try container.decodeIfPresent(String.self, forKey: .gender) {
+          self.gender = genderVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let linkVals = try container.decodeIfPresent([PersonLink].self, forKey: .link) {
+          // PersonLink: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let managingOrganizationVal = try container.decodeIfPresent(Reference.self, forKey: .managingOrganization) {
+          self.managingOrganization = managingOrganizationVal
+        }
+        if let nameVals = try container.decodeIfPresent([HumanName].self, forKey: .name) {
+          // HumanName: FHIRJSON
+        }
+        // Attachment: FHIRJSON
+        if let photoVal = try container.decodeIfPresent(Attachment.self, forKey: .photo) {
+          self.photo = photoVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -280,7 +315,16 @@ open class PersonLink: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.assurance = try container.decodeIfPresent(String.self, forKey: .assurance)
+
+
+        // String: String
+        if let assuranceVal = try container.decodeIfPresent(String.self, forKey: .assurance) {
+          self.assurance = assuranceVal
+        }
+        // Reference: FHIRJSON
+        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
+          self.target = targetVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

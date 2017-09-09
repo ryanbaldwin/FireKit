@@ -51,6 +51,16 @@ open class Ratio: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Quantity: FHIRJSON
+        if let denominatorVal = try container.decodeIfPresent(Quantity.self, forKey: .denominator) {
+          self.denominator = denominatorVal
+        }
+        // Quantity: FHIRJSON
+        if let numeratorVal = try container.decodeIfPresent(Quantity.self, forKey: .numerator) {
+          self.numerator = numeratorVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

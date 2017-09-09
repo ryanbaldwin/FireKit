@@ -81,6 +81,42 @@ open class Order: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        if let detailVals = try container.decodeIfPresent([Reference].self, forKey: .detail) {
+          // Reference: FHIRJSON
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let reasonCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept) {
+          self.reasonCodeableConcept = reasonCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let reasonReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .reasonReference) {
+          self.reasonReference = reasonReferenceVal
+        }
+        // Reference: FHIRJSON
+        if let sourceVal = try container.decodeIfPresent(Reference.self, forKey: .source) {
+          self.source = sourceVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
+        // Reference: FHIRJSON
+        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
+          self.target = targetVal
+        }
+        // OrderWhen: FHIRJSON
+        if let whenVal = try container.decodeIfPresent(OrderWhen.self, forKey: .when) {
+          self.when = whenVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -270,6 +306,16 @@ open class OrderWhen: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // Timing: FHIRJSON
+        if let scheduleVal = try container.decodeIfPresent(Timing.self, forKey: .schedule) {
+          self.schedule = scheduleVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

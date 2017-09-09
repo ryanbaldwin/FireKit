@@ -49,6 +49,11 @@ open class OperationOutcome: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let issueVals = try container.decodeIfPresent([OperationOutcomeIssue].self, forKey: .issue) {
+          // OperationOutcomeIssue: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -143,9 +148,27 @@ open class OperationOutcomeIssue: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.diagnostics = try container.decodeIfPresent(String.self, forKey: .diagnostics)
-        self.severity = try container.decodeIfPresent(String.self, forKey: .severity)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let detailsVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .details) {
+          self.details = detailsVal
+        }
+        // String: String
+        if let diagnosticsVal = try container.decodeIfPresent(String.self, forKey: .diagnostics) {
+          self.diagnostics = diagnosticsVal
+        }
+        if let locationVals = try container.decodeIfPresent([String].self, forKey: .location) {
+          // String: String
+        }
+        // String: String
+        if let severityVal = try container.decodeIfPresent(String.self, forKey: .severity) {
+          self.severity = severityVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

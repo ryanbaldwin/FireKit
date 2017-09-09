@@ -808,81 +808,893 @@ open class ElementDefinition: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
-        self.defaultValueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .defaultValueBoolean)
-        self.defaultValueCode = try container.decodeIfPresent(String.self, forKey: .defaultValueCode)
-        self.defaultValueId = try container.decodeIfPresent(String.self, forKey: .defaultValueId)
-        self.defaultValueInteger.value = try container.decodeIfPresent(Int.self, forKey: .defaultValueInteger)
-        self.defaultValueMarkdown = try container.decodeIfPresent(String.self, forKey: .defaultValueMarkdown)
-        self.defaultValueOid = try container.decodeIfPresent(String.self, forKey: .defaultValueOid)
-        self.defaultValuePositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .defaultValuePositiveInt)
-        self.defaultValueString = try container.decodeIfPresent(String.self, forKey: .defaultValueString)
-        self.defaultValueUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .defaultValueUnsignedInt)
-        self.defaultValueUri = try container.decodeIfPresent(String.self, forKey: .defaultValueUri)
-        self.definition = try container.decodeIfPresent(String.self, forKey: .definition)
-        self.exampleBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .exampleBoolean)
-        self.exampleCode = try container.decodeIfPresent(String.self, forKey: .exampleCode)
-        self.exampleId = try container.decodeIfPresent(String.self, forKey: .exampleId)
-        self.exampleInteger.value = try container.decodeIfPresent(Int.self, forKey: .exampleInteger)
-        self.exampleMarkdown = try container.decodeIfPresent(String.self, forKey: .exampleMarkdown)
-        self.exampleOid = try container.decodeIfPresent(String.self, forKey: .exampleOid)
-        self.examplePositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .examplePositiveInt)
-        self.exampleString = try container.decodeIfPresent(String.self, forKey: .exampleString)
-        self.exampleUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .exampleUnsignedInt)
-        self.exampleUri = try container.decodeIfPresent(String.self, forKey: .exampleUri)
-        self.fixedBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .fixedBoolean)
-        self.fixedCode = try container.decodeIfPresent(String.self, forKey: .fixedCode)
-        self.fixedId = try container.decodeIfPresent(String.self, forKey: .fixedId)
-        self.fixedInteger.value = try container.decodeIfPresent(Int.self, forKey: .fixedInteger)
-        self.fixedMarkdown = try container.decodeIfPresent(String.self, forKey: .fixedMarkdown)
-        self.fixedOid = try container.decodeIfPresent(String.self, forKey: .fixedOid)
-        self.fixedPositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .fixedPositiveInt)
-        self.fixedString = try container.decodeIfPresent(String.self, forKey: .fixedString)
-        self.fixedUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .fixedUnsignedInt)
-        self.fixedUri = try container.decodeIfPresent(String.self, forKey: .fixedUri)
-        self.isModifier.value = try container.decodeIfPresent(Bool.self, forKey: .isModifier)
-        self.isSummary.value = try container.decodeIfPresent(Bool.self, forKey: .isSummary)
-        self.label = try container.decodeIfPresent(String.self, forKey: .label)
-        self.max = try container.decodeIfPresent(String.self, forKey: .max)
-        self.maxLength.value = try container.decodeIfPresent(Int.self, forKey: .maxLength)
-        self.maxValueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .maxValueBoolean)
-        self.maxValueCode = try container.decodeIfPresent(String.self, forKey: .maxValueCode)
-        self.maxValueId = try container.decodeIfPresent(String.self, forKey: .maxValueId)
-        self.maxValueInteger.value = try container.decodeIfPresent(Int.self, forKey: .maxValueInteger)
-        self.maxValueMarkdown = try container.decodeIfPresent(String.self, forKey: .maxValueMarkdown)
-        self.maxValueOid = try container.decodeIfPresent(String.self, forKey: .maxValueOid)
-        self.maxValuePositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .maxValuePositiveInt)
-        self.maxValueString = try container.decodeIfPresent(String.self, forKey: .maxValueString)
-        self.maxValueUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .maxValueUnsignedInt)
-        self.maxValueUri = try container.decodeIfPresent(String.self, forKey: .maxValueUri)
-        self.meaningWhenMissing = try container.decodeIfPresent(String.self, forKey: .meaningWhenMissing)
-        self.min.value = try container.decodeIfPresent(Int.self, forKey: .min)
-        self.minValueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .minValueBoolean)
-        self.minValueCode = try container.decodeIfPresent(String.self, forKey: .minValueCode)
-        self.minValueId = try container.decodeIfPresent(String.self, forKey: .minValueId)
-        self.minValueInteger.value = try container.decodeIfPresent(Int.self, forKey: .minValueInteger)
-        self.minValueMarkdown = try container.decodeIfPresent(String.self, forKey: .minValueMarkdown)
-        self.minValueOid = try container.decodeIfPresent(String.self, forKey: .minValueOid)
-        self.minValuePositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .minValuePositiveInt)
-        self.minValueString = try container.decodeIfPresent(String.self, forKey: .minValueString)
-        self.minValueUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .minValueUnsignedInt)
-        self.minValueUri = try container.decodeIfPresent(String.self, forKey: .minValueUri)
-        self.mustSupport.value = try container.decodeIfPresent(Bool.self, forKey: .mustSupport)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.nameReference = try container.decodeIfPresent(String.self, forKey: .nameReference)
-        self.path = try container.decodeIfPresent(String.self, forKey: .path)
-        self.patternBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .patternBoolean)
-        self.patternCode = try container.decodeIfPresent(String.self, forKey: .patternCode)
-        self.patternId = try container.decodeIfPresent(String.self, forKey: .patternId)
-        self.patternInteger.value = try container.decodeIfPresent(Int.self, forKey: .patternInteger)
-        self.patternMarkdown = try container.decodeIfPresent(String.self, forKey: .patternMarkdown)
-        self.patternOid = try container.decodeIfPresent(String.self, forKey: .patternOid)
-        self.patternPositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .patternPositiveInt)
-        self.patternString = try container.decodeIfPresent(String.self, forKey: .patternString)
-        self.patternUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .patternUnsignedInt)
-        self.patternUri = try container.decodeIfPresent(String.self, forKey: .patternUri)
-        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
-        self.short = try container.decodeIfPresent(String.self, forKey: .short)
+
+
+        if let aliasVals = try container.decodeIfPresent([String].self, forKey: .alias) {
+          // String: String
+        }
+        // ElementDefinitionBase: FHIRJSON
+        if let baseVal = try container.decodeIfPresent(ElementDefinitionBase.self, forKey: .base) {
+          self.base = baseVal
+        }
+        // ElementDefinitionBinding: FHIRJSON
+        if let bindingVal = try container.decodeIfPresent(ElementDefinitionBinding.self, forKey: .binding) {
+          self.binding = bindingVal
+        }
+        if let codeVals = try container.decodeIfPresent([Coding].self, forKey: .code) {
+          // Coding: FHIRJSON
+        }
+        // String: String
+        if let commentsVal = try container.decodeIfPresent(String.self, forKey: .comments) {
+          self.comments = commentsVal
+        }
+        if let conditionVals = try container.decodeIfPresent([String].self, forKey: .condition) {
+          // String: String
+        }
+        if let constraintVals = try container.decodeIfPresent([ElementDefinitionConstraint].self, forKey: .constraint) {
+          // ElementDefinitionConstraint: FHIRJSON
+        }
+        // Address: FHIRJSON
+        if let defaultValueAddressVal = try container.decodeIfPresent(Address.self, forKey: .defaultValueAddress) {
+          self.defaultValueAddress = defaultValueAddressVal
+        }
+        // Annotation: FHIRJSON
+        if let defaultValueAnnotationVal = try container.decodeIfPresent(Annotation.self, forKey: .defaultValueAnnotation) {
+          self.defaultValueAnnotation = defaultValueAnnotationVal
+        }
+        // Attachment: FHIRJSON
+        if let defaultValueAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .defaultValueAttachment) {
+          self.defaultValueAttachment = defaultValueAttachmentVal
+        }
+        // Base64Binary: String
+        if let defaultValueBase64BinaryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .defaultValueBase64Binary) {
+          self.defaultValueBase64Binary = defaultValueBase64BinaryVal
+        }
+        // Bool: Bool
+        if let defaultValueBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .defaultValueBoolean) {
+          self.defaultValueBoolean.value = defaultValueBooleanVal
+        }
+        // String: String
+        if let defaultValueCodeVal = try container.decodeIfPresent(String.self, forKey: .defaultValueCode) {
+          self.defaultValueCode = defaultValueCodeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let defaultValueCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .defaultValueCodeableConcept) {
+          self.defaultValueCodeableConcept = defaultValueCodeableConceptVal
+        }
+        // Coding: FHIRJSON
+        if let defaultValueCodingVal = try container.decodeIfPresent(Coding.self, forKey: .defaultValueCoding) {
+          self.defaultValueCoding = defaultValueCodingVal
+        }
+        // ContactPoint: FHIRJSON
+        if let defaultValueContactPointVal = try container.decodeIfPresent(ContactPoint.self, forKey: .defaultValueContactPoint) {
+          self.defaultValueContactPoint = defaultValueContactPointVal
+        }
+        // FHIRDate: String
+        if let defaultValueDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .defaultValueDate) {
+          self.defaultValueDate = defaultValueDateVal
+        }
+        // DateTime: String
+        if let defaultValueDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .defaultValueDateTime) {
+          self.defaultValueDateTime = defaultValueDateTimeVal
+        }
+        // RealmDecimal: NSNumber
+        if let defaultValueDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .defaultValueDecimal) {
+          self.defaultValueDecimal = defaultValueDecimalVal
+        }
+        // HumanName: FHIRJSON
+        if let defaultValueHumanNameVal = try container.decodeIfPresent(HumanName.self, forKey: .defaultValueHumanName) {
+          self.defaultValueHumanName = defaultValueHumanNameVal
+        }
+        // String: String
+        if let defaultValueIdVal = try container.decodeIfPresent(String.self, forKey: .defaultValueId) {
+          self.defaultValueId = defaultValueIdVal
+        }
+        // Identifier: FHIRJSON
+        if let defaultValueIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .defaultValueIdentifier) {
+          self.defaultValueIdentifier = defaultValueIdentifierVal
+        }
+        // Instant: String
+        if let defaultValueInstantVal = try container.decodeIfPresent(Instant.self, forKey: .defaultValueInstant) {
+          self.defaultValueInstant = defaultValueInstantVal
+        }
+        // Int: Int
+        if let defaultValueIntegerVal = try container.decodeIfPresent(Int.self, forKey: .defaultValueInteger) {
+          self.defaultValueInteger.value = defaultValueIntegerVal
+        }
+        // String: String
+        if let defaultValueMarkdownVal = try container.decodeIfPresent(String.self, forKey: .defaultValueMarkdown) {
+          self.defaultValueMarkdown = defaultValueMarkdownVal
+        }
+        // Meta: FHIRJSON
+        if let defaultValueMetaVal = try container.decodeIfPresent(Meta.self, forKey: .defaultValueMeta) {
+          self.defaultValueMeta = defaultValueMetaVal
+        }
+        // String: String
+        if let defaultValueOidVal = try container.decodeIfPresent(String.self, forKey: .defaultValueOid) {
+          self.defaultValueOid = defaultValueOidVal
+        }
+        // Period: FHIRJSON
+        if let defaultValuePeriodVal = try container.decodeIfPresent(Period.self, forKey: .defaultValuePeriod) {
+          self.defaultValuePeriod = defaultValuePeriodVal
+        }
+        // Int: Int
+        if let defaultValuePositiveIntVal = try container.decodeIfPresent(Int.self, forKey: .defaultValuePositiveInt) {
+          self.defaultValuePositiveInt.value = defaultValuePositiveIntVal
+        }
+        // Quantity: FHIRJSON
+        if let defaultValueQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .defaultValueQuantity) {
+          self.defaultValueQuantity = defaultValueQuantityVal
+        }
+        // Range: FHIRJSON
+        if let defaultValueRangeVal = try container.decodeIfPresent(Range.self, forKey: .defaultValueRange) {
+          self.defaultValueRange = defaultValueRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let defaultValueRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .defaultValueRatio) {
+          self.defaultValueRatio = defaultValueRatioVal
+        }
+        // Reference: FHIRJSON
+        if let defaultValueReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .defaultValueReference) {
+          self.defaultValueReference = defaultValueReferenceVal
+        }
+        // SampledData: FHIRJSON
+        if let defaultValueSampledDataVal = try container.decodeIfPresent(SampledData.self, forKey: .defaultValueSampledData) {
+          self.defaultValueSampledData = defaultValueSampledDataVal
+        }
+        // Signature: FHIRJSON
+        if let defaultValueSignatureVal = try container.decodeIfPresent(Signature.self, forKey: .defaultValueSignature) {
+          self.defaultValueSignature = defaultValueSignatureVal
+        }
+        // String: String
+        if let defaultValueStringVal = try container.decodeIfPresent(String.self, forKey: .defaultValueString) {
+          self.defaultValueString = defaultValueStringVal
+        }
+        // FHIRTime: String
+        if let defaultValueTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .defaultValueTime) {
+          self.defaultValueTime = defaultValueTimeVal
+        }
+        // Timing: FHIRJSON
+        if let defaultValueTimingVal = try container.decodeIfPresent(Timing.self, forKey: .defaultValueTiming) {
+          self.defaultValueTiming = defaultValueTimingVal
+        }
+        // Int: Int
+        if let defaultValueUnsignedIntVal = try container.decodeIfPresent(Int.self, forKey: .defaultValueUnsignedInt) {
+          self.defaultValueUnsignedInt.value = defaultValueUnsignedIntVal
+        }
+        // String: String
+        if let defaultValueUriVal = try container.decodeIfPresent(String.self, forKey: .defaultValueUri) {
+          self.defaultValueUri = defaultValueUriVal
+        }
+        // String: String
+        if let definitionVal = try container.decodeIfPresent(String.self, forKey: .definition) {
+          self.definition = definitionVal
+        }
+        // Address: FHIRJSON
+        if let exampleAddressVal = try container.decodeIfPresent(Address.self, forKey: .exampleAddress) {
+          self.exampleAddress = exampleAddressVal
+        }
+        // Annotation: FHIRJSON
+        if let exampleAnnotationVal = try container.decodeIfPresent(Annotation.self, forKey: .exampleAnnotation) {
+          self.exampleAnnotation = exampleAnnotationVal
+        }
+        // Attachment: FHIRJSON
+        if let exampleAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .exampleAttachment) {
+          self.exampleAttachment = exampleAttachmentVal
+        }
+        // Base64Binary: String
+        if let exampleBase64BinaryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .exampleBase64Binary) {
+          self.exampleBase64Binary = exampleBase64BinaryVal
+        }
+        // Bool: Bool
+        if let exampleBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .exampleBoolean) {
+          self.exampleBoolean.value = exampleBooleanVal
+        }
+        // String: String
+        if let exampleCodeVal = try container.decodeIfPresent(String.self, forKey: .exampleCode) {
+          self.exampleCode = exampleCodeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let exampleCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .exampleCodeableConcept) {
+          self.exampleCodeableConcept = exampleCodeableConceptVal
+        }
+        // Coding: FHIRJSON
+        if let exampleCodingVal = try container.decodeIfPresent(Coding.self, forKey: .exampleCoding) {
+          self.exampleCoding = exampleCodingVal
+        }
+        // ContactPoint: FHIRJSON
+        if let exampleContactPointVal = try container.decodeIfPresent(ContactPoint.self, forKey: .exampleContactPoint) {
+          self.exampleContactPoint = exampleContactPointVal
+        }
+        // FHIRDate: String
+        if let exampleDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .exampleDate) {
+          self.exampleDate = exampleDateVal
+        }
+        // DateTime: String
+        if let exampleDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .exampleDateTime) {
+          self.exampleDateTime = exampleDateTimeVal
+        }
+        // RealmDecimal: NSNumber
+        if let exampleDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .exampleDecimal) {
+          self.exampleDecimal = exampleDecimalVal
+        }
+        // HumanName: FHIRJSON
+        if let exampleHumanNameVal = try container.decodeIfPresent(HumanName.self, forKey: .exampleHumanName) {
+          self.exampleHumanName = exampleHumanNameVal
+        }
+        // String: String
+        if let exampleIdVal = try container.decodeIfPresent(String.self, forKey: .exampleId) {
+          self.exampleId = exampleIdVal
+        }
+        // Identifier: FHIRJSON
+        if let exampleIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .exampleIdentifier) {
+          self.exampleIdentifier = exampleIdentifierVal
+        }
+        // Instant: String
+        if let exampleInstantVal = try container.decodeIfPresent(Instant.self, forKey: .exampleInstant) {
+          self.exampleInstant = exampleInstantVal
+        }
+        // Int: Int
+        if let exampleIntegerVal = try container.decodeIfPresent(Int.self, forKey: .exampleInteger) {
+          self.exampleInteger.value = exampleIntegerVal
+        }
+        // String: String
+        if let exampleMarkdownVal = try container.decodeIfPresent(String.self, forKey: .exampleMarkdown) {
+          self.exampleMarkdown = exampleMarkdownVal
+        }
+        // Meta: FHIRJSON
+        if let exampleMetaVal = try container.decodeIfPresent(Meta.self, forKey: .exampleMeta) {
+          self.exampleMeta = exampleMetaVal
+        }
+        // String: String
+        if let exampleOidVal = try container.decodeIfPresent(String.self, forKey: .exampleOid) {
+          self.exampleOid = exampleOidVal
+        }
+        // Period: FHIRJSON
+        if let examplePeriodVal = try container.decodeIfPresent(Period.self, forKey: .examplePeriod) {
+          self.examplePeriod = examplePeriodVal
+        }
+        // Int: Int
+        if let examplePositiveIntVal = try container.decodeIfPresent(Int.self, forKey: .examplePositiveInt) {
+          self.examplePositiveInt.value = examplePositiveIntVal
+        }
+        // Quantity: FHIRJSON
+        if let exampleQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .exampleQuantity) {
+          self.exampleQuantity = exampleQuantityVal
+        }
+        // Range: FHIRJSON
+        if let exampleRangeVal = try container.decodeIfPresent(Range.self, forKey: .exampleRange) {
+          self.exampleRange = exampleRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let exampleRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .exampleRatio) {
+          self.exampleRatio = exampleRatioVal
+        }
+        // Reference: FHIRJSON
+        if let exampleReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .exampleReference) {
+          self.exampleReference = exampleReferenceVal
+        }
+        // SampledData: FHIRJSON
+        if let exampleSampledDataVal = try container.decodeIfPresent(SampledData.self, forKey: .exampleSampledData) {
+          self.exampleSampledData = exampleSampledDataVal
+        }
+        // Signature: FHIRJSON
+        if let exampleSignatureVal = try container.decodeIfPresent(Signature.self, forKey: .exampleSignature) {
+          self.exampleSignature = exampleSignatureVal
+        }
+        // String: String
+        if let exampleStringVal = try container.decodeIfPresent(String.self, forKey: .exampleString) {
+          self.exampleString = exampleStringVal
+        }
+        // FHIRTime: String
+        if let exampleTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .exampleTime) {
+          self.exampleTime = exampleTimeVal
+        }
+        // Timing: FHIRJSON
+        if let exampleTimingVal = try container.decodeIfPresent(Timing.self, forKey: .exampleTiming) {
+          self.exampleTiming = exampleTimingVal
+        }
+        // Int: Int
+        if let exampleUnsignedIntVal = try container.decodeIfPresent(Int.self, forKey: .exampleUnsignedInt) {
+          self.exampleUnsignedInt.value = exampleUnsignedIntVal
+        }
+        // String: String
+        if let exampleUriVal = try container.decodeIfPresent(String.self, forKey: .exampleUri) {
+          self.exampleUri = exampleUriVal
+        }
+        // Address: FHIRJSON
+        if let fixedAddressVal = try container.decodeIfPresent(Address.self, forKey: .fixedAddress) {
+          self.fixedAddress = fixedAddressVal
+        }
+        // Annotation: FHIRJSON
+        if let fixedAnnotationVal = try container.decodeIfPresent(Annotation.self, forKey: .fixedAnnotation) {
+          self.fixedAnnotation = fixedAnnotationVal
+        }
+        // Attachment: FHIRJSON
+        if let fixedAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .fixedAttachment) {
+          self.fixedAttachment = fixedAttachmentVal
+        }
+        // Base64Binary: String
+        if let fixedBase64BinaryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .fixedBase64Binary) {
+          self.fixedBase64Binary = fixedBase64BinaryVal
+        }
+        // Bool: Bool
+        if let fixedBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .fixedBoolean) {
+          self.fixedBoolean.value = fixedBooleanVal
+        }
+        // String: String
+        if let fixedCodeVal = try container.decodeIfPresent(String.self, forKey: .fixedCode) {
+          self.fixedCode = fixedCodeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let fixedCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .fixedCodeableConcept) {
+          self.fixedCodeableConcept = fixedCodeableConceptVal
+        }
+        // Coding: FHIRJSON
+        if let fixedCodingVal = try container.decodeIfPresent(Coding.self, forKey: .fixedCoding) {
+          self.fixedCoding = fixedCodingVal
+        }
+        // ContactPoint: FHIRJSON
+        if let fixedContactPointVal = try container.decodeIfPresent(ContactPoint.self, forKey: .fixedContactPoint) {
+          self.fixedContactPoint = fixedContactPointVal
+        }
+        // FHIRDate: String
+        if let fixedDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .fixedDate) {
+          self.fixedDate = fixedDateVal
+        }
+        // DateTime: String
+        if let fixedDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .fixedDateTime) {
+          self.fixedDateTime = fixedDateTimeVal
+        }
+        // RealmDecimal: NSNumber
+        if let fixedDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .fixedDecimal) {
+          self.fixedDecimal = fixedDecimalVal
+        }
+        // HumanName: FHIRJSON
+        if let fixedHumanNameVal = try container.decodeIfPresent(HumanName.self, forKey: .fixedHumanName) {
+          self.fixedHumanName = fixedHumanNameVal
+        }
+        // String: String
+        if let fixedIdVal = try container.decodeIfPresent(String.self, forKey: .fixedId) {
+          self.fixedId = fixedIdVal
+        }
+        // Identifier: FHIRJSON
+        if let fixedIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .fixedIdentifier) {
+          self.fixedIdentifier = fixedIdentifierVal
+        }
+        // Instant: String
+        if let fixedInstantVal = try container.decodeIfPresent(Instant.self, forKey: .fixedInstant) {
+          self.fixedInstant = fixedInstantVal
+        }
+        // Int: Int
+        if let fixedIntegerVal = try container.decodeIfPresent(Int.self, forKey: .fixedInteger) {
+          self.fixedInteger.value = fixedIntegerVal
+        }
+        // String: String
+        if let fixedMarkdownVal = try container.decodeIfPresent(String.self, forKey: .fixedMarkdown) {
+          self.fixedMarkdown = fixedMarkdownVal
+        }
+        // Meta: FHIRJSON
+        if let fixedMetaVal = try container.decodeIfPresent(Meta.self, forKey: .fixedMeta) {
+          self.fixedMeta = fixedMetaVal
+        }
+        // String: String
+        if let fixedOidVal = try container.decodeIfPresent(String.self, forKey: .fixedOid) {
+          self.fixedOid = fixedOidVal
+        }
+        // Period: FHIRJSON
+        if let fixedPeriodVal = try container.decodeIfPresent(Period.self, forKey: .fixedPeriod) {
+          self.fixedPeriod = fixedPeriodVal
+        }
+        // Int: Int
+        if let fixedPositiveIntVal = try container.decodeIfPresent(Int.self, forKey: .fixedPositiveInt) {
+          self.fixedPositiveInt.value = fixedPositiveIntVal
+        }
+        // Quantity: FHIRJSON
+        if let fixedQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .fixedQuantity) {
+          self.fixedQuantity = fixedQuantityVal
+        }
+        // Range: FHIRJSON
+        if let fixedRangeVal = try container.decodeIfPresent(Range.self, forKey: .fixedRange) {
+          self.fixedRange = fixedRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let fixedRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .fixedRatio) {
+          self.fixedRatio = fixedRatioVal
+        }
+        // Reference: FHIRJSON
+        if let fixedReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .fixedReference) {
+          self.fixedReference = fixedReferenceVal
+        }
+        // SampledData: FHIRJSON
+        if let fixedSampledDataVal = try container.decodeIfPresent(SampledData.self, forKey: .fixedSampledData) {
+          self.fixedSampledData = fixedSampledDataVal
+        }
+        // Signature: FHIRJSON
+        if let fixedSignatureVal = try container.decodeIfPresent(Signature.self, forKey: .fixedSignature) {
+          self.fixedSignature = fixedSignatureVal
+        }
+        // String: String
+        if let fixedStringVal = try container.decodeIfPresent(String.self, forKey: .fixedString) {
+          self.fixedString = fixedStringVal
+        }
+        // FHIRTime: String
+        if let fixedTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .fixedTime) {
+          self.fixedTime = fixedTimeVal
+        }
+        // Timing: FHIRJSON
+        if let fixedTimingVal = try container.decodeIfPresent(Timing.self, forKey: .fixedTiming) {
+          self.fixedTiming = fixedTimingVal
+        }
+        // Int: Int
+        if let fixedUnsignedIntVal = try container.decodeIfPresent(Int.self, forKey: .fixedUnsignedInt) {
+          self.fixedUnsignedInt.value = fixedUnsignedIntVal
+        }
+        // String: String
+        if let fixedUriVal = try container.decodeIfPresent(String.self, forKey: .fixedUri) {
+          self.fixedUri = fixedUriVal
+        }
+        // Bool: Bool
+        if let isModifierVal = try container.decodeIfPresent(Bool.self, forKey: .isModifier) {
+          self.isModifier.value = isModifierVal
+        }
+        // Bool: Bool
+        if let isSummaryVal = try container.decodeIfPresent(Bool.self, forKey: .isSummary) {
+          self.isSummary.value = isSummaryVal
+        }
+        // String: String
+        if let labelVal = try container.decodeIfPresent(String.self, forKey: .label) {
+          self.label = labelVal
+        }
+        if let mappingVals = try container.decodeIfPresent([ElementDefinitionMapping].self, forKey: .mapping) {
+          // ElementDefinitionMapping: FHIRJSON
+        }
+        // String: String
+        if let maxVal = try container.decodeIfPresent(String.self, forKey: .max) {
+          self.max = maxVal
+        }
+        // Int: Int
+        if let maxLengthVal = try container.decodeIfPresent(Int.self, forKey: .maxLength) {
+          self.maxLength.value = maxLengthVal
+        }
+        // Address: FHIRJSON
+        if let maxValueAddressVal = try container.decodeIfPresent(Address.self, forKey: .maxValueAddress) {
+          self.maxValueAddress = maxValueAddressVal
+        }
+        // Annotation: FHIRJSON
+        if let maxValueAnnotationVal = try container.decodeIfPresent(Annotation.self, forKey: .maxValueAnnotation) {
+          self.maxValueAnnotation = maxValueAnnotationVal
+        }
+        // Attachment: FHIRJSON
+        if let maxValueAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .maxValueAttachment) {
+          self.maxValueAttachment = maxValueAttachmentVal
+        }
+        // Base64Binary: String
+        if let maxValueBase64BinaryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .maxValueBase64Binary) {
+          self.maxValueBase64Binary = maxValueBase64BinaryVal
+        }
+        // Bool: Bool
+        if let maxValueBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .maxValueBoolean) {
+          self.maxValueBoolean.value = maxValueBooleanVal
+        }
+        // String: String
+        if let maxValueCodeVal = try container.decodeIfPresent(String.self, forKey: .maxValueCode) {
+          self.maxValueCode = maxValueCodeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let maxValueCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .maxValueCodeableConcept) {
+          self.maxValueCodeableConcept = maxValueCodeableConceptVal
+        }
+        // Coding: FHIRJSON
+        if let maxValueCodingVal = try container.decodeIfPresent(Coding.self, forKey: .maxValueCoding) {
+          self.maxValueCoding = maxValueCodingVal
+        }
+        // ContactPoint: FHIRJSON
+        if let maxValueContactPointVal = try container.decodeIfPresent(ContactPoint.self, forKey: .maxValueContactPoint) {
+          self.maxValueContactPoint = maxValueContactPointVal
+        }
+        // FHIRDate: String
+        if let maxValueDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .maxValueDate) {
+          self.maxValueDate = maxValueDateVal
+        }
+        // DateTime: String
+        if let maxValueDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .maxValueDateTime) {
+          self.maxValueDateTime = maxValueDateTimeVal
+        }
+        // RealmDecimal: NSNumber
+        if let maxValueDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .maxValueDecimal) {
+          self.maxValueDecimal = maxValueDecimalVal
+        }
+        // HumanName: FHIRJSON
+        if let maxValueHumanNameVal = try container.decodeIfPresent(HumanName.self, forKey: .maxValueHumanName) {
+          self.maxValueHumanName = maxValueHumanNameVal
+        }
+        // String: String
+        if let maxValueIdVal = try container.decodeIfPresent(String.self, forKey: .maxValueId) {
+          self.maxValueId = maxValueIdVal
+        }
+        // Identifier: FHIRJSON
+        if let maxValueIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .maxValueIdentifier) {
+          self.maxValueIdentifier = maxValueIdentifierVal
+        }
+        // Instant: String
+        if let maxValueInstantVal = try container.decodeIfPresent(Instant.self, forKey: .maxValueInstant) {
+          self.maxValueInstant = maxValueInstantVal
+        }
+        // Int: Int
+        if let maxValueIntegerVal = try container.decodeIfPresent(Int.self, forKey: .maxValueInteger) {
+          self.maxValueInteger.value = maxValueIntegerVal
+        }
+        // String: String
+        if let maxValueMarkdownVal = try container.decodeIfPresent(String.self, forKey: .maxValueMarkdown) {
+          self.maxValueMarkdown = maxValueMarkdownVal
+        }
+        // Meta: FHIRJSON
+        if let maxValueMetaVal = try container.decodeIfPresent(Meta.self, forKey: .maxValueMeta) {
+          self.maxValueMeta = maxValueMetaVal
+        }
+        // String: String
+        if let maxValueOidVal = try container.decodeIfPresent(String.self, forKey: .maxValueOid) {
+          self.maxValueOid = maxValueOidVal
+        }
+        // Period: FHIRJSON
+        if let maxValuePeriodVal = try container.decodeIfPresent(Period.self, forKey: .maxValuePeriod) {
+          self.maxValuePeriod = maxValuePeriodVal
+        }
+        // Int: Int
+        if let maxValuePositiveIntVal = try container.decodeIfPresent(Int.self, forKey: .maxValuePositiveInt) {
+          self.maxValuePositiveInt.value = maxValuePositiveIntVal
+        }
+        // Quantity: FHIRJSON
+        if let maxValueQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .maxValueQuantity) {
+          self.maxValueQuantity = maxValueQuantityVal
+        }
+        // Range: FHIRJSON
+        if let maxValueRangeVal = try container.decodeIfPresent(Range.self, forKey: .maxValueRange) {
+          self.maxValueRange = maxValueRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let maxValueRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .maxValueRatio) {
+          self.maxValueRatio = maxValueRatioVal
+        }
+        // Reference: FHIRJSON
+        if let maxValueReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .maxValueReference) {
+          self.maxValueReference = maxValueReferenceVal
+        }
+        // SampledData: FHIRJSON
+        if let maxValueSampledDataVal = try container.decodeIfPresent(SampledData.self, forKey: .maxValueSampledData) {
+          self.maxValueSampledData = maxValueSampledDataVal
+        }
+        // Signature: FHIRJSON
+        if let maxValueSignatureVal = try container.decodeIfPresent(Signature.self, forKey: .maxValueSignature) {
+          self.maxValueSignature = maxValueSignatureVal
+        }
+        // String: String
+        if let maxValueStringVal = try container.decodeIfPresent(String.self, forKey: .maxValueString) {
+          self.maxValueString = maxValueStringVal
+        }
+        // FHIRTime: String
+        if let maxValueTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .maxValueTime) {
+          self.maxValueTime = maxValueTimeVal
+        }
+        // Timing: FHIRJSON
+        if let maxValueTimingVal = try container.decodeIfPresent(Timing.self, forKey: .maxValueTiming) {
+          self.maxValueTiming = maxValueTimingVal
+        }
+        // Int: Int
+        if let maxValueUnsignedIntVal = try container.decodeIfPresent(Int.self, forKey: .maxValueUnsignedInt) {
+          self.maxValueUnsignedInt.value = maxValueUnsignedIntVal
+        }
+        // String: String
+        if let maxValueUriVal = try container.decodeIfPresent(String.self, forKey: .maxValueUri) {
+          self.maxValueUri = maxValueUriVal
+        }
+        // String: String
+        if let meaningWhenMissingVal = try container.decodeIfPresent(String.self, forKey: .meaningWhenMissing) {
+          self.meaningWhenMissing = meaningWhenMissingVal
+        }
+        // Int: Int
+        if let minVal = try container.decodeIfPresent(Int.self, forKey: .min) {
+          self.min.value = minVal
+        }
+        // Address: FHIRJSON
+        if let minValueAddressVal = try container.decodeIfPresent(Address.self, forKey: .minValueAddress) {
+          self.minValueAddress = minValueAddressVal
+        }
+        // Annotation: FHIRJSON
+        if let minValueAnnotationVal = try container.decodeIfPresent(Annotation.self, forKey: .minValueAnnotation) {
+          self.minValueAnnotation = minValueAnnotationVal
+        }
+        // Attachment: FHIRJSON
+        if let minValueAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .minValueAttachment) {
+          self.minValueAttachment = minValueAttachmentVal
+        }
+        // Base64Binary: String
+        if let minValueBase64BinaryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .minValueBase64Binary) {
+          self.minValueBase64Binary = minValueBase64BinaryVal
+        }
+        // Bool: Bool
+        if let minValueBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .minValueBoolean) {
+          self.minValueBoolean.value = minValueBooleanVal
+        }
+        // String: String
+        if let minValueCodeVal = try container.decodeIfPresent(String.self, forKey: .minValueCode) {
+          self.minValueCode = minValueCodeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let minValueCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .minValueCodeableConcept) {
+          self.minValueCodeableConcept = minValueCodeableConceptVal
+        }
+        // Coding: FHIRJSON
+        if let minValueCodingVal = try container.decodeIfPresent(Coding.self, forKey: .minValueCoding) {
+          self.minValueCoding = minValueCodingVal
+        }
+        // ContactPoint: FHIRJSON
+        if let minValueContactPointVal = try container.decodeIfPresent(ContactPoint.self, forKey: .minValueContactPoint) {
+          self.minValueContactPoint = minValueContactPointVal
+        }
+        // FHIRDate: String
+        if let minValueDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .minValueDate) {
+          self.minValueDate = minValueDateVal
+        }
+        // DateTime: String
+        if let minValueDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .minValueDateTime) {
+          self.minValueDateTime = minValueDateTimeVal
+        }
+        // RealmDecimal: NSNumber
+        if let minValueDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .minValueDecimal) {
+          self.minValueDecimal = minValueDecimalVal
+        }
+        // HumanName: FHIRJSON
+        if let minValueHumanNameVal = try container.decodeIfPresent(HumanName.self, forKey: .minValueHumanName) {
+          self.minValueHumanName = minValueHumanNameVal
+        }
+        // String: String
+        if let minValueIdVal = try container.decodeIfPresent(String.self, forKey: .minValueId) {
+          self.minValueId = minValueIdVal
+        }
+        // Identifier: FHIRJSON
+        if let minValueIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .minValueIdentifier) {
+          self.minValueIdentifier = minValueIdentifierVal
+        }
+        // Instant: String
+        if let minValueInstantVal = try container.decodeIfPresent(Instant.self, forKey: .minValueInstant) {
+          self.minValueInstant = minValueInstantVal
+        }
+        // Int: Int
+        if let minValueIntegerVal = try container.decodeIfPresent(Int.self, forKey: .minValueInteger) {
+          self.minValueInteger.value = minValueIntegerVal
+        }
+        // String: String
+        if let minValueMarkdownVal = try container.decodeIfPresent(String.self, forKey: .minValueMarkdown) {
+          self.minValueMarkdown = minValueMarkdownVal
+        }
+        // Meta: FHIRJSON
+        if let minValueMetaVal = try container.decodeIfPresent(Meta.self, forKey: .minValueMeta) {
+          self.minValueMeta = minValueMetaVal
+        }
+        // String: String
+        if let minValueOidVal = try container.decodeIfPresent(String.self, forKey: .minValueOid) {
+          self.minValueOid = minValueOidVal
+        }
+        // Period: FHIRJSON
+        if let minValuePeriodVal = try container.decodeIfPresent(Period.self, forKey: .minValuePeriod) {
+          self.minValuePeriod = minValuePeriodVal
+        }
+        // Int: Int
+        if let minValuePositiveIntVal = try container.decodeIfPresent(Int.self, forKey: .minValuePositiveInt) {
+          self.minValuePositiveInt.value = minValuePositiveIntVal
+        }
+        // Quantity: FHIRJSON
+        if let minValueQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .minValueQuantity) {
+          self.minValueQuantity = minValueQuantityVal
+        }
+        // Range: FHIRJSON
+        if let minValueRangeVal = try container.decodeIfPresent(Range.self, forKey: .minValueRange) {
+          self.minValueRange = minValueRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let minValueRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .minValueRatio) {
+          self.minValueRatio = minValueRatioVal
+        }
+        // Reference: FHIRJSON
+        if let minValueReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .minValueReference) {
+          self.minValueReference = minValueReferenceVal
+        }
+        // SampledData: FHIRJSON
+        if let minValueSampledDataVal = try container.decodeIfPresent(SampledData.self, forKey: .minValueSampledData) {
+          self.minValueSampledData = minValueSampledDataVal
+        }
+        // Signature: FHIRJSON
+        if let minValueSignatureVal = try container.decodeIfPresent(Signature.self, forKey: .minValueSignature) {
+          self.minValueSignature = minValueSignatureVal
+        }
+        // String: String
+        if let minValueStringVal = try container.decodeIfPresent(String.self, forKey: .minValueString) {
+          self.minValueString = minValueStringVal
+        }
+        // FHIRTime: String
+        if let minValueTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .minValueTime) {
+          self.minValueTime = minValueTimeVal
+        }
+        // Timing: FHIRJSON
+        if let minValueTimingVal = try container.decodeIfPresent(Timing.self, forKey: .minValueTiming) {
+          self.minValueTiming = minValueTimingVal
+        }
+        // Int: Int
+        if let minValueUnsignedIntVal = try container.decodeIfPresent(Int.self, forKey: .minValueUnsignedInt) {
+          self.minValueUnsignedInt.value = minValueUnsignedIntVal
+        }
+        // String: String
+        if let minValueUriVal = try container.decodeIfPresent(String.self, forKey: .minValueUri) {
+          self.minValueUri = minValueUriVal
+        }
+        // Bool: Bool
+        if let mustSupportVal = try container.decodeIfPresent(Bool.self, forKey: .mustSupport) {
+          self.mustSupport.value = mustSupportVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // String: String
+        if let nameReferenceVal = try container.decodeIfPresent(String.self, forKey: .nameReference) {
+          self.nameReference = nameReferenceVal
+        }
+        // String: String
+        if let pathVal = try container.decodeIfPresent(String.self, forKey: .path) {
+          self.path = pathVal
+        }
+        // Address: FHIRJSON
+        if let patternAddressVal = try container.decodeIfPresent(Address.self, forKey: .patternAddress) {
+          self.patternAddress = patternAddressVal
+        }
+        // Annotation: FHIRJSON
+        if let patternAnnotationVal = try container.decodeIfPresent(Annotation.self, forKey: .patternAnnotation) {
+          self.patternAnnotation = patternAnnotationVal
+        }
+        // Attachment: FHIRJSON
+        if let patternAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .patternAttachment) {
+          self.patternAttachment = patternAttachmentVal
+        }
+        // Base64Binary: String
+        if let patternBase64BinaryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .patternBase64Binary) {
+          self.patternBase64Binary = patternBase64BinaryVal
+        }
+        // Bool: Bool
+        if let patternBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .patternBoolean) {
+          self.patternBoolean.value = patternBooleanVal
+        }
+        // String: String
+        if let patternCodeVal = try container.decodeIfPresent(String.self, forKey: .patternCode) {
+          self.patternCode = patternCodeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let patternCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .patternCodeableConcept) {
+          self.patternCodeableConcept = patternCodeableConceptVal
+        }
+        // Coding: FHIRJSON
+        if let patternCodingVal = try container.decodeIfPresent(Coding.self, forKey: .patternCoding) {
+          self.patternCoding = patternCodingVal
+        }
+        // ContactPoint: FHIRJSON
+        if let patternContactPointVal = try container.decodeIfPresent(ContactPoint.self, forKey: .patternContactPoint) {
+          self.patternContactPoint = patternContactPointVal
+        }
+        // FHIRDate: String
+        if let patternDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .patternDate) {
+          self.patternDate = patternDateVal
+        }
+        // DateTime: String
+        if let patternDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .patternDateTime) {
+          self.patternDateTime = patternDateTimeVal
+        }
+        // RealmDecimal: NSNumber
+        if let patternDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .patternDecimal) {
+          self.patternDecimal = patternDecimalVal
+        }
+        // HumanName: FHIRJSON
+        if let patternHumanNameVal = try container.decodeIfPresent(HumanName.self, forKey: .patternHumanName) {
+          self.patternHumanName = patternHumanNameVal
+        }
+        // String: String
+        if let patternIdVal = try container.decodeIfPresent(String.self, forKey: .patternId) {
+          self.patternId = patternIdVal
+        }
+        // Identifier: FHIRJSON
+        if let patternIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .patternIdentifier) {
+          self.patternIdentifier = patternIdentifierVal
+        }
+        // Instant: String
+        if let patternInstantVal = try container.decodeIfPresent(Instant.self, forKey: .patternInstant) {
+          self.patternInstant = patternInstantVal
+        }
+        // Int: Int
+        if let patternIntegerVal = try container.decodeIfPresent(Int.self, forKey: .patternInteger) {
+          self.patternInteger.value = patternIntegerVal
+        }
+        // String: String
+        if let patternMarkdownVal = try container.decodeIfPresent(String.self, forKey: .patternMarkdown) {
+          self.patternMarkdown = patternMarkdownVal
+        }
+        // Meta: FHIRJSON
+        if let patternMetaVal = try container.decodeIfPresent(Meta.self, forKey: .patternMeta) {
+          self.patternMeta = patternMetaVal
+        }
+        // String: String
+        if let patternOidVal = try container.decodeIfPresent(String.self, forKey: .patternOid) {
+          self.patternOid = patternOidVal
+        }
+        // Period: FHIRJSON
+        if let patternPeriodVal = try container.decodeIfPresent(Period.self, forKey: .patternPeriod) {
+          self.patternPeriod = patternPeriodVal
+        }
+        // Int: Int
+        if let patternPositiveIntVal = try container.decodeIfPresent(Int.self, forKey: .patternPositiveInt) {
+          self.patternPositiveInt.value = patternPositiveIntVal
+        }
+        // Quantity: FHIRJSON
+        if let patternQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .patternQuantity) {
+          self.patternQuantity = patternQuantityVal
+        }
+        // Range: FHIRJSON
+        if let patternRangeVal = try container.decodeIfPresent(Range.self, forKey: .patternRange) {
+          self.patternRange = patternRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let patternRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .patternRatio) {
+          self.patternRatio = patternRatioVal
+        }
+        // Reference: FHIRJSON
+        if let patternReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .patternReference) {
+          self.patternReference = patternReferenceVal
+        }
+        // SampledData: FHIRJSON
+        if let patternSampledDataVal = try container.decodeIfPresent(SampledData.self, forKey: .patternSampledData) {
+          self.patternSampledData = patternSampledDataVal
+        }
+        // Signature: FHIRJSON
+        if let patternSignatureVal = try container.decodeIfPresent(Signature.self, forKey: .patternSignature) {
+          self.patternSignature = patternSignatureVal
+        }
+        // String: String
+        if let patternStringVal = try container.decodeIfPresent(String.self, forKey: .patternString) {
+          self.patternString = patternStringVal
+        }
+        // FHIRTime: String
+        if let patternTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .patternTime) {
+          self.patternTime = patternTimeVal
+        }
+        // Timing: FHIRJSON
+        if let patternTimingVal = try container.decodeIfPresent(Timing.self, forKey: .patternTiming) {
+          self.patternTiming = patternTimingVal
+        }
+        // Int: Int
+        if let patternUnsignedIntVal = try container.decodeIfPresent(Int.self, forKey: .patternUnsignedInt) {
+          self.patternUnsignedInt.value = patternUnsignedIntVal
+        }
+        // String: String
+        if let patternUriVal = try container.decodeIfPresent(String.self, forKey: .patternUri) {
+          self.patternUri = patternUriVal
+        }
+        if let representationVals = try container.decodeIfPresent([String].self, forKey: .representation) {
+          // String: String
+        }
+        // String: String
+        if let requirementsVal = try container.decodeIfPresent(String.self, forKey: .requirements) {
+          self.requirements = requirementsVal
+        }
+        // String: String
+        if let shortVal = try container.decodeIfPresent(String.self, forKey: .short) {
+          self.short = shortVal
+        }
+        // ElementDefinitionSlicing: FHIRJSON
+        if let slicingVal = try container.decodeIfPresent(ElementDefinitionSlicing.self, forKey: .slicing) {
+          self.slicing = slicingVal
+        }
+        if let typeVals = try container.decodeIfPresent([ElementDefinitionType].self, forKey: .type) {
+          // ElementDefinitionType: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -3869,9 +4681,20 @@ open class ElementDefinitionBase: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.max = try container.decodeIfPresent(String.self, forKey: .max)
-        self.min.value = try container.decodeIfPresent(Int.self, forKey: .min)
-        self.path = try container.decodeIfPresent(String.self, forKey: .path)
+
+
+        // String: String
+        if let maxVal = try container.decodeIfPresent(String.self, forKey: .max) {
+          self.max = maxVal
+        }
+        // Int: Int
+        if let minVal = try container.decodeIfPresent(Int.self, forKey: .min) {
+          self.min.value = minVal
+        }
+        // String: String
+        if let pathVal = try container.decodeIfPresent(String.self, forKey: .path) {
+          self.path = pathVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -3992,9 +4815,24 @@ open class ElementDefinitionBinding: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.strength = try container.decodeIfPresent(String.self, forKey: .strength)
-        self.valueSetUri = try container.decodeIfPresent(String.self, forKey: .valueSetUri)
+
+
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        // String: String
+        if let strengthVal = try container.decodeIfPresent(String.self, forKey: .strength) {
+          self.strength = strengthVal
+        }
+        // Reference: FHIRJSON
+        if let valueSetReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .valueSetReference) {
+          self.valueSetReference = valueSetReferenceVal
+        }
+        // String: String
+        if let valueSetUriVal = try container.decodeIfPresent(String.self, forKey: .valueSetUri) {
+          self.valueSetUri = valueSetUriVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -4125,11 +4963,28 @@ open class ElementDefinitionConstraint: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.human = try container.decodeIfPresent(String.self, forKey: .human)
-        self.key = try container.decodeIfPresent(String.self, forKey: .key)
-        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
-        self.severity = try container.decodeIfPresent(String.self, forKey: .severity)
-        self.xpath = try container.decodeIfPresent(String.self, forKey: .xpath)
+
+
+        // String: String
+        if let humanVal = try container.decodeIfPresent(String.self, forKey: .human) {
+          self.human = humanVal
+        }
+        // String: String
+        if let keyVal = try container.decodeIfPresent(String.self, forKey: .key) {
+          self.key = keyVal
+        }
+        // String: String
+        if let requirementsVal = try container.decodeIfPresent(String.self, forKey: .requirements) {
+          self.requirements = requirementsVal
+        }
+        // String: String
+        if let severityVal = try container.decodeIfPresent(String.self, forKey: .severity) {
+          self.severity = severityVal
+        }
+        // String: String
+        if let xpathVal = try container.decodeIfPresent(String.self, forKey: .xpath) {
+          self.xpath = xpathVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -4275,9 +5130,20 @@ open class ElementDefinitionMapping: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.identity = try container.decodeIfPresent(String.self, forKey: .identity)
-        self.language = try container.decodeIfPresent(String.self, forKey: .language)
-        self.map = try container.decodeIfPresent(String.self, forKey: .map)
+
+
+        // String: String
+        if let identityVal = try container.decodeIfPresent(String.self, forKey: .identity) {
+          self.identity = identityVal
+        }
+        // String: String
+        if let languageVal = try container.decodeIfPresent(String.self, forKey: .language) {
+          self.language = languageVal
+        }
+        // String: String
+        if let mapVal = try container.decodeIfPresent(String.self, forKey: .map) {
+          self.map = mapVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -4396,9 +5262,23 @@ open class ElementDefinitionSlicing: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.ordered.value = try container.decodeIfPresent(Bool.self, forKey: .ordered)
-        self.rules = try container.decodeIfPresent(String.self, forKey: .rules)
+
+
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let discriminatorVals = try container.decodeIfPresent([String].self, forKey: .discriminator) {
+          // String: String
+        }
+        // Bool: Bool
+        if let orderedVal = try container.decodeIfPresent(Bool.self, forKey: .ordered) {
+          self.ordered.value = orderedVal
+        }
+        // String: String
+        if let rulesVal = try container.decodeIfPresent(String.self, forKey: .rules) {
+          self.rules = rulesVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -4521,7 +5401,18 @@ open class ElementDefinitionType: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+
+
+        if let aggregationVals = try container.decodeIfPresent([String].self, forKey: .aggregation) {
+          // String: String
+        }
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let profileVals = try container.decodeIfPresent([String].self, forKey: .profile) {
+          // String: String
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -87,7 +87,51 @@ open class SupplyDelivery: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // Reference: FHIRJSON
+        if let destinationVal = try container.decodeIfPresent(Reference.self, forKey: .destination) {
+          self.destination = destinationVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        if let receiverVals = try container.decodeIfPresent([Reference].self, forKey: .receiver) {
+          // Reference: FHIRJSON
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // Reference: FHIRJSON
+        if let suppliedItemVal = try container.decodeIfPresent(Reference.self, forKey: .suppliedItem) {
+          self.suppliedItem = suppliedItemVal
+        }
+        // Reference: FHIRJSON
+        if let supplierVal = try container.decodeIfPresent(Reference.self, forKey: .supplier) {
+          self.supplier = supplierVal
+        }
+        // DateTime: String
+        if let timeVal = try container.decodeIfPresent(DateTime.self, forKey: .time) {
+          self.time = timeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // Period: FHIRJSON
+        if let whenPreparedVal = try container.decodeIfPresent(Period.self, forKey: .whenPrepared) {
+          self.whenPrepared = whenPreparedVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

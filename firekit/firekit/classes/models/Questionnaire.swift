@@ -68,9 +68,37 @@ open class Questionnaire: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // QuestionnaireGroup: FHIRJSON
+        if let groupVal = try container.decodeIfPresent(QuestionnaireGroup.self, forKey: .group) {
+          self.group = groupVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // String: String
+        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
+          self.publisher = publisherVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        if let subjectTypeVals = try container.decodeIfPresent([String].self, forKey: .subjectType) {
+          // String: String
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -258,11 +286,37 @@ open class QuestionnaireGroup: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.linkId = try container.decodeIfPresent(String.self, forKey: .linkId)
-        self.repeats.value = try container.decodeIfPresent(Bool.self, forKey: .repeats)
-        self.required.value = try container.decodeIfPresent(Bool.self, forKey: .required)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
-        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+
+
+        if let conceptVals = try container.decodeIfPresent([Coding].self, forKey: .concept) {
+          // Coding: FHIRJSON
+        }
+        if let groupVals = try container.decodeIfPresent([QuestionnaireGroup].self, forKey: .group) {
+          // QuestionnaireGroup: FHIRJSON
+        }
+        // String: String
+        if let linkIdVal = try container.decodeIfPresent(String.self, forKey: .linkId) {
+          self.linkId = linkIdVal
+        }
+        if let questionVals = try container.decodeIfPresent([QuestionnaireGroupQuestion].self, forKey: .question) {
+          // QuestionnaireGroupQuestion: FHIRJSON
+        }
+        // Bool: Bool
+        if let repeatsVal = try container.decodeIfPresent(Bool.self, forKey: .repeats) {
+          self.repeats.value = repeatsVal
+        }
+        // Bool: Bool
+        if let requiredVal = try container.decodeIfPresent(Bool.self, forKey: .required) {
+          self.required.value = requiredVal
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // String: String
+        if let titleVal = try container.decodeIfPresent(String.self, forKey: .title) {
+          self.title = titleVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -452,11 +506,41 @@ open class QuestionnaireGroupQuestion: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.linkId = try container.decodeIfPresent(String.self, forKey: .linkId)
-        self.repeats.value = try container.decodeIfPresent(Bool.self, forKey: .repeats)
-        self.required.value = try container.decodeIfPresent(Bool.self, forKey: .required)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        if let conceptVals = try container.decodeIfPresent([Coding].self, forKey: .concept) {
+          // Coding: FHIRJSON
+        }
+        if let groupVals = try container.decodeIfPresent([QuestionnaireGroup].self, forKey: .group) {
+          // QuestionnaireGroup: FHIRJSON
+        }
+        // String: String
+        if let linkIdVal = try container.decodeIfPresent(String.self, forKey: .linkId) {
+          self.linkId = linkIdVal
+        }
+        if let optionVals = try container.decodeIfPresent([Coding].self, forKey: .option) {
+          // Coding: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let optionsVal = try container.decodeIfPresent(Reference.self, forKey: .options) {
+          self.options = optionsVal
+        }
+        // Bool: Bool
+        if let repeatsVal = try container.decodeIfPresent(Bool.self, forKey: .repeats) {
+          self.repeats.value = repeatsVal
+        }
+        // Bool: Bool
+        if let requiredVal = try container.decodeIfPresent(Bool.self, forKey: .required) {
+          self.required.value = requiredVal
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

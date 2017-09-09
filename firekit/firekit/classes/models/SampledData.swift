@@ -68,8 +68,36 @@ open class SampledData: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.data = try container.decodeIfPresent(String.self, forKey: .data)
-        self.dimensions.value = try container.decodeIfPresent(Int.self, forKey: .dimensions)
+
+
+        // String: String
+        if let dataVal = try container.decodeIfPresent(String.self, forKey: .data) {
+          self.data = dataVal
+        }
+        // Int: Int
+        if let dimensionsVal = try container.decodeIfPresent(Int.self, forKey: .dimensions) {
+          self.dimensions.value = dimensionsVal
+        }
+        // RealmDecimal: NSNumber
+        if let factorVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor) {
+          self.factor = factorVal
+        }
+        // RealmDecimal: NSNumber
+        if let lowerLimitVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .lowerLimit) {
+          self.lowerLimit = lowerLimitVal
+        }
+        // Quantity: FHIRJSON
+        if let originVal = try container.decodeIfPresent(Quantity.self, forKey: .origin) {
+          self.origin = originVal
+        }
+        // RealmDecimal: NSNumber
+        if let periodVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // RealmDecimal: NSNumber
+        if let upperLimitVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .upperLimit) {
+          self.upperLimit = upperLimitVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

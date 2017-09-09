@@ -114,9 +114,77 @@ open class ProcedureRequest: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.asNeededBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .asNeededBoolean)
-        self.priority = try container.decodeIfPresent(String.self, forKey: .priority)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // Bool: Bool
+        if let asNeededBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .asNeededBoolean) {
+          self.asNeededBoolean.value = asNeededBooleanVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let asNeededCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .asNeededCodeableConcept) {
+          self.asNeededCodeableConcept = asNeededCodeableConceptVal
+        }
+        if let bodySiteVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .bodySite) {
+          // CodeableConcept: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let notesVals = try container.decodeIfPresent([Annotation].self, forKey: .notes) {
+          // Annotation: FHIRJSON
+        }
+        // DateTime: String
+        if let orderedOnVal = try container.decodeIfPresent(DateTime.self, forKey: .orderedOn) {
+          self.orderedOn = orderedOnVal
+        }
+        // Reference: FHIRJSON
+        if let ordererVal = try container.decodeIfPresent(Reference.self, forKey: .orderer) {
+          self.orderer = ordererVal
+        }
+        // Reference: FHIRJSON
+        if let performerVal = try container.decodeIfPresent(Reference.self, forKey: .performer) {
+          self.performer = performerVal
+        }
+        // String: String
+        if let priorityVal = try container.decodeIfPresent(String.self, forKey: .priority) {
+          self.priority = priorityVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let reasonCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept) {
+          self.reasonCodeableConcept = reasonCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let reasonReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .reasonReference) {
+          self.reasonReference = reasonReferenceVal
+        }
+        // DateTime: String
+        if let scheduledDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .scheduledDateTime) {
+          self.scheduledDateTime = scheduledDateTimeVal
+        }
+        // Period: FHIRJSON
+        if let scheduledPeriodVal = try container.decodeIfPresent(Period.self, forKey: .scheduledPeriod) {
+          self.scheduledPeriod = scheduledPeriodVal
+        }
+        // Timing: FHIRJSON
+        if let scheduledTimingVal = try container.decodeIfPresent(Timing.self, forKey: .scheduledTiming) {
+          self.scheduledTiming = scheduledTimingVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

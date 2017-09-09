@@ -86,12 +86,55 @@ open class Media: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.deviceName = try container.decodeIfPresent(String.self, forKey: .deviceName)
-        self.duration.value = try container.decodeIfPresent(Int.self, forKey: .duration)
-        self.frames.value = try container.decodeIfPresent(Int.self, forKey: .frames)
-        self.height.value = try container.decodeIfPresent(Int.self, forKey: .height)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
-        self.width.value = try container.decodeIfPresent(Int.self, forKey: .width)
+
+
+        // Attachment: FHIRJSON
+        if let contentVal = try container.decodeIfPresent(Attachment.self, forKey: .content) {
+          self.content = contentVal
+        }
+        // String: String
+        if let deviceNameVal = try container.decodeIfPresent(String.self, forKey: .deviceName) {
+          self.deviceName = deviceNameVal
+        }
+        // Int: Int
+        if let durationVal = try container.decodeIfPresent(Int.self, forKey: .duration) {
+          self.duration.value = durationVal
+        }
+        // Int: Int
+        if let framesVal = try container.decodeIfPresent(Int.self, forKey: .frames) {
+          self.frames.value = framesVal
+        }
+        // Int: Int
+        if let heightVal = try container.decodeIfPresent(Int.self, forKey: .height) {
+          self.height.value = heightVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let operator_fhirVal = try container.decodeIfPresent(Reference.self, forKey: .operator_fhir) {
+          self.operator_fhir = operator_fhirVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let subtypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .subtype) {
+          self.subtype = subtypeVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let viewVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .view) {
+          self.view = viewVal
+        }
+        // Int: Int
+        if let widthVal = try container.decodeIfPresent(Int.self, forKey: .width) {
+          self.width.value = widthVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

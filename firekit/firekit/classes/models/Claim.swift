@@ -152,9 +152,115 @@ open class Claim: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.school = try container.decodeIfPresent(String.self, forKey: .school)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
-        self.use = try container.decodeIfPresent(String.self, forKey: .use)
+
+
+        // FHIRDate: String
+        if let accidentVal = try container.decodeIfPresent(FHIRDate.self, forKey: .accident) {
+          self.accident = accidentVal
+        }
+        // Coding: FHIRJSON
+        if let accidentTypeVal = try container.decodeIfPresent(Coding.self, forKey: .accidentType) {
+          self.accidentType = accidentTypeVal
+        }
+        if let additionalMaterialsVals = try container.decodeIfPresent([Coding].self, forKey: .additionalMaterials) {
+          // Coding: FHIRJSON
+        }
+        if let conditionVals = try container.decodeIfPresent([Coding].self, forKey: .condition) {
+          // Coding: FHIRJSON
+        }
+        if let coverageVals = try container.decodeIfPresent([ClaimCoverage].self, forKey: .coverage) {
+          // ClaimCoverage: FHIRJSON
+        }
+        // DateTime: String
+        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
+          self.created = createdVal
+        }
+        if let diagnosisVals = try container.decodeIfPresent([ClaimDiagnosis].self, forKey: .diagnosis) {
+          // ClaimDiagnosis: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let entererVal = try container.decodeIfPresent(Reference.self, forKey: .enterer) {
+          self.enterer = entererVal
+        }
+        if let exceptionVals = try container.decodeIfPresent([Coding].self, forKey: .exception) {
+          // Coding: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let facilityVal = try container.decodeIfPresent(Reference.self, forKey: .facility) {
+          self.facility = facilityVal
+        }
+        // Coding: FHIRJSON
+        if let fundsReserveVal = try container.decodeIfPresent(Coding.self, forKey: .fundsReserve) {
+          self.fundsReserve = fundsReserveVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let interventionExceptionVals = try container.decodeIfPresent([Coding].self, forKey: .interventionException) {
+          // Coding: FHIRJSON
+        }
+        if let itemVals = try container.decodeIfPresent([ClaimItem].self, forKey: .item) {
+          // ClaimItem: FHIRJSON
+        }
+        if let missingTeethVals = try container.decodeIfPresent([ClaimMissingTeeth].self, forKey: .missingTeeth) {
+          // ClaimMissingTeeth: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
+          self.organization = organizationVal
+        }
+        // Reference: FHIRJSON
+        if let originalPrescriptionVal = try container.decodeIfPresent(Reference.self, forKey: .originalPrescription) {
+          self.originalPrescription = originalPrescriptionVal
+        }
+        // Coding: FHIRJSON
+        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
+          self.originalRuleset = originalRulesetVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // ClaimPayee: FHIRJSON
+        if let payeeVal = try container.decodeIfPresent(ClaimPayee.self, forKey: .payee) {
+          self.payee = payeeVal
+        }
+        // Reference: FHIRJSON
+        if let prescriptionVal = try container.decodeIfPresent(Reference.self, forKey: .prescription) {
+          self.prescription = prescriptionVal
+        }
+        // Coding: FHIRJSON
+        if let priorityVal = try container.decodeIfPresent(Coding.self, forKey: .priority) {
+          self.priority = priorityVal
+        }
+        // Reference: FHIRJSON
+        if let providerVal = try container.decodeIfPresent(Reference.self, forKey: .provider) {
+          self.provider = providerVal
+        }
+        // Reference: FHIRJSON
+        if let referralVal = try container.decodeIfPresent(Reference.self, forKey: .referral) {
+          self.referral = referralVal
+        }
+        // Coding: FHIRJSON
+        if let rulesetVal = try container.decodeIfPresent(Coding.self, forKey: .ruleset) {
+          self.ruleset = rulesetVal
+        }
+        // String: String
+        if let schoolVal = try container.decodeIfPresent(String.self, forKey: .school) {
+          self.school = schoolVal
+        }
+        // Reference: FHIRJSON
+        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
+          self.target = targetVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // String: String
+        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
+          self.use = useVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -657,9 +763,39 @@ open class ClaimCoverage: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.businessArrangement = try container.decodeIfPresent(String.self, forKey: .businessArrangement)
-        self.focal.value = try container.decodeIfPresent(Bool.self, forKey: .focal)
-        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
+
+
+        // String: String
+        if let businessArrangementVal = try container.decodeIfPresent(String.self, forKey: .businessArrangement) {
+          self.businessArrangement = businessArrangementVal
+        }
+        // Reference: FHIRJSON
+        if let claimResponseVal = try container.decodeIfPresent(Reference.self, forKey: .claimResponse) {
+          self.claimResponse = claimResponseVal
+        }
+        // Reference: FHIRJSON
+        if let coverageVal = try container.decodeIfPresent(Reference.self, forKey: .coverage) {
+          self.coverage = coverageVal
+        }
+        // Bool: Bool
+        if let focalVal = try container.decodeIfPresent(Bool.self, forKey: .focal) {
+          self.focal.value = focalVal
+        }
+        // Coding: FHIRJSON
+        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
+          self.originalRuleset = originalRulesetVal
+        }
+        if let preAuthRefVals = try container.decodeIfPresent([String].self, forKey: .preAuthRef) {
+          // String: String
+        }
+        // Coding: FHIRJSON
+        if let relationshipVal = try container.decodeIfPresent(Coding.self, forKey: .relationship) {
+          self.relationship = relationshipVal
+        }
+        // Int: Int
+        if let sequenceVal = try container.decodeIfPresent(Int.self, forKey: .sequence) {
+          self.sequence.value = sequenceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -845,7 +981,16 @@ open class ClaimDiagnosis: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
+
+
+        // Coding: FHIRJSON
+        if let diagnosisVal = try container.decodeIfPresent(Coding.self, forKey: .diagnosis) {
+          self.diagnosis = diagnosisVal
+        }
+        // Int: Int
+        if let sequenceVal = try container.decodeIfPresent(Int.self, forKey: .sequence) {
+          self.sequence.value = sequenceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1002,7 +1147,72 @@ open class ClaimItem: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
+
+
+        // Coding: FHIRJSON
+        if let bodySiteVal = try container.decodeIfPresent(Coding.self, forKey: .bodySite) {
+          self.bodySite = bodySiteVal
+        }
+        if let detailVals = try container.decodeIfPresent([ClaimItemDetail].self, forKey: .detail) {
+          // ClaimItemDetail: FHIRJSON
+        }
+        if let diagnosisLinkIdVals = try container.decodeIfPresent([Int].self, forKey: .diagnosisLinkId) {
+          // Int: Int
+        }
+        // RealmDecimal: NSNumber
+        if let factorVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor) {
+          self.factor = factorVal
+        }
+        if let modifierVals = try container.decodeIfPresent([Coding].self, forKey: .modifier) {
+          // Coding: FHIRJSON
+        }
+        // Quantity: FHIRJSON
+        if let netVal = try container.decodeIfPresent(Quantity.self, forKey: .net) {
+          self.net = netVal
+        }
+        // RealmDecimal: NSNumber
+        if let pointsVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .points) {
+          self.points = pointsVal
+        }
+        // ClaimItemProsthesis: FHIRJSON
+        if let prosthesisVal = try container.decodeIfPresent(ClaimItemProsthesis.self, forKey: .prosthesis) {
+          self.prosthesis = prosthesisVal
+        }
+        // Reference: FHIRJSON
+        if let providerVal = try container.decodeIfPresent(Reference.self, forKey: .provider) {
+          self.provider = providerVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        // Int: Int
+        if let sequenceVal = try container.decodeIfPresent(Int.self, forKey: .sequence) {
+          self.sequence.value = sequenceVal
+        }
+        // Coding: FHIRJSON
+        if let serviceVal = try container.decodeIfPresent(Coding.self, forKey: .service) {
+          self.service = serviceVal
+        }
+        // FHIRDate: String
+        if let serviceDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .serviceDate) {
+          self.serviceDate = serviceDateVal
+        }
+        if let subSiteVals = try container.decodeIfPresent([Coding].self, forKey: .subSite) {
+          // Coding: FHIRJSON
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // Coding: FHIRJSON
+        if let udiVal = try container.decodeIfPresent(Coding.self, forKey: .udi) {
+          self.udi = udiVal
+        }
+        // Quantity: FHIRJSON
+        if let unitPriceVal = try container.decodeIfPresent(Quantity.self, forKey: .unitPrice) {
+          self.unitPrice = unitPriceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1343,7 +1553,47 @@ open class ClaimItemDetail: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
+
+
+        // RealmDecimal: NSNumber
+        if let factorVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor) {
+          self.factor = factorVal
+        }
+        // Quantity: FHIRJSON
+        if let netVal = try container.decodeIfPresent(Quantity.self, forKey: .net) {
+          self.net = netVal
+        }
+        // RealmDecimal: NSNumber
+        if let pointsVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .points) {
+          self.points = pointsVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        // Int: Int
+        if let sequenceVal = try container.decodeIfPresent(Int.self, forKey: .sequence) {
+          self.sequence.value = sequenceVal
+        }
+        // Coding: FHIRJSON
+        if let serviceVal = try container.decodeIfPresent(Coding.self, forKey: .service) {
+          self.service = serviceVal
+        }
+        if let subDetailVals = try container.decodeIfPresent([ClaimItemDetailSubDetail].self, forKey: .subDetail) {
+          // ClaimItemDetailSubDetail: FHIRJSON
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // Coding: FHIRJSON
+        if let udiVal = try container.decodeIfPresent(Coding.self, forKey: .udi) {
+          self.udi = udiVal
+        }
+        // Quantity: FHIRJSON
+        if let unitPriceVal = try container.decodeIfPresent(Quantity.self, forKey: .unitPrice) {
+          self.unitPrice = unitPriceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1585,7 +1835,44 @@ open class ClaimItemDetailSubDetail: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
+
+
+        // RealmDecimal: NSNumber
+        if let factorVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor) {
+          self.factor = factorVal
+        }
+        // Quantity: FHIRJSON
+        if let netVal = try container.decodeIfPresent(Quantity.self, forKey: .net) {
+          self.net = netVal
+        }
+        // RealmDecimal: NSNumber
+        if let pointsVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .points) {
+          self.points = pointsVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        // Int: Int
+        if let sequenceVal = try container.decodeIfPresent(Int.self, forKey: .sequence) {
+          self.sequence.value = sequenceVal
+        }
+        // Coding: FHIRJSON
+        if let serviceVal = try container.decodeIfPresent(Coding.self, forKey: .service) {
+          self.service = serviceVal
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // Coding: FHIRJSON
+        if let udiVal = try container.decodeIfPresent(Coding.self, forKey: .udi) {
+          self.udi = udiVal
+        }
+        // Quantity: FHIRJSON
+        if let unitPriceVal = try container.decodeIfPresent(Quantity.self, forKey: .unitPrice) {
+          self.unitPrice = unitPriceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1776,7 +2063,20 @@ open class ClaimItemProsthesis: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.initial.value = try container.decodeIfPresent(Bool.self, forKey: .initial)
+
+
+        // Bool: Bool
+        if let initialVal = try container.decodeIfPresent(Bool.self, forKey: .initial) {
+          self.initial.value = initialVal
+        }
+        // FHIRDate: String
+        if let priorDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .priorDate) {
+          self.priorDate = priorDateVal
+        }
+        // Coding: FHIRJSON
+        if let priorMaterialVal = try container.decodeIfPresent(Coding.self, forKey: .priorMaterial) {
+          self.priorMaterial = priorMaterialVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1890,6 +2190,20 @@ open class ClaimMissingTeeth: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // FHIRDate: String
+        if let extractionDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .extractionDate) {
+          self.extractionDate = extractionDateVal
+        }
+        // Coding: FHIRJSON
+        if let reasonVal = try container.decodeIfPresent(Coding.self, forKey: .reason) {
+          self.reason = reasonVal
+        }
+        // Coding: FHIRJSON
+        if let toothVal = try container.decodeIfPresent(Coding.self, forKey: .tooth) {
+          self.tooth = toothVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -2007,6 +2321,24 @@ open class ClaimPayee: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Reference: FHIRJSON
+        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
+          self.organization = organizationVal
+        }
+        // Reference: FHIRJSON
+        if let personVal = try container.decodeIfPresent(Reference.self, forKey: .person) {
+          self.person = personVal
+        }
+        // Reference: FHIRJSON
+        if let providerVal = try container.decodeIfPresent(Reference.self, forKey: .provider) {
+          self.provider = providerVal
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

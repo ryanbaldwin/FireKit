@@ -64,7 +64,28 @@ open class Medication: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.isBrand.value = try container.decodeIfPresent(Bool.self, forKey: .isBrand)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // Bool: Bool
+        if let isBrandVal = try container.decodeIfPresent(Bool.self, forKey: .isBrand) {
+          self.isBrand.value = isBrandVal
+        }
+        // Reference: FHIRJSON
+        if let manufacturerVal = try container.decodeIfPresent(Reference.self, forKey: .manufacturer) {
+          self.manufacturer = manufacturerVal
+        }
+        // MedicationPackage: FHIRJSON
+        if let packageVal = try container.decodeIfPresent(MedicationPackage.self, forKey: .package) {
+          self.package = packageVal
+        }
+        // MedicationProduct: FHIRJSON
+        if let productVal = try container.decodeIfPresent(MedicationProduct.self, forKey: .product) {
+          self.product = productVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -192,6 +213,15 @@ open class MedicationPackage: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let containerVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .container) {
+          self.container = containerVal
+        }
+        if let contentVals = try container.decodeIfPresent([MedicationPackageContent].self, forKey: .content) {
+          // MedicationPackageContent: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -292,6 +322,16 @@ open class MedicationPackageContent: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Quantity: FHIRJSON
+        if let amountVal = try container.decodeIfPresent(Quantity.self, forKey: .amount) {
+          self.amount = amountVal
+        }
+        // Reference: FHIRJSON
+        if let itemVal = try container.decodeIfPresent(Reference.self, forKey: .item) {
+          self.item = itemVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -385,6 +425,18 @@ open class MedicationProduct: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let batchVals = try container.decodeIfPresent([MedicationProductBatch].self, forKey: .batch) {
+          // MedicationProductBatch: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let formVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .form) {
+          self.form = formVal
+        }
+        if let ingredientVals = try container.decodeIfPresent([MedicationProductIngredient].self, forKey: .ingredient) {
+          // MedicationProductIngredient: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -489,7 +541,16 @@ open class MedicationProductBatch: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.lotNumber = try container.decodeIfPresent(String.self, forKey: .lotNumber)
+
+
+        // DateTime: String
+        if let expirationDateVal = try container.decodeIfPresent(DateTime.self, forKey: .expirationDate) {
+          self.expirationDate = expirationDateVal
+        }
+        // String: String
+        if let lotNumberVal = try container.decodeIfPresent(String.self, forKey: .lotNumber) {
+          self.lotNumber = lotNumberVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -587,6 +648,16 @@ open class MedicationProductIngredient: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Ratio: FHIRJSON
+        if let amountVal = try container.decodeIfPresent(Ratio.self, forKey: .amount) {
+          self.amount = amountVal
+        }
+        // Reference: FHIRJSON
+        if let itemVal = try container.decodeIfPresent(Reference.self, forKey: .item) {
+          self.item = itemVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

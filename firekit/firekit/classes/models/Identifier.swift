@@ -62,9 +62,32 @@ open class Identifier: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.system = try container.decodeIfPresent(String.self, forKey: .system)
-        self.use = try container.decodeIfPresent(String.self, forKey: .use)
-        self.value = try container.decodeIfPresent(String.self, forKey: .value)
+
+
+        // Reference: FHIRJSON
+        if let assignerVal = try container.decodeIfPresent(Reference.self, forKey: .assigner) {
+          self.assigner = assignerVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // String: String
+        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
+          self.system = systemVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // String: String
+        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
+          self.use = useVal
+        }
+        // String: String
+        if let valueVal = try container.decodeIfPresent(String.self, forKey: .value) {
+          self.value = valueVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

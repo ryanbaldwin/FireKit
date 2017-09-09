@@ -85,9 +85,51 @@ open class Account: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // Period: FHIRJSON
+        if let activePeriodVal = try container.decodeIfPresent(Period.self, forKey: .activePeriod) {
+          self.activePeriod = activePeriodVal
+        }
+        // Quantity: FHIRJSON
+        if let balanceVal = try container.decodeIfPresent(Quantity.self, forKey: .balance) {
+          self.balance = balanceVal
+        }
+        // Period: FHIRJSON
+        if let coveragePeriodVal = try container.decodeIfPresent(Period.self, forKey: .coveragePeriod) {
+          self.coveragePeriod = coveragePeriodVal
+        }
+        // Coding: FHIRJSON
+        if let currencyVal = try container.decodeIfPresent(Coding.self, forKey: .currency) {
+          self.currency = currencyVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // Reference: FHIRJSON
+        if let ownerVal = try container.decodeIfPresent(Reference.self, forKey: .owner) {
+          self.owner = ownerVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

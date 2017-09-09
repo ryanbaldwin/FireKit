@@ -94,6 +94,71 @@ open class Contract: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let actionVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .action) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let actionReasonVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .actionReason) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let actorVals = try container.decodeIfPresent([ContractActor].self, forKey: .actor) {
+          // ContractActor: FHIRJSON
+        }
+        // Period: FHIRJSON
+        if let appliesVal = try container.decodeIfPresent(Period.self, forKey: .applies) {
+          self.applies = appliesVal
+        }
+        if let authorityVals = try container.decodeIfPresent([Reference].self, forKey: .authority) {
+          // Reference: FHIRJSON
+        }
+        // Attachment: FHIRJSON
+        if let bindingAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .bindingAttachment) {
+          self.bindingAttachment = bindingAttachmentVal
+        }
+        // Reference: FHIRJSON
+        if let bindingReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .bindingReference) {
+          self.bindingReference = bindingReferenceVal
+        }
+        if let domainVals = try container.decodeIfPresent([Reference].self, forKey: .domain) {
+          // Reference: FHIRJSON
+        }
+        if let friendlyVals = try container.decodeIfPresent([ContractFriendly].self, forKey: .friendly) {
+          // ContractFriendly: FHIRJSON
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // DateTime: String
+        if let issuedVal = try container.decodeIfPresent(DateTime.self, forKey: .issued) {
+          self.issued = issuedVal
+        }
+        if let legalVals = try container.decodeIfPresent([ContractLegal].self, forKey: .legal) {
+          // ContractLegal: FHIRJSON
+        }
+        if let ruleVals = try container.decodeIfPresent([ContractRule].self, forKey: .rule) {
+          // ContractRule: FHIRJSON
+        }
+        if let signerVals = try container.decodeIfPresent([ContractSigner].self, forKey: .signer) {
+          // ContractSigner: FHIRJSON
+        }
+        if let subTypeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .subType) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let subjectVals = try container.decodeIfPresent([Reference].self, forKey: .subject) {
+          // Reference: FHIRJSON
+        }
+        if let termVals = try container.decodeIfPresent([ContractTerm].self, forKey: .term) {
+          // ContractTerm: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        if let valuedItemVals = try container.decodeIfPresent([ContractValuedItem].self, forKey: .valuedItem) {
+          // ContractValuedItem: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -448,6 +513,15 @@ open class ContractActor: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Reference: FHIRJSON
+        if let entityVal = try container.decodeIfPresent(Reference.self, forKey: .entity) {
+          self.entity = entityVal
+        }
+        if let roleVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .role) {
+          // CodeableConcept: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -555,6 +629,16 @@ open class ContractFriendly: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Attachment: FHIRJSON
+        if let contentAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .contentAttachment) {
+          self.contentAttachment = contentAttachmentVal
+        }
+        // Reference: FHIRJSON
+        if let contentReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .contentReference) {
+          self.contentReference = contentReferenceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -658,6 +742,16 @@ open class ContractLegal: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Attachment: FHIRJSON
+        if let contentAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .contentAttachment) {
+          self.contentAttachment = contentAttachmentVal
+        }
+        // Reference: FHIRJSON
+        if let contentReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .contentReference) {
+          self.contentReference = contentReferenceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -761,6 +855,16 @@ open class ContractRule: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Attachment: FHIRJSON
+        if let contentAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .contentAttachment) {
+          self.contentAttachment = contentAttachmentVal
+        }
+        // Reference: FHIRJSON
+        if let contentReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .contentReference) {
+          self.contentReference = contentReferenceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -867,7 +971,20 @@ open class ContractSigner: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.signature = try container.decodeIfPresent(String.self, forKey: .signature)
+
+
+        // Reference: FHIRJSON
+        if let partyVal = try container.decodeIfPresent(Reference.self, forKey: .party) {
+          self.party = partyVal
+        }
+        // String: String
+        if let signatureVal = try container.decodeIfPresent(String.self, forKey: .signature) {
+          self.signature = signatureVal
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1010,7 +1127,51 @@ open class ContractTerm: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+
+
+        if let actionVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .action) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let actionReasonVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .actionReason) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let actorVals = try container.decodeIfPresent([ContractTermActor].self, forKey: .actor) {
+          // ContractTermActor: FHIRJSON
+        }
+        // Period: FHIRJSON
+        if let appliesVal = try container.decodeIfPresent(Period.self, forKey: .applies) {
+          self.applies = appliesVal
+        }
+        if let groupVals = try container.decodeIfPresent([ContractTerm].self, forKey: .group) {
+          // ContractTerm: FHIRJSON
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // DateTime: String
+        if let issuedVal = try container.decodeIfPresent(DateTime.self, forKey: .issued) {
+          self.issued = issuedVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let subTypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .subType) {
+          self.subType = subTypeVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        if let valuedItemVals = try container.decodeIfPresent([ContractTermValuedItem].self, forKey: .valuedItem) {
+          // ContractTermValuedItem: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1250,6 +1411,15 @@ open class ContractTermActor: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Reference: FHIRJSON
+        if let entityVal = try container.decodeIfPresent(Reference.self, forKey: .entity) {
+          self.entity = entityVal
+        }
+        if let roleVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .role) {
+          // CodeableConcept: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1373,6 +1543,44 @@ open class ContractTermValuedItem: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // DateTime: String
+        if let effectiveTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .effectiveTime) {
+          self.effectiveTime = effectiveTimeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let entityCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .entityCodeableConcept) {
+          self.entityCodeableConcept = entityCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let entityReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .entityReference) {
+          self.entityReference = entityReferenceVal
+        }
+        // RealmDecimal: NSNumber
+        if let factorVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor) {
+          self.factor = factorVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Quantity: FHIRJSON
+        if let netVal = try container.decodeIfPresent(Quantity.self, forKey: .net) {
+          self.net = netVal
+        }
+        // RealmDecimal: NSNumber
+        if let pointsVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .points) {
+          self.points = pointsVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        // Quantity: FHIRJSON
+        if let unitPriceVal = try container.decodeIfPresent(Quantity.self, forKey: .unitPrice) {
+          self.unitPrice = unitPriceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1581,6 +1789,44 @@ open class ContractValuedItem: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // DateTime: String
+        if let effectiveTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .effectiveTime) {
+          self.effectiveTime = effectiveTimeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let entityCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .entityCodeableConcept) {
+          self.entityCodeableConcept = entityCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let entityReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .entityReference) {
+          self.entityReference = entityReferenceVal
+        }
+        // RealmDecimal: NSNumber
+        if let factorVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor) {
+          self.factor = factorVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Quantity: FHIRJSON
+        if let netVal = try container.decodeIfPresent(Quantity.self, forKey: .net) {
+          self.net = netVal
+        }
+        // RealmDecimal: NSNumber
+        if let pointsVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .points) {
+          self.points = pointsVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        // Quantity: FHIRJSON
+        if let unitPriceVal = try container.decodeIfPresent(Quantity.self, forKey: .unitPrice) {
+          self.unitPrice = unitPriceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

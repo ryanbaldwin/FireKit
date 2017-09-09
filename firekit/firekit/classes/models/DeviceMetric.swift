@@ -87,9 +87,47 @@ open class DeviceMetric: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.category = try container.decodeIfPresent(String.self, forKey: .category)
-        self.color = try container.decodeIfPresent(String.self, forKey: .color)
-        self.operationalStatus = try container.decodeIfPresent(String.self, forKey: .operationalStatus)
+
+
+        if let calibrationVals = try container.decodeIfPresent([DeviceMetricCalibration].self, forKey: .calibration) {
+          // DeviceMetricCalibration: FHIRJSON
+        }
+        // String: String
+        if let categoryVal = try container.decodeIfPresent(String.self, forKey: .category) {
+          self.category = categoryVal
+        }
+        // String: String
+        if let colorVal = try container.decodeIfPresent(String.self, forKey: .color) {
+          self.color = colorVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Timing: FHIRJSON
+        if let measurementPeriodVal = try container.decodeIfPresent(Timing.self, forKey: .measurementPeriod) {
+          self.measurementPeriod = measurementPeriodVal
+        }
+        // String: String
+        if let operationalStatusVal = try container.decodeIfPresent(String.self, forKey: .operationalStatus) {
+          self.operationalStatus = operationalStatusVal
+        }
+        // Reference: FHIRJSON
+        if let parentVal = try container.decodeIfPresent(Reference.self, forKey: .parent) {
+          self.parent = parentVal
+        }
+        // Reference: FHIRJSON
+        if let sourceVal = try container.decodeIfPresent(Reference.self, forKey: .source) {
+          self.source = sourceVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let unitVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .unit) {
+          self.unit = unitVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -291,8 +329,20 @@ open class DeviceMetricCalibration: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.state = try container.decodeIfPresent(String.self, forKey: .state)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        // String: String
+        if let stateVal = try container.decodeIfPresent(String.self, forKey: .state) {
+          self.state = stateVal
+        }
+        // Instant: String
+        if let timeVal = try container.decodeIfPresent(Instant.self, forKey: .time) {
+          self.time = timeVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

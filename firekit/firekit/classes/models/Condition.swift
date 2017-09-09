@@ -140,12 +140,105 @@ open class Condition: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.abatementBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .abatementBoolean)
-        self.abatementString = try container.decodeIfPresent(String.self, forKey: .abatementString)
-        self.clinicalStatus = try container.decodeIfPresent(String.self, forKey: .clinicalStatus)
-        self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
-        self.onsetString = try container.decodeIfPresent(String.self, forKey: .onsetString)
-        self.verificationStatus = try container.decodeIfPresent(String.self, forKey: .verificationStatus)
+
+
+        // Bool: Bool
+        if let abatementBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .abatementBoolean) {
+          self.abatementBoolean.value = abatementBooleanVal
+        }
+        // DateTime: String
+        if let abatementDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .abatementDateTime) {
+          self.abatementDateTime = abatementDateTimeVal
+        }
+        // Period: FHIRJSON
+        if let abatementPeriodVal = try container.decodeIfPresent(Period.self, forKey: .abatementPeriod) {
+          self.abatementPeriod = abatementPeriodVal
+        }
+        // Quantity: FHIRJSON
+        if let abatementQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .abatementQuantity) {
+          self.abatementQuantity = abatementQuantityVal
+        }
+        // Range: FHIRJSON
+        if let abatementRangeVal = try container.decodeIfPresent(Range.self, forKey: .abatementRange) {
+          self.abatementRange = abatementRangeVal
+        }
+        // String: String
+        if let abatementStringVal = try container.decodeIfPresent(String.self, forKey: .abatementString) {
+          self.abatementString = abatementStringVal
+        }
+        // Reference: FHIRJSON
+        if let asserterVal = try container.decodeIfPresent(Reference.self, forKey: .asserter) {
+          self.asserter = asserterVal
+        }
+        if let bodySiteVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .bodySite) {
+          // CodeableConcept: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let categoryVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .category) {
+          self.category = categoryVal
+        }
+        // String: String
+        if let clinicalStatusVal = try container.decodeIfPresent(String.self, forKey: .clinicalStatus) {
+          self.clinicalStatus = clinicalStatusVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // FHIRDate: String
+        if let dateRecordedVal = try container.decodeIfPresent(FHIRDate.self, forKey: .dateRecorded) {
+          self.dateRecorded = dateRecordedVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        if let evidenceVals = try container.decodeIfPresent([ConditionEvidence].self, forKey: .evidence) {
+          // ConditionEvidence: FHIRJSON
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // String: String
+        if let notesVal = try container.decodeIfPresent(String.self, forKey: .notes) {
+          self.notes = notesVal
+        }
+        // DateTime: String
+        if let onsetDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .onsetDateTime) {
+          self.onsetDateTime = onsetDateTimeVal
+        }
+        // Period: FHIRJSON
+        if let onsetPeriodVal = try container.decodeIfPresent(Period.self, forKey: .onsetPeriod) {
+          self.onsetPeriod = onsetPeriodVal
+        }
+        // Quantity: FHIRJSON
+        if let onsetQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .onsetQuantity) {
+          self.onsetQuantity = onsetQuantityVal
+        }
+        // Range: FHIRJSON
+        if let onsetRangeVal = try container.decodeIfPresent(Range.self, forKey: .onsetRange) {
+          self.onsetRange = onsetRangeVal
+        }
+        // String: String
+        if let onsetStringVal = try container.decodeIfPresent(String.self, forKey: .onsetString) {
+          self.onsetString = onsetStringVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let severityVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .severity) {
+          self.severity = severityVal
+        }
+        // ConditionStage: FHIRJSON
+        if let stageVal = try container.decodeIfPresent(ConditionStage.self, forKey: .stage) {
+          self.stage = stageVal
+        }
+        // String: String
+        if let verificationStatusVal = try container.decodeIfPresent(String.self, forKey: .verificationStatus) {
+          self.verificationStatus = verificationStatusVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -551,6 +644,15 @@ open class ConditionEvidence: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let detailVals = try container.decodeIfPresent([Reference].self, forKey: .detail) {
+          // Reference: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -642,6 +744,15 @@ open class ConditionStage: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let assessmentVals = try container.decodeIfPresent([Reference].self, forKey: .assessment) {
+          // Reference: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let summaryVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .summary) {
+          self.summary = summaryVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

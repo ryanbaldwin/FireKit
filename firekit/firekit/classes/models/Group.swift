@@ -69,10 +69,37 @@ open class Group: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.actual.value = try container.decodeIfPresent(Bool.self, forKey: .actual)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.quantity.value = try container.decodeIfPresent(Int.self, forKey: .quantity)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        // Bool: Bool
+        if let actualVal = try container.decodeIfPresent(Bool.self, forKey: .actual) {
+          self.actual.value = actualVal
+        }
+        if let characteristicVals = try container.decodeIfPresent([GroupCharacteristic].self, forKey: .characteristic) {
+          // GroupCharacteristic: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let memberVals = try container.decodeIfPresent([GroupMember].self, forKey: .member) {
+          // GroupMember: FHIRJSON
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // Int: Int
+        if let quantityVal = try container.decodeIfPresent(Int.self, forKey: .quantity) {
+          self.quantity.value = quantityVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -287,8 +314,36 @@ open class GroupCharacteristic: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.exclude.value = try container.decodeIfPresent(Bool.self, forKey: .exclude)
-        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // Bool: Bool
+        if let excludeVal = try container.decodeIfPresent(Bool.self, forKey: .exclude) {
+          self.exclude.value = excludeVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // Bool: Bool
+        if let valueBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean) {
+          self.valueBoolean.value = valueBooleanVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let valueCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .valueCodeableConcept) {
+          self.valueCodeableConcept = valueCodeableConceptVal
+        }
+        // Quantity: FHIRJSON
+        if let valueQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .valueQuantity) {
+          self.valueQuantity = valueQuantityVal
+        }
+        // Range: FHIRJSON
+        if let valueRangeVal = try container.decodeIfPresent(Range.self, forKey: .valueRange) {
+          self.valueRange = valueRangeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -464,7 +519,20 @@ open class GroupMember: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.inactive.value = try container.decodeIfPresent(Bool.self, forKey: .inactive)
+
+
+        // Reference: FHIRJSON
+        if let entityVal = try container.decodeIfPresent(Reference.self, forKey: .entity) {
+          self.entity = entityVal
+        }
+        // Bool: Bool
+        if let inactiveVal = try container.decodeIfPresent(Bool.self, forKey: .inactive) {
+          self.inactive.value = inactiveVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

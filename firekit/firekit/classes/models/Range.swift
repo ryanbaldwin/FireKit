@@ -51,6 +51,16 @@ open class Range: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Quantity: FHIRJSON
+        if let highVal = try container.decodeIfPresent(Quantity.self, forKey: .high) {
+          self.high = highVal
+        }
+        // Quantity: FHIRJSON
+        if let lowVal = try container.decodeIfPresent(Quantity.self, forKey: .low) {
+          self.low = lowVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

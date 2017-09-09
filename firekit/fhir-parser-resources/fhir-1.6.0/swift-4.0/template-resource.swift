@@ -37,20 +37,19 @@ open class {{ klass.name }}: {{ klass.superclass.name|default('FHIRAbstractBase'
 				presentKeys.insert("{{ prop.orig_name }}")
 				if let val = exist as? {% if prop.is_array %}[{% endif %}{{ prop.json_class }}{% if prop.is_array %}]{% endif %} {
 					{%- if prop.class_name == prop.json_class %}
-					{%- if prop.is_array and prop.is_native %}
+						{%- if prop.is_array and prop.is_native %}
 					self.{{ prop.name }}.append(objectsIn: val.map{ Realm{{prop.class_name}}(value: [$0]) })
-					{%- else %}
+						{%- else %}
 					self.{{ prop.name }}{% if prop|requires_realm_optional %}.value{% endif %} = val
-					{%- endif %}
+						{%- endif %}
 					{%- else %}
-					
-					{%- if prop.is_array %}{% if prop.is_native or 'FHIRElement' == prop.class_name %}
+						{%- if prop.is_array %}{% if prop.is_native or 'FHIRElement' == prop.class_name %}
 					// is_native or 'FHIRElement'
 					self.{{ prop.name }}.append(objectsIn: {{ prop.class_name }}.instantiate(fromArray: val))
-					{%- elif 'Resource' == prop.class_name %}
+						{%- elif 'Resource' == prop.class_name %}
 					// 'Resource' == prop.class_name
 					self.{{ prop.name }}.append(objectsIn: val.map({ return ContainedResource(json: $0, owner: self)}))
-					{%- else %}
+						{%- else %}
 					if let vals = {{ prop.class_name }}.instantiate(fromArray: val, owner: self) as? [{{ prop.class_name }}] {
 						if let realm = self.realm { realm.delete(self.{{ prop.name }}) }
 						self.{{ prop.name }}.append(objectsIn: vals)

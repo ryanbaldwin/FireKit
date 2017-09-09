@@ -66,8 +66,34 @@ open class OrderResponse: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.orderStatus = try container.decodeIfPresent(String.self, forKey: .orderStatus)
+
+
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let fulfillmentVals = try container.decodeIfPresent([Reference].self, forKey: .fulfillment) {
+          // Reference: FHIRJSON
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // String: String
+        if let orderStatusVal = try container.decodeIfPresent(String.self, forKey: .orderStatus) {
+          self.orderStatus = orderStatusVal
+        }
+        // Reference: FHIRJSON
+        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
+          self.request = requestVal
+        }
+        // Reference: FHIRJSON
+        if let whoVal = try container.decodeIfPresent(Reference.self, forKey: .who) {
+          self.who = whoVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

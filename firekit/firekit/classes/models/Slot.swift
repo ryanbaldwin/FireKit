@@ -70,9 +70,39 @@ open class Slot: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
-        self.freeBusyType = try container.decodeIfPresent(String.self, forKey: .freeBusyType)
-        self.overbooked.value = try container.decodeIfPresent(Bool.self, forKey: .overbooked)
+
+
+        // String: String
+        if let commentVal = try container.decodeIfPresent(String.self, forKey: .comment) {
+          self.comment = commentVal
+        }
+        // Instant: String
+        if let endVal = try container.decodeIfPresent(Instant.self, forKey: .end) {
+          self.end = endVal
+        }
+        // String: String
+        if let freeBusyTypeVal = try container.decodeIfPresent(String.self, forKey: .freeBusyType) {
+          self.freeBusyType = freeBusyTypeVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Bool: Bool
+        if let overbookedVal = try container.decodeIfPresent(Bool.self, forKey: .overbooked) {
+          self.overbooked.value = overbookedVal
+        }
+        // Reference: FHIRJSON
+        if let scheduleVal = try container.decodeIfPresent(Reference.self, forKey: .schedule) {
+          self.schedule = scheduleVal
+        }
+        // Instant: String
+        if let startVal = try container.decodeIfPresent(Instant.self, forKey: .start) {
+          self.start = startVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

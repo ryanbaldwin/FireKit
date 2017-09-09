@@ -49,11 +49,28 @@ open class Coding: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.display = try container.decodeIfPresent(String.self, forKey: .display)
-        self.system = try container.decodeIfPresent(String.self, forKey: .system)
-        self.userSelected.value = try container.decodeIfPresent(Bool.self, forKey: .userSelected)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let displayVal = try container.decodeIfPresent(String.self, forKey: .display) {
+          self.display = displayVal
+        }
+        // String: String
+        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
+          self.system = systemVal
+        }
+        // Bool: Bool
+        if let userSelectedVal = try container.decodeIfPresent(Bool.self, forKey: .userSelected) {
+          self.userSelected.value = userSelectedVal
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

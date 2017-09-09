@@ -76,14 +76,59 @@ open class DataElement: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
-        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.stringency = try container.decodeIfPresent(String.self, forKey: .stringency)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        if let contactVals = try container.decodeIfPresent([DataElementContact].self, forKey: .contact) {
+          // DataElementContact: FHIRJSON
+        }
+        // String: String
+        if let copyrightVal = try container.decodeIfPresent(String.self, forKey: .copyright) {
+          self.copyright = copyrightVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        if let elementVals = try container.decodeIfPresent([ElementDefinition].self, forKey: .element) {
+          // ElementDefinition: FHIRJSON
+        }
+        // Bool: Bool
+        if let experimentalVal = try container.decodeIfPresent(Bool.self, forKey: .experimental) {
+          self.experimental.value = experimentalVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let mappingVals = try container.decodeIfPresent([DataElementMapping].self, forKey: .mapping) {
+          // DataElementMapping: FHIRJSON
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // String: String
+        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
+          self.publisher = publisherVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // String: String
+        if let stringencyVal = try container.decodeIfPresent(String.self, forKey: .stringency) {
+          self.stringency = stringencyVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
+        if let useContextVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) {
+          // CodeableConcept: FHIRJSON
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -346,7 +391,15 @@ open class DataElementContact: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -446,10 +499,24 @@ open class DataElementMapping: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
-        self.identity = try container.decodeIfPresent(String.self, forKey: .identity)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.uri = try container.decodeIfPresent(String.self, forKey: .uri)
+
+
+        // String: String
+        if let commentsVal = try container.decodeIfPresent(String.self, forKey: .comments) {
+          self.comments = commentsVal
+        }
+        // String: String
+        if let identityVal = try container.decodeIfPresent(String.self, forKey: .identity) {
+          self.identity = identityVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // String: String
+        if let uriVal = try container.decodeIfPresent(String.self, forKey: .uri) {
+          self.uri = uriVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

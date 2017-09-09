@@ -87,7 +87,51 @@ open class SupplyRequest: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let kindVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .kind) {
+          self.kind = kindVal
+        }
+        // Reference: FHIRJSON
+        if let orderedItemVal = try container.decodeIfPresent(Reference.self, forKey: .orderedItem) {
+          self.orderedItem = orderedItemVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let reasonCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept) {
+          self.reasonCodeableConcept = reasonCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let reasonReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .reasonReference) {
+          self.reasonReference = reasonReferenceVal
+        }
+        // Reference: FHIRJSON
+        if let sourceVal = try container.decodeIfPresent(Reference.self, forKey: .source) {
+          self.source = sourceVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        if let supplierVals = try container.decodeIfPresent([Reference].self, forKey: .supplier) {
+          // Reference: FHIRJSON
+        }
+        // SupplyRequestWhen: FHIRJSON
+        if let whenVal = try container.decodeIfPresent(SupplyRequestWhen.self, forKey: .when) {
+          self.when = whenVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -297,6 +341,16 @@ open class SupplyRequestWhen: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // Timing: FHIRJSON
+        if let scheduleVal = try container.decodeIfPresent(Timing.self, forKey: .schedule) {
+          self.schedule = scheduleVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -65,14 +65,47 @@ open class Address: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.city = try container.decodeIfPresent(String.self, forKey: .city)
-        self.country = try container.decodeIfPresent(String.self, forKey: .country)
-        self.district = try container.decodeIfPresent(String.self, forKey: .district)
-        self.postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
-        self.state = try container.decodeIfPresent(String.self, forKey: .state)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
-        self.use = try container.decodeIfPresent(String.self, forKey: .use)
+
+
+        // String: String
+        if let cityVal = try container.decodeIfPresent(String.self, forKey: .city) {
+          self.city = cityVal
+        }
+        // String: String
+        if let countryVal = try container.decodeIfPresent(String.self, forKey: .country) {
+          self.country = countryVal
+        }
+        // String: String
+        if let districtVal = try container.decodeIfPresent(String.self, forKey: .district) {
+          self.district = districtVal
+        }
+        if let lineVals = try container.decodeIfPresent([String].self, forKey: .line) {
+          // String: String
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // String: String
+        if let postalCodeVal = try container.decodeIfPresent(String.self, forKey: .postalCode) {
+          self.postalCode = postalCodeVal
+        }
+        // String: String
+        if let stateVal = try container.decodeIfPresent(String.self, forKey: .state) {
+          self.state = stateVal
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // String: String
+        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
+          self.use = useVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

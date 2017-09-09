@@ -104,9 +104,68 @@ open class ProcessRequest: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.action = try container.decodeIfPresent(String.self, forKey: .action)
-        self.nullify.value = try container.decodeIfPresent(Bool.self, forKey: .nullify)
-        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
+
+
+        // String: String
+        if let actionVal = try container.decodeIfPresent(String.self, forKey: .action) {
+          self.action = actionVal
+        }
+        // DateTime: String
+        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
+          self.created = createdVal
+        }
+        if let excludeVals = try container.decodeIfPresent([String].self, forKey: .exclude) {
+          // String: String
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let includeVals = try container.decodeIfPresent([String].self, forKey: .include) {
+          // String: String
+        }
+        if let itemVals = try container.decodeIfPresent([ProcessRequestItem].self, forKey: .item) {
+          // ProcessRequestItem: FHIRJSON
+        }
+        // Bool: Bool
+        if let nullifyVal = try container.decodeIfPresent(Bool.self, forKey: .nullify) {
+          self.nullify.value = nullifyVal
+        }
+        // Reference: FHIRJSON
+        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
+          self.organization = organizationVal
+        }
+        // Coding: FHIRJSON
+        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
+          self.originalRuleset = originalRulesetVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // Reference: FHIRJSON
+        if let providerVal = try container.decodeIfPresent(Reference.self, forKey: .provider) {
+          self.provider = providerVal
+        }
+        // String: String
+        if let referenceVal = try container.decodeIfPresent(String.self, forKey: .reference) {
+          self.reference = referenceVal
+        }
+        // Reference: FHIRJSON
+        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
+          self.request = requestVal
+        }
+        // Reference: FHIRJSON
+        if let responseVal = try container.decodeIfPresent(Reference.self, forKey: .response) {
+          self.response = responseVal
+        }
+        // Coding: FHIRJSON
+        if let rulesetVal = try container.decodeIfPresent(Coding.self, forKey: .ruleset) {
+          self.ruleset = rulesetVal
+        }
+        // Reference: FHIRJSON
+        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
+          self.target = targetVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -387,7 +446,12 @@ open class ProcessRequestItem: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId)
+
+
+        // Int: Int
+        if let sequenceLinkIdVal = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId) {
+          self.sequenceLinkId.value = sequenceLinkIdVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

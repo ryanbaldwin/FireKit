@@ -92,6 +92,47 @@ open class PaymentNotice: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // DateTime: String
+        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
+          self.created = createdVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
+          self.organization = organizationVal
+        }
+        // Coding: FHIRJSON
+        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
+          self.originalRuleset = originalRulesetVal
+        }
+        // Coding: FHIRJSON
+        if let paymentStatusVal = try container.decodeIfPresent(Coding.self, forKey: .paymentStatus) {
+          self.paymentStatus = paymentStatusVal
+        }
+        // Reference: FHIRJSON
+        if let providerVal = try container.decodeIfPresent(Reference.self, forKey: .provider) {
+          self.provider = providerVal
+        }
+        // Reference: FHIRJSON
+        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
+          self.request = requestVal
+        }
+        // Reference: FHIRJSON
+        if let responseVal = try container.decodeIfPresent(Reference.self, forKey: .response) {
+          self.response = responseVal
+        }
+        // Coding: FHIRJSON
+        if let rulesetVal = try container.decodeIfPresent(Coding.self, forKey: .ruleset) {
+          self.ruleset = rulesetVal
+        }
+        // Reference: FHIRJSON
+        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
+          self.target = targetVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

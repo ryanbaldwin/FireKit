@@ -100,18 +100,86 @@ open class Conformance: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.acceptUnknown = try container.decodeIfPresent(String.self, forKey: .acceptUnknown)
-        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
-        self.fhirVersion = try container.decodeIfPresent(String.self, forKey: .fhirVersion)
-        self.kind = try container.decodeIfPresent(String.self, forKey: .kind)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
-        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        // String: String
+        if let acceptUnknownVal = try container.decodeIfPresent(String.self, forKey: .acceptUnknown) {
+          self.acceptUnknown = acceptUnknownVal
+        }
+        if let contactVals = try container.decodeIfPresent([ConformanceContact].self, forKey: .contact) {
+          // ConformanceContact: FHIRJSON
+        }
+        // String: String
+        if let copyrightVal = try container.decodeIfPresent(String.self, forKey: .copyright) {
+          self.copyright = copyrightVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let documentVals = try container.decodeIfPresent([ConformanceDocument].self, forKey: .document) {
+          // ConformanceDocument: FHIRJSON
+        }
+        // Bool: Bool
+        if let experimentalVal = try container.decodeIfPresent(Bool.self, forKey: .experimental) {
+          self.experimental.value = experimentalVal
+        }
+        // String: String
+        if let fhirVersionVal = try container.decodeIfPresent(String.self, forKey: .fhirVersion) {
+          self.fhirVersion = fhirVersionVal
+        }
+        if let formatVals = try container.decodeIfPresent([String].self, forKey: .format) {
+          // String: String
+        }
+        // ConformanceImplementation: FHIRJSON
+        if let implementationVal = try container.decodeIfPresent(ConformanceImplementation.self, forKey: .implementation) {
+          self.implementation = implementationVal
+        }
+        // String: String
+        if let kindVal = try container.decodeIfPresent(String.self, forKey: .kind) {
+          self.kind = kindVal
+        }
+        if let messagingVals = try container.decodeIfPresent([ConformanceMessaging].self, forKey: .messaging) {
+          // ConformanceMessaging: FHIRJSON
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let profileVals = try container.decodeIfPresent([Reference].self, forKey: .profile) {
+          // Reference: FHIRJSON
+        }
+        // String: String
+        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
+          self.publisher = publisherVal
+        }
+        // String: String
+        if let requirementsVal = try container.decodeIfPresent(String.self, forKey: .requirements) {
+          self.requirements = requirementsVal
+        }
+        if let restVals = try container.decodeIfPresent([ConformanceRest].self, forKey: .rest) {
+          // ConformanceRest: FHIRJSON
+        }
+        // ConformanceSoftware: FHIRJSON
+        if let softwareVal = try container.decodeIfPresent(ConformanceSoftware.self, forKey: .software) {
+          self.software = softwareVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -474,7 +542,15 @@ open class ConformanceContact: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -575,8 +651,20 @@ open class ConformanceDocument: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.documentation = try container.decodeIfPresent(String.self, forKey: .documentation)
-        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
+
+
+        // String: String
+        if let documentationVal = try container.decodeIfPresent(String.self, forKey: .documentation) {
+          self.documentation = documentationVal
+        }
+        // String: String
+        if let modeVal = try container.decodeIfPresent(String.self, forKey: .mode) {
+          self.mode = modeVal
+        }
+        // Reference: FHIRJSON
+        if let profileVal = try container.decodeIfPresent(Reference.self, forKey: .profile) {
+          self.profile = profileVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -688,8 +776,16 @@ open class ConformanceImplementation: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+
+
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -788,8 +884,22 @@ open class ConformanceMessaging: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.documentation = try container.decodeIfPresent(String.self, forKey: .documentation)
-        self.reliableCache.value = try container.decodeIfPresent(Int.self, forKey: .reliableCache)
+
+
+        // String: String
+        if let documentationVal = try container.decodeIfPresent(String.self, forKey: .documentation) {
+          self.documentation = documentationVal
+        }
+        if let endpointVals = try container.decodeIfPresent([ConformanceMessagingEndpoint].self, forKey: .endpoint) {
+          // ConformanceMessagingEndpoint: FHIRJSON
+        }
+        if let eventVals = try container.decodeIfPresent([ConformanceMessagingEvent].self, forKey: .event) {
+          // ConformanceMessagingEvent: FHIRJSON
+        }
+        // Int: Int
+        if let reliableCacheVal = try container.decodeIfPresent(Int.self, forKey: .reliableCache) {
+          self.reliableCache.value = reliableCacheVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -920,7 +1030,16 @@ open class ConformanceMessagingEndpoint: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.address = try container.decodeIfPresent(String.self, forKey: .address)
+
+
+        // String: String
+        if let addressVal = try container.decodeIfPresent(String.self, forKey: .address) {
+          self.address = addressVal
+        }
+        // Coding: FHIRJSON
+        if let protocol_fhirVal = try container.decodeIfPresent(Coding.self, forKey: .protocol_fhir) {
+          self.protocol_fhir = protocol_fhirVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1041,10 +1160,36 @@ open class ConformanceMessagingEvent: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.category = try container.decodeIfPresent(String.self, forKey: .category)
-        self.documentation = try container.decodeIfPresent(String.self, forKey: .documentation)
-        self.focus = try container.decodeIfPresent(String.self, forKey: .focus)
-        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
+
+
+        // String: String
+        if let categoryVal = try container.decodeIfPresent(String.self, forKey: .category) {
+          self.category = categoryVal
+        }
+        // Coding: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(Coding.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let documentationVal = try container.decodeIfPresent(String.self, forKey: .documentation) {
+          self.documentation = documentationVal
+        }
+        // String: String
+        if let focusVal = try container.decodeIfPresent(String.self, forKey: .focus) {
+          self.focus = focusVal
+        }
+        // String: String
+        if let modeVal = try container.decodeIfPresent(String.self, forKey: .mode) {
+          self.mode = modeVal
+        }
+        // Reference: FHIRJSON
+        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
+          self.request = requestVal
+        }
+        // Reference: FHIRJSON
+        if let responseVal = try container.decodeIfPresent(Reference.self, forKey: .response) {
+          self.response = responseVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1234,9 +1379,39 @@ open class ConformanceRest: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.documentation = try container.decodeIfPresent(String.self, forKey: .documentation)
-        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
-        self.transactionMode = try container.decodeIfPresent(String.self, forKey: .transactionMode)
+
+
+        if let compartmentVals = try container.decodeIfPresent([String].self, forKey: .compartment) {
+          // String: String
+        }
+        // String: String
+        if let documentationVal = try container.decodeIfPresent(String.self, forKey: .documentation) {
+          self.documentation = documentationVal
+        }
+        if let interactionVals = try container.decodeIfPresent([ConformanceRestInteraction].self, forKey: .interaction) {
+          // ConformanceRestInteraction: FHIRJSON
+        }
+        // String: String
+        if let modeVal = try container.decodeIfPresent(String.self, forKey: .mode) {
+          self.mode = modeVal
+        }
+        if let operationVals = try container.decodeIfPresent([ConformanceRestOperation].self, forKey: .operation) {
+          // ConformanceRestOperation: FHIRJSON
+        }
+        if let resourceVals = try container.decodeIfPresent([ConformanceRestResource].self, forKey: .resource) {
+          // ConformanceRestResource: FHIRJSON
+        }
+        if let searchParamVals = try container.decodeIfPresent([ConformanceRestResourceSearchParam].self, forKey: .searchParam) {
+          // ConformanceRestResourceSearchParam: FHIRJSON
+        }
+        // ConformanceRestSecurity: FHIRJSON
+        if let securityVal = try container.decodeIfPresent(ConformanceRestSecurity.self, forKey: .security) {
+          self.security = securityVal
+        }
+        // String: String
+        if let transactionModeVal = try container.decodeIfPresent(String.self, forKey: .transactionMode) {
+          self.transactionMode = transactionModeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1437,8 +1612,16 @@ open class ConformanceRestInteraction: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.documentation = try container.decodeIfPresent(String.self, forKey: .documentation)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let documentationVal = try container.decodeIfPresent(String.self, forKey: .documentation) {
+          self.documentation = documentationVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1537,7 +1720,16 @@ open class ConformanceRestOperation: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // Reference: FHIRJSON
+        if let definitionVal = try container.decodeIfPresent(Reference.self, forKey: .definition) {
+          self.definition = definitionVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1659,13 +1851,52 @@ open class ConformanceRestResource: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.conditionalCreate.value = try container.decodeIfPresent(Bool.self, forKey: .conditionalCreate)
-        self.conditionalDelete = try container.decodeIfPresent(String.self, forKey: .conditionalDelete)
-        self.conditionalUpdate.value = try container.decodeIfPresent(Bool.self, forKey: .conditionalUpdate)
-        self.readHistory.value = try container.decodeIfPresent(Bool.self, forKey: .readHistory)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
-        self.updateCreate.value = try container.decodeIfPresent(Bool.self, forKey: .updateCreate)
-        self.versioning = try container.decodeIfPresent(String.self, forKey: .versioning)
+
+
+        // Bool: Bool
+        if let conditionalCreateVal = try container.decodeIfPresent(Bool.self, forKey: .conditionalCreate) {
+          self.conditionalCreate.value = conditionalCreateVal
+        }
+        // String: String
+        if let conditionalDeleteVal = try container.decodeIfPresent(String.self, forKey: .conditionalDelete) {
+          self.conditionalDelete = conditionalDeleteVal
+        }
+        // Bool: Bool
+        if let conditionalUpdateVal = try container.decodeIfPresent(Bool.self, forKey: .conditionalUpdate) {
+          self.conditionalUpdate.value = conditionalUpdateVal
+        }
+        if let interactionVals = try container.decodeIfPresent([ConformanceRestResourceInteraction].self, forKey: .interaction) {
+          // ConformanceRestResourceInteraction: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let profileVal = try container.decodeIfPresent(Reference.self, forKey: .profile) {
+          self.profile = profileVal
+        }
+        // Bool: Bool
+        if let readHistoryVal = try container.decodeIfPresent(Bool.self, forKey: .readHistory) {
+          self.readHistory.value = readHistoryVal
+        }
+        if let searchIncludeVals = try container.decodeIfPresent([String].self, forKey: .searchInclude) {
+          // String: String
+        }
+        if let searchParamVals = try container.decodeIfPresent([ConformanceRestResourceSearchParam].self, forKey: .searchParam) {
+          // ConformanceRestResourceSearchParam: FHIRJSON
+        }
+        if let searchRevIncludeVals = try container.decodeIfPresent([String].self, forKey: .searchRevInclude) {
+          // String: String
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // Bool: Bool
+        if let updateCreateVal = try container.decodeIfPresent(Bool.self, forKey: .updateCreate) {
+          self.updateCreate.value = updateCreateVal
+        }
+        // String: String
+        if let versioningVal = try container.decodeIfPresent(String.self, forKey: .versioning) {
+          self.versioning = versioningVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1899,8 +2130,16 @@ open class ConformanceRestResourceInteraction: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.documentation = try container.decodeIfPresent(String.self, forKey: .documentation)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let documentationVal = try container.decodeIfPresent(String.self, forKey: .documentation) {
+          self.documentation = documentationVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -2007,10 +2246,33 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.definition = try container.decodeIfPresent(String.self, forKey: .definition)
-        self.documentation = try container.decodeIfPresent(String.self, forKey: .documentation)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        if let chainVals = try container.decodeIfPresent([String].self, forKey: .chain) {
+          // String: String
+        }
+        // String: String
+        if let definitionVal = try container.decodeIfPresent(String.self, forKey: .definition) {
+          self.definition = definitionVal
+        }
+        // String: String
+        if let documentationVal = try container.decodeIfPresent(String.self, forKey: .documentation) {
+          self.documentation = documentationVal
+        }
+        if let modifierVals = try container.decodeIfPresent([String].self, forKey: .modifier) {
+          // String: String
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let targetVals = try container.decodeIfPresent([String].self, forKey: .target) {
+          // String: String
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -2171,8 +2433,22 @@ open class ConformanceRestSecurity: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.cors.value = try container.decodeIfPresent(Bool.self, forKey: .cors)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+
+
+        if let certificateVals = try container.decodeIfPresent([ConformanceRestSecurityCertificate].self, forKey: .certificate) {
+          // ConformanceRestSecurityCertificate: FHIRJSON
+        }
+        // Bool: Bool
+        if let corsVal = try container.decodeIfPresent(Bool.self, forKey: .cors) {
+          self.cors.value = corsVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let serviceVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .service) {
+          // CodeableConcept: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -2288,7 +2564,16 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        // Base64Binary: String
+        if let blobVal = try container.decodeIfPresent(Base64Binary.self, forKey: .blob) {
+          self.blob = blobVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -2383,8 +2668,20 @@ open class ConformanceSoftware: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+
+
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // DateTime: String
+        if let releaseDateVal = try container.decodeIfPresent(DateTime.self, forKey: .releaseDate) {
+          self.releaseDate = releaseDateVal
+        }
+        // String: String
+        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
+          self.version = versionVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

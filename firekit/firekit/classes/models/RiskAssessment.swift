@@ -79,7 +79,46 @@ open class RiskAssessment: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mitigation = try container.decodeIfPresent(String.self, forKey: .mitigation)
+
+
+        if let basisVals = try container.decodeIfPresent([Reference].self, forKey: .basis) {
+          // Reference: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let conditionVal = try container.decodeIfPresent(Reference.self, forKey: .condition) {
+          self.condition = conditionVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let methodVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .method) {
+          self.method = methodVal
+        }
+        // String: String
+        if let mitigationVal = try container.decodeIfPresent(String.self, forKey: .mitigation) {
+          self.mitigation = mitigationVal
+        }
+        // Reference: FHIRJSON
+        if let performerVal = try container.decodeIfPresent(Reference.self, forKey: .performer) {
+          self.performer = performerVal
+        }
+        if let predictionVals = try container.decodeIfPresent([RiskAssessmentPrediction].self, forKey: .prediction) {
+          // RiskAssessmentPrediction: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -308,7 +347,40 @@ open class RiskAssessmentPrediction: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.rationale = try container.decodeIfPresent(String.self, forKey: .rationale)
+
+
+        // CodeableConcept: FHIRJSON
+        if let outcomeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .outcome) {
+          self.outcome = outcomeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let probabilityCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .probabilityCodeableConcept) {
+          self.probabilityCodeableConcept = probabilityCodeableConceptVal
+        }
+        // RealmDecimal: NSNumber
+        if let probabilityDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .probabilityDecimal) {
+          self.probabilityDecimal = probabilityDecimalVal
+        }
+        // Range: FHIRJSON
+        if let probabilityRangeVal = try container.decodeIfPresent(Range.self, forKey: .probabilityRange) {
+          self.probabilityRange = probabilityRangeVal
+        }
+        // String: String
+        if let rationaleVal = try container.decodeIfPresent(String.self, forKey: .rationale) {
+          self.rationale = rationaleVal
+        }
+        // RealmDecimal: NSNumber
+        if let relativeRiskVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .relativeRisk) {
+          self.relativeRisk = relativeRiskVal
+        }
+        // Period: FHIRJSON
+        if let whenPeriodVal = try container.decodeIfPresent(Period.self, forKey: .whenPeriod) {
+          self.whenPeriod = whenPeriodVal
+        }
+        // Range: FHIRJSON
+        if let whenRangeVal = try container.decodeIfPresent(Range.self, forKey: .whenRange) {
+          self.whenRange = whenRangeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -50,8 +50,16 @@ open class Narrative: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.div = try container.decodeIfPresent(String.self, forKey: .div)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // String: String
+        if let divVal = try container.decodeIfPresent(String.self, forKey: .div) {
+          self.div = divVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

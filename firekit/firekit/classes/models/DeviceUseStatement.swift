@@ -94,6 +94,53 @@ open class DeviceUseStatement: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let bodySiteCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .bodySiteCodeableConcept) {
+          self.bodySiteCodeableConcept = bodySiteCodeableConceptVal
+        }
+        // Reference: FHIRJSON
+        if let bodySiteReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .bodySiteReference) {
+          self.bodySiteReference = bodySiteReferenceVal
+        }
+        // Reference: FHIRJSON
+        if let deviceVal = try container.decodeIfPresent(Reference.self, forKey: .device) {
+          self.device = deviceVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let indicationVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .indication) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let notesVals = try container.decodeIfPresent([String].self, forKey: .notes) {
+          // String: String
+        }
+        // DateTime: String
+        if let recordedOnVal = try container.decodeIfPresent(DateTime.self, forKey: .recordedOn) {
+          self.recordedOn = recordedOnVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
+        // DateTime: String
+        if let timingDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .timingDateTime) {
+          self.timingDateTime = timingDateTimeVal
+        }
+        // Period: FHIRJSON
+        if let timingPeriodVal = try container.decodeIfPresent(Period.self, forKey: .timingPeriod) {
+          self.timingPeriod = timingPeriodVal
+        }
+        // Timing: FHIRJSON
+        if let timingTimingVal = try container.decodeIfPresent(Timing.self, forKey: .timingTiming) {
+          self.timingTiming = timingTimingVal
+        }
+        // Period: FHIRJSON
+        if let whenUsedVal = try container.decodeIfPresent(Period.self, forKey: .whenUsed) {
+          self.whenUsed = whenUsedVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

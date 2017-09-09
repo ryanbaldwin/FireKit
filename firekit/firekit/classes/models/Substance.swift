@@ -60,7 +60,28 @@ open class Substance: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+
+
+        if let categoryVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .category) {
+          // CodeableConcept: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let ingredientVals = try container.decodeIfPresent([SubstanceIngredient].self, forKey: .ingredient) {
+          // SubstanceIngredient: FHIRJSON
+        }
+        if let instanceVals = try container.decodeIfPresent([SubstanceInstance].self, forKey: .instance) {
+          // SubstanceInstance: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -225,6 +246,16 @@ open class SubstanceIngredient: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Ratio: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Ratio.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
+        // Reference: FHIRJSON
+        if let substanceVal = try container.decodeIfPresent(Reference.self, forKey: .substance) {
+          self.substance = substanceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -322,6 +353,20 @@ open class SubstanceInstance: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // DateTime: String
+        if let expiryVal = try container.decodeIfPresent(DateTime.self, forKey: .expiry) {
+          self.expiry = expiryVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Quantity: FHIRJSON
+        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
+          self.quantity = quantityVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

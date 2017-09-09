@@ -84,13 +84,57 @@ open class NamingSystem: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.kind = try container.decodeIfPresent(String.self, forKey: .kind)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
-        self.responsible = try container.decodeIfPresent(String.self, forKey: .responsible)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.usage = try container.decodeIfPresent(String.self, forKey: .usage)
+
+
+        if let contactVals = try container.decodeIfPresent([NamingSystemContact].self, forKey: .contact) {
+          // NamingSystemContact: FHIRJSON
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        // String: String
+        if let kindVal = try container.decodeIfPresent(String.self, forKey: .kind) {
+          self.kind = kindVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // String: String
+        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
+          self.publisher = publisherVal
+        }
+        // Reference: FHIRJSON
+        if let replacedByVal = try container.decodeIfPresent(Reference.self, forKey: .replacedBy) {
+          self.replacedBy = replacedByVal
+        }
+        // String: String
+        if let responsibleVal = try container.decodeIfPresent(String.self, forKey: .responsible) {
+          self.responsible = responsibleVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
+        if let uniqueIdVals = try container.decodeIfPresent([NamingSystemUniqueId].self, forKey: .uniqueId) {
+          // NamingSystemUniqueId: FHIRJSON
+        }
+        // String: String
+        if let usageVal = try container.decodeIfPresent(String.self, forKey: .usage) {
+          self.usage = usageVal
+        }
+        if let useContextVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) {
+          // CodeableConcept: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -343,7 +387,15 @@ open class NamingSystemContact: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -446,9 +498,24 @@ open class NamingSystemUniqueId: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.preferred.value = try container.decodeIfPresent(Bool.self, forKey: .preferred)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
-        self.value = try container.decodeIfPresent(String.self, forKey: .value)
+
+
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // Bool: Bool
+        if let preferredVal = try container.decodeIfPresent(Bool.self, forKey: .preferred) {
+          self.preferred.value = preferredVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // String: String
+        if let valueVal = try container.decodeIfPresent(String.self, forKey: .value) {
+          self.value = valueVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

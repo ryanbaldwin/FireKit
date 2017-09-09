@@ -102,9 +102,60 @@ open class Composition: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.confidentiality = try container.decodeIfPresent(String.self, forKey: .confidentiality)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
-        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+
+
+        if let attesterVals = try container.decodeIfPresent([CompositionAttester].self, forKey: .attester) {
+          // CompositionAttester: FHIRJSON
+        }
+        if let authorVals = try container.decodeIfPresent([Reference].self, forKey: .author) {
+          // Reference: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let class_fhirVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .class_fhir) {
+          self.class_fhir = class_fhirVal
+        }
+        // String: String
+        if let confidentialityVal = try container.decodeIfPresent(String.self, forKey: .confidentiality) {
+          self.confidentiality = confidentialityVal
+        }
+        // Reference: FHIRJSON
+        if let custodianVal = try container.decodeIfPresent(Reference.self, forKey: .custodian) {
+          self.custodian = custodianVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        if let eventVals = try container.decodeIfPresent([CompositionEvent].self, forKey: .event) {
+          // CompositionEvent: FHIRJSON
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        if let sectionVals = try container.decodeIfPresent([CompositionSection].self, forKey: .section) {
+          // CompositionSection: FHIRJSON
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        // Reference: FHIRJSON
+        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
+          self.subject = subjectVal
+        }
+        // String: String
+        if let titleVal = try container.decodeIfPresent(String.self, forKey: .title) {
+          self.title = titleVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -387,6 +438,19 @@ open class CompositionAttester: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let modeVals = try container.decodeIfPresent([String].self, forKey: .mode) {
+          // String: String
+        }
+        // Reference: FHIRJSON
+        if let partyVal = try container.decodeIfPresent(Reference.self, forKey: .party) {
+          self.party = partyVal
+        }
+        // DateTime: String
+        if let timeVal = try container.decodeIfPresent(DateTime.self, forKey: .time) {
+          self.time = timeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -493,6 +557,18 @@ open class CompositionEvent: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let codeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .code) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let detailVals = try container.decodeIfPresent([Reference].self, forKey: .detail) {
+          // Reference: FHIRJSON
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -621,8 +697,38 @@ open class CompositionSection: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
-        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let emptyReasonVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .emptyReason) {
+          self.emptyReason = emptyReasonVal
+        }
+        if let entryVals = try container.decodeIfPresent([Reference].self, forKey: .entry) {
+          // Reference: FHIRJSON
+        }
+        // String: String
+        if let modeVal = try container.decodeIfPresent(String.self, forKey: .mode) {
+          self.mode = modeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let orderedByVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .orderedBy) {
+          self.orderedBy = orderedByVal
+        }
+        if let sectionVals = try container.decodeIfPresent([CompositionSection].self, forKey: .section) {
+          // CompositionSection: FHIRJSON
+        }
+        // Narrative: FHIRJSON
+        if let textVal = try container.decodeIfPresent(Narrative.self, forKey: .text) {
+          self.text = textVal
+        }
+        // String: String
+        if let titleVal = try container.decodeIfPresent(String.self, forKey: .title) {
+          self.title = titleVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -18,11 +18,11 @@ public typealias FHIRJSON = [String: Any]
 /**
 Data encoded as a base-64 string.
 */
-final public class Base64Binary: Object, ExpressibleByStringLiteral, Comparable {
+final public class Base64Binary: Object, ExpressibleByStringLiteral, Comparable, Codable {
 	public typealias UnicodeScalarLiteralType = Character
 	public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
 	
-	public dynamic var value: String?
+	@objc public dynamic var value: String?
 	
 	public convenience init(val: String) {
         self.init()
@@ -51,7 +51,18 @@ final public class Base64Binary: Object, ExpressibleByStringLiteral, Comparable 
 		self.value = value
 	}
 	
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.init(val: try container.decode(String.self))
+    }
 	
+    public func encode(to encoder: Encoder) throws {
+        if let value = value {
+            var container = encoder.singleValueContainer()
+            try container.encode(value)
+        }
+    }
+    
 	// MARK: - Printable, Equatable and Comparable
 	
 	override public var description: String {

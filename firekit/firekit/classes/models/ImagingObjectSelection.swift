@@ -79,8 +79,35 @@ open class ImagingObjectSelection: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+
+
+        // Reference: FHIRJSON
+        if let authorVal = try container.decodeIfPresent(Reference.self, forKey: .author) {
+          self.author = authorVal
+        }
+        // DateTime: String
+        if let authoringTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .authoringTime) {
+          self.authoringTime = authoringTimeVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        if let studyVals = try container.decodeIfPresent([ImagingObjectSelectionStudy].self, forKey: .study) {
+          // ImagingObjectSelectionStudy: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let titleVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .title) {
+          self.title = titleVal
+        }
+        // String: String
+        if let uidVal = try container.decodeIfPresent(String.self, forKey: .uid) {
+          self.uid = uidVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -260,8 +287,23 @@ open class ImagingObjectSelectionStudy: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+
+
+        // Reference: FHIRJSON
+        if let imagingStudyVal = try container.decodeIfPresent(Reference.self, forKey: .imagingStudy) {
+          self.imagingStudy = imagingStudyVal
+        }
+        if let seriesVals = try container.decodeIfPresent([ImagingObjectSelectionStudySeries].self, forKey: .series) {
+          // ImagingObjectSelectionStudySeries: FHIRJSON
+        }
+        // String: String
+        if let uidVal = try container.decodeIfPresent(String.self, forKey: .uid) {
+          self.uid = uidVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -390,8 +432,19 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+
+
+        if let instanceVals = try container.decodeIfPresent([ImagingObjectSelectionStudySeriesInstance].self, forKey: .instance) {
+          // ImagingObjectSelectionStudySeriesInstance: FHIRJSON
+        }
+        // String: String
+        if let uidVal = try container.decodeIfPresent(String.self, forKey: .uid) {
+          self.uid = uidVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -508,9 +561,23 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.sopClass = try container.decodeIfPresent(String.self, forKey: .sopClass)
-        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+
+
+        if let framesVals = try container.decodeIfPresent([ImagingObjectSelectionStudySeriesInstanceFrames].self, forKey: .frames) {
+          // ImagingObjectSelectionStudySeriesInstanceFrames: FHIRJSON
+        }
+        // String: String
+        if let sopClassVal = try container.decodeIfPresent(String.self, forKey: .sopClass) {
+          self.sopClass = sopClassVal
+        }
+        // String: String
+        if let uidVal = try container.decodeIfPresent(String.self, forKey: .uid) {
+          self.uid = uidVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -641,7 +708,15 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+
+
+        if let frameNumbersVals = try container.decodeIfPresent([Int].self, forKey: .frameNumbers) {
+          // Int: Int
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

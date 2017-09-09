@@ -74,9 +74,46 @@ open class DetectedIssue: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.detail = try container.decodeIfPresent(String.self, forKey: .detail)
-        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
-        self.severity = try container.decodeIfPresent(String.self, forKey: .severity)
+
+
+        // Reference: FHIRJSON
+        if let authorVal = try container.decodeIfPresent(Reference.self, forKey: .author) {
+          self.author = authorVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let categoryVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .category) {
+          self.category = categoryVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // String: String
+        if let detailVal = try container.decodeIfPresent(String.self, forKey: .detail) {
+          self.detail = detailVal
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        if let implicatedVals = try container.decodeIfPresent([Reference].self, forKey: .implicated) {
+          // Reference: FHIRJSON
+        }
+        if let mitigationVals = try container.decodeIfPresent([DetectedIssueMitigation].self, forKey: .mitigation) {
+          // DetectedIssueMitigation: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // String: String
+        if let referenceVal = try container.decodeIfPresent(String.self, forKey: .reference) {
+          self.reference = referenceVal
+        }
+        // String: String
+        if let severityVal = try container.decodeIfPresent(String.self, forKey: .severity) {
+          self.severity = severityVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -288,6 +325,20 @@ open class DetectedIssueMitigation: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let actionVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .action) {
+          self.action = actionVal
+        }
+        // Reference: FHIRJSON
+        if let authorVal = try container.decodeIfPresent(Reference.self, forKey: .author) {
+          self.author = authorVal
+        }
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -43,8 +43,16 @@ open class Reference: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.display = try container.decodeIfPresent(String.self, forKey: .display)
-        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
+
+
+        // String: String
+        if let displayVal = try container.decodeIfPresent(String.self, forKey: .display) {
+          self.display = displayVal
+        }
+        // String: String
+        if let referenceVal = try container.decodeIfPresent(String.self, forKey: .reference) {
+          self.reference = referenceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

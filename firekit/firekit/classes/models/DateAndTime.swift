@@ -12,14 +12,14 @@ import RealmSwift
 /**
 A protocol for all our date and time structs.
 */
-protocol DateAndTime: CustomStringConvertible, Comparable, Equatable {
+protocol DateAndTime: CustomStringConvertible, Comparable {
     
     var nsDate: Date { get }
 }
 
 /// A date for use in human communication. Named `FHIRDate` to avoid the numerous collisions with `Foundation.Date`.
 /// Month and day are optional and there are no timezones.
-final public class FHIRDate: Object, DateAndTime {
+final public class FHIRDate: Object, DateAndTime, Codable {
     
     /// The year.
     public dynamic var year: Int = Calendar.current.component(.year, from: Date())
@@ -91,6 +91,23 @@ final public class FHIRDate: Object, DateAndTime {
         day = parsed.date!.day
     }
     
+    convenience public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let dateString = try container.decode(String.self)
+        guard DateAndTimeParser.sharedParser.parse(string: dateString).date != nil else {
+            print("Could not inflated FHIRDate from JSON because the dateString could not be parsed: \(dateString)")
+            self.init()
+            return
+        }
+        
+        self.init(string: dateString)!
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.description)
+    }
+    
     /**
     - returns: Today's date
     */
@@ -151,7 +168,7 @@ A time during the day, optionally with seconds, usually for human communication.
 Minimum of 00:00 and maximum of < 24:00. There is no timezone. Since decimal precision has significance in FHIR, Time initialized from a
 string will remember the seconds string until it is manually set.
 */
-final public class FHIRTime: Object, DateAndTime {
+final public class FHIRTime: Object, DateAndTime, Codable {
     
     /// The hour of the day; cannot be higher than 23.
     public dynamic var hour: Int8 = 0 {
@@ -245,6 +262,23 @@ final public class FHIRTime: Object, DateAndTime {
         tookSecondsFromString = time.tookSecondsFromString
     }
     
+    convenience public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let dateString = try container.decode(String.self)
+        guard DateAndTimeParser.sharedParser.parse(string: dateString, isTimeOnly: true).time != nil else {
+            print("Could not inflated FHIRTime from JSON because the dateString could not be parsed: \(dateString)")
+            self.init()
+            return
+        }
+        
+        self.init(string: dateString)!
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.description)
+    }
+    
     /**
     The time right now.
     
@@ -304,7 +338,7 @@ final public class FHIRTime: Object, DateAndTime {
  
  If a time is specified there must be a timezone; defaults to the system reported local timezone.
  */
-final public class DateTime: Object, DateAndTime {
+final public class DateTime: Object, DateAndTime, Codable {
     
     /// The original date string representing this DateTime. 
     /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
@@ -465,6 +499,23 @@ final public class DateTime: Object, DateAndTime {
         self.timeZoneString = tzString
     }
     
+    convenience public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let dateString = try container.decode(String.self)
+        guard DateAndTimeParser.sharedParser.parse(string: dateString).date != nil else {
+            print("Could not inflated DateTime from JSON because the dateString could not be parsed: \(dateString)")
+            self.init()
+            return
+        }
+        
+        self.init(string: dateString)!
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.description)
+    }
+    
     private func makeDescription(date: FHIRDate?, time: FHIRTime?) -> String {
         if let tm = time, let tz = timeZoneString ?? timeZone?.offset() {
             return "\((date ?? FHIRDate.today).description)T\(tm.description)\(tz)"
@@ -498,7 +549,7 @@ final public class DateTime: Object, DateAndTime {
 /**
 An instant in time, known at least to the second and with a timezone, for machine times.
 */
-final public class Instant: Object, DateAndTime {
+final public class Instant: Object, DateAndTime, Codable {
     /// The original date string representing this DateTime.
     /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
     public private(set) dynamic var dateString = ""
@@ -678,6 +729,24 @@ final public class Instant: Object, DateAndTime {
         self.value = makeDate(date, time: time, timeZone: timeZone)
         self.timeZoneIdentifier = timeZone.identifier
         self.timeZoneString = tzString!
+    }
+    
+    convenience public init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let dateString = try container.decode(String.self)
+        let (d, t, tz, _) = DateAndTimeParser.sharedParser.parse(string: dateString)
+        guard let date = d, date.month != nil, date.day != nil, t != nil, tz != nil else {
+            print("Could not inflated Instant from JSON because the dateString could not be parsed: \(dateString)")
+            self.init()
+            return
+        }
+        
+        self.init(string: dateString)!
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.description)
     }
     
     private func updateDateIfNeeded() {

@@ -166,17 +166,144 @@ open class Extension: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
-        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
-        self.valueCode = try container.decodeIfPresent(String.self, forKey: .valueCode)
-        self.valueId = try container.decodeIfPresent(String.self, forKey: .valueId)
-        self.valueInteger.value = try container.decodeIfPresent(Int.self, forKey: .valueInteger)
-        self.valueMarkdown = try container.decodeIfPresent(String.self, forKey: .valueMarkdown)
-        self.valueOid = try container.decodeIfPresent(String.self, forKey: .valueOid)
-        self.valuePositiveInt.value = try container.decodeIfPresent(Int.self, forKey: .valuePositiveInt)
-        self.valueString = try container.decodeIfPresent(String.self, forKey: .valueString)
-        self.valueUnsignedInt.value = try container.decodeIfPresent(Int.self, forKey: .valueUnsignedInt)
-        self.valueUri = try container.decodeIfPresent(String.self, forKey: .valueUri)
+
+
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
+        // Address: FHIRJSON
+        if let valueAddressVal = try container.decodeIfPresent(Address.self, forKey: .valueAddress) {
+          self.valueAddress = valueAddressVal
+        }
+        // Annotation: FHIRJSON
+        if let valueAnnotationVal = try container.decodeIfPresent(Annotation.self, forKey: .valueAnnotation) {
+          self.valueAnnotation = valueAnnotationVal
+        }
+        // Attachment: FHIRJSON
+        if let valueAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .valueAttachment) {
+          self.valueAttachment = valueAttachmentVal
+        }
+        // Base64Binary: String
+        if let valueBase64BinaryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .valueBase64Binary) {
+          self.valueBase64Binary = valueBase64BinaryVal
+        }
+        // Bool: Bool
+        if let valueBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean) {
+          self.valueBoolean.value = valueBooleanVal
+        }
+        // String: String
+        if let valueCodeVal = try container.decodeIfPresent(String.self, forKey: .valueCode) {
+          self.valueCode = valueCodeVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let valueCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .valueCodeableConcept) {
+          self.valueCodeableConcept = valueCodeableConceptVal
+        }
+        // Coding: FHIRJSON
+        if let valueCodingVal = try container.decodeIfPresent(Coding.self, forKey: .valueCoding) {
+          self.valueCoding = valueCodingVal
+        }
+        // ContactPoint: FHIRJSON
+        if let valueContactPointVal = try container.decodeIfPresent(ContactPoint.self, forKey: .valueContactPoint) {
+          self.valueContactPoint = valueContactPointVal
+        }
+        // FHIRDate: String
+        if let valueDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .valueDate) {
+          self.valueDate = valueDateVal
+        }
+        // DateTime: String
+        if let valueDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .valueDateTime) {
+          self.valueDateTime = valueDateTimeVal
+        }
+        // RealmDecimal: NSNumber
+        if let valueDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .valueDecimal) {
+          self.valueDecimal = valueDecimalVal
+        }
+        // HumanName: FHIRJSON
+        if let valueHumanNameVal = try container.decodeIfPresent(HumanName.self, forKey: .valueHumanName) {
+          self.valueHumanName = valueHumanNameVal
+        }
+        // String: String
+        if let valueIdVal = try container.decodeIfPresent(String.self, forKey: .valueId) {
+          self.valueId = valueIdVal
+        }
+        // Identifier: FHIRJSON
+        if let valueIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .valueIdentifier) {
+          self.valueIdentifier = valueIdentifierVal
+        }
+        // Instant: String
+        if let valueInstantVal = try container.decodeIfPresent(Instant.self, forKey: .valueInstant) {
+          self.valueInstant = valueInstantVal
+        }
+        // Int: Int
+        if let valueIntegerVal = try container.decodeIfPresent(Int.self, forKey: .valueInteger) {
+          self.valueInteger.value = valueIntegerVal
+        }
+        // String: String
+        if let valueMarkdownVal = try container.decodeIfPresent(String.self, forKey: .valueMarkdown) {
+          self.valueMarkdown = valueMarkdownVal
+        }
+        // Meta: FHIRJSON
+        if let valueMetaVal = try container.decodeIfPresent(Meta.self, forKey: .valueMeta) {
+          self.valueMeta = valueMetaVal
+        }
+        // String: String
+        if let valueOidVal = try container.decodeIfPresent(String.self, forKey: .valueOid) {
+          self.valueOid = valueOidVal
+        }
+        // Period: FHIRJSON
+        if let valuePeriodVal = try container.decodeIfPresent(Period.self, forKey: .valuePeriod) {
+          self.valuePeriod = valuePeriodVal
+        }
+        // Int: Int
+        if let valuePositiveIntVal = try container.decodeIfPresent(Int.self, forKey: .valuePositiveInt) {
+          self.valuePositiveInt.value = valuePositiveIntVal
+        }
+        // Quantity: FHIRJSON
+        if let valueQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .valueQuantity) {
+          self.valueQuantity = valueQuantityVal
+        }
+        // Range: FHIRJSON
+        if let valueRangeVal = try container.decodeIfPresent(Range.self, forKey: .valueRange) {
+          self.valueRange = valueRangeVal
+        }
+        // Ratio: FHIRJSON
+        if let valueRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .valueRatio) {
+          self.valueRatio = valueRatioVal
+        }
+        // Reference: FHIRJSON
+        if let valueReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .valueReference) {
+          self.valueReference = valueReferenceVal
+        }
+        // SampledData: FHIRJSON
+        if let valueSampledDataVal = try container.decodeIfPresent(SampledData.self, forKey: .valueSampledData) {
+          self.valueSampledData = valueSampledDataVal
+        }
+        // Signature: FHIRJSON
+        if let valueSignatureVal = try container.decodeIfPresent(Signature.self, forKey: .valueSignature) {
+          self.valueSignature = valueSignatureVal
+        }
+        // String: String
+        if let valueStringVal = try container.decodeIfPresent(String.self, forKey: .valueString) {
+          self.valueString = valueStringVal
+        }
+        // FHIRTime: String
+        if let valueTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .valueTime) {
+          self.valueTime = valueTimeVal
+        }
+        // Timing: FHIRJSON
+        if let valueTimingVal = try container.decodeIfPresent(Timing.self, forKey: .valueTiming) {
+          self.valueTiming = valueTimingVal
+        }
+        // Int: Int
+        if let valueUnsignedIntVal = try container.decodeIfPresent(Int.self, forKey: .valueUnsignedInt) {
+          self.valueUnsignedInt.value = valueUnsignedIntVal
+        }
+        // String: String
+        if let valueUriVal = try container.decodeIfPresent(String.self, forKey: .valueUri) {
+          self.valueUri = valueUriVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

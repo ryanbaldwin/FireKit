@@ -104,13 +104,86 @@ open class HealthcareService: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.appointmentRequired.value = try container.decodeIfPresent(Bool.self, forKey: .appointmentRequired)
-        self.availabilityExceptions = try container.decodeIfPresent(String.self, forKey: .availabilityExceptions)
-        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
-        self.eligibilityNote = try container.decodeIfPresent(String.self, forKey: .eligibilityNote)
-        self.extraDetails = try container.decodeIfPresent(String.self, forKey: .extraDetails)
-        self.publicKey = try container.decodeIfPresent(String.self, forKey: .publicKey)
-        self.serviceName = try container.decodeIfPresent(String.self, forKey: .serviceName)
+
+
+        // Bool: Bool
+        if let appointmentRequiredVal = try container.decodeIfPresent(Bool.self, forKey: .appointmentRequired) {
+          self.appointmentRequired.value = appointmentRequiredVal
+        }
+        // String: String
+        if let availabilityExceptionsVal = try container.decodeIfPresent(String.self, forKey: .availabilityExceptions) {
+          self.availabilityExceptions = availabilityExceptionsVal
+        }
+        if let availableTimeVals = try container.decodeIfPresent([HealthcareServiceAvailableTime].self, forKey: .availableTime) {
+          // HealthcareServiceAvailableTime: FHIRJSON
+        }
+        if let characteristicVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .characteristic) {
+          // CodeableConcept: FHIRJSON
+        }
+        // String: String
+        if let commentVal = try container.decodeIfPresent(String.self, forKey: .comment) {
+          self.comment = commentVal
+        }
+        if let coverageAreaVals = try container.decodeIfPresent([Reference].self, forKey: .coverageArea) {
+          // Reference: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let eligibilityVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .eligibility) {
+          self.eligibility = eligibilityVal
+        }
+        // String: String
+        if let eligibilityNoteVal = try container.decodeIfPresent(String.self, forKey: .eligibilityNote) {
+          self.eligibilityNote = eligibilityNoteVal
+        }
+        // String: String
+        if let extraDetailsVal = try container.decodeIfPresent(String.self, forKey: .extraDetails) {
+          self.extraDetails = extraDetailsVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let locationVal = try container.decodeIfPresent(Reference.self, forKey: .location) {
+          self.location = locationVal
+        }
+        if let notAvailableVals = try container.decodeIfPresent([HealthcareServiceNotAvailable].self, forKey: .notAvailable) {
+          // HealthcareServiceNotAvailable: FHIRJSON
+        }
+        // Attachment: FHIRJSON
+        if let photoVal = try container.decodeIfPresent(Attachment.self, forKey: .photo) {
+          self.photo = photoVal
+        }
+        if let programNameVals = try container.decodeIfPresent([String].self, forKey: .programName) {
+          // String: String
+        }
+        // Reference: FHIRJSON
+        if let providedByVal = try container.decodeIfPresent(Reference.self, forKey: .providedBy) {
+          self.providedBy = providedByVal
+        }
+        // String: String
+        if let publicKeyVal = try container.decodeIfPresent(String.self, forKey: .publicKey) {
+          self.publicKey = publicKeyVal
+        }
+        if let referralMethodVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .referralMethod) {
+          // CodeableConcept: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let serviceCategoryVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .serviceCategory) {
+          self.serviceCategory = serviceCategoryVal
+        }
+        // String: String
+        if let serviceNameVal = try container.decodeIfPresent(String.self, forKey: .serviceName) {
+          self.serviceName = serviceNameVal
+        }
+        if let serviceProvisionCodeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .serviceProvisionCode) {
+          // CodeableConcept: FHIRJSON
+        }
+        if let serviceTypeVals = try container.decodeIfPresent([HealthcareServiceServiceType].self, forKey: .serviceType) {
+          // HealthcareServiceServiceType: FHIRJSON
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -490,7 +563,23 @@ open class HealthcareServiceAvailableTime: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.allDay.value = try container.decodeIfPresent(Bool.self, forKey: .allDay)
+
+
+        // Bool: Bool
+        if let allDayVal = try container.decodeIfPresent(Bool.self, forKey: .allDay) {
+          self.allDay.value = allDayVal
+        }
+        // FHIRTime: String
+        if let availableEndTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .availableEndTime) {
+          self.availableEndTime = availableEndTimeVal
+        }
+        // FHIRTime: String
+        if let availableStartTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .availableStartTime) {
+          self.availableStartTime = availableStartTimeVal
+        }
+        if let daysOfWeekVals = try container.decodeIfPresent([String].self, forKey: .daysOfWeek) {
+          // String: String
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -611,7 +700,16 @@ open class HealthcareServiceNotAvailable: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+
+
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        // Period: FHIRJSON
+        if let duringVal = try container.decodeIfPresent(Period.self, forKey: .during) {
+          self.during = duringVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -709,6 +807,15 @@ open class HealthcareServiceServiceType: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let specialtyVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .specialty) {
+          // CodeableConcept: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

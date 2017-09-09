@@ -52,7 +52,25 @@ open class Meta: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.versionId = try container.decodeIfPresent(String.self, forKey: .versionId)
+
+
+        // Instant: String
+        if let lastUpdatedVal = try container.decodeIfPresent(Instant.self, forKey: .lastUpdated) {
+          self.lastUpdated = lastUpdatedVal
+        }
+        if let profileVals = try container.decodeIfPresent([String].self, forKey: .profile) {
+          // String: String
+        }
+        if let securityVals = try container.decodeIfPresent([Coding].self, forKey: .security) {
+          // Coding: FHIRJSON
+        }
+        if let tagVals = try container.decodeIfPresent([Coding].self, forKey: .tag) {
+          // Coding: FHIRJSON
+        }
+        // String: String
+        if let versionIdVal = try container.decodeIfPresent(String.self, forKey: .versionId) {
+          self.versionId = versionIdVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

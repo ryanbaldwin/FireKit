@@ -83,6 +83,42 @@ open class Provenance: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let activityVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .activity) {
+          self.activity = activityVal
+        }
+        if let agentVals = try container.decodeIfPresent([ProvenanceAgent].self, forKey: .agent) {
+          // ProvenanceAgent: FHIRJSON
+        }
+        if let entityVals = try container.decodeIfPresent([ProvenanceEntity].self, forKey: .entity) {
+          // ProvenanceEntity: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let locationVal = try container.decodeIfPresent(Reference.self, forKey: .location) {
+          self.location = locationVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        if let policyVals = try container.decodeIfPresent([String].self, forKey: .policy) {
+          // String: String
+        }
+        if let reasonVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .reason) {
+          // CodeableConcept: FHIRJSON
+        }
+        // Instant: String
+        if let recordedVal = try container.decodeIfPresent(Instant.self, forKey: .recorded) {
+          self.recorded = recordedVal
+        }
+        if let signatureVals = try container.decodeIfPresent([Signature].self, forKey: .signature) {
+          // Signature: FHIRJSON
+        }
+        if let targetVals = try container.decodeIfPresent([Reference].self, forKey: .target) {
+          // Reference: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -314,6 +350,23 @@ open class ProvenanceAgent: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Reference: FHIRJSON
+        if let actorVal = try container.decodeIfPresent(Reference.self, forKey: .actor) {
+          self.actor = actorVal
+        }
+        if let relatedAgentVals = try container.decodeIfPresent([ProvenanceAgentRelatedAgent].self, forKey: .relatedAgent) {
+          // ProvenanceAgentRelatedAgent: FHIRJSON
+        }
+        // Coding: FHIRJSON
+        if let roleVal = try container.decodeIfPresent(Coding.self, forKey: .role) {
+          self.role = roleVal
+        }
+        // Identifier: FHIRJSON
+        if let userIdVal = try container.decodeIfPresent(Identifier.self, forKey: .userId) {
+          self.userId = userIdVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -443,7 +496,16 @@ open class ProvenanceAgentRelatedAgent: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.target = try container.decodeIfPresent(String.self, forKey: .target)
+
+
+        // String: String
+        if let targetVal = try container.decodeIfPresent(String.self, forKey: .target) {
+          self.target = targetVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -553,9 +615,28 @@ open class ProvenanceEntity: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.display = try container.decodeIfPresent(String.self, forKey: .display)
-        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
-        self.role = try container.decodeIfPresent(String.self, forKey: .role)
+
+
+        // ProvenanceAgent: FHIRJSON
+        if let agentVal = try container.decodeIfPresent(ProvenanceAgent.self, forKey: .agent) {
+          self.agent = agentVal
+        }
+        // String: String
+        if let displayVal = try container.decodeIfPresent(String.self, forKey: .display) {
+          self.display = displayVal
+        }
+        // String: String
+        if let referenceVal = try container.decodeIfPresent(String.self, forKey: .reference) {
+          self.reference = referenceVal
+        }
+        // String: String
+        if let roleVal = try container.decodeIfPresent(String.self, forKey: .role) {
+          self.role = roleVal
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

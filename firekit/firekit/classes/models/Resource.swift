@@ -54,9 +54,24 @@ open class Resource: FHIRAbstractResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decodeIfPresent(String.self, forKey: .id)
-        self.implicitRules = try container.decodeIfPresent(String.self, forKey: .implicitRules)
-        self.language = try container.decodeIfPresent(String.self, forKey: .language)
+
+
+        // String: String
+        if let idVal = try container.decodeIfPresent(String.self, forKey: .id) {
+          self.id = idVal
+        }
+        // String: String
+        if let implicitRulesVal = try container.decodeIfPresent(String.self, forKey: .implicitRules) {
+          self.implicitRules = implicitRulesVal
+        }
+        // String: String
+        if let languageVal = try container.decodeIfPresent(String.self, forKey: .language) {
+          self.language = languageVal
+        }
+        // Meta: FHIRJSON
+        if let metaVal = try container.decodeIfPresent(Meta.self, forKey: .meta) {
+          self.meta = metaVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

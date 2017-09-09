@@ -88,7 +88,46 @@ open class DeviceComponent: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.measurementPrinciple = try container.decodeIfPresent(String.self, forKey: .measurementPrinciple)
+
+
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let languageCodeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .languageCode) {
+          self.languageCode = languageCodeVal
+        }
+        // Instant: String
+        if let lastSystemChangeVal = try container.decodeIfPresent(Instant.self, forKey: .lastSystemChange) {
+          self.lastSystemChange = lastSystemChangeVal
+        }
+        // String: String
+        if let measurementPrincipleVal = try container.decodeIfPresent(String.self, forKey: .measurementPrinciple) {
+          self.measurementPrinciple = measurementPrincipleVal
+        }
+        if let operationalStatusVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .operationalStatus) {
+          // CodeableConcept: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let parameterGroupVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .parameterGroup) {
+          self.parameterGroup = parameterGroupVal
+        }
+        // Reference: FHIRJSON
+        if let parentVal = try container.decodeIfPresent(Reference.self, forKey: .parent) {
+          self.parent = parentVal
+        }
+        if let productionSpecificationVals = try container.decodeIfPresent([DeviceComponentProductionSpecification].self, forKey: .productionSpecification) {
+          // DeviceComponentProductionSpecification: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let sourceVal = try container.decodeIfPresent(Reference.self, forKey: .source) {
+          self.source = sourceVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -301,7 +340,20 @@ open class DeviceComponentProductionSpecification: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.productionSpec = try container.decodeIfPresent(String.self, forKey: .productionSpec)
+
+
+        // Identifier: FHIRJSON
+        if let componentIdVal = try container.decodeIfPresent(Identifier.self, forKey: .componentId) {
+          self.componentId = componentIdVal
+        }
+        // String: String
+        if let productionSpecVal = try container.decodeIfPresent(String.self, forKey: .productionSpec) {
+          self.productionSpec = productionSpecVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let specTypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .specType) {
+          self.specType = specTypeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -55,6 +55,19 @@ open class Timing: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let eventVals = try container.decodeIfPresent([DateTime].self, forKey: .event) {
+          // DateTime: String
+        }
+        // TimingRepeat: FHIRJSON
+        if let repeat_fhirVal = try container.decodeIfPresent(TimingRepeat.self, forKey: .repeat_fhir) {
+          self.repeat_fhir = repeat_fhirVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -185,12 +198,60 @@ open class TimingRepeat: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.count.value = try container.decodeIfPresent(Int.self, forKey: .count)
-        self.durationUnits = try container.decodeIfPresent(String.self, forKey: .durationUnits)
-        self.frequency.value = try container.decodeIfPresent(Int.self, forKey: .frequency)
-        self.frequencyMax.value = try container.decodeIfPresent(Int.self, forKey: .frequencyMax)
-        self.periodUnits = try container.decodeIfPresent(String.self, forKey: .periodUnits)
-        self.when = try container.decodeIfPresent(String.self, forKey: .when)
+
+
+        // Period: FHIRJSON
+        if let boundsPeriodVal = try container.decodeIfPresent(Period.self, forKey: .boundsPeriod) {
+          self.boundsPeriod = boundsPeriodVal
+        }
+        // Quantity: FHIRJSON
+        if let boundsQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .boundsQuantity) {
+          self.boundsQuantity = boundsQuantityVal
+        }
+        // Range: FHIRJSON
+        if let boundsRangeVal = try container.decodeIfPresent(Range.self, forKey: .boundsRange) {
+          self.boundsRange = boundsRangeVal
+        }
+        // Int: Int
+        if let countVal = try container.decodeIfPresent(Int.self, forKey: .count) {
+          self.count.value = countVal
+        }
+        // RealmDecimal: NSNumber
+        if let durationVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .duration) {
+          self.duration = durationVal
+        }
+        // RealmDecimal: NSNumber
+        if let durationMaxVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .durationMax) {
+          self.durationMax = durationMaxVal
+        }
+        // String: String
+        if let durationUnitsVal = try container.decodeIfPresent(String.self, forKey: .durationUnits) {
+          self.durationUnits = durationUnitsVal
+        }
+        // Int: Int
+        if let frequencyVal = try container.decodeIfPresent(Int.self, forKey: .frequency) {
+          self.frequency.value = frequencyVal
+        }
+        // Int: Int
+        if let frequencyMaxVal = try container.decodeIfPresent(Int.self, forKey: .frequencyMax) {
+          self.frequencyMax.value = frequencyMaxVal
+        }
+        // RealmDecimal: NSNumber
+        if let periodVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // RealmDecimal: NSNumber
+        if let periodMaxVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .periodMax) {
+          self.periodMax = periodMaxVal
+        }
+        // String: String
+        if let periodUnitsVal = try container.decodeIfPresent(String.self, forKey: .periodUnits) {
+          self.periodUnits = periodUnitsVal
+        }
+        // String: String
+        if let whenVal = try container.decodeIfPresent(String.self, forKey: .when) {
+          self.when = whenVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

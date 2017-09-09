@@ -57,11 +57,40 @@ open class Attachment: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
-        self.language = try container.decodeIfPresent(String.self, forKey: .language)
-        self.size.value = try container.decodeIfPresent(Int.self, forKey: .size)
-        self.title = try container.decodeIfPresent(String.self, forKey: .title)
-        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+
+
+        // String: String
+        if let contentTypeVal = try container.decodeIfPresent(String.self, forKey: .contentType) {
+          self.contentType = contentTypeVal
+        }
+        // DateTime: String
+        if let creationVal = try container.decodeIfPresent(DateTime.self, forKey: .creation) {
+          self.creation = creationVal
+        }
+        // Base64Binary: String
+        if let dataVal = try container.decodeIfPresent(Base64Binary.self, forKey: .data) {
+          self.data = dataVal
+        }
+        // Base64Binary: String
+        if let hash_fhirVal = try container.decodeIfPresent(Base64Binary.self, forKey: .hash_fhir) {
+          self.hash_fhir = hash_fhirVal
+        }
+        // String: String
+        if let languageVal = try container.decodeIfPresent(String.self, forKey: .language) {
+          self.language = languageVal
+        }
+        // Int: Int
+        if let sizeVal = try container.decodeIfPresent(Int.self, forKey: .size) {
+          self.size.value = sizeVal
+        }
+        // String: String
+        if let titleVal = try container.decodeIfPresent(String.self, forKey: .title) {
+          self.title = titleVal
+        }
+        // String: String
+        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
+          self.url = urlVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

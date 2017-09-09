@@ -104,8 +104,68 @@ open class ReferralRequest: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+
+
+        // DateTime: String
+        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // DateTime: String
+        if let dateSentVal = try container.decodeIfPresent(DateTime.self, forKey: .dateSent) {
+          self.dateSent = dateSentVal
+        }
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        // Reference: FHIRJSON
+        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
+          self.encounter = encounterVal
+        }
+        // Period: FHIRJSON
+        if let fulfillmentTimeVal = try container.decodeIfPresent(Period.self, forKey: .fulfillmentTime) {
+          self.fulfillmentTime = fulfillmentTimeVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let priorityVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .priority) {
+          self.priority = priorityVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let reasonVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reason) {
+          self.reason = reasonVal
+        }
+        if let recipientVals = try container.decodeIfPresent([Reference].self, forKey: .recipient) {
+          // Reference: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let requesterVal = try container.decodeIfPresent(Reference.self, forKey: .requester) {
+          self.requester = requesterVal
+        }
+        if let serviceRequestedVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .serviceRequested) {
+          // CodeableConcept: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let specialtyVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .specialty) {
+          self.specialty = specialtyVal
+        }
+        // String: String
+        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
+          self.status = statusVal
+        }
+        if let supportingInformationVals = try container.decodeIfPresent([Reference].self, forKey: .supportingInformation) {
+          // Reference: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

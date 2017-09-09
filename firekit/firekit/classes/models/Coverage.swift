@@ -90,11 +90,62 @@ open class Coverage: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.dependent.value = try container.decodeIfPresent(Int.self, forKey: .dependent)
-        self.group = try container.decodeIfPresent(String.self, forKey: .group)
-        self.plan = try container.decodeIfPresent(String.self, forKey: .plan)
-        self.sequence.value = try container.decodeIfPresent(Int.self, forKey: .sequence)
-        self.subPlan = try container.decodeIfPresent(String.self, forKey: .subPlan)
+
+
+        // Identifier: FHIRJSON
+        if let binVal = try container.decodeIfPresent(Identifier.self, forKey: .bin) {
+          self.bin = binVal
+        }
+        if let contractVals = try container.decodeIfPresent([Reference].self, forKey: .contract) {
+          // Reference: FHIRJSON
+        }
+        // Int: Int
+        if let dependentVal = try container.decodeIfPresent(Int.self, forKey: .dependent) {
+          self.dependent.value = dependentVal
+        }
+        // String: String
+        if let groupVal = try container.decodeIfPresent(String.self, forKey: .group) {
+          self.group = groupVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let issuerVal = try container.decodeIfPresent(Reference.self, forKey: .issuer) {
+          self.issuer = issuerVal
+        }
+        // Identifier: FHIRJSON
+        if let networkVal = try container.decodeIfPresent(Identifier.self, forKey: .network) {
+          self.network = networkVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // String: String
+        if let planVal = try container.decodeIfPresent(String.self, forKey: .plan) {
+          self.plan = planVal
+        }
+        // Int: Int
+        if let sequenceVal = try container.decodeIfPresent(Int.self, forKey: .sequence) {
+          self.sequence.value = sequenceVal
+        }
+        // String: String
+        if let subPlanVal = try container.decodeIfPresent(String.self, forKey: .subPlan) {
+          self.subPlan = subPlanVal
+        }
+        // Reference: FHIRJSON
+        if let subscriberVal = try container.decodeIfPresent(Reference.self, forKey: .subscriber) {
+          self.subscriber = subscriberVal
+        }
+        // Identifier: FHIRJSON
+        if let subscriberIdVal = try container.decodeIfPresent(Identifier.self, forKey: .subscriberId) {
+          self.subscriberId = subscriberIdVal
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

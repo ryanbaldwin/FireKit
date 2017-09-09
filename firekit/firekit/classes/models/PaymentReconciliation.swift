@@ -104,8 +104,65 @@ open class PaymentReconciliation: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.disposition = try container.decodeIfPresent(String.self, forKey: .disposition)
-        self.outcome = try container.decodeIfPresent(String.self, forKey: .outcome)
+
+
+        // DateTime: String
+        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
+          self.created = createdVal
+        }
+        if let detailVals = try container.decodeIfPresent([PaymentReconciliationDetail].self, forKey: .detail) {
+          // PaymentReconciliationDetail: FHIRJSON
+        }
+        // String: String
+        if let dispositionVal = try container.decodeIfPresent(String.self, forKey: .disposition) {
+          self.disposition = dispositionVal
+        }
+        // Coding: FHIRJSON
+        if let formVal = try container.decodeIfPresent(Coding.self, forKey: .form) {
+          self.form = formVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        if let noteVals = try container.decodeIfPresent([PaymentReconciliationNote].self, forKey: .note) {
+          // PaymentReconciliationNote: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
+          self.organization = organizationVal
+        }
+        // Coding: FHIRJSON
+        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
+          self.originalRuleset = originalRulesetVal
+        }
+        // String: String
+        if let outcomeVal = try container.decodeIfPresent(String.self, forKey: .outcome) {
+          self.outcome = outcomeVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // Reference: FHIRJSON
+        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
+          self.request = requestVal
+        }
+        // Reference: FHIRJSON
+        if let requestOrganizationVal = try container.decodeIfPresent(Reference.self, forKey: .requestOrganization) {
+          self.requestOrganization = requestOrganizationVal
+        }
+        // Reference: FHIRJSON
+        if let requestProviderVal = try container.decodeIfPresent(Reference.self, forKey: .requestProvider) {
+          self.requestProvider = requestProviderVal
+        }
+        // Coding: FHIRJSON
+        if let rulesetVal = try container.decodeIfPresent(Coding.self, forKey: .ruleset) {
+          self.ruleset = rulesetVal
+        }
+        // Quantity: FHIRJSON
+        if let totalVal = try container.decodeIfPresent(Quantity.self, forKey: .total) {
+          self.total = totalVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -406,6 +463,36 @@ open class PaymentReconciliationDetail: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // Quantity: FHIRJSON
+        if let amountVal = try container.decodeIfPresent(Quantity.self, forKey: .amount) {
+          self.amount = amountVal
+        }
+        // FHIRDate: String
+        if let dateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .date) {
+          self.date = dateVal
+        }
+        // Reference: FHIRJSON
+        if let payeeVal = try container.decodeIfPresent(Reference.self, forKey: .payee) {
+          self.payee = payeeVal
+        }
+        // Reference: FHIRJSON
+        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
+          self.request = requestVal
+        }
+        // Reference: FHIRJSON
+        if let responceVal = try container.decodeIfPresent(Reference.self, forKey: .responce) {
+          self.responce = responceVal
+        }
+        // Reference: FHIRJSON
+        if let submitterVal = try container.decodeIfPresent(Reference.self, forKey: .submitter) {
+          self.submitter = submitterVal
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -562,7 +649,16 @@ open class PaymentReconciliationNote: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+
+
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -22,16 +22,27 @@
 
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
-      {%- if has_codable_properties %}
+{%- if has_codable_properties %}
         let container = try decoder.container(keyedBy: CodingKeys.self)
-      {%- for prop in klass.properties %}
-        {%- if prop.class_name == prop.json_class %}
-        {%- if prop.is_array and prop.is_native %}
 
-        {%- else %}
-        self.{{ prop.name }}{% if prop|requires_realm_optional %}.value{% endif %} = try container.decodeIfPresent({{ prop.class_name }}.self, forKey: .{{ prop.name }})
-        {%- endif %}{%- endif %}
-      {%- endfor -%}{%- endif %}
+{% for prop in klass.properties %}
+  {%- if prop.is_array %}
+        if let {{ prop.name }}Vals = try container.decodeIfPresent([{{ prop.class_name }}].self, forKey: .{{ prop.name }}) {
+          // {{ prop.class_name }}: {{ prop.json_class }}
+        }
+  {%- else %}
+        // {{ prop.class_name }}: {{ prop.json_class }}
+        if let {{ prop.name }}Val = try container.decodeIfPresent({{ prop.class_name }}.self, forKey: .{{ prop.name }}) {
+    {%- if prop|requires_realm_optional %}
+          self.{{ prop.name }}.value = {{ prop.name }}Val
+    {%- else %}
+          self.{{ prop.name}} = {{ prop.name }}Val
+    {%- endif %}
+        }
+  {%- endif %}
+{%- endfor -%}
+
+{%- endif %}
     }
 
     public override func encode(to encoder: Encoder) throws {

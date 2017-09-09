@@ -45,6 +45,16 @@ open class Period: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // DateTime: String
+        if let endVal = try container.decodeIfPresent(DateTime.self, forKey: .end) {
+          self.end = endVal
+        }
+        // DateTime: String
+        if let startVal = try container.decodeIfPresent(DateTime.self, forKey: .start) {
+          self.start = startVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

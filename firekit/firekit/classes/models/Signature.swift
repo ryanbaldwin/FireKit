@@ -69,8 +69,31 @@ open class Signature: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
-        self.whoUri = try container.decodeIfPresent(String.self, forKey: .whoUri)
+
+
+        // Base64Binary: String
+        if let blobVal = try container.decodeIfPresent(Base64Binary.self, forKey: .blob) {
+          self.blob = blobVal
+        }
+        // String: String
+        if let contentTypeVal = try container.decodeIfPresent(String.self, forKey: .contentType) {
+          self.contentType = contentTypeVal
+        }
+        if let typeVals = try container.decodeIfPresent([Coding].self, forKey: .type) {
+          // Coding: FHIRJSON
+        }
+        // Instant: String
+        if let whenVal = try container.decodeIfPresent(Instant.self, forKey: .when) {
+          self.when = whenVal
+        }
+        // Reference: FHIRJSON
+        if let whoReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .whoReference) {
+          self.whoReference = whoReferenceVal
+        }
+        // String: String
+        if let whoUriVal = try container.decodeIfPresent(String.self, forKey: .whoUri) {
+          self.whoUri = whoUriVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

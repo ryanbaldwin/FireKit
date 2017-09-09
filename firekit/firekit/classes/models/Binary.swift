@@ -52,7 +52,16 @@ open class Binary: Resource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
+
+
+        // Base64Binary: String
+        if let contentVal = try container.decodeIfPresent(Base64Binary.self, forKey: .content) {
+          self.content = contentVal
+        }
+        // String: String
+        if let contentTypeVal = try container.decodeIfPresent(String.self, forKey: .contentType) {
+          self.contentType = contentTypeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

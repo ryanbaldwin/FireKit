@@ -45,7 +45,15 @@ open class CodeableConcept: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+
+
+        if let codingVals = try container.decodeIfPresent([Coding].self, forKey: .coding) {
+          // Coding: FHIRJSON
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

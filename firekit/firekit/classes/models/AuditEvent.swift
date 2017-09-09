@@ -64,6 +64,22 @@ open class AuditEvent: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // AuditEventEvent: FHIRJSON
+        if let eventVal = try container.decodeIfPresent(AuditEventEvent.self, forKey: .event) {
+          self.event = eventVal
+        }
+        if let objectVals = try container.decodeIfPresent([AuditEventObject].self, forKey: .object) {
+          // AuditEventObject: FHIRJSON
+        }
+        if let participantVals = try container.decodeIfPresent([AuditEventParticipant].self, forKey: .participant) {
+          // AuditEventParticipant: FHIRJSON
+        }
+        // AuditEventSource: FHIRJSON
+        if let sourceVal = try container.decodeIfPresent(AuditEventSource.self, forKey: .source) {
+          self.source = sourceVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -210,9 +226,34 @@ open class AuditEventEvent: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.action = try container.decodeIfPresent(String.self, forKey: .action)
-        self.outcome = try container.decodeIfPresent(String.self, forKey: .outcome)
-        self.outcomeDesc = try container.decodeIfPresent(String.self, forKey: .outcomeDesc)
+
+
+        // String: String
+        if let actionVal = try container.decodeIfPresent(String.self, forKey: .action) {
+          self.action = actionVal
+        }
+        // Instant: String
+        if let dateTimeVal = try container.decodeIfPresent(Instant.self, forKey: .dateTime) {
+          self.dateTime = dateTimeVal
+        }
+        // String: String
+        if let outcomeVal = try container.decodeIfPresent(String.self, forKey: .outcome) {
+          self.outcome = outcomeVal
+        }
+        // String: String
+        if let outcomeDescVal = try container.decodeIfPresent(String.self, forKey: .outcomeDesc) {
+          self.outcomeDesc = outcomeDescVal
+        }
+        if let purposeOfEventVals = try container.decodeIfPresent([Coding].self, forKey: .purposeOfEvent) {
+          // Coding: FHIRJSON
+        }
+        if let subtypeVals = try container.decodeIfPresent([Coding].self, forKey: .subtype) {
+          // Coding: FHIRJSON
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -404,8 +445,46 @@ open class AuditEventObject: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+
+
+        // String: String
+        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
+          self.description_fhir = description_fhirVal
+        }
+        if let detailVals = try container.decodeIfPresent([AuditEventObjectDetail].self, forKey: .detail) {
+          // AuditEventObjectDetail: FHIRJSON
+        }
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // Coding: FHIRJSON
+        if let lifecycleVal = try container.decodeIfPresent(Coding.self, forKey: .lifecycle) {
+          self.lifecycle = lifecycleVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // Base64Binary: String
+        if let queryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .query) {
+          self.query = queryVal
+        }
+        // Reference: FHIRJSON
+        if let referenceVal = try container.decodeIfPresent(Reference.self, forKey: .reference) {
+          self.reference = referenceVal
+        }
+        // Coding: FHIRJSON
+        if let roleVal = try container.decodeIfPresent(Coding.self, forKey: .role) {
+          self.role = roleVal
+        }
+        if let securityLabelVals = try container.decodeIfPresent([Coding].self, forKey: .securityLabel) {
+          // Coding: FHIRJSON
+        }
+        // Coding: FHIRJSON
+        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -606,7 +685,16 @@ open class AuditEventObjectDetail: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
+        // Base64Binary: String
+        if let valueVal = try container.decodeIfPresent(Base64Binary.self, forKey: .value) {
+          self.value = valueVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -735,9 +823,49 @@ open class AuditEventParticipant: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.altId = try container.decodeIfPresent(String.self, forKey: .altId)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.requestor.value = try container.decodeIfPresent(Bool.self, forKey: .requestor)
+
+
+        // String: String
+        if let altIdVal = try container.decodeIfPresent(String.self, forKey: .altId) {
+          self.altId = altIdVal
+        }
+        // Reference: FHIRJSON
+        if let locationVal = try container.decodeIfPresent(Reference.self, forKey: .location) {
+          self.location = locationVal
+        }
+        // Coding: FHIRJSON
+        if let mediaVal = try container.decodeIfPresent(Coding.self, forKey: .media) {
+          self.media = mediaVal
+        }
+        // String: String
+        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // AuditEventParticipantNetwork: FHIRJSON
+        if let networkVal = try container.decodeIfPresent(AuditEventParticipantNetwork.self, forKey: .network) {
+          self.network = networkVal
+        }
+        if let policyVals = try container.decodeIfPresent([String].self, forKey: .policy) {
+          // String: String
+        }
+        if let purposeOfUseVals = try container.decodeIfPresent([Coding].self, forKey: .purposeOfUse) {
+          // Coding: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let referenceVal = try container.decodeIfPresent(Reference.self, forKey: .reference) {
+          self.reference = referenceVal
+        }
+        // Bool: Bool
+        if let requestorVal = try container.decodeIfPresent(Bool.self, forKey: .requestor) {
+          self.requestor.value = requestorVal
+        }
+        if let roleVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .role) {
+          // CodeableConcept: FHIRJSON
+        }
+        // Identifier: FHIRJSON
+        if let userIdVal = try container.decodeIfPresent(Identifier.self, forKey: .userId) {
+          self.userId = userIdVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -949,8 +1077,16 @@ open class AuditEventParticipantNetwork: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.address = try container.decodeIfPresent(String.self, forKey: .address)
-        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+
+
+        // String: String
+        if let addressVal = try container.decodeIfPresent(String.self, forKey: .address) {
+          self.address = addressVal
+        }
+        // String: String
+        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
+          self.type = typeVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1045,7 +1181,19 @@ open class AuditEventSource: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.site = try container.decodeIfPresent(String.self, forKey: .site)
+
+
+        // Identifier: FHIRJSON
+        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
+          self.identifier = identifierVal
+        }
+        // String: String
+        if let siteVal = try container.decodeIfPresent(String.self, forKey: .site) {
+          self.site = siteVal
+        }
+        if let typeVals = try container.decodeIfPresent([Coding].self, forKey: .type) {
+          // Coding: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

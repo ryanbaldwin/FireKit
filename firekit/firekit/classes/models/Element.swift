@@ -47,7 +47,15 @@ open class Element: FHIRAbstractBase {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decodeIfPresent(String.self, forKey: .id)
+
+
+        if let extension_fhirVals = try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) {
+          // Extension: FHIRJSON
+        }
+        // String: String
+        if let idVal = try container.decodeIfPresent(String.self, forKey: .id) {
+          self.id = idVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

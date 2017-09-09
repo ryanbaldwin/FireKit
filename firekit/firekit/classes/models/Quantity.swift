@@ -52,10 +52,28 @@ open class Quantity: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.code = try container.decodeIfPresent(String.self, forKey: .code)
-        self.comparator = try container.decodeIfPresent(String.self, forKey: .comparator)
-        self.system = try container.decodeIfPresent(String.self, forKey: .system)
-        self.unit = try container.decodeIfPresent(String.self, forKey: .unit)
+
+
+        // String: String
+        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
+          self.code = codeVal
+        }
+        // String: String
+        if let comparatorVal = try container.decodeIfPresent(String.self, forKey: .comparator) {
+          self.comparator = comparatorVal
+        }
+        // String: String
+        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
+          self.system = systemVal
+        }
+        // String: String
+        if let unitVal = try container.decodeIfPresent(String.self, forKey: .unit) {
+          self.unit = unitVal
+        }
+        // RealmDecimal: NSNumber
+        if let valueVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .value) {
+          self.value = valueVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

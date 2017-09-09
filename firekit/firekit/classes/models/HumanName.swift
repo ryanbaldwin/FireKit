@@ -58,8 +58,32 @@ open class HumanName: Element {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
-        self.use = try container.decodeIfPresent(String.self, forKey: .use)
+
+
+        if let familyVals = try container.decodeIfPresent([String].self, forKey: .family) {
+          // String: String
+        }
+        if let givenVals = try container.decodeIfPresent([String].self, forKey: .given) {
+          // String: String
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        if let prefixVals = try container.decodeIfPresent([String].self, forKey: .prefix) {
+          // String: String
+        }
+        if let suffixVals = try container.decodeIfPresent([String].self, forKey: .suffix) {
+          // String: String
+        }
+        // String: String
+        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
+          self.text = textVal
+        }
+        // String: String
+        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
+          self.use = useVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

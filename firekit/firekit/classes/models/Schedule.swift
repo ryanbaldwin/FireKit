@@ -61,7 +61,26 @@ open class Schedule: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
+
+
+        // Reference: FHIRJSON
+        if let actorVal = try container.decodeIfPresent(Reference.self, forKey: .actor) {
+          self.actor = actorVal
+        }
+        // String: String
+        if let commentVal = try container.decodeIfPresent(String.self, forKey: .comment) {
+          self.comment = commentVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Period: FHIRJSON
+        if let planningHorizonVal = try container.decodeIfPresent(Period.self, forKey: .planningHorizon) {
+          self.planningHorizon = planningHorizonVal
+        }
+        if let typeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .type) {
+          // CodeableConcept: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

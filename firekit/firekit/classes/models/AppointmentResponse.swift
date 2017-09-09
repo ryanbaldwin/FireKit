@@ -68,8 +68,38 @@ open class AppointmentResponse: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
-        self.participantStatus = try container.decodeIfPresent(String.self, forKey: .participantStatus)
+
+
+        // Reference: FHIRJSON
+        if let actorVal = try container.decodeIfPresent(Reference.self, forKey: .actor) {
+          self.actor = actorVal
+        }
+        // Reference: FHIRJSON
+        if let appointmentVal = try container.decodeIfPresent(Reference.self, forKey: .appointment) {
+          self.appointment = appointmentVal
+        }
+        // String: String
+        if let commentVal = try container.decodeIfPresent(String.self, forKey: .comment) {
+          self.comment = commentVal
+        }
+        // Instant: String
+        if let endVal = try container.decodeIfPresent(Instant.self, forKey: .end) {
+          self.end = endVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // String: String
+        if let participantStatusVal = try container.decodeIfPresent(String.self, forKey: .participantStatus) {
+          self.participantStatus = participantStatusVal
+        }
+        if let participantTypeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .participantType) {
+          // CodeableConcept: FHIRJSON
+        }
+        // Instant: String
+        if let startVal = try container.decodeIfPresent(Instant.self, forKey: .start) {
+          self.start = startVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

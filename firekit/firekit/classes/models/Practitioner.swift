@@ -66,8 +66,45 @@ open class Practitioner: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.active.value = try container.decodeIfPresent(Bool.self, forKey: .active)
-        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
+
+
+        // Bool: Bool
+        if let activeVal = try container.decodeIfPresent(Bool.self, forKey: .active) {
+          self.active.value = activeVal
+        }
+        if let addressVals = try container.decodeIfPresent([Address].self, forKey: .address) {
+          // Address: FHIRJSON
+        }
+        // FHIRDate: String
+        if let birthDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .birthDate) {
+          self.birthDate = birthDateVal
+        }
+        if let communicationVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .communication) {
+          // CodeableConcept: FHIRJSON
+        }
+        // String: String
+        if let genderVal = try container.decodeIfPresent(String.self, forKey: .gender) {
+          self.gender = genderVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // HumanName: FHIRJSON
+        if let nameVal = try container.decodeIfPresent(HumanName.self, forKey: .name) {
+          self.name = nameVal
+        }
+        if let photoVals = try container.decodeIfPresent([Attachment].self, forKey: .photo) {
+          // Attachment: FHIRJSON
+        }
+        if let practitionerRoleVals = try container.decodeIfPresent([PractitionerPractitionerRole].self, forKey: .practitionerRole) {
+          // PractitionerPractitionerRole: FHIRJSON
+        }
+        if let qualificationVals = try container.decodeIfPresent([PractitionerQualification].self, forKey: .qualification) {
+          // PractitionerQualification: FHIRJSON
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -308,6 +345,29 @@ open class PractitionerPractitionerRole: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        if let healthcareServiceVals = try container.decodeIfPresent([Reference].self, forKey: .healthcareService) {
+          // Reference: FHIRJSON
+        }
+        if let locationVals = try container.decodeIfPresent([Reference].self, forKey: .location) {
+          // Reference: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let managingOrganizationVal = try container.decodeIfPresent(Reference.self, forKey: .managingOrganization) {
+          self.managingOrganization = managingOrganizationVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        // CodeableConcept: FHIRJSON
+        if let roleVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .role) {
+          self.role = roleVal
+        }
+        if let specialtyVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .specialty) {
+          // CodeableConcept: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -471,6 +531,23 @@ open class PractitionerQualification: BackboneElement {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
+
+        // CodeableConcept: FHIRJSON
+        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
+          self.code = codeVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // Reference: FHIRJSON
+        if let issuerVal = try container.decodeIfPresent(Reference.self, forKey: .issuer) {
+          self.issuer = issuerVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {

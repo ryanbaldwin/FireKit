@@ -10,25 +10,45 @@ import Foundation
 import Realm
 import RealmSwift
 
-public class RealmString: Object {
+final public class RealmString: Object, Codable {
     public dynamic var value: String = ""
 
     public convenience init(val: String) {
         self.init()
         self.value = val
     }
+    
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.init(val: try container.decode(String.self))
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.value)
+    }
 }
 
-public class RealmInt: Object {
+final public class RealmInt: Object {
     public dynamic var value: Int = 0
 
     public convenience init(val: Int) {
         self.init()
         self.value = val
     }
+    
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.init(val: try container.decode(Int.self))
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.value)
+    }
 }
 
-public class RealmDecimal: Object {
+final public class RealmDecimal: Object, Codable {
     private dynamic var _value = "0"
 
     public var value: Decimal {
@@ -40,7 +60,17 @@ public class RealmDecimal: Object {
         self.init()
         self._value = val
     }
-
+    
+    public convenience init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        self.init(string: try container.decode(String.self))
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.value)
+    }
+    
     public override class func ignoredProperties() -> [String] {
         return ["value"]
     }
@@ -66,7 +96,7 @@ public class RealmDecimal: Object {
     }    
 }
 
-public class RealmURL: Object {
+final public class RealmURL: Object, Codable {
     private dynamic var _value: String?
     
     private var _url: URL? = nil
@@ -84,6 +114,17 @@ public class RealmURL: Object {
         }
     }
     
+    public convenience init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.singleValueContainer()
+        value = try container.decode(URL.self)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(self.value)
+    }
+    
     public override class func ignoredProperties() -> [String] {
         return ["value", "_url"]
     }
@@ -98,7 +139,7 @@ public class RealmURL: Object {
 /// will blow up at runtime. The workaround is to create a `ContainedResource: Resource`
 /// Which will store the same information as `Resource`, but will also provide functionality
 /// to store the original JSON and inflate it on demand into the proper type.
-public class ContainedResource: Resource {
+final public class ContainedResource: Resource {
     private enum CodingKeys: String, CodingKey {
         case resourceType
     }
@@ -129,7 +170,6 @@ public class ContainedResource: Resource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
         resourceType = try container.decodeIfPresent(String.self, forKey: .resourceType)
-        
     }
     
     public required init() {

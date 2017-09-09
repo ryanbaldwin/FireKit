@@ -80,7 +80,44 @@ open class RelatedPerson: DomainResource {
     public required init(from decoder: Decoder) throws {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
+
+
+        if let addressVals = try container.decodeIfPresent([Address].self, forKey: .address) {
+          // Address: FHIRJSON
+        }
+        // FHIRDate: String
+        if let birthDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .birthDate) {
+          self.birthDate = birthDateVal
+        }
+        // String: String
+        if let genderVal = try container.decodeIfPresent(String.self, forKey: .gender) {
+          self.gender = genderVal
+        }
+        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
+          // Identifier: FHIRJSON
+        }
+        // HumanName: FHIRJSON
+        if let nameVal = try container.decodeIfPresent(HumanName.self, forKey: .name) {
+          self.name = nameVal
+        }
+        // Reference: FHIRJSON
+        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
+          self.patient = patientVal
+        }
+        // Period: FHIRJSON
+        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
+          self.period = periodVal
+        }
+        if let photoVals = try container.decodeIfPresent([Attachment].self, forKey: .photo) {
+          // Attachment: FHIRJSON
+        }
+        // CodeableConcept: FHIRJSON
+        if let relationshipVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .relationship) {
+          self.relationship = relationshipVal
+        }
+        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
+          // ContactPoint: FHIRJSON
+        }
     }
 
     public override func encode(to encoder: Encoder) throws {
