@@ -305,6 +305,16 @@ open class ProcessResponse: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProcessResponse.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProcessResponse. Will return empty instance: \(error))")
+		}
+		return ProcessResponse.init()
+	}
 }
 
 
@@ -396,5 +406,15 @@ open class ProcessResponseNotes: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProcessResponseNotes.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProcessResponseNotes. Will return empty instance: \(error))")
+		}
+		return ProcessResponseNotes.init()
+	}
 }
 

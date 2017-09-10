@@ -323,6 +323,16 @@ open class AllergyIntolerance: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AllergyIntolerance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AllergyIntolerance. Will return empty instance: \(error))")
+		}
+		return AllergyIntolerance.init()
+	}
 }
 
 
@@ -528,5 +538,15 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AllergyIntoleranceReaction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AllergyIntoleranceReaction. Will return empty instance: \(error))")
+		}
+		return AllergyIntoleranceReaction.init()
+	}
 }
 

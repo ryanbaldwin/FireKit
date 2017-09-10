@@ -447,6 +447,16 @@ open class Conformance: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Conformance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Conformance. Will return empty instance: \(error))")
+		}
+		return Conformance.init()
+	}
 }
 
 
@@ -538,6 +548,16 @@ open class ConformanceContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceContact. Will return empty instance: \(error))")
+		}
+		return ConformanceContact.init()
+	}
 }
 
 
@@ -658,6 +678,16 @@ open class ConformanceDocument: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceDocument.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceDocument. Will return empty instance: \(error))")
+		}
+		return ConformanceDocument.init()
+	}
 }
 
 
@@ -756,6 +786,16 @@ open class ConformanceImplementation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceImplementation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceImplementation. Will return empty instance: \(error))")
+		}
+		return ConformanceImplementation.init()
+	}
 }
 
 
@@ -891,6 +931,16 @@ open class ConformanceMessaging: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceMessaging.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceMessaging. Will return empty instance: \(error))")
+		}
+		return ConformanceMessaging.init()
+	}
 }
 
 
@@ -995,6 +1045,16 @@ open class ConformanceMessagingEndpoint: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceMessagingEndpoint.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceMessagingEndpoint. Will return empty instance: \(error))")
+		}
+		return ConformanceMessagingEndpoint.init()
+	}
 }
 
 
@@ -1197,6 +1257,16 @@ open class ConformanceMessagingEvent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceMessagingEvent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceMessagingEvent. Will return empty instance: \(error))")
+		}
+		return ConformanceMessagingEvent.init()
+	}
 }
 
 
@@ -1425,6 +1495,16 @@ open class ConformanceRest: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRest. Will return empty instance: \(error))")
+		}
+		return ConformanceRest.init()
+	}
 }
 
 
@@ -1522,6 +1602,16 @@ open class ConformanceRestInteraction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRestInteraction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRestInteraction. Will return empty instance: \(error))")
+		}
+		return ConformanceRestInteraction.init()
+	}
 }
 
 
@@ -1626,6 +1716,16 @@ open class ConformanceRestOperation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRestOperation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRestOperation. Will return empty instance: \(error))")
+		}
+		return ConformanceRestOperation.init()
+	}
 }
 
 
@@ -1896,6 +1996,16 @@ open class ConformanceRestResource: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRestResource.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRestResource. Will return empty instance: \(error))")
+		}
+		return ConformanceRestResource.init()
+	}
 }
 
 
@@ -1993,6 +2103,16 @@ open class ConformanceRestResourceInteraction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRestResourceInteraction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRestResourceInteraction. Will return empty instance: \(error))")
+		}
+		return ConformanceRestResourceInteraction.init()
+	}
 }
 
 
@@ -2175,6 +2295,16 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRestResourceSearchParam.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRestResourceSearchParam. Will return empty instance: \(error))")
+		}
+		return ConformanceRestResourceSearchParam.init()
+	}
 }
 
 
@@ -2301,6 +2431,16 @@ open class ConformanceRestSecurity: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRestSecurity.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRestSecurity. Will return empty instance: \(error))")
+		}
+		return ConformanceRestSecurity.init()
+	}
 }
 
 
@@ -2387,6 +2527,16 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceRestSecurityCertificate.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceRestSecurityCertificate. Will return empty instance: \(error))")
+		}
+		return ConformanceRestSecurityCertificate.init()
+	}
 }
 
 
@@ -2501,5 +2651,15 @@ open class ConformanceSoftware: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConformanceSoftware.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConformanceSoftware. Will return empty instance: \(error))")
+		}
+		return ConformanceSoftware.init()
+	}
 }
 

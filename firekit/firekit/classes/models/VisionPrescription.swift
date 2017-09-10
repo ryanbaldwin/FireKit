@@ -213,6 +213,16 @@ open class VisionPrescription: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(VisionPrescription.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy VisionPrescription. Will return empty instance: \(error))")
+		}
+		return VisionPrescription.init()
+	}
 }
 
 
@@ -524,5 +534,15 @@ open class VisionPrescriptionDispense: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(VisionPrescriptionDispense.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy VisionPrescriptionDispense. Will return empty instance: \(error))")
+		}
+		return VisionPrescriptionDispense.init()
+	}
 }
 

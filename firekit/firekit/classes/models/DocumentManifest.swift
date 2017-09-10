@@ -291,6 +291,16 @@ open class DocumentManifest: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentManifest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentManifest. Will return empty instance: \(error))")
+		}
+		return DocumentManifest.init()
+	}
 }
 
 
@@ -397,6 +407,16 @@ open class DocumentManifestContent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentManifestContent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentManifestContent. Will return empty instance: \(error))")
+		}
+		return DocumentManifestContent.init()
+	}
 }
 
 
@@ -491,5 +511,15 @@ open class DocumentManifestRelated: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentManifestRelated.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentManifestRelated. Will return empty instance: \(error))")
+		}
+		return DocumentManifestRelated.init()
+	}
 }
 

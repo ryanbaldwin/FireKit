@@ -192,5 +192,15 @@ open class Attachment: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Attachment.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Attachment. Will return empty instance: \(error))")
+		}
+		return Attachment.init()
+	}
 }
 

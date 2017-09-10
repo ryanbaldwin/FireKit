@@ -53,14 +53,16 @@ open class DomainResource: Resource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var containedList = try container.nestedUnkeyedContainer(forKey: .contained)
-        while !containedList.isAtEnd {
-            let contained = try containedList.decode(ContainedResource.self)
-            guard let resourceType = contained.resourceType else { continue }
-            
-            let t = FHIRAbstractBase.resourceType(from: resourceType)
-            let actualContained = try containedList.decode(t)
-            contained.json = try JSONEncoder().encode(actualContained)
+        if container.contains(.contained) {
+            var containedList = try container.nestedUnkeyedContainer(forKey: .contained)
+            while !containedList.isAtEnd {
+                let contained = try containedList.decode(ContainedResource.self)
+                guard let resourceType = contained.resourceType else { continue }
+                
+                let t = FHIRAbstractBase.resourceType(from: resourceType)
+                let actualContained = try containedList.decode(t)
+                contained.json = try JSONEncoder().encode(actualContained)
+            }
         }
         self.extension_fhir.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) ?? [])
         self.modifierExtension.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) ?? [])
@@ -146,5 +148,15 @@ open class DomainResource: Resource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DomainResource.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DomainResource. Will return empty instance: \(error))")
+		}
+		return DomainResource.init()
+	}
 }
 

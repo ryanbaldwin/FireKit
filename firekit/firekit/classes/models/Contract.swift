@@ -422,6 +422,16 @@ open class Contract: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Contract.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Contract. Will return empty instance: \(error))")
+		}
+		return Contract.init()
+	}
 }
 
 
@@ -525,6 +535,16 @@ open class ContractActor: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractActor.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractActor. Will return empty instance: \(error))")
+		}
+		return ContractActor.init()
+	}
 }
 
 
@@ -634,6 +654,16 @@ open class ContractFriendly: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractFriendly.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractFriendly. Will return empty instance: \(error))")
+		}
+		return ContractFriendly.init()
+	}
 }
 
 
@@ -740,6 +770,16 @@ open class ContractLegal: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractLegal.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractLegal. Will return empty instance: \(error))")
+		}
+		return ContractLegal.init()
+	}
 }
 
 
@@ -846,6 +886,16 @@ open class ContractRule: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractRule.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractRule. Will return empty instance: \(error))")
+		}
+		return ContractRule.init()
+	}
 }
 
 
@@ -973,6 +1023,16 @@ open class ContractSigner: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractSigner.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractSigner. Will return empty instance: \(error))")
+		}
+		return ContractSigner.init()
+	}
 }
 
 
@@ -1251,6 +1311,16 @@ open class ContractTerm: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractTerm.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractTerm. Will return empty instance: \(error))")
+		}
+		return ContractTerm.init()
+	}
 }
 
 
@@ -1354,6 +1424,16 @@ open class ContractTermActor: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractTermActor.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractTermActor. Will return empty instance: \(error))")
+		}
+		return ContractTermActor.init()
+	}
 }
 
 
@@ -1572,6 +1652,16 @@ open class ContractTermValuedItem: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractTermValuedItem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractTermValuedItem. Will return empty instance: \(error))")
+		}
+		return ContractTermValuedItem.init()
+	}
 }
 
 
@@ -1790,5 +1880,15 @@ open class ContractValuedItem: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractValuedItem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractValuedItem. Will return empty instance: \(error))")
+		}
+		return ContractValuedItem.init()
+	}
 }
 

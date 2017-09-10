@@ -13,41 +13,40 @@ import FireKit
 
 
 class CommunicationTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.Communication {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.Communication {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.Communication.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testCommunication1() {		
-		var instance: FireKit.Communication?
-		do {
-			instance = try runCommunication1()
-			try runCommunication1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Communication
-			XCTAssertNotNil(copy)
-			try runCommunication1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.Communication {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.Communication {
+      let instance = try JSONDecoder().decode(FireKit.Communication.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testCommunication1() {   
+    var instance: FireKit.Communication?
+    do {
+      instance = try runCommunication1()
+      try runCommunication1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Communication
+      XCTAssertNotNil(copy)
+      try runCommunication1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runCommunication1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Communication successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Communication successfully, but threw: \(error)")
+    }
 
-		testCommunicationRealm1(instance!)
-	}
+    testCommunicationRealm1(instance!)
+  }
 
     func testCommunication1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCommunicationRealm1(_ instance: FireKit.Communication) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testCommunicationRealm1(_ instance: FireKit.Communication) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runCommunication1(JSONEncoder().encode(realm.objects(FireKit.Communication.self).first!))
         
         // ensure we can update it.
@@ -102,29 +101,29 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Communication.self).count)
-	}
-	
-	@discardableResult
-	func runCommunication1(_ data: Data? = nil) throws -> FireKit.Communication {
+  }
+  
+  @discardableResult
+  func runCommunication1(_ data: Data? = nil) throws -> FireKit.Communication {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "communication-example.json")
-		
-		XCTAssertEqual(inst.category?.coding[0].code, "Alert")
-		XCTAssertEqual(inst.category?.coding[0].system, "http://acme.org/messagetypes")
-		XCTAssertEqual(inst.category?.text, "Alert")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier[0].system, "urn:oid:1.3.4.5.6.7")
-		XCTAssertEqual(inst.identifier[0].type?.text, "Paging System")
-		XCTAssertEqual(inst.identifier[0].value, "2345678901")
-		XCTAssertEqual(inst.payload[0].contentString, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
-		XCTAssertEqual(inst.payload[1].contentReference?.reference, "Observation/643666aa12f")
-		XCTAssertEqual(inst.recipient[0].reference, "Practitioner/21")
-		XCTAssertEqual(inst.sender?.reference, "Device/f001")
-		XCTAssertEqual(inst.sent?.description, "2014-12-12T18:01:10-08:00")
-		XCTAssertEqual(inst.status, "completed")
-		XCTAssertEqual(inst.subject?.reference, "Patient/1")
-		XCTAssertEqual(inst.text?.div, "<div>Patient has very high serum potassium</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.category?.coding[0].code, "Alert")
+    XCTAssertEqual(inst.category?.coding[0].system, "http://acme.org/messagetypes")
+    XCTAssertEqual(inst.category?.text, "Alert")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.identifier[0].system, "urn:oid:1.3.4.5.6.7")
+    XCTAssertEqual(inst.identifier[0].type?.text, "Paging System")
+    XCTAssertEqual(inst.identifier[0].value, "2345678901")
+    XCTAssertEqual(inst.payload[0].contentString, "Patient 1 has a very high serum potassium value (7.2 mmol/L on 2014-Dec-12 at 5:55 pm)")
+    XCTAssertEqual(inst.payload[1].contentReference?.reference, "Observation/643666aa12f")
+    XCTAssertEqual(inst.recipient[0].reference, "Practitioner/21")
+    XCTAssertEqual(inst.sender?.reference, "Device/f001")
+    XCTAssertEqual(inst.sent?.description, "2014-12-12T18:01:10-08:00")
+    XCTAssertEqual(inst.status, "completed")
+    XCTAssertEqual(inst.subject?.reference, "Patient/1")
+    XCTAssertEqual(inst.text?.div, "<div>Patient has very high serum potassium</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

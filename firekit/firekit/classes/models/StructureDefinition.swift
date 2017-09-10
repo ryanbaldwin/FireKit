@@ -511,6 +511,16 @@ open class StructureDefinition: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(StructureDefinition.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy StructureDefinition. Will return empty instance: \(error))")
+		}
+		return StructureDefinition.init()
+	}
 }
 
 
@@ -602,6 +612,16 @@ open class StructureDefinitionContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(StructureDefinitionContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy StructureDefinitionContact. Will return empty instance: \(error))")
+		}
+		return StructureDefinitionContact.init()
+	}
 }
 
 
@@ -687,6 +707,16 @@ open class StructureDefinitionDifferential: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(StructureDefinitionDifferential.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy StructureDefinitionDifferential. Will return empty instance: \(error))")
+		}
+		return StructureDefinitionDifferential.init()
+	}
 }
 
 
@@ -816,6 +846,16 @@ open class StructureDefinitionMapping: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(StructureDefinitionMapping.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy StructureDefinitionMapping. Will return empty instance: \(error))")
+		}
+		return StructureDefinitionMapping.init()
+	}
 }
 
 
@@ -901,5 +941,15 @@ open class StructureDefinitionSnapshot: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(StructureDefinitionSnapshot.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy StructureDefinitionSnapshot. Will return empty instance: \(error))")
+		}
+		return StructureDefinitionSnapshot.init()
+	}
 }
 

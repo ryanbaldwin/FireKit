@@ -140,5 +140,15 @@ open class Annotation: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Annotation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Annotation. Will return empty instance: \(error))")
+		}
+		return Annotation.init()
+	}
 }
 

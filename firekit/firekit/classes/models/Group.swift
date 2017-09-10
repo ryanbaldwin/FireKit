@@ -219,6 +219,16 @@ open class Group: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Group.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Group. Will return empty instance: \(error))")
+		}
+		return Group.init()
+	}
 }
 
 
@@ -424,6 +434,16 @@ open class GroupCharacteristic: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(GroupCharacteristic.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy GroupCharacteristic. Will return empty instance: \(error))")
+		}
+		return GroupCharacteristic.init()
+	}
 }
 
 
@@ -543,5 +563,15 @@ open class GroupMember: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(GroupMember.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy GroupMember. Will return empty instance: \(error))")
+		}
+		return GroupMember.init()
+	}
 }
 

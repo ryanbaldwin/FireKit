@@ -239,6 +239,16 @@ open class QuestionnaireResponse: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponse.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponse. Will return empty instance: \(error))")
+		}
+		return QuestionnaireResponse.init()
+	}
 }
 
 
@@ -400,6 +410,16 @@ open class QuestionnaireResponseGroup: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponseGroup.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponseGroup. Will return empty instance: \(error))")
+		}
+		return QuestionnaireResponseGroup.init()
+	}
 }
 
 
@@ -507,6 +527,16 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponseGroupQuestion.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponseGroupQuestion. Will return empty instance: \(error))")
+		}
+		return QuestionnaireResponseGroupQuestion.init()
+	}
 }
 
 
@@ -802,5 +832,15 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponseGroupQuestionAnswer.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponseGroupQuestionAnswer. Will return empty instance: \(error))")
+		}
+		return QuestionnaireResponseGroupQuestionAnswer.init()
+	}
 }
 

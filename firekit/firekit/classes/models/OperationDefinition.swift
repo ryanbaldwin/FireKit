@@ -407,6 +407,16 @@ open class OperationDefinition: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OperationDefinition.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OperationDefinition. Will return empty instance: \(error))")
+		}
+		return OperationDefinition.init()
+	}
 }
 
 
@@ -498,6 +508,16 @@ open class OperationDefinitionContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OperationDefinitionContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OperationDefinitionContact. Will return empty instance: \(error))")
+		}
+		return OperationDefinitionContact.init()
+	}
 }
 
 
@@ -728,6 +748,16 @@ open class OperationDefinitionParameter: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OperationDefinitionParameter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OperationDefinitionParameter. Will return empty instance: \(error))")
+		}
+		return OperationDefinitionParameter.init()
+	}
 }
 
 
@@ -851,5 +881,15 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OperationDefinitionParameterBinding.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OperationDefinitionParameterBinding. Will return empty instance: \(error))")
+		}
+		return OperationDefinitionParameterBinding.init()
+	}
 }
 

@@ -405,6 +405,16 @@ open class ClinicalImpression: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClinicalImpression.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClinicalImpression. Will return empty instance: \(error))")
+		}
+		return ClinicalImpression.init()
+	}
 }
 
 
@@ -505,6 +515,16 @@ open class ClinicalImpressionFinding: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClinicalImpressionFinding.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClinicalImpressionFinding. Will return empty instance: \(error))")
+		}
+		return ClinicalImpressionFinding.init()
+	}
 }
 
 
@@ -610,6 +630,16 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClinicalImpressionInvestigations.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClinicalImpressionInvestigations. Will return empty instance: \(error))")
+		}
+		return ClinicalImpressionInvestigations.init()
+	}
 }
 
 
@@ -708,5 +738,15 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClinicalImpressionRuledOut.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClinicalImpressionRuledOut. Will return empty instance: \(error))")
+		}
+		return ClinicalImpressionRuledOut.init()
+	}
 }
 

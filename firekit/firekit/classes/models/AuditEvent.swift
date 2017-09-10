@@ -158,6 +158,16 @@ open class AuditEvent: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AuditEvent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AuditEvent. Will return empty instance: \(error))")
+		}
+		return AuditEvent.init()
+	}
 }
 
 
@@ -348,6 +358,16 @@ open class AuditEventEvent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AuditEventEvent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AuditEventEvent. Will return empty instance: \(error))")
+		}
+		return AuditEventEvent.init()
+	}
 }
 
 
@@ -583,6 +603,16 @@ open class AuditEventObject: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AuditEventObject.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AuditEventObject. Will return empty instance: \(error))")
+		}
+		return AuditEventObject.init()
+	}
 }
 
 
@@ -682,6 +712,16 @@ open class AuditEventObjectDetail: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AuditEventObjectDetail.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AuditEventObjectDetail. Will return empty instance: \(error))")
+		}
+		return AuditEventObjectDetail.init()
+	}
 }
 
 
@@ -942,6 +982,16 @@ open class AuditEventParticipant: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AuditEventParticipant.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AuditEventParticipant. Will return empty instance: \(error))")
+		}
+		return AuditEventParticipant.init()
+	}
 }
 
 
@@ -1030,6 +1080,16 @@ open class AuditEventParticipantNetwork: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AuditEventParticipantNetwork.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AuditEventParticipantNetwork. Will return empty instance: \(error))")
+		}
+		return AuditEventParticipantNetwork.init()
+	}
 }
 
 
@@ -1147,5 +1207,15 @@ open class AuditEventSource: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AuditEventSource.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AuditEventSource. Will return empty instance: \(error))")
+		}
+		return AuditEventSource.init()
+	}
 }
 

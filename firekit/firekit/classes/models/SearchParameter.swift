@@ -336,6 +336,16 @@ open class SearchParameter: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SearchParameter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SearchParameter. Will return empty instance: \(error))")
+		}
+		return SearchParameter.init()
+	}
 }
 
 
@@ -427,5 +437,15 @@ open class SearchParameterContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SearchParameterContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SearchParameterContact. Will return empty instance: \(error))")
+		}
+		return SearchParameterContact.init()
+	}
 }
 

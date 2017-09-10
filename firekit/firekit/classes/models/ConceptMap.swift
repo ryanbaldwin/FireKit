@@ -392,6 +392,16 @@ open class ConceptMap: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMap.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMap. Will return empty instance: \(error))")
+		}
+		return ConceptMap.init()
+	}
 }
 
 
@@ -483,6 +493,16 @@ open class ConceptMapContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapContact. Will return empty instance: \(error))")
+		}
+		return ConceptMapContact.init()
+	}
 }
 
 
@@ -590,6 +610,16 @@ open class ConceptMapElement: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapElement.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapElement. Will return empty instance: \(error))")
+		}
+		return ConceptMapElement.init()
+	}
 }
 
 
@@ -757,6 +787,16 @@ open class ConceptMapElementTarget: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapElementTarget.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapElementTarget. Will return empty instance: \(error))")
+		}
+		return ConceptMapElementTarget.init()
+	}
 }
 
 
@@ -879,5 +919,15 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapElementTargetDependsOn.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapElementTargetDependsOn. Will return empty instance: \(error))")
+		}
+		return ConceptMapElementTargetDependsOn.init()
+	}
 }
 

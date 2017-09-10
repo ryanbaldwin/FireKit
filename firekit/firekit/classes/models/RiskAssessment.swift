@@ -248,6 +248,16 @@ open class RiskAssessment: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(RiskAssessment.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy RiskAssessment. Will return empty instance: \(error))")
+		}
+		return RiskAssessment.init()
+	}
 }
 
 
@@ -456,5 +466,15 @@ open class RiskAssessmentPrediction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(RiskAssessmentPrediction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy RiskAssessmentPrediction. Will return empty instance: \(error))")
+		}
+		return RiskAssessmentPrediction.init()
+	}
 }
 

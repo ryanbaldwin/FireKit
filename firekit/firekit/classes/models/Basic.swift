@@ -166,5 +166,15 @@ open class Basic: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Basic.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Basic. Will return empty instance: \(error))")
+		}
+		return Basic.init()
+	}
 }
 

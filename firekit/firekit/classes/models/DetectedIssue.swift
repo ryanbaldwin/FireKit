@@ -243,6 +243,16 @@ open class DetectedIssue: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DetectedIssue.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DetectedIssue. Will return empty instance: \(error))")
+		}
+		return DetectedIssue.init()
+	}
 }
 
 
@@ -364,5 +374,15 @@ open class DetectedIssueMitigation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DetectedIssueMitigation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DetectedIssueMitigation. Will return empty instance: \(error))")
+		}
+		return DetectedIssueMitigation.init()
+	}
 }
 

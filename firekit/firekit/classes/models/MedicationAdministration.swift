@@ -383,6 +383,16 @@ open class MedicationAdministration: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MedicationAdministration.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MedicationAdministration. Will return empty instance: \(error))")
+		}
+		return MedicationAdministration.init()
+	}
 }
 
 
@@ -588,5 +598,15 @@ open class MedicationAdministrationDosage: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MedicationAdministrationDosage.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MedicationAdministrationDosage. Will return empty instance: \(error))")
+		}
+		return MedicationAdministrationDosage.init()
+	}
 }
 

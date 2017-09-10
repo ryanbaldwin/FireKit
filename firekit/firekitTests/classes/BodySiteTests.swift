@@ -13,41 +13,40 @@ import FireKit
 
 
 class BodySiteTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.BodySite {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.BodySite {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.BodySite.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testBodySite1() {		
-		var instance: FireKit.BodySite?
-		do {
-			instance = try runBodySite1()
-			try runBodySite1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.BodySite
-			XCTAssertNotNil(copy)
-			try runBodySite1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.BodySite {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.BodySite {
+      let instance = try JSONDecoder().decode(FireKit.BodySite.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testBodySite1() {   
+    var instance: FireKit.BodySite?
+    do {
+      instance = try runBodySite1()
+      try runBodySite1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.BodySite
+      XCTAssertNotNil(copy)
+      try runBodySite1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runBodySite1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test BodySite successfully, but threw: \(error)")
+    }
 
-		testBodySiteRealm1(instance!)
-	}
+    testBodySiteRealm1(instance!)
+  }
 
     func testBodySite1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class BodySiteTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testBodySiteRealm1(_ instance: FireKit.BodySite) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testBodySiteRealm1(_ instance: FireKit.BodySite) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runBodySite1(JSONEncoder().encode(realm.objects(FireKit.BodySite.self).first!))
         
         // ensure we can update it.
@@ -102,38 +101,38 @@ class BodySiteTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.BodySite.self).count)
-	}
-	
-	@discardableResult
-	func runBodySite1(_ data: Data? = nil) throws -> FireKit.BodySite {
+  }
+  
+  @discardableResult
+  func runBodySite1(_ data: Data? = nil) throws -> FireKit.BodySite {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "bodysite-example.json")
-		
-		XCTAssertEqual(inst.code?.coding[0].code, "53120007")
-		XCTAssertEqual(inst.code?.coding[0].display, "Arm")
-		XCTAssertEqual(inst.code?.coding[0].system, "http://snomed.info/sct")
-		XCTAssertEqual(inst.code?.text, "Arm")
-		XCTAssertEqual(inst.description_fhir, "front of upper left arm directly below the tattoo")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier[0].system, "http://www.acmehosp.com/bodysites")
-		XCTAssertEqual(inst.identifier[0].use, "official")
-		XCTAssertEqual(inst.identifier[0].value, "12345")
-		XCTAssertEqual(inst.image[0].contentType, "image/png;base64")
-		XCTAssertEqual(inst.image[0].title, "ARM")
-		XCTAssertEqual(inst.modifier[0].coding[0].code, "419161000")
-		XCTAssertEqual(inst.modifier[0].coding[0].display, "Unilateral left")
-		XCTAssertEqual(inst.modifier[0].coding[0].system, "http://snomed.info/sct")
-		XCTAssertEqual(inst.modifier[0].text, "Left")
-		XCTAssertEqual(inst.modifier[1].coding[0].code, "261183002")
-		XCTAssertEqual(inst.modifier[1].coding[0].display, "Upper")
-		XCTAssertEqual(inst.modifier[1].coding[0].system, "http://snomed.info/sct")
-		XCTAssertEqual(inst.modifier[1].text, "Upper")
-		XCTAssertEqual(inst.modifier[2].coding[0].code, "255549009")
-		XCTAssertEqual(inst.modifier[2].coding[0].display, "Anterior")
-		XCTAssertEqual(inst.modifier[2].coding[0].system, "http://snomed.info/sct")
-		XCTAssertEqual(inst.modifier[2].text, "Anterior")
-		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.code?.coding[0].code, "53120007")
+    XCTAssertEqual(inst.code?.coding[0].display, "Arm")
+    XCTAssertEqual(inst.code?.coding[0].system, "http://snomed.info/sct")
+    XCTAssertEqual(inst.code?.text, "Arm")
+    XCTAssertEqual(inst.description_fhir, "front of upper left arm directly below the tattoo")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.identifier[0].system, "http://www.acmehosp.com/bodysites")
+    XCTAssertEqual(inst.identifier[0].use, "official")
+    XCTAssertEqual(inst.identifier[0].value, "12345")
+    XCTAssertEqual(inst.image[0].contentType, "image/png;base64")
+    XCTAssertEqual(inst.image[0].title, "ARM")
+    XCTAssertEqual(inst.modifier[0].coding[0].code, "419161000")
+    XCTAssertEqual(inst.modifier[0].coding[0].display, "Unilateral left")
+    XCTAssertEqual(inst.modifier[0].coding[0].system, "http://snomed.info/sct")
+    XCTAssertEqual(inst.modifier[0].text, "Left")
+    XCTAssertEqual(inst.modifier[1].coding[0].code, "261183002")
+    XCTAssertEqual(inst.modifier[1].coding[0].display, "Upper")
+    XCTAssertEqual(inst.modifier[1].coding[0].system, "http://snomed.info/sct")
+    XCTAssertEqual(inst.modifier[1].text, "Upper")
+    XCTAssertEqual(inst.modifier[2].coding[0].code, "255549009")
+    XCTAssertEqual(inst.modifier[2].coding[0].display, "Anterior")
+    XCTAssertEqual(inst.modifier[2].coding[0].system, "http://snomed.info/sct")
+    XCTAssertEqual(inst.modifier[2].text, "Anterior")
+    XCTAssertEqual(inst.patient?.reference, "Patient/example")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

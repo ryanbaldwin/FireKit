@@ -13,41 +13,40 @@ import FireKit
 
 
 class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.DiagnosticOrder {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.DiagnosticOrder {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.DiagnosticOrder.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testDiagnosticOrder1() {		
-		var instance: FireKit.DiagnosticOrder?
-		do {
-			instance = try runDiagnosticOrder1()
-			try runDiagnosticOrder1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.DiagnosticOrder
-			XCTAssertNotNil(copy)
-			try runDiagnosticOrder1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.DiagnosticOrder {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.DiagnosticOrder {
+      let instance = try JSONDecoder().decode(FireKit.DiagnosticOrder.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testDiagnosticOrder1() {   
+    var instance: FireKit.DiagnosticOrder?
+    do {
+      instance = try runDiagnosticOrder1()
+      try runDiagnosticOrder1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.DiagnosticOrder
+      XCTAssertNotNil(copy)
+      try runDiagnosticOrder1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runDiagnosticOrder1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
+    }
 
-		testDiagnosticOrderRealm1(instance!)
-	}
+    testDiagnosticOrderRealm1(instance!)
+  }
 
     func testDiagnosticOrder1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDiagnosticOrderRealm1(_ instance: FireKit.DiagnosticOrder) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testDiagnosticOrderRealm1(_ instance: FireKit.DiagnosticOrder) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runDiagnosticOrder1(JSONEncoder().encode(realm.objects(FireKit.DiagnosticOrder.self).first!))
         
         // ensure we can update it.
@@ -102,50 +101,50 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DiagnosticOrder.self).count)
-	}
-	
-	@discardableResult
-	func runDiagnosticOrder1(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
+  }
+  
+  @discardableResult
+  func runDiagnosticOrder1(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "diagnosticorder-example-di.json")
-		
-		XCTAssertEqual(inst.event[0].dateTime?.description, "2013-05-08T09:33:27+07:00")
-		XCTAssertEqual(inst.event[0].status, "requested")
-		XCTAssertEqual(inst.id, "di")
-		XCTAssertEqual(inst.item[0].bodySite?.coding[0].code, "51185008")
-		XCTAssertEqual(inst.item[0].bodySite?.coding[0].display, "Thoracic structure")
-		XCTAssertEqual(inst.item[0].bodySite?.coding[0].system, "http://snomed.info/sct")
-		XCTAssertEqual(inst.item[0].code?.coding[0].code, "24627-2")
-		XCTAssertEqual(inst.item[0].code?.coding[0].system, "http://loinc.org")
-		XCTAssertEqual(inst.item[0].code?.text, "Chest CT")
-		XCTAssertEqual(inst.orderer?.display, "Dr. Adam Careful")
-		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.reason[0].text, "Check for metastatic disease")
-		XCTAssertEqual(inst.status, "requested")
-		XCTAssertEqual(inst.subject?.reference, "Patient/dicom")
-		XCTAssertEqual(inst.text?.div, "<div>\n\t\t\t<p>Chest CT - ordered May 8, 2013 by Dr. Adam Careful</p>\n\t\t</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
-	
-	func testDiagnosticOrder2() {		
-		var instance: FireKit.DiagnosticOrder?
-		do {
-			instance = try runDiagnosticOrder2()
-			try runDiagnosticOrder2(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.DiagnosticOrder
-			XCTAssertNotNil(copy)
-			try runDiagnosticOrder2(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.event[0].dateTime?.description, "2013-05-08T09:33:27+07:00")
+    XCTAssertEqual(inst.event[0].status, "requested")
+    XCTAssertEqual(inst.id, "di")
+    XCTAssertEqual(inst.item[0].bodySite?.coding[0].code, "51185008")
+    XCTAssertEqual(inst.item[0].bodySite?.coding[0].display, "Thoracic structure")
+    XCTAssertEqual(inst.item[0].bodySite?.coding[0].system, "http://snomed.info/sct")
+    XCTAssertEqual(inst.item[0].code?.coding[0].code, "24627-2")
+    XCTAssertEqual(inst.item[0].code?.coding[0].system, "http://loinc.org")
+    XCTAssertEqual(inst.item[0].code?.text, "Chest CT")
+    XCTAssertEqual(inst.orderer?.display, "Dr. Adam Careful")
+    XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
+    XCTAssertEqual(inst.reason[0].text, "Check for metastatic disease")
+    XCTAssertEqual(inst.status, "requested")
+    XCTAssertEqual(inst.subject?.reference, "Patient/dicom")
+    XCTAssertEqual(inst.text?.div, "<div>\n\t\t\t<p>Chest CT - ordered May 8, 2013 by Dr. Adam Careful</p>\n\t\t</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
+  
+  func testDiagnosticOrder2() {   
+    var instance: FireKit.DiagnosticOrder?
+    do {
+      instance = try runDiagnosticOrder2()
+      try runDiagnosticOrder2(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.DiagnosticOrder
+      XCTAssertNotNil(copy)
+      try runDiagnosticOrder2(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runDiagnosticOrder2(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
+    }
 
-		testDiagnosticOrderRealm2(instance!)
-	}
+    testDiagnosticOrderRealm2(instance!)
+  }
 
     func testDiagnosticOrder2RealmPK() {        
         do {
@@ -167,10 +166,10 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDiagnosticOrderRealm2(_ instance: FireKit.DiagnosticOrder) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testDiagnosticOrderRealm2(_ instance: FireKit.DiagnosticOrder) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runDiagnosticOrder2(JSONEncoder().encode(realm.objects(FireKit.DiagnosticOrder.self).first!))
         
         // ensure we can update it.
@@ -200,47 +199,47 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DiagnosticOrder.self).count)
-	}
-	
-	@discardableResult
-	func runDiagnosticOrder2(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
+  }
+  
+  @discardableResult
+  func runDiagnosticOrder2(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "diagnosticorder-example-ft4.json")
-		
-		XCTAssertEqual(inst.contained[0].id, "rtt")
-		XCTAssertEqual(inst.event[0].dateTime?.description, "2015-08-27T09:33:27+07:00")
-		XCTAssertEqual(inst.event[0].status, "requested")
-		XCTAssertEqual(inst.id, "ft4")
-		XCTAssertEqual(inst.item[0].code?.coding[0].code, "3024-7")
-		XCTAssertEqual(inst.item[0].code?.coding[0].system, "http://loinc.org")
-		XCTAssertEqual(inst.item[0].code?.text, "Free T4")
-		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.specimen[0].display, "Red Top Tube")
-		XCTAssertEqual(inst.specimen[0].reference, "#rtt")
-		XCTAssertEqual(inst.status, "requested")
-		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
-	
-	func testDiagnosticOrder3() {		
-		var instance: FireKit.DiagnosticOrder?
-		do {
-			instance = try runDiagnosticOrder3()
-			try runDiagnosticOrder3(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.DiagnosticOrder
-			XCTAssertNotNil(copy)
-			try runDiagnosticOrder3(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.contained[0].id, "rtt")
+    XCTAssertEqual(inst.event[0].dateTime?.description, "2015-08-27T09:33:27+07:00")
+    XCTAssertEqual(inst.event[0].status, "requested")
+    XCTAssertEqual(inst.id, "ft4")
+    XCTAssertEqual(inst.item[0].code?.coding[0].code, "3024-7")
+    XCTAssertEqual(inst.item[0].code?.coding[0].system, "http://loinc.org")
+    XCTAssertEqual(inst.item[0].code?.text, "Free T4")
+    XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
+    XCTAssertEqual(inst.specimen[0].display, "Red Top Tube")
+    XCTAssertEqual(inst.specimen[0].reference, "#rtt")
+    XCTAssertEqual(inst.status, "requested")
+    XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
+  
+  func testDiagnosticOrder3() {   
+    var instance: FireKit.DiagnosticOrder?
+    do {
+      instance = try runDiagnosticOrder3()
+      try runDiagnosticOrder3(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.DiagnosticOrder
+      XCTAssertNotNil(copy)
+      try runDiagnosticOrder3(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runDiagnosticOrder3(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
+    }
 
-		testDiagnosticOrderRealm3(instance!)
-	}
+    testDiagnosticOrderRealm3(instance!)
+  }
 
     func testDiagnosticOrder3RealmPK() {        
         do {
@@ -262,10 +261,10 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDiagnosticOrderRealm3(_ instance: FireKit.DiagnosticOrder) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testDiagnosticOrderRealm3(_ instance: FireKit.DiagnosticOrder) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runDiagnosticOrder3(JSONEncoder().encode(realm.objects(FireKit.DiagnosticOrder.self).first!))
         
         // ensure we can update it.
@@ -295,37 +294,37 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DiagnosticOrder.self).count)
-	}
-	
-	@discardableResult
-	func runDiagnosticOrder3(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
+  }
+  
+  @discardableResult
+  func runDiagnosticOrder3(_ data: Data? = nil) throws -> FireKit.DiagnosticOrder {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "diagnosticorder-example.json")
-		
-		XCTAssertEqual(inst.contained[0].id, "fasting")
-		XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
-		XCTAssertEqual(inst.event[0].actor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.event[0].dateTime?.description, "2013-05-02T16:16:00-07:00")
-		XCTAssertEqual(inst.event[0].status, "requested")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier[0].system, "urn:oid:1.3.4.5.6.7")
-		XCTAssertEqual(inst.identifier[0].type?.coding[0].code, "PLAC")
-		XCTAssertEqual(inst.identifier[0].type?.coding[0].system, "http://hl7.org/fhir/identifier-type")
-		XCTAssertEqual(inst.identifier[0].type?.text, "Placer")
-		XCTAssertEqual(inst.identifier[0].value, "2345234234234")
-		XCTAssertEqual(inst.item[0].code?.coding[0].code, "LIPID")
-		XCTAssertEqual(inst.item[0].code?.coding[0].system, "http://acme.org/tests")
-		XCTAssertEqual(inst.item[0].code?.text, "Lipid Panel")
-		XCTAssertEqual(inst.item[0].specimen[0].reference, "Specimen/101")
-		XCTAssertEqual(inst.note[0].text, "patient is afraid of needles")
-		XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.reason[0].coding[0].code, "V173")
-		XCTAssertEqual(inst.reason[0].coding[0].display, "Fam hx-ischem heart dis")
-		XCTAssertEqual(inst.reason[0].coding[0].system, "http://hl7.org/fhir/sid/icd-9")
-		XCTAssertEqual(inst.status, "received")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.supportingInformation[0].reference, "#fasting")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.contained[0].id, "fasting")
+    XCTAssertEqual(inst.encounter?.reference, "Encounter/example")
+    XCTAssertEqual(inst.event[0].actor?.reference, "Practitioner/example")
+    XCTAssertEqual(inst.event[0].dateTime?.description, "2013-05-02T16:16:00-07:00")
+    XCTAssertEqual(inst.event[0].status, "requested")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.identifier[0].system, "urn:oid:1.3.4.5.6.7")
+    XCTAssertEqual(inst.identifier[0].type?.coding[0].code, "PLAC")
+    XCTAssertEqual(inst.identifier[0].type?.coding[0].system, "http://hl7.org/fhir/identifier-type")
+    XCTAssertEqual(inst.identifier[0].type?.text, "Placer")
+    XCTAssertEqual(inst.identifier[0].value, "2345234234234")
+    XCTAssertEqual(inst.item[0].code?.coding[0].code, "LIPID")
+    XCTAssertEqual(inst.item[0].code?.coding[0].system, "http://acme.org/tests")
+    XCTAssertEqual(inst.item[0].code?.text, "Lipid Panel")
+    XCTAssertEqual(inst.item[0].specimen[0].reference, "Specimen/101")
+    XCTAssertEqual(inst.note[0].text, "patient is afraid of needles")
+    XCTAssertEqual(inst.orderer?.reference, "Practitioner/example")
+    XCTAssertEqual(inst.reason[0].coding[0].code, "V173")
+    XCTAssertEqual(inst.reason[0].coding[0].display, "Fam hx-ischem heart dis")
+    XCTAssertEqual(inst.reason[0].coding[0].system, "http://hl7.org/fhir/sid/icd-9")
+    XCTAssertEqual(inst.status, "received")
+    XCTAssertEqual(inst.subject?.reference, "Patient/example")
+    XCTAssertEqual(inst.supportingInformation[0].reference, "#fasting")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

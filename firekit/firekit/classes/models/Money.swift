@@ -47,5 +47,15 @@ open class Money: Quantity {
 /*
 
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Money.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Money. Will return empty instance: \(error))")
+		}
+		return Money.init()
+	}
 }
 

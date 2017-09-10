@@ -13,41 +13,40 @@ import FireKit
 
 
 class GroupTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.Group {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.Group {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.Group.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testGroup1() {		
-		var instance: FireKit.Group?
-		do {
-			instance = try runGroup1()
-			try runGroup1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Group
-			XCTAssertNotNil(copy)
-			try runGroup1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.Group {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.Group {
+      let instance = try JSONDecoder().decode(FireKit.Group.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testGroup1() {   
+    var instance: FireKit.Group?
+    do {
+      instance = try runGroup1()
+      try runGroup1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Group
+      XCTAssertNotNil(copy)
+      try runGroup1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runGroup1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw: \(error)")
+    }
 
-		testGroupRealm1(instance!)
-	}
+    testGroupRealm1(instance!)
+  }
 
     func testGroup1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testGroupRealm1(_ instance: FireKit.Group) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testGroupRealm1(_ instance: FireKit.Group) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runGroup1(JSONEncoder().encode(realm.objects(FireKit.Group.self).first!))
         
         // ensure we can update it.
@@ -102,47 +101,47 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Group.self).count)
-	}
-	
-	@discardableResult
-	func runGroup1(_ data: Data? = nil) throws -> FireKit.Group {
+  }
+  
+  @discardableResult
+  func runGroup1(_ data: Data? = nil) throws -> FireKit.Group {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "group-example-member.json")
-		
-		XCTAssertTrue(inst.actual.value ?? false)
-		XCTAssertEqual(inst.id, "102")
-		XCTAssertEqual(inst.member[0].entity?.reference, "Patient/pat1")
-		XCTAssertEqual(inst.member[0].period?.start?.description, "2014-10-08")
-		XCTAssertEqual(inst.member[1].entity?.reference, "Patient/pat2")
-		XCTAssertTrue(inst.member[1].inactive.value ?? false)
-		XCTAssertEqual(inst.member[1].period?.start?.description, "2015-04-02")
-		XCTAssertEqual(inst.member[2].entity?.reference, "Patient/pat3")
-		XCTAssertEqual(inst.member[2].period?.start?.description, "2015-08-06")
-		XCTAssertEqual(inst.member[3].entity?.reference, "Patient/pat4")
-		XCTAssertEqual(inst.member[3].period?.start?.description, "2015-08-06")
-		XCTAssertEqual(inst.text?.status, "additional")
-		XCTAssertEqual(inst.type, "person")
-		
-		return inst
-	}
-	
-	func testGroup2() {		
-		var instance: FireKit.Group?
-		do {
-			instance = try runGroup2()
-			try runGroup2(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Group
-			XCTAssertNotNil(copy)
-			try runGroup2(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertTrue(inst.actual.value ?? false)
+    XCTAssertEqual(inst.id, "102")
+    XCTAssertEqual(inst.member[0].entity?.reference, "Patient/pat1")
+    XCTAssertEqual(inst.member[0].period?.start?.description, "2014-10-08")
+    XCTAssertEqual(inst.member[1].entity?.reference, "Patient/pat2")
+    XCTAssertTrue(inst.member[1].inactive.value ?? false)
+    XCTAssertEqual(inst.member[1].period?.start?.description, "2015-04-02")
+    XCTAssertEqual(inst.member[2].entity?.reference, "Patient/pat3")
+    XCTAssertEqual(inst.member[2].period?.start?.description, "2015-08-06")
+    XCTAssertEqual(inst.member[3].entity?.reference, "Patient/pat4")
+    XCTAssertEqual(inst.member[3].period?.start?.description, "2015-08-06")
+    XCTAssertEqual(inst.text?.status, "additional")
+    XCTAssertEqual(inst.type, "person")
+    
+    return inst
+  }
+  
+  func testGroup2() {   
+    var instance: FireKit.Group?
+    do {
+      instance = try runGroup2()
+      try runGroup2(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Group
+      XCTAssertNotNil(copy)
+      try runGroup2(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runGroup2(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw: \(error)")
+    }
 
-		testGroupRealm2(instance!)
-	}
+    testGroupRealm2(instance!)
+  }
 
     func testGroup2RealmPK() {        
         do {
@@ -164,10 +163,10 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testGroupRealm2(_ instance: FireKit.Group) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testGroupRealm2(_ instance: FireKit.Group) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runGroup2(JSONEncoder().encode(realm.objects(FireKit.Group.self).first!))
         
         // ensure we can update it.
@@ -197,27 +196,27 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Group.self).count)
-	}
-	
-	@discardableResult
-	func runGroup2(_ data: Data? = nil) throws -> FireKit.Group {
+  }
+  
+  @discardableResult
+  func runGroup2(_ data: Data? = nil) throws -> FireKit.Group {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "group-example.json")
-		
-		XCTAssertTrue(inst.actual.value ?? false)
-		XCTAssertEqual(inst.characteristic[0].code?.text, "gender")
-		XCTAssertFalse(inst.characteristic[0].exclude.value ?? true)
-		XCTAssertEqual(inst.characteristic[0].valueCodeableConcept?.text, "mixed")
-		XCTAssertEqual(inst.characteristic[1].code?.text, "owner")
-		XCTAssertFalse(inst.characteristic[1].exclude.value ?? true)
-		XCTAssertEqual(inst.characteristic[1].valueCodeableConcept?.text, "John Smith")
-		XCTAssertEqual(inst.code?.text, "Horse")
-		XCTAssertEqual(inst.id, "101")
-		XCTAssertEqual(inst.name, "John's herd")
-		XCTAssertEqual(inst.quantity.value, 25)
-		XCTAssertEqual(inst.text?.div, "<div>\n      <p>Herd of 25 horses</p>\n      <p>Gender: mixed</p>\n      <p>Owner: John Smith</p>\n    </div>")
-		XCTAssertEqual(inst.text?.status, "additional")
-		XCTAssertEqual(inst.type, "animal")
-		
-		return inst
-	}
+    
+    XCTAssertTrue(inst.actual.value ?? false)
+    XCTAssertEqual(inst.characteristic[0].code?.text, "gender")
+    XCTAssertFalse(inst.characteristic[0].exclude.value ?? true)
+    XCTAssertEqual(inst.characteristic[0].valueCodeableConcept?.text, "mixed")
+    XCTAssertEqual(inst.characteristic[1].code?.text, "owner")
+    XCTAssertFalse(inst.characteristic[1].exclude.value ?? true)
+    XCTAssertEqual(inst.characteristic[1].valueCodeableConcept?.text, "John Smith")
+    XCTAssertEqual(inst.code?.text, "Horse")
+    XCTAssertEqual(inst.id, "101")
+    XCTAssertEqual(inst.name, "John's herd")
+    XCTAssertEqual(inst.quantity.value, 25)
+    XCTAssertEqual(inst.text?.div, "<div>\n      <p>Herd of 25 horses</p>\n      <p>Gender: mixed</p>\n      <p>Owner: John Smith</p>\n    </div>")
+    XCTAssertEqual(inst.text?.status, "additional")
+    XCTAssertEqual(inst.type, "animal")
+    
+    return inst
+  }
 }

@@ -281,6 +281,16 @@ open class Location: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Location.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Location. Will return empty instance: \(error))")
+		}
+		return Location.init()
+	}
 }
 
 
@@ -399,5 +409,15 @@ open class LocationPosition: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(LocationPosition.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy LocationPosition. Will return empty instance: \(error))")
+		}
+		return LocationPosition.init()
+	}
 }
 

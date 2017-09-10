@@ -341,6 +341,16 @@ open class CommunicationRequest: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CommunicationRequest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CommunicationRequest. Will return empty instance: \(error))")
+		}
+		return CommunicationRequest.init()
+	}
 }
 
 
@@ -464,5 +474,15 @@ open class CommunicationRequestPayload: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CommunicationRequestPayload.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CommunicationRequestPayload. Will return empty instance: \(error))")
+		}
+		return CommunicationRequestPayload.init()
+	}
 }
 

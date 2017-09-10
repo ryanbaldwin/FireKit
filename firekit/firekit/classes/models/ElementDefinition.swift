@@ -3968,6 +3968,16 @@ open class ElementDefinition: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ElementDefinition.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ElementDefinition. Will return empty instance: \(error))")
+		}
+		return ElementDefinition.init()
+	}
 }
 
 
@@ -4092,6 +4102,16 @@ open class ElementDefinitionBase: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ElementDefinitionBase.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ElementDefinitionBase. Will return empty instance: \(error))")
+		}
+		return ElementDefinitionBase.init()
+	}
 }
 
 
@@ -4224,6 +4244,16 @@ open class ElementDefinitionBinding: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ElementDefinitionBinding.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ElementDefinitionBinding. Will return empty instance: \(error))")
+		}
+		return ElementDefinitionBinding.init()
+	}
 }
 
 
@@ -4382,6 +4412,16 @@ open class ElementDefinitionConstraint: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ElementDefinitionConstraint.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ElementDefinitionConstraint. Will return empty instance: \(error))")
+		}
+		return ElementDefinitionConstraint.init()
+	}
 }
 
 
@@ -4499,6 +4539,16 @@ open class ElementDefinitionMapping: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ElementDefinitionMapping.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ElementDefinitionMapping. Will return empty instance: \(error))")
+		}
+		return ElementDefinitionMapping.init()
+	}
 }
 
 
@@ -4632,6 +4682,16 @@ open class ElementDefinitionSlicing: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ElementDefinitionSlicing.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ElementDefinitionSlicing. Will return empty instance: \(error))")
+		}
+		return ElementDefinitionSlicing.init()
+	}
 }
 
 
@@ -4745,5 +4805,15 @@ open class ElementDefinitionType: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ElementDefinitionType.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ElementDefinitionType. Will return empty instance: \(error))")
+		}
+		return ElementDefinitionType.init()
+	}
 }
 

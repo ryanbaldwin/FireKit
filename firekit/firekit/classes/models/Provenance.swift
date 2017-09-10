@@ -267,6 +267,16 @@ open class Provenance: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Provenance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Provenance. Will return empty instance: \(error))")
+		}
+		return Provenance.init()
+	}
 }
 
 
@@ -410,6 +420,16 @@ open class ProvenanceAgent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProvenanceAgent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProvenanceAgent. Will return empty instance: \(error))")
+		}
+		return ProvenanceAgent.init()
+	}
 }
 
 
@@ -516,6 +536,16 @@ open class ProvenanceAgentRelatedAgent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProvenanceAgentRelatedAgent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProvenanceAgentRelatedAgent. Will return empty instance: \(error))")
+		}
+		return ProvenanceAgentRelatedAgent.init()
+	}
 }
 
 
@@ -673,5 +703,15 @@ open class ProvenanceEntity: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProvenanceEntity.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProvenanceEntity. Will return empty instance: \(error))")
+		}
+		return ProvenanceEntity.init()
+	}
 }
 

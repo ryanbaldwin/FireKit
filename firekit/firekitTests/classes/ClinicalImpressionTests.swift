@@ -13,41 +13,40 @@ import FireKit
 
 
 class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.ClinicalImpression {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.ClinicalImpression {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.ClinicalImpression.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testClinicalImpression1() {		
-		var instance: FireKit.ClinicalImpression?
-		do {
-			instance = try runClinicalImpression1()
-			try runClinicalImpression1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.ClinicalImpression
-			XCTAssertNotNil(copy)
-			try runClinicalImpression1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.ClinicalImpression {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.ClinicalImpression {
+      let instance = try JSONDecoder().decode(FireKit.ClinicalImpression.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testClinicalImpression1() {   
+    var instance: FireKit.ClinicalImpression?
+    do {
+      instance = try runClinicalImpression1()
+      try runClinicalImpression1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.ClinicalImpression
+      XCTAssertNotNil(copy)
+      try runClinicalImpression1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runClinicalImpression1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test ClinicalImpression successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test ClinicalImpression successfully, but threw: \(error)")
+    }
 
-		testClinicalImpressionRealm1(instance!)
-	}
+    testClinicalImpressionRealm1(instance!)
+  }
 
     func testClinicalImpression1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testClinicalImpressionRealm1(_ instance: FireKit.ClinicalImpression) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testClinicalImpressionRealm1(_ instance: FireKit.ClinicalImpression) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runClinicalImpression1(JSONEncoder().encode(realm.objects(FireKit.ClinicalImpression.self).first!))
         
         // ensure we can update it.
@@ -102,30 +101,30 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.ClinicalImpression.self).count)
-	}
-	
-	@discardableResult
-	func runClinicalImpression1(_ data: Data? = nil) throws -> FireKit.ClinicalImpression {
+  }
+  
+  @discardableResult
+  func runClinicalImpression1(_ data: Data? = nil) throws -> FireKit.ClinicalImpression {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "clinicalimpression-example.json")
-		
-		XCTAssertEqual(inst.assessor?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.date?.description, "2014-12-06T22:33:00+11:00")
-		XCTAssertEqual(inst.description_fhir, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
-		XCTAssertEqual(inst.finding[0].item?.coding[0].code, "850.0")
-		XCTAssertEqual(inst.finding[0].item?.coding[0].system, "http://hl7.org/fhir/sid/icd-9")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.investigations[0].code?.text, "Initial Examination")
-		XCTAssertEqual(inst.investigations[0].item[0].display, "deep laceration of the scalp (left temporo-occipital)")
-		XCTAssertEqual(inst.investigations[0].item[1].display, "decreased level of consciousness")
-		XCTAssertEqual(inst.investigations[0].item[2].display, "disoriented to time and place")
-		XCTAssertEqual(inst.investigations[0].item[3].display, "restless")
-		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.plan[0].display, "hospital standard closed head injury management protocol ")
-		XCTAssertEqual(inst.problem[0].display, "MVA")
-		XCTAssertEqual(inst.status, "completed")
-		XCTAssertEqual(inst.summary, "provisional diagnoses of laceration of head and traumatic brain injury (TBI)")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.assessor?.reference, "Practitioner/example")
+    XCTAssertEqual(inst.date?.description, "2014-12-06T22:33:00+11:00")
+    XCTAssertEqual(inst.description_fhir, "This 26 yo male patient is brought into ER by ambulance after being involved in a motor vehicle accident")
+    XCTAssertEqual(inst.finding[0].item?.coding[0].code, "850.0")
+    XCTAssertEqual(inst.finding[0].item?.coding[0].system, "http://hl7.org/fhir/sid/icd-9")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.investigations[0].code?.text, "Initial Examination")
+    XCTAssertEqual(inst.investigations[0].item[0].display, "deep laceration of the scalp (left temporo-occipital)")
+    XCTAssertEqual(inst.investigations[0].item[1].display, "decreased level of consciousness")
+    XCTAssertEqual(inst.investigations[0].item[2].display, "disoriented to time and place")
+    XCTAssertEqual(inst.investigations[0].item[3].display, "restless")
+    XCTAssertEqual(inst.patient?.reference, "Patient/example")
+    XCTAssertEqual(inst.plan[0].display, "hospital standard closed head injury management protocol ")
+    XCTAssertEqual(inst.problem[0].display, "MVA")
+    XCTAssertEqual(inst.status, "completed")
+    XCTAssertEqual(inst.summary, "provisional diagnoses of laceration of head and traumatic brain injury (TBI)")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

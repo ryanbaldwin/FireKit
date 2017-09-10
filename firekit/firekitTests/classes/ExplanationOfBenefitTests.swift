@@ -13,41 +13,40 @@ import FireKit
 
 
 class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.ExplanationOfBenefit {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.ExplanationOfBenefit {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.ExplanationOfBenefit.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testExplanationOfBenefit1() {		
-		var instance: FireKit.ExplanationOfBenefit?
-		do {
-			instance = try runExplanationOfBenefit1()
-			try runExplanationOfBenefit1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.ExplanationOfBenefit
-			XCTAssertNotNil(copy)
-			try runExplanationOfBenefit1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.ExplanationOfBenefit {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.ExplanationOfBenefit {
+      let instance = try JSONDecoder().decode(FireKit.ExplanationOfBenefit.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testExplanationOfBenefit1() {   
+    var instance: FireKit.ExplanationOfBenefit?
+    do {
+      instance = try runExplanationOfBenefit1()
+      try runExplanationOfBenefit1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.ExplanationOfBenefit
+      XCTAssertNotNil(copy)
+      try runExplanationOfBenefit1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runExplanationOfBenefit1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit successfully, but threw: \(error)")
+    }
 
-		testExplanationOfBenefitRealm1(instance!)
-	}
+    testExplanationOfBenefitRealm1(instance!)
+  }
 
     func testExplanationOfBenefit1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testExplanationOfBenefitRealm1(_ instance: FireKit.ExplanationOfBenefit) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testExplanationOfBenefitRealm1(_ instance: FireKit.ExplanationOfBenefit) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runExplanationOfBenefit1(JSONEncoder().encode(realm.objects(FireKit.ExplanationOfBenefit.self).first!))
         
         // ensure we can update it.
@@ -102,24 +101,24 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.ExplanationOfBenefit.self).count)
-	}
-	
-	@discardableResult
-	func runExplanationOfBenefit1(_ data: Data? = nil) throws -> FireKit.ExplanationOfBenefit {
+  }
+  
+  @discardableResult
+  func runExplanationOfBenefit1(_ data: Data? = nil) throws -> FireKit.ExplanationOfBenefit {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "explanationofbenefit-example.json")
-		
-		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.disposition, "Claim settled as per contract.")
-		XCTAssertEqual(inst.id, "R3500")
-		XCTAssertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/eob")
-		XCTAssertEqual(inst.identifier[0].value, "987654321")
-		XCTAssertEqual(inst.organization?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome, "complete")
-		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
-		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.created?.description, "2014-08-16")
+    XCTAssertEqual(inst.disposition, "Claim settled as per contract.")
+    XCTAssertEqual(inst.id, "R3500")
+    XCTAssertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/eob")
+    XCTAssertEqual(inst.identifier[0].value, "987654321")
+    XCTAssertEqual(inst.organization?.reference, "Organization/2")
+    XCTAssertEqual(inst.outcome, "complete")
+    XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
+    XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
+    XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

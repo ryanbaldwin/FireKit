@@ -102,5 +102,15 @@ open class Range: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Range.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Range. Will return empty instance: \(error))")
+		}
+		return Range.init()
+	}
 }
 

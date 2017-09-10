@@ -266,6 +266,16 @@ open class DeviceComponent: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DeviceComponent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DeviceComponent. Will return empty instance: \(error))")
+		}
+		return DeviceComponent.init()
+	}
 }
 
 
@@ -376,5 +386,15 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DeviceComponentProductionSpecification.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DeviceComponentProductionSpecification. Will return empty instance: \(error))")
+		}
+		return DeviceComponentProductionSpecification.init()
+	}
 }
 

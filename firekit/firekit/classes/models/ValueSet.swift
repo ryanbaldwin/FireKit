@@ -395,6 +395,16 @@ open class ValueSet: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSet.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSet. Will return empty instance: \(error))")
+		}
+		return ValueSet.init()
+	}
 }
 
 
@@ -532,6 +542,16 @@ open class ValueSetCodeSystem: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCodeSystem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCodeSystem. Will return empty instance: \(error))")
+		}
+		return ValueSetCodeSystem.init()
+	}
 }
 
 
@@ -700,6 +720,16 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCodeSystemConcept.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCodeSystemConcept. Will return empty instance: \(error))")
+		}
+		return ValueSetCodeSystemConcept.init()
+	}
 }
 
 
@@ -817,6 +847,16 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCodeSystemConceptDesignation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCodeSystemConceptDesignation. Will return empty instance: \(error))")
+		}
+		return ValueSetCodeSystemConceptDesignation.init()
+	}
 }
 
 
@@ -928,6 +968,16 @@ open class ValueSetCompose: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCompose.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCompose. Will return empty instance: \(error))")
+		}
+		return ValueSetCompose.init()
+	}
 }
 
 
@@ -1061,6 +1111,16 @@ open class ValueSetComposeInclude: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetComposeInclude.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetComposeInclude. Will return empty instance: \(error))")
+		}
+		return ValueSetComposeInclude.init()
+	}
 }
 
 
@@ -1177,6 +1237,16 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetComposeIncludeConcept.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetComposeIncludeConcept. Will return empty instance: \(error))")
+		}
+		return ValueSetComposeIncludeConcept.init()
+	}
 }
 
 
@@ -1299,6 +1369,16 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetComposeIncludeFilter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetComposeIncludeFilter. Will return empty instance: \(error))")
+		}
+		return ValueSetComposeIncludeFilter.init()
+	}
 }
 
 
@@ -1390,6 +1470,16 @@ open class ValueSetContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetContact. Will return empty instance: \(error))")
+		}
+		return ValueSetContact.init()
+	}
 }
 
 
@@ -1562,6 +1652,16 @@ open class ValueSetExpansion: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetExpansion.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetExpansion. Will return empty instance: \(error))")
+		}
+		return ValueSetExpansion.init()
+	}
 }
 
 
@@ -1717,6 +1817,16 @@ open class ValueSetExpansionContains: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetExpansionContains.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetExpansionContains. Will return empty instance: \(error))")
+		}
+		return ValueSetExpansionContains.init()
+	}
 }
 
 
@@ -1895,5 +2005,15 @@ open class ValueSetExpansionParameter: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetExpansionParameter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetExpansionParameter. Will return empty instance: \(error))")
+		}
+		return ValueSetExpansionParameter.init()
+	}
 }
 

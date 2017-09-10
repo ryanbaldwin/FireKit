@@ -13,41 +13,40 @@ import FireKit
 
 
 class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.SupplyDelivery {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.SupplyDelivery {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.SupplyDelivery.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testSupplyDelivery1() {		
-		var instance: FireKit.SupplyDelivery?
-		do {
-			instance = try runSupplyDelivery1()
-			try runSupplyDelivery1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.SupplyDelivery
-			XCTAssertNotNil(copy)
-			try runSupplyDelivery1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.SupplyDelivery {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.SupplyDelivery {
+      let instance = try JSONDecoder().decode(FireKit.SupplyDelivery.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testSupplyDelivery1() {   
+    var instance: FireKit.SupplyDelivery?
+    do {
+      instance = try runSupplyDelivery1()
+      try runSupplyDelivery1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.SupplyDelivery
+      XCTAssertNotNil(copy)
+      try runSupplyDelivery1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runSupplyDelivery1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test SupplyDelivery successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test SupplyDelivery successfully, but threw: \(error)")
+    }
 
-		testSupplyDeliveryRealm1(instance!)
-	}
+    testSupplyDeliveryRealm1(instance!)
+  }
 
     func testSupplyDelivery1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSupplyDeliveryRealm1(_ instance: FireKit.SupplyDelivery) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testSupplyDeliveryRealm1(_ instance: FireKit.SupplyDelivery) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runSupplyDelivery1(JSONEncoder().encode(realm.objects(FireKit.SupplyDelivery.self).first!))
         
         // ensure we can update it.
@@ -102,16 +101,16 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.SupplyDelivery.self).count)
-	}
-	
-	@discardableResult
-	func runSupplyDelivery1(_ data: Data? = nil) throws -> FireKit.SupplyDelivery {
+  }
+  
+  @discardableResult
+  func runSupplyDelivery1(_ data: Data? = nil) throws -> FireKit.SupplyDelivery {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "supplydelivery-example.json")
-		
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

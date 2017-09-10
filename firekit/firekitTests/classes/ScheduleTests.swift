@@ -13,41 +13,40 @@ import FireKit
 
 
 class ScheduleTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.Schedule {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.Schedule {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.Schedule.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testSchedule1() {		
-		var instance: FireKit.Schedule?
-		do {
-			instance = try runSchedule1()
-			try runSchedule1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Schedule
-			XCTAssertNotNil(copy)
-			try runSchedule1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.Schedule {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.Schedule {
+      let instance = try JSONDecoder().decode(FireKit.Schedule.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testSchedule1() {   
+    var instance: FireKit.Schedule?
+    do {
+      instance = try runSchedule1()
+      try runSchedule1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Schedule
+      XCTAssertNotNil(copy)
+      try runSchedule1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runSchedule1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Schedule successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Schedule successfully, but threw: \(error)")
+    }
 
-		testScheduleRealm1(instance!)
-	}
+    testScheduleRealm1(instance!)
+  }
 
     func testSchedule1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testScheduleRealm1(_ instance: FireKit.Schedule) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testScheduleRealm1(_ instance: FireKit.Schedule) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runSchedule1(JSONEncoder().encode(realm.objects(FireKit.Schedule.self).first!))
         
         // ensure we can update it.
@@ -102,26 +101,26 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Schedule.self).count)
-	}
-	
-	@discardableResult
-	func runSchedule1(_ data: Data? = nil) throws -> FireKit.Schedule {
+  }
+  
+  @discardableResult
+  func runSchedule1(_ data: Data? = nil) throws -> FireKit.Schedule {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "schedule-example.json")
-		
-		XCTAssertEqual(inst.actor?.display, "Burgers UMC, South Wing, second floor")
-		XCTAssertEqual(inst.actor?.reference, "Location/1")
-		XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier[0].system, "http://example.org/scheduleid")
-		XCTAssertEqual(inst.identifier[0].use, "usual")
-		XCTAssertEqual(inst.identifier[0].value, "45")
-		XCTAssertEqual(inst.planningHorizon?.end?.description, "2013-12-25T09:30:00Z")
-		XCTAssertEqual(inst.planningHorizon?.start?.description, "2013-12-25T09:15:00Z")
-		XCTAssertEqual(inst.text?.div, "<div>\n      Burgers UMC, South Wing, second floor Physiotherapy Schedule\n    </div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type[0].coding[0].code, "45")
-		XCTAssertEqual(inst.type[0].coding[0].display, "Physiotherapy")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.actor?.display, "Burgers UMC, South Wing, second floor")
+    XCTAssertEqual(inst.actor?.reference, "Location/1")
+    XCTAssertEqual(inst.comment, "Assessments should be performed before requesting appointments in this slot.")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.identifier[0].system, "http://example.org/scheduleid")
+    XCTAssertEqual(inst.identifier[0].use, "usual")
+    XCTAssertEqual(inst.identifier[0].value, "45")
+    XCTAssertEqual(inst.planningHorizon?.end?.description, "2013-12-25T09:30:00Z")
+    XCTAssertEqual(inst.planningHorizon?.start?.description, "2013-12-25T09:15:00Z")
+    XCTAssertEqual(inst.text?.div, "<div>\n      Burgers UMC, South Wing, second floor Physiotherapy Schedule\n    </div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    XCTAssertEqual(inst.type[0].coding[0].code, "45")
+    XCTAssertEqual(inst.type[0].coding[0].display, "Physiotherapy")
+    
+    return inst
+  }
 }

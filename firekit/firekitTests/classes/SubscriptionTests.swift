@@ -13,41 +13,40 @@ import FireKit
 
 
 class SubscriptionTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.Subscription {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.Subscription {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.Subscription.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testSubscription1() {		
-		var instance: FireKit.Subscription?
-		do {
-			instance = try runSubscription1()
-			try runSubscription1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Subscription
-			XCTAssertNotNil(copy)
-			try runSubscription1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.Subscription {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.Subscription {
+      let instance = try JSONDecoder().decode(FireKit.Subscription.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testSubscription1() {   
+    var instance: FireKit.Subscription?
+    do {
+      instance = try runSubscription1()
+      try runSubscription1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Subscription
+      XCTAssertNotNil(copy)
+      try runSubscription1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runSubscription1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw: \(error)")
+    }
 
-		testSubscriptionRealm1(instance!)
-	}
+    testSubscriptionRealm1(instance!)
+  }
 
     func testSubscription1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubscriptionRealm1(_ instance: FireKit.Subscription) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testSubscriptionRealm1(_ instance: FireKit.Subscription) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runSubscription1(JSONEncoder().encode(realm.objects(FireKit.Subscription.self).first!))
         
         // ensure we can update it.
@@ -102,50 +101,50 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Subscription.self).count)
-	}
-	
-	@discardableResult
-	func runSubscription1(_ data: Data? = nil) throws -> FireKit.Subscription {
+  }
+  
+  @discardableResult
+  func runSubscription1(_ data: Data? = nil) throws -> FireKit.Subscription {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "subscription-example-error.json")
-		
-		XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
-		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
-		XCTAssertEqual(inst.channel?.payload, "application/json")
-		XCTAssertEqual(inst.channel?.type, "rest-hook")
-		XCTAssertEqual(inst.contact[0].system, "phone")
-		XCTAssertEqual(inst.contact[0].value, "ext 4123")
-		XCTAssertEqual(inst.criteria, "Observation?code=http://loinc.org|1975-2")
-		XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
-		XCTAssertEqual(inst.error, "Socket Error 10060 - can't connect to host")
-		XCTAssertEqual(inst.id, "example-error")
-		XCTAssertEqual(inst.reason, "Monitor new neonatal function")
-		XCTAssertEqual(inst.status, "error")
-		XCTAssertEqual(inst.tag[0].code, "bili-done")
-		XCTAssertEqual(inst.tag[0].system, "http://example.org/fhir/cs/internal")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
-	
-	func testSubscription2() {		
-		var instance: FireKit.Subscription?
-		do {
-			instance = try runSubscription2()
-			try runSubscription2(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Subscription
-			XCTAssertNotNil(copy)
-			try runSubscription2(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
+    XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
+    XCTAssertEqual(inst.channel?.payload, "application/json")
+    XCTAssertEqual(inst.channel?.type, "rest-hook")
+    XCTAssertEqual(inst.contact[0].system, "phone")
+    XCTAssertEqual(inst.contact[0].value, "ext 4123")
+    XCTAssertEqual(inst.criteria, "Observation?code=http://loinc.org|1975-2")
+    XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
+    XCTAssertEqual(inst.error, "Socket Error 10060 - can't connect to host")
+    XCTAssertEqual(inst.id, "example-error")
+    XCTAssertEqual(inst.reason, "Monitor new neonatal function")
+    XCTAssertEqual(inst.status, "error")
+    XCTAssertEqual(inst.tag[0].code, "bili-done")
+    XCTAssertEqual(inst.tag[0].system, "http://example.org/fhir/cs/internal")
+    XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
+  
+  func testSubscription2() {   
+    var instance: FireKit.Subscription?
+    do {
+      instance = try runSubscription2()
+      try runSubscription2(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Subscription
+      XCTAssertNotNil(copy)
+      try runSubscription2(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runSubscription2(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw: \(error)")
+    }
 
-		testSubscriptionRealm2(instance!)
-	}
+    testSubscriptionRealm2(instance!)
+  }
 
     func testSubscription2RealmPK() {        
         do {
@@ -167,10 +166,10 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSubscriptionRealm2(_ instance: FireKit.Subscription) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testSubscriptionRealm2(_ instance: FireKit.Subscription) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runSubscription2(JSONEncoder().encode(realm.objects(FireKit.Subscription.self).first!))
         
         // ensure we can update it.
@@ -200,28 +199,28 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Subscription.self).count)
-	}
-	
-	@discardableResult
-	func runSubscription2(_ data: Data? = nil) throws -> FireKit.Subscription {
+  }
+  
+  @discardableResult
+  func runSubscription2(_ data: Data? = nil) throws -> FireKit.Subscription {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "subscription-example.json")
-		
-		XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
-		XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
-		XCTAssertEqual(inst.channel?.payload, "application/json")
-		XCTAssertEqual(inst.channel?.type, "rest-hook")
-		XCTAssertEqual(inst.contact[0].system, "phone")
-		XCTAssertEqual(inst.contact[0].value, "ext 4123")
-		XCTAssertEqual(inst.criteria, "Observation?code=http://loinc.org|1975-2")
-		XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.reason, "Monitor new neonatal function")
-		XCTAssertEqual(inst.status, "requested")
-		XCTAssertEqual(inst.tag[0].code, "bili-done")
-		XCTAssertEqual(inst.tag[0].system, "http://example.org/fhir/cs/internal")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.channel?.endpoint, "https://biliwatch.com/customers/mount-auburn-miu/on-result")
+    XCTAssertEqual(inst.channel?.header, "Authorization: Bearer secret-token-abc-123")
+    XCTAssertEqual(inst.channel?.payload, "application/json")
+    XCTAssertEqual(inst.channel?.type, "rest-hook")
+    XCTAssertEqual(inst.contact[0].system, "phone")
+    XCTAssertEqual(inst.contact[0].value, "ext 4123")
+    XCTAssertEqual(inst.criteria, "Observation?code=http://loinc.org|1975-2")
+    XCTAssertEqual(inst.end?.description, "2021-01-01T00:00:00Z")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.reason, "Monitor new neonatal function")
+    XCTAssertEqual(inst.status, "requested")
+    XCTAssertEqual(inst.tag[0].code, "bili-done")
+    XCTAssertEqual(inst.tag[0].system, "http://example.org/fhir/cs/internal")
+    XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

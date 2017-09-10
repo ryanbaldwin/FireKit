@@ -299,6 +299,16 @@ open class NutritionOrder: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NutritionOrder.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NutritionOrder. Will return empty instance: \(error))")
+		}
+		return NutritionOrder.init()
+	}
 }
 
 
@@ -518,6 +528,16 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NutritionOrderEnteralFormula.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NutritionOrderEnteralFormula. Will return empty instance: \(error))")
+		}
+		return NutritionOrderEnteralFormula.init()
+	}
 }
 
 
@@ -652,6 +672,16 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NutritionOrderEnteralFormulaAdministration.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NutritionOrderEnteralFormulaAdministration. Will return empty instance: \(error))")
+		}
+		return NutritionOrderEnteralFormulaAdministration.init()
+	}
 }
 
 
@@ -819,6 +849,16 @@ open class NutritionOrderOralDiet: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NutritionOrderOralDiet.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NutritionOrderOralDiet. Will return empty instance: \(error))")
+		}
+		return NutritionOrderOralDiet.init()
+	}
 }
 
 
@@ -913,6 +953,16 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NutritionOrderOralDietNutrient.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NutritionOrderOralDietNutrient. Will return empty instance: \(error))")
+		}
+		return NutritionOrderOralDietNutrient.init()
+	}
 }
 
 
@@ -1008,6 +1058,16 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NutritionOrderOralDietTexture.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NutritionOrderOralDietTexture. Will return empty instance: \(error))")
+		}
+		return NutritionOrderOralDietTexture.init()
+	}
 }
 
 
@@ -1153,5 +1213,15 @@ open class NutritionOrderSupplement: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NutritionOrderSupplement.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NutritionOrderSupplement. Will return empty instance: \(error))")
+		}
+		return NutritionOrderSupplement.init()
+	}
 }
 

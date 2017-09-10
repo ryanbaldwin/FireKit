@@ -546,6 +546,16 @@ open class ClaimResponse: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponse.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponse. Will return empty instance: \(error))")
+		}
+		return ClaimResponse.init()
+	}
 }
 
 
@@ -719,6 +729,16 @@ open class ClaimResponseAddItem: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseAddItem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseAddItem. Will return empty instance: \(error))")
+		}
+		return ClaimResponseAddItem.init()
+	}
 }
 
 
@@ -838,6 +858,16 @@ open class ClaimResponseAddItemAdjudication: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseAddItemAdjudication.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseAddItemAdjudication. Will return empty instance: \(error))")
+		}
+		return ClaimResponseAddItemAdjudication.init()
+	}
 }
 
 
@@ -960,6 +990,16 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseAddItemDetail.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseAddItemDetail. Will return empty instance: \(error))")
+		}
+		return ClaimResponseAddItemDetail.init()
+	}
 }
 
 
@@ -1079,6 +1119,16 @@ open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseAddItemDetailAdjudication.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseAddItemDetailAdjudication. Will return empty instance: \(error))")
+		}
+		return ClaimResponseAddItemDetailAdjudication.init()
+	}
 }
 
 
@@ -1296,6 +1346,16 @@ open class ClaimResponseCoverage: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseCoverage.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseCoverage. Will return empty instance: \(error))")
+		}
+		return ClaimResponseCoverage.init()
+	}
 }
 
 
@@ -1428,6 +1488,16 @@ open class ClaimResponseError: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseError.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseError. Will return empty instance: \(error))")
+		}
+		return ClaimResponseError.init()
+	}
 }
 
 
@@ -1563,6 +1633,16 @@ open class ClaimResponseItem: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseItem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseItem. Will return empty instance: \(error))")
+		}
+		return ClaimResponseItem.init()
+	}
 }
 
 
@@ -1682,6 +1762,16 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseItemAdjudication.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseItemAdjudication. Will return empty instance: \(error))")
+		}
+		return ClaimResponseItemAdjudication.init()
+	}
 }
 
 
@@ -1801,6 +1891,16 @@ open class ClaimResponseItemDetail: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseItemDetail.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseItemDetail. Will return empty instance: \(error))")
+		}
+		return ClaimResponseItemDetail.init()
+	}
 }
 
 
@@ -1920,6 +2020,16 @@ open class ClaimResponseItemDetailAdjudication: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseItemDetailAdjudication.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseItemDetailAdjudication. Will return empty instance: \(error))")
+		}
+		return ClaimResponseItemDetailAdjudication.init()
+	}
 }
 
 
@@ -2020,6 +2130,16 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseItemDetailSubDetail.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseItemDetailSubDetail. Will return empty instance: \(error))")
+		}
+		return ClaimResponseItemDetailSubDetail.init()
+	}
 }
 
 
@@ -2139,6 +2259,16 @@ open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseItemDetailSubDetailAdjudication.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseItemDetailSubDetailAdjudication. Will return empty instance: \(error))")
+		}
+		return ClaimResponseItemDetailSubDetailAdjudication.init()
+	}
 }
 
 
@@ -2246,5 +2376,15 @@ open class ClaimResponseNote: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ClaimResponseNote.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ClaimResponseNote. Will return empty instance: \(error))")
+		}
+		return ClaimResponseNote.init()
+	}
 }
 

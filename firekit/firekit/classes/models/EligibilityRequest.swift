@@ -195,5 +195,15 @@ open class EligibilityRequest: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(EligibilityRequest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy EligibilityRequest. Will return empty instance: \(error))")
+		}
+		return EligibilityRequest.init()
+	}
 }
 

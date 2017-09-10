@@ -13,41 +13,40 @@ import FireKit
 
 
 class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.SupplyRequest {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.SupplyRequest {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.SupplyRequest.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testSupplyRequest1() {		
-		var instance: FireKit.SupplyRequest?
-		do {
-			instance = try runSupplyRequest1()
-			try runSupplyRequest1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.SupplyRequest
-			XCTAssertNotNil(copy)
-			try runSupplyRequest1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.SupplyRequest {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.SupplyRequest {
+      let instance = try JSONDecoder().decode(FireKit.SupplyRequest.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testSupplyRequest1() {   
+    var instance: FireKit.SupplyRequest?
+    do {
+      instance = try runSupplyRequest1()
+      try runSupplyRequest1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.SupplyRequest
+      XCTAssertNotNil(copy)
+      try runSupplyRequest1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runSupplyRequest1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test SupplyRequest successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test SupplyRequest successfully, but threw: \(error)")
+    }
 
-		testSupplyRequestRealm1(instance!)
-	}
+    testSupplyRequestRealm1(instance!)
+  }
 
     func testSupplyRequest1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testSupplyRequestRealm1(_ instance: FireKit.SupplyRequest) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testSupplyRequestRealm1(_ instance: FireKit.SupplyRequest) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runSupplyRequest1(JSONEncoder().encode(realm.objects(FireKit.SupplyRequest.self).first!))
         
         // ensure we can update it.
@@ -102,16 +101,16 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.SupplyRequest.self).count)
-	}
-	
-	@discardableResult
-	func runSupplyRequest1(_ data: Data? = nil) throws -> FireKit.SupplyRequest {
+  }
+  
+  @discardableResult
+  func runSupplyRequest1(_ data: Data? = nil) throws -> FireKit.SupplyRequest {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "supplyrequest-example.json")
-		
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

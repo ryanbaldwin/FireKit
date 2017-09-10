@@ -351,6 +351,16 @@ open class Composition: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Composition.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Composition. Will return empty instance: \(error))")
+		}
+		return Composition.init()
+	}
 }
 
 
@@ -467,6 +477,16 @@ open class CompositionAttester: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CompositionAttester.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CompositionAttester. Will return empty instance: \(error))")
+		}
+		return CompositionAttester.init()
+	}
 }
 
 
@@ -580,6 +600,16 @@ open class CompositionEvent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CompositionEvent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CompositionEvent. Will return empty instance: \(error))")
+		}
+		return CompositionEvent.init()
+	}
 }
 
 
@@ -782,5 +812,15 @@ open class CompositionSection: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CompositionSection.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CompositionSection. Will return empty instance: \(error))")
+		}
+		return CompositionSection.init()
+	}
 }
 

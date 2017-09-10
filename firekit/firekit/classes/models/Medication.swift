@@ -157,6 +157,16 @@ open class Medication: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Medication.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Medication. Will return empty instance: \(error))")
+		}
+		return Medication.init()
+	}
 }
 
 
@@ -251,6 +261,16 @@ open class MedicationPackage: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MedicationPackage.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MedicationPackage. Will return empty instance: \(error))")
+		}
+		return MedicationPackage.init()
+	}
 }
 
 
@@ -354,6 +374,16 @@ open class MedicationPackageContent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MedicationPackageContent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MedicationPackageContent. Will return empty instance: \(error))")
+		}
+		return MedicationPackageContent.init()
+	}
 }
 
 
@@ -467,6 +497,16 @@ open class MedicationProduct: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MedicationProduct.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MedicationProduct. Will return empty instance: \(error))")
+		}
+		return MedicationProduct.init()
+	}
 }
 
 
@@ -555,6 +595,16 @@ open class MedicationProductBatch: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MedicationProductBatch.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MedicationProductBatch. Will return empty instance: \(error))")
+		}
+		return MedicationProductBatch.init()
+	}
 }
 
 
@@ -658,5 +708,15 @@ open class MedicationProductIngredient: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MedicationProductIngredient.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MedicationProductIngredient. Will return empty instance: \(error))")
+		}
+		return MedicationProductIngredient.init()
+	}
 }
 

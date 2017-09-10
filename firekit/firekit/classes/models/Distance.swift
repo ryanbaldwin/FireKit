@@ -47,5 +47,15 @@ open class Distance: Quantity {
 /*
 
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Distance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Distance. Will return empty instance: \(error))")
+		}
+		return Distance.init()
+	}
 }
 

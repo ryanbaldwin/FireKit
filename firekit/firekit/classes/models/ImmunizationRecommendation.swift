@@ -135,6 +135,16 @@ open class ImmunizationRecommendation: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationRecommendation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationRecommendation. Will return empty instance: \(error))")
+		}
+		return ImmunizationRecommendation.init()
+	}
 }
 
 
@@ -352,6 +362,16 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationRecommendationRecommendation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationRecommendationRecommendation. Will return empty instance: \(error))")
+		}
+		return ImmunizationRecommendationRecommendation.init()
+	}
 }
 
 
@@ -456,6 +476,16 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationRecommendationRecommendationDateCriterion.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationRecommendationRecommendationDateCriterion. Will return empty instance: \(error))")
+		}
+		return ImmunizationRecommendationRecommendationDateCriterion.init()
+	}
 }
 
 
@@ -579,5 +609,15 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationRecommendationRecommendationProtocol.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationRecommendationRecommendationProtocol. Will return empty instance: \(error))")
+		}
+		return ImmunizationRecommendationRecommendationProtocol.init()
+	}
 }
 

@@ -11,7 +11,7 @@ import RealmSwift
 /**
  *  Abstract superclass for all FHIR data elements.
  */
-open class FHIRAbstractBase: Object, Codable {
+open class FHIRAbstractBase: Object, Codable, NSCopying {
 	
 		/// The name of the resource or element.
 		open class var resourceType: String {
@@ -241,6 +241,10 @@ open class FHIRAbstractBase: Object, Codable {
 	    } else {
 	        prop = val
 	    }
+	}
+
+	public func copy(with zone: NSZone? = nil) -> Any {
+		return FHIRAbstractBase()
 	}
 }
 

@@ -531,6 +531,16 @@ open class Condition: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Condition.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Condition. Will return empty instance: \(error))")
+		}
+		return Condition.init()
+	}
 }
 
 
@@ -625,6 +635,16 @@ open class ConditionEvidence: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConditionEvidence.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConditionEvidence. Will return empty instance: \(error))")
+		}
+		return ConditionEvidence.init()
+	}
 }
 
 
@@ -719,5 +739,15 @@ open class ConditionStage: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConditionStage.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConditionStage. Will return empty instance: \(error))")
+		}
+		return ConditionStage.init()
+	}
 }
 

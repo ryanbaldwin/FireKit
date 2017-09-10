@@ -313,6 +313,16 @@ open class NamingSystem: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NamingSystem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NamingSystem. Will return empty instance: \(error))")
+		}
+		return NamingSystem.init()
+	}
 }
 
 
@@ -404,6 +414,16 @@ open class NamingSystemContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NamingSystemContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NamingSystemContact. Will return empty instance: \(error))")
+		}
+		return NamingSystemContact.init()
+	}
 }
 
 
@@ -540,5 +560,15 @@ open class NamingSystemUniqueId: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(NamingSystemUniqueId.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy NamingSystemUniqueId. Will return empty instance: \(error))")
+		}
+		return NamingSystemUniqueId.init()
+	}
 }
 

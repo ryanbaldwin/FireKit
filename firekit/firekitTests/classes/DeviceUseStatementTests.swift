@@ -13,41 +13,40 @@ import FireKit
 
 
 class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.DeviceUseStatement {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.DeviceUseStatement {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.DeviceUseStatement.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testDeviceUseStatement1() {		
-		var instance: FireKit.DeviceUseStatement?
-		do {
-			instance = try runDeviceUseStatement1()
-			try runDeviceUseStatement1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.DeviceUseStatement
-			XCTAssertNotNil(copy)
-			try runDeviceUseStatement1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.DeviceUseStatement {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.DeviceUseStatement {
+      let instance = try JSONDecoder().decode(FireKit.DeviceUseStatement.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testDeviceUseStatement1() {   
+    var instance: FireKit.DeviceUseStatement?
+    do {
+      instance = try runDeviceUseStatement1()
+      try runDeviceUseStatement1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.DeviceUseStatement
+      XCTAssertNotNil(copy)
+      try runDeviceUseStatement1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runDeviceUseStatement1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test DeviceUseStatement successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test DeviceUseStatement successfully, but threw: \(error)")
+    }
 
-		testDeviceUseStatementRealm1(instance!)
-	}
+    testDeviceUseStatementRealm1(instance!)
+  }
 
     func testDeviceUseStatement1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDeviceUseStatementRealm1(_ instance: FireKit.DeviceUseStatement) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testDeviceUseStatementRealm1(_ instance: FireKit.DeviceUseStatement) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runDeviceUseStatement1(JSONEncoder().encode(realm.objects(FireKit.DeviceUseStatement.self).first!))
         
         // ensure we can update it.
@@ -102,18 +101,18 @@ class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DeviceUseStatement.self).count)
-	}
-	
-	@discardableResult
-	func runDeviceUseStatement1(_ data: Data? = nil) throws -> FireKit.DeviceUseStatement {
+  }
+  
+  @discardableResult
+  func runDeviceUseStatement1(_ data: Data? = nil) throws -> FireKit.DeviceUseStatement {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "deviceusestatement-example.json")
-		
-		XCTAssertEqual(inst.device?.reference, "Device/example")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.device?.reference, "Device/example")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.subject?.reference, "Patient/example")
+    XCTAssertEqual(inst.text?.div, "<div>To be filled out at a later time</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

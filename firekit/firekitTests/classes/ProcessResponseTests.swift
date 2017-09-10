@@ -13,41 +13,40 @@ import FireKit
 
 
 class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.ProcessResponse {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.ProcessResponse {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.ProcessResponse.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testProcessResponse1() {		
-		var instance: FireKit.ProcessResponse?
-		do {
-			instance = try runProcessResponse1()
-			try runProcessResponse1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.ProcessResponse
-			XCTAssertNotNil(copy)
-			try runProcessResponse1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.ProcessResponse {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.ProcessResponse {
+      let instance = try JSONDecoder().decode(FireKit.ProcessResponse.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testProcessResponse1() {   
+    var instance: FireKit.ProcessResponse?
+    do {
+      instance = try runProcessResponse1()
+      try runProcessResponse1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.ProcessResponse
+      XCTAssertNotNil(copy)
+      try runProcessResponse1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessResponse1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test ProcessResponse successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test ProcessResponse successfully, but threw: \(error)")
+    }
 
-		testProcessResponseRealm1(instance!)
-	}
+    testProcessResponseRealm1(instance!)
+  }
 
     func testProcessResponse1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcessResponseRealm1(_ instance: FireKit.ProcessResponse) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testProcessResponseRealm1(_ instance: FireKit.ProcessResponse) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runProcessResponse1(JSONEncoder().encode(realm.objects(FireKit.ProcessResponse.self).first!))
         
         // ensure we can update it.
@@ -102,25 +101,25 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.ProcessResponse.self).count)
-	}
-	
-	@discardableResult
-	func runProcessResponse1(_ data: Data? = nil) throws -> FireKit.ProcessResponse {
+  }
+  
+  @discardableResult
+  func runProcessResponse1(_ data: Data? = nil) throws -> FireKit.ProcessResponse {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "processresponse-example.json")
-		
-		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.disposition, "Specified coverage is currently in-force.")
-		XCTAssertEqual(inst.id, "SR2500")
-		XCTAssertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/processresponse")
-		XCTAssertEqual(inst.identifier[0].value, "881234")
-		XCTAssertEqual(inst.organization?.reference, "Organization/2")
-		XCTAssertEqual(inst.outcome?.code, "complete")
-		XCTAssertEqual(inst.outcome?.system, "http://hl7.org/fhir/processoutcomecodes")
-		XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
-		XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ProcessResponse</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.created?.description, "2014-08-16")
+    XCTAssertEqual(inst.disposition, "Specified coverage is currently in-force.")
+    XCTAssertEqual(inst.id, "SR2500")
+    XCTAssertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/processresponse")
+    XCTAssertEqual(inst.identifier[0].value, "881234")
+    XCTAssertEqual(inst.organization?.reference, "Organization/2")
+    XCTAssertEqual(inst.outcome?.code, "complete")
+    XCTAssertEqual(inst.outcome?.system, "http://hl7.org/fhir/processoutcomecodes")
+    XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/eligibility/225476332402")
+    XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
+    XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ProcessResponse</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

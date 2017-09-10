@@ -151,5 +151,15 @@ open class Meta: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Meta.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Meta. Will return empty instance: \(error))")
+		}
+		return Meta.init()
+	}
 }
 

@@ -47,5 +47,15 @@ open class Count: Quantity {
 /*
 
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Count.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Count. Will return empty instance: \(error))")
+		}
+		return Count.init()
+	}
 }
 

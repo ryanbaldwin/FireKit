@@ -432,6 +432,16 @@ open class FamilyMemberHistory: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(FamilyMemberHistory.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy FamilyMemberHistory. Will return empty instance: \(error))")
+		}
+		return FamilyMemberHistory.init()
+	}
 }
 
 
@@ -629,5 +639,15 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(FamilyMemberHistoryCondition.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy FamilyMemberHistoryCondition. Will return empty instance: \(error))")
+		}
+		return FamilyMemberHistoryCondition.init()
+	}
 }
 

@@ -380,6 +380,16 @@ open class ImplementationGuide: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImplementationGuide.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImplementationGuide. Will return empty instance: \(error))")
+		}
+		return ImplementationGuide.init()
+	}
 }
 
 
@@ -471,6 +481,16 @@ open class ImplementationGuideContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImplementationGuideContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImplementationGuideContact. Will return empty instance: \(error))")
+		}
+		return ImplementationGuideContact.init()
+	}
 }
 
 
@@ -573,6 +593,16 @@ open class ImplementationGuideDependency: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImplementationGuideDependency.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImplementationGuideDependency. Will return empty instance: \(error))")
+		}
+		return ImplementationGuideDependency.init()
+	}
 }
 
 
@@ -677,6 +707,16 @@ open class ImplementationGuideGlobal: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImplementationGuideGlobal.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImplementationGuideGlobal. Will return empty instance: \(error))")
+		}
+		return ImplementationGuideGlobal.init()
+	}
 }
 
 
@@ -797,6 +837,16 @@ open class ImplementationGuidePackage: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImplementationGuidePackage.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImplementationGuidePackage. Will return empty instance: \(error))")
+		}
+		return ImplementationGuidePackage.init()
+	}
 }
 
 
@@ -989,6 +1039,16 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImplementationGuidePackageResource.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImplementationGuidePackageResource. Will return empty instance: \(error))")
+		}
+		return ImplementationGuidePackageResource.init()
+	}
 }
 
 
@@ -1177,5 +1237,15 @@ open class ImplementationGuidePage: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImplementationGuidePage.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImplementationGuidePage. Will return empty instance: \(error))")
+		}
+		return ImplementationGuidePage.init()
+	}
 }
 

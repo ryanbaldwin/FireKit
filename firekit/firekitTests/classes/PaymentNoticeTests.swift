@@ -13,41 +13,40 @@ import FireKit
 
 
 class PaymentNoticeTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.PaymentNotice {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.PaymentNotice {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.PaymentNotice.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testPaymentNotice1() {		
-		var instance: FireKit.PaymentNotice?
-		do {
-			instance = try runPaymentNotice1()
-			try runPaymentNotice1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.PaymentNotice
-			XCTAssertNotNil(copy)
-			try runPaymentNotice1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.PaymentNotice {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.PaymentNotice {
+      let instance = try JSONDecoder().decode(FireKit.PaymentNotice.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testPaymentNotice1() {   
+    var instance: FireKit.PaymentNotice?
+    do {
+      instance = try runPaymentNotice1()
+      try runPaymentNotice1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.PaymentNotice
+      XCTAssertNotNil(copy)
+      try runPaymentNotice1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runPaymentNotice1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test PaymentNotice successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test PaymentNotice successfully, but threw: \(error)")
+    }
 
-		testPaymentNoticeRealm1(instance!)
-	}
+    testPaymentNoticeRealm1(instance!)
+  }
 
     func testPaymentNotice1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class PaymentNoticeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testPaymentNoticeRealm1(_ instance: FireKit.PaymentNotice) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testPaymentNoticeRealm1(_ instance: FireKit.PaymentNotice) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runPaymentNotice1(JSONEncoder().encode(realm.objects(FireKit.PaymentNotice.self).first!))
         
         // ensure we can update it.
@@ -102,23 +101,23 @@ class PaymentNoticeTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.PaymentNotice.self).count)
-	}
-	
-	@discardableResult
-	func runPaymentNotice1(_ data: Data? = nil) throws -> FireKit.PaymentNotice {
+  }
+  
+  @discardableResult
+  func runPaymentNotice1(_ data: Data? = nil) throws -> FireKit.PaymentNotice {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "paymentnotice-example.json")
-		
-		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "77654")
-		XCTAssertEqual(inst.identifier[0].system, "http://benefitsinc.com/paymentnotice")
-		XCTAssertEqual(inst.identifier[0].value, "776543")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.paymentStatus?.code, "paid")
-		XCTAssertEqual(inst.paymentStatus?.system, "http://hl7.org/fhir/paymentstatus")
-		XCTAssertEqual(inst.request?.reference, "http://benefitsinc.com/fhir/oralhealthclaim/12345")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the PaymentNotice</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.created?.description, "2014-08-16")
+    XCTAssertEqual(inst.id, "77654")
+    XCTAssertEqual(inst.identifier[0].system, "http://benefitsinc.com/paymentnotice")
+    XCTAssertEqual(inst.identifier[0].value, "776543")
+    XCTAssertEqual(inst.organization?.reference, "Organization/1")
+    XCTAssertEqual(inst.paymentStatus?.code, "paid")
+    XCTAssertEqual(inst.paymentStatus?.system, "http://hl7.org/fhir/paymentstatus")
+    XCTAssertEqual(inst.request?.reference, "http://benefitsinc.com/fhir/oralhealthclaim/12345")
+    XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the PaymentNotice</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

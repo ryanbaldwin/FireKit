@@ -262,6 +262,16 @@ open class DeviceMetric: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DeviceMetric.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DeviceMetric. Will return empty instance: \(error))")
+		}
+		return DeviceMetric.init()
+	}
 }
 
 
@@ -364,5 +374,15 @@ open class DeviceMetricCalibration: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DeviceMetricCalibration.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DeviceMetricCalibration. Will return empty instance: \(error))")
+		}
+		return DeviceMetricCalibration.init()
+	}
 }
 

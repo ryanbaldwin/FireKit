@@ -405,6 +405,16 @@ open class Patient: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Patient.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Patient. Will return empty instance: \(error))")
+		}
+		return Patient.init()
+	}
 }
 
 
@@ -527,6 +537,16 @@ open class PatientAnimal: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PatientAnimal.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PatientAnimal. Will return empty instance: \(error))")
+		}
+		return PatientAnimal.init()
+	}
 }
 
 
@@ -627,6 +647,16 @@ open class PatientCommunication: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PatientCommunication.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PatientCommunication. Will return empty instance: \(error))")
+		}
+		return PatientCommunication.init()
+	}
 }
 
 
@@ -811,6 +841,16 @@ open class PatientContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PatientContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PatientContact. Will return empty instance: \(error))")
+		}
+		return PatientContact.init()
+	}
 }
 
 
@@ -915,5 +955,15 @@ open class PatientLink: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PatientLink.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PatientLink. Will return empty instance: \(error))")
+		}
+		return PatientLink.init()
+	}
 }
 

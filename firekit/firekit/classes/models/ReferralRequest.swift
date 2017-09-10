@@ -366,5 +366,15 @@ open class ReferralRequest: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ReferralRequest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ReferralRequest. Will return empty instance: \(error))")
+		}
+		return ReferralRequest.init()
+	}
 }
 

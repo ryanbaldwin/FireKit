@@ -257,6 +257,16 @@ open class Specimen: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Specimen.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Specimen. Will return empty instance: \(error))")
+		}
+		return Specimen.init()
+	}
 }
 
 
@@ -440,6 +450,16 @@ open class SpecimenCollection: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SpecimenCollection.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SpecimenCollection. Will return empty instance: \(error))")
+		}
+		return SpecimenCollection.init()
+	}
 }
 
 
@@ -627,6 +647,16 @@ open class SpecimenContainer: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SpecimenContainer.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SpecimenContainer. Will return empty instance: \(error))")
+		}
+		return SpecimenContainer.init()
+	}
 }
 
 
@@ -737,5 +767,15 @@ open class SpecimenTreatment: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SpecimenTreatment.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SpecimenTreatment. Will return empty instance: \(error))")
+		}
+		return SpecimenTreatment.init()
+	}
 }
 

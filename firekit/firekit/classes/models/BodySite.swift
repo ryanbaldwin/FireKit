@@ -185,5 +185,15 @@ open class BodySite: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(BodySite.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy BodySite. Will return empty instance: \(error))")
+		}
+		return BodySite.init()
+	}
 }
 

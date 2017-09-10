@@ -13,41 +13,40 @@ import FireKit
 
 
 class CommunicationRequestTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.CommunicationRequest {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.CommunicationRequest {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.CommunicationRequest.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testCommunicationRequest1() {		
-		var instance: FireKit.CommunicationRequest?
-		do {
-			instance = try runCommunicationRequest1()
-			try runCommunicationRequest1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.CommunicationRequest
-			XCTAssertNotNil(copy)
-			try runCommunicationRequest1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.CommunicationRequest {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.CommunicationRequest {
+      let instance = try JSONDecoder().decode(FireKit.CommunicationRequest.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testCommunicationRequest1() {   
+    var instance: FireKit.CommunicationRequest?
+    do {
+      instance = try runCommunicationRequest1()
+      try runCommunicationRequest1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.CommunicationRequest
+      XCTAssertNotNil(copy)
+      try runCommunicationRequest1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runCommunicationRequest1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test CommunicationRequest successfully, but threw: \(error)")
+    }
 
-		testCommunicationRequestRealm1(instance!)
-	}
+    testCommunicationRequestRealm1(instance!)
+  }
 
     func testCommunicationRequest1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class CommunicationRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testCommunicationRequestRealm1(_ instance: FireKit.CommunicationRequest) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testCommunicationRequestRealm1(_ instance: FireKit.CommunicationRequest) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runCommunicationRequest1(JSONEncoder().encode(realm.objects(FireKit.CommunicationRequest.self).first!))
         
         // ensure we can update it.
@@ -102,17 +101,17 @@ class CommunicationRequestTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.CommunicationRequest.self).count)
-	}
-	
-	@discardableResult
-	func runCommunicationRequest1(_ data: Data? = nil) throws -> FireKit.CommunicationRequest {
+  }
+  
+  @discardableResult
+  func runCommunicationRequest1(_ data: Data? = nil) throws -> FireKit.CommunicationRequest {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "communicationrequest-example.json")
-		
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>To be filled out at a later time</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.subject?.reference, "Patient/example")
+    XCTAssertEqual(inst.text?.div, "<div>To be filled out at a later time</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

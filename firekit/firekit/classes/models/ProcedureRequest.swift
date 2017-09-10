@@ -404,5 +404,15 @@ open class ProcedureRequest: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProcedureRequest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProcedureRequest. Will return empty instance: \(error))")
+		}
+		return ProcedureRequest.init()
+	}
 }
 

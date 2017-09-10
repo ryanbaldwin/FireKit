@@ -121,6 +121,16 @@ open class Timing: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Timing.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Timing. Will return empty instance: \(error))")
+		}
+		return Timing.init()
+	}
 }
 
 
@@ -394,5 +404,15 @@ open class TimingRepeat: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TimingRepeat.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TimingRepeat. Will return empty instance: \(error))")
+		}
+		return TimingRepeat.init()
+	}
 }
 

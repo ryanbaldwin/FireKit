@@ -96,5 +96,15 @@ open class Period: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Period.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Period. Will return empty instance: \(error))")
+		}
+		return Period.init()
+	}
 }
 

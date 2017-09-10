@@ -179,5 +179,15 @@ open class HumanName: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HumanName.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HumanName. Will return empty instance: \(error))")
+		}
+		return HumanName.init()
+	}
 }
 

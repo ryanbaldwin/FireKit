@@ -349,6 +349,16 @@ open class PaymentReconciliation: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PaymentReconciliation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PaymentReconciliation. Will return empty instance: \(error))")
+		}
+		return PaymentReconciliation.init()
+	}
 }
 
 
@@ -544,6 +554,16 @@ open class PaymentReconciliationDetail: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PaymentReconciliationDetail.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PaymentReconciliationDetail. Will return empty instance: \(error))")
+		}
+		return PaymentReconciliationDetail.init()
+	}
 }
 
 
@@ -635,5 +655,15 @@ open class PaymentReconciliationNote: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PaymentReconciliationNote.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PaymentReconciliationNote. Will return empty instance: \(error))")
+		}
+		return PaymentReconciliationNote.init()
+	}
 }
 

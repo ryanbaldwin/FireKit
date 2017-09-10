@@ -83,5 +83,15 @@ open class BackboneElement: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(BackboneElement.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy BackboneElement. Will return empty instance: \(error))")
+		}
+		return BackboneElement.init()
+	}
 }
 

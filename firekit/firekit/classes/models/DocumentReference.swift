@@ -396,6 +396,16 @@ open class DocumentReference: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentReference.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentReference. Will return empty instance: \(error))")
+		}
+		return DocumentReference.init()
+	}
 }
 
 
@@ -499,6 +509,16 @@ open class DocumentReferenceContent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentReferenceContent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentReferenceContent. Will return empty instance: \(error))")
+		}
+		return DocumentReferenceContent.init()
+	}
 }
 
 
@@ -688,6 +708,16 @@ open class DocumentReferenceContext: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentReferenceContext.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentReferenceContext. Will return empty instance: \(error))")
+		}
+		return DocumentReferenceContext.init()
+	}
 }
 
 
@@ -782,6 +812,16 @@ open class DocumentReferenceContextRelated: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentReferenceContextRelated.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentReferenceContextRelated. Will return empty instance: \(error))")
+		}
+		return DocumentReferenceContextRelated.init()
+	}
 }
 
 
@@ -886,5 +926,15 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DocumentReferenceRelatesTo.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DocumentReferenceRelatesTo. Will return empty instance: \(error))")
+		}
+		return DocumentReferenceRelatesTo.init()
+	}
 }
 

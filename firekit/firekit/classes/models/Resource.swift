@@ -133,5 +133,15 @@ open class Resource: FHIRAbstractResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Resource.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Resource. Will return empty instance: \(error))")
+		}
+		return Resource.init()
+	}
 }
 

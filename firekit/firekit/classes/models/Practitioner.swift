@@ -264,6 +264,16 @@ open class Practitioner: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Practitioner.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Practitioner. Will return empty instance: \(error))")
+		}
+		return Practitioner.init()
+	}
 }
 
 
@@ -434,6 +444,16 @@ open class PractitionerPractitionerRole: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PractitionerPractitionerRole.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PractitionerPractitionerRole. Will return empty instance: \(error))")
+		}
+		return PractitionerPractitionerRole.init()
+	}
 }
 
 
@@ -573,5 +593,15 @@ open class PractitionerQualification: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PractitionerQualification.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PractitionerQualification. Will return empty instance: \(error))")
+		}
+		return PractitionerQualification.init()
+	}
 }
 

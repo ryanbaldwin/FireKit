@@ -261,5 +261,15 @@ open class PaymentNotice: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(PaymentNotice.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy PaymentNotice. Will return empty instance: \(error))")
+		}
+		return PaymentNotice.init()
+	}
 }
 

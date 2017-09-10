@@ -28,14 +28,16 @@
         {#- // is_array: {{ prop.is_array }} | class_name: {{ prop.class_name }} | json_class: {{ prop.class_name }} | is_native: {{ prop.is_native }} | requires_realm_optional: {{ prop|requires_realm_optional }} -#}
   {%- if prop.is_array %}
     {%- if prop.class_name == 'Resource' %}
-        var {{ prop.name }}List = try container.nestedUnkeyedContainer(forKey: .{{ prop.name }})
-        while !{{ prop.name }}List.isAtEnd {
-            let contained = try {{ prop.name }}List.decode(ContainedResource.self)
-            guard let resourceType = contained.resourceType else { continue }
-            
-            let t = FHIRAbstractBase.resourceType(from: resourceType)
-            let actualContained = try {{ prop.name }}List.decode(t)
-            contained.json = try JSONEncoder().encode(actualContained)
+        if container.contains(.{{ prop.name }}) {
+            var {{ prop.name }}List = try container.nestedUnkeyedContainer(forKey: .{{ prop.name }})
+            while !{{ prop.name }}List.isAtEnd {
+                let contained = try {{ prop.name }}List.decode(ContainedResource.self)
+                guard let resourceType = contained.resourceType else { continue }
+                
+                let t = FHIRAbstractBase.resourceType(from: resourceType)
+                let actualContained = try {{ prop.name }}List.decode(t)
+                contained.json = try JSONEncoder().encode(actualContained)
+            }
         }
     {%- elif prop.class_name != prop|realm_listify %}{#- requires a wrapper, such as "RealmString", or "RealmInt", etc. #}
         self.{{ prop.name }}.append(objectsIn: try container.decodeIfPresent([{{ prop|realm_listify }}].self, forKey: .{{ prop.name }}) ?? [])

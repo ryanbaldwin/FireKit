@@ -162,6 +162,16 @@ open class Bundle: Resource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Bundle.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Bundle. Will return empty instance: \(error))")
+		}
+		return Bundle.init()
+	}
 }
 
 
@@ -336,6 +346,16 @@ open class BundleEntry: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(BundleEntry.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy BundleEntry. Will return empty instance: \(error))")
+		}
+		return BundleEntry.init()
+	}
 }
 
 
@@ -501,6 +521,16 @@ open class BundleEntryRequest: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(BundleEntryRequest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy BundleEntryRequest. Will return empty instance: \(error))")
+		}
+		return BundleEntryRequest.init()
+	}
 }
 
 
@@ -630,6 +660,16 @@ open class BundleEntryResponse: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(BundleEntryResponse.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy BundleEntryResponse. Will return empty instance: \(error))")
+		}
+		return BundleEntryResponse.init()
+	}
 }
 
 
@@ -718,6 +758,16 @@ open class BundleEntrySearch: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(BundleEntrySearch.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy BundleEntrySearch. Will return empty instance: \(error))")
+		}
+		return BundleEntrySearch.init()
+	}
 }
 
 
@@ -819,5 +869,15 @@ open class BundleLink: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(BundleLink.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy BundleLink. Will return empty instance: \(error))")
+		}
+		return BundleLink.init()
+	}
 }
 

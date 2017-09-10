@@ -246,5 +246,15 @@ open class ExplanationOfBenefit: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ExplanationOfBenefit.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ExplanationOfBenefit. Will return empty instance: \(error))")
+		}
+		return ExplanationOfBenefit.init()
+	}
 }
 

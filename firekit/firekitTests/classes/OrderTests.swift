@@ -13,41 +13,40 @@ import FireKit
 
 
 class OrderTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.Order {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.Order {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.Order.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testOrder1() {		
-		var instance: FireKit.Order?
-		do {
-			instance = try runOrder1()
-			try runOrder1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Order
-			XCTAssertNotNil(copy)
-			try runOrder1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.Order {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.Order {
+      let instance = try JSONDecoder().decode(FireKit.Order.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testOrder1() {   
+    var instance: FireKit.Order?
+    do {
+      instance = try runOrder1()
+      try runOrder1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Order
+      XCTAssertNotNil(copy)
+      try runOrder1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOrder1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw: \(error)")
+    }
 
-		testOrderRealm1(instance!)
-	}
+    testOrderRealm1(instance!)
+  }
 
     func testOrder1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOrderRealm1(_ instance: FireKit.Order) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOrderRealm1(_ instance: FireKit.Order) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOrder1(JSONEncoder().encode(realm.objects(FireKit.Order.self).first!))
         
         // ensure we can update it.
@@ -102,47 +101,47 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Order.self).count)
-	}
-	
-	@discardableResult
-	func runOrder1(_ data: Data? = nil) throws -> FireKit.Order {
+  }
+  
+  @discardableResult
+  func runOrder1(_ data: Data? = nil) throws -> FireKit.Order {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "order-example-f201-physiotherapy.json")
-		
-		XCTAssertEqual(inst.date?.description, "2013-03-05T12:00:00+01:00")
-		XCTAssertEqual(inst.detail[0].display, "Consultation, not yet developed")
-		XCTAssertEqual(inst.id, "f201")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "It concerns a one-off order for consultation in order to evaluate the stairs walking ability of Roel.")
-		XCTAssertEqual(inst.source?.reference, "Practitioner/f201")
-		XCTAssertEqual(inst.subject?.display, "Roel")
-		XCTAssertEqual(inst.subject?.reference, "Patient/f201")
-		XCTAssertEqual(inst.target?.display, "Juri van Gelder")
-		XCTAssertEqual(inst.target?.reference, "Practitioner/f203")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.when?.code?.coding[0].code, "394848005")
-		XCTAssertEqual(inst.when?.code?.coding[0].display, "Normal priority")
-		XCTAssertEqual(inst.when?.code?.coding[0].system, "http://snomed.info/sct")
-		
-		return inst
-	}
-	
-	func testOrder2() {		
-		var instance: FireKit.Order?
-		do {
-			instance = try runOrder2()
-			try runOrder2(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Order
-			XCTAssertNotNil(copy)
-			try runOrder2(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.date?.description, "2013-03-05T12:00:00+01:00")
+    XCTAssertEqual(inst.detail[0].display, "Consultation, not yet developed")
+    XCTAssertEqual(inst.id, "f201")
+    XCTAssertEqual(inst.reasonCodeableConcept?.text, "It concerns a one-off order for consultation in order to evaluate the stairs walking ability of Roel.")
+    XCTAssertEqual(inst.source?.reference, "Practitioner/f201")
+    XCTAssertEqual(inst.subject?.display, "Roel")
+    XCTAssertEqual(inst.subject?.reference, "Patient/f201")
+    XCTAssertEqual(inst.target?.display, "Juri van Gelder")
+    XCTAssertEqual(inst.target?.reference, "Practitioner/f203")
+    XCTAssertEqual(inst.text?.status, "generated")
+    XCTAssertEqual(inst.when?.code?.coding[0].code, "394848005")
+    XCTAssertEqual(inst.when?.code?.coding[0].display, "Normal priority")
+    XCTAssertEqual(inst.when?.code?.coding[0].system, "http://snomed.info/sct")
+    
+    return inst
+  }
+  
+  func testOrder2() {   
+    var instance: FireKit.Order?
+    do {
+      instance = try runOrder2()
+      try runOrder2(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Order
+      XCTAssertNotNil(copy)
+      try runOrder2(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOrder2(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Order successfully, but threw: \(error)")
+    }
 
-		testOrderRealm2(instance!)
-	}
+    testOrderRealm2(instance!)
+  }
 
     func testOrder2RealmPK() {        
         do {
@@ -164,10 +163,10 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOrderRealm2(_ instance: FireKit.Order) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOrderRealm2(_ instance: FireKit.Order) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOrder2(JSONEncoder().encode(realm.objects(FireKit.Order.self).first!))
         
         // ensure we can update it.
@@ -197,23 +196,23 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Order.self).count)
-	}
-	
-	@discardableResult
-	func runOrder2(_ data: Data? = nil) throws -> FireKit.Order {
+  }
+  
+  @discardableResult
+  func runOrder2(_ data: Data? = nil) throws -> FireKit.Order {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "order-example.json")
-		
-		XCTAssertEqual(inst.date?.description, "2012-12-28T09:03:04+11:00")
-		XCTAssertEqual(inst.detail[0].reference, "MedicationOrder/example")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.reasonCodeableConcept?.text, "Standard admission testing")
-		XCTAssertEqual(inst.source?.reference, "Practitioner/example")
-		XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
-		XCTAssertEqual(inst.text?.div, "<div>Request for Prescription (on patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321)</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.when?.code?.coding[0].code, "today")
-		XCTAssertEqual(inst.when?.code?.coding[0].system, "http://acme.com/codes/request-priority")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.date?.description, "2012-12-28T09:03:04+11:00")
+    XCTAssertEqual(inst.detail[0].reference, "MedicationOrder/example")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.reasonCodeableConcept?.text, "Standard admission testing")
+    XCTAssertEqual(inst.source?.reference, "Practitioner/example")
+    XCTAssertEqual(inst.subject?.reference, "Patient/pat2")
+    XCTAssertEqual(inst.text?.div, "<div>Request for Prescription (on patient Donald DUCK @ Acme Healthcare, Inc. MR = 654321)</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    XCTAssertEqual(inst.when?.code?.coding[0].code, "today")
+    XCTAssertEqual(inst.when?.code?.coding[0].system, "http://acme.com/codes/request-priority")
+    
+    return inst
+  }
 }

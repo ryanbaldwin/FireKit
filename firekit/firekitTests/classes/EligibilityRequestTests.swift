@@ -13,41 +13,40 @@ import FireKit
 
 
 class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.EligibilityRequest {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.EligibilityRequest {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.EligibilityRequest.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testEligibilityRequest1() {		
-		var instance: FireKit.EligibilityRequest?
-		do {
-			instance = try runEligibilityRequest1()
-			try runEligibilityRequest1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.EligibilityRequest
-			XCTAssertNotNil(copy)
-			try runEligibilityRequest1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.EligibilityRequest {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.EligibilityRequest {
+      let instance = try JSONDecoder().decode(FireKit.EligibilityRequest.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testEligibilityRequest1() {   
+    var instance: FireKit.EligibilityRequest?
+    do {
+      instance = try runEligibilityRequest1()
+      try runEligibilityRequest1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.EligibilityRequest
+      XCTAssertNotNil(copy)
+      try runEligibilityRequest1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runEligibilityRequest1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test EligibilityRequest successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test EligibilityRequest successfully, but threw: \(error)")
+    }
 
-		testEligibilityRequestRealm1(instance!)
-	}
+    testEligibilityRequestRealm1(instance!)
+  }
 
     func testEligibilityRequest1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testEligibilityRequestRealm1(_ instance: FireKit.EligibilityRequest) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testEligibilityRequestRealm1(_ instance: FireKit.EligibilityRequest) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runEligibilityRequest1(JSONEncoder().encode(realm.objects(FireKit.EligibilityRequest.self).first!))
         
         // ensure we can update it.
@@ -102,20 +101,20 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.EligibilityRequest.self).count)
-	}
-	
-	@discardableResult
-	func runEligibilityRequest1(_ data: Data? = nil) throws -> FireKit.EligibilityRequest {
+  }
+  
+  @discardableResult
+  func runEligibilityRequest1(_ data: Data? = nil) throws -> FireKit.EligibilityRequest {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "eligibilityrequest-example.json")
-		
-		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "52345")
-		XCTAssertEqual(inst.identifier[0].system, "http://happyvalley.com/elegibilityrequest")
-		XCTAssertEqual(inst.identifier[0].value, "52345")
-		XCTAssertEqual(inst.organization?.reference, "Organization/2")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the EligibilityRequest</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.created?.description, "2014-08-16")
+    XCTAssertEqual(inst.id, "52345")
+    XCTAssertEqual(inst.identifier[0].system, "http://happyvalley.com/elegibilityrequest")
+    XCTAssertEqual(inst.identifier[0].value, "52345")
+    XCTAssertEqual(inst.organization?.reference, "Organization/2")
+    XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the EligibilityRequest</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

@@ -265,5 +265,15 @@ open class Account: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Account.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Account. Will return empty instance: \(error))")
+		}
+		return Account.init()
+	}
 }
 

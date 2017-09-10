@@ -84,6 +84,16 @@ open class Parameters: Resource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Parameters.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Parameters. Will return empty instance: \(error))")
+		}
+		return Parameters.init()
+	}
 }
 
 
@@ -788,5 +798,15 @@ open class ParametersParameter: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ParametersParameter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ParametersParameter. Will return empty instance: \(error))")
+		}
+		return ParametersParameter.init()
+	}
 }
 

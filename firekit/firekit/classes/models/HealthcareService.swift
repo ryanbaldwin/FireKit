@@ -465,6 +465,16 @@ open class HealthcareService: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareService.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareService. Will return empty instance: \(error))")
+		}
+		return HealthcareService.init()
+	}
 }
 
 
@@ -585,6 +595,16 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareServiceAvailableTime.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareServiceAvailableTime. Will return empty instance: \(error))")
+		}
+		return HealthcareServiceAvailableTime.init()
+	}
 }
 
 
@@ -685,6 +705,16 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareServiceNotAvailable.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareServiceNotAvailable. Will return empty instance: \(error))")
+		}
+		return HealthcareServiceNotAvailable.init()
+	}
 }
 
 
@@ -788,5 +818,15 @@ open class HealthcareServiceServiceType: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareServiceServiceType.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareServiceServiceType. Will return empty instance: \(error))")
+		}
+		return HealthcareServiceServiceType.init()
+	}
 }
 

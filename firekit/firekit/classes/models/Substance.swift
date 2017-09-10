@@ -182,6 +182,16 @@ open class Substance: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Substance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Substance. Will return empty instance: \(error))")
+		}
+		return Substance.init()
+	}
 }
 
 
@@ -285,6 +295,16 @@ open class SubstanceIngredient: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SubstanceIngredient.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SubstanceIngredient. Will return empty instance: \(error))")
+		}
+		return SubstanceIngredient.init()
+	}
 }
 
 
@@ -396,5 +416,15 @@ open class SubstanceInstance: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SubstanceInstance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SubstanceInstance. Will return empty instance: \(error))")
+		}
+		return SubstanceInstance.init()
+	}
 }
 

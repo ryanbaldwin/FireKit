@@ -448,6 +448,16 @@ open class TestScript: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScript.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScript. Will return empty instance: \(error))")
+		}
+		return TestScript.init()
+	}
 }
 
 
@@ -539,6 +549,16 @@ open class TestScriptContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptContact. Will return empty instance: \(error))")
+		}
+		return TestScriptContact.init()
+	}
 }
 
 
@@ -646,6 +666,16 @@ open class TestScriptFixture: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptFixture.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptFixture. Will return empty instance: \(error))")
+		}
+		return TestScriptFixture.init()
+	}
 }
 
 
@@ -749,6 +779,16 @@ open class TestScriptMetadata: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptMetadata.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptMetadata. Will return empty instance: \(error))")
+		}
+		return TestScriptMetadata.init()
+	}
 }
 
 
@@ -913,6 +953,16 @@ open class TestScriptMetadataCapability: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptMetadataCapability.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptMetadataCapability. Will return empty instance: \(error))")
+		}
+		return TestScriptMetadataCapability.init()
+	}
 }
 
 
@@ -1010,6 +1060,16 @@ open class TestScriptMetadataLink: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptMetadataLink.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptMetadataLink. Will return empty instance: \(error))")
+		}
+		return TestScriptMetadataLink.init()
+	}
 }
 
 
@@ -1111,6 +1171,16 @@ open class TestScriptSetup: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptSetup.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptSetup. Will return empty instance: \(error))")
+		}
+		return TestScriptSetup.init()
+	}
 }
 
 
@@ -1205,6 +1275,16 @@ open class TestScriptSetupAction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptSetupAction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptSetupAction. Will return empty instance: \(error))")
+		}
+		return TestScriptSetupAction.init()
+	}
 }
 
 
@@ -1549,6 +1629,16 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptSetupActionAssert.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptSetupActionAssert. Will return empty instance: \(error))")
+		}
+		return TestScriptSetupActionAssert.init()
+	}
 }
 
 
@@ -1835,6 +1925,16 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptSetupActionOperation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptSetupActionOperation. Will return empty instance: \(error))")
+		}
+		return TestScriptSetupActionOperation.init()
+	}
 }
 
 
@@ -1936,6 +2036,16 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptSetupActionOperationRequestHeader.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptSetupActionOperationRequestHeader. Will return empty instance: \(error))")
+		}
+		return TestScriptSetupActionOperationRequestHeader.init()
+	}
 }
 
 
@@ -2020,6 +2130,16 @@ open class TestScriptTeardown: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptTeardown.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptTeardown. Will return empty instance: \(error))")
+		}
+		return TestScriptTeardown.init()
+	}
 }
 
 
@@ -2095,6 +2215,16 @@ open class TestScriptTeardownAction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptTeardownAction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptTeardownAction. Will return empty instance: \(error))")
+		}
+		return TestScriptTeardownAction.init()
+	}
 }
 
 
@@ -2228,6 +2358,16 @@ open class TestScriptTest: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptTest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptTest. Will return empty instance: \(error))")
+		}
+		return TestScriptTest.init()
+	}
 }
 
 
@@ -2322,6 +2462,16 @@ open class TestScriptTestAction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptTestAction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptTestAction. Will return empty instance: \(error))")
+		}
+		return TestScriptTestAction.init()
+	}
 }
 
 
@@ -2451,5 +2601,15 @@ open class TestScriptVariable: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(TestScriptVariable.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy TestScriptVariable. Will return empty instance: \(error))")
+		}
+		return TestScriptVariable.init()
+	}
 }
 

@@ -267,6 +267,16 @@ open class SupplyRequest: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SupplyRequest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SupplyRequest. Will return empty instance: \(error))")
+		}
+		return SupplyRequest.init()
+	}
 }
 
 
@@ -359,5 +369,15 @@ open class SupplyRequestWhen: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SupplyRequestWhen.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SupplyRequestWhen. Will return empty instance: \(error))")
+		}
+		return SupplyRequestWhen.init()
+	}
 }
 

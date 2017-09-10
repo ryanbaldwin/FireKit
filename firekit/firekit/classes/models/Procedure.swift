@@ -510,6 +510,16 @@ open class Procedure: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Procedure.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Procedure. Will return empty instance: \(error))")
+		}
+		return Procedure.init()
+	}
 }
 
 
@@ -614,6 +624,16 @@ open class ProcedureFocalDevice: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProcedureFocalDevice.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProcedureFocalDevice. Will return empty instance: \(error))")
+		}
+		return ProcedureFocalDevice.init()
+	}
 }
 
 
@@ -708,5 +728,15 @@ open class ProcedurePerformer: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProcedurePerformer.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProcedurePerformer. Will return empty instance: \(error))")
+		}
+		return ProcedurePerformer.init()
+	}
 }
 

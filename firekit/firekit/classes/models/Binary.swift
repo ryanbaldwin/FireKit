@@ -109,5 +109,15 @@ open class Binary: Resource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Binary.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Binary. Will return empty instance: \(error))")
+		}
+		return Binary.init()
+	}
 }
 

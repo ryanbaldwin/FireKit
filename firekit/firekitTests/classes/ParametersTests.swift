@@ -13,41 +13,40 @@ import FireKit
 
 
 class ParametersTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.Parameters {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.Parameters {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.Parameters.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testParameters1() {		
-		var instance: FireKit.Parameters?
-		do {
-			instance = try runParameters1()
-			try runParameters1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.Parameters
-			XCTAssertNotNil(copy)
-			try runParameters1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.Parameters {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.Parameters {
+      let instance = try JSONDecoder().decode(FireKit.Parameters.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testParameters1() {   
+    var instance: FireKit.Parameters?
+    do {
+      instance = try runParameters1()
+      try runParameters1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.Parameters
+      XCTAssertNotNil(copy)
+      try runParameters1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runParameters1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw: \(error)")
+    }
 
-		testParametersRealm1(instance!)
-	}
+    testParametersRealm1(instance!)
+  }
 
     func testParameters1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testParametersRealm1(_ instance: FireKit.Parameters) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testParametersRealm1(_ instance: FireKit.Parameters) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runParameters1(JSONEncoder().encode(realm.objects(FireKit.Parameters.self).first!))
         
         // ensure we can update it.
@@ -102,17 +101,17 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Parameters.self).count)
-	}
-	
-	@discardableResult
-	func runParameters1(_ data: Data? = nil) throws -> FireKit.Parameters {
+  }
+  
+  @discardableResult
+  func runParameters1(_ data: Data? = nil) throws -> FireKit.Parameters {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "parameters-example.json")
-		
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.parameter[0].name, "start")
-		XCTAssertEqual(inst.parameter[0].valueDate?.description, "2010-01-01")
-		XCTAssertEqual(inst.parameter[1].name, "end")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.parameter[0].name, "start")
+    XCTAssertEqual(inst.parameter[0].valueDate?.description, "2010-01-01")
+    XCTAssertEqual(inst.parameter[1].name, "end")
+    
+    return inst
+  }
 }

@@ -626,6 +626,16 @@ open class Observation: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Observation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Observation. Will return empty instance: \(error))")
+		}
+		return Observation.init()
+	}
 }
 
 
@@ -931,6 +941,16 @@ open class ObservationComponent: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ObservationComponent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ObservationComponent. Will return empty instance: \(error))")
+		}
+		return ObservationComponent.init()
+	}
 }
 
 
@@ -1079,6 +1099,16 @@ open class ObservationReferenceRange: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ObservationReferenceRange.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ObservationReferenceRange. Will return empty instance: \(error))")
+		}
+		return ObservationReferenceRange.init()
+	}
 }
 
 
@@ -1180,5 +1210,15 @@ open class ObservationRelated: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ObservationRelated.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ObservationRelated. Will return empty instance: \(error))")
+		}
+		return ObservationRelated.init()
+	}
 }
 

@@ -92,6 +92,16 @@ open class OperationOutcome: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OperationOutcome.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OperationOutcome. Will return empty instance: \(error))")
+		}
+		return OperationOutcome.init()
+	}
 }
 
 
@@ -244,5 +254,15 @@ open class OperationOutcomeIssue: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OperationOutcomeIssue.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OperationOutcomeIssue. Will return empty instance: \(error))")
+		}
+		return OperationOutcomeIssue.init()
+	}
 }
 

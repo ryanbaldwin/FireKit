@@ -239,6 +239,16 @@ open class Order: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Order.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Order. Will return empty instance: \(error))")
+		}
+		return Order.init()
+	}
 }
 
 
@@ -331,5 +341,15 @@ open class OrderWhen: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OrderWhen.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OrderWhen. Will return empty instance: \(error))")
+		}
+		return OrderWhen.init()
+	}
 }
 

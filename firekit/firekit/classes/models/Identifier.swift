@@ -169,5 +169,15 @@ open class Identifier: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Identifier.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Identifier. Will return empty instance: \(error))")
+		}
+		return Identifier.init()
+	}
 }
 

@@ -105,6 +105,16 @@ open class {{ klass.name }}: {{ klass.superclass.name|default('FHIRAbstractBase'
 	}
 {%- endif %}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode({{ klass.name }}.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy {{ klass.name }}. Will return empty instance: \(error))")
+		}
+		return {{ klass.name }}.init()
+	}
 }
 {% endfor %}
 

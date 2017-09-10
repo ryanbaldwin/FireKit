@@ -225,6 +225,16 @@ open class Subscription: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Subscription.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Subscription. Will return empty instance: \(error))")
+		}
+		return Subscription.init()
+	}
 }
 
 
@@ -358,5 +368,15 @@ open class SubscriptionChannel: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SubscriptionChannel.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SubscriptionChannel. Will return empty instance: \(error))")
+		}
+		return SubscriptionChannel.init()
+	}
 }
 

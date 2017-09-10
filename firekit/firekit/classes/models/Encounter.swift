@@ -429,6 +429,16 @@ open class Encounter: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Encounter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Encounter. Will return empty instance: \(error))")
+		}
+		return Encounter.init()
+	}
 }
 
 
@@ -692,6 +702,16 @@ open class EncounterHospitalization: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(EncounterHospitalization.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy EncounterHospitalization. Will return empty instance: \(error))")
+		}
+		return EncounterHospitalization.init()
+	}
 }
 
 
@@ -811,6 +831,16 @@ open class EncounterLocation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(EncounterLocation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy EncounterLocation. Will return empty instance: \(error))")
+		}
+		return EncounterLocation.init()
+	}
 }
 
 
@@ -924,6 +954,16 @@ open class EncounterParticipant: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(EncounterParticipant.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy EncounterParticipant. Will return empty instance: \(error))")
+		}
+		return EncounterParticipant.init()
+	}
 }
 
 
@@ -1029,5 +1069,15 @@ open class EncounterStatusHistory: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(EncounterStatusHistory.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy EncounterStatusHistory. Will return empty instance: \(error))")
+		}
+		return EncounterStatusHistory.init()
+	}
 }
 

@@ -316,6 +316,16 @@ open class DataElement: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DataElement.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DataElement. Will return empty instance: \(error))")
+		}
+		return DataElement.init()
+	}
 }
 
 
@@ -407,6 +417,16 @@ open class DataElementContact: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DataElementContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DataElementContact. Will return empty instance: \(error))")
+		}
+		return DataElementContact.init()
+	}
 }
 
 
@@ -537,5 +557,15 @@ open class DataElementMapping: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DataElementMapping.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DataElementMapping. Will return empty instance: \(error))")
+		}
+		return DataElementMapping.init()
+	}
 }
 

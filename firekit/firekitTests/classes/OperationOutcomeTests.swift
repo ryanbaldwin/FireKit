@@ -13,41 +13,40 @@ import FireKit
 
 
 class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.OperationOutcome {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.OperationOutcome {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.OperationOutcome.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testOperationOutcome1() {		
-		var instance: FireKit.OperationOutcome?
-		do {
-			instance = try runOperationOutcome1()
-			try runOperationOutcome1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.OperationOutcome
-			XCTAssertNotNil(copy)
-			try runOperationOutcome1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.OperationOutcome {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.OperationOutcome {
+      let instance = try JSONDecoder().decode(FireKit.OperationOutcome.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testOperationOutcome1() {   
+    var instance: FireKit.OperationOutcome?
+    do {
+      instance = try runOperationOutcome1()
+      try runOperationOutcome1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.OperationOutcome
+      XCTAssertNotNil(copy)
+      try runOperationOutcome1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
+    }
 
-		testOperationOutcomeRealm1(instance!)
-	}
+    testOperationOutcomeRealm1(instance!)
+  }
 
     func testOperationOutcome1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm1(_ instance: FireKit.OperationOutcome) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOperationOutcomeRealm1(_ instance: FireKit.OperationOutcome) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOperationOutcome1(JSONEncoder().encode(realm.objects(FireKit.OperationOutcome.self).first!))
         
         // ensure we can update it.
@@ -102,40 +101,40 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.OperationOutcome.self).count)
-	}
-	
-	@discardableResult
-	func runOperationOutcome1(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
+  }
+  
+  @discardableResult
+  func runOperationOutcome1(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "operationoutcome-example-allok.json")
-		
-		XCTAssertEqual(inst.id, "allok")
-		XCTAssertEqual(inst.issue[0].code, "informational")
-		XCTAssertEqual(inst.issue[0].details?.text, "All OK")
-		XCTAssertEqual(inst.issue[0].severity, "information")
-		XCTAssertEqual(inst.text?.div, "<div>\n      <p>All OK</p>\n    </div>")
-		XCTAssertEqual(inst.text?.status, "additional")
-		
-		return inst
-	}
-	
-	func testOperationOutcome2() {		
-		var instance: FireKit.OperationOutcome?
-		do {
-			instance = try runOperationOutcome2()
-			try runOperationOutcome2(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.OperationOutcome
-			XCTAssertNotNil(copy)
-			try runOperationOutcome2(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.id, "allok")
+    XCTAssertEqual(inst.issue[0].code, "informational")
+    XCTAssertEqual(inst.issue[0].details?.text, "All OK")
+    XCTAssertEqual(inst.issue[0].severity, "information")
+    XCTAssertEqual(inst.text?.div, "<div>\n      <p>All OK</p>\n    </div>")
+    XCTAssertEqual(inst.text?.status, "additional")
+    
+    return inst
+  }
+  
+  func testOperationOutcome2() {   
+    var instance: FireKit.OperationOutcome?
+    do {
+      instance = try runOperationOutcome2()
+      try runOperationOutcome2(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.OperationOutcome
+      XCTAssertNotNil(copy)
+      try runOperationOutcome2(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome2(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
+    }
 
-		testOperationOutcomeRealm2(instance!)
-	}
+    testOperationOutcomeRealm2(instance!)
+  }
 
     func testOperationOutcome2RealmPK() {        
         do {
@@ -157,10 +156,10 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm2(_ instance: FireKit.OperationOutcome) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOperationOutcomeRealm2(_ instance: FireKit.OperationOutcome) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOperationOutcome2(JSONEncoder().encode(realm.objects(FireKit.OperationOutcome.self).first!))
         
         // ensure we can update it.
@@ -190,43 +189,43 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.OperationOutcome.self).count)
-	}
-	
-	@discardableResult
-	func runOperationOutcome2(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
+  }
+  
+  @discardableResult
+  func runOperationOutcome2(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "operationoutcome-example-break-the-glass.json")
-		
-		XCTAssertEqual(inst.id, "break-the-glass")
-		XCTAssertEqual(inst.issue[0].code, "suppressed")
-		XCTAssertEqual(inst.issue[0].details?.coding[0].code, "ETREAT")
-		XCTAssertEqual(inst.issue[0].details?.coding[0].display, "Emergency Treatment")
-		XCTAssertEqual(inst.issue[0].details?.coding[0].system, "http://hl7.org/fhir/v3-ActReason")
-		XCTAssertEqual(inst.issue[0].details?.text, "Additional information may be available using the Break-The-Glass Protocol")
-		XCTAssertEqual(inst.issue[0].severity, "information")
-		XCTAssertEqual(inst.text?.div, "<div>\n      <p>Additional information may be available using the Break-The-Glass Protocol</p>\n    </div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
-	
-	func testOperationOutcome3() {		
-		var instance: FireKit.OperationOutcome?
-		do {
-			instance = try runOperationOutcome3()
-			try runOperationOutcome3(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.OperationOutcome
-			XCTAssertNotNil(copy)
-			try runOperationOutcome3(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.id, "break-the-glass")
+    XCTAssertEqual(inst.issue[0].code, "suppressed")
+    XCTAssertEqual(inst.issue[0].details?.coding[0].code, "ETREAT")
+    XCTAssertEqual(inst.issue[0].details?.coding[0].display, "Emergency Treatment")
+    XCTAssertEqual(inst.issue[0].details?.coding[0].system, "http://hl7.org/fhir/v3-ActReason")
+    XCTAssertEqual(inst.issue[0].details?.text, "Additional information may be available using the Break-The-Glass Protocol")
+    XCTAssertEqual(inst.issue[0].severity, "information")
+    XCTAssertEqual(inst.text?.div, "<div>\n      <p>Additional information may be available using the Break-The-Glass Protocol</p>\n    </div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
+  
+  func testOperationOutcome3() {   
+    var instance: FireKit.OperationOutcome?
+    do {
+      instance = try runOperationOutcome3()
+      try runOperationOutcome3(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.OperationOutcome
+      XCTAssertNotNil(copy)
+      try runOperationOutcome3(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome3(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
+    }
 
-		testOperationOutcomeRealm3(instance!)
-	}
+    testOperationOutcomeRealm3(instance!)
+  }
 
     func testOperationOutcome3RealmPK() {        
         do {
@@ -248,10 +247,10 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm3(_ instance: FireKit.OperationOutcome) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOperationOutcomeRealm3(_ instance: FireKit.OperationOutcome) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOperationOutcome3(JSONEncoder().encode(realm.objects(FireKit.OperationOutcome.self).first!))
         
         // ensure we can update it.
@@ -281,40 +280,40 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.OperationOutcome.self).count)
-	}
-	
-	@discardableResult
-	func runOperationOutcome3(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
+  }
+  
+  @discardableResult
+  func runOperationOutcome3(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "operationoutcome-example-exception.json")
-		
-		XCTAssertEqual(inst.id, "exception")
-		XCTAssertEqual(inst.issue[0].code, "exception")
-		XCTAssertEqual(inst.issue[0].details?.text, "SQL Link Communication Error (dbx = 34234)")
-		XCTAssertEqual(inst.issue[0].severity, "error")
-		XCTAssertEqual(inst.text?.div, "<div>\n      <p>SQL Link Communication Error (dbx = 34234)</p>\n    </div>")
-		XCTAssertEqual(inst.text?.status, "additional")
-		
-		return inst
-	}
-	
-	func testOperationOutcome4() {		
-		var instance: FireKit.OperationOutcome?
-		do {
-			instance = try runOperationOutcome4()
-			try runOperationOutcome4(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.OperationOutcome
-			XCTAssertNotNil(copy)
-			try runOperationOutcome4(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.id, "exception")
+    XCTAssertEqual(inst.issue[0].code, "exception")
+    XCTAssertEqual(inst.issue[0].details?.text, "SQL Link Communication Error (dbx = 34234)")
+    XCTAssertEqual(inst.issue[0].severity, "error")
+    XCTAssertEqual(inst.text?.div, "<div>\n      <p>SQL Link Communication Error (dbx = 34234)</p>\n    </div>")
+    XCTAssertEqual(inst.text?.status, "additional")
+    
+    return inst
+  }
+  
+  func testOperationOutcome4() {   
+    var instance: FireKit.OperationOutcome?
+    do {
+      instance = try runOperationOutcome4()
+      try runOperationOutcome4(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.OperationOutcome
+      XCTAssertNotNil(copy)
+      try runOperationOutcome4(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome4(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
+    }
 
-		testOperationOutcomeRealm4(instance!)
-	}
+    testOperationOutcomeRealm4(instance!)
+  }
 
     func testOperationOutcome4RealmPK() {        
         do {
@@ -336,10 +335,10 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm4(_ instance: FireKit.OperationOutcome) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOperationOutcomeRealm4(_ instance: FireKit.OperationOutcome) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOperationOutcome4(JSONEncoder().encode(realm.objects(FireKit.OperationOutcome.self).first!))
         
         // ensure we can update it.
@@ -369,41 +368,41 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.OperationOutcome.self).count)
-	}
-	
-	@discardableResult
-	func runOperationOutcome4(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
+  }
+  
+  @discardableResult
+  func runOperationOutcome4(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "operationoutcome-example-searchfail.json")
-		
-		XCTAssertEqual(inst.id, "searchfail")
-		XCTAssertEqual(inst.issue[0].code, "code-invalid")
-		XCTAssertEqual(inst.issue[0].details?.text, "The \"name\" parameter has the modifier \"exact\" which is not supported by this server")
-		XCTAssertEqual(inst.issue[0].location[0].value, "http.name:exact")
-		XCTAssertEqual(inst.issue[0].severity, "fatal")
-		XCTAssertEqual(inst.text?.div, "<div>\n      <p>The &quot;name&quot; parameter has the modifier &quot;exact&quot; which is not supported by this server</p>\n    </div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
-	
-	func testOperationOutcome5() {		
-		var instance: FireKit.OperationOutcome?
-		do {
-			instance = try runOperationOutcome5()
-			try runOperationOutcome5(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.OperationOutcome
-			XCTAssertNotNil(copy)
-			try runOperationOutcome5(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.id, "searchfail")
+    XCTAssertEqual(inst.issue[0].code, "code-invalid")
+    XCTAssertEqual(inst.issue[0].details?.text, "The \"name\" parameter has the modifier \"exact\" which is not supported by this server")
+    XCTAssertEqual(inst.issue[0].location[0].value, "http.name:exact")
+    XCTAssertEqual(inst.issue[0].severity, "fatal")
+    XCTAssertEqual(inst.text?.div, "<div>\n      <p>The &quot;name&quot; parameter has the modifier &quot;exact&quot; which is not supported by this server</p>\n    </div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
+  
+  func testOperationOutcome5() {   
+    var instance: FireKit.OperationOutcome?
+    do {
+      instance = try runOperationOutcome5()
+      try runOperationOutcome5(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.OperationOutcome
+      XCTAssertNotNil(copy)
+      try runOperationOutcome5(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome5(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
+    }
 
-		testOperationOutcomeRealm5(instance!)
-	}
+    testOperationOutcomeRealm5(instance!)
+  }
 
     func testOperationOutcome5RealmPK() {        
         do {
@@ -425,10 +424,10 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm5(_ instance: FireKit.OperationOutcome) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOperationOutcomeRealm5(_ instance: FireKit.OperationOutcome) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOperationOutcome5(JSONEncoder().encode(realm.objects(FireKit.OperationOutcome.self).first!))
         
         // ensure we can update it.
@@ -458,41 +457,41 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.OperationOutcome.self).count)
-	}
-	
-	@discardableResult
-	func runOperationOutcome5(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
+  }
+  
+  @discardableResult
+  func runOperationOutcome5(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "operationoutcome-example-validationfail.json")
-		
-		XCTAssertEqual(inst.id, "validationfail")
-		XCTAssertEqual(inst.issue[0].code, "structure")
-		XCTAssertEqual(inst.issue[0].details?.text, "Error parsing resource XML (Unknown Content \"label\"")
-		XCTAssertEqual(inst.issue[0].location[0].value, "/f:Patient/f:identifier")
-		XCTAssertEqual(inst.issue[0].severity, "error")
-		XCTAssertEqual(inst.text?.div, "<div>\n      <p>Error parsing resource XML (Unknown Content &quot;label&quot; @ /Patient/identifier/label)</p>\n    </div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
-	
-	func testOperationOutcome6() {		
-		var instance: FireKit.OperationOutcome?
-		do {
-			instance = try runOperationOutcome6()
-			try runOperationOutcome6(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.OperationOutcome
-			XCTAssertNotNil(copy)
-			try runOperationOutcome6(try JSONEncoder().encode(copy!))     
+    
+    XCTAssertEqual(inst.id, "validationfail")
+    XCTAssertEqual(inst.issue[0].code, "structure")
+    XCTAssertEqual(inst.issue[0].details?.text, "Error parsing resource XML (Unknown Content \"label\"")
+    XCTAssertEqual(inst.issue[0].location[0].value, "/f:Patient/f:identifier")
+    XCTAssertEqual(inst.issue[0].severity, "error")
+    XCTAssertEqual(inst.text?.div, "<div>\n      <p>Error parsing resource XML (Unknown Content &quot;label&quot; @ /Patient/identifier/label)</p>\n    </div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
+  
+  func testOperationOutcome6() {   
+    var instance: FireKit.OperationOutcome?
+    do {
+      instance = try runOperationOutcome6()
+      try runOperationOutcome6(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.OperationOutcome
+      XCTAssertNotNil(copy)
+      try runOperationOutcome6(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome6(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
+    }
 
-		testOperationOutcomeRealm6(instance!)
-	}
+    testOperationOutcomeRealm6(instance!)
+  }
 
     func testOperationOutcome6RealmPK() {        
         do {
@@ -514,10 +513,10 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testOperationOutcomeRealm6(_ instance: FireKit.OperationOutcome) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testOperationOutcomeRealm6(_ instance: FireKit.OperationOutcome) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runOperationOutcome6(JSONEncoder().encode(realm.objects(FireKit.OperationOutcome.self).first!))
         
         // ensure we can update it.
@@ -547,21 +546,21 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.OperationOutcome.self).count)
-	}
-	
-	@discardableResult
-	func runOperationOutcome6(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
+  }
+  
+  @discardableResult
+  func runOperationOutcome6(_ data: Data? = nil) throws -> FireKit.OperationOutcome {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "operationoutcome-example.json")
-		
-		XCTAssertEqual(inst.id, "101")
-		XCTAssertEqual(inst.issue[0].code, "code-invalid")
-		XCTAssertEqual(inst.issue[0].details?.text, "The code \"W\" is not known and not legal in this context")
-		XCTAssertEqual(inst.issue[0].diagnostics, "Acme.Interop.FHIRProcessors.Patient.processGender line 2453")
-		XCTAssertEqual(inst.issue[0].location[0].value, "/f:Person/f:gender")
-		XCTAssertEqual(inst.issue[0].severity, "error")
-		XCTAssertEqual(inst.text?.div, "<div>\n      <p>W is not a recognized code for Gender.</p>\n    </div>")
-		XCTAssertEqual(inst.text?.status, "additional")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.id, "101")
+    XCTAssertEqual(inst.issue[0].code, "code-invalid")
+    XCTAssertEqual(inst.issue[0].details?.text, "The code \"W\" is not known and not legal in this context")
+    XCTAssertEqual(inst.issue[0].diagnostics, "Acme.Interop.FHIRProcessors.Patient.processGender line 2453")
+    XCTAssertEqual(inst.issue[0].location[0].value, "/f:Person/f:gender")
+    XCTAssertEqual(inst.issue[0].severity, "error")
+    XCTAssertEqual(inst.text?.div, "<div>\n      <p>W is not a recognized code for Gender.</p>\n    </div>")
+    XCTAssertEqual(inst.text?.status, "additional")
+    
+    return inst
+  }
 }

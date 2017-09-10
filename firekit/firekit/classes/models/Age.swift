@@ -47,5 +47,15 @@ open class Age: Quantity {
 /*
 
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Age.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Age. Will return empty instance: \(error))")
+		}
+		return Age.init()
+	}
 }
 

@@ -13,41 +13,40 @@ import FireKit
 
 
 class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.ProcedureRequest {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.ProcedureRequest {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.ProcedureRequest.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testProcedureRequest1() {		
-		var instance: FireKit.ProcedureRequest?
-		do {
-			instance = try runProcedureRequest1()
-			try runProcedureRequest1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.ProcedureRequest
-			XCTAssertNotNil(copy)
-			try runProcedureRequest1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.ProcedureRequest {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.ProcedureRequest {
+      let instance = try JSONDecoder().decode(FireKit.ProcedureRequest.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testProcedureRequest1() {   
+    var instance: FireKit.ProcedureRequest?
+    do {
+      instance = try runProcedureRequest1()
+      try runProcedureRequest1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.ProcedureRequest
+      XCTAssertNotNil(copy)
+      try runProcedureRequest1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedureRequest1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw: \(error)")
+    }
 
-		testProcedureRequestRealm1(instance!)
-	}
+    testProcedureRequestRealm1(instance!)
+  }
 
     func testProcedureRequest1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testProcedureRequestRealm1(_ instance: FireKit.ProcedureRequest) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testProcedureRequestRealm1(_ instance: FireKit.ProcedureRequest) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runProcedureRequest1(JSONEncoder().encode(realm.objects(FireKit.ProcedureRequest.self).first!))
         
         // ensure we can update it.
@@ -102,20 +101,20 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.ProcedureRequest.self).count)
-	}
-	
-	@discardableResult
-	func runProcedureRequest1(_ data: Data? = nil) throws -> FireKit.ProcedureRequest {
+  }
+  
+  @discardableResult
+  func runProcedureRequest1(_ data: Data? = nil) throws -> FireKit.ProcedureRequest {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "procedurerequest-example.json")
-		
-		XCTAssertEqual(inst.code?.coding[0].code, "323418000")
-		XCTAssertEqual(inst.code?.coding[0].display, "Fix me up")
-		XCTAssertEqual(inst.code?.coding[0].system, "http://snomed.info/sct")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.subject?.reference, "Patient/example")
-		XCTAssertEqual(inst.text?.div, "<div>To be added</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.code?.coding[0].code, "323418000")
+    XCTAssertEqual(inst.code?.coding[0].display, "Fix me up")
+    XCTAssertEqual(inst.code?.coding[0].system, "http://snomed.info/sct")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.subject?.reference, "Patient/example")
+    XCTAssertEqual(inst.text?.div, "<div>To be added</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

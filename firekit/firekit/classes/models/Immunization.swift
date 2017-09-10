@@ -472,6 +472,16 @@ open class Immunization: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Immunization.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Immunization. Will return empty instance: \(error))")
+		}
+		return Immunization.init()
+	}
 }
 
 
@@ -566,6 +576,16 @@ open class ImmunizationExplanation: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationExplanation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationExplanation. Will return empty instance: \(error))")
+		}
+		return ImmunizationExplanation.init()
+	}
 }
 
 
@@ -673,6 +693,16 @@ open class ImmunizationReaction: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationReaction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationReaction. Will return empty instance: \(error))")
+		}
+		return ImmunizationReaction.init()
+	}
 }
 
 
@@ -886,5 +916,15 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationVaccinationProtocol.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationVaccinationProtocol. Will return empty instance: \(error))")
+		}
+		return ImmunizationVaccinationProtocol.init()
+	}
 }
 

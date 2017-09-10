@@ -13,41 +13,40 @@ import FireKit
 
 
 class DeviceMetricTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.DeviceMetric {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.DeviceMetric {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.DeviceMetric.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testDeviceMetric1() {		
-		var instance: FireKit.DeviceMetric?
-		do {
-			instance = try runDeviceMetric1()
-			try runDeviceMetric1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.DeviceMetric
-			XCTAssertNotNil(copy)
-			try runDeviceMetric1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.DeviceMetric {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.DeviceMetric {
+      let instance = try JSONDecoder().decode(FireKit.DeviceMetric.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testDeviceMetric1() {   
+    var instance: FireKit.DeviceMetric?
+    do {
+      instance = try runDeviceMetric1()
+      try runDeviceMetric1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.DeviceMetric
+      XCTAssertNotNil(copy)
+      try runDeviceMetric1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runDeviceMetric1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test DeviceMetric successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test DeviceMetric successfully, but threw: \(error)")
+    }
 
-		testDeviceMetricRealm1(instance!)
-	}
+    testDeviceMetricRealm1(instance!)
+  }
 
     func testDeviceMetric1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class DeviceMetricTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testDeviceMetricRealm1(_ instance: FireKit.DeviceMetric) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testDeviceMetricRealm1(_ instance: FireKit.DeviceMetric) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runDeviceMetric1(JSONEncoder().encode(realm.objects(FireKit.DeviceMetric.self).first!))
         
         // ensure we can update it.
@@ -102,24 +101,24 @@ class DeviceMetricTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DeviceMetric.self).count)
-	}
-	
-	@discardableResult
-	func runDeviceMetric1(_ data: Data? = nil) throws -> FireKit.DeviceMetric {
+  }
+  
+  @discardableResult
+  func runDeviceMetric1(_ data: Data? = nil) throws -> FireKit.DeviceMetric {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "devicemetric-example.json")
-		
-		XCTAssertEqual(inst.category, "measurement")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier?.system, "http://goodcare.org/devicemetric/id")
-		XCTAssertEqual(inst.identifier?.value, "345675")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type?.coding[0].code, "150456")
-		XCTAssertEqual(inst.type?.coding[0].display, "MDC_PULS_OXIM_SAT_O2")
-		XCTAssertEqual(inst.type?.coding[0].system, "https://rtmms.nist.gov")
-		XCTAssertEqual(inst.unit?.coding[0].code, "262688")
-		XCTAssertEqual(inst.unit?.coding[0].display, "MDC_DIM_PERCENT")
-		XCTAssertEqual(inst.unit?.coding[0].system, "https://rtmms.nist.gov")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.category, "measurement")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.identifier?.system, "http://goodcare.org/devicemetric/id")
+    XCTAssertEqual(inst.identifier?.value, "345675")
+    XCTAssertEqual(inst.text?.status, "generated")
+    XCTAssertEqual(inst.type?.coding[0].code, "150456")
+    XCTAssertEqual(inst.type?.coding[0].display, "MDC_PULS_OXIM_SAT_O2")
+    XCTAssertEqual(inst.type?.coding[0].system, "https://rtmms.nist.gov")
+    XCTAssertEqual(inst.unit?.coding[0].code, "262688")
+    XCTAssertEqual(inst.unit?.coding[0].display, "MDC_DIM_PERCENT")
+    XCTAssertEqual(inst.unit?.coding[0].system, "https://rtmms.nist.gov")
+    
+    return inst
+  }
 }

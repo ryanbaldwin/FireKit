@@ -13,41 +13,40 @@ import FireKit
 
 
 class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.EpisodeOfCare {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.EpisodeOfCare {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.EpisodeOfCare.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testEpisodeOfCare1() {		
-		var instance: FireKit.EpisodeOfCare?
-		do {
-			instance = try runEpisodeOfCare1()
-			try runEpisodeOfCare1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.EpisodeOfCare
-			XCTAssertNotNil(copy)
-			try runEpisodeOfCare1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.EpisodeOfCare {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.EpisodeOfCare {
+      let instance = try JSONDecoder().decode(FireKit.EpisodeOfCare.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testEpisodeOfCare1() {   
+    var instance: FireKit.EpisodeOfCare?
+    do {
+      instance = try runEpisodeOfCare1()
+      try runEpisodeOfCare1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.EpisodeOfCare
+      XCTAssertNotNil(copy)
+      try runEpisodeOfCare1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runEpisodeOfCare1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test EpisodeOfCare successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test EpisodeOfCare successfully, but threw: \(error)")
+    }
 
-		testEpisodeOfCareRealm1(instance!)
-	}
+    testEpisodeOfCareRealm1(instance!)
+  }
 
     func testEpisodeOfCare1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testEpisodeOfCareRealm1(_ instance: FireKit.EpisodeOfCare) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testEpisodeOfCareRealm1(_ instance: FireKit.EpisodeOfCare) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runEpisodeOfCare1(JSONEncoder().encode(realm.objects(FireKit.EpisodeOfCare.self).first!))
         
         // ensure we can update it.
@@ -102,48 +101,48 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.EpisodeOfCare.self).count)
-	}
-	
-	@discardableResult
-	func runEpisodeOfCare1(_ data: Data? = nil) throws -> FireKit.EpisodeOfCare {
+  }
+  
+  @discardableResult
+  func runEpisodeOfCare1(_ data: Data? = nil) throws -> FireKit.EpisodeOfCare {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "episodeofcare-example.json")
-		
-		XCTAssertEqual(inst.careManager?.display, "Amanda Assigned")
-		XCTAssertEqual(inst.careManager?.reference, "Practitioner/14")
-		XCTAssertEqual(inst.careTeam[0].member?.display, "Henry Seven")
-		XCTAssertEqual(inst.careTeam[0].member?.reference, "Practitioner/13")
-		XCTAssertEqual(inst.careTeam[0].period?.end?.description, "2014-09-16")
-		XCTAssertEqual(inst.careTeam[0].period?.start?.description, "2014-09-01")
-		XCTAssertEqual(inst.careTeam[0].role[0].coding[0].code, "AO")
-		XCTAssertEqual(inst.careTeam[0].role[0].coding[0].display, "Assessment Worker")
-		XCTAssertEqual(inst.careTeam[0].role[0].coding[0].system, "http://example.org/EpisodeOfCare/Role")
-		XCTAssertEqual(inst.condition[0].display, "Severe burn of left ear")
-		XCTAssertEqual(inst.condition[0].reference, "Condition/example")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.identifier[0].system, "http://example.org/sampleepisodeofcare-identifier")
-		XCTAssertEqual(inst.identifier[0].value, "123")
-		XCTAssertEqual(inst.managingOrganization?.reference, "Organization/hl7")
-		XCTAssertEqual(inst.patient?.reference, "Patient/example")
-		XCTAssertEqual(inst.period?.start?.description, "2014-09-01")
-		XCTAssertEqual(inst.referralRequest[0].display, "Referral from Example Aged Care Services")
-		XCTAssertEqual(inst.status, "active")
-		XCTAssertEqual(inst.statusHistory[0].period?.end?.description, "2014-09-14")
-		XCTAssertEqual(inst.statusHistory[0].period?.start?.description, "2014-09-01")
-		XCTAssertEqual(inst.statusHistory[0].status, "planned")
-		XCTAssertEqual(inst.statusHistory[1].period?.end?.description, "2014-09-21")
-		XCTAssertEqual(inst.statusHistory[1].period?.start?.description, "2014-09-15")
-		XCTAssertEqual(inst.statusHistory[1].status, "active")
-		XCTAssertEqual(inst.statusHistory[2].period?.end?.description, "2014-09-24")
-		XCTAssertEqual(inst.statusHistory[2].period?.start?.description, "2014-09-22")
-		XCTAssertEqual(inst.statusHistory[2].status, "onhold")
-		XCTAssertEqual(inst.statusHistory[3].period?.start?.description, "2014-09-25")
-		XCTAssertEqual(inst.statusHistory[3].status, "active")
-		XCTAssertEqual(inst.text?.div, "<div>\n      HACC Program for Peter James Chalmers at HL7 Healthcare 15 Sept 2014 - current<br/>\n\t\t\twas on leave from 22 Sept - 24 Sept while in respite care\n    </div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type[0].coding[0].code, "HACC")
-		XCTAssertEqual(inst.type[0].coding[0].display, "Home and Community Care Package")
-		XCTAssertEqual(inst.type[0].coding[0].system, "http://example.org/EpisodeOfCare/Type")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.careManager?.display, "Amanda Assigned")
+    XCTAssertEqual(inst.careManager?.reference, "Practitioner/14")
+    XCTAssertEqual(inst.careTeam[0].member?.display, "Henry Seven")
+    XCTAssertEqual(inst.careTeam[0].member?.reference, "Practitioner/13")
+    XCTAssertEqual(inst.careTeam[0].period?.end?.description, "2014-09-16")
+    XCTAssertEqual(inst.careTeam[0].period?.start?.description, "2014-09-01")
+    XCTAssertEqual(inst.careTeam[0].role[0].coding[0].code, "AO")
+    XCTAssertEqual(inst.careTeam[0].role[0].coding[0].display, "Assessment Worker")
+    XCTAssertEqual(inst.careTeam[0].role[0].coding[0].system, "http://example.org/EpisodeOfCare/Role")
+    XCTAssertEqual(inst.condition[0].display, "Severe burn of left ear")
+    XCTAssertEqual(inst.condition[0].reference, "Condition/example")
+    XCTAssertEqual(inst.id, "example")
+    XCTAssertEqual(inst.identifier[0].system, "http://example.org/sampleepisodeofcare-identifier")
+    XCTAssertEqual(inst.identifier[0].value, "123")
+    XCTAssertEqual(inst.managingOrganization?.reference, "Organization/hl7")
+    XCTAssertEqual(inst.patient?.reference, "Patient/example")
+    XCTAssertEqual(inst.period?.start?.description, "2014-09-01")
+    XCTAssertEqual(inst.referralRequest[0].display, "Referral from Example Aged Care Services")
+    XCTAssertEqual(inst.status, "active")
+    XCTAssertEqual(inst.statusHistory[0].period?.end?.description, "2014-09-14")
+    XCTAssertEqual(inst.statusHistory[0].period?.start?.description, "2014-09-01")
+    XCTAssertEqual(inst.statusHistory[0].status, "planned")
+    XCTAssertEqual(inst.statusHistory[1].period?.end?.description, "2014-09-21")
+    XCTAssertEqual(inst.statusHistory[1].period?.start?.description, "2014-09-15")
+    XCTAssertEqual(inst.statusHistory[1].status, "active")
+    XCTAssertEqual(inst.statusHistory[2].period?.end?.description, "2014-09-24")
+    XCTAssertEqual(inst.statusHistory[2].period?.start?.description, "2014-09-22")
+    XCTAssertEqual(inst.statusHistory[2].status, "onhold")
+    XCTAssertEqual(inst.statusHistory[3].period?.start?.description, "2014-09-25")
+    XCTAssertEqual(inst.statusHistory[3].status, "active")
+    XCTAssertEqual(inst.text?.div, "<div>\n      HACC Program for Peter James Chalmers at HL7 Healthcare 15 Sept 2014 - current<br/>\n\t\t\twas on leave from 22 Sept - 24 Sept while in respite care\n    </div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    XCTAssertEqual(inst.type[0].coding[0].code, "HACC")
+    XCTAssertEqual(inst.type[0].coding[0].display, "Home and Community Care Package")
+    XCTAssertEqual(inst.type[0].coding[0].system, "http://example.org/EpisodeOfCare/Type")
+    
+    return inst
+  }
 }

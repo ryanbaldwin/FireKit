@@ -215,6 +215,16 @@ open class ImagingObjectSelection: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelection.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelection. Will return empty instance: \(error))")
+		}
+		return ImagingObjectSelection.init()
+	}
 }
 
 
@@ -354,6 +364,16 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudy.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudy. Will return empty instance: \(error))")
+		}
+		return ImagingObjectSelectionStudy.init()
+	}
 }
 
 
@@ -470,6 +490,16 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudySeries.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudySeries. Will return empty instance: \(error))")
+		}
+		return ImagingObjectSelectionStudySeries.init()
+	}
 }
 
 
@@ -610,6 +640,16 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudySeriesInstance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudySeriesInstance. Will return empty instance: \(error))")
+		}
+		return ImagingObjectSelectionStudySeriesInstance.init()
+	}
 }
 
 
@@ -711,5 +751,15 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudySeriesInstanceFrames.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudySeriesInstanceFrames. Will return empty instance: \(error))")
+		}
+		return ImagingObjectSelectionStudySeriesInstanceFrames.init()
+	}
 }
 

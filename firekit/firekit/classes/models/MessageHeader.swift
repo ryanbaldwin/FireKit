@@ -289,6 +289,16 @@ open class MessageHeader: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MessageHeader.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MessageHeader. Will return empty instance: \(error))")
+		}
+		return MessageHeader.init()
+	}
 }
 
 
@@ -405,6 +415,16 @@ open class MessageHeaderDestination: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MessageHeaderDestination.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MessageHeaderDestination. Will return empty instance: \(error))")
+		}
+		return MessageHeaderDestination.init()
+	}
 }
 
 
@@ -525,6 +545,16 @@ open class MessageHeaderResponse: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MessageHeaderResponse.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MessageHeaderResponse. Will return empty instance: \(error))")
+		}
+		return MessageHeaderResponse.init()
+	}
 }
 
 
@@ -673,5 +703,15 @@ open class MessageHeaderSource: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(MessageHeaderSource.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy MessageHeaderSource. Will return empty instance: \(error))")
+		}
+		return MessageHeaderSource.init()
+	}
 }
 

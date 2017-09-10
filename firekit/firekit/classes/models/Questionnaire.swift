@@ -215,6 +215,16 @@ open class Questionnaire: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Questionnaire.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Questionnaire. Will return empty instance: \(error))")
+		}
+		return Questionnaire.init()
+	}
 }
 
 
@@ -408,6 +418,16 @@ open class QuestionnaireGroup: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireGroup.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireGroup. Will return empty instance: \(error))")
+		}
+		return QuestionnaireGroup.init()
+	}
 }
 
 
@@ -620,5 +640,15 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireGroupQuestion.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireGroupQuestion. Will return empty instance: \(error))")
+		}
+		return QuestionnaireGroupQuestion.init()
+	}
 }
 

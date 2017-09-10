@@ -369,6 +369,16 @@ open class CarePlan: DomainResource {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CarePlan.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CarePlan. Will return empty instance: \(error))")
+		}
+		return CarePlan.init()
+	}
 }
 
 
@@ -502,6 +512,16 @@ open class CarePlanActivity: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CarePlanActivity.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CarePlanActivity. Will return empty instance: \(error))")
+		}
+		return CarePlanActivity.init()
+	}
 }
 
 
@@ -898,6 +918,16 @@ open class CarePlanActivityDetail: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CarePlanActivityDetail.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CarePlanActivityDetail. Will return empty instance: \(error))")
+		}
+		return CarePlanActivityDetail.init()
+	}
 }
 
 
@@ -992,6 +1022,16 @@ open class CarePlanParticipant: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CarePlanParticipant.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CarePlanParticipant. Will return empty instance: \(error))")
+		}
+		return CarePlanParticipant.init()
+	}
 }
 
 
@@ -1092,5 +1132,15 @@ open class CarePlanRelatedPlan: BackboneElement {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CarePlanRelatedPlan.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CarePlanRelatedPlan. Will return empty instance: \(error))")
+		}
+		return CarePlanRelatedPlan.init()
+	}
 }
 

@@ -13,41 +13,40 @@ import FireKit
 
 
 class EnrollmentRequestTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+  var realm: Realm!
 
-	override func setUp() {
-		realm = makeRealm()
-	}
+  override func setUp() {
+    realm = makeRealm()
+  }
 
-	func inflateFrom(filename: String) throws -> FireKit.EnrollmentRequest {
-		return try inflateFrom(data: try readJSONFile(filename))
-	}
-	
-	func inflateFrom(data: Data) throws -> FireKit.EnrollmentRequest {
-      let data = NSKeyedArchiver.archivedData(withRootObject: data)
-		  let instance = try JSONDecoder().decode(FireKit.EnrollmentRequest.self, from: data)
-		  XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		  return instance
-	}
-	
-	func testEnrollmentRequest1() {		
-		var instance: FireKit.EnrollmentRequest?
-		do {
-			instance = try runEnrollmentRequest1()
-			try runEnrollmentRequest1(try JSONEncoder().encode(instance!)) 		
-			let copy = instance!.copy() as? FireKit.EnrollmentRequest
-			XCTAssertNotNil(copy)
-			try runEnrollmentRequest1(try JSONEncoder().encode(copy!))     
+  func inflateFrom(filename: String) throws -> FireKit.EnrollmentRequest {
+    return try inflateFrom(data: try readJSONFile(filename))
+  }
+  
+  func inflateFrom(data: Data) throws -> FireKit.EnrollmentRequest {
+      let instance = try JSONDecoder().decode(FireKit.EnrollmentRequest.self, from: data)
+      XCTAssertNotNil(instance, "Must have instantiated a test instance")
+      return instance
+  }
+  
+  func testEnrollmentRequest1() {   
+    var instance: FireKit.EnrollmentRequest?
+    do {
+      instance = try runEnrollmentRequest1()
+      try runEnrollmentRequest1(try JSONEncoder().encode(instance!))    
+      let copy = instance!.copy() as? FireKit.EnrollmentRequest
+      XCTAssertNotNil(copy)
+      try runEnrollmentRequest1(try JSONEncoder().encode(copy!))     
 
             try! realm.write { copy!.populate(from: instance!) }
             try runEnrollmentRequest1(JSONEncoder().encode(copy!))  
-		}
-		catch let error {
-			XCTAssertTrue(false, "Must instantiate and test EnrollmentRequest successfully, but threw: \(error)")
-		}
+    }
+    catch let error {
+      XCTAssertTrue(false, "Must instantiate and test EnrollmentRequest successfully, but threw: \(error)")
+    }
 
-		testEnrollmentRequestRealm1(instance!)
-	}
+    testEnrollmentRequestRealm1(instance!)
+  }
 
     func testEnrollmentRequest1RealmPK() {        
         do {
@@ -69,10 +68,10 @@ class EnrollmentRequestTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
-	func testEnrollmentRequestRealm1(_ instance: FireKit.EnrollmentRequest) {
-		  // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+  func testEnrollmentRequestRealm1(_ instance: FireKit.EnrollmentRequest) {
+      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
       // and ensure it passes the all the same tests.
-		  try! realm.write { realm.add(instance) }
+      try! realm.write { realm.add(instance) }
         try! runEnrollmentRequest1(JSONEncoder().encode(realm.objects(FireKit.EnrollmentRequest.self).first!))
         
         // ensure we can update it.
@@ -102,23 +101,23 @@ class EnrollmentRequestTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.EnrollmentRequest.self).count)
-	}
-	
-	@discardableResult
-	func runEnrollmentRequest1(_ data: Data? = nil) throws -> FireKit.EnrollmentRequest {
+  }
+  
+  @discardableResult
+  func runEnrollmentRequest1(_ data: Data? = nil) throws -> FireKit.EnrollmentRequest {
       let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "enrollmentrequest-example.json")
-		
-		XCTAssertEqual(inst.coverage?.reference, "Coverage/9876B1")
-		XCTAssertEqual(inst.created?.description, "2014-08-16")
-		XCTAssertEqual(inst.id, "22345")
-		XCTAssertEqual(inst.identifier[0].system, "http://happyvalley.com/enrollmentrequest")
-		XCTAssertEqual(inst.identifier[0].value, "EN22345")
-		XCTAssertEqual(inst.organization?.reference, "Organization/1")
-		XCTAssertEqual(inst.relationship?.code, "spouse")
-		XCTAssertEqual(inst.subject?.reference, "Patient/1")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    
+    XCTAssertEqual(inst.coverage?.reference, "Coverage/9876B1")
+    XCTAssertEqual(inst.created?.description, "2014-08-16")
+    XCTAssertEqual(inst.id, "22345")
+    XCTAssertEqual(inst.identifier[0].system, "http://happyvalley.com/enrollmentrequest")
+    XCTAssertEqual(inst.identifier[0].value, "EN22345")
+    XCTAssertEqual(inst.organization?.reference, "Organization/1")
+    XCTAssertEqual(inst.relationship?.code, "spouse")
+    XCTAssertEqual(inst.subject?.reference, "Patient/1")
+    XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the EnrollmentRequest.</div>")
+    XCTAssertEqual(inst.text?.status, "generated")
+    
+    return inst
+  }
 }

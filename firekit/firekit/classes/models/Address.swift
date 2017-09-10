@@ -228,5 +228,15 @@ open class Address: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Address.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Address. Will return empty instance: \(error))")
+		}
+		return Address.init()
+	}
 }
 

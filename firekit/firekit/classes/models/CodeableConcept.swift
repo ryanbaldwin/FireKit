@@ -99,5 +99,15 @@ open class CodeableConcept: Element {
 		return json
 	}
 */
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(CodeableConcept.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy CodeableConcept. Will return empty instance: \(error))")
+		}
+		return CodeableConcept.init()
+	}
 }
 
