@@ -22,7 +22,7 @@ protocol DateAndTime: CustomStringConvertible, Comparable {
 final public class FHIRDate: Object, DateAndTime, Codable {
     
     /// The year.
-    public dynamic var year: Int = Calendar.current.component(.year, from: Date())
+    @objc public dynamic var year: Int = Calendar.current.component(.year, from: Date())
         
     private let _month = RealmOptional<Int8>()
     /// The month of the year, maximum of 12.
@@ -171,7 +171,7 @@ string will remember the seconds string until it is manually set.
 final public class FHIRTime: Object, DateAndTime, Codable {
     
     /// The hour of the day; cannot be higher than 23.
-    public dynamic var hour: Int8 = 0 {
+    @objc public dynamic var hour: Int8 = 0 {
         didSet {
             if hour < 0 { hour = 0 }
             if hour > 23 { hour = 23 }
@@ -179,7 +179,7 @@ final public class FHIRTime: Object, DateAndTime, Codable {
     }
         
     /// The minute of the hour; cannot be larger than 59
-    public dynamic var minute: Int8 = 0 {
+    @objc public dynamic var minute: Int8 = 0 {
         didSet {
             if minute < 0 { minute = 0 }
             if minute > 59 { minute = 59 }
@@ -187,7 +187,7 @@ final public class FHIRTime: Object, DateAndTime, Codable {
     }
     
     /// The second of the minute; must be smaller than 60
-    public dynamic var second: Double = 0.0 {
+    @objc public dynamic var second: Double = 0.0 {
         didSet {
             if second < 0 { second = 0 }
             if second >= 60.0 { second = 59.999999999 }
@@ -342,13 +342,13 @@ final public class DateTime: Object, DateAndTime, Codable {
     
     /// The original date string representing this DateTime. 
     /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
-    public private(set) dynamic var dateString: String = ""
+    @objc public private(set) dynamic var dateString: String = ""
     
     /// The identifier for the timezone
-    public private(set) dynamic var timeZoneIdentifier: String?
+    @objc public private(set) dynamic var timeZoneIdentifier: String?
     
     /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
-    public private(set) dynamic var timeZoneString: String?
+    @objc public private(set) dynamic var timeZoneString: String?
     
     /// The timezone. When set will update the `nsDate`, `timeZoneIdentifier`, and `timeZoneString` internals.
     public var timeZone: TimeZone? {
@@ -367,7 +367,7 @@ final public class DateTime: Object, DateAndTime, Codable {
         }
     }
     
-    private dynamic var value: Date = Date()
+    @objc private dynamic var value: Date = Date()
     /// The actual Date object representing this DateTime under the hood.
     /// Since only a year is required for a DateTime, any missing value (such as month, or minute)
     /// will default to the lowest possible value.
@@ -552,7 +552,7 @@ An instant in time, known at least to the second and with a timezone, for machin
 final public class Instant: Object, DateAndTime, Codable {
     /// The original date string representing this DateTime.
     /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
-    public private(set) dynamic var dateString = ""
+    @objc public private(set) dynamic var dateString = ""
     
     /// The FHIRDate of this `Instant`
     /// - Warning: If you wish to update a DateTime's `date` directly, you _must_ re-set
@@ -620,10 +620,10 @@ final public class Instant: Object, DateAndTime, Codable {
     }
     
     /// The identifier for the timezone
-    public private(set) dynamic var timeZoneIdentifier: String = TimeZone.current.identifier
+    @objc public private(set) dynamic var timeZoneIdentifier: String = TimeZone.current.identifier
     
     /// The timezone string seen during deserialization; to be used on serialization unless the timezone changed.
-    public private(set) dynamic var timeZoneString: String = TimeZone.current.offset()
+    @objc public private(set) dynamic var timeZoneString: String = TimeZone.current.offset()
     
     /// The timezone. When set will update the `nsDate`, `timeZoneIdentifier`, and `timeZoneString` internals.
     public var timeZone: TimeZone {
@@ -638,7 +638,7 @@ final public class Instant: Object, DateAndTime, Codable {
         }
     }
     
-    private dynamic var value: Date = Date()
+    @objc private dynamic var value: Date = Date()
     /// The actual Date object representing this DateTime under the hood.
     /// Since only a year is required for a DateTime, any missing value (such as month, or minute)
     /// will default to the lowest possible value.

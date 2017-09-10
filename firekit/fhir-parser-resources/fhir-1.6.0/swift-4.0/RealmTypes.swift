@@ -11,7 +11,7 @@ import Realm
 import RealmSwift
 
 final public class RealmString: Object, Codable {
-    public dynamic var value: String = ""
+    @objc public dynamic var value: String = ""
 
     public convenience init(val: String) {
         self.init()
@@ -30,7 +30,7 @@ final public class RealmString: Object, Codable {
 }
 
 final public class RealmInt: Object {
-    public dynamic var value: Int = 0
+    @objc public dynamic var value: Int = 0
 
     public convenience init(val: Int) {
         self.init()
@@ -49,7 +49,7 @@ final public class RealmInt: Object {
 }
 
 final public class RealmDecimal: Object, Codable {
-    private dynamic var _value = "0"
+    @objc private dynamic var _value = "0"
 
     public var value: Decimal {
         get { return Decimal(string: _value)! }
@@ -97,7 +97,7 @@ final public class RealmDecimal: Object, Codable {
 }
 
 final public class RealmURL: Object, Codable {
-    private dynamic var _value: String?
+    @objc private dynamic var _value: String?
     
     private var _url: URL? = nil
     public var value: URL? {
@@ -144,8 +144,8 @@ final public class ContainedResource: Resource {
         case resourceType
     }
     
-    public dynamic var resourceType: String?
-    dynamic var json: Data?
+    @objc public dynamic var resourceType: String?
+    @objc dynamic var json: Data?
     
     lazy public var resource: FHIRAbstractBase? = {
         guard let resourceType = self.resourceType, let json = self.json else {
