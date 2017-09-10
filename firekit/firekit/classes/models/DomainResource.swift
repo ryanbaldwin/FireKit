@@ -53,7 +53,15 @@ open class DomainResource: Resource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        // We have a list of contained resources
+        var containedList = try container.nestedUnkeyedContainer(forKey: .contained)
+        while !containedList.isAtEnd {
+            let contained = try containedList.decode(ContainedResource.self)
+            guard let resourceType = contained.resourceType else { continue }
+            
+            let t = FHIRAbstractBase.resourceType(from: resourceType)
+            let actualContained = try containedList.decode(t)
+            contained.json = try JSONEncoder().encode(actualContained)
+        }
         self.extension_fhir.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) ?? [])
         self.modifierExtension.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) ?? [])
         self.text = try container.decodeIfPresent(Narrative.self, forKey: .text)

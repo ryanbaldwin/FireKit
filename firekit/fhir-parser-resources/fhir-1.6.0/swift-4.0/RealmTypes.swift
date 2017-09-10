@@ -145,7 +145,7 @@ final public class ContainedResource: Resource {
     }
     
     public dynamic var resourceType: String?
-    private dynamic var json: Data?
+    dynamic var json: Data?
     
     lazy public var resource: FHIRAbstractBase? = {
         guard let resourceType = self.resourceType, let json = self.json else {
