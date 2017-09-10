@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -100,66 +100,22 @@ open class Goal: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let addressesVals = try container.decodeIfPresent([Reference].self, forKey: .addresses) {
-          // Reference: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let authorVal = try container.decodeIfPresent(Reference.self, forKey: .author) {
-          self.author = authorVal
-        }
-        if let categoryVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .category) {
-          // CodeableConcept: FHIRJSON
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        if let noteVals = try container.decodeIfPresent([Annotation].self, forKey: .note) {
-          // Annotation: FHIRJSON
-        }
-        if let outcomeVals = try container.decodeIfPresent([GoalOutcome].self, forKey: .outcome) {
-          // GoalOutcome: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let priorityVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .priority) {
-          self.priority = priorityVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let startCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .startCodeableConcept) {
-          self.startCodeableConcept = startCodeableConceptVal
-        }
-        // FHIRDate: String
-        if let startDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .startDate) {
-          self.startDate = startDateVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // FHIRDate: String
-        if let statusDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .statusDate) {
-          self.statusDate = statusDateVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let statusReasonVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .statusReason) {
-          self.statusReason = statusReasonVal
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
-        // FHIRDate: String
-        if let targetDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .targetDate) {
-          self.targetDate = targetDateVal
-        }
-        // Quantity: FHIRJSON
-        if let targetQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .targetQuantity) {
-          self.targetQuantity = targetQuantityVal
-        }
+        self.addresses.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .addresses) ?? [])
+        self.author = try container.decodeIfPresent(Reference.self, forKey: .author)
+        self.category.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .category) ?? [])
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.note.append(objectsIn: try container.decodeIfPresent([Annotation].self, forKey: .note) ?? [])
+        self.outcome.append(objectsIn: try container.decodeIfPresent([GoalOutcome].self, forKey: .outcome) ?? [])
+        self.priority = try container.decodeIfPresent(CodeableConcept.self, forKey: .priority)
+        self.startCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .startCodeableConcept)
+        self.startDate = try container.decodeIfPresent(FHIRDate.self, forKey: .startDate)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.statusDate = try container.decodeIfPresent(FHIRDate.self, forKey: .statusDate)
+        self.statusReason = try container.decodeIfPresent(CodeableConcept.self, forKey: .statusReason)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.targetDate = try container.decodeIfPresent(FHIRDate.self, forKey: .targetDate)
+        self.targetQuantity = try container.decodeIfPresent(Quantity.self, forKey: .targetQuantity)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -455,15 +411,8 @@ open class GoalOutcome: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let resultCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .resultCodeableConcept) {
-          self.resultCodeableConcept = resultCodeableConceptVal
-        }
-        // Reference: FHIRJSON
-        if let resultReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .resultReference) {
-          self.resultReference = resultReferenceVal
-        }
+        self.resultCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .resultCodeableConcept)
+        self.resultReference = try container.decodeIfPresent(Reference.self, forKey: .resultReference)
     }
 
     public override func encode(to encoder: Encoder) throws {

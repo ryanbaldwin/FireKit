@@ -2,7 +2,7 @@
 //  Resource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Resource) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -55,23 +55,10 @@ open class Resource: FHIRAbstractResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let idVal = try container.decodeIfPresent(String.self, forKey: .id) {
-          self.id = idVal
-        }
-        // String: String
-        if let implicitRulesVal = try container.decodeIfPresent(String.self, forKey: .implicitRules) {
-          self.implicitRules = implicitRulesVal
-        }
-        // String: String
-        if let languageVal = try container.decodeIfPresent(String.self, forKey: .language) {
-          self.language = languageVal
-        }
-        // Meta: FHIRJSON
-        if let metaVal = try container.decodeIfPresent(Meta.self, forKey: .meta) {
-          self.meta = metaVal
-        }
+        self.id = try container.decodeIfPresent(String.self, forKey: .id)
+        self.implicitRules = try container.decodeIfPresent(String.self, forKey: .implicitRules)
+        self.language = try container.decodeIfPresent(String.self, forKey: .language)
+        self.meta = try container.decodeIfPresent(Meta.self, forKey: .meta)
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -2,7 +2,7 @@
 //  Narrative.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Narrative) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -51,15 +51,8 @@ open class Narrative: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let divVal = try container.decodeIfPresent(String.self, forKey: .div) {
-          self.div = divVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
+        self.div = try container.decodeIfPresent(String.self, forKey: .div)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -73,37 +73,14 @@ open class VisionPrescription: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let dateWrittenVal = try container.decodeIfPresent(DateTime.self, forKey: .dateWritten) {
-          self.dateWritten = dateWrittenVal
-        }
-        if let dispenseVals = try container.decodeIfPresent([VisionPrescriptionDispense].self, forKey: .dispense) {
-          // VisionPrescriptionDispense: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
-          self.encounter = encounterVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
-        // Reference: FHIRJSON
-        if let prescriberVal = try container.decodeIfPresent(Reference.self, forKey: .prescriber) {
-          self.prescriber = prescriberVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let reasonCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept) {
-          self.reasonCodeableConcept = reasonCodeableConceptVal
-        }
-        // Reference: FHIRJSON
-        if let reasonReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .reasonReference) {
-          self.reasonReference = reasonReferenceVal
-        }
+        self.dateWritten = try container.decodeIfPresent(DateTime.self, forKey: .dateWritten)
+        self.dispense.append(objectsIn: try container.decodeIfPresent([VisionPrescriptionDispense].self, forKey: .dispense) ?? [])
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.prescriber = try container.decodeIfPresent(Reference.self, forKey: .prescriber)
+        self.reasonCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept)
+        self.reasonReference = try container.decodeIfPresent(Reference.self, forKey: .reasonReference)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -312,67 +289,21 @@ open class VisionPrescriptionDispense: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // RealmDecimal: NSNumber
-        if let addVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .add) {
-          self.add = addVal
-        }
-        // Int: Int
-        if let axisVal = try container.decodeIfPresent(Int.self, forKey: .axis) {
-          self.axis.value = axisVal
-        }
-        // RealmDecimal: NSNumber
-        if let backCurveVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .backCurve) {
-          self.backCurve = backCurveVal
-        }
-        // String: String
-        if let baseVal = try container.decodeIfPresent(String.self, forKey: .base) {
-          self.base = baseVal
-        }
-        // String: String
-        if let brandVal = try container.decodeIfPresent(String.self, forKey: .brand) {
-          self.brand = brandVal
-        }
-        // String: String
-        if let colorVal = try container.decodeIfPresent(String.self, forKey: .color) {
-          self.color = colorVal
-        }
-        // RealmDecimal: NSNumber
-        if let cylinderVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .cylinder) {
-          self.cylinder = cylinderVal
-        }
-        // RealmDecimal: NSNumber
-        if let diameterVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .diameter) {
-          self.diameter = diameterVal
-        }
-        // Quantity: FHIRJSON
-        if let durationVal = try container.decodeIfPresent(Quantity.self, forKey: .duration) {
-          self.duration = durationVal
-        }
-        // String: String
-        if let eyeVal = try container.decodeIfPresent(String.self, forKey: .eye) {
-          self.eye = eyeVal
-        }
-        // String: String
-        if let notesVal = try container.decodeIfPresent(String.self, forKey: .notes) {
-          self.notes = notesVal
-        }
-        // RealmDecimal: NSNumber
-        if let powerVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .power) {
-          self.power = powerVal
-        }
-        // RealmDecimal: NSNumber
-        if let prismVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .prism) {
-          self.prism = prismVal
-        }
-        // Coding: FHIRJSON
-        if let productVal = try container.decodeIfPresent(Coding.self, forKey: .product) {
-          self.product = productVal
-        }
-        // RealmDecimal: NSNumber
-        if let sphereVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .sphere) {
-          self.sphere = sphereVal
-        }
+        self.add = try container.decodeIfPresent(RealmDecimal.self, forKey: .add)
+        self.axis.value = try container.decodeIfPresent(Int.self, forKey: .axis)
+        self.backCurve = try container.decodeIfPresent(RealmDecimal.self, forKey: .backCurve)
+        self.base = try container.decodeIfPresent(String.self, forKey: .base)
+        self.brand = try container.decodeIfPresent(String.self, forKey: .brand)
+        self.color = try container.decodeIfPresent(String.self, forKey: .color)
+        self.cylinder = try container.decodeIfPresent(RealmDecimal.self, forKey: .cylinder)
+        self.diameter = try container.decodeIfPresent(RealmDecimal.self, forKey: .diameter)
+        self.duration = try container.decodeIfPresent(Quantity.self, forKey: .duration)
+        self.eye = try container.decodeIfPresent(String.self, forKey: .eye)
+        self.notes = try container.decodeIfPresent(String.self, forKey: .notes)
+        self.power = try container.decodeIfPresent(RealmDecimal.self, forKey: .power)
+        self.prism = try container.decodeIfPresent(RealmDecimal.self, forKey: .prism)
+        self.product = try container.decodeIfPresent(Coding.self, forKey: .product)
+        self.sphere = try container.decodeIfPresent(RealmDecimal.self, forKey: .sphere)
     }
 
     public override func encode(to encoder: Encoder) throws {

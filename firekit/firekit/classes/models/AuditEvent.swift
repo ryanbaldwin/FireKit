@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -65,21 +65,10 @@ open class AuditEvent: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // AuditEventEvent: FHIRJSON
-        if let eventVal = try container.decodeIfPresent(AuditEventEvent.self, forKey: .event) {
-          self.event = eventVal
-        }
-        if let objectVals = try container.decodeIfPresent([AuditEventObject].self, forKey: .object) {
-          // AuditEventObject: FHIRJSON
-        }
-        if let participantVals = try container.decodeIfPresent([AuditEventParticipant].self, forKey: .participant) {
-          // AuditEventParticipant: FHIRJSON
-        }
-        // AuditEventSource: FHIRJSON
-        if let sourceVal = try container.decodeIfPresent(AuditEventSource.self, forKey: .source) {
-          self.source = sourceVal
-        }
+        self.event = try container.decodeIfPresent(AuditEventEvent.self, forKey: .event)
+        self.object.append(objectsIn: try container.decodeIfPresent([AuditEventObject].self, forKey: .object) ?? [])
+        self.participant.append(objectsIn: try container.decodeIfPresent([AuditEventParticipant].self, forKey: .participant) ?? [])
+        self.source = try container.decodeIfPresent(AuditEventSource.self, forKey: .source)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -227,33 +216,13 @@ open class AuditEventEvent: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let actionVal = try container.decodeIfPresent(String.self, forKey: .action) {
-          self.action = actionVal
-        }
-        // Instant: String
-        if let dateTimeVal = try container.decodeIfPresent(Instant.self, forKey: .dateTime) {
-          self.dateTime = dateTimeVal
-        }
-        // String: String
-        if let outcomeVal = try container.decodeIfPresent(String.self, forKey: .outcome) {
-          self.outcome = outcomeVal
-        }
-        // String: String
-        if let outcomeDescVal = try container.decodeIfPresent(String.self, forKey: .outcomeDesc) {
-          self.outcomeDesc = outcomeDescVal
-        }
-        if let purposeOfEventVals = try container.decodeIfPresent([Coding].self, forKey: .purposeOfEvent) {
-          // Coding: FHIRJSON
-        }
-        if let subtypeVals = try container.decodeIfPresent([Coding].self, forKey: .subtype) {
-          // Coding: FHIRJSON
-        }
-        // Coding: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.action = try container.decodeIfPresent(String.self, forKey: .action)
+        self.dateTime = try container.decodeIfPresent(Instant.self, forKey: .dateTime)
+        self.outcome = try container.decodeIfPresent(String.self, forKey: .outcome)
+        self.outcomeDesc = try container.decodeIfPresent(String.self, forKey: .outcomeDesc)
+        self.purposeOfEvent.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .purposeOfEvent) ?? [])
+        self.subtype.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .subtype) ?? [])
+        self.type = try container.decodeIfPresent(Coding.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -446,45 +415,16 @@ open class AuditEventObject: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let detailVals = try container.decodeIfPresent([AuditEventObjectDetail].self, forKey: .detail) {
-          // AuditEventObjectDetail: FHIRJSON
-        }
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // Coding: FHIRJSON
-        if let lifecycleVal = try container.decodeIfPresent(Coding.self, forKey: .lifecycle) {
-          self.lifecycle = lifecycleVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // Base64Binary: String
-        if let queryVal = try container.decodeIfPresent(Base64Binary.self, forKey: .query) {
-          self.query = queryVal
-        }
-        // Reference: FHIRJSON
-        if let referenceVal = try container.decodeIfPresent(Reference.self, forKey: .reference) {
-          self.reference = referenceVal
-        }
-        // Coding: FHIRJSON
-        if let roleVal = try container.decodeIfPresent(Coding.self, forKey: .role) {
-          self.role = roleVal
-        }
-        if let securityLabelVals = try container.decodeIfPresent([Coding].self, forKey: .securityLabel) {
-          // Coding: FHIRJSON
-        }
-        // Coding: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(Coding.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.detail.append(objectsIn: try container.decodeIfPresent([AuditEventObjectDetail].self, forKey: .detail) ?? [])
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.lifecycle = try container.decodeIfPresent(Coding.self, forKey: .lifecycle)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.query = try container.decodeIfPresent(Base64Binary.self, forKey: .query)
+        self.reference = try container.decodeIfPresent(Reference.self, forKey: .reference)
+        self.role = try container.decodeIfPresent(Coding.self, forKey: .role)
+        self.securityLabel.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .securityLabel) ?? [])
+        self.type = try container.decodeIfPresent(Coding.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -686,15 +626,8 @@ open class AuditEventObjectDetail: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
-        // Base64Binary: String
-        if let valueVal = try container.decodeIfPresent(Base64Binary.self, forKey: .value) {
-          self.value = valueVal
-        }
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.value = try container.decodeIfPresent(Base64Binary.self, forKey: .value)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -824,48 +757,17 @@ open class AuditEventParticipant: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let altIdVal = try container.decodeIfPresent(String.self, forKey: .altId) {
-          self.altId = altIdVal
-        }
-        // Reference: FHIRJSON
-        if let locationVal = try container.decodeIfPresent(Reference.self, forKey: .location) {
-          self.location = locationVal
-        }
-        // Coding: FHIRJSON
-        if let mediaVal = try container.decodeIfPresent(Coding.self, forKey: .media) {
-          self.media = mediaVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // AuditEventParticipantNetwork: FHIRJSON
-        if let networkVal = try container.decodeIfPresent(AuditEventParticipantNetwork.self, forKey: .network) {
-          self.network = networkVal
-        }
-        if let policyVals = try container.decodeIfPresent([String].self, forKey: .policy) {
-          // String: String
-        }
-        if let purposeOfUseVals = try container.decodeIfPresent([Coding].self, forKey: .purposeOfUse) {
-          // Coding: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let referenceVal = try container.decodeIfPresent(Reference.self, forKey: .reference) {
-          self.reference = referenceVal
-        }
-        // Bool: Bool
-        if let requestorVal = try container.decodeIfPresent(Bool.self, forKey: .requestor) {
-          self.requestor.value = requestorVal
-        }
-        if let roleVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .role) {
-          // CodeableConcept: FHIRJSON
-        }
-        // Identifier: FHIRJSON
-        if let userIdVal = try container.decodeIfPresent(Identifier.self, forKey: .userId) {
-          self.userId = userIdVal
-        }
+        self.altId = try container.decodeIfPresent(String.self, forKey: .altId)
+        self.location = try container.decodeIfPresent(Reference.self, forKey: .location)
+        self.media = try container.decodeIfPresent(Coding.self, forKey: .media)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.network = try container.decodeIfPresent(AuditEventParticipantNetwork.self, forKey: .network)
+        self.policy.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .policy) ?? [])
+        self.purposeOfUse.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .purposeOfUse) ?? [])
+        self.reference = try container.decodeIfPresent(Reference.self, forKey: .reference)
+        self.requestor.value = try container.decodeIfPresent(Bool.self, forKey: .requestor)
+        self.role.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .role) ?? [])
+        self.userId = try container.decodeIfPresent(Identifier.self, forKey: .userId)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1078,15 +980,8 @@ open class AuditEventParticipantNetwork: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let addressVal = try container.decodeIfPresent(String.self, forKey: .address) {
-          self.address = addressVal
-        }
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.address = try container.decodeIfPresent(String.self, forKey: .address)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1182,18 +1077,9 @@ open class AuditEventSource: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // String: String
-        if let siteVal = try container.decodeIfPresent(String.self, forKey: .site) {
-          self.site = siteVal
-        }
-        if let typeVals = try container.decodeIfPresent([Coding].self, forKey: .type) {
-          // Coding: FHIRJSON
-        }
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.site = try container.decodeIfPresent(String.self, forKey: .site)
+        self.type.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .type) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {

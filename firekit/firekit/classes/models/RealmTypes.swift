@@ -135,7 +135,7 @@ final public class RealmURL: Object, Codable {
 /// will fail if that resource has any contained resources.
 ///
 /// In normal SwiftFHIR the `DomainResource.contained` works fine, but because of 
-/// Swift's limitations it fails. `DomainResource.contained: RealmSwift<Resource>` 
+/// Realm's polymorphic limitations it fails. `DomainResource.contained: RealmSwift<Resource>` 
 /// will blow up at runtime. The workaround is to create a `ContainedResource: Resource`
 /// Which will store the same information as `Resource`, but will also provide functionality
 /// to store the original JSON and inflate it on demand into the proper type.

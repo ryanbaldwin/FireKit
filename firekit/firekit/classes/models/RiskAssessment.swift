@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -80,45 +80,16 @@ open class RiskAssessment: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let basisVals = try container.decodeIfPresent([Reference].self, forKey: .basis) {
-          // Reference: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let conditionVal = try container.decodeIfPresent(Reference.self, forKey: .condition) {
-          self.condition = conditionVal
-        }
-        // DateTime: String
-        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
-          self.date = dateVal
-        }
-        // Reference: FHIRJSON
-        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
-          self.encounter = encounterVal
-        }
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let methodVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .method) {
-          self.method = methodVal
-        }
-        // String: String
-        if let mitigationVal = try container.decodeIfPresent(String.self, forKey: .mitigation) {
-          self.mitigation = mitigationVal
-        }
-        // Reference: FHIRJSON
-        if let performerVal = try container.decodeIfPresent(Reference.self, forKey: .performer) {
-          self.performer = performerVal
-        }
-        if let predictionVals = try container.decodeIfPresent([RiskAssessmentPrediction].self, forKey: .prediction) {
-          // RiskAssessmentPrediction: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
+        self.basis.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .basis) ?? [])
+        self.condition = try container.decodeIfPresent(Reference.self, forKey: .condition)
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.method = try container.decodeIfPresent(CodeableConcept.self, forKey: .method)
+        self.mitigation = try container.decodeIfPresent(String.self, forKey: .mitigation)
+        self.performer = try container.decodeIfPresent(Reference.self, forKey: .performer)
+        self.prediction.append(objectsIn: try container.decodeIfPresent([RiskAssessmentPrediction].self, forKey: .prediction) ?? [])
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -348,39 +319,14 @@ open class RiskAssessmentPrediction: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let outcomeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .outcome) {
-          self.outcome = outcomeVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let probabilityCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .probabilityCodeableConcept) {
-          self.probabilityCodeableConcept = probabilityCodeableConceptVal
-        }
-        // RealmDecimal: NSNumber
-        if let probabilityDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .probabilityDecimal) {
-          self.probabilityDecimal = probabilityDecimalVal
-        }
-        // Range: FHIRJSON
-        if let probabilityRangeVal = try container.decodeIfPresent(Range.self, forKey: .probabilityRange) {
-          self.probabilityRange = probabilityRangeVal
-        }
-        // String: String
-        if let rationaleVal = try container.decodeIfPresent(String.self, forKey: .rationale) {
-          self.rationale = rationaleVal
-        }
-        // RealmDecimal: NSNumber
-        if let relativeRiskVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .relativeRisk) {
-          self.relativeRisk = relativeRiskVal
-        }
-        // Period: FHIRJSON
-        if let whenPeriodVal = try container.decodeIfPresent(Period.self, forKey: .whenPeriod) {
-          self.whenPeriod = whenPeriodVal
-        }
-        // Range: FHIRJSON
-        if let whenRangeVal = try container.decodeIfPresent(Range.self, forKey: .whenRange) {
-          self.whenRange = whenRangeVal
-        }
+        self.outcome = try container.decodeIfPresent(CodeableConcept.self, forKey: .outcome)
+        self.probabilityCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .probabilityCodeableConcept)
+        self.probabilityDecimal = try container.decodeIfPresent(RealmDecimal.self, forKey: .probabilityDecimal)
+        self.probabilityRange = try container.decodeIfPresent(Range.self, forKey: .probabilityRange)
+        self.rationale = try container.decodeIfPresent(String.self, forKey: .rationale)
+        self.relativeRisk = try container.decodeIfPresent(RealmDecimal.self, forKey: .relativeRisk)
+        self.whenPeriod = try container.decodeIfPresent(Period.self, forKey: .whenPeriod)
+        self.whenRange = try container.decodeIfPresent(Range.self, forKey: .whenRange)
     }
 
     public override func encode(to encoder: Encoder) throws {

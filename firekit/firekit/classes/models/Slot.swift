@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -71,38 +71,14 @@ open class Slot: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let commentVal = try container.decodeIfPresent(String.self, forKey: .comment) {
-          self.comment = commentVal
-        }
-        // Instant: String
-        if let endVal = try container.decodeIfPresent(Instant.self, forKey: .end) {
-          self.end = endVal
-        }
-        // String: String
-        if let freeBusyTypeVal = try container.decodeIfPresent(String.self, forKey: .freeBusyType) {
-          self.freeBusyType = freeBusyTypeVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Bool: Bool
-        if let overbookedVal = try container.decodeIfPresent(Bool.self, forKey: .overbooked) {
-          self.overbooked.value = overbookedVal
-        }
-        // Reference: FHIRJSON
-        if let scheduleVal = try container.decodeIfPresent(Reference.self, forKey: .schedule) {
-          self.schedule = scheduleVal
-        }
-        // Instant: String
-        if let startVal = try container.decodeIfPresent(Instant.self, forKey: .start) {
-          self.start = startVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
+        self.end = try container.decodeIfPresent(Instant.self, forKey: .end)
+        self.freeBusyType = try container.decodeIfPresent(String.self, forKey: .freeBusyType)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.overbooked.value = try container.decodeIfPresent(Bool.self, forKey: .overbooked)
+        self.schedule = try container.decodeIfPresent(Reference.self, forKey: .schedule)
+        self.start = try container.decodeIfPresent(Instant.self, forKey: .start)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {

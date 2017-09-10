@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -77,58 +77,20 @@ open class DataElement: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let contactVals = try container.decodeIfPresent([DataElementContact].self, forKey: .contact) {
-          // DataElementContact: FHIRJSON
-        }
-        // String: String
-        if let copyrightVal = try container.decodeIfPresent(String.self, forKey: .copyright) {
-          self.copyright = copyrightVal
-        }
-        // DateTime: String
-        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
-          self.date = dateVal
-        }
-        if let elementVals = try container.decodeIfPresent([ElementDefinition].self, forKey: .element) {
-          // ElementDefinition: FHIRJSON
-        }
-        // Bool: Bool
-        if let experimentalVal = try container.decodeIfPresent(Bool.self, forKey: .experimental) {
-          self.experimental.value = experimentalVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        if let mappingVals = try container.decodeIfPresent([DataElementMapping].self, forKey: .mapping) {
-          // DataElementMapping: FHIRJSON
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // String: String
-        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
-          self.publisher = publisherVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // String: String
-        if let stringencyVal = try container.decodeIfPresent(String.self, forKey: .stringency) {
-          self.stringency = stringencyVal
-        }
-        // String: String
-        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
-          self.url = urlVal
-        }
-        if let useContextVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) {
-          // CodeableConcept: FHIRJSON
-        }
-        // String: String
-        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
-          self.version = versionVal
-        }
+        self.contact.append(objectsIn: try container.decodeIfPresent([DataElementContact].self, forKey: .contact) ?? [])
+        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.element.append(objectsIn: try container.decodeIfPresent([ElementDefinition].self, forKey: .element) ?? [])
+        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.mapping.append(objectsIn: try container.decodeIfPresent([DataElementMapping].self, forKey: .mapping) ?? [])
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.stringency = try container.decodeIfPresent(String.self, forKey: .stringency)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+        self.useContext.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) ?? [])
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -392,14 +354,8 @@ open class DataElementContact: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
-          // ContactPoint: FHIRJSON
-        }
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -500,23 +456,10 @@ open class DataElementMapping: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let commentsVal = try container.decodeIfPresent(String.self, forKey: .comments) {
-          self.comments = commentsVal
-        }
-        // String: String
-        if let identityVal = try container.decodeIfPresent(String.self, forKey: .identity) {
-          self.identity = identityVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // String: String
-        if let uriVal = try container.decodeIfPresent(String.self, forKey: .uri) {
-          self.uri = uriVal
-        }
+        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
+        self.identity = try container.decodeIfPresent(String.self, forKey: .identity)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.uri = try container.decodeIfPresent(String.self, forKey: .uri)
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -105,67 +105,22 @@ open class ProcessRequest: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let actionVal = try container.decodeIfPresent(String.self, forKey: .action) {
-          self.action = actionVal
-        }
-        // DateTime: String
-        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
-          self.created = createdVal
-        }
-        if let excludeVals = try container.decodeIfPresent([String].self, forKey: .exclude) {
-          // String: String
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        if let includeVals = try container.decodeIfPresent([String].self, forKey: .include) {
-          // String: String
-        }
-        if let itemVals = try container.decodeIfPresent([ProcessRequestItem].self, forKey: .item) {
-          // ProcessRequestItem: FHIRJSON
-        }
-        // Bool: Bool
-        if let nullifyVal = try container.decodeIfPresent(Bool.self, forKey: .nullify) {
-          self.nullify.value = nullifyVal
-        }
-        // Reference: FHIRJSON
-        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
-          self.organization = organizationVal
-        }
-        // Coding: FHIRJSON
-        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
-          self.originalRuleset = originalRulesetVal
-        }
-        // Period: FHIRJSON
-        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
-          self.period = periodVal
-        }
-        // Reference: FHIRJSON
-        if let providerVal = try container.decodeIfPresent(Reference.self, forKey: .provider) {
-          self.provider = providerVal
-        }
-        // String: String
-        if let referenceVal = try container.decodeIfPresent(String.self, forKey: .reference) {
-          self.reference = referenceVal
-        }
-        // Reference: FHIRJSON
-        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
-          self.request = requestVal
-        }
-        // Reference: FHIRJSON
-        if let responseVal = try container.decodeIfPresent(Reference.self, forKey: .response) {
-          self.response = responseVal
-        }
-        // Coding: FHIRJSON
-        if let rulesetVal = try container.decodeIfPresent(Coding.self, forKey: .ruleset) {
-          self.ruleset = rulesetVal
-        }
-        // Reference: FHIRJSON
-        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
-          self.target = targetVal
-        }
+        self.action = try container.decodeIfPresent(String.self, forKey: .action)
+        self.created = try container.decodeIfPresent(DateTime.self, forKey: .created)
+        self.exclude.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .exclude) ?? [])
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.include.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .include) ?? [])
+        self.item.append(objectsIn: try container.decodeIfPresent([ProcessRequestItem].self, forKey: .item) ?? [])
+        self.nullify.value = try container.decodeIfPresent(Bool.self, forKey: .nullify)
+        self.organization = try container.decodeIfPresent(Reference.self, forKey: .organization)
+        self.originalRuleset = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset)
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.provider = try container.decodeIfPresent(Reference.self, forKey: .provider)
+        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
+        self.request = try container.decodeIfPresent(Reference.self, forKey: .request)
+        self.response = try container.decodeIfPresent(Reference.self, forKey: .response)
+        self.ruleset = try container.decodeIfPresent(Coding.self, forKey: .ruleset)
+        self.target = try container.decodeIfPresent(Reference.self, forKey: .target)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -447,11 +402,7 @@ open class ProcessRequestItem: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Int: Int
-        if let sequenceLinkIdVal = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId) {
-          self.sequenceLinkId.value = sequenceLinkIdVal
-        }
+        self.sequenceLinkId.value = try container.decodeIfPresent(Int.self, forKey: .sequenceLinkId)
     }
 
     public override func encode(to encoder: Encoder) throws {

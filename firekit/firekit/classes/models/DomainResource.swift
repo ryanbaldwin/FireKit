@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -53,20 +53,10 @@ open class DomainResource: Resource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let containedVals = try container.decodeIfPresent([Resource].self, forKey: .contained) {
-          // Resource: FHIRJSON
-        }
-        if let extension_fhirVals = try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) {
-          // Extension: FHIRJSON
-        }
-        if let modifierExtensionVals = try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) {
-          // Extension: FHIRJSON
-        }
-        // Narrative: FHIRJSON
-        if let textVal = try container.decodeIfPresent(Narrative.self, forKey: .text) {
-          self.text = textVal
-        }
+        // We have a list of contained resources
+        self.extension_fhir.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) ?? [])
+        self.modifierExtension.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) ?? [])
+        self.text = try container.decodeIfPresent(Narrative.self, forKey: .text)
     }
 
     public override func encode(to encoder: Encoder) throws {

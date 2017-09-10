@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -88,46 +88,16 @@ open class DeviceMetric: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let calibrationVals = try container.decodeIfPresent([DeviceMetricCalibration].self, forKey: .calibration) {
-          // DeviceMetricCalibration: FHIRJSON
-        }
-        // String: String
-        if let categoryVal = try container.decodeIfPresent(String.self, forKey: .category) {
-          self.category = categoryVal
-        }
-        // String: String
-        if let colorVal = try container.decodeIfPresent(String.self, forKey: .color) {
-          self.color = colorVal
-        }
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // Timing: FHIRJSON
-        if let measurementPeriodVal = try container.decodeIfPresent(Timing.self, forKey: .measurementPeriod) {
-          self.measurementPeriod = measurementPeriodVal
-        }
-        // String: String
-        if let operationalStatusVal = try container.decodeIfPresent(String.self, forKey: .operationalStatus) {
-          self.operationalStatus = operationalStatusVal
-        }
-        // Reference: FHIRJSON
-        if let parentVal = try container.decodeIfPresent(Reference.self, forKey: .parent) {
-          self.parent = parentVal
-        }
-        // Reference: FHIRJSON
-        if let sourceVal = try container.decodeIfPresent(Reference.self, forKey: .source) {
-          self.source = sourceVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let unitVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .unit) {
-          self.unit = unitVal
-        }
+        self.calibration.append(objectsIn: try container.decodeIfPresent([DeviceMetricCalibration].self, forKey: .calibration) ?? [])
+        self.category = try container.decodeIfPresent(String.self, forKey: .category)
+        self.color = try container.decodeIfPresent(String.self, forKey: .color)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.measurementPeriod = try container.decodeIfPresent(Timing.self, forKey: .measurementPeriod)
+        self.operationalStatus = try container.decodeIfPresent(String.self, forKey: .operationalStatus)
+        self.parent = try container.decodeIfPresent(Reference.self, forKey: .parent)
+        self.source = try container.decodeIfPresent(Reference.self, forKey: .source)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+        self.unit = try container.decodeIfPresent(CodeableConcept.self, forKey: .unit)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -330,19 +300,9 @@ open class DeviceMetricCalibration: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let stateVal = try container.decodeIfPresent(String.self, forKey: .state) {
-          self.state = stateVal
-        }
-        // Instant: String
-        if let timeVal = try container.decodeIfPresent(Instant.self, forKey: .time) {
-          self.time = timeVal
-        }
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.state = try container.decodeIfPresent(String.self, forKey: .state)
+        self.time = try container.decodeIfPresent(Instant.self, forKey: .time)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {

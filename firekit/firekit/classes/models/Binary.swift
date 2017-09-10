@@ -2,7 +2,7 @@
 //  Binary.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Binary) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -53,15 +53,8 @@ open class Binary: Resource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Base64Binary: String
-        if let contentVal = try container.decodeIfPresent(Base64Binary.self, forKey: .content) {
-          self.content = contentVal
-        }
-        // String: String
-        if let contentTypeVal = try container.decodeIfPresent(String.self, forKey: .contentType) {
-          self.contentType = contentTypeVal
-        }
+        self.content = try container.decodeIfPresent(Base64Binary.self, forKey: .content)
+        self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
     }
 
     public override func encode(to encoder: Encoder) throws {

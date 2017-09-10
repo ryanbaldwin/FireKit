@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -111,67 +111,22 @@ open class MedicationAdministration: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let deviceVals = try container.decodeIfPresent([Reference].self, forKey: .device) {
-          // Reference: FHIRJSON
-        }
-        // MedicationAdministrationDosage: FHIRJSON
-        if let dosageVal = try container.decodeIfPresent(MedicationAdministrationDosage.self, forKey: .dosage) {
-          self.dosage = dosageVal
-        }
-        // DateTime: String
-        if let effectiveTimeDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .effectiveTimeDateTime) {
-          self.effectiveTimeDateTime = effectiveTimeDateTimeVal
-        }
-        // Period: FHIRJSON
-        if let effectiveTimePeriodVal = try container.decodeIfPresent(Period.self, forKey: .effectiveTimePeriod) {
-          self.effectiveTimePeriod = effectiveTimePeriodVal
-        }
-        // Reference: FHIRJSON
-        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
-          self.encounter = encounterVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let medicationCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .medicationCodeableConcept) {
-          self.medicationCodeableConcept = medicationCodeableConceptVal
-        }
-        // Reference: FHIRJSON
-        if let medicationReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .medicationReference) {
-          self.medicationReference = medicationReferenceVal
-        }
-        // String: String
-        if let noteVal = try container.decodeIfPresent(String.self, forKey: .note) {
-          self.note = noteVal
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
-        // Reference: FHIRJSON
-        if let practitionerVal = try container.decodeIfPresent(Reference.self, forKey: .practitioner) {
-          self.practitioner = practitionerVal
-        }
-        // Reference: FHIRJSON
-        if let prescriptionVal = try container.decodeIfPresent(Reference.self, forKey: .prescription) {
-          self.prescription = prescriptionVal
-        }
-        if let reasonGivenVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .reasonGiven) {
-          // CodeableConcept: FHIRJSON
-        }
-        if let reasonNotGivenVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .reasonNotGiven) {
-          // CodeableConcept: FHIRJSON
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Bool: Bool
-        if let wasNotGivenVal = try container.decodeIfPresent(Bool.self, forKey: .wasNotGiven) {
-          self.wasNotGiven.value = wasNotGivenVal
-        }
+        self.device.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .device) ?? [])
+        self.dosage = try container.decodeIfPresent(MedicationAdministrationDosage.self, forKey: .dosage)
+        self.effectiveTimeDateTime = try container.decodeIfPresent(DateTime.self, forKey: .effectiveTimeDateTime)
+        self.effectiveTimePeriod = try container.decodeIfPresent(Period.self, forKey: .effectiveTimePeriod)
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.medicationCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .medicationCodeableConcept)
+        self.medicationReference = try container.decodeIfPresent(Reference.self, forKey: .medicationReference)
+        self.note = try container.decodeIfPresent(String.self, forKey: .note)
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.practitioner = try container.decodeIfPresent(Reference.self, forKey: .practitioner)
+        self.prescription = try container.decodeIfPresent(Reference.self, forKey: .prescription)
+        self.reasonGiven.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .reasonGiven) ?? [])
+        self.reasonNotGiven.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .reasonNotGiven) ?? [])
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.wasNotGiven.value = try container.decodeIfPresent(Bool.self, forKey: .wasNotGiven)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -499,39 +454,14 @@ open class MedicationAdministrationDosage: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let methodVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .method) {
-          self.method = methodVal
-        }
-        // Quantity: FHIRJSON
-        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
-          self.quantity = quantityVal
-        }
-        // Range: FHIRJSON
-        if let rateRangeVal = try container.decodeIfPresent(Range.self, forKey: .rateRange) {
-          self.rateRange = rateRangeVal
-        }
-        // Ratio: FHIRJSON
-        if let rateRatioVal = try container.decodeIfPresent(Ratio.self, forKey: .rateRatio) {
-          self.rateRatio = rateRatioVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let routeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .route) {
-          self.route = routeVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let siteCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .siteCodeableConcept) {
-          self.siteCodeableConcept = siteCodeableConceptVal
-        }
-        // Reference: FHIRJSON
-        if let siteReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .siteReference) {
-          self.siteReference = siteReferenceVal
-        }
-        // String: String
-        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
-          self.text = textVal
-        }
+        self.method = try container.decodeIfPresent(CodeableConcept.self, forKey: .method)
+        self.quantity = try container.decodeIfPresent(Quantity.self, forKey: .quantity)
+        self.rateRange = try container.decodeIfPresent(Range.self, forKey: .rateRange)
+        self.rateRatio = try container.decodeIfPresent(Ratio.self, forKey: .rateRatio)
+        self.route = try container.decodeIfPresent(CodeableConcept.self, forKey: .route)
+        self.siteCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .siteCodeableConcept)
+        self.siteReference = try container.decodeIfPresent(Reference.self, forKey: .siteReference)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
     }
 
     public override func encode(to encoder: Encoder) throws {

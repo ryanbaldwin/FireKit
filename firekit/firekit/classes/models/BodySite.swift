@@ -2,7 +2,7 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -67,28 +67,12 @@ open class BodySite: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        if let imageVals = try container.decodeIfPresent([Attachment].self, forKey: .image) {
-          // Attachment: FHIRJSON
-        }
-        if let modifierVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .modifier) {
-          // CodeableConcept: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.image.append(objectsIn: try container.decodeIfPresent([Attachment].self, forKey: .image) ?? [])
+        self.modifier.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .modifier) ?? [])
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
     }
 
     public override func encode(to encoder: Encoder) throws {

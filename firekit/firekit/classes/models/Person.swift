@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -68,42 +68,16 @@ open class Person: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Bool: Bool
-        if let activeVal = try container.decodeIfPresent(Bool.self, forKey: .active) {
-          self.active.value = activeVal
-        }
-        if let addressVals = try container.decodeIfPresent([Address].self, forKey: .address) {
-          // Address: FHIRJSON
-        }
-        // FHIRDate: String
-        if let birthDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .birthDate) {
-          self.birthDate = birthDateVal
-        }
-        // String: String
-        if let genderVal = try container.decodeIfPresent(String.self, forKey: .gender) {
-          self.gender = genderVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        if let linkVals = try container.decodeIfPresent([PersonLink].self, forKey: .link) {
-          // PersonLink: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let managingOrganizationVal = try container.decodeIfPresent(Reference.self, forKey: .managingOrganization) {
-          self.managingOrganization = managingOrganizationVal
-        }
-        if let nameVals = try container.decodeIfPresent([HumanName].self, forKey: .name) {
-          // HumanName: FHIRJSON
-        }
-        // Attachment: FHIRJSON
-        if let photoVal = try container.decodeIfPresent(Attachment.self, forKey: .photo) {
-          self.photo = photoVal
-        }
-        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
-          // ContactPoint: FHIRJSON
-        }
+        self.active.value = try container.decodeIfPresent(Bool.self, forKey: .active)
+        self.address.append(objectsIn: try container.decodeIfPresent([Address].self, forKey: .address) ?? [])
+        self.birthDate = try container.decodeIfPresent(FHIRDate.self, forKey: .birthDate)
+        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.link.append(objectsIn: try container.decodeIfPresent([PersonLink].self, forKey: .link) ?? [])
+        self.managingOrganization = try container.decodeIfPresent(Reference.self, forKey: .managingOrganization)
+        self.name.append(objectsIn: try container.decodeIfPresent([HumanName].self, forKey: .name) ?? [])
+        self.photo = try container.decodeIfPresent(Attachment.self, forKey: .photo)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -316,15 +290,8 @@ open class PersonLink: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let assuranceVal = try container.decodeIfPresent(String.self, forKey: .assurance) {
-          self.assurance = assuranceVal
-        }
-        // Reference: FHIRJSON
-        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
-          self.target = targetVal
-        }
+        self.assurance = try container.decodeIfPresent(String.self, forKey: .assurance)
+        self.target = try container.decodeIfPresent(Reference.self, forKey: .target)
     }
 
     public override func encode(to encoder: Encoder) throws {

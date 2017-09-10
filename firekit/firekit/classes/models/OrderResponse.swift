@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -67,33 +67,13 @@ open class OrderResponse: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
-          self.date = dateVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let fulfillmentVals = try container.decodeIfPresent([Reference].self, forKey: .fulfillment) {
-          // Reference: FHIRJSON
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // String: String
-        if let orderStatusVal = try container.decodeIfPresent(String.self, forKey: .orderStatus) {
-          self.orderStatus = orderStatusVal
-        }
-        // Reference: FHIRJSON
-        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
-          self.request = requestVal
-        }
-        // Reference: FHIRJSON
-        if let whoVal = try container.decodeIfPresent(Reference.self, forKey: .who) {
-          self.who = whoVal
-        }
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.fulfillment.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .fulfillment) ?? [])
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.orderStatus = try container.decodeIfPresent(String.self, forKey: .orderStatus)
+        self.request = try container.decodeIfPresent(Reference.self, forKey: .request)
+        self.who = try container.decodeIfPresent(Reference.self, forKey: .who)
     }
 
     public override func encode(to encoder: Encoder) throws {

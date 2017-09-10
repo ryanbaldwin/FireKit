@@ -2,7 +2,7 @@
 //  EnrollmentResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentResponse) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -80,46 +80,16 @@ open class EnrollmentResponse: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
-          self.created = createdVal
-        }
-        // String: String
-        if let dispositionVal = try container.decodeIfPresent(String.self, forKey: .disposition) {
-          self.disposition = dispositionVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
-          self.organization = organizationVal
-        }
-        // Coding: FHIRJSON
-        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
-          self.originalRuleset = originalRulesetVal
-        }
-        // String: String
-        if let outcomeVal = try container.decodeIfPresent(String.self, forKey: .outcome) {
-          self.outcome = outcomeVal
-        }
-        // Reference: FHIRJSON
-        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
-          self.request = requestVal
-        }
-        // Reference: FHIRJSON
-        if let requestOrganizationVal = try container.decodeIfPresent(Reference.self, forKey: .requestOrganization) {
-          self.requestOrganization = requestOrganizationVal
-        }
-        // Reference: FHIRJSON
-        if let requestProviderVal = try container.decodeIfPresent(Reference.self, forKey: .requestProvider) {
-          self.requestProvider = requestProviderVal
-        }
-        // Coding: FHIRJSON
-        if let rulesetVal = try container.decodeIfPresent(Coding.self, forKey: .ruleset) {
-          self.ruleset = rulesetVal
-        }
+        self.created = try container.decodeIfPresent(DateTime.self, forKey: .created)
+        self.disposition = try container.decodeIfPresent(String.self, forKey: .disposition)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.organization = try container.decodeIfPresent(Reference.self, forKey: .organization)
+        self.originalRuleset = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset)
+        self.outcome = try container.decodeIfPresent(String.self, forKey: .outcome)
+        self.request = try container.decodeIfPresent(Reference.self, forKey: .request)
+        self.requestOrganization = try container.decodeIfPresent(Reference.self, forKey: .requestOrganization)
+        self.requestProvider = try container.decodeIfPresent(Reference.self, forKey: .requestProvider)
+        self.ruleset = try container.decodeIfPresent(Coding.self, forKey: .ruleset)
     }
 
     public override func encode(to encoder: Encoder) throws {

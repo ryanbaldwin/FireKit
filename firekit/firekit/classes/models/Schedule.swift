@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -62,25 +62,11 @@ open class Schedule: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let actorVal = try container.decodeIfPresent(Reference.self, forKey: .actor) {
-          self.actor = actorVal
-        }
-        // String: String
-        if let commentVal = try container.decodeIfPresent(String.self, forKey: .comment) {
-          self.comment = commentVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Period: FHIRJSON
-        if let planningHorizonVal = try container.decodeIfPresent(Period.self, forKey: .planningHorizon) {
-          self.planningHorizon = planningHorizonVal
-        }
-        if let typeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .type) {
-          // CodeableConcept: FHIRJSON
-        }
+        self.actor = try container.decodeIfPresent(Reference.self, forKey: .actor)
+        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.planningHorizon = try container.decodeIfPresent(Period.self, forKey: .planningHorizon)
+        self.type.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .type) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {

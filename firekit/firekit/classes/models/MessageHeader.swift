@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -98,49 +98,17 @@ open class MessageHeader: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let authorVal = try container.decodeIfPresent(Reference.self, forKey: .author) {
-          self.author = authorVal
-        }
-        if let dataVals = try container.decodeIfPresent([Reference].self, forKey: .data) {
-          // Reference: FHIRJSON
-        }
-        if let destinationVals = try container.decodeIfPresent([MessageHeaderDestination].self, forKey: .destination) {
-          // MessageHeaderDestination: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let entererVal = try container.decodeIfPresent(Reference.self, forKey: .enterer) {
-          self.enterer = entererVal
-        }
-        // Coding: FHIRJSON
-        if let eventVal = try container.decodeIfPresent(Coding.self, forKey: .event) {
-          self.event = eventVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let reasonVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reason) {
-          self.reason = reasonVal
-        }
-        // Reference: FHIRJSON
-        if let receiverVal = try container.decodeIfPresent(Reference.self, forKey: .receiver) {
-          self.receiver = receiverVal
-        }
-        // MessageHeaderResponse: FHIRJSON
-        if let responseVal = try container.decodeIfPresent(MessageHeaderResponse.self, forKey: .response) {
-          self.response = responseVal
-        }
-        // Reference: FHIRJSON
-        if let responsibleVal = try container.decodeIfPresent(Reference.self, forKey: .responsible) {
-          self.responsible = responsibleVal
-        }
-        // MessageHeaderSource: FHIRJSON
-        if let sourceVal = try container.decodeIfPresent(MessageHeaderSource.self, forKey: .source) {
-          self.source = sourceVal
-        }
-        // Instant: String
-        if let timestampVal = try container.decodeIfPresent(Instant.self, forKey: .timestamp) {
-          self.timestamp = timestampVal
-        }
+        self.author = try container.decodeIfPresent(Reference.self, forKey: .author)
+        self.data.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .data) ?? [])
+        self.destination.append(objectsIn: try container.decodeIfPresent([MessageHeaderDestination].self, forKey: .destination) ?? [])
+        self.enterer = try container.decodeIfPresent(Reference.self, forKey: .enterer)
+        self.event = try container.decodeIfPresent(Coding.self, forKey: .event)
+        self.reason = try container.decodeIfPresent(CodeableConcept.self, forKey: .reason)
+        self.receiver = try container.decodeIfPresent(Reference.self, forKey: .receiver)
+        self.response = try container.decodeIfPresent(MessageHeaderResponse.self, forKey: .response)
+        self.responsible = try container.decodeIfPresent(Reference.self, forKey: .responsible)
+        self.source = try container.decodeIfPresent(MessageHeaderSource.self, forKey: .source)
+        self.timestamp = try container.decodeIfPresent(Instant.self, forKey: .timestamp)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -370,19 +338,9 @@ open class MessageHeaderDestination: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let endpointVal = try container.decodeIfPresent(String.self, forKey: .endpoint) {
-          self.endpoint = endpointVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // Reference: FHIRJSON
-        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
-          self.target = targetVal
-        }
+        self.endpoint = try container.decodeIfPresent(String.self, forKey: .endpoint)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.target = try container.decodeIfPresent(Reference.self, forKey: .target)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -497,19 +455,9 @@ open class MessageHeaderResponse: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // Reference: FHIRJSON
-        if let detailsVal = try container.decodeIfPresent(Reference.self, forKey: .details) {
-          self.details = detailsVal
-        }
-        // String: String
-        if let identifierVal = try container.decodeIfPresent(String.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.details = try container.decodeIfPresent(Reference.self, forKey: .details)
+        self.identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -630,27 +578,11 @@ open class MessageHeaderSource: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // ContactPoint: FHIRJSON
-        if let contactVal = try container.decodeIfPresent(ContactPoint.self, forKey: .contact) {
-          self.contact = contactVal
-        }
-        // String: String
-        if let endpointVal = try container.decodeIfPresent(String.self, forKey: .endpoint) {
-          self.endpoint = endpointVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // String: String
-        if let softwareVal = try container.decodeIfPresent(String.self, forKey: .software) {
-          self.software = softwareVal
-        }
-        // String: String
-        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
-          self.version = versionVal
-        }
+        self.contact = try container.decodeIfPresent(ContactPoint.self, forKey: .contact)
+        self.endpoint = try container.decodeIfPresent(String.self, forKey: .endpoint)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.software = try container.decodeIfPresent(String.self, forKey: .software)
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
     }
 
     public override func encode(to encoder: Encoder) throws {

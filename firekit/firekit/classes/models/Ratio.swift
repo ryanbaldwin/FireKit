@@ -2,7 +2,7 @@
 //  Ratio.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Ratio) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -52,15 +52,8 @@ open class Ratio: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Quantity: FHIRJSON
-        if let denominatorVal = try container.decodeIfPresent(Quantity.self, forKey: .denominator) {
-          self.denominator = denominatorVal
-        }
-        // Quantity: FHIRJSON
-        if let numeratorVal = try container.decodeIfPresent(Quantity.self, forKey: .numerator) {
-          self.numerator = numeratorVal
-        }
+        self.denominator = try container.decodeIfPresent(Quantity.self, forKey: .denominator)
+        self.numerator = try container.decodeIfPresent(Quantity.self, forKey: .numerator)
     }
 
     public override func encode(to encoder: Encoder) throws {

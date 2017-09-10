@@ -2,7 +2,7 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -61,27 +61,12 @@ open class Substance: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let categoryVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .category) {
-          // CodeableConcept: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        if let ingredientVals = try container.decodeIfPresent([SubstanceIngredient].self, forKey: .ingredient) {
-          // SubstanceIngredient: FHIRJSON
-        }
-        if let instanceVals = try container.decodeIfPresent([SubstanceInstance].self, forKey: .instance) {
-          // SubstanceInstance: FHIRJSON
-        }
+        self.category.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .category) ?? [])
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.ingredient.append(objectsIn: try container.decodeIfPresent([SubstanceIngredient].self, forKey: .ingredient) ?? [])
+        self.instance.append(objectsIn: try container.decodeIfPresent([SubstanceInstance].self, forKey: .instance) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -247,15 +232,8 @@ open class SubstanceIngredient: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Ratio: FHIRJSON
-        if let quantityVal = try container.decodeIfPresent(Ratio.self, forKey: .quantity) {
-          self.quantity = quantityVal
-        }
-        // Reference: FHIRJSON
-        if let substanceVal = try container.decodeIfPresent(Reference.self, forKey: .substance) {
-          self.substance = substanceVal
-        }
+        self.quantity = try container.decodeIfPresent(Ratio.self, forKey: .quantity)
+        self.substance = try container.decodeIfPresent(Reference.self, forKey: .substance)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -354,19 +332,9 @@ open class SubstanceInstance: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let expiryVal = try container.decodeIfPresent(DateTime.self, forKey: .expiry) {
-          self.expiry = expiryVal
-        }
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // Quantity: FHIRJSON
-        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
-          self.quantity = quantityVal
-        }
+        self.expiry = try container.decodeIfPresent(DateTime.self, forKey: .expiry)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.quantity = try container.decodeIfPresent(Quantity.self, forKey: .quantity)
     }
 
     public override func encode(to encoder: Encoder) throws {

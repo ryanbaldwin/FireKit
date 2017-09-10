@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -115,85 +115,26 @@ open class FamilyMemberHistory: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Quantity: FHIRJSON
-        if let ageQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .ageQuantity) {
-          self.ageQuantity = ageQuantityVal
-        }
-        // Range: FHIRJSON
-        if let ageRangeVal = try container.decodeIfPresent(Range.self, forKey: .ageRange) {
-          self.ageRange = ageRangeVal
-        }
-        // String: String
-        if let ageStringVal = try container.decodeIfPresent(String.self, forKey: .ageString) {
-          self.ageString = ageStringVal
-        }
-        // FHIRDate: String
-        if let bornDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .bornDate) {
-          self.bornDate = bornDateVal
-        }
-        // Period: FHIRJSON
-        if let bornPeriodVal = try container.decodeIfPresent(Period.self, forKey: .bornPeriod) {
-          self.bornPeriod = bornPeriodVal
-        }
-        // String: String
-        if let bornStringVal = try container.decodeIfPresent(String.self, forKey: .bornString) {
-          self.bornString = bornStringVal
-        }
-        if let conditionVals = try container.decodeIfPresent([FamilyMemberHistoryCondition].self, forKey: .condition) {
-          // FamilyMemberHistoryCondition: FHIRJSON
-        }
-        // DateTime: String
-        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
-          self.date = dateVal
-        }
-        // Bool: Bool
-        if let deceasedBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .deceasedBoolean) {
-          self.deceasedBoolean.value = deceasedBooleanVal
-        }
-        // FHIRDate: String
-        if let deceasedDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .deceasedDate) {
-          self.deceasedDate = deceasedDateVal
-        }
-        // Quantity: FHIRJSON
-        if let deceasedQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .deceasedQuantity) {
-          self.deceasedQuantity = deceasedQuantityVal
-        }
-        // Range: FHIRJSON
-        if let deceasedRangeVal = try container.decodeIfPresent(Range.self, forKey: .deceasedRange) {
-          self.deceasedRange = deceasedRangeVal
-        }
-        // String: String
-        if let deceasedStringVal = try container.decodeIfPresent(String.self, forKey: .deceasedString) {
-          self.deceasedString = deceasedStringVal
-        }
-        // String: String
-        if let genderVal = try container.decodeIfPresent(String.self, forKey: .gender) {
-          self.gender = genderVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // Annotation: FHIRJSON
-        if let noteVal = try container.decodeIfPresent(Annotation.self, forKey: .note) {
-          self.note = noteVal
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let relationshipVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .relationship) {
-          self.relationship = relationshipVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
+        self.ageQuantity = try container.decodeIfPresent(Quantity.self, forKey: .ageQuantity)
+        self.ageRange = try container.decodeIfPresent(Range.self, forKey: .ageRange)
+        self.ageString = try container.decodeIfPresent(String.self, forKey: .ageString)
+        self.bornDate = try container.decodeIfPresent(FHIRDate.self, forKey: .bornDate)
+        self.bornPeriod = try container.decodeIfPresent(Period.self, forKey: .bornPeriod)
+        self.bornString = try container.decodeIfPresent(String.self, forKey: .bornString)
+        self.condition.append(objectsIn: try container.decodeIfPresent([FamilyMemberHistoryCondition].self, forKey: .condition) ?? [])
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.deceasedBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .deceasedBoolean)
+        self.deceasedDate = try container.decodeIfPresent(FHIRDate.self, forKey: .deceasedDate)
+        self.deceasedQuantity = try container.decodeIfPresent(Quantity.self, forKey: .deceasedQuantity)
+        self.deceasedRange = try container.decodeIfPresent(Range.self, forKey: .deceasedRange)
+        self.deceasedString = try container.decodeIfPresent(String.self, forKey: .deceasedString)
+        self.gender = try container.decodeIfPresent(String.self, forKey: .gender)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.note = try container.decodeIfPresent(Annotation.self, forKey: .note)
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.relationship = try container.decodeIfPresent(CodeableConcept.self, forKey: .relationship)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -565,35 +506,13 @@ open class FamilyMemberHistoryCondition: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // Annotation: FHIRJSON
-        if let noteVal = try container.decodeIfPresent(Annotation.self, forKey: .note) {
-          self.note = noteVal
-        }
-        // Period: FHIRJSON
-        if let onsetPeriodVal = try container.decodeIfPresent(Period.self, forKey: .onsetPeriod) {
-          self.onsetPeriod = onsetPeriodVal
-        }
-        // Quantity: FHIRJSON
-        if let onsetQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .onsetQuantity) {
-          self.onsetQuantity = onsetQuantityVal
-        }
-        // Range: FHIRJSON
-        if let onsetRangeVal = try container.decodeIfPresent(Range.self, forKey: .onsetRange) {
-          self.onsetRange = onsetRangeVal
-        }
-        // String: String
-        if let onsetStringVal = try container.decodeIfPresent(String.self, forKey: .onsetString) {
-          self.onsetString = onsetStringVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let outcomeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .outcome) {
-          self.outcome = outcomeVal
-        }
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.note = try container.decodeIfPresent(Annotation.self, forKey: .note)
+        self.onsetPeriod = try container.decodeIfPresent(Period.self, forKey: .onsetPeriod)
+        self.onsetQuantity = try container.decodeIfPresent(Quantity.self, forKey: .onsetQuantity)
+        self.onsetRange = try container.decodeIfPresent(Range.self, forKey: .onsetRange)
+        self.onsetString = try container.decodeIfPresent(String.self, forKey: .onsetString)
+        self.outcome = try container.decodeIfPresent(CodeableConcept.self, forKey: .outcome)
     }
 
     public override func encode(to encoder: Encoder) throws {

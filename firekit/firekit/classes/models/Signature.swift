@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -70,30 +70,12 @@ open class Signature: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Base64Binary: String
-        if let blobVal = try container.decodeIfPresent(Base64Binary.self, forKey: .blob) {
-          self.blob = blobVal
-        }
-        // String: String
-        if let contentTypeVal = try container.decodeIfPresent(String.self, forKey: .contentType) {
-          self.contentType = contentTypeVal
-        }
-        if let typeVals = try container.decodeIfPresent([Coding].self, forKey: .type) {
-          // Coding: FHIRJSON
-        }
-        // Instant: String
-        if let whenVal = try container.decodeIfPresent(Instant.self, forKey: .when) {
-          self.when = whenVal
-        }
-        // Reference: FHIRJSON
-        if let whoReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .whoReference) {
-          self.whoReference = whoReferenceVal
-        }
-        // String: String
-        if let whoUriVal = try container.decodeIfPresent(String.self, forKey: .whoUri) {
-          self.whoUri = whoUriVal
-        }
+        self.blob = try container.decodeIfPresent(Base64Binary.self, forKey: .blob)
+        self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
+        self.type.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .type) ?? [])
+        self.when = try container.decodeIfPresent(Instant.self, forKey: .when)
+        self.whoReference = try container.decodeIfPresent(Reference.self, forKey: .whoReference)
+        self.whoUri = try container.decodeIfPresent(String.self, forKey: .whoUri)
     }
 
     public override func encode(to encoder: Encoder) throws {

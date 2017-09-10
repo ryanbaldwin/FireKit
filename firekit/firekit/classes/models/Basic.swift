@@ -2,7 +2,7 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -68,26 +68,11 @@ open class Basic: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let authorVal = try container.decodeIfPresent(Reference.self, forKey: .author) {
-          self.author = authorVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // FHIRDate: String
-        if let createdVal = try container.decodeIfPresent(FHIRDate.self, forKey: .created) {
-          self.created = createdVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
+        self.author = try container.decodeIfPresent(Reference.self, forKey: .author)
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.created = try container.decodeIfPresent(FHIRDate.self, forKey: .created)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
     }
 
     public override func encode(to encoder: Encoder) throws {

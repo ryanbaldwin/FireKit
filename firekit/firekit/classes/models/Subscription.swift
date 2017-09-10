@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -73,37 +73,14 @@ open class Subscription: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // SubscriptionChannel: FHIRJSON
-        if let channelVal = try container.decodeIfPresent(SubscriptionChannel.self, forKey: .channel) {
-          self.channel = channelVal
-        }
-        if let contactVals = try container.decodeIfPresent([ContactPoint].self, forKey: .contact) {
-          // ContactPoint: FHIRJSON
-        }
-        // String: String
-        if let criteriaVal = try container.decodeIfPresent(String.self, forKey: .criteria) {
-          self.criteria = criteriaVal
-        }
-        // Instant: String
-        if let endVal = try container.decodeIfPresent(Instant.self, forKey: .end) {
-          self.end = endVal
-        }
-        // String: String
-        if let errorVal = try container.decodeIfPresent(String.self, forKey: .error) {
-          self.error = errorVal
-        }
-        // String: String
-        if let reasonVal = try container.decodeIfPresent(String.self, forKey: .reason) {
-          self.reason = reasonVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        if let tagVals = try container.decodeIfPresent([Coding].self, forKey: .tag) {
-          // Coding: FHIRJSON
-        }
+        self.channel = try container.decodeIfPresent(SubscriptionChannel.self, forKey: .channel)
+        self.contact.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .contact) ?? [])
+        self.criteria = try container.decodeIfPresent(String.self, forKey: .criteria)
+        self.end = try container.decodeIfPresent(Instant.self, forKey: .end)
+        self.error = try container.decodeIfPresent(String.self, forKey: .error)
+        self.reason = try container.decodeIfPresent(String.self, forKey: .reason)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.tag.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .tag) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -297,23 +274,10 @@ open class SubscriptionChannel: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let endpointVal = try container.decodeIfPresent(String.self, forKey: .endpoint) {
-          self.endpoint = endpointVal
-        }
-        // String: String
-        if let headerVal = try container.decodeIfPresent(String.self, forKey: .header) {
-          self.header = headerVal
-        }
-        // String: String
-        if let payloadVal = try container.decodeIfPresent(String.self, forKey: .payload) {
-          self.payload = payloadVal
-        }
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.endpoint = try container.decodeIfPresent(String.self, forKey: .endpoint)
+        self.header = try container.decodeIfPresent(String.self, forKey: .header)
+        self.payload = try container.decodeIfPresent(String.self, forKey: .payload)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {

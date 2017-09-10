@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -103,67 +103,22 @@ open class DeviceUseRequest: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let bodySiteCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .bodySiteCodeableConcept) {
-          self.bodySiteCodeableConcept = bodySiteCodeableConceptVal
-        }
-        // Reference: FHIRJSON
-        if let bodySiteReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .bodySiteReference) {
-          self.bodySiteReference = bodySiteReferenceVal
-        }
-        // Reference: FHIRJSON
-        if let deviceVal = try container.decodeIfPresent(Reference.self, forKey: .device) {
-          self.device = deviceVal
-        }
-        // Reference: FHIRJSON
-        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
-          self.encounter = encounterVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        if let indicationVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .indication) {
-          // CodeableConcept: FHIRJSON
-        }
-        if let notesVals = try container.decodeIfPresent([String].self, forKey: .notes) {
-          // String: String
-        }
-        // DateTime: String
-        if let orderedOnVal = try container.decodeIfPresent(DateTime.self, forKey: .orderedOn) {
-          self.orderedOn = orderedOnVal
-        }
-        // String: String
-        if let priorityVal = try container.decodeIfPresent(String.self, forKey: .priority) {
-          self.priority = priorityVal
-        }
-        if let prnReasonVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .prnReason) {
-          // CodeableConcept: FHIRJSON
-        }
-        // DateTime: String
-        if let recordedOnVal = try container.decodeIfPresent(DateTime.self, forKey: .recordedOn) {
-          self.recordedOn = recordedOnVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
-        // DateTime: String
-        if let timingDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .timingDateTime) {
-          self.timingDateTime = timingDateTimeVal
-        }
-        // Period: FHIRJSON
-        if let timingPeriodVal = try container.decodeIfPresent(Period.self, forKey: .timingPeriod) {
-          self.timingPeriod = timingPeriodVal
-        }
-        // Timing: FHIRJSON
-        if let timingTimingVal = try container.decodeIfPresent(Timing.self, forKey: .timingTiming) {
-          self.timingTiming = timingTimingVal
-        }
+        self.bodySiteCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .bodySiteCodeableConcept)
+        self.bodySiteReference = try container.decodeIfPresent(Reference.self, forKey: .bodySiteReference)
+        self.device = try container.decodeIfPresent(Reference.self, forKey: .device)
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.indication.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .indication) ?? [])
+        self.notes.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .notes) ?? [])
+        self.orderedOn = try container.decodeIfPresent(DateTime.self, forKey: .orderedOn)
+        self.priority = try container.decodeIfPresent(String.self, forKey: .priority)
+        self.prnReason.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .prnReason) ?? [])
+        self.recordedOn = try container.decodeIfPresent(DateTime.self, forKey: .recordedOn)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.timingDateTime = try container.decodeIfPresent(DateTime.self, forKey: .timingDateTime)
+        self.timingPeriod = try container.decodeIfPresent(Period.self, forKey: .timingPeriod)
+        self.timingTiming = try container.decodeIfPresent(Timing.self, forKey: .timingTiming)
     }
 
     public override func encode(to encoder: Encoder) throws {

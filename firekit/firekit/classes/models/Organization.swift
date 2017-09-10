@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -66,35 +66,14 @@ open class Organization: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Bool: Bool
-        if let activeVal = try container.decodeIfPresent(Bool.self, forKey: .active) {
-          self.active.value = activeVal
-        }
-        if let addressVals = try container.decodeIfPresent([Address].self, forKey: .address) {
-          // Address: FHIRJSON
-        }
-        if let contactVals = try container.decodeIfPresent([OrganizationContact].self, forKey: .contact) {
-          // OrganizationContact: FHIRJSON
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // Reference: FHIRJSON
-        if let partOfVal = try container.decodeIfPresent(Reference.self, forKey: .partOf) {
-          self.partOf = partOfVal
-        }
-        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
-          // ContactPoint: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.active.value = try container.decodeIfPresent(Bool.self, forKey: .active)
+        self.address.append(objectsIn: try container.decodeIfPresent([Address].self, forKey: .address) ?? [])
+        self.contact.append(objectsIn: try container.decodeIfPresent([OrganizationContact].self, forKey: .contact) ?? [])
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.partOf = try container.decodeIfPresent(Reference.self, forKey: .partOf)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -282,22 +261,10 @@ open class OrganizationContact: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Address: FHIRJSON
-        if let addressVal = try container.decodeIfPresent(Address.self, forKey: .address) {
-          self.address = addressVal
-        }
-        // HumanName: FHIRJSON
-        if let nameVal = try container.decodeIfPresent(HumanName.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let purposeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .purpose) {
-          self.purpose = purposeVal
-        }
-        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
-          // ContactPoint: FHIRJSON
-        }
+        self.address = try container.decodeIfPresent(Address.self, forKey: .address)
+        self.name = try container.decodeIfPresent(HumanName.self, forKey: .name)
+        self.purpose = try container.decodeIfPresent(CodeableConcept.self, forKey: .purpose)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {

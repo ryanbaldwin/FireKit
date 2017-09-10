@@ -2,7 +2,7 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -53,24 +53,11 @@ open class Meta: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Instant: String
-        if let lastUpdatedVal = try container.decodeIfPresent(Instant.self, forKey: .lastUpdated) {
-          self.lastUpdated = lastUpdatedVal
-        }
-        if let profileVals = try container.decodeIfPresent([String].self, forKey: .profile) {
-          // String: String
-        }
-        if let securityVals = try container.decodeIfPresent([Coding].self, forKey: .security) {
-          // Coding: FHIRJSON
-        }
-        if let tagVals = try container.decodeIfPresent([Coding].self, forKey: .tag) {
-          // Coding: FHIRJSON
-        }
-        // String: String
-        if let versionIdVal = try container.decodeIfPresent(String.self, forKey: .versionId) {
-          self.versionId = versionIdVal
-        }
+        self.lastUpdated = try container.decodeIfPresent(Instant.self, forKey: .lastUpdated)
+        self.profile.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .profile) ?? [])
+        self.security.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .security) ?? [])
+        self.tag.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .tag) ?? [])
+        self.versionId = try container.decodeIfPresent(String.self, forKey: .versionId)
     }
 
     public override func encode(to encoder: Encoder) throws {

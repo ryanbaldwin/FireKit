@@ -2,7 +2,7 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -88,50 +88,17 @@ open class SupplyDelivery: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let destinationVal = try container.decodeIfPresent(Reference.self, forKey: .destination) {
-          self.destination = destinationVal
-        }
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
-        // Quantity: FHIRJSON
-        if let quantityVal = try container.decodeIfPresent(Quantity.self, forKey: .quantity) {
-          self.quantity = quantityVal
-        }
-        if let receiverVals = try container.decodeIfPresent([Reference].self, forKey: .receiver) {
-          // Reference: FHIRJSON
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Reference: FHIRJSON
-        if let suppliedItemVal = try container.decodeIfPresent(Reference.self, forKey: .suppliedItem) {
-          self.suppliedItem = suppliedItemVal
-        }
-        // Reference: FHIRJSON
-        if let supplierVal = try container.decodeIfPresent(Reference.self, forKey: .supplier) {
-          self.supplier = supplierVal
-        }
-        // DateTime: String
-        if let timeVal = try container.decodeIfPresent(DateTime.self, forKey: .time) {
-          self.time = timeVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
-        // Period: FHIRJSON
-        if let whenPreparedVal = try container.decodeIfPresent(Period.self, forKey: .whenPrepared) {
-          self.whenPrepared = whenPreparedVal
-        }
+        self.destination = try container.decodeIfPresent(Reference.self, forKey: .destination)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.quantity = try container.decodeIfPresent(Quantity.self, forKey: .quantity)
+        self.receiver.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .receiver) ?? [])
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.suppliedItem = try container.decodeIfPresent(Reference.self, forKey: .suppliedItem)
+        self.supplier = try container.decodeIfPresent(Reference.self, forKey: .supplier)
+        self.time = try container.decodeIfPresent(DateTime.self, forKey: .time)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+        self.whenPrepared = try container.decodeIfPresent(Period.self, forKey: .whenPrepared)
     }
 
     public override func encode(to encoder: Encoder) throws {

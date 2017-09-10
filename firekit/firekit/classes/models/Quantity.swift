@@ -2,7 +2,7 @@
 //  Quantity.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Quantity) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -53,27 +53,11 @@ open class Quantity: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // String: String
-        if let comparatorVal = try container.decodeIfPresent(String.self, forKey: .comparator) {
-          self.comparator = comparatorVal
-        }
-        // String: String
-        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
-          self.system = systemVal
-        }
-        // String: String
-        if let unitVal = try container.decodeIfPresent(String.self, forKey: .unit) {
-          self.unit = unitVal
-        }
-        // RealmDecimal: NSNumber
-        if let valueVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .value) {
-          self.value = valueVal
-        }
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.comparator = try container.decodeIfPresent(String.self, forKey: .comparator)
+        self.system = try container.decodeIfPresent(String.self, forKey: .system)
+        self.unit = try container.decodeIfPresent(String.self, forKey: .unit)
+        self.value = try container.decodeIfPresent(RealmDecimal.self, forKey: .value)
     }
 
     public override func encode(to encoder: Encoder) throws {

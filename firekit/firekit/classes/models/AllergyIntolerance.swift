@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -93,61 +93,20 @@ open class AllergyIntolerance: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let categoryVal = try container.decodeIfPresent(String.self, forKey: .category) {
-          self.category = categoryVal
-        }
-        // String: String
-        if let criticalityVal = try container.decodeIfPresent(String.self, forKey: .criticality) {
-          self.criticality = criticalityVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // DateTime: String
-        if let lastOccurenceVal = try container.decodeIfPresent(DateTime.self, forKey: .lastOccurence) {
-          self.lastOccurence = lastOccurenceVal
-        }
-        // Annotation: FHIRJSON
-        if let noteVal = try container.decodeIfPresent(Annotation.self, forKey: .note) {
-          self.note = noteVal
-        }
-        // DateTime: String
-        if let onsetVal = try container.decodeIfPresent(DateTime.self, forKey: .onset) {
-          self.onset = onsetVal
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
-        if let reactionVals = try container.decodeIfPresent([AllergyIntoleranceReaction].self, forKey: .reaction) {
-          // AllergyIntoleranceReaction: FHIRJSON
-        }
-        // DateTime: String
-        if let recordedDateVal = try container.decodeIfPresent(DateTime.self, forKey: .recordedDate) {
-          self.recordedDate = recordedDateVal
-        }
-        // Reference: FHIRJSON
-        if let recorderVal = try container.decodeIfPresent(Reference.self, forKey: .recorder) {
-          self.recorder = recorderVal
-        }
-        // Reference: FHIRJSON
-        if let reporterVal = try container.decodeIfPresent(Reference.self, forKey: .reporter) {
-          self.reporter = reporterVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let substanceVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .substance) {
-          self.substance = substanceVal
-        }
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.category = try container.decodeIfPresent(String.self, forKey: .category)
+        self.criticality = try container.decodeIfPresent(String.self, forKey: .criticality)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.lastOccurence = try container.decodeIfPresent(DateTime.self, forKey: .lastOccurence)
+        self.note = try container.decodeIfPresent(Annotation.self, forKey: .note)
+        self.onset = try container.decodeIfPresent(DateTime.self, forKey: .onset)
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.reaction.append(objectsIn: try container.decodeIfPresent([AllergyIntoleranceReaction].self, forKey: .reaction) ?? [])
+        self.recordedDate = try container.decodeIfPresent(DateTime.self, forKey: .recordedDate)
+        self.recorder = try container.decodeIfPresent(Reference.self, forKey: .recorder)
+        self.reporter = try container.decodeIfPresent(Reference.self, forKey: .reporter)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.substance = try container.decodeIfPresent(CodeableConcept.self, forKey: .substance)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -429,38 +388,14 @@ open class AllergyIntoleranceReaction: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let certaintyVal = try container.decodeIfPresent(String.self, forKey: .certainty) {
-          self.certainty = certaintyVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let exposureRouteVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .exposureRoute) {
-          self.exposureRoute = exposureRouteVal
-        }
-        if let manifestationVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .manifestation) {
-          // CodeableConcept: FHIRJSON
-        }
-        // Annotation: FHIRJSON
-        if let noteVal = try container.decodeIfPresent(Annotation.self, forKey: .note) {
-          self.note = noteVal
-        }
-        // DateTime: String
-        if let onsetVal = try container.decodeIfPresent(DateTime.self, forKey: .onset) {
-          self.onset = onsetVal
-        }
-        // String: String
-        if let severityVal = try container.decodeIfPresent(String.self, forKey: .severity) {
-          self.severity = severityVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let substanceVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .substance) {
-          self.substance = substanceVal
-        }
+        self.certainty = try container.decodeIfPresent(String.self, forKey: .certainty)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.exposureRoute = try container.decodeIfPresent(CodeableConcept.self, forKey: .exposureRoute)
+        self.manifestation.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .manifestation) ?? [])
+        self.note = try container.decodeIfPresent(Annotation.self, forKey: .note)
+        self.onset = try container.decodeIfPresent(DateTime.self, forKey: .onset)
+        self.severity = try container.decodeIfPresent(String.self, forKey: .severity)
+        self.substance = try container.decodeIfPresent(CodeableConcept.self, forKey: .substance)
     }
 
     public override func encode(to encoder: Encoder) throws {

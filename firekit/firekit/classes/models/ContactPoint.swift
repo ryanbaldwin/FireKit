@@ -2,7 +2,7 @@
 //  ContactPoint.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ContactPoint) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -56,27 +56,11 @@ open class ContactPoint: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Period: FHIRJSON
-        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
-          self.period = periodVal
-        }
-        // Int: Int
-        if let rankVal = try container.decodeIfPresent(Int.self, forKey: .rank) {
-          self.rank.value = rankVal
-        }
-        // String: String
-        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
-          self.system = systemVal
-        }
-        // String: String
-        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
-          self.use = useVal
-        }
-        // String: String
-        if let valueVal = try container.decodeIfPresent(String.self, forKey: .value) {
-          self.value = valueVal
-        }
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.rank.value = try container.decodeIfPresent(Int.self, forKey: .rank)
+        self.system = try container.decodeIfPresent(String.self, forKey: .system)
+        self.use = try container.decodeIfPresent(String.self, forKey: .use)
+        self.value = try container.decodeIfPresent(String.self, forKey: .value)
     }
 
     public override func encode(to encoder: Encoder) throws {

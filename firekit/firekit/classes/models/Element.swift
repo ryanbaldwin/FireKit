@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -48,14 +48,8 @@ open class Element: FHIRAbstractBase {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let extension_fhirVals = try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) {
-          // Extension: FHIRJSON
-        }
-        // String: String
-        if let idVal = try container.decodeIfPresent(String.self, forKey: .id) {
-          self.id = idVal
-        }
+        self.extension_fhir.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) ?? [])
+        self.id = try container.decodeIfPresent(String.self, forKey: .id)
     }
 
     public override func encode(to encoder: Encoder) throws {

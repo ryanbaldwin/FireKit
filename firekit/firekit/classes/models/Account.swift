@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -86,50 +86,17 @@ open class Account: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Period: FHIRJSON
-        if let activePeriodVal = try container.decodeIfPresent(Period.self, forKey: .activePeriod) {
-          self.activePeriod = activePeriodVal
-        }
-        // Quantity: FHIRJSON
-        if let balanceVal = try container.decodeIfPresent(Quantity.self, forKey: .balance) {
-          self.balance = balanceVal
-        }
-        // Period: FHIRJSON
-        if let coveragePeriodVal = try container.decodeIfPresent(Period.self, forKey: .coveragePeriod) {
-          self.coveragePeriod = coveragePeriodVal
-        }
-        // Coding: FHIRJSON
-        if let currencyVal = try container.decodeIfPresent(Coding.self, forKey: .currency) {
-          self.currency = currencyVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // Reference: FHIRJSON
-        if let ownerVal = try container.decodeIfPresent(Reference.self, forKey: .owner) {
-          self.owner = ownerVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.activePeriod = try container.decodeIfPresent(Period.self, forKey: .activePeriod)
+        self.balance = try container.decodeIfPresent(Quantity.self, forKey: .balance)
+        self.coveragePeriod = try container.decodeIfPresent(Period.self, forKey: .coveragePeriod)
+        self.currency = try container.decodeIfPresent(Coding.self, forKey: .currency)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.owner = try container.decodeIfPresent(Reference.self, forKey: .owner)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {

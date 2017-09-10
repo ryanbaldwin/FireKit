@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -59,31 +59,13 @@ open class HumanName: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let familyVals = try container.decodeIfPresent([String].self, forKey: .family) {
-          // String: String
-        }
-        if let givenVals = try container.decodeIfPresent([String].self, forKey: .given) {
-          // String: String
-        }
-        // Period: FHIRJSON
-        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
-          self.period = periodVal
-        }
-        if let prefixVals = try container.decodeIfPresent([String].self, forKey: .prefix) {
-          // String: String
-        }
-        if let suffixVals = try container.decodeIfPresent([String].self, forKey: .suffix) {
-          // String: String
-        }
-        // String: String
-        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
-          self.text = textVal
-        }
-        // String: String
-        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
-          self.use = useVal
-        }
+        self.family.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .family) ?? [])
+        self.given.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .given) ?? [])
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.prefix.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .prefix) ?? [])
+        self.suffix.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .suffix) ?? [])
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.use = try container.decodeIfPresent(String.self, forKey: .use)
     }
 
     public override func encode(to encoder: Encoder) throws {

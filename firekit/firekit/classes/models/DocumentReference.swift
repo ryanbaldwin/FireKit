@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -109,70 +109,23 @@ open class DocumentReference: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let authenticatorVal = try container.decodeIfPresent(Reference.self, forKey: .authenticator) {
-          self.authenticator = authenticatorVal
-        }
-        if let authorVals = try container.decodeIfPresent([Reference].self, forKey: .author) {
-          // Reference: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let class_fhirVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .class_fhir) {
-          self.class_fhir = class_fhirVal
-        }
-        if let contentVals = try container.decodeIfPresent([DocumentReferenceContent].self, forKey: .content) {
-          // DocumentReferenceContent: FHIRJSON
-        }
-        // DocumentReferenceContext: FHIRJSON
-        if let contextVal = try container.decodeIfPresent(DocumentReferenceContext.self, forKey: .context) {
-          self.context = contextVal
-        }
-        // DateTime: String
-        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
-          self.created = createdVal
-        }
-        // Reference: FHIRJSON
-        if let custodianVal = try container.decodeIfPresent(Reference.self, forKey: .custodian) {
-          self.custodian = custodianVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let docStatusVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .docStatus) {
-          self.docStatus = docStatusVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Instant: String
-        if let indexedVal = try container.decodeIfPresent(Instant.self, forKey: .indexed) {
-          self.indexed = indexedVal
-        }
-        // Identifier: FHIRJSON
-        if let masterIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .masterIdentifier) {
-          self.masterIdentifier = masterIdentifierVal
-        }
-        if let relatesToVals = try container.decodeIfPresent([DocumentReferenceRelatesTo].self, forKey: .relatesTo) {
-          // DocumentReferenceRelatesTo: FHIRJSON
-        }
-        if let securityLabelVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .securityLabel) {
-          // CodeableConcept: FHIRJSON
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.authenticator = try container.decodeIfPresent(Reference.self, forKey: .authenticator)
+        self.author.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .author) ?? [])
+        self.class_fhir = try container.decodeIfPresent(CodeableConcept.self, forKey: .class_fhir)
+        self.content.append(objectsIn: try container.decodeIfPresent([DocumentReferenceContent].self, forKey: .content) ?? [])
+        self.context = try container.decodeIfPresent(DocumentReferenceContext.self, forKey: .context)
+        self.created = try container.decodeIfPresent(DateTime.self, forKey: .created)
+        self.custodian = try container.decodeIfPresent(Reference.self, forKey: .custodian)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.docStatus = try container.decodeIfPresent(CodeableConcept.self, forKey: .docStatus)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.indexed = try container.decodeIfPresent(Instant.self, forKey: .indexed)
+        self.masterIdentifier = try container.decodeIfPresent(Identifier.self, forKey: .masterIdentifier)
+        self.relatesTo.append(objectsIn: try container.decodeIfPresent([DocumentReferenceRelatesTo].self, forKey: .relatesTo) ?? [])
+        self.securityLabel.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .securityLabel) ?? [])
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -490,14 +443,8 @@ open class DocumentReferenceContent: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Attachment: FHIRJSON
-        if let attachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .attachment) {
-          self.attachment = attachmentVal
-        }
-        if let formatVals = try container.decodeIfPresent([Coding].self, forKey: .format) {
-          // Coding: FHIRJSON
-        }
+        self.attachment = try container.decodeIfPresent(Attachment.self, forKey: .attachment)
+        self.format.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .format) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -615,33 +562,13 @@ open class DocumentReferenceContext: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
-          self.encounter = encounterVal
-        }
-        if let eventVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .event) {
-          // CodeableConcept: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let facilityTypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .facilityType) {
-          self.facilityType = facilityTypeVal
-        }
-        // Period: FHIRJSON
-        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
-          self.period = periodVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let practiceSettingVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .practiceSetting) {
-          self.practiceSetting = practiceSettingVal
-        }
-        if let relatedVals = try container.decodeIfPresent([DocumentReferenceContextRelated].self, forKey: .related) {
-          // DocumentReferenceContextRelated: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let sourcePatientInfoVal = try container.decodeIfPresent(Reference.self, forKey: .sourcePatientInfo) {
-          self.sourcePatientInfo = sourcePatientInfoVal
-        }
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.event.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .event) ?? [])
+        self.facilityType = try container.decodeIfPresent(CodeableConcept.self, forKey: .facilityType)
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.practiceSetting = try container.decodeIfPresent(CodeableConcept.self, forKey: .practiceSetting)
+        self.related.append(objectsIn: try container.decodeIfPresent([DocumentReferenceContextRelated].self, forKey: .related) ?? [])
+        self.sourcePatientInfo = try container.decodeIfPresent(Reference.self, forKey: .sourcePatientInfo)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -805,15 +732,8 @@ open class DocumentReferenceContextRelated: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // Reference: FHIRJSON
-        if let refVal = try container.decodeIfPresent(Reference.self, forKey: .ref) {
-          self.ref = refVal
-        }
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.ref = try container.decodeIfPresent(Reference.self, forKey: .ref)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -910,15 +830,8 @@ open class DocumentReferenceRelatesTo: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // Reference: FHIRJSON
-        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
-          self.target = targetVal
-        }
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.target = try container.decodeIfPresent(Reference.self, forKey: .target)
     }
 
     public override func encode(to encoder: Encoder) throws {

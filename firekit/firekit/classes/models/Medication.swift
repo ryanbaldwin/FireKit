@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -65,27 +65,11 @@ open class Medication: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // Bool: Bool
-        if let isBrandVal = try container.decodeIfPresent(Bool.self, forKey: .isBrand) {
-          self.isBrand.value = isBrandVal
-        }
-        // Reference: FHIRJSON
-        if let manufacturerVal = try container.decodeIfPresent(Reference.self, forKey: .manufacturer) {
-          self.manufacturer = manufacturerVal
-        }
-        // MedicationPackage: FHIRJSON
-        if let packageVal = try container.decodeIfPresent(MedicationPackage.self, forKey: .package) {
-          self.package = packageVal
-        }
-        // MedicationProduct: FHIRJSON
-        if let productVal = try container.decodeIfPresent(MedicationProduct.self, forKey: .product) {
-          self.product = productVal
-        }
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.isBrand.value = try container.decodeIfPresent(Bool.self, forKey: .isBrand)
+        self.manufacturer = try container.decodeIfPresent(Reference.self, forKey: .manufacturer)
+        self.package = try container.decodeIfPresent(MedicationPackage.self, forKey: .package)
+        self.product = try container.decodeIfPresent(MedicationProduct.self, forKey: .product)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -214,14 +198,8 @@ open class MedicationPackage: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let containerVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .container) {
-          self.container = containerVal
-        }
-        if let contentVals = try container.decodeIfPresent([MedicationPackageContent].self, forKey: .content) {
-          // MedicationPackageContent: FHIRJSON
-        }
+        self.container = try container.decodeIfPresent(CodeableConcept.self, forKey: .container)
+        self.content.append(objectsIn: try container.decodeIfPresent([MedicationPackageContent].self, forKey: .content) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -323,15 +301,8 @@ open class MedicationPackageContent: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Quantity: FHIRJSON
-        if let amountVal = try container.decodeIfPresent(Quantity.self, forKey: .amount) {
-          self.amount = amountVal
-        }
-        // Reference: FHIRJSON
-        if let itemVal = try container.decodeIfPresent(Reference.self, forKey: .item) {
-          self.item = itemVal
-        }
+        self.amount = try container.decodeIfPresent(Quantity.self, forKey: .amount)
+        self.item = try container.decodeIfPresent(Reference.self, forKey: .item)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -426,17 +397,9 @@ open class MedicationProduct: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let batchVals = try container.decodeIfPresent([MedicationProductBatch].self, forKey: .batch) {
-          // MedicationProductBatch: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let formVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .form) {
-          self.form = formVal
-        }
-        if let ingredientVals = try container.decodeIfPresent([MedicationProductIngredient].self, forKey: .ingredient) {
-          // MedicationProductIngredient: FHIRJSON
-        }
+        self.batch.append(objectsIn: try container.decodeIfPresent([MedicationProductBatch].self, forKey: .batch) ?? [])
+        self.form = try container.decodeIfPresent(CodeableConcept.self, forKey: .form)
+        self.ingredient.append(objectsIn: try container.decodeIfPresent([MedicationProductIngredient].self, forKey: .ingredient) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -542,15 +505,8 @@ open class MedicationProductBatch: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let expirationDateVal = try container.decodeIfPresent(DateTime.self, forKey: .expirationDate) {
-          self.expirationDate = expirationDateVal
-        }
-        // String: String
-        if let lotNumberVal = try container.decodeIfPresent(String.self, forKey: .lotNumber) {
-          self.lotNumber = lotNumberVal
-        }
+        self.expirationDate = try container.decodeIfPresent(DateTime.self, forKey: .expirationDate)
+        self.lotNumber = try container.decodeIfPresent(String.self, forKey: .lotNumber)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -649,15 +605,8 @@ open class MedicationProductIngredient: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Ratio: FHIRJSON
-        if let amountVal = try container.decodeIfPresent(Ratio.self, forKey: .amount) {
-          self.amount = amountVal
-        }
-        // Reference: FHIRJSON
-        if let itemVal = try container.decodeIfPresent(Reference.self, forKey: .item) {
-          self.item = itemVal
-        }
+        self.amount = try container.decodeIfPresent(Ratio.self, forKey: .amount)
+        self.item = try container.decodeIfPresent(Reference.self, forKey: .item)
     }
 
     public override func encode(to encoder: Encoder) throws {

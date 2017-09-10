@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -80,50 +80,18 @@ open class DocumentManifest: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let authorVals = try container.decodeIfPresent([Reference].self, forKey: .author) {
-          // Reference: FHIRJSON
-        }
-        if let contentVals = try container.decodeIfPresent([DocumentManifestContent].self, forKey: .content) {
-          // DocumentManifestContent: FHIRJSON
-        }
-        // DateTime: String
-        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
-          self.created = createdVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Identifier: FHIRJSON
-        if let masterIdentifierVal = try container.decodeIfPresent(Identifier.self, forKey: .masterIdentifier) {
-          self.masterIdentifier = masterIdentifierVal
-        }
-        if let recipientVals = try container.decodeIfPresent([Reference].self, forKey: .recipient) {
-          // Reference: FHIRJSON
-        }
-        if let relatedVals = try container.decodeIfPresent([DocumentManifestRelated].self, forKey: .related) {
-          // DocumentManifestRelated: FHIRJSON
-        }
-        // String: String
-        if let sourceVal = try container.decodeIfPresent(String.self, forKey: .source) {
-          self.source = sourceVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.author.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .author) ?? [])
+        self.content.append(objectsIn: try container.decodeIfPresent([DocumentManifestContent].self, forKey: .content) ?? [])
+        self.created = try container.decodeIfPresent(DateTime.self, forKey: .created)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.masterIdentifier = try container.decodeIfPresent(Identifier.self, forKey: .masterIdentifier)
+        self.recipient.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .recipient) ?? [])
+        self.related.append(objectsIn: try container.decodeIfPresent([DocumentManifestRelated].self, forKey: .related) ?? [])
+        self.source = try container.decodeIfPresent(String.self, forKey: .source)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -374,15 +342,8 @@ open class DocumentManifestContent: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Attachment: FHIRJSON
-        if let pAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .pAttachment) {
-          self.pAttachment = pAttachmentVal
-        }
-        // Reference: FHIRJSON
-        if let pReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .pReference) {
-          self.pReference = pReferenceVal
-        }
+        self.pAttachment = try container.decodeIfPresent(Attachment.self, forKey: .pAttachment)
+        self.pReference = try container.decodeIfPresent(Reference.self, forKey: .pReference)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -480,15 +441,8 @@ open class DocumentManifestRelated: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // Reference: FHIRJSON
-        if let refVal = try container.decodeIfPresent(Reference.self, forKey: .ref) {
-          self.ref = refVal
-        }
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.ref = try container.decodeIfPresent(Reference.self, forKey: .ref)
     }
 
     public override func encode(to encoder: Encoder) throws {

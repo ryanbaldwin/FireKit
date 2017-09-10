@@ -2,7 +2,7 @@
 //  Period.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Period) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Period) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -46,15 +46,8 @@ open class Period: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let endVal = try container.decodeIfPresent(DateTime.self, forKey: .end) {
-          self.end = endVal
-        }
-        // DateTime: String
-        if let startVal = try container.decodeIfPresent(DateTime.self, forKey: .start) {
-          self.start = startVal
-        }
+        self.end = try container.decodeIfPresent(DateTime.self, forKey: .end)
+        self.start = try container.decodeIfPresent(DateTime.self, forKey: .start)
     }
 
     public override func encode(to encoder: Encoder) throws {

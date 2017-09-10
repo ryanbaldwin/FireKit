@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -50,10 +50,7 @@ open class OperationOutcome: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let issueVals = try container.decodeIfPresent([OperationOutcomeIssue].self, forKey: .issue) {
-          // OperationOutcomeIssue: FHIRJSON
-        }
+        self.issue.append(objectsIn: try container.decodeIfPresent([OperationOutcomeIssue].self, forKey: .issue) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -149,26 +146,11 @@ open class OperationOutcomeIssue: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let codeVal = try container.decodeIfPresent(String.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let detailsVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .details) {
-          self.details = detailsVal
-        }
-        // String: String
-        if let diagnosticsVal = try container.decodeIfPresent(String.self, forKey: .diagnostics) {
-          self.diagnostics = diagnosticsVal
-        }
-        if let locationVals = try container.decodeIfPresent([String].self, forKey: .location) {
-          // String: String
-        }
-        // String: String
-        if let severityVal = try container.decodeIfPresent(String.self, forKey: .severity) {
-          self.severity = severityVal
-        }
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.details = try container.decodeIfPresent(CodeableConcept.self, forKey: .details)
+        self.diagnostics = try container.decodeIfPresent(String.self, forKey: .diagnostics)
+        self.location.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .location) ?? [])
+        self.severity = try container.decodeIfPresent(String.self, forKey: .severity)
     }
 
     public override func encode(to encoder: Encoder) throws {

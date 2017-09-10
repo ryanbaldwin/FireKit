@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -90,69 +90,23 @@ open class ImplementationGuide: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let binaryVals = try container.decodeIfPresent([String].self, forKey: .binary) {
-          // String: String
-        }
-        if let contactVals = try container.decodeIfPresent([ImplementationGuideContact].self, forKey: .contact) {
-          // ImplementationGuideContact: FHIRJSON
-        }
-        // String: String
-        if let copyrightVal = try container.decodeIfPresent(String.self, forKey: .copyright) {
-          self.copyright = copyrightVal
-        }
-        // DateTime: String
-        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
-          self.date = dateVal
-        }
-        if let dependencyVals = try container.decodeIfPresent([ImplementationGuideDependency].self, forKey: .dependency) {
-          // ImplementationGuideDependency: FHIRJSON
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        // Bool: Bool
-        if let experimentalVal = try container.decodeIfPresent(Bool.self, forKey: .experimental) {
-          self.experimental.value = experimentalVal
-        }
-        // String: String
-        if let fhirVersionVal = try container.decodeIfPresent(String.self, forKey: .fhirVersion) {
-          self.fhirVersion = fhirVersionVal
-        }
-        if let globalVals = try container.decodeIfPresent([ImplementationGuideGlobal].self, forKey: .global) {
-          // ImplementationGuideGlobal: FHIRJSON
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        if let packageVals = try container.decodeIfPresent([ImplementationGuidePackage].self, forKey: .package) {
-          // ImplementationGuidePackage: FHIRJSON
-        }
-        // ImplementationGuidePage: FHIRJSON
-        if let pageVal = try container.decodeIfPresent(ImplementationGuidePage.self, forKey: .page) {
-          self.page = pageVal
-        }
-        // String: String
-        if let publisherVal = try container.decodeIfPresent(String.self, forKey: .publisher) {
-          self.publisher = publisherVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // String: String
-        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
-          self.url = urlVal
-        }
-        if let useContextVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) {
-          // CodeableConcept: FHIRJSON
-        }
-        // String: String
-        if let versionVal = try container.decodeIfPresent(String.self, forKey: .version) {
-          self.version = versionVal
-        }
+        self.binary.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .binary) ?? [])
+        self.contact.append(objectsIn: try container.decodeIfPresent([ImplementationGuideContact].self, forKey: .contact) ?? [])
+        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.dependency.append(objectsIn: try container.decodeIfPresent([ImplementationGuideDependency].self, forKey: .dependency) ?? [])
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
+        self.fhirVersion = try container.decodeIfPresent(String.self, forKey: .fhirVersion)
+        self.global.append(objectsIn: try container.decodeIfPresent([ImplementationGuideGlobal].self, forKey: .global) ?? [])
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.package.append(objectsIn: try container.decodeIfPresent([ImplementationGuidePackage].self, forKey: .package) ?? [])
+        self.page = try container.decodeIfPresent(ImplementationGuidePage.self, forKey: .page)
+        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+        self.useContext.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) ?? [])
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -464,14 +418,8 @@ open class ImplementationGuideContact: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
-          // ContactPoint: FHIRJSON
-        }
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -569,15 +517,8 @@ open class ImplementationGuideDependency: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
-        // String: String
-        if let uriVal = try container.decodeIfPresent(String.self, forKey: .uri) {
-          self.uri = uriVal
-        }
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.uri = try container.decodeIfPresent(String.self, forKey: .uri)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -680,15 +621,8 @@ open class ImplementationGuideGlobal: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let profileVal = try container.decodeIfPresent(Reference.self, forKey: .profile) {
-          self.profile = profileVal
-        }
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.profile = try container.decodeIfPresent(Reference.self, forKey: .profile)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -790,18 +724,9 @@ open class ImplementationGuidePackage: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        if let resourceVals = try container.decodeIfPresent([ImplementationGuidePackageResource].self, forKey: .resource) {
-          // ImplementationGuidePackageResource: FHIRJSON
-        }
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.resource.append(objectsIn: try container.decodeIfPresent([ImplementationGuidePackageResource].self, forKey: .resource) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -936,35 +861,13 @@ open class ImplementationGuidePackageResource: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let acronymVal = try container.decodeIfPresent(String.self, forKey: .acronym) {
-          self.acronym = acronymVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        // Reference: FHIRJSON
-        if let exampleForVal = try container.decodeIfPresent(Reference.self, forKey: .exampleFor) {
-          self.exampleFor = exampleForVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // String: String
-        if let purposeVal = try container.decodeIfPresent(String.self, forKey: .purpose) {
-          self.purpose = purposeVal
-        }
-        // Reference: FHIRJSON
-        if let sourceReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .sourceReference) {
-          self.sourceReference = sourceReferenceVal
-        }
-        // String: String
-        if let sourceUriVal = try container.decodeIfPresent(String.self, forKey: .sourceUri) {
-          self.sourceUri = sourceUriVal
-        }
+        self.acronym = try container.decodeIfPresent(String.self, forKey: .acronym)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.exampleFor = try container.decodeIfPresent(Reference.self, forKey: .exampleFor)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.purpose = try container.decodeIfPresent(String.self, forKey: .purpose)
+        self.sourceReference = try container.decodeIfPresent(Reference.self, forKey: .sourceReference)
+        self.sourceUri = try container.decodeIfPresent(String.self, forKey: .sourceUri)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -1142,32 +1045,13 @@ open class ImplementationGuidePage: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let formatVal = try container.decodeIfPresent(String.self, forKey: .format) {
-          self.format = formatVal
-        }
-        // String: String
-        if let kindVal = try container.decodeIfPresent(String.self, forKey: .kind) {
-          self.kind = kindVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        if let packageVals = try container.decodeIfPresent([String].self, forKey: .package) {
-          // String: String
-        }
-        if let pageVals = try container.decodeIfPresent([ImplementationGuidePage].self, forKey: .page) {
-          // ImplementationGuidePage: FHIRJSON
-        }
-        // String: String
-        if let sourceVal = try container.decodeIfPresent(String.self, forKey: .source) {
-          self.source = sourceVal
-        }
-        if let typeVals = try container.decodeIfPresent([String].self, forKey: .type) {
-          // String: String
-        }
+        self.format = try container.decodeIfPresent(String.self, forKey: .format)
+        self.kind = try container.decodeIfPresent(String.self, forKey: .kind)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.package.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .package) ?? [])
+        self.page.append(objectsIn: try container.decodeIfPresent([ImplementationGuidePage].self, forKey: .page) ?? [])
+        self.source = try container.decodeIfPresent(String.self, forKey: .source)
+        self.type.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .type) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {

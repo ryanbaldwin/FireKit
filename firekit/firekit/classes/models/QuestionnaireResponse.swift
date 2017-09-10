@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -88,43 +88,15 @@ open class QuestionnaireResponse: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let authorVal = try container.decodeIfPresent(Reference.self, forKey: .author) {
-          self.author = authorVal
-        }
-        // DateTime: String
-        if let authoredVal = try container.decodeIfPresent(DateTime.self, forKey: .authored) {
-          self.authored = authoredVal
-        }
-        // Reference: FHIRJSON
-        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
-          self.encounter = encounterVal
-        }
-        // QuestionnaireResponseGroup: FHIRJSON
-        if let groupVal = try container.decodeIfPresent(QuestionnaireResponseGroup.self, forKey: .group) {
-          self.group = groupVal
-        }
-        // Identifier: FHIRJSON
-        if let identifierVal = try container.decodeIfPresent(Identifier.self, forKey: .identifier) {
-          self.identifier = identifierVal
-        }
-        // Reference: FHIRJSON
-        if let questionnaireVal = try container.decodeIfPresent(Reference.self, forKey: .questionnaire) {
-          self.questionnaire = questionnaireVal
-        }
-        // Reference: FHIRJSON
-        if let sourceVal = try container.decodeIfPresent(Reference.self, forKey: .source) {
-          self.source = sourceVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
+        self.author = try container.decodeIfPresent(Reference.self, forKey: .author)
+        self.authored = try container.decodeIfPresent(DateTime.self, forKey: .authored)
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.group = try container.decodeIfPresent(QuestionnaireResponseGroup.self, forKey: .group)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.questionnaire = try container.decodeIfPresent(Reference.self, forKey: .questionnaire)
+        self.source = try container.decodeIfPresent(Reference.self, forKey: .source)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -316,29 +288,12 @@ open class QuestionnaireResponseGroup: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let groupVals = try container.decodeIfPresent([QuestionnaireResponseGroup].self, forKey: .group) {
-          // QuestionnaireResponseGroup: FHIRJSON
-        }
-        // String: String
-        if let linkIdVal = try container.decodeIfPresent(String.self, forKey: .linkId) {
-          self.linkId = linkIdVal
-        }
-        if let questionVals = try container.decodeIfPresent([QuestionnaireResponseGroupQuestion].self, forKey: .question) {
-          // QuestionnaireResponseGroupQuestion: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
-        // String: String
-        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
-          self.text = textVal
-        }
-        // String: String
-        if let titleVal = try container.decodeIfPresent(String.self, forKey: .title) {
-          self.title = titleVal
-        }
+        self.group.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroup].self, forKey: .group) ?? [])
+        self.linkId = try container.decodeIfPresent(String.self, forKey: .linkId)
+        self.question.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroupQuestion].self, forKey: .question) ?? [])
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -485,18 +440,9 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let answerVals = try container.decodeIfPresent([QuestionnaireResponseGroupQuestionAnswer].self, forKey: .answer) {
-          // QuestionnaireResponseGroupQuestionAnswer: FHIRJSON
-        }
-        // String: String
-        if let linkIdVal = try container.decodeIfPresent(String.self, forKey: .linkId) {
-          self.linkId = linkIdVal
-        }
-        // String: String
-        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
-          self.text = textVal
-        }
+        self.answer.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroupQuestionAnswer].self, forKey: .answer) ?? [])
+        self.linkId = try container.decodeIfPresent(String.self, forKey: .linkId)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -635,62 +581,20 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let groupVals = try container.decodeIfPresent([QuestionnaireResponseGroup].self, forKey: .group) {
-          // QuestionnaireResponseGroup: FHIRJSON
-        }
-        // Attachment: FHIRJSON
-        if let valueAttachmentVal = try container.decodeIfPresent(Attachment.self, forKey: .valueAttachment) {
-          self.valueAttachment = valueAttachmentVal
-        }
-        // Bool: Bool
-        if let valueBooleanVal = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean) {
-          self.valueBoolean.value = valueBooleanVal
-        }
-        // Coding: FHIRJSON
-        if let valueCodingVal = try container.decodeIfPresent(Coding.self, forKey: .valueCoding) {
-          self.valueCoding = valueCodingVal
-        }
-        // FHIRDate: String
-        if let valueDateVal = try container.decodeIfPresent(FHIRDate.self, forKey: .valueDate) {
-          self.valueDate = valueDateVal
-        }
-        // DateTime: String
-        if let valueDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .valueDateTime) {
-          self.valueDateTime = valueDateTimeVal
-        }
-        // RealmDecimal: NSNumber
-        if let valueDecimalVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .valueDecimal) {
-          self.valueDecimal = valueDecimalVal
-        }
-        // Instant: String
-        if let valueInstantVal = try container.decodeIfPresent(Instant.self, forKey: .valueInstant) {
-          self.valueInstant = valueInstantVal
-        }
-        // Int: Int
-        if let valueIntegerVal = try container.decodeIfPresent(Int.self, forKey: .valueInteger) {
-          self.valueInteger.value = valueIntegerVal
-        }
-        // Quantity: FHIRJSON
-        if let valueQuantityVal = try container.decodeIfPresent(Quantity.self, forKey: .valueQuantity) {
-          self.valueQuantity = valueQuantityVal
-        }
-        // Reference: FHIRJSON
-        if let valueReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .valueReference) {
-          self.valueReference = valueReferenceVal
-        }
-        // String: String
-        if let valueStringVal = try container.decodeIfPresent(String.self, forKey: .valueString) {
-          self.valueString = valueStringVal
-        }
-        // FHIRTime: String
-        if let valueTimeVal = try container.decodeIfPresent(FHIRTime.self, forKey: .valueTime) {
-          self.valueTime = valueTimeVal
-        }
-        // String: String
-        if let valueUriVal = try container.decodeIfPresent(String.self, forKey: .valueUri) {
-          self.valueUri = valueUriVal
-        }
+        self.group.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroup].self, forKey: .group) ?? [])
+        self.valueAttachment = try container.decodeIfPresent(Attachment.self, forKey: .valueAttachment)
+        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
+        self.valueCoding = try container.decodeIfPresent(Coding.self, forKey: .valueCoding)
+        self.valueDate = try container.decodeIfPresent(FHIRDate.self, forKey: .valueDate)
+        self.valueDateTime = try container.decodeIfPresent(DateTime.self, forKey: .valueDateTime)
+        self.valueDecimal = try container.decodeIfPresent(RealmDecimal.self, forKey: .valueDecimal)
+        self.valueInstant = try container.decodeIfPresent(Instant.self, forKey: .valueInstant)
+        self.valueInteger.value = try container.decodeIfPresent(Int.self, forKey: .valueInteger)
+        self.valueQuantity = try container.decodeIfPresent(Quantity.self, forKey: .valueQuantity)
+        self.valueReference = try container.decodeIfPresent(Reference.self, forKey: .valueReference)
+        self.valueString = try container.decodeIfPresent(String.self, forKey: .valueString)
+        self.valueTime = try container.decodeIfPresent(FHIRTime.self, forKey: .valueTime)
+        self.valueUri = try container.decodeIfPresent(String.self, forKey: .valueUri)
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -66,46 +66,16 @@ open class Address: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let cityVal = try container.decodeIfPresent(String.self, forKey: .city) {
-          self.city = cityVal
-        }
-        // String: String
-        if let countryVal = try container.decodeIfPresent(String.self, forKey: .country) {
-          self.country = countryVal
-        }
-        // String: String
-        if let districtVal = try container.decodeIfPresent(String.self, forKey: .district) {
-          self.district = districtVal
-        }
-        if let lineVals = try container.decodeIfPresent([String].self, forKey: .line) {
-          // String: String
-        }
-        // Period: FHIRJSON
-        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
-          self.period = periodVal
-        }
-        // String: String
-        if let postalCodeVal = try container.decodeIfPresent(String.self, forKey: .postalCode) {
-          self.postalCode = postalCodeVal
-        }
-        // String: String
-        if let stateVal = try container.decodeIfPresent(String.self, forKey: .state) {
-          self.state = stateVal
-        }
-        // String: String
-        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
-          self.text = textVal
-        }
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
-        // String: String
-        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
-          self.use = useVal
-        }
+        self.city = try container.decodeIfPresent(String.self, forKey: .city)
+        self.country = try container.decodeIfPresent(String.self, forKey: .country)
+        self.district = try container.decodeIfPresent(String.self, forKey: .district)
+        self.line.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .line) ?? [])
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.postalCode = try container.decodeIfPresent(String.self, forKey: .postalCode)
+        self.state = try container.decodeIfPresent(String.self, forKey: .state)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.use = try container.decodeIfPresent(String.self, forKey: .use)
     }
 
     public override func encode(to encoder: Encoder) throws {

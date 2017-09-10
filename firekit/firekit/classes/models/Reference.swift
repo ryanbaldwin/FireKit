@@ -2,7 +2,7 @@
 //  Reference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Reference) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -44,15 +44,8 @@ open class Reference: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let displayVal = try container.decodeIfPresent(String.self, forKey: .display) {
-          self.display = displayVal
-        }
-        // String: String
-        if let referenceVal = try container.decodeIfPresent(String.self, forKey: .reference) {
-          self.reference = referenceVal
-        }
+        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
     }
 
     public override func encode(to encoder: Encoder) throws {

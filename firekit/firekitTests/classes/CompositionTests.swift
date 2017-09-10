@@ -2,7 +2,7 @@
 //  CompositionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.

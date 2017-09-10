@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -104,72 +104,24 @@ open class ClinicalImpression: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let actionVals = try container.decodeIfPresent([Reference].self, forKey: .action) {
-          // Reference: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let assessorVal = try container.decodeIfPresent(Reference.self, forKey: .assessor) {
-          self.assessor = assessorVal
-        }
-        // DateTime: String
-        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
-          self.date = dateVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let findingVals = try container.decodeIfPresent([ClinicalImpressionFinding].self, forKey: .finding) {
-          // ClinicalImpressionFinding: FHIRJSON
-        }
-        if let investigationsVals = try container.decodeIfPresent([ClinicalImpressionInvestigations].self, forKey: .investigations) {
-          // ClinicalImpressionInvestigations: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
-        if let planVals = try container.decodeIfPresent([Reference].self, forKey: .plan) {
-          // Reference: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let previousVal = try container.decodeIfPresent(Reference.self, forKey: .previous) {
-          self.previous = previousVal
-        }
-        if let problemVals = try container.decodeIfPresent([Reference].self, forKey: .problem) {
-          // Reference: FHIRJSON
-        }
-        // String: String
-        if let prognosisVal = try container.decodeIfPresent(String.self, forKey: .prognosis) {
-          self.prognosis = prognosisVal
-        }
-        // String: String
-        if let protocol_fhirVal = try container.decodeIfPresent(String.self, forKey: .protocol_fhir) {
-          self.protocol_fhir = protocol_fhirVal
-        }
-        if let resolvedVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .resolved) {
-          // CodeableConcept: FHIRJSON
-        }
-        if let ruledOutVals = try container.decodeIfPresent([ClinicalImpressionRuledOut].self, forKey: .ruledOut) {
-          // ClinicalImpressionRuledOut: FHIRJSON
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // String: String
-        if let summaryVal = try container.decodeIfPresent(String.self, forKey: .summary) {
-          self.summary = summaryVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let triggerCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .triggerCodeableConcept) {
-          self.triggerCodeableConcept = triggerCodeableConceptVal
-        }
-        // Reference: FHIRJSON
-        if let triggerReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .triggerReference) {
-          self.triggerReference = triggerReferenceVal
-        }
+        self.action.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .action) ?? [])
+        self.assessor = try container.decodeIfPresent(Reference.self, forKey: .assessor)
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.finding.append(objectsIn: try container.decodeIfPresent([ClinicalImpressionFinding].self, forKey: .finding) ?? [])
+        self.investigations.append(objectsIn: try container.decodeIfPresent([ClinicalImpressionInvestigations].self, forKey: .investigations) ?? [])
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.plan.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .plan) ?? [])
+        self.previous = try container.decodeIfPresent(Reference.self, forKey: .previous)
+        self.problem.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .problem) ?? [])
+        self.prognosis = try container.decodeIfPresent(String.self, forKey: .prognosis)
+        self.protocol_fhir = try container.decodeIfPresent(String.self, forKey: .protocol_fhir)
+        self.resolved.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .resolved) ?? [])
+        self.ruledOut.append(objectsIn: try container.decodeIfPresent([ClinicalImpressionRuledOut].self, forKey: .ruledOut) ?? [])
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.summary = try container.decodeIfPresent(String.self, forKey: .summary)
+        self.triggerCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .triggerCodeableConcept)
+        self.triggerReference = try container.decodeIfPresent(Reference.self, forKey: .triggerReference)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -500,15 +452,8 @@ open class ClinicalImpressionFinding: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let causeVal = try container.decodeIfPresent(String.self, forKey: .cause) {
-          self.cause = causeVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let itemVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .item) {
-          self.item = itemVal
-        }
+        self.cause = try container.decodeIfPresent(String.self, forKey: .cause)
+        self.item = try container.decodeIfPresent(CodeableConcept.self, forKey: .item)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -609,14 +554,8 @@ open class ClinicalImpressionInvestigations: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        if let itemVals = try container.decodeIfPresent([Reference].self, forKey: .item) {
-          // Reference: FHIRJSON
-        }
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.item.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .item) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -716,15 +655,8 @@ open class ClinicalImpressionRuledOut: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let itemVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .item) {
-          self.item = itemVal
-        }
-        // String: String
-        if let reasonVal = try container.decodeIfPresent(String.self, forKey: .reason) {
-          self.reason = reasonVal
-        }
+        self.item = try container.decodeIfPresent(CodeableConcept.self, forKey: .item)
+        self.reason = try container.decodeIfPresent(String.self, forKey: .reason)
     }
 
     public override func encode(to encoder: Encoder) throws {

@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -127,89 +127,29 @@ open class Procedure: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let bodySiteVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .bodySite) {
-          // CodeableConcept: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let categoryVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .category) {
-          self.category = categoryVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        if let complicationVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .complication) {
-          // CodeableConcept: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let encounterVal = try container.decodeIfPresent(Reference.self, forKey: .encounter) {
-          self.encounter = encounterVal
-        }
-        if let focalDeviceVals = try container.decodeIfPresent([ProcedureFocalDevice].self, forKey: .focalDevice) {
-          // ProcedureFocalDevice: FHIRJSON
-        }
-        if let followUpVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .followUp) {
-          // CodeableConcept: FHIRJSON
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let locationVal = try container.decodeIfPresent(Reference.self, forKey: .location) {
-          self.location = locationVal
-        }
-        // Bool: Bool
-        if let notPerformedVal = try container.decodeIfPresent(Bool.self, forKey: .notPerformed) {
-          self.notPerformed.value = notPerformedVal
-        }
-        if let notesVals = try container.decodeIfPresent([Annotation].self, forKey: .notes) {
-          // Annotation: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let outcomeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .outcome) {
-          self.outcome = outcomeVal
-        }
-        // DateTime: String
-        if let performedDateTimeVal = try container.decodeIfPresent(DateTime.self, forKey: .performedDateTime) {
-          self.performedDateTime = performedDateTimeVal
-        }
-        // Period: FHIRJSON
-        if let performedPeriodVal = try container.decodeIfPresent(Period.self, forKey: .performedPeriod) {
-          self.performedPeriod = performedPeriodVal
-        }
-        if let performerVals = try container.decodeIfPresent([ProcedurePerformer].self, forKey: .performer) {
-          // ProcedurePerformer: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let reasonCodeableConceptVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept) {
-          self.reasonCodeableConcept = reasonCodeableConceptVal
-        }
-        if let reasonNotPerformedVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .reasonNotPerformed) {
-          // CodeableConcept: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let reasonReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .reasonReference) {
-          self.reasonReference = reasonReferenceVal
-        }
-        if let reportVals = try container.decodeIfPresent([Reference].self, forKey: .report) {
-          // Reference: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
-          self.request = requestVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // Reference: FHIRJSON
-        if let subjectVal = try container.decodeIfPresent(Reference.self, forKey: .subject) {
-          self.subject = subjectVal
-        }
-        if let usedVals = try container.decodeIfPresent([Reference].self, forKey: .used) {
-          // Reference: FHIRJSON
-        }
+        self.bodySite.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .bodySite) ?? [])
+        self.category = try container.decodeIfPresent(CodeableConcept.self, forKey: .category)
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.complication.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .complication) ?? [])
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.focalDevice.append(objectsIn: try container.decodeIfPresent([ProcedureFocalDevice].self, forKey: .focalDevice) ?? [])
+        self.followUp.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .followUp) ?? [])
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.location = try container.decodeIfPresent(Reference.self, forKey: .location)
+        self.notPerformed.value = try container.decodeIfPresent(Bool.self, forKey: .notPerformed)
+        self.notes.append(objectsIn: try container.decodeIfPresent([Annotation].self, forKey: .notes) ?? [])
+        self.outcome = try container.decodeIfPresent(CodeableConcept.self, forKey: .outcome)
+        self.performedDateTime = try container.decodeIfPresent(DateTime.self, forKey: .performedDateTime)
+        self.performedPeriod = try container.decodeIfPresent(Period.self, forKey: .performedPeriod)
+        self.performer.append(objectsIn: try container.decodeIfPresent([ProcedurePerformer].self, forKey: .performer) ?? [])
+        self.reasonCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept)
+        self.reasonNotPerformed.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .reasonNotPerformed) ?? [])
+        self.reasonReference = try container.decodeIfPresent(Reference.self, forKey: .reasonReference)
+        self.report.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .report) ?? [])
+        self.request = try container.decodeIfPresent(Reference.self, forKey: .request)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.used.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .used) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -621,15 +561,8 @@ open class ProcedureFocalDevice: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let actionVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .action) {
-          self.action = actionVal
-        }
-        // Reference: FHIRJSON
-        if let manipulatedVal = try container.decodeIfPresent(Reference.self, forKey: .manipulated) {
-          self.manipulated = manipulatedVal
-        }
+        self.action = try container.decodeIfPresent(CodeableConcept.self, forKey: .action)
+        self.manipulated = try container.decodeIfPresent(Reference.self, forKey: .manipulated)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -725,15 +658,8 @@ open class ProcedurePerformer: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let actorVal = try container.decodeIfPresent(Reference.self, forKey: .actor) {
-          self.actor = actorVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let roleVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .role) {
-          self.role = roleVal
-        }
+        self.actor = try container.decodeIfPresent(Reference.self, forKey: .actor)
+        self.role = try container.decodeIfPresent(CodeableConcept.self, forKey: .role)
     }
 
     public override func encode(to encoder: Encoder) throws {

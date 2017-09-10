@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -59,17 +59,9 @@ open class ImmunizationRecommendation: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let patientVal = try container.decodeIfPresent(Reference.self, forKey: .patient) {
-          self.patient = patientVal
-        }
-        if let recommendationVals = try container.decodeIfPresent([ImmunizationRecommendationRecommendation].self, forKey: .recommendation) {
-          // ImmunizationRecommendationRecommendation: FHIRJSON
-        }
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.recommendation.append(objectsIn: try container.decodeIfPresent([ImmunizationRecommendationRecommendation].self, forKey: .recommendation) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -208,36 +200,14 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let dateVal = try container.decodeIfPresent(DateTime.self, forKey: .date) {
-          self.date = dateVal
-        }
-        if let dateCriterionVals = try container.decodeIfPresent([ImmunizationRecommendationRecommendationDateCriterion].self, forKey: .dateCriterion) {
-          // ImmunizationRecommendationRecommendationDateCriterion: FHIRJSON
-        }
-        // Int: Int
-        if let doseNumberVal = try container.decodeIfPresent(Int.self, forKey: .doseNumber) {
-          self.doseNumber.value = doseNumberVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let forecastStatusVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .forecastStatus) {
-          self.forecastStatus = forecastStatusVal
-        }
-        // ImmunizationRecommendationRecommendationProtocol: FHIRJSON
-        if let protocol_fhirVal = try container.decodeIfPresent(ImmunizationRecommendationRecommendationProtocol.self, forKey: .protocol_fhir) {
-          self.protocol_fhir = protocol_fhirVal
-        }
-        if let supportingImmunizationVals = try container.decodeIfPresent([Reference].self, forKey: .supportingImmunization) {
-          // Reference: FHIRJSON
-        }
-        if let supportingPatientInformationVals = try container.decodeIfPresent([Reference].self, forKey: .supportingPatientInformation) {
-          // Reference: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let vaccineCodeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .vaccineCode) {
-          self.vaccineCode = vaccineCodeVal
-        }
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.dateCriterion.append(objectsIn: try container.decodeIfPresent([ImmunizationRecommendationRecommendationDateCriterion].self, forKey: .dateCriterion) ?? [])
+        self.doseNumber.value = try container.decodeIfPresent(Int.self, forKey: .doseNumber)
+        self.forecastStatus = try container.decodeIfPresent(CodeableConcept.self, forKey: .forecastStatus)
+        self.protocol_fhir = try container.decodeIfPresent(ImmunizationRecommendationRecommendationProtocol.self, forKey: .protocol_fhir)
+        self.supportingImmunization.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .supportingImmunization) ?? [])
+        self.supportingPatientInformation.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .supportingPatientInformation) ?? [])
+        self.vaccineCode = try container.decodeIfPresent(CodeableConcept.self, forKey: .vaccineCode)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -430,15 +400,8 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // CodeableConcept: FHIRJSON
-        if let codeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .code) {
-          self.code = codeVal
-        }
-        // DateTime: String
-        if let valueVal = try container.decodeIfPresent(DateTime.self, forKey: .value) {
-          self.value = valueVal
-        }
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.value = try container.decodeIfPresent(DateTime.self, forKey: .value)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -538,23 +501,10 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let authorityVal = try container.decodeIfPresent(Reference.self, forKey: .authority) {
-          self.authority = authorityVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        // Int: Int
-        if let doseSequenceVal = try container.decodeIfPresent(Int.self, forKey: .doseSequence) {
-          self.doseSequence.value = doseSequenceVal
-        }
-        // String: String
-        if let seriesVal = try container.decodeIfPresent(String.self, forKey: .series) {
-          self.series = seriesVal
-        }
+        self.authority = try container.decodeIfPresent(Reference.self, forKey: .authority)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.doseSequence.value = try container.decodeIfPresent(Int.self, forKey: .doseSequence)
+        self.series = try container.decodeIfPresent(String.self, forKey: .series)
     }
 
     public override func encode(to encoder: Encoder) throws {

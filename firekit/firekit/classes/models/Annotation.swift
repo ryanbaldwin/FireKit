@@ -2,7 +2,7 @@
 //  Annotation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Annotation) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -59,23 +59,10 @@ open class Annotation: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let authorReferenceVal = try container.decodeIfPresent(Reference.self, forKey: .authorReference) {
-          self.authorReference = authorReferenceVal
-        }
-        // String: String
-        if let authorStringVal = try container.decodeIfPresent(String.self, forKey: .authorString) {
-          self.authorString = authorStringVal
-        }
-        // String: String
-        if let textVal = try container.decodeIfPresent(String.self, forKey: .text) {
-          self.text = textVal
-        }
-        // DateTime: String
-        if let timeVal = try container.decodeIfPresent(DateTime.self, forKey: .time) {
-          self.time = timeVal
-        }
+        self.authorReference = try container.decodeIfPresent(Reference.self, forKey: .authorReference)
+        self.authorString = try container.decodeIfPresent(String.self, forKey: .authorString)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.time = try container.decodeIfPresent(DateTime.self, forKey: .time)
     }
 
     public override func encode(to encoder: Encoder) throws {

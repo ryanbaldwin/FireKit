@@ -2,7 +2,7 @@
 //  PaymentNotice.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/PaymentNotice) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -93,46 +93,16 @@ open class PaymentNotice: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // DateTime: String
-        if let createdVal = try container.decodeIfPresent(DateTime.self, forKey: .created) {
-          self.created = createdVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let organizationVal = try container.decodeIfPresent(Reference.self, forKey: .organization) {
-          self.organization = organizationVal
-        }
-        // Coding: FHIRJSON
-        if let originalRulesetVal = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset) {
-          self.originalRuleset = originalRulesetVal
-        }
-        // Coding: FHIRJSON
-        if let paymentStatusVal = try container.decodeIfPresent(Coding.self, forKey: .paymentStatus) {
-          self.paymentStatus = paymentStatusVal
-        }
-        // Reference: FHIRJSON
-        if let providerVal = try container.decodeIfPresent(Reference.self, forKey: .provider) {
-          self.provider = providerVal
-        }
-        // Reference: FHIRJSON
-        if let requestVal = try container.decodeIfPresent(Reference.self, forKey: .request) {
-          self.request = requestVal
-        }
-        // Reference: FHIRJSON
-        if let responseVal = try container.decodeIfPresent(Reference.self, forKey: .response) {
-          self.response = responseVal
-        }
-        // Coding: FHIRJSON
-        if let rulesetVal = try container.decodeIfPresent(Coding.self, forKey: .ruleset) {
-          self.ruleset = rulesetVal
-        }
-        // Reference: FHIRJSON
-        if let targetVal = try container.decodeIfPresent(Reference.self, forKey: .target) {
-          self.target = targetVal
-        }
+        self.created = try container.decodeIfPresent(DateTime.self, forKey: .created)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.organization = try container.decodeIfPresent(Reference.self, forKey: .organization)
+        self.originalRuleset = try container.decodeIfPresent(Coding.self, forKey: .originalRuleset)
+        self.paymentStatus = try container.decodeIfPresent(Coding.self, forKey: .paymentStatus)
+        self.provider = try container.decodeIfPresent(Reference.self, forKey: .provider)
+        self.request = try container.decodeIfPresent(Reference.self, forKey: .request)
+        self.response = try container.decodeIfPresent(Reference.self, forKey: .response)
+        self.ruleset = try container.decodeIfPresent(Coding.self, forKey: .ruleset)
+        self.target = try container.decodeIfPresent(Reference.self, forKey: .target)
     }
 
     public override func encode(to encoder: Encoder) throws {

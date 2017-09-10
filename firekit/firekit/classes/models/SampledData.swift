@@ -2,7 +2,7 @@
 //  SampledData.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SampledData) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -69,35 +69,13 @@ open class SampledData: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let dataVal = try container.decodeIfPresent(String.self, forKey: .data) {
-          self.data = dataVal
-        }
-        // Int: Int
-        if let dimensionsVal = try container.decodeIfPresent(Int.self, forKey: .dimensions) {
-          self.dimensions.value = dimensionsVal
-        }
-        // RealmDecimal: NSNumber
-        if let factorVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor) {
-          self.factor = factorVal
-        }
-        // RealmDecimal: NSNumber
-        if let lowerLimitVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .lowerLimit) {
-          self.lowerLimit = lowerLimitVal
-        }
-        // Quantity: FHIRJSON
-        if let originVal = try container.decodeIfPresent(Quantity.self, forKey: .origin) {
-          self.origin = originVal
-        }
-        // RealmDecimal: NSNumber
-        if let periodVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .period) {
-          self.period = periodVal
-        }
-        // RealmDecimal: NSNumber
-        if let upperLimitVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .upperLimit) {
-          self.upperLimit = upperLimitVal
-        }
+        self.data = try container.decodeIfPresent(String.self, forKey: .data)
+        self.dimensions.value = try container.decodeIfPresent(Int.self, forKey: .dimensions)
+        self.factor = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor)
+        self.lowerLimit = try container.decodeIfPresent(RealmDecimal.self, forKey: .lowerLimit)
+        self.origin = try container.decodeIfPresent(Quantity.self, forKey: .origin)
+        self.period = try container.decodeIfPresent(RealmDecimal.self, forKey: .period)
+        self.upperLimit = try container.decodeIfPresent(RealmDecimal.self, forKey: .upperLimit)
     }
 
     public override func encode(to encoder: Encoder) throws {

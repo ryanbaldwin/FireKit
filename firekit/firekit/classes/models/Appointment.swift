@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -78,52 +78,18 @@ open class Appointment: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let commentVal = try container.decodeIfPresent(String.self, forKey: .comment) {
-          self.comment = commentVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        // Instant: String
-        if let endVal = try container.decodeIfPresent(Instant.self, forKey: .end) {
-          self.end = endVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Int: Int
-        if let minutesDurationVal = try container.decodeIfPresent(Int.self, forKey: .minutesDuration) {
-          self.minutesDuration.value = minutesDurationVal
-        }
-        if let participantVals = try container.decodeIfPresent([AppointmentParticipant].self, forKey: .participant) {
-          // AppointmentParticipant: FHIRJSON
-        }
-        // Int: Int
-        if let priorityVal = try container.decodeIfPresent(Int.self, forKey: .priority) {
-          self.priority.value = priorityVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let reasonVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .reason) {
-          self.reason = reasonVal
-        }
-        if let slotVals = try container.decodeIfPresent([Reference].self, forKey: .slot) {
-          // Reference: FHIRJSON
-        }
-        // Instant: String
-        if let startVal = try container.decodeIfPresent(Instant.self, forKey: .start) {
-          self.start = startVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.end = try container.decodeIfPresent(Instant.self, forKey: .end)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.minutesDuration.value = try container.decodeIfPresent(Int.self, forKey: .minutesDuration)
+        self.participant.append(objectsIn: try container.decodeIfPresent([AppointmentParticipant].self, forKey: .participant) ?? [])
+        self.priority.value = try container.decodeIfPresent(Int.self, forKey: .priority)
+        self.reason = try container.decodeIfPresent(CodeableConcept.self, forKey: .reason)
+        self.slot.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .slot) ?? [])
+        self.start = try container.decodeIfPresent(Instant.self, forKey: .start)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -368,22 +334,10 @@ open class AppointmentParticipant: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let actorVal = try container.decodeIfPresent(Reference.self, forKey: .actor) {
-          self.actor = actorVal
-        }
-        // String: String
-        if let requiredVal = try container.decodeIfPresent(String.self, forKey: .required) {
-          self.required = requiredVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        if let typeVals = try container.decodeIfPresent([CodeableConcept].self, forKey: .type) {
-          // CodeableConcept: FHIRJSON
-        }
+        self.actor = try container.decodeIfPresent(Reference.self, forKey: .actor)
+        self.required = try container.decodeIfPresent(String.self, forKey: .required)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.type.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .type) ?? [])
     }
 
     public override func encode(to encoder: Encoder) throws {

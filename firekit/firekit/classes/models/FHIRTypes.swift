@@ -19,43 +19,43 @@ public typealias FHIRJSON = [String: Any]
 Data encoded as a base-64 string.
 */
 final public class Base64Binary: Object, ExpressibleByStringLiteral, Comparable, Codable {
-	public typealias UnicodeScalarLiteralType = Character
-	public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
-	
-	@objc public dynamic var value: String?
-	
-	public convenience init(val: String) {
+  public typealias UnicodeScalarLiteralType = Character
+  public typealias ExtendedGraphemeClusterLiteralType = StringLiteralType
+  
+  @objc public dynamic var value: String?
+  
+  public convenience init(val: String) {
         self.init()
-		self.value = val
-	}
-	
+    self.value = val
+  }
+  
     public convenience init(string val: String) {
         self.init()
         self.value = val
     }
     
-	// MARK: - ExpressibleByStringLiteral
-	
-	public convenience init(stringLiteral value: StringLiteralType) {
+  // MARK: - ExpressibleByStringLiteral
+  
+  public convenience init(stringLiteral value: StringLiteralType) {
         self.init()
-		self.value = value
-	}
-	
-	public convenience init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
+    self.value = value
+  }
+  
+  public convenience init(unicodeScalarLiteral value: UnicodeScalarLiteralType) {
         self.init()
-		self.value = "\(value)"
-	}
-	
-	public convenience init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
+    self.value = "\(value)"
+  }
+  
+  public convenience init(extendedGraphemeClusterLiteral value: ExtendedGraphemeClusterLiteralType) {
         self.init()
-		self.value = value
-	}
-	
+    self.value = value
+  }
+  
     public convenience init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.init(val: try container.decode(String.self))
     }
-	
+  
     public func encode(to encoder: Encoder) throws {
         if let value = value {
             var container = encoder.singleValueContainer()
@@ -63,25 +63,25 @@ final public class Base64Binary: Object, ExpressibleByStringLiteral, Comparable,
         }
     }
     
-	// MARK: - Printable, Equatable and Comparable
-	
-	override public var description: String {
-		return "<Base64Binary; \(nil != value ? value!.characters.count : 0) chars>"
-	}
-	
-	public static func <(lh: Base64Binary, rh: Base64Binary) -> Bool {
-		guard let lhs = lh.value else {
-			return true
-		}
-		guard let rhs = rh.value else {
-			return false
-		}
-		return lhs < rhs
-	}
-	
-	public static func ==(lhs: Base64Binary, rhs: Base64Binary) -> Bool {
-		return lhs.value == rhs.value
-	}
+  // MARK: - Printable, Equatable and Comparable
+  
+  override public var description: String {
+    return "<Base64Binary; \(nil != value ? value!.characters.count : 0) chars>"
+  }
+  
+  public static func <(lh: Base64Binary, rh: Base64Binary) -> Bool {
+    guard let lhs = lh.value else {
+      return true
+    }
+    guard let rhs = rh.value else {
+      return false
+    }
+    return lhs < rhs
+  }
+  
+  public static func ==(lhs: Base64Binary, rhs: Base64Binary) -> Bool {
+    return lhs.value == rhs.value
+  }
     
     public static func ==(lhs: Base64Binary?, rhs: Base64Binary) -> Bool {
         if let lhs = lhs {
@@ -103,18 +103,18 @@ final public class Base64Binary: Object, ExpressibleByStringLiteral, Comparable,
 // MARK: - Helper Functions
 
 extension String {
-	/**
-	Convenience getter using `NSLocalizedString()` with no comment.
-	
-	TODO: On Linux this currently simply returns self
-	*/
-	public var fhir_localized: String {
-		#if os(Linux)
-		return self
-		#else
-		return NSLocalizedString(self, comment: "")
-		#endif
-	}
+  /**
+  Convenience getter using `NSLocalizedString()` with no comment.
+  
+  TODO: On Linux this currently simply returns self
+  */
+  public var fhir_localized: String {
+    #if os(Linux)
+    return self
+    #else
+    return NSLocalizedString(self, comment: "")
+    #endif
+  }
 }
 
 /**
@@ -122,7 +122,7 @@ Execute a `print()`, prepending filename, line and function/method name, if `DEB
 */
 public func fhir_logIfDebug(_ message: @autoclosure () -> String, function: String = #function, file: String = #file, line: Int = #line) {
 #if DEBUG
-	print("SwiftFHIR [\(URL(fileURLWithPath: file).lastPathComponent):\(line)] \(function)  \(message())")
+  print("SwiftFHIR [\(URL(fileURLWithPath: file).lastPathComponent):\(line)] \(function)  \(message())")
 #endif
 }
 
@@ -130,6 +130,6 @@ public func fhir_logIfDebug(_ message: @autoclosure () -> String, function: Stri
 Execute a `print()`, prepending filename, line and function/method name and "WARNING" prepended.
 */
 public func fhir_warn(_ message: @autoclosure () -> String, function: String = #function, file: String = #file, line: Int = #line) {
-	print("SwiftFHIR [\(URL(fileURLWithPath: file).lastPathComponent):\(line)] \(function)  WARNING: \(message())")
+  print("SwiftFHIR [\(URL(fileURLWithPath: file).lastPathComponent):\(line)] \(function)  WARNING: \(message())")
 }
 

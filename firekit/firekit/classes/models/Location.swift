@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -85,53 +85,18 @@ open class Location: DomainResource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Address: FHIRJSON
-        if let addressVal = try container.decodeIfPresent(Address.self, forKey: .address) {
-          self.address = addressVal
-        }
-        // String: String
-        if let description_fhirVal = try container.decodeIfPresent(String.self, forKey: .description_fhir) {
-          self.description_fhir = description_fhirVal
-        }
-        if let identifierVals = try container.decodeIfPresent([Identifier].self, forKey: .identifier) {
-          // Identifier: FHIRJSON
-        }
-        // Reference: FHIRJSON
-        if let managingOrganizationVal = try container.decodeIfPresent(Reference.self, forKey: .managingOrganization) {
-          self.managingOrganization = managingOrganizationVal
-        }
-        // String: String
-        if let modeVal = try container.decodeIfPresent(String.self, forKey: .mode) {
-          self.mode = modeVal
-        }
-        // String: String
-        if let nameVal = try container.decodeIfPresent(String.self, forKey: .name) {
-          self.name = nameVal
-        }
-        // Reference: FHIRJSON
-        if let partOfVal = try container.decodeIfPresent(Reference.self, forKey: .partOf) {
-          self.partOf = partOfVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let physicalTypeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .physicalType) {
-          self.physicalType = physicalTypeVal
-        }
-        // LocationPosition: FHIRJSON
-        if let positionVal = try container.decodeIfPresent(LocationPosition.self, forKey: .position) {
-          self.position = positionVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
-        if let telecomVals = try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) {
-          // ContactPoint: FHIRJSON
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.address = try container.decodeIfPresent(Address.self, forKey: .address)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.managingOrganization = try container.decodeIfPresent(Reference.self, forKey: .managingOrganization)
+        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.partOf = try container.decodeIfPresent(Reference.self, forKey: .partOf)
+        self.physicalType = try container.decodeIfPresent(CodeableConcept.self, forKey: .physicalType)
+        self.position = try container.decodeIfPresent(LocationPosition.self, forKey: .position)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -364,19 +329,9 @@ open class LocationPosition: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // RealmDecimal: NSNumber
-        if let altitudeVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .altitude) {
-          self.altitude = altitudeVal
-        }
-        // RealmDecimal: NSNumber
-        if let latitudeVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .latitude) {
-          self.latitude = latitudeVal
-        }
-        // RealmDecimal: NSNumber
-        if let longitudeVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .longitude) {
-          self.longitude = longitudeVal
-        }
+        self.altitude = try container.decodeIfPresent(RealmDecimal.self, forKey: .altitude)
+        self.latitude = try container.decodeIfPresent(RealmDecimal.self, forKey: .latitude)
+        self.longitude = try container.decodeIfPresent(RealmDecimal.self, forKey: .longitude)
     }
 
     public override func encode(to encoder: Encoder) throws {

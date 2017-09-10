@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -61,25 +61,11 @@ open class Bundle: Resource {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        if let entryVals = try container.decodeIfPresent([BundleEntry].self, forKey: .entry) {
-          // BundleEntry: FHIRJSON
-        }
-        if let linkVals = try container.decodeIfPresent([BundleLink].self, forKey: .link) {
-          // BundleLink: FHIRJSON
-        }
-        // Signature: FHIRJSON
-        if let signatureVal = try container.decodeIfPresent(Signature.self, forKey: .signature) {
-          self.signature = signatureVal
-        }
-        // Int: Int
-        if let totalVal = try container.decodeIfPresent(Int.self, forKey: .total) {
-          self.total.value = totalVal
-        }
-        // String: String
-        if let typeVal = try container.decodeIfPresent(String.self, forKey: .type) {
-          self.type = typeVal
-        }
+        self.entry.append(objectsIn: try container.decodeIfPresent([BundleEntry].self, forKey: .entry) ?? [])
+        self.link.append(objectsIn: try container.decodeIfPresent([BundleLink].self, forKey: .link) ?? [])
+        self.signature = try container.decodeIfPresent(Signature.self, forKey: .signature)
+        self.total.value = try container.decodeIfPresent(Int.self, forKey: .total)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -235,30 +221,18 @@ open class BundleEntry: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
+        self.fullUrl = try container.decodeIfPresent(String.self, forKey: .fullUrl)
+        self.link.append(objectsIn: try container.decodeIfPresent([BundleLink].self, forKey: .link) ?? [])
+        self.request = try container.decodeIfPresent(BundleEntryRequest.self, forKey: .request)
 
-        // String: String
-        if let fullUrlVal = try container.decodeIfPresent(String.self, forKey: .fullUrl) {
-          self.fullUrl = fullUrlVal
+        if let resourceContained = try container.decodeIfPresent(ContainedResource.self, forKey: .resource),
+           let resourceType = resourceContained.resourceType {
+            let t = FHIRAbstractBase.resourceType(from: resourceType)
+            self.resource = try container.decodeIfPresent(t, forKey: .resource) as? Resource
         }
-        if let linkVals = try container.decodeIfPresent([BundleLink].self, forKey: .link) {
-          // BundleLink: FHIRJSON
-        }
-        // BundleEntryRequest: FHIRJSON
-        if let requestVal = try container.decodeIfPresent(BundleEntryRequest.self, forKey: .request) {
-          self.request = requestVal
-        }
-        // Resource: FHIRJSON
-        if let resourceVal = try container.decodeIfPresent(Resource.self, forKey: .resource) {
-          self.resource = resourceVal
-        }
-        // BundleEntryResponse: FHIRJSON
-        if let responseVal = try container.decodeIfPresent(BundleEntryResponse.self, forKey: .response) {
-          self.response = responseVal
-        }
-        // BundleEntrySearch: FHIRJSON
-        if let searchVal = try container.decodeIfPresent(BundleEntrySearch.self, forKey: .search) {
-          self.search = searchVal
-        }
+    
+        self.response = try container.decodeIfPresent(BundleEntryResponse.self, forKey: .response)
+        self.search = try container.decodeIfPresent(BundleEntrySearch.self, forKey: .search)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -415,31 +389,12 @@ open class BundleEntryRequest: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let ifMatchVal = try container.decodeIfPresent(String.self, forKey: .ifMatch) {
-          self.ifMatch = ifMatchVal
-        }
-        // Instant: String
-        if let ifModifiedSinceVal = try container.decodeIfPresent(Instant.self, forKey: .ifModifiedSince) {
-          self.ifModifiedSince = ifModifiedSinceVal
-        }
-        // String: String
-        if let ifNoneExistVal = try container.decodeIfPresent(String.self, forKey: .ifNoneExist) {
-          self.ifNoneExist = ifNoneExistVal
-        }
-        // String: String
-        if let ifNoneMatchVal = try container.decodeIfPresent(String.self, forKey: .ifNoneMatch) {
-          self.ifNoneMatch = ifNoneMatchVal
-        }
-        // String: String
-        if let methodVal = try container.decodeIfPresent(String.self, forKey: .method) {
-          self.method = methodVal
-        }
-        // String: String
-        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
-          self.url = urlVal
-        }
+        self.ifMatch = try container.decodeIfPresent(String.self, forKey: .ifMatch)
+        self.ifModifiedSince = try container.decodeIfPresent(Instant.self, forKey: .ifModifiedSince)
+        self.ifNoneExist = try container.decodeIfPresent(String.self, forKey: .ifNoneExist)
+        self.ifNoneMatch = try container.decodeIfPresent(String.self, forKey: .ifNoneMatch)
+        self.method = try container.decodeIfPresent(String.self, forKey: .method)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -594,23 +549,10 @@ open class BundleEntryResponse: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let etagVal = try container.decodeIfPresent(String.self, forKey: .etag) {
-          self.etag = etagVal
-        }
-        // Instant: String
-        if let lastModifiedVal = try container.decodeIfPresent(Instant.self, forKey: .lastModified) {
-          self.lastModified = lastModifiedVal
-        }
-        // String: String
-        if let locationVal = try container.decodeIfPresent(String.self, forKey: .location) {
-          self.location = locationVal
-        }
-        // String: String
-        if let statusVal = try container.decodeIfPresent(String.self, forKey: .status) {
-          self.status = statusVal
-        }
+        self.etag = try container.decodeIfPresent(String.self, forKey: .etag)
+        self.lastModified = try container.decodeIfPresent(Instant.self, forKey: .lastModified)
+        self.location = try container.decodeIfPresent(String.self, forKey: .location)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -726,15 +668,8 @@ open class BundleEntrySearch: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let modeVal = try container.decodeIfPresent(String.self, forKey: .mode) {
-          self.mode = modeVal
-        }
-        // RealmDecimal: NSNumber
-        if let scoreVal = try container.decodeIfPresent(RealmDecimal.self, forKey: .score) {
-          self.score = scoreVal
-        }
+        self.mode = try container.decodeIfPresent(String.self, forKey: .mode)
+        self.score = try container.decodeIfPresent(RealmDecimal.self, forKey: .score)
     }
 
     public override func encode(to encoder: Encoder) throws {
@@ -828,15 +763,8 @@ open class BundleLink: BackboneElement {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // String: String
-        if let relationVal = try container.decodeIfPresent(String.self, forKey: .relation) {
-          self.relation = relationVal
-        }
-        // String: String
-        if let urlVal = try container.decodeIfPresent(String.self, forKey: .url) {
-          self.url = urlVal
-        }
+        self.relation = try container.decodeIfPresent(String.self, forKey: .relation)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
     }
 
     public override func encode(to encoder: Encoder) throws {

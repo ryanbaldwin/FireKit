@@ -2,7 +2,7 @@
 //  Range.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Range) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -52,15 +52,8 @@ open class Range: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Quantity: FHIRJSON
-        if let highVal = try container.decodeIfPresent(Quantity.self, forKey: .high) {
-          self.high = highVal
-        }
-        // Quantity: FHIRJSON
-        if let lowVal = try container.decodeIfPresent(Quantity.self, forKey: .low) {
-          self.low = lowVal
-        }
+        self.high = try container.decodeIfPresent(Quantity.self, forKey: .high)
+        self.low = try container.decodeIfPresent(Quantity.self, forKey: .low)
     }
 
     public override func encode(to encoder: Encoder) throws {

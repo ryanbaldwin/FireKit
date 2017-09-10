@@ -2,7 +2,7 @@
 //  Identifier.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2017-09-09.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Identifier) on 2017-09-10.
 //  2017, SMART Health IT.
 //
 
@@ -63,31 +63,12 @@ open class Identifier: Element {
         try super.init(from: decoder)
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
-
-        // Reference: FHIRJSON
-        if let assignerVal = try container.decodeIfPresent(Reference.self, forKey: .assigner) {
-          self.assigner = assignerVal
-        }
-        // Period: FHIRJSON
-        if let periodVal = try container.decodeIfPresent(Period.self, forKey: .period) {
-          self.period = periodVal
-        }
-        // String: String
-        if let systemVal = try container.decodeIfPresent(String.self, forKey: .system) {
-          self.system = systemVal
-        }
-        // CodeableConcept: FHIRJSON
-        if let typeVal = try container.decodeIfPresent(CodeableConcept.self, forKey: .type) {
-          self.type = typeVal
-        }
-        // String: String
-        if let useVal = try container.decodeIfPresent(String.self, forKey: .use) {
-          self.use = useVal
-        }
-        // String: String
-        if let valueVal = try container.decodeIfPresent(String.self, forKey: .value) {
-          self.value = valueVal
-        }
+        self.assigner = try container.decodeIfPresent(Reference.self, forKey: .assigner)
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.system = try container.decodeIfPresent(String.self, forKey: .system)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+        self.use = try container.decodeIfPresent(String.self, forKey: .use)
+        self.value = try container.decodeIfPresent(String.self, forKey: .value)
     }
 
     public override func encode(to encoder: Encoder) throws {
