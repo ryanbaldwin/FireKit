@@ -21,17 +21,12 @@ extension XCTestCase {
 		return proj.appendingPathComponent("firekitTests/fhir-parser/downloads")
 	}
 	
-	func readJSONFile(_ filename: String) throws -> FHIRJSON {
+	func readJSONFile(_ filename: String) throws -> Data {
 		let dir = type(of: self).testsDirectory
 		XCTAssertTrue(FileManager.default.fileExists(atPath: dir), "You must either first download the FHIR spec or manually adjust `XCTestCase.testsDirectory` to point to your FHIR download directory")
 		
 		let path = (dir as NSString).appendingPathComponent(filename)
-		let data = try Data(contentsOf: URL(fileURLWithPath: path))
-		let json = try JSONSerialization.jsonObject(with: data, options: []) as? FHIRJSON
-		if let json = json {
-			return json
-		}
-		throw FHIRError.error("Unable to decode «\(path)» to JSON")
+		return try Data(contentsOf: URL(fileURLWithPath: path))
 	}
 }
 
