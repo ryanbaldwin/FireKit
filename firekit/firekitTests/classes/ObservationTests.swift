@@ -42,8 +42,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm1(instance!)
@@ -166,8 +166,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm2(instance!)
@@ -286,8 +286,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm3(instance!)
@@ -392,8 +392,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm4(instance!)
@@ -500,8 +500,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm5(instance!)
@@ -606,8 +606,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm6(instance!)
@@ -712,8 +712,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm7(instance!)
@@ -824,8 +824,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm8(instance!)
@@ -944,8 +944,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm9(instance!)
@@ -1061,8 +1061,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runObservation10(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Observation successfully, but threw: \(error)")
 		}
 
 		testObservationRealm10(instance!)

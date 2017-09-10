@@ -42,8 +42,8 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDataElement1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw: \(error)")
 		}
 
 		testDataElementRealm1(instance!)
@@ -168,8 +168,8 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDataElement2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DataElement successfully, but threw: \(error)")
 		}
 
 		testDataElementRealm2(instance!)

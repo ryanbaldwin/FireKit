@@ -42,8 +42,8 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runImagingStudy1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImagingStudy successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ImagingStudy successfully, but threw: \(error)")
 		}
 
 		testImagingStudyRealm1(instance!)

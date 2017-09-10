@@ -42,8 +42,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runLocation1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw: \(error)")
 		}
 
 		testLocationRealm1(instance!)
@@ -141,8 +141,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runLocation2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw: \(error)")
 		}
 
 		testLocationRealm2(instance!)
@@ -248,8 +248,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runLocation3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw: \(error)")
 		}
 
 		testLocationRealm3(instance!)
@@ -344,8 +344,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runLocation4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw: \(error)")
 		}
 
 		testLocationRealm4(instance!)
@@ -444,8 +444,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runLocation5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw: \(error)")
 		}
 
 		testLocationRealm5(instance!)
@@ -539,8 +539,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runLocation6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Location successfully, but threw: \(error)")
 		}
 
 		testLocationRealm6(instance!)

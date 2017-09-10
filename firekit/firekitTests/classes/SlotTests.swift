@@ -42,8 +42,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSlot1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw: \(error)")
 		}
 
 		testSlotRealm1(instance!)
@@ -137,8 +137,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSlot2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw: \(error)")
 		}
 
 		testSlotRealm2(instance!)
@@ -229,8 +229,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSlot3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw: \(error)")
 		}
 
 		testSlotRealm3(instance!)
@@ -321,8 +321,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSlot4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Slot successfully, but threw: \(error)")
 		}
 
 		testSlotRealm4(instance!)

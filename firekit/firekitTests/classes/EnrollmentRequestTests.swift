@@ -42,8 +42,8 @@ class EnrollmentRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEnrollmentRequest1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test EnrollmentRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test EnrollmentRequest successfully, but threw: \(error)")
 		}
 
 		testEnrollmentRequestRealm1(instance!)

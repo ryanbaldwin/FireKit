@@ -42,8 +42,8 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCoverage1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw: \(error)")
 		}
 
 		testCoverageRealm1(instance!)
@@ -139,8 +139,8 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCoverage2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw: \(error)")
 		}
 
 		testCoverageRealm2(instance!)

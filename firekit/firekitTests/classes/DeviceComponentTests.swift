@@ -42,8 +42,8 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDeviceComponent1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw: \(error)")
 		}
 
 		testDeviceComponentRealm1(instance!)
@@ -152,8 +152,8 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDeviceComponent2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceComponent successfully, but threw: \(error)")
 		}
 
 		testDeviceComponentRealm2(instance!)

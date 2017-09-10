@@ -42,8 +42,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm1(instance!)
@@ -173,8 +173,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm2(instance!)
@@ -293,8 +293,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm3(instance!)
@@ -412,8 +412,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm4(instance!)
@@ -528,8 +528,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm5(instance!)
@@ -658,8 +658,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm6(instance!)
@@ -783,8 +783,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm7(instance!)
@@ -910,8 +910,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm8(instance!)
@@ -1033,8 +1033,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm9(instance!)
@@ -1142,8 +1142,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runNutritionOrder10(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
 		}
 
 		testNutritionOrderRealm10(instance!)

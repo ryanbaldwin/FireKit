@@ -42,8 +42,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm1(instance!)
@@ -143,8 +143,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm2(instance!)
@@ -250,8 +250,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm3(instance!)
@@ -357,8 +357,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm4(instance!)
@@ -464,8 +464,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm5(instance!)
@@ -571,8 +571,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm6(instance!)
@@ -675,8 +675,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm7(instance!)
@@ -774,8 +774,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedure8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Procedure successfully, but threw: \(error)")
 		}
 
 		testProcedureRealm8(instance!)

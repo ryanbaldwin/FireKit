@@ -44,8 +44,8 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try run{{ class.name }}{{ loop.index }}(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test {{ class.name }} successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test {{ class.name }} successfully, but threw: \(error)")
 		}
 
 		test{{ class.name}}Realm{{ loop.index}}(instance!)

@@ -42,8 +42,8 @@ class PersonTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPerson1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Person successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Person successfully, but threw: \(error)")
 		}
 
 		testPersonRealm1(instance!)
@@ -138,8 +138,8 @@ class PersonTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPerson2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Person successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Person successfully, but threw: \(error)")
 		}
 
 		testPersonRealm2(instance!)

@@ -42,8 +42,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runValueSet1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
 		}
 
 		testValueSetRealm1(instance!)
@@ -185,8 +185,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runValueSet2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
 		}
 
 		testValueSetRealm2(instance!)
@@ -304,8 +304,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runValueSet3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
 		}
 
 		testValueSetRealm3(instance!)
@@ -409,8 +409,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runValueSet4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
 		}
 
 		testValueSetRealm4(instance!)
@@ -512,8 +512,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runValueSet5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
 		}
 
 		testValueSetRealm5(instance!)
@@ -621,8 +621,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runValueSet6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
 		}
 
 		testValueSetRealm6(instance!)

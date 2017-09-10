@@ -42,8 +42,8 @@ class DocumentManifestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDocumentManifest1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DocumentManifest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DocumentManifest successfully, but threw: \(error)")
 		}
 
 		testDocumentManifestRealm1(instance!)

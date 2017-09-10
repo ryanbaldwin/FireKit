@@ -42,8 +42,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm1(instance!)
@@ -146,8 +146,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm2(instance!)
@@ -260,8 +260,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm3(instance!)
@@ -361,8 +361,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm4(instance!)
@@ -460,8 +460,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm5(instance!)
@@ -559,8 +559,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm6(instance!)
@@ -659,8 +659,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm7(instance!)
@@ -787,8 +787,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm8(instance!)
@@ -924,8 +924,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm9(instance!)
@@ -1014,8 +1014,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPatient10(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Patient successfully, but threw: \(error)")
 		}
 
 		testPatientRealm10(instance!)

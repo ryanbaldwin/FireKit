@@ -42,8 +42,8 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSupplyDelivery1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test SupplyDelivery successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test SupplyDelivery successfully, but threw: \(error)")
 		}
 
 		testSupplyDeliveryRealm1(instance!)

@@ -42,8 +42,8 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runImmunizationRecommendation1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImmunizationRecommendation successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ImmunizationRecommendation successfully, but threw: \(error)")
 		}
 
 		testImmunizationRecommendationRealm1(instance!)

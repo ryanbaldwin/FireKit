@@ -42,8 +42,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm1(instance!)
@@ -160,8 +160,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm2(instance!)
@@ -263,8 +263,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm3(instance!)
@@ -366,8 +366,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm4(instance!)
@@ -485,8 +485,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm5(instance!)
@@ -588,8 +588,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm6(instance!)
@@ -684,8 +684,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm7(instance!)
@@ -772,8 +772,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm8(instance!)
@@ -860,8 +860,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm9(instance!)
@@ -954,8 +954,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOrganization10(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Organization successfully, but threw: \(error)")
 		}
 
 		testOrganizationRealm10(instance!)

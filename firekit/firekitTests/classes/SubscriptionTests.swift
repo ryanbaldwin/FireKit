@@ -42,8 +42,8 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubscription1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw: \(error)")
 		}
 
 		testSubscriptionRealm1(instance!)
@@ -140,8 +140,8 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubscription2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Subscription successfully, but threw: \(error)")
 		}
 
 		testSubscriptionRealm2(instance!)

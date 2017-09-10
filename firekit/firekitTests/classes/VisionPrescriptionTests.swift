@@ -42,8 +42,8 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runVisionPrescription1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw: \(error)")
 		}
 
 		testVisionPrescriptionRealm1(instance!)
@@ -162,8 +162,8 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runVisionPrescription2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw: \(error)")
 		}
 
 		testVisionPrescriptionRealm2(instance!)

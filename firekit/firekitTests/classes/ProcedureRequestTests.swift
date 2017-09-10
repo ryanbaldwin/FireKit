@@ -42,8 +42,8 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcedureRequest1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcedureRequest successfully, but threw: \(error)")
 		}
 
 		testProcedureRequestRealm1(instance!)

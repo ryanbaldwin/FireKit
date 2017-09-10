@@ -42,8 +42,8 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDocumentReference1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DocumentReference successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DocumentReference successfully, but threw: \(error)")
 		}
 
 		testDocumentReferenceRealm1(instance!)

@@ -42,8 +42,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDevice1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
 		}
 
 		testDeviceRealm1(instance!)
@@ -137,8 +137,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDevice2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
 		}
 
 		testDeviceRealm2(instance!)
@@ -230,8 +230,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDevice3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
 		}
 
 		testDeviceRealm3(instance!)
@@ -325,8 +325,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDevice4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
 		}
 
 		testDeviceRealm4(instance!)
@@ -417,8 +417,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDevice5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
 		}
 
 		testDeviceRealm5(instance!)

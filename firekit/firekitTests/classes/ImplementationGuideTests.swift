@@ -42,8 +42,8 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runImplementationGuide1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImplementationGuide successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ImplementationGuide successfully, but threw: \(error)")
 		}
 
 		testImplementationGuideRealm1(instance!)

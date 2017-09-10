@@ -195,7 +195,7 @@ final public class FHIRTime: Object, DateAndTime, Codable {
     }
     
     /// If initialized from string, this was the string for the seconds; we use this to remember precision.
-    public internal(set) var tookSecondsFromString: String?
+    @objc public internal(set) dynamic var tookSecondsFromString: String?
     
     /**
     Dedicated initializer. Overflows seconds and minutes to arrive at the final time, which must be less than 24:00:00 or it will be capped.

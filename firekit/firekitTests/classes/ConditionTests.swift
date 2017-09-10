@@ -42,8 +42,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm1(instance!)
@@ -151,8 +151,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm2(instance!)
@@ -262,8 +262,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm3(instance!)
@@ -370,8 +370,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm4(instance!)
@@ -481,8 +481,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm5(instance!)
@@ -587,8 +587,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm6(instance!)
@@ -696,8 +696,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm7(instance!)
@@ -807,8 +807,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm8(instance!)
@@ -900,8 +900,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm9(instance!)
@@ -996,8 +996,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runCondition10(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Condition successfully, but threw: \(error)")
 		}
 
 		testConditionRealm10(instance!)

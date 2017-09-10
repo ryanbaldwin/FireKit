@@ -42,8 +42,8 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runQuestionnaireResponse1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw: \(error)")
 		}
 
 		testQuestionnaireResponseRealm1(instance!)
@@ -169,8 +169,8 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runQuestionnaireResponse2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw: \(error)")
 		}
 
 		testQuestionnaireResponseRealm2(instance!)
@@ -286,8 +286,8 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runQuestionnaireResponse3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw: \(error)")
 		}
 
 		testQuestionnaireResponseRealm3(instance!)
@@ -396,8 +396,8 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runQuestionnaireResponse4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test QuestionnaireResponse successfully, but threw: \(error)")
 		}
 
 		testQuestionnaireResponseRealm4(instance!)

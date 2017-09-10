@@ -42,8 +42,8 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAppointment1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw: \(error)")
 		}
 
 		testAppointmentRealm1(instance!)
@@ -149,8 +149,8 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAppointment2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw: \(error)")
 		}
 
 		testAppointmentRealm2(instance!)
@@ -255,8 +255,8 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAppointment3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Appointment successfully, but threw: \(error)")
 		}
 
 		testAppointmentRealm3(instance!)

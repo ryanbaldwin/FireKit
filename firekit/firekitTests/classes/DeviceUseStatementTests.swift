@@ -42,8 +42,8 @@ class DeviceUseStatementTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDeviceUseStatement1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceUseStatement successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceUseStatement successfully, but threw: \(error)")
 		}
 
 		testDeviceUseStatementRealm1(instance!)

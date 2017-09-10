@@ -42,8 +42,8 @@ class PaymentNoticeTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runPaymentNotice1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test PaymentNotice successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test PaymentNotice successfully, but threw: \(error)")
 		}
 
 		testPaymentNoticeRealm1(instance!)

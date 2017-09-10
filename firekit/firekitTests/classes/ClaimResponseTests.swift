@@ -42,8 +42,8 @@ class ClaimResponseTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaimResponse1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ClaimResponse successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ClaimResponse successfully, but threw: \(error)")
 		}
 
 		testClaimResponseRealm1(instance!)

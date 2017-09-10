@@ -42,8 +42,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm1(instance!)
@@ -146,8 +146,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm2(instance!)
@@ -250,8 +250,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm3(instance!)
@@ -379,8 +379,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm4(instance!)
@@ -500,8 +500,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm5(instance!)
@@ -609,8 +609,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm6(instance!)
@@ -718,8 +718,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm7(instance!)
@@ -871,8 +871,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAuditEvent8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
 		}
 
 		testAuditEventRealm8(instance!)

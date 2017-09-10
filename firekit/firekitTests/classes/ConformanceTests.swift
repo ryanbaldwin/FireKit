@@ -42,8 +42,8 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runConformance1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw: \(error)")
 		}
 
 		testConformanceRealm1(instance!)
@@ -204,8 +204,8 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runConformance2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Conformance successfully, but threw: \(error)")
 		}
 
 		testConformanceRealm2(instance!)

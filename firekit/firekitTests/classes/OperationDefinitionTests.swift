@@ -42,8 +42,8 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationDefinition1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationDefinition successfully, but threw: \(error)")
 		}
 
 		testOperationDefinitionRealm1(instance!)

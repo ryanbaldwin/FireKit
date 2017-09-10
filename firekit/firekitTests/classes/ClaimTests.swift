@@ -42,8 +42,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm1(instance!)
@@ -155,8 +155,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm2(instance!)
@@ -318,8 +318,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm3(instance!)
@@ -435,8 +435,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm4(instance!)
@@ -652,8 +652,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm5(instance!)
@@ -765,8 +765,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm6(instance!)
@@ -878,8 +878,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm7(instance!)
@@ -1024,8 +1024,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm8(instance!)
@@ -1137,8 +1137,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runClaim9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Claim successfully, but threw: \(error)")
 		}
 
 		testClaimRealm9(instance!)

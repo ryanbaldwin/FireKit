@@ -42,8 +42,8 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBinary1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Binary successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Binary successfully, but threw: \(error)")
 		}
 
 		testBinaryRealm1(instance!)

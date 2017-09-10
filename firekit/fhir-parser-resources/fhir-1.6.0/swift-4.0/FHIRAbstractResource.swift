@@ -18,7 +18,7 @@ open class FHIRAbstractResource: FHIRAbstractBase {
     }
 	
     /// A specific version id, if the instance was created using `vread`.
-	open var _versionId: String?
+	@objc open dynamic var _versionId: String?
 	override open var description: String {
 		return "<\(type(of: self).resourceType)>"
 	}

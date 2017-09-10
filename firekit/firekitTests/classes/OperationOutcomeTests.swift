@@ -42,8 +42,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
 		}
 
 		testOperationOutcomeRealm1(instance!)
@@ -130,8 +130,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
 		}
 
 		testOperationOutcomeRealm2(instance!)
@@ -221,8 +221,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
 		}
 
 		testOperationOutcomeRealm3(instance!)
@@ -309,8 +309,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
 		}
 
 		testOperationOutcomeRealm4(instance!)
@@ -398,8 +398,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
 		}
 
 		testOperationOutcomeRealm5(instance!)
@@ -487,8 +487,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runOperationOutcome6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
 		}
 
 		testOperationOutcomeRealm6(instance!)

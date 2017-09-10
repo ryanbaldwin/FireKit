@@ -42,8 +42,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm1(instance!)
@@ -139,8 +139,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm2(instance!)
@@ -254,8 +254,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm3(instance!)
@@ -369,8 +369,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm4(instance!)
@@ -478,8 +478,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm5(instance!)
@@ -593,8 +593,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm6(instance!)
@@ -708,8 +708,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm7(instance!)
@@ -823,8 +823,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBundle8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
 		}
 
 		testBundleRealm8(instance!)

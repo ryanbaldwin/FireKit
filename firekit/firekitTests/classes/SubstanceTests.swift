@@ -42,8 +42,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubstance1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
 		}
 
 		testSubstanceRealm1(instance!)
@@ -153,8 +153,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubstance2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
 		}
 
 		testSubstanceRealm2(instance!)
@@ -240,8 +240,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubstance3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
 		}
 
 		testSubstanceRealm3(instance!)
@@ -327,8 +327,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubstance4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
 		}
 
 		testSubstanceRealm4(instance!)
@@ -419,8 +419,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubstance5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
 		}
 
 		testSubstanceRealm5(instance!)
@@ -519,8 +519,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runSubstance6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
 		}
 
 		testSubstanceRealm6(instance!)

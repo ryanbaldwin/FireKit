@@ -42,8 +42,8 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runMessageHeader1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test MessageHeader successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test MessageHeader successfully, but threw: \(error)")
 		}
 
 		testMessageHeaderRealm1(instance!)

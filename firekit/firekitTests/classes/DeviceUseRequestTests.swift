@@ -42,8 +42,8 @@ class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDeviceUseRequest1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest successfully, but threw: \(error)")
 		}
 
 		testDeviceUseRequestRealm1(instance!)

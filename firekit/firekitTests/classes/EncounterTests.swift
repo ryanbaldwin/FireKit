@@ -42,8 +42,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm1(instance!)
@@ -159,8 +159,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm2(instance!)
@@ -276,8 +276,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm3(instance!)
@@ -394,8 +394,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm4(instance!)
@@ -493,8 +493,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm5(instance!)
@@ -602,8 +602,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm6(instance!)
@@ -710,8 +710,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm7(instance!)
@@ -810,8 +810,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm8(instance!)
@@ -904,8 +904,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runEncounter9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
 		}
 
 		testEncounterRealm9(instance!)

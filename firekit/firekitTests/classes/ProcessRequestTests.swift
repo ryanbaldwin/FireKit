@@ -42,8 +42,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm1(instance!)
@@ -132,8 +132,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm2(instance!)
@@ -224,8 +224,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm3(instance!)
@@ -315,8 +315,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm4(instance!)
@@ -408,8 +408,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm5(instance!)
@@ -499,8 +499,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm6(instance!)
@@ -592,8 +592,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm7(instance!)
@@ -684,8 +684,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest8(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm8(instance!)
@@ -776,8 +776,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runProcessRequest9(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test ProcessRequest successfully, but threw: \(error)")
 		}
 
 		testProcessRequestRealm9(instance!)

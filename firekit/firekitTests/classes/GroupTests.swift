@@ -42,8 +42,8 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runGroup1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw: \(error)")
 		}
 
 		testGroupRealm1(instance!)
@@ -137,8 +137,8 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runGroup2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Group successfully, but threw: \(error)")
 		}
 
 		testGroupRealm2(instance!)

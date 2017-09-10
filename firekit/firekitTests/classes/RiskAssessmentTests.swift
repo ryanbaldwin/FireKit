@@ -42,8 +42,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runRiskAssessment1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw: \(error)")
 		}
 
 		testRiskAssessmentRealm1(instance!)
@@ -141,8 +141,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runRiskAssessment2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw: \(error)")
 		}
 
 		testRiskAssessmentRealm2(instance!)
@@ -226,8 +226,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runRiskAssessment3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw: \(error)")
 		}
 
 		testRiskAssessmentRealm3(instance!)
@@ -320,8 +320,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runRiskAssessment4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test RiskAssessment successfully, but threw: \(error)")
 		}
 
 		testRiskAssessmentRealm4(instance!)

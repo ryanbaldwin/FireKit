@@ -42,8 +42,8 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBasic1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw: \(error)")
 		}
 
 		testBasicRealm1(instance!)
@@ -127,8 +127,8 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBasic2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw: \(error)")
 		}
 
 		testBasicRealm2(instance!)
@@ -233,8 +233,8 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runBasic3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Basic successfully, but threw: \(error)")
 		}
 
 		testBasicRealm3(instance!)

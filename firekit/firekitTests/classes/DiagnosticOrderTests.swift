@@ -42,8 +42,8 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDiagnosticOrder1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
 		}
 
 		testDiagnosticOrderRealm1(instance!)
@@ -140,8 +140,8 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDiagnosticOrder2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
 		}
 
 		testDiagnosticOrderRealm2(instance!)
@@ -235,8 +235,8 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runDiagnosticOrder3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test DiagnosticOrder successfully, but threw: \(error)")
 		}
 
 		testDiagnosticOrderRealm3(instance!)

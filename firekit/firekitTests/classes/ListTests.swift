@@ -42,8 +42,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runList1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw: \(error)")
 		}
 
 		testListRealm1(instance!)
@@ -139,8 +139,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runList2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw: \(error)")
 		}
 
 		testListRealm2(instance!)
@@ -236,8 +236,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runList3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw: \(error)")
 		}
 
 		testListRealm3(instance!)
@@ -332,8 +332,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runList4(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw: \(error)")
 		}
 
 		testListRealm4(instance!)
@@ -444,8 +444,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runList5(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw: \(error)")
 		}
 
 		testListRealm5(instance!)
@@ -552,8 +552,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runList6(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw: \(error)")
 		}
 
 		testListRealm6(instance!)
@@ -654,8 +654,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runList7(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test List successfully, but threw: \(error)")
 		}
 
 		testListRealm7(instance!)

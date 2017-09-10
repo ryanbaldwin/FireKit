@@ -42,8 +42,8 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runHealthcareService1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test HealthcareService successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test HealthcareService successfully, but threw: \(error)")
 		}
 
 		testHealthcareServiceRealm1(instance!)

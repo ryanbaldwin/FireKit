@@ -42,8 +42,8 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runMedia1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw: \(error)")
 		}
 
 		testMediaRealm1(instance!)
@@ -152,8 +152,8 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runMedia2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw: \(error)")
 		}
 
 		testMediaRealm2(instance!)
@@ -244,8 +244,8 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runMedia3(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Media successfully, but threw: \(error)")
 		}
 
 		testMediaRealm3(instance!)

@@ -42,8 +42,8 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runParameters1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw: \(error)")
 		}
 
 		testParametersRealm1(instance!)

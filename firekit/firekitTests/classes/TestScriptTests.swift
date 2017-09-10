@@ -42,8 +42,8 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runTestScript1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw: \(error)")
 		}
 
 		testTestScriptRealm1(instance!)
@@ -213,8 +213,8 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runTestScript2(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test TestScript successfully, but threw: \(error)")
 		}
 
 		testTestScriptRealm2(instance!)

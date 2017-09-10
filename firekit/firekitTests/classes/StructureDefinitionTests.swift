@@ -42,8 +42,8 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runStructureDefinition1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test StructureDefinition successfully, but threw: \(error)")
 		}
 
 		testStructureDefinitionRealm1(instance!)

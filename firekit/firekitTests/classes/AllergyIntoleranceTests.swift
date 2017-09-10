@@ -42,8 +42,8 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
             try! realm.write { copy!.populate(from: instance!) }
             try runAllergyIntolerance1(JSONEncoder().encode(copy!))  
 		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test AllergyIntolerance successfully, but threw")
+		catch let error {
+			XCTAssertTrue(false, "Must instantiate and test AllergyIntolerance successfully, but threw: \(error)")
 		}
 
 		testAllergyIntoleranceRealm1(instance!)
