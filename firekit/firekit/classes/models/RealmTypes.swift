@@ -29,14 +29,14 @@ final public class RealmString: Object, Codable {
     }
 }
 
-final public class RealmInt: Object {
+final public class RealmInt: Object, Codable {
     @objc public dynamic var value: Int = 0
 
     public convenience init(val: Int) {
         self.init()
         self.value = val
     }
-    
+
     public convenience init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         self.init(val: try container.decode(Int.self))

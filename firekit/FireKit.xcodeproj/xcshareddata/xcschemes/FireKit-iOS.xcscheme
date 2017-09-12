@@ -52,6 +52,11 @@
                BlueprintName = "FireKit-iOSTests"
                ReferencedContainer = "container:FireKit.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "ParametersTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
