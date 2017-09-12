@@ -58,40 +58,7 @@ open class OperationOutcome: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(Array(self.issue), forKey: .issue)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["issue"] {
-				presentKeys.insert("issue")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = OperationOutcomeIssue.instantiate(fromArray: val, owner: self) as? [OperationOutcomeIssue] {
-						if let realm = self.realm { realm.delete(self.issue) }
-						self.issue.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "issue", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "issue"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if issue.count > 0 {
-			json["issue"] = Array(issue.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -172,88 +139,7 @@ open class OperationOutcomeIssue: BackboneElement {
         try container.encode(Array(self.location), forKey: .location)
         try container.encodeIfPresent(self.severity, forKey: .severity)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["details"] {
-				presentKeys.insert("details")
-				if let val = exist as? FHIRJSON {
-					upsert(details: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "details", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["diagnostics"] {
-				presentKeys.insert("diagnostics")
-				if let val = exist as? String {
-					self.diagnostics = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "diagnostics", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["location"] {
-				presentKeys.insert("location")
-				if let val = exist as? [String] {
-					self.location.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "location", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["severity"] {
-				presentKeys.insert("severity")
-				if let val = exist as? String {
-					self.severity = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "severity"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let details = self.details {
-			json["details"] = details.asJSON()
-		}
-		if let diagnostics = self.diagnostics {
-			json["diagnostics"] = diagnostics.asJSON()
-		}
-		if location.count > 0 {
-			json["location"] = Array(location.map() { $0.value })
-		}
-		if let severity = self.severity {
-			json["severity"] = severity.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

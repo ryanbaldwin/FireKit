@@ -56,49 +56,7 @@ open class CodeableConcept: Element {
         try container.encode(Array(self.coding), forKey: .coding)
         try container.encodeIfPresent(self.text, forKey: .text)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["coding"] {
-				presentKeys.insert("coding")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
-						if let realm = self.realm { realm.delete(self.coding) }
-						self.coding.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "coding", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if coding.count > 0 {
-			json["coding"] = Array(coding.map() { $0.asJSON() })
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

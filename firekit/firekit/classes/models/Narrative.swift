@@ -61,52 +61,7 @@ open class Narrative: Element {
         try container.encodeIfPresent(self.div, forKey: .div)
         try container.encodeIfPresent(self.status, forKey: .status)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["div"] {
-				presentKeys.insert("div")
-				if let val = exist as? String {
-					self.div = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "div", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "div"))
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "status"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let div = self.div {
-			json["div"] = div.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

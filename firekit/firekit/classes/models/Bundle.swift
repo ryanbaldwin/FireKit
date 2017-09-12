@@ -77,91 +77,7 @@ open class Bundle: Resource {
         try container.encodeIfPresent(self.total.value, forKey: .total)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["entry"] {
-				presentKeys.insert("entry")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = BundleEntry.instantiate(fromArray: val, owner: self) as? [BundleEntry] {
-						if let realm = self.realm { realm.delete(self.entry) }
-						self.entry.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entry", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["link"] {
-				presentKeys.insert("link")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = BundleLink.instantiate(fromArray: val, owner: self) as? [BundleLink] {
-						if let realm = self.realm { realm.delete(self.link) }
-						self.link.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "link", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["signature"] {
-				presentKeys.insert("signature")
-				if let val = exist as? FHIRJSON {
-					upsert(signature: Signature(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "signature", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["total"] {
-				presentKeys.insert("total")
-				if let val = exist as? Int {
-					self.total.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "total", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if entry.count > 0 {
-			json["entry"] = Array(entry.map() { $0.asJSON() })
-		}
-		if link.count > 0 {
-			json["link"] = Array(link.map() { $0.asJSON() })
-		}
-		if let signature = self.signature {
-			json["signature"] = signature.asJSON()
-		}
-		if let total = self.total.value {
-			json["total"] = total.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -253,97 +169,7 @@ open class BundleEntry: BackboneElement {
         try container.encodeIfPresent(self.response, forKey: .response)
         try container.encodeIfPresent(self.search, forKey: .search)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["fullUrl"] {
-				presentKeys.insert("fullUrl")
-				if let val = exist as? String {
-					self.fullUrl = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "fullUrl", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["link"] {
-				presentKeys.insert("link")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = BundleLink.instantiate(fromArray: val, owner: self) as? [BundleLink] {
-						if let realm = self.realm { realm.delete(self.link) }
-						self.link.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "link", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["request"] {
-				presentKeys.insert("request")
-				if let val = exist as? FHIRJSON {
-					upsert(request: BundleEntryRequest(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "request", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["resource"] {
-				presentKeys.insert("resource")
-				if let val = exist as? FHIRJSON {
-					self.resource = Resource.instantiate(from: val, owner: self) as? Resource
-				}
-				else {
-					errors.append(FHIRJSONError(key: "resource", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["response"] {
-				presentKeys.insert("response")
-				if let val = exist as? FHIRJSON {
-					upsert(response: BundleEntryResponse(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "response", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["search"] {
-				presentKeys.insert("search")
-				if let val = exist as? FHIRJSON {
-					upsert(search: BundleEntrySearch(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "search", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let fullUrl = self.fullUrl {
-			json["fullUrl"] = fullUrl.asJSON()
-		}
-		if link.count > 0 {
-			json["link"] = Array(link.map() { $0.asJSON() })
-		}
-		if let request = self.request {
-			json["request"] = request.asJSON()
-		}
-		if let resource = self.resource {
-			json["resource"] = resource.asJSON()
-		}
-		if let response = self.response {
-			json["response"] = response.asJSON()
-		}
-		if let search = self.search {
-			json["search"] = search.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -425,100 +251,7 @@ open class BundleEntryRequest: BackboneElement {
         try container.encodeIfPresent(self.method, forKey: .method)
         try container.encodeIfPresent(self.url, forKey: .url)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["ifMatch"] {
-				presentKeys.insert("ifMatch")
-				if let val = exist as? String {
-					self.ifMatch = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "ifMatch", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["ifModifiedSince"] {
-				presentKeys.insert("ifModifiedSince")
-				if let val = exist as? String {
-					self.ifModifiedSince = Instant(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "ifModifiedSince", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["ifNoneExist"] {
-				presentKeys.insert("ifNoneExist")
-				if let val = exist as? String {
-					self.ifNoneExist = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "ifNoneExist", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["ifNoneMatch"] {
-				presentKeys.insert("ifNoneMatch")
-				if let val = exist as? String {
-					self.ifNoneMatch = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "ifNoneMatch", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["method"] {
-				presentKeys.insert("method")
-				if let val = exist as? String {
-					self.method = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "method", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "method"))
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "url"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let ifMatch = self.ifMatch {
-			json["ifMatch"] = ifMatch.asJSON()
-		}
-		if let ifModifiedSince = self.ifModifiedSince {
-			json["ifModifiedSince"] = ifModifiedSince.asJSON()
-		}
-		if let ifNoneExist = self.ifNoneExist {
-			json["ifNoneExist"] = ifNoneExist.asJSON()
-		}
-		if let ifNoneMatch = self.ifNoneMatch {
-			json["ifNoneMatch"] = ifNoneMatch.asJSON()
-		}
-		if let method = self.method {
-			json["method"] = method.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -591,73 +324,7 @@ open class BundleEntryResponse: BackboneElement {
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.status, forKey: .status)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["etag"] {
-				presentKeys.insert("etag")
-				if let val = exist as? String {
-					self.etag = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "etag", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["lastModified"] {
-				presentKeys.insert("lastModified")
-				if let val = exist as? String {
-					self.lastModified = Instant(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "lastModified", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["location"] {
-				presentKeys.insert("location")
-				if let val = exist as? String {
-					self.location = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "location", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "status"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let etag = self.etag {
-			json["etag"] = etag.asJSON()
-		}
-		if let lastModified = self.lastModified {
-			json["lastModified"] = lastModified.asJSON()
-		}
-		if let location = self.location {
-			json["location"] = location.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -716,46 +383,7 @@ open class BundleEntrySearch: BackboneElement {
         try container.encodeIfPresent(self.mode, forKey: .mode)
         try container.encodeIfPresent(self.score, forKey: .score)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["mode"] {
-				presentKeys.insert("mode")
-				if let val = exist as? String {
-					self.mode = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "mode", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["score"] {
-				presentKeys.insert("score")
-				if let val = exist as? NSNumber {
-					self.score = RealmDecimal(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "score", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let mode = self.mode {
-			json["mode"] = mode.asJSON()
-		}
-		if let score = self.score {
-			json["score"] = score.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -821,52 +449,7 @@ open class BundleLink: BackboneElement {
         try container.encodeIfPresent(self.relation, forKey: .relation)
         try container.encodeIfPresent(self.url, forKey: .url)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["relation"] {
-				presentKeys.insert("relation")
-				if let val = exist as? String {
-					self.relation = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "relation", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "relation"))
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "url"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let relation = self.relation {
-			json["relation"] = relation.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

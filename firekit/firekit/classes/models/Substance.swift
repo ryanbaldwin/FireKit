@@ -79,109 +79,7 @@ open class Substance: DomainResource {
         try container.encode(Array(self.ingredient), forKey: .ingredient)
         try container.encode(Array(self.instance), forKey: .instance)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["category"] {
-				presentKeys.insert("category")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.category) }
-						self.category.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "category", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					upsert(code: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["ingredient"] {
-				presentKeys.insert("ingredient")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = SubstanceIngredient.instantiate(fromArray: val, owner: self) as? [SubstanceIngredient] {
-						if let realm = self.realm { realm.delete(self.ingredient) }
-						self.ingredient.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "ingredient", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["instance"] {
-				presentKeys.insert("instance")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = SubstanceInstance.instantiate(fromArray: val, owner: self) as? [SubstanceInstance] {
-						if let realm = self.realm { realm.delete(self.instance) }
-						self.instance.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "instance", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if category.count > 0 {
-			json["category"] = Array(category.map() { $0.asJSON() })
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if ingredient.count > 0 {
-			json["ingredient"] = Array(ingredient.map() { $0.asJSON() })
-		}
-		if instance.count > 0 {
-			json["instance"] = Array(instance.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -252,49 +150,7 @@ open class SubstanceIngredient: BackboneElement {
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
         try container.encodeIfPresent(self.substance, forKey: .substance)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					upsert(quantity: Ratio(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["substance"] {
-				presentKeys.insert("substance")
-				if let val = exist as? FHIRJSON {
-					upsert(substance: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "substance"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		if let substance = self.substance {
-			json["substance"] = substance.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
@@ -364,58 +220,7 @@ open class SubstanceInstance: BackboneElement {
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["expiry"] {
-				presentKeys.insert("expiry")
-				if let val = exist as? String {
-					self.expiry = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "expiry", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					upsert(quantity: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let expiry = self.expiry {
-			json["expiry"] = expiry.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

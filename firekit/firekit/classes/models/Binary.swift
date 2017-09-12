@@ -63,52 +63,7 @@ open class Binary: Resource {
         try container.encodeIfPresent(self.content, forKey: .content)
         try container.encodeIfPresent(self.contentType, forKey: .contentType)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["content"] {
-				presentKeys.insert("content")
-				if let val = exist as? String {
-					self.content = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "content", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "content"))
-			}
-			if let exist = js["contentType"] {
-				presentKeys.insert("contentType")
-				if let val = exist as? String {
-					self.contentType = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "contentType"))
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let content = self.content {
-			json["content"] = content.asJSON()
-		}
-		if let contentType = self.contentType {
-			json["contentType"] = contentType.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

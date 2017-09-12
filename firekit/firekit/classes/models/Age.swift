@@ -44,9 +44,7 @@ open class Age: Quantity {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
     }
-/*
 
-*/
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

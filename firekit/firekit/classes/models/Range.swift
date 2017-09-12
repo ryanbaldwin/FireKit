@@ -62,46 +62,7 @@ open class Range: Element {
         try container.encodeIfPresent(self.high, forKey: .high)
         try container.encodeIfPresent(self.low, forKey: .low)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["high"] {
-				presentKeys.insert("high")
-				if let val = exist as? FHIRJSON {
-					upsert(high: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "high", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["low"] {
-				presentKeys.insert("low")
-				if let val = exist as? FHIRJSON {
-					upsert(low: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "low", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let high = self.high {
-			json["high"] = high.asJSON()
-		}
-		if let low = self.low {
-			json["low"] = low.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)

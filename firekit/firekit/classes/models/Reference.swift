@@ -54,46 +54,7 @@ open class Reference: Element {
         try container.encodeIfPresent(self.display, forKey: .display)
         try container.encodeIfPresent(self.reference, forKey: .reference)
     }
-/*
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reference"] {
-				presentKeys.insert("reference")
-				if let val = exist as? String {
-					self.reference = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: type(of: exist)))
-				}
-			}
-		}
-		return errors.isEmpty ? nil : errors
-	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		if let reference = self.reference {
-			json["reference"] = reference.asJSON()
-		}
-		
-		return json
-	}
-*/
+
 	public override func copy(with zone: NSZone? = nil) -> Any {
 		do {
 			let data = try JSONEncoder().encode(self)
