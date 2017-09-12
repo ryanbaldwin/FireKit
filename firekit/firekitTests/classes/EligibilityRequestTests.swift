@@ -49,8 +49,8 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
     testEligibilityRequestRealm1(instance!)
   }
 
-  func testEligibilityRequest1RealmPK() { 
-      do {
+  func testEligibilityRequest1RealmPK() {    
+    do {
         let instance: FireKit.EligibilityRequest = try runEligibilityRequest1()
         let copy = (instance.copy() as! FireKit.EligibilityRequest)
 

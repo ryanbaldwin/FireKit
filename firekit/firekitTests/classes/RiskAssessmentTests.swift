@@ -49,8 +49,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
     testRiskAssessmentRealm1(instance!)
   }
 
-  func testRiskAssessment1RealmPK() { 
-      do {
+  func testRiskAssessment1RealmPK() {    
+    do {
         let instance: FireKit.RiskAssessment = try runRiskAssessment1()
         let copy = (instance.copy() as! FireKit.RiskAssessment)
 
@@ -148,8 +148,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
     testRiskAssessmentRealm2(instance!)
   }
 
-  func testRiskAssessment2RealmPK() { 
-      do {
+  func testRiskAssessment2RealmPK() {    
+    do {
         let instance: FireKit.RiskAssessment = try runRiskAssessment2()
         let copy = (instance.copy() as! FireKit.RiskAssessment)
 
@@ -233,8 +233,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
     testRiskAssessmentRealm3(instance!)
   }
 
-  func testRiskAssessment3RealmPK() { 
-      do {
+  func testRiskAssessment3RealmPK() {    
+    do {
         let instance: FireKit.RiskAssessment = try runRiskAssessment3()
         let copy = (instance.copy() as! FireKit.RiskAssessment)
 
@@ -327,8 +327,8 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
     testRiskAssessmentRealm4(instance!)
   }
 
-  func testRiskAssessment4RealmPK() { 
-      do {
+  func testRiskAssessment4RealmPK() {    
+    do {
         let instance: FireKit.RiskAssessment = try runRiskAssessment4()
         let copy = (instance.copy() as! FireKit.RiskAssessment)
 

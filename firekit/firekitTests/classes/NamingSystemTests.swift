@@ -49,8 +49,8 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     testNamingSystemRealm1(instance!)
   }
 
-  func testNamingSystem1RealmPK() { 
-      do {
+  func testNamingSystem1RealmPK() {    
+    do {
         let instance: FireKit.NamingSystem = try runNamingSystem1()
         let copy = (instance.copy() as! FireKit.NamingSystem)
 
@@ -157,8 +157,8 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     testNamingSystemRealm2(instance!)
   }
 
-  func testNamingSystem2RealmPK() { 
-      do {
+  func testNamingSystem2RealmPK() {    
+    do {
         let instance: FireKit.NamingSystem = try runNamingSystem2()
         let copy = (instance.copy() as! FireKit.NamingSystem)
 
@@ -251,8 +251,8 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     testNamingSystemRealm3(instance!)
   }
 
-  func testNamingSystem3RealmPK() { 
-      do {
+  func testNamingSystem3RealmPK() {    
+    do {
         let instance: FireKit.NamingSystem = try runNamingSystem3()
         let copy = (instance.copy() as! FireKit.NamingSystem)
 

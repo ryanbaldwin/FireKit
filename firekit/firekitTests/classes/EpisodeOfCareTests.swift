@@ -49,8 +49,8 @@ class EpisodeOfCareTests: XCTestCase, RealmPersistenceTesting {
     testEpisodeOfCareRealm1(instance!)
   }
 
-  func testEpisodeOfCare1RealmPK() { 
-      do {
+  func testEpisodeOfCare1RealmPK() {    
+    do {
         let instance: FireKit.EpisodeOfCare = try runEpisodeOfCare1()
         let copy = (instance.copy() as! FireKit.EpisodeOfCare)
 

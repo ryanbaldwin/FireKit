@@ -49,8 +49,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     testListRealm1(instance!)
   }
 
-  func testList1RealmPK() { 
-      do {
+  func testList1RealmPK() {    
+    do {
         let instance: FireKit.List = try runList1()
         let copy = (instance.copy() as! FireKit.List)
 
@@ -146,8 +146,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     testListRealm2(instance!)
   }
 
-  func testList2RealmPK() { 
-      do {
+  func testList2RealmPK() {    
+    do {
         let instance: FireKit.List = try runList2()
         let copy = (instance.copy() as! FireKit.List)
 
@@ -243,8 +243,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     testListRealm3(instance!)
   }
 
-  func testList3RealmPK() { 
-      do {
+  func testList3RealmPK() {    
+    do {
         let instance: FireKit.List = try runList3()
         let copy = (instance.copy() as! FireKit.List)
 
@@ -339,8 +339,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     testListRealm4(instance!)
   }
 
-  func testList4RealmPK() { 
-      do {
+  func testList4RealmPK() {    
+    do {
         let instance: FireKit.List = try runList4()
         let copy = (instance.copy() as! FireKit.List)
 
@@ -451,8 +451,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     testListRealm5(instance!)
   }
 
-  func testList5RealmPK() { 
-      do {
+  func testList5RealmPK() {    
+    do {
         let instance: FireKit.List = try runList5()
         let copy = (instance.copy() as! FireKit.List)
 
@@ -559,8 +559,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     testListRealm6(instance!)
   }
 
-  func testList6RealmPK() { 
-      do {
+  func testList6RealmPK() {    
+    do {
         let instance: FireKit.List = try runList6()
         let copy = (instance.copy() as! FireKit.List)
 
@@ -661,8 +661,8 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     testListRealm7(instance!)
   }
 
-  func testList7RealmPK() { 
-      do {
+  func testList7RealmPK() {    
+    do {
         let instance: FireKit.List = try runList7()
         let copy = (instance.copy() as! FireKit.List)
 

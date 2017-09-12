@@ -49,8 +49,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm1(instance!)
   }
 
-  func testProcedure1RealmPK() { 
-      do {
+  func testProcedure1RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure1()
         let copy = (instance.copy() as! FireKit.Procedure)
 
@@ -150,8 +150,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm2(instance!)
   }
 
-  func testProcedure2RealmPK() { 
-      do {
+  func testProcedure2RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure2()
         let copy = (instance.copy() as! FireKit.Procedure)
 
@@ -257,8 +257,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm3(instance!)
   }
 
-  func testProcedure3RealmPK() { 
-      do {
+  func testProcedure3RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure3()
         let copy = (instance.copy() as! FireKit.Procedure)
 
@@ -364,8 +364,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm4(instance!)
   }
 
-  func testProcedure4RealmPK() { 
-      do {
+  func testProcedure4RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure4()
         let copy = (instance.copy() as! FireKit.Procedure)
 
@@ -471,8 +471,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm5(instance!)
   }
 
-  func testProcedure5RealmPK() { 
-      do {
+  func testProcedure5RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure5()
         let copy = (instance.copy() as! FireKit.Procedure)
 
@@ -578,8 +578,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm6(instance!)
   }
 
-  func testProcedure6RealmPK() { 
-      do {
+  func testProcedure6RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure6()
         let copy = (instance.copy() as! FireKit.Procedure)
 
@@ -682,8 +682,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm7(instance!)
   }
 
-  func testProcedure7RealmPK() { 
-      do {
+  func testProcedure7RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure7()
         let copy = (instance.copy() as! FireKit.Procedure)
 
@@ -781,8 +781,8 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRealm8(instance!)
   }
 
-  func testProcedure8RealmPK() { 
-      do {
+  func testProcedure8RealmPK() {    
+    do {
         let instance: FireKit.Procedure = try runProcedure8()
         let copy = (instance.copy() as! FireKit.Procedure)
 

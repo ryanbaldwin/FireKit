@@ -49,8 +49,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
     testDetectedIssueRealm1(instance!)
   }
 
-  func testDetectedIssue1RealmPK() { 
-      do {
+  func testDetectedIssue1RealmPK() {    
+    do {
         let instance: FireKit.DetectedIssue = try runDetectedIssue1()
         let copy = (instance.copy() as! FireKit.DetectedIssue)
 
@@ -134,8 +134,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
     testDetectedIssueRealm2(instance!)
   }
 
-  func testDetectedIssue2RealmPK() { 
-      do {
+  func testDetectedIssue2RealmPK() {    
+    do {
         let instance: FireKit.DetectedIssue = try runDetectedIssue2()
         let copy = (instance.copy() as! FireKit.DetectedIssue)
 
@@ -228,8 +228,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
     testDetectedIssueRealm3(instance!)
   }
 
-  func testDetectedIssue3RealmPK() { 
-      do {
+  func testDetectedIssue3RealmPK() {    
+    do {
         let instance: FireKit.DetectedIssue = try runDetectedIssue3()
         let copy = (instance.copy() as! FireKit.DetectedIssue)
 
@@ -313,8 +313,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
     testDetectedIssueRealm4(instance!)
   }
 
-  func testDetectedIssue4RealmPK() { 
-      do {
+  func testDetectedIssue4RealmPK() {    
+    do {
         let instance: FireKit.DetectedIssue = try runDetectedIssue4()
         let copy = (instance.copy() as! FireKit.DetectedIssue)
 

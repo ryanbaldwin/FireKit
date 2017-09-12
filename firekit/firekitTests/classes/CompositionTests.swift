@@ -49,8 +49,8 @@ class CompositionTests: XCTestCase, RealmPersistenceTesting {
     testCompositionRealm1(instance!)
   }
 
-  func testComposition1RealmPK() { 
-      do {
+  func testComposition1RealmPK() {    
+    do {
         let instance: FireKit.Composition = try runComposition1()
         let copy = (instance.copy() as! FireKit.Composition)
 

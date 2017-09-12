@@ -49,8 +49,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm1(instance!)
   }
 
-  func testMedicationOrder1RealmPK() { 
-      do {
+  func testMedicationOrder1RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder1()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 
@@ -177,8 +177,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm2(instance!)
   }
 
-  func testMedicationOrder2RealmPK() { 
-      do {
+  func testMedicationOrder2RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder2()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 
@@ -295,8 +295,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm3(instance!)
   }
 
-  func testMedicationOrder3RealmPK() { 
-      do {
+  func testMedicationOrder3RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder3()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 
@@ -413,8 +413,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm4(instance!)
   }
 
-  func testMedicationOrder4RealmPK() { 
-      do {
+  func testMedicationOrder4RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder4()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 
@@ -531,8 +531,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm5(instance!)
   }
 
-  func testMedicationOrder5RealmPK() { 
-      do {
+  func testMedicationOrder5RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder5()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 
@@ -649,8 +649,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm6(instance!)
   }
 
-  func testMedicationOrder6RealmPK() { 
-      do {
+  func testMedicationOrder6RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder6()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 
@@ -769,8 +769,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm7(instance!)
   }
 
-  func testMedicationOrder7RealmPK() { 
-      do {
+  func testMedicationOrder7RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder7()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 
@@ -881,8 +881,8 @@ class MedicationOrderTests: XCTestCase, RealmPersistenceTesting {
     testMedicationOrderRealm8(instance!)
   }
 
-  func testMedicationOrder8RealmPK() { 
-      do {
+  func testMedicationOrder8RealmPK() {    
+    do {
         let instance: FireKit.MedicationOrder = try runMedicationOrder8()
         let copy = (instance.copy() as! FireKit.MedicationOrder)
 

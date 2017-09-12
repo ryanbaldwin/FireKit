@@ -49,8 +49,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm1(instance!)
   }
 
-  func testAuditEvent1RealmPK() { 
-      do {
+  func testAuditEvent1RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent1()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 
@@ -153,8 +153,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm2(instance!)
   }
 
-  func testAuditEvent2RealmPK() { 
-      do {
+  func testAuditEvent2RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent2()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 
@@ -257,8 +257,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm3(instance!)
   }
 
-  func testAuditEvent3RealmPK() { 
-      do {
+  func testAuditEvent3RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent3()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 
@@ -386,8 +386,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm4(instance!)
   }
 
-  func testAuditEvent4RealmPK() { 
-      do {
+  func testAuditEvent4RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent4()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 
@@ -507,8 +507,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm5(instance!)
   }
 
-  func testAuditEvent5RealmPK() { 
-      do {
+  func testAuditEvent5RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent5()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 
@@ -616,8 +616,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm6(instance!)
   }
 
-  func testAuditEvent6RealmPK() { 
-      do {
+  func testAuditEvent6RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent6()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 
@@ -725,8 +725,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm7(instance!)
   }
 
-  func testAuditEvent7RealmPK() { 
-      do {
+  func testAuditEvent7RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent7()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 
@@ -878,8 +878,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm8(instance!)
   }
 
-  func testAuditEvent8RealmPK() { 
-      do {
+  func testAuditEvent8RealmPK() {    
+    do {
         let instance: FireKit.AuditEvent = try runAuditEvent8()
         let copy = (instance.copy() as! FireKit.AuditEvent)
 

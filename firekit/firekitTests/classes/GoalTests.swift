@@ -49,8 +49,8 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
     testGoalRealm1(instance!)
   }
 
-  func testGoal1RealmPK() { 
-      do {
+  func testGoal1RealmPK() {    
+    do {
         let instance: FireKit.Goal = try runGoal1()
         let copy = (instance.copy() as! FireKit.Goal)
 

@@ -49,8 +49,8 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
     testImmunizationRealm1(instance!)
   }
 
-  func testImmunization1RealmPK() { 
-      do {
+  func testImmunization1RealmPK() {    
+    do {
         let instance: FireKit.Immunization = try runImmunization1()
         let copy = (instance.copy() as! FireKit.Immunization)
 
@@ -144,8 +144,8 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
     testImmunizationRealm2(instance!)
   }
 
-  func testImmunization2RealmPK() { 
-      do {
+  func testImmunization2RealmPK() {    
+    do {
         let instance: FireKit.Immunization = try runImmunization2()
         let copy = (instance.copy() as! FireKit.Immunization)
 

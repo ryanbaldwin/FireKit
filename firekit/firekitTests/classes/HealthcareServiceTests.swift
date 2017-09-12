@@ -49,8 +49,8 @@ class HealthcareServiceTests: XCTestCase, RealmPersistenceTesting {
     testHealthcareServiceRealm1(instance!)
   }
 
-  func testHealthcareService1RealmPK() { 
-      do {
+  func testHealthcareService1RealmPK() {    
+    do {
         let instance: FireKit.HealthcareService = try runHealthcareService1()
         let copy = (instance.copy() as! FireKit.HealthcareService)
 

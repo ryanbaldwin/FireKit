@@ -49,8 +49,8 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
     testExplanationOfBenefitRealm1(instance!)
   }
 
-  func testExplanationOfBenefit1RealmPK() { 
-      do {
+  func testExplanationOfBenefit1RealmPK() {    
+    do {
         let instance: FireKit.ExplanationOfBenefit = try runExplanationOfBenefit1()
         let copy = (instance.copy() as! FireKit.ExplanationOfBenefit)
 

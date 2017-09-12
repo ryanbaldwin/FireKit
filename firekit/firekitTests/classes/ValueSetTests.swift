@@ -49,8 +49,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
     testValueSetRealm1(instance!)
   }
 
-  func testValueSet1RealmPK() { 
-      do {
+  func testValueSet1RealmPK() {    
+    do {
         let instance: FireKit.ValueSet = try runValueSet1()
         let copy = (instance.copy() as! FireKit.ValueSet)
 
@@ -192,8 +192,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
     testValueSetRealm2(instance!)
   }
 
-  func testValueSet2RealmPK() { 
-      do {
+  func testValueSet2RealmPK() {    
+    do {
         let instance: FireKit.ValueSet = try runValueSet2()
         let copy = (instance.copy() as! FireKit.ValueSet)
 
@@ -311,8 +311,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
     testValueSetRealm3(instance!)
   }
 
-  func testValueSet3RealmPK() { 
-      do {
+  func testValueSet3RealmPK() {    
+    do {
         let instance: FireKit.ValueSet = try runValueSet3()
         let copy = (instance.copy() as! FireKit.ValueSet)
 
@@ -416,8 +416,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
     testValueSetRealm4(instance!)
   }
 
-  func testValueSet4RealmPK() { 
-      do {
+  func testValueSet4RealmPK() {    
+    do {
         let instance: FireKit.ValueSet = try runValueSet4()
         let copy = (instance.copy() as! FireKit.ValueSet)
 
@@ -519,8 +519,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
     testValueSetRealm5(instance!)
   }
 
-  func testValueSet5RealmPK() { 
-      do {
+  func testValueSet5RealmPK() {    
+    do {
         let instance: FireKit.ValueSet = try runValueSet5()
         let copy = (instance.copy() as! FireKit.ValueSet)
 
@@ -628,8 +628,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
     testValueSetRealm6(instance!)
   }
 
-  func testValueSet6RealmPK() { 
-      do {
+  func testValueSet6RealmPK() {    
+    do {
         let instance: FireKit.ValueSet = try runValueSet6()
         let copy = (instance.copy() as! FireKit.ValueSet)
 

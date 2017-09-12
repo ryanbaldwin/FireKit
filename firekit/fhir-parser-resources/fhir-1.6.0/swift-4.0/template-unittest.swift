@@ -52,10 +52,7 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
   }
 
   func test{{ class.name }}{{ loop.index }}RealmPK() {    
-    {%- if class.name == 'Bundle' %}
-        // Bundles cannot be saved because of the polymorphic nature of the resource.
-    {%- else %} 
-      do {
+    do {
         let instance: FireKit.{{ class.name }} = try run{{ class.name }}{{ loop.index }}()
         let copy = (instance.copy() as! FireKit.{{ class.name }})
 
@@ -72,13 +69,9 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test {{ class.name }}'s PKs, but threw: \(error)")
         }
-    {%- endif %}
     }
 
   func test{{ class.name}}Realm{{ loop.index }}(_ instance: FireKit.{{class.name}}) {
-    {%- if class.name == 'Bundle' %}
-        // Bundles cannot be saved because of the polymorphic nature of the resource.
-    {%- else %}
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -111,7 +104,6 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.{{ class.name }}.self).count)
-    {%- endif %}
   }
   
   @discardableResult

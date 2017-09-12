@@ -49,8 +49,8 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticOrderRealm1(instance!)
   }
 
-  func testDiagnosticOrder1RealmPK() { 
-      do {
+  func testDiagnosticOrder1RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder1()
         let copy = (instance.copy() as! FireKit.DiagnosticOrder)
 
@@ -147,8 +147,8 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticOrderRealm2(instance!)
   }
 
-  func testDiagnosticOrder2RealmPK() { 
-      do {
+  func testDiagnosticOrder2RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder2()
         let copy = (instance.copy() as! FireKit.DiagnosticOrder)
 
@@ -242,8 +242,8 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticOrderRealm3(instance!)
   }
 
-  func testDiagnosticOrder3RealmPK() { 
-      do {
+  func testDiagnosticOrder3RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder3()
         let copy = (instance.copy() as! FireKit.DiagnosticOrder)
 

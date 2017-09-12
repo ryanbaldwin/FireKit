@@ -49,8 +49,8 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
     testProvenanceRealm1(instance!)
   }
 
-  func testProvenance1RealmPK() { 
-      do {
+  func testProvenance1RealmPK() {    
+    do {
         let instance: FireKit.Provenance = try runProvenance1()
         let copy = (instance.copy() as! FireKit.Provenance)
 
@@ -154,8 +154,8 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
     testProvenanceRealm2(instance!)
   }
 
-  func testProvenance2RealmPK() { 
-      do {
+  func testProvenance2RealmPK() {    
+    do {
         let instance: FireKit.Provenance = try runProvenance2()
         let copy = (instance.copy() as! FireKit.Provenance)
 

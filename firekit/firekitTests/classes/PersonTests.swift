@@ -49,8 +49,8 @@ class PersonTests: XCTestCase, RealmPersistenceTesting {
     testPersonRealm1(instance!)
   }
 
-  func testPerson1RealmPK() { 
-      do {
+  func testPerson1RealmPK() {    
+    do {
         let instance: FireKit.Person = try runPerson1()
         let copy = (instance.copy() as! FireKit.Person)
 
@@ -145,8 +145,8 @@ class PersonTests: XCTestCase, RealmPersistenceTesting {
     testPersonRealm2(instance!)
   }
 
-  func testPerson2RealmPK() { 
-      do {
+  func testPerson2RealmPK() {    
+    do {
         let instance: FireKit.Person = try runPerson2()
         let copy = (instance.copy() as! FireKit.Person)
 

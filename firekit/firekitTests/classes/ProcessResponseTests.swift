@@ -49,8 +49,8 @@ class ProcessResponseTests: XCTestCase, RealmPersistenceTesting {
     testProcessResponseRealm1(instance!)
   }
 
-  func testProcessResponse1RealmPK() { 
-      do {
+  func testProcessResponse1RealmPK() {    
+    do {
         let instance: FireKit.ProcessResponse = try runProcessResponse1()
         let copy = (instance.copy() as! FireKit.ProcessResponse)
 

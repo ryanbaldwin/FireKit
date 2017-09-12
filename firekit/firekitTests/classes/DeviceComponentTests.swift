@@ -49,8 +49,8 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
     testDeviceComponentRealm1(instance!)
   }
 
-  func testDeviceComponent1RealmPK() { 
-      do {
+  func testDeviceComponent1RealmPK() {    
+    do {
         let instance: FireKit.DeviceComponent = try runDeviceComponent1()
         let copy = (instance.copy() as! FireKit.DeviceComponent)
 
@@ -159,8 +159,8 @@ class DeviceComponentTests: XCTestCase, RealmPersistenceTesting {
     testDeviceComponentRealm2(instance!)
   }
 
-  func testDeviceComponent2RealmPK() { 
-      do {
+  func testDeviceComponent2RealmPK() {    
+    do {
         let instance: FireKit.DeviceComponent = try runDeviceComponent2()
         let copy = (instance.copy() as! FireKit.DeviceComponent)
 

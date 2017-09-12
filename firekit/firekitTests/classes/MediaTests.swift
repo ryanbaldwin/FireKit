@@ -49,8 +49,8 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     testMediaRealm1(instance!)
   }
 
-  func testMedia1RealmPK() { 
-      do {
+  func testMedia1RealmPK() {    
+    do {
         let instance: FireKit.Media = try runMedia1()
         let copy = (instance.copy() as! FireKit.Media)
 
@@ -159,8 +159,8 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     testMediaRealm2(instance!)
   }
 
-  func testMedia2RealmPK() { 
-      do {
+  func testMedia2RealmPK() {    
+    do {
         let instance: FireKit.Media = try runMedia2()
         let copy = (instance.copy() as! FireKit.Media)
 
@@ -251,8 +251,8 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     testMediaRealm3(instance!)
   }
 
-  func testMedia3RealmPK() { 
-      do {
+  func testMedia3RealmPK() {    
+    do {
         let instance: FireKit.Media = try runMedia3()
         let copy = (instance.copy() as! FireKit.Media)
 

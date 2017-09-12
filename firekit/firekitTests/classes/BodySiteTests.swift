@@ -49,8 +49,8 @@ class BodySiteTests: XCTestCase, RealmPersistenceTesting {
     testBodySiteRealm1(instance!)
   }
 
-  func testBodySite1RealmPK() { 
-      do {
+  func testBodySite1RealmPK() {    
+    do {
         let instance: FireKit.BodySite = try runBodySite1()
         let copy = (instance.copy() as! FireKit.BodySite)
 

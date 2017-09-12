@@ -49,8 +49,8 @@ class ScheduleTests: XCTestCase, RealmPersistenceTesting {
     testScheduleRealm1(instance!)
   }
 
-  func testSchedule1RealmPK() { 
-      do {
+  func testSchedule1RealmPK() {    
+    do {
         let instance: FireKit.Schedule = try runSchedule1()
         let copy = (instance.copy() as! FireKit.Schedule)
 

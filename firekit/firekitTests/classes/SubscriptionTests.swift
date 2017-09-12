@@ -49,8 +49,8 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
     testSubscriptionRealm1(instance!)
   }
 
-  func testSubscription1RealmPK() { 
-      do {
+  func testSubscription1RealmPK() {    
+    do {
         let instance: FireKit.Subscription = try runSubscription1()
         let copy = (instance.copy() as! FireKit.Subscription)
 
@@ -147,8 +147,8 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
     testSubscriptionRealm2(instance!)
   }
 
-  func testSubscription2RealmPK() { 
-      do {
+  func testSubscription2RealmPK() {    
+    do {
         let instance: FireKit.Subscription = try runSubscription2()
         let copy = (instance.copy() as! FireKit.Subscription)
 

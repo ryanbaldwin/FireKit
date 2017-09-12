@@ -49,8 +49,8 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
     testFlagRealm1(instance!)
   }
 
-  func testFlag1RealmPK() { 
-      do {
+  func testFlag1RealmPK() {    
+    do {
         let instance: FireKit.Flag = try runFlag1()
         let copy = (instance.copy() as! FireKit.Flag)
 
@@ -144,8 +144,8 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
     testFlagRealm2(instance!)
   }
 
-  func testFlag2RealmPK() { 
-      do {
+  func testFlag2RealmPK() {    
+    do {
         let instance: FireKit.Flag = try runFlag2()
         let copy = (instance.copy() as! FireKit.Flag)
 

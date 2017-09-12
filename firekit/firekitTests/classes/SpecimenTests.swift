@@ -49,8 +49,8 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
     testSpecimenRealm1(instance!)
   }
 
-  func testSpecimen1RealmPK() { 
-      do {
+  func testSpecimen1RealmPK() {    
+    do {
         let instance: FireKit.Specimen = try runSpecimen1()
         let copy = (instance.copy() as! FireKit.Specimen)
 
@@ -147,8 +147,8 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
     testSpecimenRealm2(instance!)
   }
 
-  func testSpecimen2RealmPK() { 
-      do {
+  func testSpecimen2RealmPK() {    
+    do {
         let instance: FireKit.Specimen = try runSpecimen2()
         let copy = (instance.copy() as! FireKit.Specimen)
 
@@ -249,8 +249,8 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
     testSpecimenRealm3(instance!)
   }
 
-  func testSpecimen3RealmPK() { 
-      do {
+  func testSpecimen3RealmPK() {    
+    do {
         let instance: FireKit.Specimen = try runSpecimen3()
         let copy = (instance.copy() as! FireKit.Specimen)
 

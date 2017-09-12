@@ -49,8 +49,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm1(instance!)
   }
 
-  func testProcessRequest1RealmPK() { 
-      do {
+  func testProcessRequest1RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest1()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -139,8 +139,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm2(instance!)
   }
 
-  func testProcessRequest2RealmPK() { 
-      do {
+  func testProcessRequest2RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest2()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -231,8 +231,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm3(instance!)
   }
 
-  func testProcessRequest3RealmPK() { 
-      do {
+  func testProcessRequest3RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest3()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -322,8 +322,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm4(instance!)
   }
 
-  func testProcessRequest4RealmPK() { 
-      do {
+  func testProcessRequest4RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest4()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -415,8 +415,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm5(instance!)
   }
 
-  func testProcessRequest5RealmPK() { 
-      do {
+  func testProcessRequest5RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest5()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -506,8 +506,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm6(instance!)
   }
 
-  func testProcessRequest6RealmPK() { 
-      do {
+  func testProcessRequest6RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest6()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -599,8 +599,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm7(instance!)
   }
 
-  func testProcessRequest7RealmPK() { 
-      do {
+  func testProcessRequest7RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest7()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -691,8 +691,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm8(instance!)
   }
 
-  func testProcessRequest8RealmPK() { 
-      do {
+  func testProcessRequest8RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest8()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 
@@ -783,8 +783,8 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcessRequestRealm9(instance!)
   }
 
-  func testProcessRequest9RealmPK() { 
-      do {
+  func testProcessRequest9RealmPK() {    
+    do {
         let instance: FireKit.ProcessRequest = try runProcessRequest9()
         let copy = (instance.copy() as! FireKit.ProcessRequest)
 

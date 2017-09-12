@@ -49,8 +49,8 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
     testAppointmentRealm1(instance!)
   }
 
-  func testAppointment1RealmPK() { 
-      do {
+  func testAppointment1RealmPK() {    
+    do {
         let instance: FireKit.Appointment = try runAppointment1()
         let copy = (instance.copy() as! FireKit.Appointment)
 
@@ -156,8 +156,8 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
     testAppointmentRealm2(instance!)
   }
 
-  func testAppointment2RealmPK() { 
-      do {
+  func testAppointment2RealmPK() {    
+    do {
         let instance: FireKit.Appointment = try runAppointment2()
         let copy = (instance.copy() as! FireKit.Appointment)
 
@@ -262,8 +262,8 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
     testAppointmentRealm3(instance!)
   }
 
-  func testAppointment3RealmPK() { 
-      do {
+  func testAppointment3RealmPK() {    
+    do {
         let instance: FireKit.Appointment = try runAppointment3()
         let copy = (instance.copy() as! FireKit.Appointment)
 

@@ -49,8 +49,8 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
     testConformanceRealm1(instance!)
   }
 
-  func testConformance1RealmPK() { 
-      do {
+  func testConformance1RealmPK() {    
+    do {
         let instance: FireKit.Conformance = try runConformance1()
         let copy = (instance.copy() as! FireKit.Conformance)
 
@@ -211,8 +211,8 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
     testConformanceRealm2(instance!)
   }
 
-  func testConformance2RealmPK() { 
-      do {
+  func testConformance2RealmPK() {    
+    do {
         let instance: FireKit.Conformance = try runConformance2()
         let copy = (instance.copy() as! FireKit.Conformance)
 

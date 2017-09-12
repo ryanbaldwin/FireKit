@@ -49,8 +49,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
     testDeviceRealm1(instance!)
   }
 
-  func testDevice1RealmPK() { 
-      do {
+  func testDevice1RealmPK() {    
+    do {
         let instance: FireKit.Device = try runDevice1()
         let copy = (instance.copy() as! FireKit.Device)
 
@@ -144,8 +144,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
     testDeviceRealm2(instance!)
   }
 
-  func testDevice2RealmPK() { 
-      do {
+  func testDevice2RealmPK() {    
+    do {
         let instance: FireKit.Device = try runDevice2()
         let copy = (instance.copy() as! FireKit.Device)
 
@@ -237,8 +237,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
     testDeviceRealm3(instance!)
   }
 
-  func testDevice3RealmPK() { 
-      do {
+  func testDevice3RealmPK() {    
+    do {
         let instance: FireKit.Device = try runDevice3()
         let copy = (instance.copy() as! FireKit.Device)
 
@@ -332,8 +332,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
     testDeviceRealm4(instance!)
   }
 
-  func testDevice4RealmPK() { 
-      do {
+  func testDevice4RealmPK() {    
+    do {
         let instance: FireKit.Device = try runDevice4()
         let copy = (instance.copy() as! FireKit.Device)
 
@@ -424,8 +424,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
     testDeviceRealm5(instance!)
   }
 
-  func testDevice5RealmPK() { 
-      do {
+  func testDevice5RealmPK() {    
+    do {
         let instance: FireKit.Device = try runDevice5()
         let copy = (instance.copy() as! FireKit.Device)
 

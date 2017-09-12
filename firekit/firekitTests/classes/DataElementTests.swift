@@ -49,8 +49,8 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
     testDataElementRealm1(instance!)
   }
 
-  func testDataElement1RealmPK() { 
-      do {
+  func testDataElement1RealmPK() {    
+    do {
         let instance: FireKit.DataElement = try runDataElement1()
         let copy = (instance.copy() as! FireKit.DataElement)
 
@@ -175,8 +175,8 @@ class DataElementTests: XCTestCase, RealmPersistenceTesting {
     testDataElementRealm2(instance!)
   }
 
-  func testDataElement2RealmPK() { 
-      do {
+  func testDataElement2RealmPK() {    
+    do {
         let instance: FireKit.DataElement = try runDataElement2()
         let copy = (instance.copy() as! FireKit.DataElement)
 

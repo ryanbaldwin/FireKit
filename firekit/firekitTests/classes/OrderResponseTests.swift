@@ -49,8 +49,8 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
     testOrderResponseRealm1(instance!)
   }
 
-  func testOrderResponse1RealmPK() { 
-      do {
+  func testOrderResponse1RealmPK() {    
+    do {
         let instance: FireKit.OrderResponse = try runOrderResponse1()
         let copy = (instance.copy() as! FireKit.OrderResponse)
 

@@ -49,8 +49,8 @@ class PaymentReconciliationTests: XCTestCase, RealmPersistenceTesting {
     testPaymentReconciliationRealm1(instance!)
   }
 
-  func testPaymentReconciliation1RealmPK() { 
-      do {
+  func testPaymentReconciliation1RealmPK() {    
+    do {
         let instance: FireKit.PaymentReconciliation = try runPaymentReconciliation1()
         let copy = (instance.copy() as! FireKit.PaymentReconciliation)
 

@@ -49,8 +49,8 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
     testSupplyDeliveryRealm1(instance!)
   }
 
-  func testSupplyDelivery1RealmPK() { 
-      do {
+  func testSupplyDelivery1RealmPK() {    
+    do {
         let instance: FireKit.SupplyDelivery = try runSupplyDelivery1()
         let copy = (instance.copy() as! FireKit.SupplyDelivery)
 

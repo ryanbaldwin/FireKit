@@ -49,8 +49,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm1(instance!)
   }
 
-  func testOrganization1RealmPK() { 
-      do {
+  func testOrganization1RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization1()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -167,8 +167,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm2(instance!)
   }
 
-  func testOrganization2RealmPK() { 
-      do {
+  func testOrganization2RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization2()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -270,8 +270,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm3(instance!)
   }
 
-  func testOrganization3RealmPK() { 
-      do {
+  func testOrganization3RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization3()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -373,8 +373,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm4(instance!)
   }
 
-  func testOrganization4RealmPK() { 
-      do {
+  func testOrganization4RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization4()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -492,8 +492,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm5(instance!)
   }
 
-  func testOrganization5RealmPK() { 
-      do {
+  func testOrganization5RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization5()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -595,8 +595,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm6(instance!)
   }
 
-  func testOrganization6RealmPK() { 
-      do {
+  func testOrganization6RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization6()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -691,8 +691,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm7(instance!)
   }
 
-  func testOrganization7RealmPK() { 
-      do {
+  func testOrganization7RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization7()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -779,8 +779,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm8(instance!)
   }
 
-  func testOrganization8RealmPK() { 
-      do {
+  func testOrganization8RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization8()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -867,8 +867,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm9(instance!)
   }
 
-  func testOrganization9RealmPK() { 
-      do {
+  func testOrganization9RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization9()
         let copy = (instance.copy() as! FireKit.Organization)
 
@@ -961,8 +961,8 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
     testOrganizationRealm10(instance!)
   }
 
-  func testOrganization10RealmPK() { 
-      do {
+  func testOrganization10RealmPK() {    
+    do {
         let instance: FireKit.Organization = try runOrganization10()
         let copy = (instance.copy() as! FireKit.Organization)
 

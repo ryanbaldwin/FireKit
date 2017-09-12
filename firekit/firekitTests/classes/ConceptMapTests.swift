@@ -49,8 +49,8 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
     testConceptMapRealm1(instance!)
   }
 
-  func testConceptMap1RealmPK() { 
-      do {
+  func testConceptMap1RealmPK() {    
+    do {
         let instance: FireKit.ConceptMap = try runConceptMap1()
         let copy = (instance.copy() as! FireKit.ConceptMap)
 
@@ -211,8 +211,8 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
     testConceptMapRealm2(instance!)
   }
 
-  func testConceptMap2RealmPK() { 
-      do {
+  func testConceptMap2RealmPK() {    
+    do {
         let instance: FireKit.ConceptMap = try runConceptMap2()
         let copy = (instance.copy() as! FireKit.ConceptMap)
 

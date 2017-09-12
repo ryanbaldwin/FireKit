@@ -49,8 +49,8 @@ class ImmunizationRecommendationTests: XCTestCase, RealmPersistenceTesting {
     testImmunizationRecommendationRealm1(instance!)
   }
 
-  func testImmunizationRecommendation1RealmPK() { 
-      do {
+  func testImmunizationRecommendation1RealmPK() {    
+    do {
         let instance: FireKit.ImmunizationRecommendation = try runImmunizationRecommendation1()
         let copy = (instance.copy() as! FireKit.ImmunizationRecommendation)
 

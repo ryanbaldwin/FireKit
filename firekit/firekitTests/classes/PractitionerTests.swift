@@ -49,8 +49,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm1(instance!)
   }
 
-  func testPractitioner1RealmPK() { 
-      do {
+  func testPractitioner1RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner1()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -169,8 +169,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm2(instance!)
   }
 
-  func testPractitioner2RealmPK() { 
-      do {
+  func testPractitioner2RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner2()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -289,8 +289,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm3(instance!)
   }
 
-  func testPractitioner3RealmPK() { 
-      do {
+  func testPractitioner3RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner3()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -412,8 +412,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm4(instance!)
   }
 
-  func testPractitioner4RealmPK() { 
-      do {
+  func testPractitioner4RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner4()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -536,8 +536,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm5(instance!)
   }
 
-  func testPractitioner5RealmPK() { 
-      do {
+  func testPractitioner5RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner5()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -660,8 +660,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm6(instance!)
   }
 
-  func testPractitioner6RealmPK() { 
-      do {
+  func testPractitioner6RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner6()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -780,8 +780,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm7(instance!)
   }
 
-  func testPractitioner7RealmPK() { 
-      do {
+  func testPractitioner7RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner7()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -900,8 +900,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm8(instance!)
   }
 
-  func testPractitioner8RealmPK() { 
-      do {
+  func testPractitioner8RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner8()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -1016,8 +1016,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm9(instance!)
   }
 
-  func testPractitioner9RealmPK() { 
-      do {
+  func testPractitioner9RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner9()
         let copy = (instance.copy() as! FireKit.Practitioner)
 
@@ -1133,8 +1133,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
     testPractitionerRealm10(instance!)
   }
 
-  func testPractitioner10RealmPK() { 
-      do {
+  func testPractitioner10RealmPK() {    
+    do {
         let instance: FireKit.Practitioner = try runPractitioner10()
         let copy = (instance.copy() as! FireKit.Practitioner)
 

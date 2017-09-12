@@ -49,8 +49,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm1(instance!)
   }
 
-  func testSlot1RealmPK() { 
-      do {
+  func testSlot1RealmPK() {    
+    do {
         let instance: FireKit.Slot = try runSlot1()
         let copy = (instance.copy() as! FireKit.Slot)
 
@@ -144,8 +144,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm2(instance!)
   }
 
-  func testSlot2RealmPK() { 
-      do {
+  func testSlot2RealmPK() {    
+    do {
         let instance: FireKit.Slot = try runSlot2()
         let copy = (instance.copy() as! FireKit.Slot)
 
@@ -236,8 +236,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm3(instance!)
   }
 
-  func testSlot3RealmPK() { 
-      do {
+  func testSlot3RealmPK() {    
+    do {
         let instance: FireKit.Slot = try runSlot3()
         let copy = (instance.copy() as! FireKit.Slot)
 
@@ -328,8 +328,8 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm4(instance!)
   }
 
-  func testSlot4RealmPK() { 
-      do {
+  func testSlot4RealmPK() {    
+    do {
         let instance: FireKit.Slot = try runSlot4()
         let copy = (instance.copy() as! FireKit.Slot)
 

@@ -49,8 +49,8 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
     testBinaryRealm1(instance!)
   }
 
-  func testBinary1RealmPK() { 
-      do {
+  func testBinary1RealmPK() {    
+    do {
         let instance: FireKit.Binary = try runBinary1()
         let copy = (instance.copy() as! FireKit.Binary)
 

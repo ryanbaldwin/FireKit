@@ -49,8 +49,8 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
     testMessageHeaderRealm1(instance!)
   }
 
-  func testMessageHeader1RealmPK() { 
-      do {
+  func testMessageHeader1RealmPK() {    
+    do {
         let instance: FireKit.MessageHeader = try runMessageHeader1()
         let copy = (instance.copy() as! FireKit.MessageHeader)
 

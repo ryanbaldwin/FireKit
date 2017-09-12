@@ -49,8 +49,8 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
     testProcedureRequestRealm1(instance!)
   }
 
-  func testProcedureRequest1RealmPK() { 
-      do {
+  func testProcedureRequest1RealmPK() {    
+    do {
         let instance: FireKit.ProcedureRequest = try runProcedureRequest1()
         let copy = (instance.copy() as! FireKit.ProcedureRequest)
 

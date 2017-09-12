@@ -49,8 +49,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm1(instance!)
   }
 
-  func testPatient1RealmPK() { 
-      do {
+  func testPatient1RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient1()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -153,8 +153,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm2(instance!)
   }
 
-  func testPatient2RealmPK() { 
-      do {
+  func testPatient2RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient2()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -267,8 +267,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm3(instance!)
   }
 
-  func testPatient3RealmPK() { 
-      do {
+  func testPatient3RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient3()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -368,8 +368,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm4(instance!)
   }
 
-  func testPatient4RealmPK() { 
-      do {
+  func testPatient4RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient4()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -467,8 +467,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm5(instance!)
   }
 
-  func testPatient5RealmPK() { 
-      do {
+  func testPatient5RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient5()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -566,8 +566,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm6(instance!)
   }
 
-  func testPatient6RealmPK() { 
-      do {
+  func testPatient6RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient6()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -666,8 +666,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm7(instance!)
   }
 
-  func testPatient7RealmPK() { 
-      do {
+  func testPatient7RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient7()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -794,8 +794,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm8(instance!)
   }
 
-  func testPatient8RealmPK() { 
-      do {
+  func testPatient8RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient8()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -931,8 +931,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm9(instance!)
   }
 
-  func testPatient9RealmPK() { 
-      do {
+  func testPatient9RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient9()
         let copy = (instance.copy() as! FireKit.Patient)
 
@@ -1021,8 +1021,8 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm10(instance!)
   }
 
-  func testPatient10RealmPK() { 
-      do {
+  func testPatient10RealmPK() {    
+    do {
         let instance: FireKit.Patient = try runPatient10()
         let copy = (instance.copy() as! FireKit.Patient)
 

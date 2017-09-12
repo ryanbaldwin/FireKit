@@ -49,8 +49,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm1(instance!)
   }
 
-  func testCarePlan1RealmPK() { 
-      do {
+  func testCarePlan1RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan1()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -158,8 +158,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm2(instance!)
   }
 
-  func testCarePlan2RealmPK() { 
-      do {
+  func testCarePlan2RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan2()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -267,8 +267,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm3(instance!)
   }
 
-  func testCarePlan3RealmPK() { 
-      do {
+  func testCarePlan3RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan3()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -376,8 +376,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm4(instance!)
   }
 
-  func testCarePlan4RealmPK() { 
-      do {
+  func testCarePlan4RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan4()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -501,8 +501,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm5(instance!)
   }
 
-  func testCarePlan5RealmPK() { 
-      do {
+  func testCarePlan5RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan5()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -611,8 +611,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm6(instance!)
   }
 
-  func testCarePlan6RealmPK() { 
-      do {
+  func testCarePlan6RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan6()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -722,8 +722,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm7(instance!)
   }
 
-  func testCarePlan7RealmPK() { 
-      do {
+  func testCarePlan7RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan7()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -848,8 +848,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm8(instance!)
   }
 
-  func testCarePlan8RealmPK() { 
-      do {
+  func testCarePlan8RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan8()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -1068,8 +1068,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm9(instance!)
   }
 
-  func testCarePlan9RealmPK() { 
-      do {
+  func testCarePlan9RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan9()
         let copy = (instance.copy() as! FireKit.CarePlan)
 
@@ -1214,8 +1214,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     testCarePlanRealm10(instance!)
   }
 
-  func testCarePlan10RealmPK() { 
-      do {
+  func testCarePlan10RealmPK() {    
+    do {
         let instance: FireKit.CarePlan = try runCarePlan10()
         let copy = (instance.copy() as! FireKit.CarePlan)
 

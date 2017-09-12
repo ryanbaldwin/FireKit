@@ -49,8 +49,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm1(instance!)
   }
 
-  func testCondition1RealmPK() { 
-      do {
+  func testCondition1RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition1()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -158,8 +158,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm2(instance!)
   }
 
-  func testCondition2RealmPK() { 
-      do {
+  func testCondition2RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition2()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -269,8 +269,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm3(instance!)
   }
 
-  func testCondition3RealmPK() { 
-      do {
+  func testCondition3RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition3()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -377,8 +377,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm4(instance!)
   }
 
-  func testCondition4RealmPK() { 
-      do {
+  func testCondition4RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition4()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -488,8 +488,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm5(instance!)
   }
 
-  func testCondition5RealmPK() { 
-      do {
+  func testCondition5RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition5()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -594,8 +594,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm6(instance!)
   }
 
-  func testCondition6RealmPK() { 
-      do {
+  func testCondition6RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition6()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -703,8 +703,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm7(instance!)
   }
 
-  func testCondition7RealmPK() { 
-      do {
+  func testCondition7RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition7()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -814,8 +814,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm8(instance!)
   }
 
-  func testCondition8RealmPK() { 
-      do {
+  func testCondition8RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition8()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -907,8 +907,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm9(instance!)
   }
 
-  func testCondition9RealmPK() { 
-      do {
+  func testCondition9RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition9()
         let copy = (instance.copy() as! FireKit.Condition)
 
@@ -1003,8 +1003,8 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     testConditionRealm10(instance!)
   }
 
-  func testCondition10RealmPK() { 
-      do {
+  func testCondition10RealmPK() {    
+    do {
         let instance: FireKit.Condition = try runCondition10()
         let copy = (instance.copy() as! FireKit.Condition)
 

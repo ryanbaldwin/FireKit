@@ -49,8 +49,8 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
     testDocumentReferenceRealm1(instance!)
   }
 
-  func testDocumentReference1RealmPK() { 
-      do {
+  func testDocumentReference1RealmPK() {    
+    do {
         let instance: FireKit.DocumentReference = try runDocumentReference1()
         let copy = (instance.copy() as! FireKit.DocumentReference)
 

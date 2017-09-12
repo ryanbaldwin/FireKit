@@ -49,8 +49,8 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
     testAccountRealm1(instance!)
   }
 
-  func testAccount1RealmPK() { 
-      do {
+  func testAccount1RealmPK() {    
+    do {
         let instance: FireKit.Account = try runAccount1()
         let copy = (instance.copy() as! FireKit.Account)
 

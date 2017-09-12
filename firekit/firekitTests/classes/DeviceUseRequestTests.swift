@@ -49,8 +49,8 @@ class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {
     testDeviceUseRequestRealm1(instance!)
   }
 
-  func testDeviceUseRequest1RealmPK() { 
-      do {
+  func testDeviceUseRequest1RealmPK() {    
+    do {
         let instance: FireKit.DeviceUseRequest = try runDeviceUseRequest1()
         let copy = (instance.copy() as! FireKit.DeviceUseRequest)
 

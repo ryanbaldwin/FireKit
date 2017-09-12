@@ -49,8 +49,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm1(instance!)
   }
 
-  func testLocation1RealmPK() { 
-      do {
+  func testLocation1RealmPK() {    
+    do {
         let instance: FireKit.Location = try runLocation1()
         let copy = (instance.copy() as! FireKit.Location)
 
@@ -148,8 +148,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm2(instance!)
   }
 
-  func testLocation2RealmPK() { 
-      do {
+  func testLocation2RealmPK() {    
+    do {
         let instance: FireKit.Location = try runLocation2()
         let copy = (instance.copy() as! FireKit.Location)
 
@@ -255,8 +255,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm3(instance!)
   }
 
-  func testLocation3RealmPK() { 
-      do {
+  func testLocation3RealmPK() {    
+    do {
         let instance: FireKit.Location = try runLocation3()
         let copy = (instance.copy() as! FireKit.Location)
 
@@ -351,8 +351,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm4(instance!)
   }
 
-  func testLocation4RealmPK() { 
-      do {
+  func testLocation4RealmPK() {    
+    do {
         let instance: FireKit.Location = try runLocation4()
         let copy = (instance.copy() as! FireKit.Location)
 
@@ -451,8 +451,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm5(instance!)
   }
 
-  func testLocation5RealmPK() { 
-      do {
+  func testLocation5RealmPK() {    
+    do {
         let instance: FireKit.Location = try runLocation5()
         let copy = (instance.copy() as! FireKit.Location)
 
@@ -546,8 +546,8 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm6(instance!)
   }
 
-  func testLocation6RealmPK() { 
-      do {
+  func testLocation6RealmPK() {    
+    do {
         let instance: FireKit.Location = try runLocation6()
         let copy = (instance.copy() as! FireKit.Location)
 

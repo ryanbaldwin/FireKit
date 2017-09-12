@@ -49,8 +49,8 @@ class ClaimResponseTests: XCTestCase, RealmPersistenceTesting {
     testClaimResponseRealm1(instance!)
   }
 
-  func testClaimResponse1RealmPK() { 
-      do {
+  func testClaimResponse1RealmPK() {    
+    do {
         let instance: FireKit.ClaimResponse = try runClaimResponse1()
         let copy = (instance.copy() as! FireKit.ClaimResponse)
 

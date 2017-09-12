@@ -49,8 +49,8 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
     testSearchParameterRealm1(instance!)
   }
 
-  func testSearchParameter1RealmPK() { 
-      do {
+  func testSearchParameter1RealmPK() {    
+    do {
         let instance: FireKit.SearchParameter = try runSearchParameter1()
         let copy = (instance.copy() as! FireKit.SearchParameter)
 
@@ -145,8 +145,8 @@ class SearchParameterTests: XCTestCase, RealmPersistenceTesting {
     testSearchParameterRealm2(instance!)
   }
 
-  func testSearchParameter2RealmPK() { 
-      do {
+  func testSearchParameter2RealmPK() {    
+    do {
         let instance: FireKit.SearchParameter = try runSearchParameter2()
         let copy = (instance.copy() as! FireKit.SearchParameter)
 

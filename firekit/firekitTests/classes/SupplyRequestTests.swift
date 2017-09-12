@@ -49,8 +49,8 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
     testSupplyRequestRealm1(instance!)
   }
 
-  func testSupplyRequest1RealmPK() { 
-      do {
+  func testSupplyRequest1RealmPK() {    
+    do {
         let instance: FireKit.SupplyRequest = try runSupplyRequest1()
         let copy = (instance.copy() as! FireKit.SupplyRequest)
 

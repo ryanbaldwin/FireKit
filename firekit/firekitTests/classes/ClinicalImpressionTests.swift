@@ -49,8 +49,8 @@ class ClinicalImpressionTests: XCTestCase, RealmPersistenceTesting {
     testClinicalImpressionRealm1(instance!)
   }
 
-  func testClinicalImpression1RealmPK() { 
-      do {
+  func testClinicalImpression1RealmPK() {    
+    do {
         let instance: FireKit.ClinicalImpression = try runClinicalImpression1()
         let copy = (instance.copy() as! FireKit.ClinicalImpression)
 

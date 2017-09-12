@@ -49,8 +49,8 @@ class DocumentManifestTests: XCTestCase, RealmPersistenceTesting {
     testDocumentManifestRealm1(instance!)
   }
 
-  func testDocumentManifest1RealmPK() { 
-      do {
+  func testDocumentManifest1RealmPK() {    
+    do {
         let instance: FireKit.DocumentManifest = try runDocumentManifest1()
         let copy = (instance.copy() as! FireKit.DocumentManifest)
 

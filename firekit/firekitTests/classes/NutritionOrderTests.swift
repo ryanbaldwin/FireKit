@@ -49,8 +49,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm1(instance!)
   }
 
-  func testNutritionOrder1RealmPK() { 
-      do {
+  func testNutritionOrder1RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder1()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -180,8 +180,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm2(instance!)
   }
 
-  func testNutritionOrder2RealmPK() { 
-      do {
+  func testNutritionOrder2RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder2()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -300,8 +300,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm3(instance!)
   }
 
-  func testNutritionOrder3RealmPK() { 
-      do {
+  func testNutritionOrder3RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder3()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -419,8 +419,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm4(instance!)
   }
 
-  func testNutritionOrder4RealmPK() { 
-      do {
+  func testNutritionOrder4RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder4()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -535,8 +535,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm5(instance!)
   }
 
-  func testNutritionOrder5RealmPK() { 
-      do {
+  func testNutritionOrder5RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder5()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -665,8 +665,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm6(instance!)
   }
 
-  func testNutritionOrder6RealmPK() { 
-      do {
+  func testNutritionOrder6RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder6()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -790,8 +790,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm7(instance!)
   }
 
-  func testNutritionOrder7RealmPK() { 
-      do {
+  func testNutritionOrder7RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder7()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -917,8 +917,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm8(instance!)
   }
 
-  func testNutritionOrder8RealmPK() { 
-      do {
+  func testNutritionOrder8RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder8()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -1040,8 +1040,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm9(instance!)
   }
 
-  func testNutritionOrder9RealmPK() { 
-      do {
+  func testNutritionOrder9RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder9()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 
@@ -1149,8 +1149,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm10(instance!)
   }
 
-  func testNutritionOrder10RealmPK() { 
-      do {
+  func testNutritionOrder10RealmPK() {    
+    do {
         let instance: FireKit.NutritionOrder = try runNutritionOrder10()
         let copy = (instance.copy() as! FireKit.NutritionOrder)
 

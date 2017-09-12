@@ -49,8 +49,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
     testOperationOutcomeRealm1(instance!)
   }
 
-  func testOperationOutcome1RealmPK() { 
-      do {
+  func testOperationOutcome1RealmPK() {    
+    do {
         let instance: FireKit.OperationOutcome = try runOperationOutcome1()
         let copy = (instance.copy() as! FireKit.OperationOutcome)
 
@@ -137,8 +137,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
     testOperationOutcomeRealm2(instance!)
   }
 
-  func testOperationOutcome2RealmPK() { 
-      do {
+  func testOperationOutcome2RealmPK() {    
+    do {
         let instance: FireKit.OperationOutcome = try runOperationOutcome2()
         let copy = (instance.copy() as! FireKit.OperationOutcome)
 
@@ -228,8 +228,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
     testOperationOutcomeRealm3(instance!)
   }
 
-  func testOperationOutcome3RealmPK() { 
-      do {
+  func testOperationOutcome3RealmPK() {    
+    do {
         let instance: FireKit.OperationOutcome = try runOperationOutcome3()
         let copy = (instance.copy() as! FireKit.OperationOutcome)
 
@@ -316,8 +316,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
     testOperationOutcomeRealm4(instance!)
   }
 
-  func testOperationOutcome4RealmPK() { 
-      do {
+  func testOperationOutcome4RealmPK() {    
+    do {
         let instance: FireKit.OperationOutcome = try runOperationOutcome4()
         let copy = (instance.copy() as! FireKit.OperationOutcome)
 
@@ -405,8 +405,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
     testOperationOutcomeRealm5(instance!)
   }
 
-  func testOperationOutcome5RealmPK() { 
-      do {
+  func testOperationOutcome5RealmPK() {    
+    do {
         let instance: FireKit.OperationOutcome = try runOperationOutcome5()
         let copy = (instance.copy() as! FireKit.OperationOutcome)
 
@@ -494,8 +494,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
     testOperationOutcomeRealm6(instance!)
   }
 
-  func testOperationOutcome6RealmPK() { 
-      do {
+  func testOperationOutcome6RealmPK() {    
+    do {
         let instance: FireKit.OperationOutcome = try runOperationOutcome6()
         let copy = (instance.copy() as! FireKit.OperationOutcome)
 

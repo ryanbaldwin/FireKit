@@ -49,8 +49,8 @@ class DeviceMetricTests: XCTestCase, RealmPersistenceTesting {
     testDeviceMetricRealm1(instance!)
   }
 
-  func testDeviceMetric1RealmPK() { 
-      do {
+  func testDeviceMetric1RealmPK() {    
+    do {
         let instance: FireKit.DeviceMetric = try runDeviceMetric1()
         let copy = (instance.copy() as! FireKit.DeviceMetric)
 

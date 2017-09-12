@@ -49,8 +49,8 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
     testImagingStudyRealm1(instance!)
   }
 
-  func testImagingStudy1RealmPK() { 
-      do {
+  func testImagingStudy1RealmPK() {    
+    do {
         let instance: FireKit.ImagingStudy = try runImagingStudy1()
         let copy = (instance.copy() as! FireKit.ImagingStudy)
 

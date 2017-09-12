@@ -49,8 +49,8 @@ class CommunicationTests: XCTestCase, RealmPersistenceTesting {
     testCommunicationRealm1(instance!)
   }
 
-  func testCommunication1RealmPK() { 
-      do {
+  func testCommunication1RealmPK() {    
+    do {
         let instance: FireKit.Communication = try runCommunication1()
         let copy = (instance.copy() as! FireKit.Communication)
 

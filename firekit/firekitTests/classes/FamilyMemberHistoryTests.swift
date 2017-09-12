@@ -49,8 +49,8 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
     testFamilyMemberHistoryRealm1(instance!)
   }
 
-  func testFamilyMemberHistory1RealmPK() { 
-      do {
+  func testFamilyMemberHistory1RealmPK() {    
+    do {
         let instance: FireKit.FamilyMemberHistory = try runFamilyMemberHistory1()
         let copy = (instance.copy() as! FireKit.FamilyMemberHistory)
 
@@ -146,8 +146,8 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
     testFamilyMemberHistoryRealm2(instance!)
   }
 
-  func testFamilyMemberHistory2RealmPK() { 
-      do {
+  func testFamilyMemberHistory2RealmPK() {    
+    do {
         let instance: FireKit.FamilyMemberHistory = try runFamilyMemberHistory2()
         let copy = (instance.copy() as! FireKit.FamilyMemberHistory)
 

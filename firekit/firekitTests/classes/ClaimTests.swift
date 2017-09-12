@@ -49,8 +49,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm1(instance!)
   }
 
-  func testClaim1RealmPK() { 
-      do {
+  func testClaim1RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim1()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -162,8 +162,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm2(instance!)
   }
 
-  func testClaim2RealmPK() { 
-      do {
+  func testClaim2RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim2()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -325,8 +325,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm3(instance!)
   }
 
-  func testClaim3RealmPK() { 
-      do {
+  func testClaim3RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim3()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -442,8 +442,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm4(instance!)
   }
 
-  func testClaim4RealmPK() { 
-      do {
+  func testClaim4RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim4()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -659,8 +659,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm5(instance!)
   }
 
-  func testClaim5RealmPK() { 
-      do {
+  func testClaim5RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim5()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -772,8 +772,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm6(instance!)
   }
 
-  func testClaim6RealmPK() { 
-      do {
+  func testClaim6RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim6()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -885,8 +885,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm7(instance!)
   }
 
-  func testClaim7RealmPK() { 
-      do {
+  func testClaim7RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim7()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -1031,8 +1031,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm8(instance!)
   }
 
-  func testClaim8RealmPK() { 
-      do {
+  func testClaim8RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim8()
         let copy = (instance.copy() as! FireKit.Claim)
 
@@ -1144,8 +1144,8 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
     testClaimRealm9(instance!)
   }
 
-  func testClaim9RealmPK() { 
-      do {
+  func testClaim9RealmPK() {    
+    do {
         let instance: FireKit.Claim = try runClaim9()
         let copy = (instance.copy() as! FireKit.Claim)
 

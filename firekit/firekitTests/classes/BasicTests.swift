@@ -49,8 +49,8 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
     testBasicRealm1(instance!)
   }
 
-  func testBasic1RealmPK() { 
-      do {
+  func testBasic1RealmPK() {    
+    do {
         let instance: FireKit.Basic = try runBasic1()
         let copy = (instance.copy() as! FireKit.Basic)
 
@@ -134,8 +134,8 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
     testBasicRealm2(instance!)
   }
 
-  func testBasic2RealmPK() { 
-      do {
+  func testBasic2RealmPK() {    
+    do {
         let instance: FireKit.Basic = try runBasic2()
         let copy = (instance.copy() as! FireKit.Basic)
 
@@ -240,8 +240,8 @@ class BasicTests: XCTestCase, RealmPersistenceTesting {
     testBasicRealm3(instance!)
   }
 
-  func testBasic3RealmPK() { 
-      do {
+  func testBasic3RealmPK() {    
+    do {
         let instance: FireKit.Basic = try runBasic3()
         let copy = (instance.copy() as! FireKit.Basic)
 

@@ -49,8 +49,8 @@ class EnrollmentResponseTests: XCTestCase, RealmPersistenceTesting {
     testEnrollmentResponseRealm1(instance!)
   }
 
-  func testEnrollmentResponse1RealmPK() { 
-      do {
+  func testEnrollmentResponse1RealmPK() {    
+    do {
         let instance: FireKit.EnrollmentResponse = try runEnrollmentResponse1()
         let copy = (instance.copy() as! FireKit.EnrollmentResponse)
 

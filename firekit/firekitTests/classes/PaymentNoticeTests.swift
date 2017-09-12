@@ -49,8 +49,8 @@ class PaymentNoticeTests: XCTestCase, RealmPersistenceTesting {
     testPaymentNoticeRealm1(instance!)
   }
 
-  func testPaymentNotice1RealmPK() { 
-      do {
+  func testPaymentNotice1RealmPK() {    
+    do {
         let instance: FireKit.PaymentNotice = try runPaymentNotice1()
         let copy = (instance.copy() as! FireKit.PaymentNotice)
 

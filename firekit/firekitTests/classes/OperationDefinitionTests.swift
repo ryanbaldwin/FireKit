@@ -49,8 +49,8 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
     testOperationDefinitionRealm1(instance!)
   }
 
-  func testOperationDefinition1RealmPK() { 
-      do {
+  func testOperationDefinition1RealmPK() {    
+    do {
         let instance: FireKit.OperationDefinition = try runOperationDefinition1()
         let copy = (instance.copy() as! FireKit.OperationDefinition)
 

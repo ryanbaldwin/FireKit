@@ -49,8 +49,8 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireRealm1(instance!)
   }
 
-  func testQuestionnaire1RealmPK() { 
-      do {
+  func testQuestionnaire1RealmPK() {    
+    do {
         let instance: FireKit.Questionnaire = try runQuestionnaire1()
         let copy = (instance.copy() as! FireKit.Questionnaire)
 
@@ -167,8 +167,8 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireRealm2(instance!)
   }
 
-  func testQuestionnaire2RealmPK() { 
-      do {
+  func testQuestionnaire2RealmPK() {    
+    do {
         let instance: FireKit.Questionnaire = try runQuestionnaire2()
         let copy = (instance.copy() as! FireKit.Questionnaire)
 
@@ -278,8 +278,8 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireRealm3(instance!)
   }
 
-  func testQuestionnaire3RealmPK() { 
-      do {
+  func testQuestionnaire3RealmPK() {    
+    do {
         let instance: FireKit.Questionnaire = try runQuestionnaire3()
         let copy = (instance.copy() as! FireKit.Questionnaire)
 
@@ -389,8 +389,8 @@ class QuestionnaireTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireRealm4(instance!)
   }
 
-  func testQuestionnaire4RealmPK() { 
-      do {
+  func testQuestionnaire4RealmPK() {    
+    do {
         let instance: FireKit.Questionnaire = try runQuestionnaire4()
         let copy = (instance.copy() as! FireKit.Questionnaire)
 

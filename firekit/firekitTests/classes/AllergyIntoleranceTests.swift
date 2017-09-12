@@ -49,8 +49,8 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
     testAllergyIntoleranceRealm1(instance!)
   }
 
-  func testAllergyIntolerance1RealmPK() { 
-      do {
+  func testAllergyIntolerance1RealmPK() {    
+    do {
         let instance: FireKit.AllergyIntolerance = try runAllergyIntolerance1()
         let copy = (instance.copy() as! FireKit.AllergyIntolerance)
 

@@ -49,8 +49,8 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
     testImagingObjectSelectionRealm1(instance!)
   }
 
-  func testImagingObjectSelection1RealmPK() { 
-      do {
+  func testImagingObjectSelection1RealmPK() {    
+    do {
         let instance: FireKit.ImagingObjectSelection = try runImagingObjectSelection1()
         let copy = (instance.copy() as! FireKit.ImagingObjectSelection)
 

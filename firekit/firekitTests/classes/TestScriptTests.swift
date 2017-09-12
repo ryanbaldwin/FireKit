@@ -49,8 +49,8 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
     testTestScriptRealm1(instance!)
   }
 
-  func testTestScript1RealmPK() { 
-      do {
+  func testTestScript1RealmPK() {    
+    do {
         let instance: FireKit.TestScript = try runTestScript1()
         let copy = (instance.copy() as! FireKit.TestScript)
 
@@ -220,8 +220,8 @@ class TestScriptTests: XCTestCase, RealmPersistenceTesting {
     testTestScriptRealm2(instance!)
   }
 
-  func testTestScript2RealmPK() { 
-      do {
+  func testTestScript2RealmPK() {    
+    do {
         let instance: FireKit.TestScript = try runTestScript2()
         let copy = (instance.copy() as! FireKit.TestScript)
 

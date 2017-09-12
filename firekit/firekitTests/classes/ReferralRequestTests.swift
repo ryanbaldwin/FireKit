@@ -49,8 +49,8 @@ class ReferralRequestTests: XCTestCase, RealmPersistenceTesting {
     testReferralRequestRealm1(instance!)
   }
 
-  func testReferralRequest1RealmPK() { 
-      do {
+  func testReferralRequest1RealmPK() {    
+    do {
         let instance: FireKit.ReferralRequest = try runReferralRequest1()
         let copy = (instance.copy() as! FireKit.ReferralRequest)
 

@@ -49,8 +49,8 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
     testGroupRealm1(instance!)
   }
 
-  func testGroup1RealmPK() { 
-      do {
+  func testGroup1RealmPK() {    
+    do {
         let instance: FireKit.Group = try runGroup1()
         let copy = (instance.copy() as! FireKit.Group)
 
@@ -144,8 +144,8 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
     testGroupRealm2(instance!)
   }
 
-  func testGroup2RealmPK() { 
-      do {
+  func testGroup2RealmPK() {    
+    do {
         let instance: FireKit.Group = try runGroup2()
         let copy = (instance.copy() as! FireKit.Group)
 

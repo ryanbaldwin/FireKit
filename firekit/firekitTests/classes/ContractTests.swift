@@ -49,8 +49,8 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
     testContractRealm1(instance!)
   }
 
-  func testContract1RealmPK() { 
-      do {
+  func testContract1RealmPK() {    
+    do {
         let instance: FireKit.Contract = try runContract1()
         let copy = (instance.copy() as! FireKit.Contract)
 

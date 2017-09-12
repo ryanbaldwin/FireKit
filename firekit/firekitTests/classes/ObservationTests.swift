@@ -49,8 +49,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm1(instance!)
   }
 
-  func testObservation1RealmPK() { 
-      do {
+  func testObservation1RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation1()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -173,8 +173,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm2(instance!)
   }
 
-  func testObservation2RealmPK() { 
-      do {
+  func testObservation2RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation2()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -293,8 +293,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm3(instance!)
   }
 
-  func testObservation3RealmPK() { 
-      do {
+  func testObservation3RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation3()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -399,8 +399,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm4(instance!)
   }
 
-  func testObservation4RealmPK() { 
-      do {
+  func testObservation4RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation4()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -507,8 +507,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm5(instance!)
   }
 
-  func testObservation5RealmPK() { 
-      do {
+  func testObservation5RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation5()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -613,8 +613,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm6(instance!)
   }
 
-  func testObservation6RealmPK() { 
-      do {
+  func testObservation6RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation6()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -719,8 +719,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm7(instance!)
   }
 
-  func testObservation7RealmPK() { 
-      do {
+  func testObservation7RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation7()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -831,8 +831,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm8(instance!)
   }
 
-  func testObservation8RealmPK() { 
-      do {
+  func testObservation8RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation8()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -951,8 +951,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm9(instance!)
   }
 
-  func testObservation9RealmPK() { 
-      do {
+  func testObservation9RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation9()
         let copy = (instance.copy() as! FireKit.Observation)
 
@@ -1068,8 +1068,8 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm10(instance!)
   }
 
-  func testObservation10RealmPK() { 
-      do {
+  func testObservation10RealmPK() {    
+    do {
         let instance: FireKit.Observation = try runObservation10()
         let copy = (instance.copy() as! FireKit.Observation)
 

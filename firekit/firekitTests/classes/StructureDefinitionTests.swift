@@ -49,8 +49,8 @@ class StructureDefinitionTests: XCTestCase, RealmPersistenceTesting {
     testStructureDefinitionRealm1(instance!)
   }
 
-  func testStructureDefinition1RealmPK() { 
-      do {
+  func testStructureDefinition1RealmPK() {    
+    do {
         let instance: FireKit.StructureDefinition = try runStructureDefinition1()
         let copy = (instance.copy() as! FireKit.StructureDefinition)
 

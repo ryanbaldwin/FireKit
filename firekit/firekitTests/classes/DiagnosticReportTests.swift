@@ -49,8 +49,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm1(instance!)
   }
 
-  func testDiagnosticReport1RealmPK() { 
-      do {
+  func testDiagnosticReport1RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport1()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 
@@ -147,8 +147,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm2(instance!)
   }
 
-  func testDiagnosticReport2RealmPK() { 
-      do {
+  func testDiagnosticReport2RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport2()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 
@@ -257,8 +257,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm3(instance!)
   }
 
-  func testDiagnosticReport3RealmPK() { 
-      do {
+  func testDiagnosticReport3RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport3()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 
@@ -362,8 +362,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm4(instance!)
   }
 
-  func testDiagnosticReport4RealmPK() { 
-      do {
+  func testDiagnosticReport4RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport4()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 
@@ -469,8 +469,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm5(instance!)
   }
 
-  func testDiagnosticReport5RealmPK() { 
-      do {
+  func testDiagnosticReport5RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport5()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 
@@ -587,8 +587,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm6(instance!)
   }
 
-  func testDiagnosticReport6RealmPK() { 
-      do {
+  func testDiagnosticReport6RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport6()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 
@@ -693,8 +693,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm7(instance!)
   }
 
-  func testDiagnosticReport7RealmPK() { 
-      do {
+  func testDiagnosticReport7RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport7()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 
@@ -795,8 +795,8 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticReportRealm8(instance!)
   }
 
-  func testDiagnosticReport8RealmPK() { 
-      do {
+  func testDiagnosticReport8RealmPK() {    
+    do {
         let instance: FireKit.DiagnosticReport = try runDiagnosticReport8()
         let copy = (instance.copy() as! FireKit.DiagnosticReport)
 

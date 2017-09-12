@@ -49,8 +49,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
     testSubstanceRealm1(instance!)
   }
 
-  func testSubstance1RealmPK() { 
-      do {
+  func testSubstance1RealmPK() {    
+    do {
         let instance: FireKit.Substance = try runSubstance1()
         let copy = (instance.copy() as! FireKit.Substance)
 
@@ -160,8 +160,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
     testSubstanceRealm2(instance!)
   }
 
-  func testSubstance2RealmPK() { 
-      do {
+  func testSubstance2RealmPK() {    
+    do {
         let instance: FireKit.Substance = try runSubstance2()
         let copy = (instance.copy() as! FireKit.Substance)
 
@@ -247,8 +247,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
     testSubstanceRealm3(instance!)
   }
 
-  func testSubstance3RealmPK() { 
-      do {
+  func testSubstance3RealmPK() {    
+    do {
         let instance: FireKit.Substance = try runSubstance3()
         let copy = (instance.copy() as! FireKit.Substance)
 
@@ -334,8 +334,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
     testSubstanceRealm4(instance!)
   }
 
-  func testSubstance4RealmPK() { 
-      do {
+  func testSubstance4RealmPK() {    
+    do {
         let instance: FireKit.Substance = try runSubstance4()
         let copy = (instance.copy() as! FireKit.Substance)
 
@@ -426,8 +426,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
     testSubstanceRealm5(instance!)
   }
 
-  func testSubstance5RealmPK() { 
-      do {
+  func testSubstance5RealmPK() {    
+    do {
         let instance: FireKit.Substance = try runSubstance5()
         let copy = (instance.copy() as! FireKit.Substance)
 
@@ -526,8 +526,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
     testSubstanceRealm6(instance!)
   }
 
-  func testSubstance6RealmPK() { 
-      do {
+  func testSubstance6RealmPK() {    
+    do {
         let instance: FireKit.Substance = try runSubstance6()
         let copy = (instance.copy() as! FireKit.Substance)
 

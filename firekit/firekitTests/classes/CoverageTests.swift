@@ -49,8 +49,8 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
     testCoverageRealm1(instance!)
   }
 
-  func testCoverage1RealmPK() { 
-      do {
+  func testCoverage1RealmPK() {    
+    do {
         let instance: FireKit.Coverage = try runCoverage1()
         let copy = (instance.copy() as! FireKit.Coverage)
 
@@ -146,8 +146,8 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
     testCoverageRealm2(instance!)
   }
 
-  func testCoverage2RealmPK() { 
-      do {
+  func testCoverage2RealmPK() {    
+    do {
         let instance: FireKit.Coverage = try runCoverage2()
         let copy = (instance.copy() as! FireKit.Coverage)
 

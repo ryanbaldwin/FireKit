@@ -49,8 +49,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm1(instance!)
   }
 
-  func testMedication1RealmPK() { 
-      do {
+  func testMedication1RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication1()
         let copy = (instance.copy() as! FireKit.Medication)
 
@@ -147,8 +147,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm2(instance!)
   }
 
-  func testMedication2RealmPK() { 
-      do {
+  func testMedication2RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication2()
         let copy = (instance.copy() as! FireKit.Medication)
 
@@ -238,8 +238,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm3(instance!)
   }
 
-  func testMedication3RealmPK() { 
-      do {
+  func testMedication3RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication3()
         let copy = (instance.copy() as! FireKit.Medication)
 
@@ -329,8 +329,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm4(instance!)
   }
 
-  func testMedication4RealmPK() { 
-      do {
+  func testMedication4RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication4()
         let copy = (instance.copy() as! FireKit.Medication)
 
@@ -420,8 +420,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm5(instance!)
   }
 
-  func testMedication5RealmPK() { 
-      do {
+  func testMedication5RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication5()
         let copy = (instance.copy() as! FireKit.Medication)
 
@@ -511,8 +511,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm6(instance!)
   }
 
-  func testMedication6RealmPK() { 
-      do {
+  func testMedication6RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication6()
         let copy = (instance.copy() as! FireKit.Medication)
 
@@ -616,8 +616,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm7(instance!)
   }
 
-  func testMedication7RealmPK() { 
-      do {
+  func testMedication7RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication7()
         let copy = (instance.copy() as! FireKit.Medication)
 
@@ -707,8 +707,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
     testMedicationRealm8(instance!)
   }
 
-  func testMedication8RealmPK() { 
-      do {
+  func testMedication8RealmPK() {    
+    do {
         let instance: FireKit.Medication = try runMedication8()
         let copy = (instance.copy() as! FireKit.Medication)
 

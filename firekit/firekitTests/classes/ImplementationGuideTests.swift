@@ -49,8 +49,8 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
     testImplementationGuideRealm1(instance!)
   }
 
-  func testImplementationGuide1RealmPK() { 
-      do {
+  func testImplementationGuide1RealmPK() {    
+    do {
         let instance: FireKit.ImplementationGuide = try runImplementationGuide1()
         let copy = (instance.copy() as! FireKit.ImplementationGuide)
 

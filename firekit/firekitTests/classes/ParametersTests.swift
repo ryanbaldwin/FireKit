@@ -49,8 +49,8 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
     testParametersRealm1(instance!)
   }
 
-  func testParameters1RealmPK() { 
-      do {
+  func testParameters1RealmPK() {    
+    do {
         let instance: FireKit.Parameters = try runParameters1()
         let copy = (instance.copy() as! FireKit.Parameters)
 

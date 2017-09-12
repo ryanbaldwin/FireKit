@@ -49,8 +49,8 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
     testVisionPrescriptionRealm1(instance!)
   }
 
-  func testVisionPrescription1RealmPK() { 
-      do {
+  func testVisionPrescription1RealmPK() {    
+    do {
         let instance: FireKit.VisionPrescription = try runVisionPrescription1()
         let copy = (instance.copy() as! FireKit.VisionPrescription)
 
@@ -169,8 +169,8 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
     testVisionPrescriptionRealm2(instance!)
   }
 
-  func testVisionPrescription2RealmPK() { 
-      do {
+  func testVisionPrescription2RealmPK() {    
+    do {
         let instance: FireKit.VisionPrescription = try runVisionPrescription2()
         let copy = (instance.copy() as! FireKit.VisionPrescription)
 

@@ -49,8 +49,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm1(instance!)
   }
 
-  func testEncounter1RealmPK() { 
-      do {
+  func testEncounter1RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter1()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -166,8 +166,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm2(instance!)
   }
 
-  func testEncounter2RealmPK() { 
-      do {
+  func testEncounter2RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter2()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -283,8 +283,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm3(instance!)
   }
 
-  func testEncounter3RealmPK() { 
-      do {
+  func testEncounter3RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter3()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -401,8 +401,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm4(instance!)
   }
 
-  func testEncounter4RealmPK() { 
-      do {
+  func testEncounter4RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter4()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -500,8 +500,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm5(instance!)
   }
 
-  func testEncounter5RealmPK() { 
-      do {
+  func testEncounter5RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter5()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -609,8 +609,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm6(instance!)
   }
 
-  func testEncounter6RealmPK() { 
-      do {
+  func testEncounter6RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter6()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -717,8 +717,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm7(instance!)
   }
 
-  func testEncounter7RealmPK() { 
-      do {
+  func testEncounter7RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter7()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -817,8 +817,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm8(instance!)
   }
 
-  func testEncounter8RealmPK() { 
-      do {
+  func testEncounter8RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter8()
         let copy = (instance.copy() as! FireKit.Encounter)
 
@@ -911,8 +911,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
     testEncounterRealm9(instance!)
   }
 
-  func testEncounter9RealmPK() { 
-      do {
+  func testEncounter9RealmPK() {    
+    do {
         let instance: FireKit.Encounter = try runEncounter9()
         let copy = (instance.copy() as! FireKit.Encounter)
 
