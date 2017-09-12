@@ -192,10 +192,7 @@ open class BundleEntry: BackboneElement {
     public func upsert(request: BundleEntryRequest?) {
         upsert(prop: &self.request, val: request)
     }
-    @objc public dynamic var resource: Resource?
-    public func upsert(resource: Resource?) {
-        upsert(prop: &self.resource, val: resource)
-    }
+    @objc public dynamic var resource: ContainedResource?
     @objc public dynamic var response: BundleEntryResponse?
     public func upsert(response: BundleEntryResponse?) {
         upsert(prop: &self.response, val: response)
@@ -237,7 +234,9 @@ open class BundleEntry: BackboneElement {
 
         if let resourceContained = try container.decodeIfPresent(ContainedResource.self, forKey: .resource),
            let resourceType = resourceContained.resourceType {
-            self.resource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource) as? Resource
+            let actualResource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource)
+            resourceContained.json = try JSONEncoder().encode(actualResource)
+            self.resource = resourceContained
         }
     
         self.response = try container.decodeIfPresent(BundleEntryResponse.self, forKey: .response)

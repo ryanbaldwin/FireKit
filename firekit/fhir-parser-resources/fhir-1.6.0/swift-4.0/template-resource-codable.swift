@@ -61,7 +61,9 @@
 
         if let {{ prop.name }}Contained = try container.decodeIfPresent(ContainedResource.self, forKey: .{{ prop.name }}),
            let resourceType = {{ prop.name }}Contained.resourceType {
-            self.resource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource) as? Resource
+            let actualResource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .{{ prop.name }})
+            {{ prop.name }}Contained.json = try JSONEncoder().encode(actualResource)
+            self.{{prop.name}} = {{prop.name}}Contained
         }
     {% else %}
         self.{{ prop.name }}{%- if prop|requires_realm_optional %}.value{%- endif %} = try container.decodeIfPresent({{ prop.class_name }}.self, forKey: .{{ prop.name }})

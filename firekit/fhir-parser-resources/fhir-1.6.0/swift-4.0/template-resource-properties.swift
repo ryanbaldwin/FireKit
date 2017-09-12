@@ -3,6 +3,8 @@
     public let {{ prop.name }} = RealmSwift.List<{{ prop|realm_listify }}>()
     {%- elif prop|requires_realm_optional %}
     public let {{ prop.name }} = RealmOptional<{{ prop.class_name }}>()
+    {%- elif prop.class_name == 'Resource'%}
+    @objc public dynamic var {{ prop.name }}: ContainedResource?
     {%- else %}
     @objc public dynamic var {{ prop.name }}: {{ prop.class_name }}?        
     {%- if prop|can_upsert %}

@@ -109,10 +109,7 @@ open class ParametersParameter: BackboneElement {
 
     @objc public dynamic var name: String?
     public let part = RealmSwift.List<ParametersParameter>()
-    @objc public dynamic var resource: Resource?
-    public func upsert(resource: Resource?) {
-        upsert(prop: &self.resource, val: resource)
-    }
+    @objc public dynamic var resource: ContainedResource?
     @objc public dynamic var valueAddress: Address?
     public func upsert(valueAddress: Address?) {
         upsert(prop: &self.valueAddress, val: valueAddress)
@@ -265,7 +262,9 @@ open class ParametersParameter: BackboneElement {
 
         if let resourceContained = try container.decodeIfPresent(ContainedResource.self, forKey: .resource),
            let resourceType = resourceContained.resourceType {
-            self.resource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource) as? Resource
+            let actualResource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource)
+            resourceContained.json = try JSONEncoder().encode(actualResource)
+            self.resource = resourceContained
         }
     
         self.valueAddress = try container.decodeIfPresent(Address.self, forKey: .valueAddress)
