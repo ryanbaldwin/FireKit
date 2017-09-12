@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-12.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -24,6 +24,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
   }
   
   func inflateFrom(data: Data) throws -> FireKit.VisionPrescription {
+      print("Inflating FireKit.VisionPrescription from data: \(data)")
       let instance = try JSONDecoder().decode(FireKit.VisionPrescription.self, from: data)
       XCTAssertNotNil(instance, "Must have instantiated a test instance")
       return instance

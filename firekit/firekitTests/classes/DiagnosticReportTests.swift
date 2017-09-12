@@ -2,7 +2,7 @@
 //  DiagnosticReportTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-12.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -24,6 +24,7 @@ class DiagnosticReportTests: XCTestCase, RealmPersistenceTesting {
   }
   
   func inflateFrom(data: Data) throws -> FireKit.DiagnosticReport {
+      print("Inflating FireKit.DiagnosticReport from data: \(data)")
       let instance = try JSONDecoder().decode(FireKit.DiagnosticReport.self, from: data)
       XCTAssertNotNil(instance, "Must have instantiated a test instance")
       return instance

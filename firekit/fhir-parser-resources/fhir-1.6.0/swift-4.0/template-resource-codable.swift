@@ -37,7 +37,7 @@
             // please let me know and I will buy you 🍻
             var containedMap: [Int: ContainedResource] = [:]
             var containedList = try container.nestedUnkeyedContainer(forKey: .contained)
-            print("Inflating \(containedList.count) items.")
+            //print("Inflating \(containedList.count ?? 0) items.")
             while !containedList.isAtEnd {
                 containedMap[containedList.currentIndex] = try containedList.decode(ContainedResource.self)
             }
@@ -77,7 +77,12 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
       {%- for prop in klass.properties %}
       {%- if prop.is_array %}
+        {%- if prop.class_name == 'Resource' %}
+        let containedItems = Array(self.contained.flatMap { $0.resource })
+        try container.encode({{prop.name}}Items, forKey: .contained)
+        {%- else %}
         try container.encode(Array(self.{{ prop.name }}), forKey: .{{prop.name}})
+        {%- endif %}
       {%- else %}
         try container.encodeIfPresent(self.{{ prop.name }}{% if prop|requires_realm_optional %}.value{% endif %}, forKey: .{{ prop.name }})
       {%- endif -%}{%- endfor -%}{%- endif %}
