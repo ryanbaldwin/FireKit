@@ -166,9 +166,8 @@ final public class ContainedResource: Resource {
             return nil
         }
         
-        let t = FHIRAbstractBase.resourceType(from: resourceType)
         do {
-            return try JSONDecoder().decode(t, from: json)
+            return try JSONDecoder().decode(resourceType, from: json)
         } catch let error {
             print("Failed to decode contained resource. Returning nil: \(error)")
         }

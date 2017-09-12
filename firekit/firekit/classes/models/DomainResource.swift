@@ -60,21 +60,21 @@ open class DomainResource: Resource {
             // I cannot find a better way to do this in Apple's Decodable containers.
             // If there's a way to get at the raw data in a container without decoding it,
             // please let me know and I will buy you 🍻
-            var containedMap: [Int: ContainedResource] = [:]
+            var inflatedContainers: [ContainedResource] = []
             var containedList = try container.nestedUnkeyedContainer(forKey: .contained)
             //print("Inflating \(containedList.count ?? 0) items.")
             while !containedList.isAtEnd {
-                containedMap[containedList.currentIndex] = try containedList.decode(ContainedResource.self)
+                inflatedContainers.append(try containedList.decode(ContainedResource.self))
             }
             
             var secondPass = try container.nestedUnkeyedContainer(forKey: .contained)
             while !secondPass.isAtEnd {
-                let containedResource = containedMap[secondPass.currentIndex]!
+                let containedResource = inflatedContainers[secondPass.currentIndex]
                 let actualResource = try secondPass.decodeFHIRAbstractBase(containedResource.resourceType!)
                 containedResource.json = try JSONEncoder().encode(actualResource)
             }
             
-            // TODO: need to append!
+            self.contained.append(objectsIn: inflatedContainers)
         }
         self.extension_fhir.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) ?? [])
         self.modifierExtension.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) ?? [])

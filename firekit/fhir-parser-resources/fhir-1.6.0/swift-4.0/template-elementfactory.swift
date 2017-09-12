@@ -6,7 +6,7 @@
 //  {{ info.year }}, SMART Health IT.
 //
 
-
+import Foundation
 /**
  *  Extension to FHIRAbstractBase to be able to instantiate by class name.
  */
@@ -38,7 +38,7 @@ extension FHIRAbstractBase {
   }
 }
 
-struct UnkownFhirDecodingTypeError: Error {
+struct UnknownFhirDecodingTypeError: Error {
     var className: String
 }
 extension KeyedDecodingContainerProtocol {
@@ -49,7 +49,7 @@ extension KeyedDecodingContainerProtocol {
         return try decodeIfPresent({{ klass.name }}.self, forKey: key)
     {%- endif %}{% endfor %}
       default:
-        throw UnkownFhirDecodingTypeError(className: className)
+        throw UnknownFhirDecodingTypeError(className: className)
       }
     }
 }
@@ -62,7 +62,20 @@ extension UnkeyedDecodingContainer {
                 return try decode({{ klass.name }}.self)
           {%- endif %}{% endfor %}
             default:
-                throw UnkownFhirDecodingTypeError(className: className)
+                throw UnknownFhirDecodingTypeError(className: className)
+        }
+    }
+}
+
+extension JSONDecoder {
+    func decode(_ resourceClassName: String, from data: Data) throws -> FHIRAbstractBase {
+        switch resourceClassName {
+            {%- for klass in classes %}{% if klass.resource_name %}
+            case "{{ klass.resource_name }}":
+                return try decode({{ klass.name }}.self, from: data)
+            {%- endif %}{% endfor %}
+            default:
+                throw UnknownFhirDecodingTypeError(className: resourceClassName)
         }
     }
 }

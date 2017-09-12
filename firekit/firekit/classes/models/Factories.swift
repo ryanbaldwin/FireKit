@@ -6,7 +6,7 @@
 //  2017, SMART Health IT.
 //
 
-
+import Foundation
 /**
  *  Extension to FHIRAbstractBase to be able to instantiate by class name.
  */
@@ -1418,7 +1418,7 @@ extension FHIRAbstractBase {
   }
 }
 
-struct UnkownFhirDecodingTypeError: Error {
+struct UnknownFhirDecodingTypeError: Error {
     var className: String
 }
 extension KeyedDecodingContainerProtocol {
@@ -2119,7 +2119,7 @@ extension KeyedDecodingContainerProtocol {
       case "VisionPrescriptionDispense":
         return try decodeIfPresent(VisionPrescriptionDispense.self, forKey: key)
       default:
-        throw UnkownFhirDecodingTypeError(className: className)
+        throw UnknownFhirDecodingTypeError(className: className)
       }
     }
 }
@@ -2822,7 +2822,710 @@ extension UnkeyedDecodingContainer {
             case "VisionPrescriptionDispense":
                 return try decode(VisionPrescriptionDispense.self)
             default:
-                throw UnkownFhirDecodingTypeError(className: className)
+                throw UnknownFhirDecodingTypeError(className: className)
+        }
+    }
+}
+
+extension JSONDecoder {
+    func decode(_ resourceClassName: String, from data: Data) throws -> FHIRAbstractBase {
+        switch resourceClassName {
+            case "Account":
+                return try decode(Account.self, from: data)
+            case "Address":
+                return try decode(Address.self, from: data)
+            case "Age":
+                return try decode(Age.self, from: data)
+            case "AllergyIntolerance":
+                return try decode(AllergyIntolerance.self, from: data)
+            case "AllergyIntoleranceReaction":
+                return try decode(AllergyIntoleranceReaction.self, from: data)
+            case "Annotation":
+                return try decode(Annotation.self, from: data)
+            case "Appointment":
+                return try decode(Appointment.self, from: data)
+            case "AppointmentParticipant":
+                return try decode(AppointmentParticipant.self, from: data)
+            case "AppointmentResponse":
+                return try decode(AppointmentResponse.self, from: data)
+            case "Attachment":
+                return try decode(Attachment.self, from: data)
+            case "AuditEvent":
+                return try decode(AuditEvent.self, from: data)
+            case "AuditEventEvent":
+                return try decode(AuditEventEvent.self, from: data)
+            case "AuditEventObject":
+                return try decode(AuditEventObject.self, from: data)
+            case "AuditEventObjectDetail":
+                return try decode(AuditEventObjectDetail.self, from: data)
+            case "AuditEventParticipant":
+                return try decode(AuditEventParticipant.self, from: data)
+            case "AuditEventParticipantNetwork":
+                return try decode(AuditEventParticipantNetwork.self, from: data)
+            case "AuditEventSource":
+                return try decode(AuditEventSource.self, from: data)
+            case "BackboneElement":
+                return try decode(BackboneElement.self, from: data)
+            case "Basic":
+                return try decode(Basic.self, from: data)
+            case "Binary":
+                return try decode(Binary.self, from: data)
+            case "BodySite":
+                return try decode(BodySite.self, from: data)
+            case "Bundle":
+                return try decode(Bundle.self, from: data)
+            case "BundleEntry":
+                return try decode(BundleEntry.self, from: data)
+            case "BundleEntryRequest":
+                return try decode(BundleEntryRequest.self, from: data)
+            case "BundleEntryResponse":
+                return try decode(BundleEntryResponse.self, from: data)
+            case "BundleEntrySearch":
+                return try decode(BundleEntrySearch.self, from: data)
+            case "BundleLink":
+                return try decode(BundleLink.self, from: data)
+            case "CarePlan":
+                return try decode(CarePlan.self, from: data)
+            case "CarePlanActivity":
+                return try decode(CarePlanActivity.self, from: data)
+            case "CarePlanActivityDetail":
+                return try decode(CarePlanActivityDetail.self, from: data)
+            case "CarePlanParticipant":
+                return try decode(CarePlanParticipant.self, from: data)
+            case "CarePlanRelatedPlan":
+                return try decode(CarePlanRelatedPlan.self, from: data)
+            case "Claim":
+                return try decode(Claim.self, from: data)
+            case "ClaimCoverage":
+                return try decode(ClaimCoverage.self, from: data)
+            case "ClaimDiagnosis":
+                return try decode(ClaimDiagnosis.self, from: data)
+            case "ClaimItem":
+                return try decode(ClaimItem.self, from: data)
+            case "ClaimItemDetail":
+                return try decode(ClaimItemDetail.self, from: data)
+            case "ClaimItemDetailSubDetail":
+                return try decode(ClaimItemDetailSubDetail.self, from: data)
+            case "ClaimItemProsthesis":
+                return try decode(ClaimItemProsthesis.self, from: data)
+            case "ClaimMissingTeeth":
+                return try decode(ClaimMissingTeeth.self, from: data)
+            case "ClaimPayee":
+                return try decode(ClaimPayee.self, from: data)
+            case "ClaimResponse":
+                return try decode(ClaimResponse.self, from: data)
+            case "ClaimResponseAddItem":
+                return try decode(ClaimResponseAddItem.self, from: data)
+            case "ClaimResponseAddItemAdjudication":
+                return try decode(ClaimResponseAddItemAdjudication.self, from: data)
+            case "ClaimResponseAddItemDetail":
+                return try decode(ClaimResponseAddItemDetail.self, from: data)
+            case "ClaimResponseAddItemDetailAdjudication":
+                return try decode(ClaimResponseAddItemDetailAdjudication.self, from: data)
+            case "ClaimResponseCoverage":
+                return try decode(ClaimResponseCoverage.self, from: data)
+            case "ClaimResponseError":
+                return try decode(ClaimResponseError.self, from: data)
+            case "ClaimResponseItem":
+                return try decode(ClaimResponseItem.self, from: data)
+            case "ClaimResponseItemAdjudication":
+                return try decode(ClaimResponseItemAdjudication.self, from: data)
+            case "ClaimResponseItemDetail":
+                return try decode(ClaimResponseItemDetail.self, from: data)
+            case "ClaimResponseItemDetailAdjudication":
+                return try decode(ClaimResponseItemDetailAdjudication.self, from: data)
+            case "ClaimResponseItemDetailSubDetail":
+                return try decode(ClaimResponseItemDetailSubDetail.self, from: data)
+            case "ClaimResponseItemDetailSubDetailAdjudication":
+                return try decode(ClaimResponseItemDetailSubDetailAdjudication.self, from: data)
+            case "ClaimResponseNote":
+                return try decode(ClaimResponseNote.self, from: data)
+            case "ClinicalImpression":
+                return try decode(ClinicalImpression.self, from: data)
+            case "ClinicalImpressionFinding":
+                return try decode(ClinicalImpressionFinding.self, from: data)
+            case "ClinicalImpressionInvestigations":
+                return try decode(ClinicalImpressionInvestigations.self, from: data)
+            case "ClinicalImpressionRuledOut":
+                return try decode(ClinicalImpressionRuledOut.self, from: data)
+            case "CodeableConcept":
+                return try decode(CodeableConcept.self, from: data)
+            case "Coding":
+                return try decode(Coding.self, from: data)
+            case "Communication":
+                return try decode(Communication.self, from: data)
+            case "CommunicationPayload":
+                return try decode(CommunicationPayload.self, from: data)
+            case "CommunicationRequest":
+                return try decode(CommunicationRequest.self, from: data)
+            case "CommunicationRequestPayload":
+                return try decode(CommunicationRequestPayload.self, from: data)
+            case "Composition":
+                return try decode(Composition.self, from: data)
+            case "CompositionAttester":
+                return try decode(CompositionAttester.self, from: data)
+            case "CompositionEvent":
+                return try decode(CompositionEvent.self, from: data)
+            case "CompositionSection":
+                return try decode(CompositionSection.self, from: data)
+            case "ConceptMap":
+                return try decode(ConceptMap.self, from: data)
+            case "ConceptMapContact":
+                return try decode(ConceptMapContact.self, from: data)
+            case "ConceptMapElement":
+                return try decode(ConceptMapElement.self, from: data)
+            case "ConceptMapElementTarget":
+                return try decode(ConceptMapElementTarget.self, from: data)
+            case "ConceptMapElementTargetDependsOn":
+                return try decode(ConceptMapElementTargetDependsOn.self, from: data)
+            case "Condition":
+                return try decode(Condition.self, from: data)
+            case "ConditionEvidence":
+                return try decode(ConditionEvidence.self, from: data)
+            case "ConditionStage":
+                return try decode(ConditionStage.self, from: data)
+            case "Conformance":
+                return try decode(Conformance.self, from: data)
+            case "ConformanceContact":
+                return try decode(ConformanceContact.self, from: data)
+            case "ConformanceDocument":
+                return try decode(ConformanceDocument.self, from: data)
+            case "ConformanceImplementation":
+                return try decode(ConformanceImplementation.self, from: data)
+            case "ConformanceMessaging":
+                return try decode(ConformanceMessaging.self, from: data)
+            case "ConformanceMessagingEndpoint":
+                return try decode(ConformanceMessagingEndpoint.self, from: data)
+            case "ConformanceMessagingEvent":
+                return try decode(ConformanceMessagingEvent.self, from: data)
+            case "ConformanceRest":
+                return try decode(ConformanceRest.self, from: data)
+            case "ConformanceRestInteraction":
+                return try decode(ConformanceRestInteraction.self, from: data)
+            case "ConformanceRestOperation":
+                return try decode(ConformanceRestOperation.self, from: data)
+            case "ConformanceRestResource":
+                return try decode(ConformanceRestResource.self, from: data)
+            case "ConformanceRestResourceInteraction":
+                return try decode(ConformanceRestResourceInteraction.self, from: data)
+            case "ConformanceRestResourceSearchParam":
+                return try decode(ConformanceRestResourceSearchParam.self, from: data)
+            case "ConformanceRestSecurity":
+                return try decode(ConformanceRestSecurity.self, from: data)
+            case "ConformanceRestSecurityCertificate":
+                return try decode(ConformanceRestSecurityCertificate.self, from: data)
+            case "ConformanceSoftware":
+                return try decode(ConformanceSoftware.self, from: data)
+            case "ContactPoint":
+                return try decode(ContactPoint.self, from: data)
+            case "Contract":
+                return try decode(Contract.self, from: data)
+            case "ContractActor":
+                return try decode(ContractActor.self, from: data)
+            case "ContractFriendly":
+                return try decode(ContractFriendly.self, from: data)
+            case "ContractLegal":
+                return try decode(ContractLegal.self, from: data)
+            case "ContractRule":
+                return try decode(ContractRule.self, from: data)
+            case "ContractSigner":
+                return try decode(ContractSigner.self, from: data)
+            case "ContractTerm":
+                return try decode(ContractTerm.self, from: data)
+            case "ContractTermActor":
+                return try decode(ContractTermActor.self, from: data)
+            case "ContractTermValuedItem":
+                return try decode(ContractTermValuedItem.self, from: data)
+            case "ContractValuedItem":
+                return try decode(ContractValuedItem.self, from: data)
+            case "Count":
+                return try decode(Count.self, from: data)
+            case "Coverage":
+                return try decode(Coverage.self, from: data)
+            case "DataElement":
+                return try decode(DataElement.self, from: data)
+            case "DataElementContact":
+                return try decode(DataElementContact.self, from: data)
+            case "DataElementMapping":
+                return try decode(DataElementMapping.self, from: data)
+            case "DetectedIssue":
+                return try decode(DetectedIssue.self, from: data)
+            case "DetectedIssueMitigation":
+                return try decode(DetectedIssueMitigation.self, from: data)
+            case "Device":
+                return try decode(Device.self, from: data)
+            case "DeviceComponent":
+                return try decode(DeviceComponent.self, from: data)
+            case "DeviceComponentProductionSpecification":
+                return try decode(DeviceComponentProductionSpecification.self, from: data)
+            case "DeviceMetric":
+                return try decode(DeviceMetric.self, from: data)
+            case "DeviceMetricCalibration":
+                return try decode(DeviceMetricCalibration.self, from: data)
+            case "DeviceUseRequest":
+                return try decode(DeviceUseRequest.self, from: data)
+            case "DeviceUseStatement":
+                return try decode(DeviceUseStatement.self, from: data)
+            case "DiagnosticOrder":
+                return try decode(DiagnosticOrder.self, from: data)
+            case "DiagnosticOrderEvent":
+                return try decode(DiagnosticOrderEvent.self, from: data)
+            case "DiagnosticOrderItem":
+                return try decode(DiagnosticOrderItem.self, from: data)
+            case "DiagnosticReport":
+                return try decode(DiagnosticReport.self, from: data)
+            case "DiagnosticReportImage":
+                return try decode(DiagnosticReportImage.self, from: data)
+            case "Distance":
+                return try decode(Distance.self, from: data)
+            case "DocumentManifest":
+                return try decode(DocumentManifest.self, from: data)
+            case "DocumentManifestContent":
+                return try decode(DocumentManifestContent.self, from: data)
+            case "DocumentManifestRelated":
+                return try decode(DocumentManifestRelated.self, from: data)
+            case "DocumentReference":
+                return try decode(DocumentReference.self, from: data)
+            case "DocumentReferenceContent":
+                return try decode(DocumentReferenceContent.self, from: data)
+            case "DocumentReferenceContext":
+                return try decode(DocumentReferenceContext.self, from: data)
+            case "DocumentReferenceContextRelated":
+                return try decode(DocumentReferenceContextRelated.self, from: data)
+            case "DocumentReferenceRelatesTo":
+                return try decode(DocumentReferenceRelatesTo.self, from: data)
+            case "DomainResource":
+                return try decode(DomainResource.self, from: data)
+            case "Duration":
+                return try decode(Duration.self, from: data)
+            case "Element":
+                return try decode(Element.self, from: data)
+            case "ElementDefinition":
+                return try decode(ElementDefinition.self, from: data)
+            case "ElementDefinitionBase":
+                return try decode(ElementDefinitionBase.self, from: data)
+            case "ElementDefinitionBinding":
+                return try decode(ElementDefinitionBinding.self, from: data)
+            case "ElementDefinitionConstraint":
+                return try decode(ElementDefinitionConstraint.self, from: data)
+            case "ElementDefinitionMapping":
+                return try decode(ElementDefinitionMapping.self, from: data)
+            case "ElementDefinitionSlicing":
+                return try decode(ElementDefinitionSlicing.self, from: data)
+            case "ElementDefinitionType":
+                return try decode(ElementDefinitionType.self, from: data)
+            case "EligibilityRequest":
+                return try decode(EligibilityRequest.self, from: data)
+            case "EligibilityResponse":
+                return try decode(EligibilityResponse.self, from: data)
+            case "Encounter":
+                return try decode(Encounter.self, from: data)
+            case "EncounterHospitalization":
+                return try decode(EncounterHospitalization.self, from: data)
+            case "EncounterLocation":
+                return try decode(EncounterLocation.self, from: data)
+            case "EncounterParticipant":
+                return try decode(EncounterParticipant.self, from: data)
+            case "EncounterStatusHistory":
+                return try decode(EncounterStatusHistory.self, from: data)
+            case "EnrollmentRequest":
+                return try decode(EnrollmentRequest.self, from: data)
+            case "EnrollmentResponse":
+                return try decode(EnrollmentResponse.self, from: data)
+            case "EpisodeOfCare":
+                return try decode(EpisodeOfCare.self, from: data)
+            case "EpisodeOfCareCareTeam":
+                return try decode(EpisodeOfCareCareTeam.self, from: data)
+            case "EpisodeOfCareStatusHistory":
+                return try decode(EpisodeOfCareStatusHistory.self, from: data)
+            case "ExplanationOfBenefit":
+                return try decode(ExplanationOfBenefit.self, from: data)
+            case "Extension":
+                return try decode(Extension.self, from: data)
+            case "FamilyMemberHistory":
+                return try decode(FamilyMemberHistory.self, from: data)
+            case "FamilyMemberHistoryCondition":
+                return try decode(FamilyMemberHistoryCondition.self, from: data)
+            case "Flag":
+                return try decode(Flag.self, from: data)
+            case "Goal":
+                return try decode(Goal.self, from: data)
+            case "GoalOutcome":
+                return try decode(GoalOutcome.self, from: data)
+            case "Group":
+                return try decode(Group.self, from: data)
+            case "GroupCharacteristic":
+                return try decode(GroupCharacteristic.self, from: data)
+            case "GroupMember":
+                return try decode(GroupMember.self, from: data)
+            case "HealthcareService":
+                return try decode(HealthcareService.self, from: data)
+            case "HealthcareServiceAvailableTime":
+                return try decode(HealthcareServiceAvailableTime.self, from: data)
+            case "HealthcareServiceNotAvailable":
+                return try decode(HealthcareServiceNotAvailable.self, from: data)
+            case "HealthcareServiceServiceType":
+                return try decode(HealthcareServiceServiceType.self, from: data)
+            case "HumanName":
+                return try decode(HumanName.self, from: data)
+            case "Identifier":
+                return try decode(Identifier.self, from: data)
+            case "ImagingObjectSelection":
+                return try decode(ImagingObjectSelection.self, from: data)
+            case "ImagingObjectSelectionStudy":
+                return try decode(ImagingObjectSelectionStudy.self, from: data)
+            case "ImagingObjectSelectionStudySeries":
+                return try decode(ImagingObjectSelectionStudySeries.self, from: data)
+            case "ImagingObjectSelectionStudySeriesInstance":
+                return try decode(ImagingObjectSelectionStudySeriesInstance.self, from: data)
+            case "ImagingObjectSelectionStudySeriesInstanceFrames":
+                return try decode(ImagingObjectSelectionStudySeriesInstanceFrames.self, from: data)
+            case "ImagingStudy":
+                return try decode(ImagingStudy.self, from: data)
+            case "ImagingStudySeries":
+                return try decode(ImagingStudySeries.self, from: data)
+            case "ImagingStudySeriesInstance":
+                return try decode(ImagingStudySeriesInstance.self, from: data)
+            case "Immunization":
+                return try decode(Immunization.self, from: data)
+            case "ImmunizationExplanation":
+                return try decode(ImmunizationExplanation.self, from: data)
+            case "ImmunizationReaction":
+                return try decode(ImmunizationReaction.self, from: data)
+            case "ImmunizationRecommendation":
+                return try decode(ImmunizationRecommendation.self, from: data)
+            case "ImmunizationRecommendationRecommendation":
+                return try decode(ImmunizationRecommendationRecommendation.self, from: data)
+            case "ImmunizationRecommendationRecommendationDateCriterion":
+                return try decode(ImmunizationRecommendationRecommendationDateCriterion.self, from: data)
+            case "ImmunizationRecommendationRecommendationProtocol":
+                return try decode(ImmunizationRecommendationRecommendationProtocol.self, from: data)
+            case "ImmunizationVaccinationProtocol":
+                return try decode(ImmunizationVaccinationProtocol.self, from: data)
+            case "ImplementationGuide":
+                return try decode(ImplementationGuide.self, from: data)
+            case "ImplementationGuideContact":
+                return try decode(ImplementationGuideContact.self, from: data)
+            case "ImplementationGuideDependency":
+                return try decode(ImplementationGuideDependency.self, from: data)
+            case "ImplementationGuideGlobal":
+                return try decode(ImplementationGuideGlobal.self, from: data)
+            case "ImplementationGuidePackage":
+                return try decode(ImplementationGuidePackage.self, from: data)
+            case "ImplementationGuidePackageResource":
+                return try decode(ImplementationGuidePackageResource.self, from: data)
+            case "ImplementationGuidePage":
+                return try decode(ImplementationGuidePage.self, from: data)
+            case "List":
+                return try decode(List.self, from: data)
+            case "ListEntry":
+                return try decode(ListEntry.self, from: data)
+            case "Location":
+                return try decode(Location.self, from: data)
+            case "LocationPosition":
+                return try decode(LocationPosition.self, from: data)
+            case "Media":
+                return try decode(Media.self, from: data)
+            case "Medication":
+                return try decode(Medication.self, from: data)
+            case "MedicationAdministration":
+                return try decode(MedicationAdministration.self, from: data)
+            case "MedicationAdministrationDosage":
+                return try decode(MedicationAdministrationDosage.self, from: data)
+            case "MedicationDispense":
+                return try decode(MedicationDispense.self, from: data)
+            case "MedicationDispenseDosageInstruction":
+                return try decode(MedicationDispenseDosageInstruction.self, from: data)
+            case "MedicationDispenseSubstitution":
+                return try decode(MedicationDispenseSubstitution.self, from: data)
+            case "MedicationOrder":
+                return try decode(MedicationOrder.self, from: data)
+            case "MedicationOrderDispenseRequest":
+                return try decode(MedicationOrderDispenseRequest.self, from: data)
+            case "MedicationOrderDosageInstruction":
+                return try decode(MedicationOrderDosageInstruction.self, from: data)
+            case "MedicationOrderSubstitution":
+                return try decode(MedicationOrderSubstitution.self, from: data)
+            case "MedicationPackage":
+                return try decode(MedicationPackage.self, from: data)
+            case "MedicationPackageContent":
+                return try decode(MedicationPackageContent.self, from: data)
+            case "MedicationProduct":
+                return try decode(MedicationProduct.self, from: data)
+            case "MedicationProductBatch":
+                return try decode(MedicationProductBatch.self, from: data)
+            case "MedicationProductIngredient":
+                return try decode(MedicationProductIngredient.self, from: data)
+            case "MedicationStatement":
+                return try decode(MedicationStatement.self, from: data)
+            case "MedicationStatementDosage":
+                return try decode(MedicationStatementDosage.self, from: data)
+            case "MessageHeader":
+                return try decode(MessageHeader.self, from: data)
+            case "MessageHeaderDestination":
+                return try decode(MessageHeaderDestination.self, from: data)
+            case "MessageHeaderResponse":
+                return try decode(MessageHeaderResponse.self, from: data)
+            case "MessageHeaderSource":
+                return try decode(MessageHeaderSource.self, from: data)
+            case "Meta":
+                return try decode(Meta.self, from: data)
+            case "Money":
+                return try decode(Money.self, from: data)
+            case "NamingSystem":
+                return try decode(NamingSystem.self, from: data)
+            case "NamingSystemContact":
+                return try decode(NamingSystemContact.self, from: data)
+            case "NamingSystemUniqueId":
+                return try decode(NamingSystemUniqueId.self, from: data)
+            case "Narrative":
+                return try decode(Narrative.self, from: data)
+            case "NutritionOrder":
+                return try decode(NutritionOrder.self, from: data)
+            case "NutritionOrderEnteralFormula":
+                return try decode(NutritionOrderEnteralFormula.self, from: data)
+            case "NutritionOrderEnteralFormulaAdministration":
+                return try decode(NutritionOrderEnteralFormulaAdministration.self, from: data)
+            case "NutritionOrderOralDiet":
+                return try decode(NutritionOrderOralDiet.self, from: data)
+            case "NutritionOrderOralDietNutrient":
+                return try decode(NutritionOrderOralDietNutrient.self, from: data)
+            case "NutritionOrderOralDietTexture":
+                return try decode(NutritionOrderOralDietTexture.self, from: data)
+            case "NutritionOrderSupplement":
+                return try decode(NutritionOrderSupplement.self, from: data)
+            case "Observation":
+                return try decode(Observation.self, from: data)
+            case "ObservationComponent":
+                return try decode(ObservationComponent.self, from: data)
+            case "ObservationReferenceRange":
+                return try decode(ObservationReferenceRange.self, from: data)
+            case "ObservationRelated":
+                return try decode(ObservationRelated.self, from: data)
+            case "OperationDefinition":
+                return try decode(OperationDefinition.self, from: data)
+            case "OperationDefinitionContact":
+                return try decode(OperationDefinitionContact.self, from: data)
+            case "OperationDefinitionParameter":
+                return try decode(OperationDefinitionParameter.self, from: data)
+            case "OperationDefinitionParameterBinding":
+                return try decode(OperationDefinitionParameterBinding.self, from: data)
+            case "OperationOutcome":
+                return try decode(OperationOutcome.self, from: data)
+            case "OperationOutcomeIssue":
+                return try decode(OperationOutcomeIssue.self, from: data)
+            case "Order":
+                return try decode(Order.self, from: data)
+            case "OrderResponse":
+                return try decode(OrderResponse.self, from: data)
+            case "OrderWhen":
+                return try decode(OrderWhen.self, from: data)
+            case "Organization":
+                return try decode(Organization.self, from: data)
+            case "OrganizationContact":
+                return try decode(OrganizationContact.self, from: data)
+            case "Parameters":
+                return try decode(Parameters.self, from: data)
+            case "ParametersParameter":
+                return try decode(ParametersParameter.self, from: data)
+            case "Patient":
+                return try decode(Patient.self, from: data)
+            case "PatientAnimal":
+                return try decode(PatientAnimal.self, from: data)
+            case "PatientCommunication":
+                return try decode(PatientCommunication.self, from: data)
+            case "PatientContact":
+                return try decode(PatientContact.self, from: data)
+            case "PatientLink":
+                return try decode(PatientLink.self, from: data)
+            case "PaymentNotice":
+                return try decode(PaymentNotice.self, from: data)
+            case "PaymentReconciliation":
+                return try decode(PaymentReconciliation.self, from: data)
+            case "PaymentReconciliationDetail":
+                return try decode(PaymentReconciliationDetail.self, from: data)
+            case "PaymentReconciliationNote":
+                return try decode(PaymentReconciliationNote.self, from: data)
+            case "Period":
+                return try decode(Period.self, from: data)
+            case "Person":
+                return try decode(Person.self, from: data)
+            case "PersonLink":
+                return try decode(PersonLink.self, from: data)
+            case "Practitioner":
+                return try decode(Practitioner.self, from: data)
+            case "PractitionerPractitionerRole":
+                return try decode(PractitionerPractitionerRole.self, from: data)
+            case "PractitionerQualification":
+                return try decode(PractitionerQualification.self, from: data)
+            case "Procedure":
+                return try decode(Procedure.self, from: data)
+            case "ProcedureFocalDevice":
+                return try decode(ProcedureFocalDevice.self, from: data)
+            case "ProcedurePerformer":
+                return try decode(ProcedurePerformer.self, from: data)
+            case "ProcedureRequest":
+                return try decode(ProcedureRequest.self, from: data)
+            case "ProcessRequest":
+                return try decode(ProcessRequest.self, from: data)
+            case "ProcessRequestItem":
+                return try decode(ProcessRequestItem.self, from: data)
+            case "ProcessResponse":
+                return try decode(ProcessResponse.self, from: data)
+            case "ProcessResponseNotes":
+                return try decode(ProcessResponseNotes.self, from: data)
+            case "Provenance":
+                return try decode(Provenance.self, from: data)
+            case "ProvenanceAgent":
+                return try decode(ProvenanceAgent.self, from: data)
+            case "ProvenanceAgentRelatedAgent":
+                return try decode(ProvenanceAgentRelatedAgent.self, from: data)
+            case "ProvenanceEntity":
+                return try decode(ProvenanceEntity.self, from: data)
+            case "Quantity":
+                return try decode(Quantity.self, from: data)
+            case "Questionnaire":
+                return try decode(Questionnaire.self, from: data)
+            case "QuestionnaireGroup":
+                return try decode(QuestionnaireGroup.self, from: data)
+            case "QuestionnaireGroupQuestion":
+                return try decode(QuestionnaireGroupQuestion.self, from: data)
+            case "QuestionnaireResponse":
+                return try decode(QuestionnaireResponse.self, from: data)
+            case "QuestionnaireResponseGroup":
+                return try decode(QuestionnaireResponseGroup.self, from: data)
+            case "QuestionnaireResponseGroupQuestion":
+                return try decode(QuestionnaireResponseGroupQuestion.self, from: data)
+            case "QuestionnaireResponseGroupQuestionAnswer":
+                return try decode(QuestionnaireResponseGroupQuestionAnswer.self, from: data)
+            case "Range":
+                return try decode(Range.self, from: data)
+            case "Ratio":
+                return try decode(Ratio.self, from: data)
+            case "Reference":
+                return try decode(Reference.self, from: data)
+            case "ReferralRequest":
+                return try decode(ReferralRequest.self, from: data)
+            case "RelatedPerson":
+                return try decode(RelatedPerson.self, from: data)
+            case "Resource":
+                return try decode(Resource.self, from: data)
+            case "RiskAssessment":
+                return try decode(RiskAssessment.self, from: data)
+            case "RiskAssessmentPrediction":
+                return try decode(RiskAssessmentPrediction.self, from: data)
+            case "SampledData":
+                return try decode(SampledData.self, from: data)
+            case "Schedule":
+                return try decode(Schedule.self, from: data)
+            case "SearchParameter":
+                return try decode(SearchParameter.self, from: data)
+            case "SearchParameterContact":
+                return try decode(SearchParameterContact.self, from: data)
+            case "Signature":
+                return try decode(Signature.self, from: data)
+            case "Slot":
+                return try decode(Slot.self, from: data)
+            case "Specimen":
+                return try decode(Specimen.self, from: data)
+            case "SpecimenCollection":
+                return try decode(SpecimenCollection.self, from: data)
+            case "SpecimenContainer":
+                return try decode(SpecimenContainer.self, from: data)
+            case "SpecimenTreatment":
+                return try decode(SpecimenTreatment.self, from: data)
+            case "StructureDefinition":
+                return try decode(StructureDefinition.self, from: data)
+            case "StructureDefinitionContact":
+                return try decode(StructureDefinitionContact.self, from: data)
+            case "StructureDefinitionDifferential":
+                return try decode(StructureDefinitionDifferential.self, from: data)
+            case "StructureDefinitionMapping":
+                return try decode(StructureDefinitionMapping.self, from: data)
+            case "StructureDefinitionSnapshot":
+                return try decode(StructureDefinitionSnapshot.self, from: data)
+            case "Subscription":
+                return try decode(Subscription.self, from: data)
+            case "SubscriptionChannel":
+                return try decode(SubscriptionChannel.self, from: data)
+            case "Substance":
+                return try decode(Substance.self, from: data)
+            case "SubstanceIngredient":
+                return try decode(SubstanceIngredient.self, from: data)
+            case "SubstanceInstance":
+                return try decode(SubstanceInstance.self, from: data)
+            case "SupplyDelivery":
+                return try decode(SupplyDelivery.self, from: data)
+            case "SupplyRequest":
+                return try decode(SupplyRequest.self, from: data)
+            case "SupplyRequestWhen":
+                return try decode(SupplyRequestWhen.self, from: data)
+            case "TestScript":
+                return try decode(TestScript.self, from: data)
+            case "TestScriptContact":
+                return try decode(TestScriptContact.self, from: data)
+            case "TestScriptFixture":
+                return try decode(TestScriptFixture.self, from: data)
+            case "TestScriptMetadata":
+                return try decode(TestScriptMetadata.self, from: data)
+            case "TestScriptMetadataCapability":
+                return try decode(TestScriptMetadataCapability.self, from: data)
+            case "TestScriptMetadataLink":
+                return try decode(TestScriptMetadataLink.self, from: data)
+            case "TestScriptSetup":
+                return try decode(TestScriptSetup.self, from: data)
+            case "TestScriptSetupAction":
+                return try decode(TestScriptSetupAction.self, from: data)
+            case "TestScriptSetupActionAssert":
+                return try decode(TestScriptSetupActionAssert.self, from: data)
+            case "TestScriptSetupActionOperation":
+                return try decode(TestScriptSetupActionOperation.self, from: data)
+            case "TestScriptSetupActionOperationRequestHeader":
+                return try decode(TestScriptSetupActionOperationRequestHeader.self, from: data)
+            case "TestScriptTeardown":
+                return try decode(TestScriptTeardown.self, from: data)
+            case "TestScriptTeardownAction":
+                return try decode(TestScriptTeardownAction.self, from: data)
+            case "TestScriptTest":
+                return try decode(TestScriptTest.self, from: data)
+            case "TestScriptTestAction":
+                return try decode(TestScriptTestAction.self, from: data)
+            case "TestScriptVariable":
+                return try decode(TestScriptVariable.self, from: data)
+            case "Timing":
+                return try decode(Timing.self, from: data)
+            case "TimingRepeat":
+                return try decode(TimingRepeat.self, from: data)
+            case "ValueSet":
+                return try decode(ValueSet.self, from: data)
+            case "ValueSetCodeSystem":
+                return try decode(ValueSetCodeSystem.self, from: data)
+            case "ValueSetCodeSystemConcept":
+                return try decode(ValueSetCodeSystemConcept.self, from: data)
+            case "ValueSetCodeSystemConceptDesignation":
+                return try decode(ValueSetCodeSystemConceptDesignation.self, from: data)
+            case "ValueSetCompose":
+                return try decode(ValueSetCompose.self, from: data)
+            case "ValueSetComposeInclude":
+                return try decode(ValueSetComposeInclude.self, from: data)
+            case "ValueSetComposeIncludeConcept":
+                return try decode(ValueSetComposeIncludeConcept.self, from: data)
+            case "ValueSetComposeIncludeFilter":
+                return try decode(ValueSetComposeIncludeFilter.self, from: data)
+            case "ValueSetContact":
+                return try decode(ValueSetContact.self, from: data)
+            case "ValueSetExpansion":
+                return try decode(ValueSetExpansion.self, from: data)
+            case "ValueSetExpansionContains":
+                return try decode(ValueSetExpansionContains.self, from: data)
+            case "ValueSetExpansionParameter":
+                return try decode(ValueSetExpansionParameter.self, from: data)
+            case "VisionPrescription":
+                return try decode(VisionPrescription.self, from: data)
+            case "VisionPrescriptionDispense":
+                return try decode(VisionPrescriptionDispense.self, from: data)
+            default:
+                throw UnknownFhirDecodingTypeError(className: resourceClassName)
         }
     }
 }
