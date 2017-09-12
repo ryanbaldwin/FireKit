@@ -2,7 +2,7 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -97,14 +97,14 @@ open class DocumentManifest: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.author.flatMap { $0 }, forKey: .author)
-        try container.encode(self.content.flatMap { $0 }, forKey: .content)
+        try container.encode(Array(self.author), forKey: .author)
+        try container.encode(Array(self.content), forKey: .content)
         try container.encodeIfPresent(self.created, forKey: .created)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.masterIdentifier, forKey: .masterIdentifier)
-        try container.encode(self.recipient.flatMap { $0 }, forKey: .recipient)
-        try container.encode(self.related.flatMap { $0 }, forKey: .related)
+        try container.encode(Array(self.recipient), forKey: .recipient)
+        try container.encode(Array(self.related), forKey: .related)
         try container.encodeIfPresent(self.source, forKey: .source)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)

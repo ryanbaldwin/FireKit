@@ -2,7 +2,7 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -67,9 +67,9 @@ open class ImmunizationRecommendation: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.patient, forKey: .patient)
-        try container.encode(self.recommendation.flatMap { $0 }, forKey: .recommendation)
+        try container.encode(Array(self.recommendation), forKey: .recommendation)
     }
 /*
 	
@@ -224,12 +224,12 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encode(self.dateCriterion.flatMap { $0 }, forKey: .dateCriterion)
+        try container.encode(Array(self.dateCriterion), forKey: .dateCriterion)
         try container.encodeIfPresent(self.doseNumber.value, forKey: .doseNumber)
         try container.encodeIfPresent(self.forecastStatus, forKey: .forecastStatus)
         try container.encodeIfPresent(self.protocol_fhir, forKey: .protocol_fhir)
-        try container.encode(self.supportingImmunization.flatMap { $0 }, forKey: .supportingImmunization)
-        try container.encode(self.supportingPatientInformation.flatMap { $0 }, forKey: .supportingPatientInformation)
+        try container.encode(Array(self.supportingImmunization), forKey: .supportingImmunization)
+        try container.encode(Array(self.supportingPatientInformation), forKey: .supportingPatientInformation)
         try container.encodeIfPresent(self.vaccineCode, forKey: .vaccineCode)
     }
 /*

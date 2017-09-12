@@ -2,7 +2,7 @@
 //  List.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/List) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -115,8 +115,8 @@ open class List: DomainResource {
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.emptyReason, forKey: .emptyReason)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.entry.flatMap { $0 }, forKey: .entry)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.entry), forKey: .entry)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.mode, forKey: .mode)
         try container.encodeIfPresent(self.note, forKey: .note)
         try container.encodeIfPresent(self.orderedBy, forKey: .orderedBy)

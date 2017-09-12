@@ -2,7 +2,7 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -155,29 +155,29 @@ open class Procedure: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.bodySite.flatMap { $0 }, forKey: .bodySite)
+        try container.encode(Array(self.bodySite), forKey: .bodySite)
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.complication.flatMap { $0 }, forKey: .complication)
+        try container.encode(Array(self.complication), forKey: .complication)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.focalDevice.flatMap { $0 }, forKey: .focalDevice)
-        try container.encode(self.followUp.flatMap { $0 }, forKey: .followUp)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.focalDevice), forKey: .focalDevice)
+        try container.encode(Array(self.followUp), forKey: .followUp)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.notPerformed.value, forKey: .notPerformed)
-        try container.encode(self.notes.flatMap { $0 }, forKey: .notes)
+        try container.encode(Array(self.notes), forKey: .notes)
         try container.encodeIfPresent(self.outcome, forKey: .outcome)
         try container.encodeIfPresent(self.performedDateTime, forKey: .performedDateTime)
         try container.encodeIfPresent(self.performedPeriod, forKey: .performedPeriod)
-        try container.encode(self.performer.flatMap { $0 }, forKey: .performer)
+        try container.encode(Array(self.performer), forKey: .performer)
         try container.encodeIfPresent(self.reasonCodeableConcept, forKey: .reasonCodeableConcept)
-        try container.encode(self.reasonNotPerformed.flatMap { $0 }, forKey: .reasonNotPerformed)
+        try container.encode(Array(self.reasonNotPerformed), forKey: .reasonNotPerformed)
         try container.encodeIfPresent(self.reasonReference, forKey: .reasonReference)
-        try container.encode(self.report.flatMap { $0 }, forKey: .report)
+        try container.encode(Array(self.report), forKey: .report)
         try container.encodeIfPresent(self.request, forKey: .request)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
-        try container.encode(self.used.flatMap { $0 }, forKey: .used)
+        try container.encode(Array(self.used), forKey: .used)
     }
 /*
 	

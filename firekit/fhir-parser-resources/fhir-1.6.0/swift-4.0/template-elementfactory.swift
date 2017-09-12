@@ -37,3 +37,32 @@ extension FHIRAbstractBase {
     }
   }
 }
+
+struct UnkownFhirDecodingTypeError: Error {
+    var className: String
+}
+extension KeyedDecodingContainerProtocol {
+    func decodeFHIRAbstractBaseIfPresent(_ className: String, forKey key: Self.Key) throws -> FHIRAbstractBase? {
+        switch className {
+    {%- for klass in classes %}{% if klass.resource_name %}
+      case "{{ klass.resource_name }}":
+        return try decodeIfPresent({{ klass.name }}.self, forKey: key)
+    {%- endif %}{% endfor %}
+      default:
+        throw UnkownFhirDecodingTypeError(className: className)
+      }
+    }
+}
+
+extension UnkeyedDecodingContainer {
+    mutating func decodeFHIRAbstractBase(_ className: String) throws -> FHIRAbstractBase {
+        switch className {
+          {%- for klass in classes %}{% if klass.resource_name %}
+            case "{{ klass.resource_name }}":
+                return try decode({{ klass.name }}.self)
+          {%- endif %}{% endfor %}
+            default:
+                throw UnkownFhirDecodingTypeError(className: className)
+        }
+    }
+}

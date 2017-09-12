@@ -2,7 +2,7 @@
 //  Subscription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Subscription) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -87,13 +87,13 @@ open class Subscription: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.channel, forKey: .channel)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.criteria, forKey: .criteria)
         try container.encodeIfPresent(self.end, forKey: .end)
         try container.encodeIfPresent(self.error, forKey: .error)
         try container.encodeIfPresent(self.reason, forKey: .reason)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.tag.flatMap { $0 }, forKey: .tag)
+        try container.encode(Array(self.tag), forKey: .tag)
     }
 /*
 	

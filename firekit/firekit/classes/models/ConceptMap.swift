@@ -2,7 +2,7 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -121,11 +121,11 @@ open class ConceptMap: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.copyright, forKey: .copyright)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.element.flatMap { $0 }, forKey: .element)
+        try container.encode(Array(self.element), forKey: .element)
         try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.name, forKey: .name)
@@ -137,7 +137,7 @@ open class ConceptMap: DomainResource {
         try container.encodeIfPresent(self.targetReference, forKey: .targetReference)
         try container.encodeIfPresent(self.targetUri, forKey: .targetUri)
         try container.encodeIfPresent(self.url, forKey: .url)
-        try container.encode(self.useContext.flatMap { $0 }, forKey: .useContext)
+        try container.encode(Array(self.useContext), forKey: .useContext)
         try container.encodeIfPresent(self.version, forKey: .version)
     }
 /*
@@ -448,7 +448,7 @@ open class ConceptMapContact: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	
@@ -553,7 +553,7 @@ open class ConceptMapElement: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.codeSystem, forKey: .codeSystem)
-        try container.encode(self.target.flatMap { $0 }, forKey: .target)
+        try container.encode(Array(self.target), forKey: .target)
     }
 /*
 	
@@ -686,9 +686,9 @@ open class ConceptMapElementTarget: BackboneElement {
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.codeSystem, forKey: .codeSystem)
         try container.encodeIfPresent(self.comments, forKey: .comments)
-        try container.encode(self.dependsOn.flatMap { $0 }, forKey: .dependsOn)
+        try container.encode(Array(self.dependsOn), forKey: .dependsOn)
         try container.encodeIfPresent(self.equivalence, forKey: .equivalence)
-        try container.encode(self.product.flatMap { $0 }, forKey: .product)
+        try container.encode(Array(self.product), forKey: .product)
     }
 /*
 	

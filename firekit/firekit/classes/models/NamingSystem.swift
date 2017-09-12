@@ -2,7 +2,7 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -103,7 +103,7 @@ open class NamingSystem: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.kind, forKey: .kind)
@@ -113,9 +113,9 @@ open class NamingSystem: DomainResource {
         try container.encodeIfPresent(self.responsible, forKey: .responsible)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.type, forKey: .type)
-        try container.encode(self.uniqueId.flatMap { $0 }, forKey: .uniqueId)
+        try container.encode(Array(self.uniqueId), forKey: .uniqueId)
         try container.encodeIfPresent(self.usage, forKey: .usage)
-        try container.encode(self.useContext.flatMap { $0 }, forKey: .useContext)
+        try container.encode(Array(self.useContext), forKey: .useContext)
     }
 /*
 	
@@ -369,7 +369,7 @@ open class NamingSystemContact: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	

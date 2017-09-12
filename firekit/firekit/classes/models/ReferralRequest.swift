@@ -2,7 +2,7 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -131,16 +131,16 @@ open class ReferralRequest: DomainResource {
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
         try container.encodeIfPresent(self.fulfillmentTime, forKey: .fulfillmentTime)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.priority, forKey: .priority)
         try container.encodeIfPresent(self.reason, forKey: .reason)
-        try container.encode(self.recipient.flatMap { $0 }, forKey: .recipient)
+        try container.encode(Array(self.recipient), forKey: .recipient)
         try container.encodeIfPresent(self.requester, forKey: .requester)
-        try container.encode(self.serviceRequested.flatMap { $0 }, forKey: .serviceRequested)
+        try container.encode(Array(self.serviceRequested), forKey: .serviceRequested)
         try container.encodeIfPresent(self.specialty, forKey: .specialty)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.supportingInformation.flatMap { $0 }, forKey: .supportingInformation)
+        try container.encode(Array(self.supportingInformation), forKey: .supportingInformation)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*

@@ -28,16 +28,28 @@
         {#- // is_array: {{ prop.is_array }} | class_name: {{ prop.class_name }} | json_class: {{ prop.class_name }} | is_native: {{ prop.is_native }} | requires_realm_optional: {{ prop|requires_realm_optional }} -#}
   {%- if prop.is_array %}
     {%- if prop.class_name == 'Resource' %}
-        if container.contains(.{{ prop.name }}) {
-            var {{ prop.name }}List = try container.nestedUnkeyedContainer(forKey: .{{ prop.name }})
-            while !{{ prop.name }}List.isAtEnd {
-                let contained = try {{ prop.name }}List.decode(ContainedResource.self)
-                guard let resourceType = contained.resourceType else { continue }
-                
-                let t = FHIRAbstractBase.resourceType(from: resourceType)
-                let actualContained = try {{ prop.name }}List.decode(t)
-                contained.json = try JSONEncoder().encode(actualContained)
+        if container.contains(.contained) {
+            // Need to loop through all the contained items twice.
+            // First time through we grab the resource type
+            // the second time through we decode the contained resource for the actual resource type
+            // I cannot find a better way to do this in Apple's Decodable containers.
+            // If there's a way to get at the raw data in a container without decoding it,
+            // please let me know and I will buy you 🍻
+            var containedMap: [Int: ContainedResource] = [:]
+            var containedList = try container.nestedUnkeyedContainer(forKey: .contained)
+            print("Inflating \(containedList.count) items.")
+            while !containedList.isAtEnd {
+                containedMap[containedList.currentIndex] = try containedList.decode(ContainedResource.self)
             }
+            
+            var secondPass = try container.nestedUnkeyedContainer(forKey: .contained)
+            while !secondPass.isAtEnd {
+                let containedResource = containedMap[secondPass.currentIndex]!
+                let actualResource = try secondPass.decodeFHIRAbstractBase(containedResource.resourceType!)
+                containedResource.json = try JSONEncoder().encode(actualResource)
+            }
+            
+            // TODO: need to append!
         }
     {%- elif prop.class_name != prop|realm_listify %}{#- requires a wrapper, such as "RealmString", or "RealmInt", etc. #}
         self.{{ prop.name }}.append(objectsIn: try container.decodeIfPresent([{{ prop|realm_listify }}].self, forKey: .{{ prop.name }}) ?? [])
@@ -49,8 +61,7 @@
 
         if let {{ prop.name }}Contained = try container.decodeIfPresent(ContainedResource.self, forKey: .{{ prop.name }}),
            let resourceType = {{ prop.name }}Contained.resourceType {
-            let t = FHIRAbstractBase.resourceType(from: resourceType)
-            self.resource = try container.decodeIfPresent(t, forKey: .resource) as? Resource
+            self.resource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource) as? Resource
         }
     {% else %}
         self.{{ prop.name }}{%- if prop|requires_realm_optional %}.value{%- endif %} = try container.decodeIfPresent({{ prop.class_name }}.self, forKey: .{{ prop.name }})
@@ -66,7 +77,7 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
       {%- for prop in klass.properties %}
       {%- if prop.is_array %}
-        try container.encode(self.{{ prop.name }}.flatMap { {% if prop|is_realmlist_custom %}$0.value{% else %}$0{% endif %} }, forKey: .{{prop.name}})
+        try container.encode(Array(self.{{ prop.name }}), forKey: .{{prop.name}})
       {%- else %}
         try container.encodeIfPresent(self.{{ prop.name }}{% if prop|requires_realm_optional %}.value{% endif %}, forKey: .{{ prop.name }})
       {%- endif -%}{%- endfor -%}{%- endif %}

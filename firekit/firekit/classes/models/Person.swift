@@ -2,7 +2,7 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -84,15 +84,15 @@ open class Person: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.active.value, forKey: .active)
-        try container.encode(self.address.flatMap { $0 }, forKey: .address)
+        try container.encode(Array(self.address), forKey: .address)
         try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
         try container.encodeIfPresent(self.gender, forKey: .gender)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.link.flatMap { $0 }, forKey: .link)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.link), forKey: .link)
         try container.encodeIfPresent(self.managingOrganization, forKey: .managingOrganization)
-        try container.encode(self.name.flatMap { $0 }, forKey: .name)
+        try container.encode(Array(self.name), forKey: .name)
         try container.encodeIfPresent(self.photo, forKey: .photo)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	

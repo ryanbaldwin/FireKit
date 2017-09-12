@@ -2,7 +2,7 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -122,16 +122,16 @@ open class ImagingStudy: DomainResource {
         try container.encodeIfPresent(self.accession, forKey: .accession)
         try container.encodeIfPresent(self.availability, forKey: .availability)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.interpreter, forKey: .interpreter)
-        try container.encode(self.modalityList.flatMap { $0 }, forKey: .modalityList)
+        try container.encode(Array(self.modalityList), forKey: .modalityList)
         try container.encodeIfPresent(self.numberOfInstances.value, forKey: .numberOfInstances)
         try container.encodeIfPresent(self.numberOfSeries.value, forKey: .numberOfSeries)
-        try container.encode(self.order.flatMap { $0 }, forKey: .order)
+        try container.encode(Array(self.order), forKey: .order)
         try container.encodeIfPresent(self.patient, forKey: .patient)
-        try container.encode(self.procedure.flatMap { $0 }, forKey: .procedure)
+        try container.encode(Array(self.procedure), forKey: .procedure)
         try container.encodeIfPresent(self.referrer, forKey: .referrer)
-        try container.encode(self.series.flatMap { $0 }, forKey: .series)
+        try container.encode(Array(self.series), forKey: .series)
         try container.encodeIfPresent(self.started, forKey: .started)
         try container.encodeIfPresent(self.uid, forKey: .uid)
         try container.encodeIfPresent(self.url, forKey: .url)
@@ -473,7 +473,7 @@ open class ImagingStudySeries: BackboneElement {
         try container.encodeIfPresent(self.availability, forKey: .availability)
         try container.encodeIfPresent(self.bodySite, forKey: .bodySite)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.instance.flatMap { $0 }, forKey: .instance)
+        try container.encode(Array(self.instance), forKey: .instance)
         try container.encodeIfPresent(self.laterality, forKey: .laterality)
         try container.encodeIfPresent(self.modality, forKey: .modality)
         try container.encodeIfPresent(self.number.value, forKey: .number)
@@ -716,7 +716,7 @@ open class ImagingStudySeriesInstance: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.content.flatMap { $0 }, forKey: .content)
+        try container.encode(Array(self.content), forKey: .content)
         try container.encodeIfPresent(self.number.value, forKey: .number)
         try container.encodeIfPresent(self.sopClass, forKey: .sopClass)
         try container.encodeIfPresent(self.title, forKey: .title)

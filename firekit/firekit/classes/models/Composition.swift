@@ -2,7 +2,7 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -122,16 +122,16 @@ open class Composition: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.attester.flatMap { $0 }, forKey: .attester)
-        try container.encode(self.author.flatMap { $0 }, forKey: .author)
+        try container.encode(Array(self.attester), forKey: .attester)
+        try container.encode(Array(self.author), forKey: .author)
         try container.encodeIfPresent(self.class_fhir, forKey: .class_fhir)
         try container.encodeIfPresent(self.confidentiality, forKey: .confidentiality)
         try container.encodeIfPresent(self.custodian, forKey: .custodian)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.event.flatMap { $0 }, forKey: .event)
+        try container.encode(Array(self.event), forKey: .event)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
-        try container.encode(self.section.flatMap { $0 }, forKey: .section)
+        try container.encode(Array(self.section), forKey: .section)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
         try container.encodeIfPresent(self.title, forKey: .title)
@@ -418,7 +418,7 @@ open class CompositionAttester: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.mode.flatMap { $0.value }, forKey: .mode)
+        try container.encode(Array(self.mode), forKey: .mode)
         try container.encodeIfPresent(self.party, forKey: .party)
         try container.encodeIfPresent(self.time, forKey: .time)
     }
@@ -538,8 +538,8 @@ open class CompositionEvent: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.code.flatMap { $0 }, forKey: .code)
-        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encode(Array(self.code), forKey: .code)
+        try container.encode(Array(self.detail), forKey: .detail)
         try container.encodeIfPresent(self.period, forKey: .period)
     }
 /*
@@ -687,10 +687,10 @@ open class CompositionSection: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.emptyReason, forKey: .emptyReason)
-        try container.encode(self.entry.flatMap { $0 }, forKey: .entry)
+        try container.encode(Array(self.entry), forKey: .entry)
         try container.encodeIfPresent(self.mode, forKey: .mode)
         try container.encodeIfPresent(self.orderedBy, forKey: .orderedBy)
-        try container.encode(self.section.flatMap { $0 }, forKey: .section)
+        try container.encode(Array(self.section), forKey: .section)
         try container.encodeIfPresent(self.text, forKey: .text)
         try container.encodeIfPresent(self.title, forKey: .title)
     }

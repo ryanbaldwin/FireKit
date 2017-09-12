@@ -2,7 +2,7 @@
 //  QuestionnaireResponseTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireResponseRealm1(instance!)
   }
 
-    func testQuestionnaireResponse1RealmPK() {        
-        do {
-            let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse1()
-            let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
+  func testQuestionnaireResponse1RealmPK() { 
+      do {
+        let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse1()
+        let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testQuestionnaireResponseRealm1(_ instance: FireKit.QuestionnaireResponse) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runQuestionnaireResponse1(JSONEncoder().encode(realm.objects(FireKit.QuestionnaireResponse.self).first!))
         
         // ensure we can update it.
@@ -175,13 +175,13 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireResponseRealm2(instance!)
   }
 
-    func testQuestionnaireResponse2RealmPK() {        
-        do {
-            let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse2()
-            let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
+  func testQuestionnaireResponse2RealmPK() { 
+      do {
+        let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse2()
+        let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -196,9 +196,9 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testQuestionnaireResponseRealm2(_ instance: FireKit.QuestionnaireResponse) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runQuestionnaireResponse2(JSONEncoder().encode(realm.objects(FireKit.QuestionnaireResponse.self).first!))
         
         // ensure we can update it.
@@ -292,13 +292,13 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireResponseRealm3(instance!)
   }
 
-    func testQuestionnaireResponse3RealmPK() {        
-        do {
-            let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse3()
-            let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
+  func testQuestionnaireResponse3RealmPK() { 
+      do {
+        let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse3()
+        let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -313,9 +313,9 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testQuestionnaireResponseRealm3(_ instance: FireKit.QuestionnaireResponse) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runQuestionnaireResponse3(JSONEncoder().encode(realm.objects(FireKit.QuestionnaireResponse.self).first!))
         
         // ensure we can update it.
@@ -402,13 +402,13 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     testQuestionnaireResponseRealm4(instance!)
   }
 
-    func testQuestionnaireResponse4RealmPK() {        
-        do {
-            let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse4()
-            let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
+  func testQuestionnaireResponse4RealmPK() { 
+      do {
+        let instance: FireKit.QuestionnaireResponse = try runQuestionnaireResponse4()
+        let copy = (instance.copy() as! FireKit.QuestionnaireResponse)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -423,9 +423,9 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testQuestionnaireResponseRealm4(_ instance: FireKit.QuestionnaireResponse) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runQuestionnaireResponse4(JSONEncoder().encode(realm.objects(FireKit.QuestionnaireResponse.self).first!))
         
         // ensure we can update it.

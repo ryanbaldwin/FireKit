@@ -2,7 +2,7 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -140,11 +140,11 @@ open class ProcedureRequest: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.asNeededBoolean.value, forKey: .asNeededBoolean)
         try container.encodeIfPresent(self.asNeededCodeableConcept, forKey: .asNeededCodeableConcept)
-        try container.encode(self.bodySite.flatMap { $0 }, forKey: .bodySite)
+        try container.encode(Array(self.bodySite), forKey: .bodySite)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.notes.flatMap { $0 }, forKey: .notes)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.notes), forKey: .notes)
         try container.encodeIfPresent(self.orderedOn, forKey: .orderedOn)
         try container.encodeIfPresent(self.orderer, forKey: .orderer)
         try container.encodeIfPresent(self.performer, forKey: .performer)

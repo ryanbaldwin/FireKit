@@ -2,7 +2,7 @@
 //  Address.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Address) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -84,7 +84,7 @@ open class Address: Element {
         try container.encodeIfPresent(self.city, forKey: .city)
         try container.encodeIfPresent(self.country, forKey: .country)
         try container.encodeIfPresent(self.district, forKey: .district)
-        try container.encode(self.line.flatMap { $0.value }, forKey: .line)
+        try container.encode(Array(self.line), forKey: .line)
         try container.encodeIfPresent(self.period, forKey: .period)
         try container.encodeIfPresent(self.postalCode, forKey: .postalCode)
         try container.encodeIfPresent(self.state, forKey: .state)

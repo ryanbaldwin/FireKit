@@ -2,7 +2,7 @@
 //  ImagingStudyTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
     testImagingStudyRealm1(instance!)
   }
 
-    func testImagingStudy1RealmPK() {        
-        do {
-            let instance: FireKit.ImagingStudy = try runImagingStudy1()
-            let copy = (instance.copy() as! FireKit.ImagingStudy)
+  func testImagingStudy1RealmPK() { 
+      do {
+        let instance: FireKit.ImagingStudy = try runImagingStudy1()
+        let copy = (instance.copy() as! FireKit.ImagingStudy)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class ImagingStudyTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testImagingStudyRealm1(_ instance: FireKit.ImagingStudy) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runImagingStudy1(JSONEncoder().encode(realm.objects(FireKit.ImagingStudy.self).first!))
         
         // ensure we can update it.

@@ -2,7 +2,7 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -71,11 +71,11 @@ open class HumanName: Element {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.family.flatMap { $0.value }, forKey: .family)
-        try container.encode(self.given.flatMap { $0.value }, forKey: .given)
+        try container.encode(Array(self.family), forKey: .family)
+        try container.encode(Array(self.given), forKey: .given)
         try container.encodeIfPresent(self.period, forKey: .period)
-        try container.encode(self.prefix.flatMap { $0.value }, forKey: .prefix)
-        try container.encode(self.suffix.flatMap { $0.value }, forKey: .suffix)
+        try container.encode(Array(self.prefix), forKey: .prefix)
+        try container.encode(Array(self.suffix), forKey: .suffix)
         try container.encodeIfPresent(self.text, forKey: .text)
         try container.encodeIfPresent(self.use, forKey: .use)
     }

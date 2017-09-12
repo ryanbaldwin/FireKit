@@ -2,7 +2,7 @@
 //  LocationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm1(instance!)
   }
 
-    func testLocation1RealmPK() {        
-        do {
-            let instance: FireKit.Location = try runLocation1()
-            let copy = (instance.copy() as! FireKit.Location)
+  func testLocation1RealmPK() { 
+      do {
+        let instance: FireKit.Location = try runLocation1()
+        let copy = (instance.copy() as! FireKit.Location)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testLocationRealm1(_ instance: FireKit.Location) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runLocation1(JSONEncoder().encode(realm.objects(FireKit.Location.self).first!))
         
         // ensure we can update it.
@@ -147,13 +147,13 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm2(instance!)
   }
 
-    func testLocation2RealmPK() {        
-        do {
-            let instance: FireKit.Location = try runLocation2()
-            let copy = (instance.copy() as! FireKit.Location)
+  func testLocation2RealmPK() { 
+      do {
+        let instance: FireKit.Location = try runLocation2()
+        let copy = (instance.copy() as! FireKit.Location)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -168,9 +168,9 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testLocationRealm2(_ instance: FireKit.Location) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runLocation2(JSONEncoder().encode(realm.objects(FireKit.Location.self).first!))
         
         // ensure we can update it.
@@ -254,13 +254,13 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm3(instance!)
   }
 
-    func testLocation3RealmPK() {        
-        do {
-            let instance: FireKit.Location = try runLocation3()
-            let copy = (instance.copy() as! FireKit.Location)
+  func testLocation3RealmPK() { 
+      do {
+        let instance: FireKit.Location = try runLocation3()
+        let copy = (instance.copy() as! FireKit.Location)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -275,9 +275,9 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testLocationRealm3(_ instance: FireKit.Location) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runLocation3(JSONEncoder().encode(realm.objects(FireKit.Location.self).first!))
         
         // ensure we can update it.
@@ -350,13 +350,13 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm4(instance!)
   }
 
-    func testLocation4RealmPK() {        
-        do {
-            let instance: FireKit.Location = try runLocation4()
-            let copy = (instance.copy() as! FireKit.Location)
+  func testLocation4RealmPK() { 
+      do {
+        let instance: FireKit.Location = try runLocation4()
+        let copy = (instance.copy() as! FireKit.Location)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -371,9 +371,9 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testLocationRealm4(_ instance: FireKit.Location) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runLocation4(JSONEncoder().encode(realm.objects(FireKit.Location.self).first!))
         
         // ensure we can update it.
@@ -450,13 +450,13 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm5(instance!)
   }
 
-    func testLocation5RealmPK() {        
-        do {
-            let instance: FireKit.Location = try runLocation5()
-            let copy = (instance.copy() as! FireKit.Location)
+  func testLocation5RealmPK() { 
+      do {
+        let instance: FireKit.Location = try runLocation5()
+        let copy = (instance.copy() as! FireKit.Location)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -471,9 +471,9 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testLocationRealm5(_ instance: FireKit.Location) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runLocation5(JSONEncoder().encode(realm.objects(FireKit.Location.self).first!))
         
         // ensure we can update it.
@@ -545,13 +545,13 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     testLocationRealm6(instance!)
   }
 
-    func testLocation6RealmPK() {        
-        do {
-            let instance: FireKit.Location = try runLocation6()
-            let copy = (instance.copy() as! FireKit.Location)
+  func testLocation6RealmPK() { 
+      do {
+        let instance: FireKit.Location = try runLocation6()
+        let copy = (instance.copy() as! FireKit.Location)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -566,9 +566,9 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testLocationRealm6(_ instance: FireKit.Location) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runLocation6(JSONEncoder().encode(realm.objects(FireKit.Location.self).first!))
         
         // ensure we can update it.

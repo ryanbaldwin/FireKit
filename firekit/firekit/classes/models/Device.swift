@@ -2,7 +2,7 @@
 //  Device.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Device) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -117,15 +117,15 @@ open class Device: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.expiry, forKey: .expiry)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.lotNumber, forKey: .lotNumber)
         try container.encodeIfPresent(self.manufactureDate, forKey: .manufactureDate)
         try container.encodeIfPresent(self.manufacturer, forKey: .manufacturer)
         try container.encodeIfPresent(self.model, forKey: .model)
-        try container.encode(self.note.flatMap { $0 }, forKey: .note)
+        try container.encode(Array(self.note), forKey: .note)
         try container.encodeIfPresent(self.owner, forKey: .owner)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.status, forKey: .status)

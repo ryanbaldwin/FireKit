@@ -2,7 +2,7 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -114,12 +114,12 @@ open class AllergyIntolerance: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.criticality, forKey: .criticality)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.lastOccurence, forKey: .lastOccurence)
         try container.encodeIfPresent(self.note, forKey: .note)
         try container.encodeIfPresent(self.onset, forKey: .onset)
         try container.encodeIfPresent(self.patient, forKey: .patient)
-        try container.encode(self.reaction.flatMap { $0 }, forKey: .reaction)
+        try container.encode(Array(self.reaction), forKey: .reaction)
         try container.encodeIfPresent(self.recordedDate, forKey: .recordedDate)
         try container.encodeIfPresent(self.recorder, forKey: .recorder)
         try container.encodeIfPresent(self.reporter, forKey: .reporter)
@@ -414,7 +414,7 @@ open class AllergyIntoleranceReaction: BackboneElement {
         try container.encodeIfPresent(self.certainty, forKey: .certainty)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.exposureRoute, forKey: .exposureRoute)
-        try container.encode(self.manifestation.flatMap { $0 }, forKey: .manifestation)
+        try container.encode(Array(self.manifestation), forKey: .manifestation)
         try container.encodeIfPresent(self.note, forKey: .note)
         try container.encodeIfPresent(self.onset, forKey: .onset)
         try container.encodeIfPresent(self.severity, forKey: .severity)

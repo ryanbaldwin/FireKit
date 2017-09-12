@@ -2,7 +2,7 @@
 //  RelatedPersonTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     testRelatedPersonRealm1(instance!)
   }
 
-    func testRelatedPerson1RealmPK() {        
-        do {
-            let instance: FireKit.RelatedPerson = try runRelatedPerson1()
-            let copy = (instance.copy() as! FireKit.RelatedPerson)
+  func testRelatedPerson1RealmPK() { 
+      do {
+        let instance: FireKit.RelatedPerson = try runRelatedPerson1()
+        let copy = (instance.copy() as! FireKit.RelatedPerson)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testRelatedPersonRealm1(_ instance: FireKit.RelatedPerson) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runRelatedPerson1(JSONEncoder().encode(realm.objects(FireKit.RelatedPerson.self).first!))
         
         // ensure we can update it.
@@ -149,13 +149,13 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     testRelatedPersonRealm2(instance!)
   }
 
-    func testRelatedPerson2RealmPK() {        
-        do {
-            let instance: FireKit.RelatedPerson = try runRelatedPerson2()
-            let copy = (instance.copy() as! FireKit.RelatedPerson)
+  func testRelatedPerson2RealmPK() { 
+      do {
+        let instance: FireKit.RelatedPerson = try runRelatedPerson2()
+        let copy = (instance.copy() as! FireKit.RelatedPerson)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -170,9 +170,9 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testRelatedPersonRealm2(_ instance: FireKit.RelatedPerson) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runRelatedPerson2(JSONEncoder().encode(realm.objects(FireKit.RelatedPerson.self).first!))
         
         // ensure we can update it.
@@ -246,13 +246,13 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     testRelatedPersonRealm3(instance!)
   }
 
-    func testRelatedPerson3RealmPK() {        
-        do {
-            let instance: FireKit.RelatedPerson = try runRelatedPerson3()
-            let copy = (instance.copy() as! FireKit.RelatedPerson)
+  func testRelatedPerson3RealmPK() { 
+      do {
+        let instance: FireKit.RelatedPerson = try runRelatedPerson3()
+        let copy = (instance.copy() as! FireKit.RelatedPerson)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -267,9 +267,9 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testRelatedPersonRealm3(_ instance: FireKit.RelatedPerson) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runRelatedPerson3(JSONEncoder().encode(realm.objects(FireKit.RelatedPerson.self).first!))
         
         // ensure we can update it.
@@ -349,13 +349,13 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     testRelatedPersonRealm4(instance!)
   }
 
-    func testRelatedPerson4RealmPK() {        
-        do {
-            let instance: FireKit.RelatedPerson = try runRelatedPerson4()
-            let copy = (instance.copy() as! FireKit.RelatedPerson)
+  func testRelatedPerson4RealmPK() { 
+      do {
+        let instance: FireKit.RelatedPerson = try runRelatedPerson4()
+        let copy = (instance.copy() as! FireKit.RelatedPerson)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -370,9 +370,9 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testRelatedPersonRealm4(_ instance: FireKit.RelatedPerson) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runRelatedPerson4(JSONEncoder().encode(realm.objects(FireKit.RelatedPerson.self).first!))
         
         // ensure we can update it.

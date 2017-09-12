@@ -2,7 +2,7 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -98,12 +98,12 @@ open class Appointment: DomainResource {
         try container.encodeIfPresent(self.comment, forKey: .comment)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.end, forKey: .end)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.minutesDuration.value, forKey: .minutesDuration)
-        try container.encode(self.participant.flatMap { $0 }, forKey: .participant)
+        try container.encode(Array(self.participant), forKey: .participant)
         try container.encodeIfPresent(self.priority.value, forKey: .priority)
         try container.encodeIfPresent(self.reason, forKey: .reason)
-        try container.encode(self.slot.flatMap { $0 }, forKey: .slot)
+        try container.encode(Array(self.slot), forKey: .slot)
         try container.encodeIfPresent(self.start, forKey: .start)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.type, forKey: .type)
@@ -356,7 +356,7 @@ open class AppointmentParticipant: BackboneElement {
         try container.encodeIfPresent(self.actor, forKey: .actor)
         try container.encodeIfPresent(self.required, forKey: .required)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	

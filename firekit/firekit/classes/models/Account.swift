@@ -2,7 +2,7 @@
 //  Account.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Account) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -107,7 +107,7 @@ open class Account: DomainResource {
         try container.encodeIfPresent(self.coveragePeriod, forKey: .coveragePeriod)
         try container.encodeIfPresent(self.currency, forKey: .currency)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.owner, forKey: .owner)
         try container.encodeIfPresent(self.status, forKey: .status)

@@ -2,7 +2,7 @@
 //  MedicationOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationOrder) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationOrder) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -143,9 +143,9 @@ open class MedicationOrder: DomainResource {
         try container.encodeIfPresent(self.dateEnded, forKey: .dateEnded)
         try container.encodeIfPresent(self.dateWritten, forKey: .dateWritten)
         try container.encodeIfPresent(self.dispenseRequest, forKey: .dispenseRequest)
-        try container.encode(self.dosageInstruction.flatMap { $0 }, forKey: .dosageInstruction)
+        try container.encode(Array(self.dosageInstruction), forKey: .dosageInstruction)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.medicationCodeableConcept, forKey: .medicationCodeableConcept)
         try container.encodeIfPresent(self.medicationReference, forKey: .medicationReference)
         try container.encodeIfPresent(self.note, forKey: .note)

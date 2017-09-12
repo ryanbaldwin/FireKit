@@ -50,13 +50,16 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
     test{{ class.name}}Realm{{ loop.index}}(instance!)
   }
 
-    func test{{ class.name }}{{ loop.index }}RealmPK() {        
-        do {
-            let instance: FireKit.{{ class.name }} = try run{{ class.name }}{{ loop.index }}()
-            let copy = (instance.copy() as! FireKit.{{ class.name }})
+  func test{{ class.name }}{{ loop.index }}RealmPK() {    
+    {%- if class.name == 'Bundle' %}
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
+    {%- else %} 
+      do {
+        let instance: FireKit.{{ class.name }} = try run{{ class.name }}{{ loop.index }}()
+        let copy = (instance.copy() as! FireKit.{{ class.name }})
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -68,12 +71,16 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
         } catch let error {
             XCTAssertTrue(false, "Must instantiate and test {{ class.name }}'s PKs, but threw: \(error)")
         }
+    {%- endif %}
     }
 
   func test{{ class.name}}Realm{{ loop.index }}(_ instance: FireKit.{{class.name}}) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+    {%- if class.name == 'Bundle' %}
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
+    {%- else %}
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! run{{ class.name }}{{ loop.index }}(JSONEncoder().encode(realm.objects(FireKit.{{ class.name }}.self).first!))
         
         // ensure we can update it.
@@ -103,6 +110,7 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.{{ class.name }}.self).count)
+    {%- endif %}
   }
   
   @discardableResult

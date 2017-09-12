@@ -2,7 +2,7 @@
 //  BundleTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,59 +48,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm1(instance!)
   }
 
-    func testBundle1RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle1()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle1RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm1(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle1(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle1(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle1(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult
@@ -145,59 +98,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm2(instance!)
   }
 
-    func testBundle2RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle2()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle2RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm2(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle2(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle2(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle2(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult
@@ -260,59 +166,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm3(instance!)
   }
 
-    func testBundle3RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle3()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle3RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm3(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle3(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle3(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle3(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult
@@ -375,59 +234,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm4(instance!)
   }
 
-    func testBundle4RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle4()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle4RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm4(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle4(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle4(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle4(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult
@@ -484,59 +296,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm5(instance!)
   }
 
-    func testBundle5RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle5()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle5RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm5(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle5(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle5(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle5(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult
@@ -599,59 +364,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm6(instance!)
   }
 
-    func testBundle6RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle6()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle6RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm6(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle6(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle6(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle6(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult
@@ -714,59 +432,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm7(instance!)
   }
 
-    func testBundle7RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle7()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle7RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm7(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle7(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle7(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle7(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult
@@ -829,59 +500,12 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
     testBundleRealm8(instance!)
   }
 
-    func testBundle8RealmPK() {        
-        do {
-            let instance: FireKit.Bundle = try runBundle8()
-            let copy = (instance.copy() as! FireKit.Bundle)
-
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
-        } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Bundle's PKs, but threw: \(error)")
-        }
+  func testBundle8RealmPK() {
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
     }
 
   func testBundleRealm8(_ instance: FireKit.Bundle) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
-        try! runBundle8(JSONEncoder().encode(realm.objects(FireKit.Bundle.self).first!))
-        
-        // ensure we can update it.
-        try! realm.write { instance.implicitRules = "Rule #1" }
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-        XCTAssertEqual("Rule #1", realm.objects(FireKit.Bundle.self).first!.implicitRules)
-        
-        // create a new instance with default key, save it, then populate it from instance JSON. 
-        // PK should persist and not be overwritten.
-        let newInst = FireKit.Bundle()
-        try! realm.write { realm.add(newInst) }
-        
-        // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle8(existing.asJSON())
-        
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle8(existing.asJSON())
-
-        try! realm.write { realm.delete(instance) }        
-        XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
-
-        try! realm.write { realm.delete(existing) }
-        XCTAssertEqual(0, realm.objects(FireKit.Bundle.self).count)
+        // Bundles cannot be saved because of the polymorphic nature of the resource.
   }
   
   @discardableResult

@@ -2,7 +2,7 @@
 //  SlotTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm1(instance!)
   }
 
-    func testSlot1RealmPK() {        
-        do {
-            let instance: FireKit.Slot = try runSlot1()
-            let copy = (instance.copy() as! FireKit.Slot)
+  func testSlot1RealmPK() { 
+      do {
+        let instance: FireKit.Slot = try runSlot1()
+        let copy = (instance.copy() as! FireKit.Slot)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testSlotRealm1(_ instance: FireKit.Slot) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runSlot1(JSONEncoder().encode(realm.objects(FireKit.Slot.self).first!))
         
         // ensure we can update it.
@@ -143,13 +143,13 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm2(instance!)
   }
 
-    func testSlot2RealmPK() {        
-        do {
-            let instance: FireKit.Slot = try runSlot2()
-            let copy = (instance.copy() as! FireKit.Slot)
+  func testSlot2RealmPK() { 
+      do {
+        let instance: FireKit.Slot = try runSlot2()
+        let copy = (instance.copy() as! FireKit.Slot)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -164,9 +164,9 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testSlotRealm2(_ instance: FireKit.Slot) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runSlot2(JSONEncoder().encode(realm.objects(FireKit.Slot.self).first!))
         
         // ensure we can update it.
@@ -235,13 +235,13 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm3(instance!)
   }
 
-    func testSlot3RealmPK() {        
-        do {
-            let instance: FireKit.Slot = try runSlot3()
-            let copy = (instance.copy() as! FireKit.Slot)
+  func testSlot3RealmPK() { 
+      do {
+        let instance: FireKit.Slot = try runSlot3()
+        let copy = (instance.copy() as! FireKit.Slot)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -256,9 +256,9 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testSlotRealm3(_ instance: FireKit.Slot) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runSlot3(JSONEncoder().encode(realm.objects(FireKit.Slot.self).first!))
         
         // ensure we can update it.
@@ -327,13 +327,13 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     testSlotRealm4(instance!)
   }
 
-    func testSlot4RealmPK() {        
-        do {
-            let instance: FireKit.Slot = try runSlot4()
-            let copy = (instance.copy() as! FireKit.Slot)
+  func testSlot4RealmPK() { 
+      do {
+        let instance: FireKit.Slot = try runSlot4()
+        let copy = (instance.copy() as! FireKit.Slot)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -348,9 +348,9 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testSlotRealm4(_ instance: FireKit.Slot) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runSlot4(JSONEncoder().encode(realm.objects(FireKit.Slot.self).first!))
         
         // ensure we can update it.

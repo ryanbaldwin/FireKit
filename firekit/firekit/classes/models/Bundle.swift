@@ -2,7 +2,7 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -71,8 +71,8 @@ open class Bundle: Resource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.entry.flatMap { $0 }, forKey: .entry)
-        try container.encode(self.link.flatMap { $0 }, forKey: .link)
+        try container.encode(Array(self.entry), forKey: .entry)
+        try container.encode(Array(self.link), forKey: .link)
         try container.encodeIfPresent(self.signature, forKey: .signature)
         try container.encodeIfPresent(self.total.value, forKey: .total)
         try container.encodeIfPresent(self.type, forKey: .type)
@@ -237,8 +237,7 @@ open class BundleEntry: BackboneElement {
 
         if let resourceContained = try container.decodeIfPresent(ContainedResource.self, forKey: .resource),
            let resourceType = resourceContained.resourceType {
-            let t = FHIRAbstractBase.resourceType(from: resourceType)
-            self.resource = try container.decodeIfPresent(t, forKey: .resource) as? Resource
+            self.resource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource) as? Resource
         }
     
         self.response = try container.decodeIfPresent(BundleEntryResponse.self, forKey: .response)
@@ -249,7 +248,7 @@ open class BundleEntry: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.fullUrl, forKey: .fullUrl)
-        try container.encode(self.link.flatMap { $0 }, forKey: .link)
+        try container.encode(Array(self.link), forKey: .link)
         try container.encodeIfPresent(self.request, forKey: .request)
         try container.encodeIfPresent(self.resource, forKey: .resource)
         try container.encodeIfPresent(self.response, forKey: .response)

@@ -2,7 +2,7 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -99,17 +99,17 @@ open class DiagnosticOrder: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.event.flatMap { $0 }, forKey: .event)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.item.flatMap { $0 }, forKey: .item)
-        try container.encode(self.note.flatMap { $0 }, forKey: .note)
+        try container.encode(Array(self.event), forKey: .event)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.item), forKey: .item)
+        try container.encode(Array(self.note), forKey: .note)
         try container.encodeIfPresent(self.orderer, forKey: .orderer)
         try container.encodeIfPresent(self.priority, forKey: .priority)
-        try container.encode(self.reason.flatMap { $0 }, forKey: .reason)
-        try container.encode(self.specimen.flatMap { $0 }, forKey: .specimen)
+        try container.encode(Array(self.reason), forKey: .reason)
+        try container.encode(Array(self.specimen), forKey: .specimen)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
-        try container.encode(self.supportingInformation.flatMap { $0 }, forKey: .supportingInformation)
+        try container.encode(Array(self.supportingInformation), forKey: .supportingInformation)
     }
 /*
 	
@@ -524,8 +524,8 @@ open class DiagnosticOrderItem: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.bodySite, forKey: .bodySite)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.event.flatMap { $0 }, forKey: .event)
-        try container.encode(self.specimen.flatMap { $0 }, forKey: .specimen)
+        try container.encode(Array(self.event), forKey: .event)
+        try container.encode(Array(self.specimen), forKey: .specimen)
         try container.encodeIfPresent(self.status, forKey: .status)
     }
 /*

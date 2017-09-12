@@ -2,7 +2,7 @@
 //  ProvenanceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
     testProvenanceRealm1(instance!)
   }
 
-    func testProvenance1RealmPK() {        
-        do {
-            let instance: FireKit.Provenance = try runProvenance1()
-            let copy = (instance.copy() as! FireKit.Provenance)
+  func testProvenance1RealmPK() { 
+      do {
+        let instance: FireKit.Provenance = try runProvenance1()
+        let copy = (instance.copy() as! FireKit.Provenance)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testProvenanceRealm1(_ instance: FireKit.Provenance) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runProvenance1(JSONEncoder().encode(realm.objects(FireKit.Provenance.self).first!))
         
         // ensure we can update it.
@@ -153,13 +153,13 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
     testProvenanceRealm2(instance!)
   }
 
-    func testProvenance2RealmPK() {        
-        do {
-            let instance: FireKit.Provenance = try runProvenance2()
-            let copy = (instance.copy() as! FireKit.Provenance)
+  func testProvenance2RealmPK() { 
+      do {
+        let instance: FireKit.Provenance = try runProvenance2()
+        let copy = (instance.copy() as! FireKit.Provenance)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -174,9 +174,9 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testProvenanceRealm2(_ instance: FireKit.Provenance) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runProvenance2(JSONEncoder().encode(realm.objects(FireKit.Provenance.self).first!))
         
         // ensure we can update it.

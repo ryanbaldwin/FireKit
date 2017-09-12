@@ -2,7 +2,7 @@
 //  FamilyMemberHistory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/FamilyMemberHistory) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -146,7 +146,7 @@ open class FamilyMemberHistory: DomainResource {
         try container.encodeIfPresent(self.bornDate, forKey: .bornDate)
         try container.encodeIfPresent(self.bornPeriod, forKey: .bornPeriod)
         try container.encodeIfPresent(self.bornString, forKey: .bornString)
-        try container.encode(self.condition.flatMap { $0 }, forKey: .condition)
+        try container.encode(Array(self.condition), forKey: .condition)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.deceasedBoolean.value, forKey: .deceasedBoolean)
         try container.encodeIfPresent(self.deceasedDate, forKey: .deceasedDate)
@@ -154,7 +154,7 @@ open class FamilyMemberHistory: DomainResource {
         try container.encodeIfPresent(self.deceasedRange, forKey: .deceasedRange)
         try container.encodeIfPresent(self.deceasedString, forKey: .deceasedString)
         try container.encodeIfPresent(self.gender, forKey: .gender)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.note, forKey: .note)
         try container.encodeIfPresent(self.patient, forKey: .patient)

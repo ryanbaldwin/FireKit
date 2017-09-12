@@ -2,7 +2,7 @@
 //  OperationDefinitionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
     testOperationDefinitionRealm1(instance!)
   }
 
-    func testOperationDefinition1RealmPK() {        
-        do {
-            let instance: FireKit.OperationDefinition = try runOperationDefinition1()
-            let copy = (instance.copy() as! FireKit.OperationDefinition)
+  func testOperationDefinition1RealmPK() { 
+      do {
+        let instance: FireKit.OperationDefinition = try runOperationDefinition1()
+        let copy = (instance.copy() as! FireKit.OperationDefinition)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class OperationDefinitionTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testOperationDefinitionRealm1(_ instance: FireKit.OperationDefinition) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runOperationDefinition1(JSONEncoder().encode(realm.objects(FireKit.OperationDefinition.self).first!))
         
         // ensure we can update it.

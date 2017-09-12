@@ -2,7 +2,7 @@
 //  Flag.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Flag) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Flag) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -101,7 +101,7 @@ open class Flag: DomainResource {
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.period, forKey: .period)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)

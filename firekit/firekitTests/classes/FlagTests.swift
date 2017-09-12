@@ -2,7 +2,7 @@
 //  FlagTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
     testFlagRealm1(instance!)
   }
 
-    func testFlag1RealmPK() {        
-        do {
-            let instance: FireKit.Flag = try runFlag1()
-            let copy = (instance.copy() as! FireKit.Flag)
+  func testFlag1RealmPK() { 
+      do {
+        let instance: FireKit.Flag = try runFlag1()
+        let copy = (instance.copy() as! FireKit.Flag)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testFlagRealm1(_ instance: FireKit.Flag) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runFlag1(JSONEncoder().encode(realm.objects(FireKit.Flag.self).first!))
         
         // ensure we can update it.
@@ -143,13 +143,13 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
     testFlagRealm2(instance!)
   }
 
-    func testFlag2RealmPK() {        
-        do {
-            let instance: FireKit.Flag = try runFlag2()
-            let copy = (instance.copy() as! FireKit.Flag)
+  func testFlag2RealmPK() { 
+      do {
+        let instance: FireKit.Flag = try runFlag2()
+        let copy = (instance.copy() as! FireKit.Flag)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -164,9 +164,9 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testFlagRealm2(_ instance: FireKit.Flag) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runFlag2(JSONEncoder().encode(realm.objects(FireKit.Flag.self).first!))
         
         // ensure we can update it.

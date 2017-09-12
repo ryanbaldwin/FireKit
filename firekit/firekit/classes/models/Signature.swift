@@ -2,7 +2,7 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -83,7 +83,7 @@ open class Signature: Element {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.blob, forKey: .blob)
         try container.encodeIfPresent(self.contentType, forKey: .contentType)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.type), forKey: .type)
         try container.encodeIfPresent(self.when, forKey: .when)
         try container.encodeIfPresent(self.whoReference, forKey: .whoReference)
         try container.encodeIfPresent(self.whoUri, forKey: .whoUri)

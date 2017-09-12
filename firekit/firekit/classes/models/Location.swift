@@ -2,7 +2,7 @@
 //  Location.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Location) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -104,7 +104,7 @@ open class Location: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.address, forKey: .address)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.managingOrganization, forKey: .managingOrganization)
         try container.encodeIfPresent(self.mode, forKey: .mode)
         try container.encodeIfPresent(self.name, forKey: .name)
@@ -112,7 +112,7 @@ open class Location: DomainResource {
         try container.encodeIfPresent(self.physicalType, forKey: .physicalType)
         try container.encodeIfPresent(self.position, forKey: .position)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*

@@ -2,7 +2,7 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -216,7 +216,7 @@ open class MedicationPackage: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.container, forKey: .container)
-        try container.encode(self.content.flatMap { $0 }, forKey: .content)
+        try container.encode(Array(self.content), forKey: .content)
     }
 /*
 	
@@ -435,9 +435,9 @@ open class MedicationProduct: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.batch.flatMap { $0 }, forKey: .batch)
+        try container.encode(Array(self.batch), forKey: .batch)
         try container.encodeIfPresent(self.form, forKey: .form)
-        try container.encode(self.ingredient.flatMap { $0 }, forKey: .ingredient)
+        try container.encode(Array(self.ingredient), forKey: .ingredient)
     }
 /*
 	

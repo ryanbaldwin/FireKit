@@ -2,7 +2,7 @@
 //  BodySite.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BodySite) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -80,9 +80,9 @@ open class BodySite: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.image.flatMap { $0 }, forKey: .image)
-        try container.encode(self.modifier.flatMap { $0 }, forKey: .modifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.image), forKey: .image)
+        try container.encode(Array(self.modifier), forKey: .modifier)
         try container.encodeIfPresent(self.patient, forKey: .patient)
     }
 /*

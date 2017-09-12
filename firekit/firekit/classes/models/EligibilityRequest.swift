@@ -2,7 +2,7 @@
 //  EligibilityRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EligibilityRequest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -85,7 +85,7 @@ open class EligibilityRequest: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.created, forKey: .created)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.organization, forKey: .organization)
         try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
         try container.encodeIfPresent(self.provider, forKey: .provider)

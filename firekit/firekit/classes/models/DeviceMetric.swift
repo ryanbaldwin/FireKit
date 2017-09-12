@@ -2,7 +2,7 @@
 //  DeviceMetric.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceMetric) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -103,7 +103,7 @@ open class DeviceMetric: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.calibration.flatMap { $0 }, forKey: .calibration)
+        try container.encode(Array(self.calibration), forKey: .calibration)
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.color, forKey: .color)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)

@@ -2,7 +2,7 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -173,15 +173,15 @@ open class ClaimResponse: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.addItem.flatMap { $0 }, forKey: .addItem)
-        try container.encode(self.coverage.flatMap { $0 }, forKey: .coverage)
+        try container.encode(Array(self.addItem), forKey: .addItem)
+        try container.encode(Array(self.coverage), forKey: .coverage)
         try container.encodeIfPresent(self.created, forKey: .created)
         try container.encodeIfPresent(self.disposition, forKey: .disposition)
-        try container.encode(self.error.flatMap { $0 }, forKey: .error)
+        try container.encode(Array(self.error), forKey: .error)
         try container.encodeIfPresent(self.form, forKey: .form)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.item.flatMap { $0 }, forKey: .item)
-        try container.encode(self.note.flatMap { $0 }, forKey: .note)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.item), forKey: .item)
+        try container.encode(Array(self.note), forKey: .note)
         try container.encodeIfPresent(self.organization, forKey: .organization)
         try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
         try container.encodeIfPresent(self.outcome, forKey: .outcome)
@@ -625,11 +625,11 @@ open class ClaimResponseAddItem: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
-        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encode(Array(self.adjudication), forKey: .adjudication)
+        try container.encode(Array(self.detail), forKey: .detail)
         try container.encodeIfPresent(self.fee, forKey: .fee)
-        try container.encode(self.noteNumberLinkId.flatMap { $0.value }, forKey: .noteNumberLinkId)
-        try container.encode(self.sequenceLinkId.flatMap { $0.value }, forKey: .sequenceLinkId)
+        try container.encode(Array(self.noteNumberLinkId), forKey: .noteNumberLinkId)
+        try container.encode(Array(self.sequenceLinkId), forKey: .sequenceLinkId)
         try container.encodeIfPresent(self.service, forKey: .service)
     }
 /*
@@ -928,7 +928,7 @@ open class ClaimResponseAddItemDetail: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encode(Array(self.adjudication), forKey: .adjudication)
         try container.encodeIfPresent(self.fee, forKey: .fee)
         try container.encodeIfPresent(self.service, forKey: .service)
     }
@@ -1218,7 +1218,7 @@ open class ClaimResponseCoverage: BackboneElement {
         try container.encodeIfPresent(self.coverage, forKey: .coverage)
         try container.encodeIfPresent(self.focal.value, forKey: .focal)
         try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
-        try container.encode(self.preAuthRef.flatMap { $0.value }, forKey: .preAuthRef)
+        try container.encode(Array(self.preAuthRef), forKey: .preAuthRef)
         try container.encodeIfPresent(self.relationship, forKey: .relationship)
         try container.encodeIfPresent(self.sequence.value, forKey: .sequence)
     }
@@ -1555,9 +1555,9 @@ open class ClaimResponseItem: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
-        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
-        try container.encode(self.noteNumber.flatMap { $0.value }, forKey: .noteNumber)
+        try container.encode(Array(self.adjudication), forKey: .adjudication)
+        try container.encode(Array(self.detail), forKey: .detail)
+        try container.encode(Array(self.noteNumber), forKey: .noteNumber)
         try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
     }
 /*
@@ -1826,9 +1826,9 @@ open class ClaimResponseItemDetail: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encode(Array(self.adjudication), forKey: .adjudication)
         try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
-        try container.encode(self.subDetail.flatMap { $0 }, forKey: .subDetail)
+        try container.encode(Array(self.subDetail), forKey: .subDetail)
     }
 /*
 	
@@ -2081,7 +2081,7 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.adjudication.flatMap { $0 }, forKey: .adjudication)
+        try container.encode(Array(self.adjudication), forKey: .adjudication)
         try container.encodeIfPresent(self.sequenceLinkId.value, forKey: .sequenceLinkId)
     }
 /*

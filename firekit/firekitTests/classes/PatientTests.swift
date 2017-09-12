@@ -2,7 +2,7 @@
 //  PatientTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm1(instance!)
   }
 
-    func testPatient1RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient1()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient1RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient1()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm1(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient1(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -152,13 +152,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm2(instance!)
   }
 
-    func testPatient2RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient2()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient2RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient2()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -173,9 +173,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm2(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient2(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -266,13 +266,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm3(instance!)
   }
 
-    func testPatient3RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient3()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient3RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient3()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -287,9 +287,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm3(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient3(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -367,13 +367,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm4(instance!)
   }
 
-    func testPatient4RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient4()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient4RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient4()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -388,9 +388,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm4(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient4(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -466,13 +466,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm5(instance!)
   }
 
-    func testPatient5RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient5()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient5RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient5()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -487,9 +487,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm5(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient5(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -565,13 +565,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm6(instance!)
   }
 
-    func testPatient6RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient6()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient6RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient6()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -586,9 +586,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm6(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient6(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -665,13 +665,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm7(instance!)
   }
 
-    func testPatient7RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient7()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient7RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient7()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -686,9 +686,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm7(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient7(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -793,13 +793,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm8(instance!)
   }
 
-    func testPatient8RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient8()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient8RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient8()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -814,9 +814,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm8(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient8(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -930,13 +930,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm9(instance!)
   }
 
-    func testPatient9RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient9()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient9RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient9()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -951,9 +951,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm9(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient9(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.
@@ -1020,13 +1020,13 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     testPatientRealm10(instance!)
   }
 
-    func testPatient10RealmPK() {        
-        do {
-            let instance: FireKit.Patient = try runPatient10()
-            let copy = (instance.copy() as! FireKit.Patient)
+  func testPatient10RealmPK() { 
+      do {
+        let instance: FireKit.Patient = try runPatient10()
+        let copy = (instance.copy() as! FireKit.Patient)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -1041,9 +1041,9 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testPatientRealm10(_ instance: FireKit.Patient) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runPatient10(JSONEncoder().encode(realm.objects(FireKit.Patient.self).first!))
         
         // ensure we can update it.

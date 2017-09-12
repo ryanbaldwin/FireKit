@@ -2,7 +2,7 @@
 //  Communication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Communication) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -104,12 +104,12 @@ open class Communication: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.medium.flatMap { $0 }, forKey: .medium)
-        try container.encode(self.payload.flatMap { $0 }, forKey: .payload)
-        try container.encode(self.reason.flatMap { $0 }, forKey: .reason)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.medium), forKey: .medium)
+        try container.encode(Array(self.payload), forKey: .payload)
+        try container.encode(Array(self.reason), forKey: .reason)
         try container.encodeIfPresent(self.received, forKey: .received)
-        try container.encode(self.recipient.flatMap { $0 }, forKey: .recipient)
+        try container.encode(Array(self.recipient), forKey: .recipient)
         try container.encodeIfPresent(self.requestDetail, forKey: .requestDetail)
         try container.encodeIfPresent(self.sender, forKey: .sender)
         try container.encodeIfPresent(self.sent, forKey: .sent)

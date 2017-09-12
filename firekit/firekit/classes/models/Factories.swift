@@ -2,7 +2,7 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -1416,4 +1416,1413 @@ extension FHIRAbstractBase {
         return FHIRAbstractBase.self
     }
   }
+}
+
+struct UnkownFhirDecodingTypeError: Error {
+    var className: String
+}
+extension KeyedDecodingContainerProtocol {
+    func decodeFHIRAbstractBaseIfPresent(_ className: String, forKey key: Self.Key) throws -> FHIRAbstractBase? {
+        switch className {
+      case "Account":
+        return try decodeIfPresent(Account.self, forKey: key)
+      case "Address":
+        return try decodeIfPresent(Address.self, forKey: key)
+      case "Age":
+        return try decodeIfPresent(Age.self, forKey: key)
+      case "AllergyIntolerance":
+        return try decodeIfPresent(AllergyIntolerance.self, forKey: key)
+      case "AllergyIntoleranceReaction":
+        return try decodeIfPresent(AllergyIntoleranceReaction.self, forKey: key)
+      case "Annotation":
+        return try decodeIfPresent(Annotation.self, forKey: key)
+      case "Appointment":
+        return try decodeIfPresent(Appointment.self, forKey: key)
+      case "AppointmentParticipant":
+        return try decodeIfPresent(AppointmentParticipant.self, forKey: key)
+      case "AppointmentResponse":
+        return try decodeIfPresent(AppointmentResponse.self, forKey: key)
+      case "Attachment":
+        return try decodeIfPresent(Attachment.self, forKey: key)
+      case "AuditEvent":
+        return try decodeIfPresent(AuditEvent.self, forKey: key)
+      case "AuditEventEvent":
+        return try decodeIfPresent(AuditEventEvent.self, forKey: key)
+      case "AuditEventObject":
+        return try decodeIfPresent(AuditEventObject.self, forKey: key)
+      case "AuditEventObjectDetail":
+        return try decodeIfPresent(AuditEventObjectDetail.self, forKey: key)
+      case "AuditEventParticipant":
+        return try decodeIfPresent(AuditEventParticipant.self, forKey: key)
+      case "AuditEventParticipantNetwork":
+        return try decodeIfPresent(AuditEventParticipantNetwork.self, forKey: key)
+      case "AuditEventSource":
+        return try decodeIfPresent(AuditEventSource.self, forKey: key)
+      case "BackboneElement":
+        return try decodeIfPresent(BackboneElement.self, forKey: key)
+      case "Basic":
+        return try decodeIfPresent(Basic.self, forKey: key)
+      case "Binary":
+        return try decodeIfPresent(Binary.self, forKey: key)
+      case "BodySite":
+        return try decodeIfPresent(BodySite.self, forKey: key)
+      case "Bundle":
+        return try decodeIfPresent(Bundle.self, forKey: key)
+      case "BundleEntry":
+        return try decodeIfPresent(BundleEntry.self, forKey: key)
+      case "BundleEntryRequest":
+        return try decodeIfPresent(BundleEntryRequest.self, forKey: key)
+      case "BundleEntryResponse":
+        return try decodeIfPresent(BundleEntryResponse.self, forKey: key)
+      case "BundleEntrySearch":
+        return try decodeIfPresent(BundleEntrySearch.self, forKey: key)
+      case "BundleLink":
+        return try decodeIfPresent(BundleLink.self, forKey: key)
+      case "CarePlan":
+        return try decodeIfPresent(CarePlan.self, forKey: key)
+      case "CarePlanActivity":
+        return try decodeIfPresent(CarePlanActivity.self, forKey: key)
+      case "CarePlanActivityDetail":
+        return try decodeIfPresent(CarePlanActivityDetail.self, forKey: key)
+      case "CarePlanParticipant":
+        return try decodeIfPresent(CarePlanParticipant.self, forKey: key)
+      case "CarePlanRelatedPlan":
+        return try decodeIfPresent(CarePlanRelatedPlan.self, forKey: key)
+      case "Claim":
+        return try decodeIfPresent(Claim.self, forKey: key)
+      case "ClaimCoverage":
+        return try decodeIfPresent(ClaimCoverage.self, forKey: key)
+      case "ClaimDiagnosis":
+        return try decodeIfPresent(ClaimDiagnosis.self, forKey: key)
+      case "ClaimItem":
+        return try decodeIfPresent(ClaimItem.self, forKey: key)
+      case "ClaimItemDetail":
+        return try decodeIfPresent(ClaimItemDetail.self, forKey: key)
+      case "ClaimItemDetailSubDetail":
+        return try decodeIfPresent(ClaimItemDetailSubDetail.self, forKey: key)
+      case "ClaimItemProsthesis":
+        return try decodeIfPresent(ClaimItemProsthesis.self, forKey: key)
+      case "ClaimMissingTeeth":
+        return try decodeIfPresent(ClaimMissingTeeth.self, forKey: key)
+      case "ClaimPayee":
+        return try decodeIfPresent(ClaimPayee.self, forKey: key)
+      case "ClaimResponse":
+        return try decodeIfPresent(ClaimResponse.self, forKey: key)
+      case "ClaimResponseAddItem":
+        return try decodeIfPresent(ClaimResponseAddItem.self, forKey: key)
+      case "ClaimResponseAddItemAdjudication":
+        return try decodeIfPresent(ClaimResponseAddItemAdjudication.self, forKey: key)
+      case "ClaimResponseAddItemDetail":
+        return try decodeIfPresent(ClaimResponseAddItemDetail.self, forKey: key)
+      case "ClaimResponseAddItemDetailAdjudication":
+        return try decodeIfPresent(ClaimResponseAddItemDetailAdjudication.self, forKey: key)
+      case "ClaimResponseCoverage":
+        return try decodeIfPresent(ClaimResponseCoverage.self, forKey: key)
+      case "ClaimResponseError":
+        return try decodeIfPresent(ClaimResponseError.self, forKey: key)
+      case "ClaimResponseItem":
+        return try decodeIfPresent(ClaimResponseItem.self, forKey: key)
+      case "ClaimResponseItemAdjudication":
+        return try decodeIfPresent(ClaimResponseItemAdjudication.self, forKey: key)
+      case "ClaimResponseItemDetail":
+        return try decodeIfPresent(ClaimResponseItemDetail.self, forKey: key)
+      case "ClaimResponseItemDetailAdjudication":
+        return try decodeIfPresent(ClaimResponseItemDetailAdjudication.self, forKey: key)
+      case "ClaimResponseItemDetailSubDetail":
+        return try decodeIfPresent(ClaimResponseItemDetailSubDetail.self, forKey: key)
+      case "ClaimResponseItemDetailSubDetailAdjudication":
+        return try decodeIfPresent(ClaimResponseItemDetailSubDetailAdjudication.self, forKey: key)
+      case "ClaimResponseNote":
+        return try decodeIfPresent(ClaimResponseNote.self, forKey: key)
+      case "ClinicalImpression":
+        return try decodeIfPresent(ClinicalImpression.self, forKey: key)
+      case "ClinicalImpressionFinding":
+        return try decodeIfPresent(ClinicalImpressionFinding.self, forKey: key)
+      case "ClinicalImpressionInvestigations":
+        return try decodeIfPresent(ClinicalImpressionInvestigations.self, forKey: key)
+      case "ClinicalImpressionRuledOut":
+        return try decodeIfPresent(ClinicalImpressionRuledOut.self, forKey: key)
+      case "CodeableConcept":
+        return try decodeIfPresent(CodeableConcept.self, forKey: key)
+      case "Coding":
+        return try decodeIfPresent(Coding.self, forKey: key)
+      case "Communication":
+        return try decodeIfPresent(Communication.self, forKey: key)
+      case "CommunicationPayload":
+        return try decodeIfPresent(CommunicationPayload.self, forKey: key)
+      case "CommunicationRequest":
+        return try decodeIfPresent(CommunicationRequest.self, forKey: key)
+      case "CommunicationRequestPayload":
+        return try decodeIfPresent(CommunicationRequestPayload.self, forKey: key)
+      case "Composition":
+        return try decodeIfPresent(Composition.self, forKey: key)
+      case "CompositionAttester":
+        return try decodeIfPresent(CompositionAttester.self, forKey: key)
+      case "CompositionEvent":
+        return try decodeIfPresent(CompositionEvent.self, forKey: key)
+      case "CompositionSection":
+        return try decodeIfPresent(CompositionSection.self, forKey: key)
+      case "ConceptMap":
+        return try decodeIfPresent(ConceptMap.self, forKey: key)
+      case "ConceptMapContact":
+        return try decodeIfPresent(ConceptMapContact.self, forKey: key)
+      case "ConceptMapElement":
+        return try decodeIfPresent(ConceptMapElement.self, forKey: key)
+      case "ConceptMapElementTarget":
+        return try decodeIfPresent(ConceptMapElementTarget.self, forKey: key)
+      case "ConceptMapElementTargetDependsOn":
+        return try decodeIfPresent(ConceptMapElementTargetDependsOn.self, forKey: key)
+      case "Condition":
+        return try decodeIfPresent(Condition.self, forKey: key)
+      case "ConditionEvidence":
+        return try decodeIfPresent(ConditionEvidence.self, forKey: key)
+      case "ConditionStage":
+        return try decodeIfPresent(ConditionStage.self, forKey: key)
+      case "Conformance":
+        return try decodeIfPresent(Conformance.self, forKey: key)
+      case "ConformanceContact":
+        return try decodeIfPresent(ConformanceContact.self, forKey: key)
+      case "ConformanceDocument":
+        return try decodeIfPresent(ConformanceDocument.self, forKey: key)
+      case "ConformanceImplementation":
+        return try decodeIfPresent(ConformanceImplementation.self, forKey: key)
+      case "ConformanceMessaging":
+        return try decodeIfPresent(ConformanceMessaging.self, forKey: key)
+      case "ConformanceMessagingEndpoint":
+        return try decodeIfPresent(ConformanceMessagingEndpoint.self, forKey: key)
+      case "ConformanceMessagingEvent":
+        return try decodeIfPresent(ConformanceMessagingEvent.self, forKey: key)
+      case "ConformanceRest":
+        return try decodeIfPresent(ConformanceRest.self, forKey: key)
+      case "ConformanceRestInteraction":
+        return try decodeIfPresent(ConformanceRestInteraction.self, forKey: key)
+      case "ConformanceRestOperation":
+        return try decodeIfPresent(ConformanceRestOperation.self, forKey: key)
+      case "ConformanceRestResource":
+        return try decodeIfPresent(ConformanceRestResource.self, forKey: key)
+      case "ConformanceRestResourceInteraction":
+        return try decodeIfPresent(ConformanceRestResourceInteraction.self, forKey: key)
+      case "ConformanceRestResourceSearchParam":
+        return try decodeIfPresent(ConformanceRestResourceSearchParam.self, forKey: key)
+      case "ConformanceRestSecurity":
+        return try decodeIfPresent(ConformanceRestSecurity.self, forKey: key)
+      case "ConformanceRestSecurityCertificate":
+        return try decodeIfPresent(ConformanceRestSecurityCertificate.self, forKey: key)
+      case "ConformanceSoftware":
+        return try decodeIfPresent(ConformanceSoftware.self, forKey: key)
+      case "ContactPoint":
+        return try decodeIfPresent(ContactPoint.self, forKey: key)
+      case "Contract":
+        return try decodeIfPresent(Contract.self, forKey: key)
+      case "ContractActor":
+        return try decodeIfPresent(ContractActor.self, forKey: key)
+      case "ContractFriendly":
+        return try decodeIfPresent(ContractFriendly.self, forKey: key)
+      case "ContractLegal":
+        return try decodeIfPresent(ContractLegal.self, forKey: key)
+      case "ContractRule":
+        return try decodeIfPresent(ContractRule.self, forKey: key)
+      case "ContractSigner":
+        return try decodeIfPresent(ContractSigner.self, forKey: key)
+      case "ContractTerm":
+        return try decodeIfPresent(ContractTerm.self, forKey: key)
+      case "ContractTermActor":
+        return try decodeIfPresent(ContractTermActor.self, forKey: key)
+      case "ContractTermValuedItem":
+        return try decodeIfPresent(ContractTermValuedItem.self, forKey: key)
+      case "ContractValuedItem":
+        return try decodeIfPresent(ContractValuedItem.self, forKey: key)
+      case "Count":
+        return try decodeIfPresent(Count.self, forKey: key)
+      case "Coverage":
+        return try decodeIfPresent(Coverage.self, forKey: key)
+      case "DataElement":
+        return try decodeIfPresent(DataElement.self, forKey: key)
+      case "DataElementContact":
+        return try decodeIfPresent(DataElementContact.self, forKey: key)
+      case "DataElementMapping":
+        return try decodeIfPresent(DataElementMapping.self, forKey: key)
+      case "DetectedIssue":
+        return try decodeIfPresent(DetectedIssue.self, forKey: key)
+      case "DetectedIssueMitigation":
+        return try decodeIfPresent(DetectedIssueMitigation.self, forKey: key)
+      case "Device":
+        return try decodeIfPresent(Device.self, forKey: key)
+      case "DeviceComponent":
+        return try decodeIfPresent(DeviceComponent.self, forKey: key)
+      case "DeviceComponentProductionSpecification":
+        return try decodeIfPresent(DeviceComponentProductionSpecification.self, forKey: key)
+      case "DeviceMetric":
+        return try decodeIfPresent(DeviceMetric.self, forKey: key)
+      case "DeviceMetricCalibration":
+        return try decodeIfPresent(DeviceMetricCalibration.self, forKey: key)
+      case "DeviceUseRequest":
+        return try decodeIfPresent(DeviceUseRequest.self, forKey: key)
+      case "DeviceUseStatement":
+        return try decodeIfPresent(DeviceUseStatement.self, forKey: key)
+      case "DiagnosticOrder":
+        return try decodeIfPresent(DiagnosticOrder.self, forKey: key)
+      case "DiagnosticOrderEvent":
+        return try decodeIfPresent(DiagnosticOrderEvent.self, forKey: key)
+      case "DiagnosticOrderItem":
+        return try decodeIfPresent(DiagnosticOrderItem.self, forKey: key)
+      case "DiagnosticReport":
+        return try decodeIfPresent(DiagnosticReport.self, forKey: key)
+      case "DiagnosticReportImage":
+        return try decodeIfPresent(DiagnosticReportImage.self, forKey: key)
+      case "Distance":
+        return try decodeIfPresent(Distance.self, forKey: key)
+      case "DocumentManifest":
+        return try decodeIfPresent(DocumentManifest.self, forKey: key)
+      case "DocumentManifestContent":
+        return try decodeIfPresent(DocumentManifestContent.self, forKey: key)
+      case "DocumentManifestRelated":
+        return try decodeIfPresent(DocumentManifestRelated.self, forKey: key)
+      case "DocumentReference":
+        return try decodeIfPresent(DocumentReference.self, forKey: key)
+      case "DocumentReferenceContent":
+        return try decodeIfPresent(DocumentReferenceContent.self, forKey: key)
+      case "DocumentReferenceContext":
+        return try decodeIfPresent(DocumentReferenceContext.self, forKey: key)
+      case "DocumentReferenceContextRelated":
+        return try decodeIfPresent(DocumentReferenceContextRelated.self, forKey: key)
+      case "DocumentReferenceRelatesTo":
+        return try decodeIfPresent(DocumentReferenceRelatesTo.self, forKey: key)
+      case "DomainResource":
+        return try decodeIfPresent(DomainResource.self, forKey: key)
+      case "Duration":
+        return try decodeIfPresent(Duration.self, forKey: key)
+      case "Element":
+        return try decodeIfPresent(Element.self, forKey: key)
+      case "ElementDefinition":
+        return try decodeIfPresent(ElementDefinition.self, forKey: key)
+      case "ElementDefinitionBase":
+        return try decodeIfPresent(ElementDefinitionBase.self, forKey: key)
+      case "ElementDefinitionBinding":
+        return try decodeIfPresent(ElementDefinitionBinding.self, forKey: key)
+      case "ElementDefinitionConstraint":
+        return try decodeIfPresent(ElementDefinitionConstraint.self, forKey: key)
+      case "ElementDefinitionMapping":
+        return try decodeIfPresent(ElementDefinitionMapping.self, forKey: key)
+      case "ElementDefinitionSlicing":
+        return try decodeIfPresent(ElementDefinitionSlicing.self, forKey: key)
+      case "ElementDefinitionType":
+        return try decodeIfPresent(ElementDefinitionType.self, forKey: key)
+      case "EligibilityRequest":
+        return try decodeIfPresent(EligibilityRequest.self, forKey: key)
+      case "EligibilityResponse":
+        return try decodeIfPresent(EligibilityResponse.self, forKey: key)
+      case "Encounter":
+        return try decodeIfPresent(Encounter.self, forKey: key)
+      case "EncounterHospitalization":
+        return try decodeIfPresent(EncounterHospitalization.self, forKey: key)
+      case "EncounterLocation":
+        return try decodeIfPresent(EncounterLocation.self, forKey: key)
+      case "EncounterParticipant":
+        return try decodeIfPresent(EncounterParticipant.self, forKey: key)
+      case "EncounterStatusHistory":
+        return try decodeIfPresent(EncounterStatusHistory.self, forKey: key)
+      case "EnrollmentRequest":
+        return try decodeIfPresent(EnrollmentRequest.self, forKey: key)
+      case "EnrollmentResponse":
+        return try decodeIfPresent(EnrollmentResponse.self, forKey: key)
+      case "EpisodeOfCare":
+        return try decodeIfPresent(EpisodeOfCare.self, forKey: key)
+      case "EpisodeOfCareCareTeam":
+        return try decodeIfPresent(EpisodeOfCareCareTeam.self, forKey: key)
+      case "EpisodeOfCareStatusHistory":
+        return try decodeIfPresent(EpisodeOfCareStatusHistory.self, forKey: key)
+      case "ExplanationOfBenefit":
+        return try decodeIfPresent(ExplanationOfBenefit.self, forKey: key)
+      case "Extension":
+        return try decodeIfPresent(Extension.self, forKey: key)
+      case "FamilyMemberHistory":
+        return try decodeIfPresent(FamilyMemberHistory.self, forKey: key)
+      case "FamilyMemberHistoryCondition":
+        return try decodeIfPresent(FamilyMemberHistoryCondition.self, forKey: key)
+      case "Flag":
+        return try decodeIfPresent(Flag.self, forKey: key)
+      case "Goal":
+        return try decodeIfPresent(Goal.self, forKey: key)
+      case "GoalOutcome":
+        return try decodeIfPresent(GoalOutcome.self, forKey: key)
+      case "Group":
+        return try decodeIfPresent(Group.self, forKey: key)
+      case "GroupCharacteristic":
+        return try decodeIfPresent(GroupCharacteristic.self, forKey: key)
+      case "GroupMember":
+        return try decodeIfPresent(GroupMember.self, forKey: key)
+      case "HealthcareService":
+        return try decodeIfPresent(HealthcareService.self, forKey: key)
+      case "HealthcareServiceAvailableTime":
+        return try decodeIfPresent(HealthcareServiceAvailableTime.self, forKey: key)
+      case "HealthcareServiceNotAvailable":
+        return try decodeIfPresent(HealthcareServiceNotAvailable.self, forKey: key)
+      case "HealthcareServiceServiceType":
+        return try decodeIfPresent(HealthcareServiceServiceType.self, forKey: key)
+      case "HumanName":
+        return try decodeIfPresent(HumanName.self, forKey: key)
+      case "Identifier":
+        return try decodeIfPresent(Identifier.self, forKey: key)
+      case "ImagingObjectSelection":
+        return try decodeIfPresent(ImagingObjectSelection.self, forKey: key)
+      case "ImagingObjectSelectionStudy":
+        return try decodeIfPresent(ImagingObjectSelectionStudy.self, forKey: key)
+      case "ImagingObjectSelectionStudySeries":
+        return try decodeIfPresent(ImagingObjectSelectionStudySeries.self, forKey: key)
+      case "ImagingObjectSelectionStudySeriesInstance":
+        return try decodeIfPresent(ImagingObjectSelectionStudySeriesInstance.self, forKey: key)
+      case "ImagingObjectSelectionStudySeriesInstanceFrames":
+        return try decodeIfPresent(ImagingObjectSelectionStudySeriesInstanceFrames.self, forKey: key)
+      case "ImagingStudy":
+        return try decodeIfPresent(ImagingStudy.self, forKey: key)
+      case "ImagingStudySeries":
+        return try decodeIfPresent(ImagingStudySeries.self, forKey: key)
+      case "ImagingStudySeriesInstance":
+        return try decodeIfPresent(ImagingStudySeriesInstance.self, forKey: key)
+      case "Immunization":
+        return try decodeIfPresent(Immunization.self, forKey: key)
+      case "ImmunizationExplanation":
+        return try decodeIfPresent(ImmunizationExplanation.self, forKey: key)
+      case "ImmunizationReaction":
+        return try decodeIfPresent(ImmunizationReaction.self, forKey: key)
+      case "ImmunizationRecommendation":
+        return try decodeIfPresent(ImmunizationRecommendation.self, forKey: key)
+      case "ImmunizationRecommendationRecommendation":
+        return try decodeIfPresent(ImmunizationRecommendationRecommendation.self, forKey: key)
+      case "ImmunizationRecommendationRecommendationDateCriterion":
+        return try decodeIfPresent(ImmunizationRecommendationRecommendationDateCriterion.self, forKey: key)
+      case "ImmunizationRecommendationRecommendationProtocol":
+        return try decodeIfPresent(ImmunizationRecommendationRecommendationProtocol.self, forKey: key)
+      case "ImmunizationVaccinationProtocol":
+        return try decodeIfPresent(ImmunizationVaccinationProtocol.self, forKey: key)
+      case "ImplementationGuide":
+        return try decodeIfPresent(ImplementationGuide.self, forKey: key)
+      case "ImplementationGuideContact":
+        return try decodeIfPresent(ImplementationGuideContact.self, forKey: key)
+      case "ImplementationGuideDependency":
+        return try decodeIfPresent(ImplementationGuideDependency.self, forKey: key)
+      case "ImplementationGuideGlobal":
+        return try decodeIfPresent(ImplementationGuideGlobal.self, forKey: key)
+      case "ImplementationGuidePackage":
+        return try decodeIfPresent(ImplementationGuidePackage.self, forKey: key)
+      case "ImplementationGuidePackageResource":
+        return try decodeIfPresent(ImplementationGuidePackageResource.self, forKey: key)
+      case "ImplementationGuidePage":
+        return try decodeIfPresent(ImplementationGuidePage.self, forKey: key)
+      case "List":
+        return try decodeIfPresent(List.self, forKey: key)
+      case "ListEntry":
+        return try decodeIfPresent(ListEntry.self, forKey: key)
+      case "Location":
+        return try decodeIfPresent(Location.self, forKey: key)
+      case "LocationPosition":
+        return try decodeIfPresent(LocationPosition.self, forKey: key)
+      case "Media":
+        return try decodeIfPresent(Media.self, forKey: key)
+      case "Medication":
+        return try decodeIfPresent(Medication.self, forKey: key)
+      case "MedicationAdministration":
+        return try decodeIfPresent(MedicationAdministration.self, forKey: key)
+      case "MedicationAdministrationDosage":
+        return try decodeIfPresent(MedicationAdministrationDosage.self, forKey: key)
+      case "MedicationDispense":
+        return try decodeIfPresent(MedicationDispense.self, forKey: key)
+      case "MedicationDispenseDosageInstruction":
+        return try decodeIfPresent(MedicationDispenseDosageInstruction.self, forKey: key)
+      case "MedicationDispenseSubstitution":
+        return try decodeIfPresent(MedicationDispenseSubstitution.self, forKey: key)
+      case "MedicationOrder":
+        return try decodeIfPresent(MedicationOrder.self, forKey: key)
+      case "MedicationOrderDispenseRequest":
+        return try decodeIfPresent(MedicationOrderDispenseRequest.self, forKey: key)
+      case "MedicationOrderDosageInstruction":
+        return try decodeIfPresent(MedicationOrderDosageInstruction.self, forKey: key)
+      case "MedicationOrderSubstitution":
+        return try decodeIfPresent(MedicationOrderSubstitution.self, forKey: key)
+      case "MedicationPackage":
+        return try decodeIfPresent(MedicationPackage.self, forKey: key)
+      case "MedicationPackageContent":
+        return try decodeIfPresent(MedicationPackageContent.self, forKey: key)
+      case "MedicationProduct":
+        return try decodeIfPresent(MedicationProduct.self, forKey: key)
+      case "MedicationProductBatch":
+        return try decodeIfPresent(MedicationProductBatch.self, forKey: key)
+      case "MedicationProductIngredient":
+        return try decodeIfPresent(MedicationProductIngredient.self, forKey: key)
+      case "MedicationStatement":
+        return try decodeIfPresent(MedicationStatement.self, forKey: key)
+      case "MedicationStatementDosage":
+        return try decodeIfPresent(MedicationStatementDosage.self, forKey: key)
+      case "MessageHeader":
+        return try decodeIfPresent(MessageHeader.self, forKey: key)
+      case "MessageHeaderDestination":
+        return try decodeIfPresent(MessageHeaderDestination.self, forKey: key)
+      case "MessageHeaderResponse":
+        return try decodeIfPresent(MessageHeaderResponse.self, forKey: key)
+      case "MessageHeaderSource":
+        return try decodeIfPresent(MessageHeaderSource.self, forKey: key)
+      case "Meta":
+        return try decodeIfPresent(Meta.self, forKey: key)
+      case "Money":
+        return try decodeIfPresent(Money.self, forKey: key)
+      case "NamingSystem":
+        return try decodeIfPresent(NamingSystem.self, forKey: key)
+      case "NamingSystemContact":
+        return try decodeIfPresent(NamingSystemContact.self, forKey: key)
+      case "NamingSystemUniqueId":
+        return try decodeIfPresent(NamingSystemUniqueId.self, forKey: key)
+      case "Narrative":
+        return try decodeIfPresent(Narrative.self, forKey: key)
+      case "NutritionOrder":
+        return try decodeIfPresent(NutritionOrder.self, forKey: key)
+      case "NutritionOrderEnteralFormula":
+        return try decodeIfPresent(NutritionOrderEnteralFormula.self, forKey: key)
+      case "NutritionOrderEnteralFormulaAdministration":
+        return try decodeIfPresent(NutritionOrderEnteralFormulaAdministration.self, forKey: key)
+      case "NutritionOrderOralDiet":
+        return try decodeIfPresent(NutritionOrderOralDiet.self, forKey: key)
+      case "NutritionOrderOralDietNutrient":
+        return try decodeIfPresent(NutritionOrderOralDietNutrient.self, forKey: key)
+      case "NutritionOrderOralDietTexture":
+        return try decodeIfPresent(NutritionOrderOralDietTexture.self, forKey: key)
+      case "NutritionOrderSupplement":
+        return try decodeIfPresent(NutritionOrderSupplement.self, forKey: key)
+      case "Observation":
+        return try decodeIfPresent(Observation.self, forKey: key)
+      case "ObservationComponent":
+        return try decodeIfPresent(ObservationComponent.self, forKey: key)
+      case "ObservationReferenceRange":
+        return try decodeIfPresent(ObservationReferenceRange.self, forKey: key)
+      case "ObservationRelated":
+        return try decodeIfPresent(ObservationRelated.self, forKey: key)
+      case "OperationDefinition":
+        return try decodeIfPresent(OperationDefinition.self, forKey: key)
+      case "OperationDefinitionContact":
+        return try decodeIfPresent(OperationDefinitionContact.self, forKey: key)
+      case "OperationDefinitionParameter":
+        return try decodeIfPresent(OperationDefinitionParameter.self, forKey: key)
+      case "OperationDefinitionParameterBinding":
+        return try decodeIfPresent(OperationDefinitionParameterBinding.self, forKey: key)
+      case "OperationOutcome":
+        return try decodeIfPresent(OperationOutcome.self, forKey: key)
+      case "OperationOutcomeIssue":
+        return try decodeIfPresent(OperationOutcomeIssue.self, forKey: key)
+      case "Order":
+        return try decodeIfPresent(Order.self, forKey: key)
+      case "OrderResponse":
+        return try decodeIfPresent(OrderResponse.self, forKey: key)
+      case "OrderWhen":
+        return try decodeIfPresent(OrderWhen.self, forKey: key)
+      case "Organization":
+        return try decodeIfPresent(Organization.self, forKey: key)
+      case "OrganizationContact":
+        return try decodeIfPresent(OrganizationContact.self, forKey: key)
+      case "Parameters":
+        return try decodeIfPresent(Parameters.self, forKey: key)
+      case "ParametersParameter":
+        return try decodeIfPresent(ParametersParameter.self, forKey: key)
+      case "Patient":
+        return try decodeIfPresent(Patient.self, forKey: key)
+      case "PatientAnimal":
+        return try decodeIfPresent(PatientAnimal.self, forKey: key)
+      case "PatientCommunication":
+        return try decodeIfPresent(PatientCommunication.self, forKey: key)
+      case "PatientContact":
+        return try decodeIfPresent(PatientContact.self, forKey: key)
+      case "PatientLink":
+        return try decodeIfPresent(PatientLink.self, forKey: key)
+      case "PaymentNotice":
+        return try decodeIfPresent(PaymentNotice.self, forKey: key)
+      case "PaymentReconciliation":
+        return try decodeIfPresent(PaymentReconciliation.self, forKey: key)
+      case "PaymentReconciliationDetail":
+        return try decodeIfPresent(PaymentReconciliationDetail.self, forKey: key)
+      case "PaymentReconciliationNote":
+        return try decodeIfPresent(PaymentReconciliationNote.self, forKey: key)
+      case "Period":
+        return try decodeIfPresent(Period.self, forKey: key)
+      case "Person":
+        return try decodeIfPresent(Person.self, forKey: key)
+      case "PersonLink":
+        return try decodeIfPresent(PersonLink.self, forKey: key)
+      case "Practitioner":
+        return try decodeIfPresent(Practitioner.self, forKey: key)
+      case "PractitionerPractitionerRole":
+        return try decodeIfPresent(PractitionerPractitionerRole.self, forKey: key)
+      case "PractitionerQualification":
+        return try decodeIfPresent(PractitionerQualification.self, forKey: key)
+      case "Procedure":
+        return try decodeIfPresent(Procedure.self, forKey: key)
+      case "ProcedureFocalDevice":
+        return try decodeIfPresent(ProcedureFocalDevice.self, forKey: key)
+      case "ProcedurePerformer":
+        return try decodeIfPresent(ProcedurePerformer.self, forKey: key)
+      case "ProcedureRequest":
+        return try decodeIfPresent(ProcedureRequest.self, forKey: key)
+      case "ProcessRequest":
+        return try decodeIfPresent(ProcessRequest.self, forKey: key)
+      case "ProcessRequestItem":
+        return try decodeIfPresent(ProcessRequestItem.self, forKey: key)
+      case "ProcessResponse":
+        return try decodeIfPresent(ProcessResponse.self, forKey: key)
+      case "ProcessResponseNotes":
+        return try decodeIfPresent(ProcessResponseNotes.self, forKey: key)
+      case "Provenance":
+        return try decodeIfPresent(Provenance.self, forKey: key)
+      case "ProvenanceAgent":
+        return try decodeIfPresent(ProvenanceAgent.self, forKey: key)
+      case "ProvenanceAgentRelatedAgent":
+        return try decodeIfPresent(ProvenanceAgentRelatedAgent.self, forKey: key)
+      case "ProvenanceEntity":
+        return try decodeIfPresent(ProvenanceEntity.self, forKey: key)
+      case "Quantity":
+        return try decodeIfPresent(Quantity.self, forKey: key)
+      case "Questionnaire":
+        return try decodeIfPresent(Questionnaire.self, forKey: key)
+      case "QuestionnaireGroup":
+        return try decodeIfPresent(QuestionnaireGroup.self, forKey: key)
+      case "QuestionnaireGroupQuestion":
+        return try decodeIfPresent(QuestionnaireGroupQuestion.self, forKey: key)
+      case "QuestionnaireResponse":
+        return try decodeIfPresent(QuestionnaireResponse.self, forKey: key)
+      case "QuestionnaireResponseGroup":
+        return try decodeIfPresent(QuestionnaireResponseGroup.self, forKey: key)
+      case "QuestionnaireResponseGroupQuestion":
+        return try decodeIfPresent(QuestionnaireResponseGroupQuestion.self, forKey: key)
+      case "QuestionnaireResponseGroupQuestionAnswer":
+        return try decodeIfPresent(QuestionnaireResponseGroupQuestionAnswer.self, forKey: key)
+      case "Range":
+        return try decodeIfPresent(Range.self, forKey: key)
+      case "Ratio":
+        return try decodeIfPresent(Ratio.self, forKey: key)
+      case "Reference":
+        return try decodeIfPresent(Reference.self, forKey: key)
+      case "ReferralRequest":
+        return try decodeIfPresent(ReferralRequest.self, forKey: key)
+      case "RelatedPerson":
+        return try decodeIfPresent(RelatedPerson.self, forKey: key)
+      case "Resource":
+        return try decodeIfPresent(Resource.self, forKey: key)
+      case "RiskAssessment":
+        return try decodeIfPresent(RiskAssessment.self, forKey: key)
+      case "RiskAssessmentPrediction":
+        return try decodeIfPresent(RiskAssessmentPrediction.self, forKey: key)
+      case "SampledData":
+        return try decodeIfPresent(SampledData.self, forKey: key)
+      case "Schedule":
+        return try decodeIfPresent(Schedule.self, forKey: key)
+      case "SearchParameter":
+        return try decodeIfPresent(SearchParameter.self, forKey: key)
+      case "SearchParameterContact":
+        return try decodeIfPresent(SearchParameterContact.self, forKey: key)
+      case "Signature":
+        return try decodeIfPresent(Signature.self, forKey: key)
+      case "Slot":
+        return try decodeIfPresent(Slot.self, forKey: key)
+      case "Specimen":
+        return try decodeIfPresent(Specimen.self, forKey: key)
+      case "SpecimenCollection":
+        return try decodeIfPresent(SpecimenCollection.self, forKey: key)
+      case "SpecimenContainer":
+        return try decodeIfPresent(SpecimenContainer.self, forKey: key)
+      case "SpecimenTreatment":
+        return try decodeIfPresent(SpecimenTreatment.self, forKey: key)
+      case "StructureDefinition":
+        return try decodeIfPresent(StructureDefinition.self, forKey: key)
+      case "StructureDefinitionContact":
+        return try decodeIfPresent(StructureDefinitionContact.self, forKey: key)
+      case "StructureDefinitionDifferential":
+        return try decodeIfPresent(StructureDefinitionDifferential.self, forKey: key)
+      case "StructureDefinitionMapping":
+        return try decodeIfPresent(StructureDefinitionMapping.self, forKey: key)
+      case "StructureDefinitionSnapshot":
+        return try decodeIfPresent(StructureDefinitionSnapshot.self, forKey: key)
+      case "Subscription":
+        return try decodeIfPresent(Subscription.self, forKey: key)
+      case "SubscriptionChannel":
+        return try decodeIfPresent(SubscriptionChannel.self, forKey: key)
+      case "Substance":
+        return try decodeIfPresent(Substance.self, forKey: key)
+      case "SubstanceIngredient":
+        return try decodeIfPresent(SubstanceIngredient.self, forKey: key)
+      case "SubstanceInstance":
+        return try decodeIfPresent(SubstanceInstance.self, forKey: key)
+      case "SupplyDelivery":
+        return try decodeIfPresent(SupplyDelivery.self, forKey: key)
+      case "SupplyRequest":
+        return try decodeIfPresent(SupplyRequest.self, forKey: key)
+      case "SupplyRequestWhen":
+        return try decodeIfPresent(SupplyRequestWhen.self, forKey: key)
+      case "TestScript":
+        return try decodeIfPresent(TestScript.self, forKey: key)
+      case "TestScriptContact":
+        return try decodeIfPresent(TestScriptContact.self, forKey: key)
+      case "TestScriptFixture":
+        return try decodeIfPresent(TestScriptFixture.self, forKey: key)
+      case "TestScriptMetadata":
+        return try decodeIfPresent(TestScriptMetadata.self, forKey: key)
+      case "TestScriptMetadataCapability":
+        return try decodeIfPresent(TestScriptMetadataCapability.self, forKey: key)
+      case "TestScriptMetadataLink":
+        return try decodeIfPresent(TestScriptMetadataLink.self, forKey: key)
+      case "TestScriptSetup":
+        return try decodeIfPresent(TestScriptSetup.self, forKey: key)
+      case "TestScriptSetupAction":
+        return try decodeIfPresent(TestScriptSetupAction.self, forKey: key)
+      case "TestScriptSetupActionAssert":
+        return try decodeIfPresent(TestScriptSetupActionAssert.self, forKey: key)
+      case "TestScriptSetupActionOperation":
+        return try decodeIfPresent(TestScriptSetupActionOperation.self, forKey: key)
+      case "TestScriptSetupActionOperationRequestHeader":
+        return try decodeIfPresent(TestScriptSetupActionOperationRequestHeader.self, forKey: key)
+      case "TestScriptTeardown":
+        return try decodeIfPresent(TestScriptTeardown.self, forKey: key)
+      case "TestScriptTeardownAction":
+        return try decodeIfPresent(TestScriptTeardownAction.self, forKey: key)
+      case "TestScriptTest":
+        return try decodeIfPresent(TestScriptTest.self, forKey: key)
+      case "TestScriptTestAction":
+        return try decodeIfPresent(TestScriptTestAction.self, forKey: key)
+      case "TestScriptVariable":
+        return try decodeIfPresent(TestScriptVariable.self, forKey: key)
+      case "Timing":
+        return try decodeIfPresent(Timing.self, forKey: key)
+      case "TimingRepeat":
+        return try decodeIfPresent(TimingRepeat.self, forKey: key)
+      case "ValueSet":
+        return try decodeIfPresent(ValueSet.self, forKey: key)
+      case "ValueSetCodeSystem":
+        return try decodeIfPresent(ValueSetCodeSystem.self, forKey: key)
+      case "ValueSetCodeSystemConcept":
+        return try decodeIfPresent(ValueSetCodeSystemConcept.self, forKey: key)
+      case "ValueSetCodeSystemConceptDesignation":
+        return try decodeIfPresent(ValueSetCodeSystemConceptDesignation.self, forKey: key)
+      case "ValueSetCompose":
+        return try decodeIfPresent(ValueSetCompose.self, forKey: key)
+      case "ValueSetComposeInclude":
+        return try decodeIfPresent(ValueSetComposeInclude.self, forKey: key)
+      case "ValueSetComposeIncludeConcept":
+        return try decodeIfPresent(ValueSetComposeIncludeConcept.self, forKey: key)
+      case "ValueSetComposeIncludeFilter":
+        return try decodeIfPresent(ValueSetComposeIncludeFilter.self, forKey: key)
+      case "ValueSetContact":
+        return try decodeIfPresent(ValueSetContact.self, forKey: key)
+      case "ValueSetExpansion":
+        return try decodeIfPresent(ValueSetExpansion.self, forKey: key)
+      case "ValueSetExpansionContains":
+        return try decodeIfPresent(ValueSetExpansionContains.self, forKey: key)
+      case "ValueSetExpansionParameter":
+        return try decodeIfPresent(ValueSetExpansionParameter.self, forKey: key)
+      case "VisionPrescription":
+        return try decodeIfPresent(VisionPrescription.self, forKey: key)
+      case "VisionPrescriptionDispense":
+        return try decodeIfPresent(VisionPrescriptionDispense.self, forKey: key)
+      default:
+        throw UnkownFhirDecodingTypeError(className: className)
+      }
+    }
+}
+
+extension UnkeyedDecodingContainer {
+    mutating func decodeFHIRAbstractBase(_ className: String) throws -> FHIRAbstractBase {
+        switch className {
+            case "Account":
+                return try decode(Account.self)
+            case "Address":
+                return try decode(Address.self)
+            case "Age":
+                return try decode(Age.self)
+            case "AllergyIntolerance":
+                return try decode(AllergyIntolerance.self)
+            case "AllergyIntoleranceReaction":
+                return try decode(AllergyIntoleranceReaction.self)
+            case "Annotation":
+                return try decode(Annotation.self)
+            case "Appointment":
+                return try decode(Appointment.self)
+            case "AppointmentParticipant":
+                return try decode(AppointmentParticipant.self)
+            case "AppointmentResponse":
+                return try decode(AppointmentResponse.self)
+            case "Attachment":
+                return try decode(Attachment.self)
+            case "AuditEvent":
+                return try decode(AuditEvent.self)
+            case "AuditEventEvent":
+                return try decode(AuditEventEvent.self)
+            case "AuditEventObject":
+                return try decode(AuditEventObject.self)
+            case "AuditEventObjectDetail":
+                return try decode(AuditEventObjectDetail.self)
+            case "AuditEventParticipant":
+                return try decode(AuditEventParticipant.self)
+            case "AuditEventParticipantNetwork":
+                return try decode(AuditEventParticipantNetwork.self)
+            case "AuditEventSource":
+                return try decode(AuditEventSource.self)
+            case "BackboneElement":
+                return try decode(BackboneElement.self)
+            case "Basic":
+                return try decode(Basic.self)
+            case "Binary":
+                return try decode(Binary.self)
+            case "BodySite":
+                return try decode(BodySite.self)
+            case "Bundle":
+                return try decode(Bundle.self)
+            case "BundleEntry":
+                return try decode(BundleEntry.self)
+            case "BundleEntryRequest":
+                return try decode(BundleEntryRequest.self)
+            case "BundleEntryResponse":
+                return try decode(BundleEntryResponse.self)
+            case "BundleEntrySearch":
+                return try decode(BundleEntrySearch.self)
+            case "BundleLink":
+                return try decode(BundleLink.self)
+            case "CarePlan":
+                return try decode(CarePlan.self)
+            case "CarePlanActivity":
+                return try decode(CarePlanActivity.self)
+            case "CarePlanActivityDetail":
+                return try decode(CarePlanActivityDetail.self)
+            case "CarePlanParticipant":
+                return try decode(CarePlanParticipant.self)
+            case "CarePlanRelatedPlan":
+                return try decode(CarePlanRelatedPlan.self)
+            case "Claim":
+                return try decode(Claim.self)
+            case "ClaimCoverage":
+                return try decode(ClaimCoverage.self)
+            case "ClaimDiagnosis":
+                return try decode(ClaimDiagnosis.self)
+            case "ClaimItem":
+                return try decode(ClaimItem.self)
+            case "ClaimItemDetail":
+                return try decode(ClaimItemDetail.self)
+            case "ClaimItemDetailSubDetail":
+                return try decode(ClaimItemDetailSubDetail.self)
+            case "ClaimItemProsthesis":
+                return try decode(ClaimItemProsthesis.self)
+            case "ClaimMissingTeeth":
+                return try decode(ClaimMissingTeeth.self)
+            case "ClaimPayee":
+                return try decode(ClaimPayee.self)
+            case "ClaimResponse":
+                return try decode(ClaimResponse.self)
+            case "ClaimResponseAddItem":
+                return try decode(ClaimResponseAddItem.self)
+            case "ClaimResponseAddItemAdjudication":
+                return try decode(ClaimResponseAddItemAdjudication.self)
+            case "ClaimResponseAddItemDetail":
+                return try decode(ClaimResponseAddItemDetail.self)
+            case "ClaimResponseAddItemDetailAdjudication":
+                return try decode(ClaimResponseAddItemDetailAdjudication.self)
+            case "ClaimResponseCoverage":
+                return try decode(ClaimResponseCoverage.self)
+            case "ClaimResponseError":
+                return try decode(ClaimResponseError.self)
+            case "ClaimResponseItem":
+                return try decode(ClaimResponseItem.self)
+            case "ClaimResponseItemAdjudication":
+                return try decode(ClaimResponseItemAdjudication.self)
+            case "ClaimResponseItemDetail":
+                return try decode(ClaimResponseItemDetail.self)
+            case "ClaimResponseItemDetailAdjudication":
+                return try decode(ClaimResponseItemDetailAdjudication.self)
+            case "ClaimResponseItemDetailSubDetail":
+                return try decode(ClaimResponseItemDetailSubDetail.self)
+            case "ClaimResponseItemDetailSubDetailAdjudication":
+                return try decode(ClaimResponseItemDetailSubDetailAdjudication.self)
+            case "ClaimResponseNote":
+                return try decode(ClaimResponseNote.self)
+            case "ClinicalImpression":
+                return try decode(ClinicalImpression.self)
+            case "ClinicalImpressionFinding":
+                return try decode(ClinicalImpressionFinding.self)
+            case "ClinicalImpressionInvestigations":
+                return try decode(ClinicalImpressionInvestigations.self)
+            case "ClinicalImpressionRuledOut":
+                return try decode(ClinicalImpressionRuledOut.self)
+            case "CodeableConcept":
+                return try decode(CodeableConcept.self)
+            case "Coding":
+                return try decode(Coding.self)
+            case "Communication":
+                return try decode(Communication.self)
+            case "CommunicationPayload":
+                return try decode(CommunicationPayload.self)
+            case "CommunicationRequest":
+                return try decode(CommunicationRequest.self)
+            case "CommunicationRequestPayload":
+                return try decode(CommunicationRequestPayload.self)
+            case "Composition":
+                return try decode(Composition.self)
+            case "CompositionAttester":
+                return try decode(CompositionAttester.self)
+            case "CompositionEvent":
+                return try decode(CompositionEvent.self)
+            case "CompositionSection":
+                return try decode(CompositionSection.self)
+            case "ConceptMap":
+                return try decode(ConceptMap.self)
+            case "ConceptMapContact":
+                return try decode(ConceptMapContact.self)
+            case "ConceptMapElement":
+                return try decode(ConceptMapElement.self)
+            case "ConceptMapElementTarget":
+                return try decode(ConceptMapElementTarget.self)
+            case "ConceptMapElementTargetDependsOn":
+                return try decode(ConceptMapElementTargetDependsOn.self)
+            case "Condition":
+                return try decode(Condition.self)
+            case "ConditionEvidence":
+                return try decode(ConditionEvidence.self)
+            case "ConditionStage":
+                return try decode(ConditionStage.self)
+            case "Conformance":
+                return try decode(Conformance.self)
+            case "ConformanceContact":
+                return try decode(ConformanceContact.self)
+            case "ConformanceDocument":
+                return try decode(ConformanceDocument.self)
+            case "ConformanceImplementation":
+                return try decode(ConformanceImplementation.self)
+            case "ConformanceMessaging":
+                return try decode(ConformanceMessaging.self)
+            case "ConformanceMessagingEndpoint":
+                return try decode(ConformanceMessagingEndpoint.self)
+            case "ConformanceMessagingEvent":
+                return try decode(ConformanceMessagingEvent.self)
+            case "ConformanceRest":
+                return try decode(ConformanceRest.self)
+            case "ConformanceRestInteraction":
+                return try decode(ConformanceRestInteraction.self)
+            case "ConformanceRestOperation":
+                return try decode(ConformanceRestOperation.self)
+            case "ConformanceRestResource":
+                return try decode(ConformanceRestResource.self)
+            case "ConformanceRestResourceInteraction":
+                return try decode(ConformanceRestResourceInteraction.self)
+            case "ConformanceRestResourceSearchParam":
+                return try decode(ConformanceRestResourceSearchParam.self)
+            case "ConformanceRestSecurity":
+                return try decode(ConformanceRestSecurity.self)
+            case "ConformanceRestSecurityCertificate":
+                return try decode(ConformanceRestSecurityCertificate.self)
+            case "ConformanceSoftware":
+                return try decode(ConformanceSoftware.self)
+            case "ContactPoint":
+                return try decode(ContactPoint.self)
+            case "Contract":
+                return try decode(Contract.self)
+            case "ContractActor":
+                return try decode(ContractActor.self)
+            case "ContractFriendly":
+                return try decode(ContractFriendly.self)
+            case "ContractLegal":
+                return try decode(ContractLegal.self)
+            case "ContractRule":
+                return try decode(ContractRule.self)
+            case "ContractSigner":
+                return try decode(ContractSigner.self)
+            case "ContractTerm":
+                return try decode(ContractTerm.self)
+            case "ContractTermActor":
+                return try decode(ContractTermActor.self)
+            case "ContractTermValuedItem":
+                return try decode(ContractTermValuedItem.self)
+            case "ContractValuedItem":
+                return try decode(ContractValuedItem.self)
+            case "Count":
+                return try decode(Count.self)
+            case "Coverage":
+                return try decode(Coverage.self)
+            case "DataElement":
+                return try decode(DataElement.self)
+            case "DataElementContact":
+                return try decode(DataElementContact.self)
+            case "DataElementMapping":
+                return try decode(DataElementMapping.self)
+            case "DetectedIssue":
+                return try decode(DetectedIssue.self)
+            case "DetectedIssueMitigation":
+                return try decode(DetectedIssueMitigation.self)
+            case "Device":
+                return try decode(Device.self)
+            case "DeviceComponent":
+                return try decode(DeviceComponent.self)
+            case "DeviceComponentProductionSpecification":
+                return try decode(DeviceComponentProductionSpecification.self)
+            case "DeviceMetric":
+                return try decode(DeviceMetric.self)
+            case "DeviceMetricCalibration":
+                return try decode(DeviceMetricCalibration.self)
+            case "DeviceUseRequest":
+                return try decode(DeviceUseRequest.self)
+            case "DeviceUseStatement":
+                return try decode(DeviceUseStatement.self)
+            case "DiagnosticOrder":
+                return try decode(DiagnosticOrder.self)
+            case "DiagnosticOrderEvent":
+                return try decode(DiagnosticOrderEvent.self)
+            case "DiagnosticOrderItem":
+                return try decode(DiagnosticOrderItem.self)
+            case "DiagnosticReport":
+                return try decode(DiagnosticReport.self)
+            case "DiagnosticReportImage":
+                return try decode(DiagnosticReportImage.self)
+            case "Distance":
+                return try decode(Distance.self)
+            case "DocumentManifest":
+                return try decode(DocumentManifest.self)
+            case "DocumentManifestContent":
+                return try decode(DocumentManifestContent.self)
+            case "DocumentManifestRelated":
+                return try decode(DocumentManifestRelated.self)
+            case "DocumentReference":
+                return try decode(DocumentReference.self)
+            case "DocumentReferenceContent":
+                return try decode(DocumentReferenceContent.self)
+            case "DocumentReferenceContext":
+                return try decode(DocumentReferenceContext.self)
+            case "DocumentReferenceContextRelated":
+                return try decode(DocumentReferenceContextRelated.self)
+            case "DocumentReferenceRelatesTo":
+                return try decode(DocumentReferenceRelatesTo.self)
+            case "DomainResource":
+                return try decode(DomainResource.self)
+            case "Duration":
+                return try decode(Duration.self)
+            case "Element":
+                return try decode(Element.self)
+            case "ElementDefinition":
+                return try decode(ElementDefinition.self)
+            case "ElementDefinitionBase":
+                return try decode(ElementDefinitionBase.self)
+            case "ElementDefinitionBinding":
+                return try decode(ElementDefinitionBinding.self)
+            case "ElementDefinitionConstraint":
+                return try decode(ElementDefinitionConstraint.self)
+            case "ElementDefinitionMapping":
+                return try decode(ElementDefinitionMapping.self)
+            case "ElementDefinitionSlicing":
+                return try decode(ElementDefinitionSlicing.self)
+            case "ElementDefinitionType":
+                return try decode(ElementDefinitionType.self)
+            case "EligibilityRequest":
+                return try decode(EligibilityRequest.self)
+            case "EligibilityResponse":
+                return try decode(EligibilityResponse.self)
+            case "Encounter":
+                return try decode(Encounter.self)
+            case "EncounterHospitalization":
+                return try decode(EncounterHospitalization.self)
+            case "EncounterLocation":
+                return try decode(EncounterLocation.self)
+            case "EncounterParticipant":
+                return try decode(EncounterParticipant.self)
+            case "EncounterStatusHistory":
+                return try decode(EncounterStatusHistory.self)
+            case "EnrollmentRequest":
+                return try decode(EnrollmentRequest.self)
+            case "EnrollmentResponse":
+                return try decode(EnrollmentResponse.self)
+            case "EpisodeOfCare":
+                return try decode(EpisodeOfCare.self)
+            case "EpisodeOfCareCareTeam":
+                return try decode(EpisodeOfCareCareTeam.self)
+            case "EpisodeOfCareStatusHistory":
+                return try decode(EpisodeOfCareStatusHistory.self)
+            case "ExplanationOfBenefit":
+                return try decode(ExplanationOfBenefit.self)
+            case "Extension":
+                return try decode(Extension.self)
+            case "FamilyMemberHistory":
+                return try decode(FamilyMemberHistory.self)
+            case "FamilyMemberHistoryCondition":
+                return try decode(FamilyMemberHistoryCondition.self)
+            case "Flag":
+                return try decode(Flag.self)
+            case "Goal":
+                return try decode(Goal.self)
+            case "GoalOutcome":
+                return try decode(GoalOutcome.self)
+            case "Group":
+                return try decode(Group.self)
+            case "GroupCharacteristic":
+                return try decode(GroupCharacteristic.self)
+            case "GroupMember":
+                return try decode(GroupMember.self)
+            case "HealthcareService":
+                return try decode(HealthcareService.self)
+            case "HealthcareServiceAvailableTime":
+                return try decode(HealthcareServiceAvailableTime.self)
+            case "HealthcareServiceNotAvailable":
+                return try decode(HealthcareServiceNotAvailable.self)
+            case "HealthcareServiceServiceType":
+                return try decode(HealthcareServiceServiceType.self)
+            case "HumanName":
+                return try decode(HumanName.self)
+            case "Identifier":
+                return try decode(Identifier.self)
+            case "ImagingObjectSelection":
+                return try decode(ImagingObjectSelection.self)
+            case "ImagingObjectSelectionStudy":
+                return try decode(ImagingObjectSelectionStudy.self)
+            case "ImagingObjectSelectionStudySeries":
+                return try decode(ImagingObjectSelectionStudySeries.self)
+            case "ImagingObjectSelectionStudySeriesInstance":
+                return try decode(ImagingObjectSelectionStudySeriesInstance.self)
+            case "ImagingObjectSelectionStudySeriesInstanceFrames":
+                return try decode(ImagingObjectSelectionStudySeriesInstanceFrames.self)
+            case "ImagingStudy":
+                return try decode(ImagingStudy.self)
+            case "ImagingStudySeries":
+                return try decode(ImagingStudySeries.self)
+            case "ImagingStudySeriesInstance":
+                return try decode(ImagingStudySeriesInstance.self)
+            case "Immunization":
+                return try decode(Immunization.self)
+            case "ImmunizationExplanation":
+                return try decode(ImmunizationExplanation.self)
+            case "ImmunizationReaction":
+                return try decode(ImmunizationReaction.self)
+            case "ImmunizationRecommendation":
+                return try decode(ImmunizationRecommendation.self)
+            case "ImmunizationRecommendationRecommendation":
+                return try decode(ImmunizationRecommendationRecommendation.self)
+            case "ImmunizationRecommendationRecommendationDateCriterion":
+                return try decode(ImmunizationRecommendationRecommendationDateCriterion.self)
+            case "ImmunizationRecommendationRecommendationProtocol":
+                return try decode(ImmunizationRecommendationRecommendationProtocol.self)
+            case "ImmunizationVaccinationProtocol":
+                return try decode(ImmunizationVaccinationProtocol.self)
+            case "ImplementationGuide":
+                return try decode(ImplementationGuide.self)
+            case "ImplementationGuideContact":
+                return try decode(ImplementationGuideContact.self)
+            case "ImplementationGuideDependency":
+                return try decode(ImplementationGuideDependency.self)
+            case "ImplementationGuideGlobal":
+                return try decode(ImplementationGuideGlobal.self)
+            case "ImplementationGuidePackage":
+                return try decode(ImplementationGuidePackage.self)
+            case "ImplementationGuidePackageResource":
+                return try decode(ImplementationGuidePackageResource.self)
+            case "ImplementationGuidePage":
+                return try decode(ImplementationGuidePage.self)
+            case "List":
+                return try decode(List.self)
+            case "ListEntry":
+                return try decode(ListEntry.self)
+            case "Location":
+                return try decode(Location.self)
+            case "LocationPosition":
+                return try decode(LocationPosition.self)
+            case "Media":
+                return try decode(Media.self)
+            case "Medication":
+                return try decode(Medication.self)
+            case "MedicationAdministration":
+                return try decode(MedicationAdministration.self)
+            case "MedicationAdministrationDosage":
+                return try decode(MedicationAdministrationDosage.self)
+            case "MedicationDispense":
+                return try decode(MedicationDispense.self)
+            case "MedicationDispenseDosageInstruction":
+                return try decode(MedicationDispenseDosageInstruction.self)
+            case "MedicationDispenseSubstitution":
+                return try decode(MedicationDispenseSubstitution.self)
+            case "MedicationOrder":
+                return try decode(MedicationOrder.self)
+            case "MedicationOrderDispenseRequest":
+                return try decode(MedicationOrderDispenseRequest.self)
+            case "MedicationOrderDosageInstruction":
+                return try decode(MedicationOrderDosageInstruction.self)
+            case "MedicationOrderSubstitution":
+                return try decode(MedicationOrderSubstitution.self)
+            case "MedicationPackage":
+                return try decode(MedicationPackage.self)
+            case "MedicationPackageContent":
+                return try decode(MedicationPackageContent.self)
+            case "MedicationProduct":
+                return try decode(MedicationProduct.self)
+            case "MedicationProductBatch":
+                return try decode(MedicationProductBatch.self)
+            case "MedicationProductIngredient":
+                return try decode(MedicationProductIngredient.self)
+            case "MedicationStatement":
+                return try decode(MedicationStatement.self)
+            case "MedicationStatementDosage":
+                return try decode(MedicationStatementDosage.self)
+            case "MessageHeader":
+                return try decode(MessageHeader.self)
+            case "MessageHeaderDestination":
+                return try decode(MessageHeaderDestination.self)
+            case "MessageHeaderResponse":
+                return try decode(MessageHeaderResponse.self)
+            case "MessageHeaderSource":
+                return try decode(MessageHeaderSource.self)
+            case "Meta":
+                return try decode(Meta.self)
+            case "Money":
+                return try decode(Money.self)
+            case "NamingSystem":
+                return try decode(NamingSystem.self)
+            case "NamingSystemContact":
+                return try decode(NamingSystemContact.self)
+            case "NamingSystemUniqueId":
+                return try decode(NamingSystemUniqueId.self)
+            case "Narrative":
+                return try decode(Narrative.self)
+            case "NutritionOrder":
+                return try decode(NutritionOrder.self)
+            case "NutritionOrderEnteralFormula":
+                return try decode(NutritionOrderEnteralFormula.self)
+            case "NutritionOrderEnteralFormulaAdministration":
+                return try decode(NutritionOrderEnteralFormulaAdministration.self)
+            case "NutritionOrderOralDiet":
+                return try decode(NutritionOrderOralDiet.self)
+            case "NutritionOrderOralDietNutrient":
+                return try decode(NutritionOrderOralDietNutrient.self)
+            case "NutritionOrderOralDietTexture":
+                return try decode(NutritionOrderOralDietTexture.self)
+            case "NutritionOrderSupplement":
+                return try decode(NutritionOrderSupplement.self)
+            case "Observation":
+                return try decode(Observation.self)
+            case "ObservationComponent":
+                return try decode(ObservationComponent.self)
+            case "ObservationReferenceRange":
+                return try decode(ObservationReferenceRange.self)
+            case "ObservationRelated":
+                return try decode(ObservationRelated.self)
+            case "OperationDefinition":
+                return try decode(OperationDefinition.self)
+            case "OperationDefinitionContact":
+                return try decode(OperationDefinitionContact.self)
+            case "OperationDefinitionParameter":
+                return try decode(OperationDefinitionParameter.self)
+            case "OperationDefinitionParameterBinding":
+                return try decode(OperationDefinitionParameterBinding.self)
+            case "OperationOutcome":
+                return try decode(OperationOutcome.self)
+            case "OperationOutcomeIssue":
+                return try decode(OperationOutcomeIssue.self)
+            case "Order":
+                return try decode(Order.self)
+            case "OrderResponse":
+                return try decode(OrderResponse.self)
+            case "OrderWhen":
+                return try decode(OrderWhen.self)
+            case "Organization":
+                return try decode(Organization.self)
+            case "OrganizationContact":
+                return try decode(OrganizationContact.self)
+            case "Parameters":
+                return try decode(Parameters.self)
+            case "ParametersParameter":
+                return try decode(ParametersParameter.self)
+            case "Patient":
+                return try decode(Patient.self)
+            case "PatientAnimal":
+                return try decode(PatientAnimal.self)
+            case "PatientCommunication":
+                return try decode(PatientCommunication.self)
+            case "PatientContact":
+                return try decode(PatientContact.self)
+            case "PatientLink":
+                return try decode(PatientLink.self)
+            case "PaymentNotice":
+                return try decode(PaymentNotice.self)
+            case "PaymentReconciliation":
+                return try decode(PaymentReconciliation.self)
+            case "PaymentReconciliationDetail":
+                return try decode(PaymentReconciliationDetail.self)
+            case "PaymentReconciliationNote":
+                return try decode(PaymentReconciliationNote.self)
+            case "Period":
+                return try decode(Period.self)
+            case "Person":
+                return try decode(Person.self)
+            case "PersonLink":
+                return try decode(PersonLink.self)
+            case "Practitioner":
+                return try decode(Practitioner.self)
+            case "PractitionerPractitionerRole":
+                return try decode(PractitionerPractitionerRole.self)
+            case "PractitionerQualification":
+                return try decode(PractitionerQualification.self)
+            case "Procedure":
+                return try decode(Procedure.self)
+            case "ProcedureFocalDevice":
+                return try decode(ProcedureFocalDevice.self)
+            case "ProcedurePerformer":
+                return try decode(ProcedurePerformer.self)
+            case "ProcedureRequest":
+                return try decode(ProcedureRequest.self)
+            case "ProcessRequest":
+                return try decode(ProcessRequest.self)
+            case "ProcessRequestItem":
+                return try decode(ProcessRequestItem.self)
+            case "ProcessResponse":
+                return try decode(ProcessResponse.self)
+            case "ProcessResponseNotes":
+                return try decode(ProcessResponseNotes.self)
+            case "Provenance":
+                return try decode(Provenance.self)
+            case "ProvenanceAgent":
+                return try decode(ProvenanceAgent.self)
+            case "ProvenanceAgentRelatedAgent":
+                return try decode(ProvenanceAgentRelatedAgent.self)
+            case "ProvenanceEntity":
+                return try decode(ProvenanceEntity.self)
+            case "Quantity":
+                return try decode(Quantity.self)
+            case "Questionnaire":
+                return try decode(Questionnaire.self)
+            case "QuestionnaireGroup":
+                return try decode(QuestionnaireGroup.self)
+            case "QuestionnaireGroupQuestion":
+                return try decode(QuestionnaireGroupQuestion.self)
+            case "QuestionnaireResponse":
+                return try decode(QuestionnaireResponse.self)
+            case "QuestionnaireResponseGroup":
+                return try decode(QuestionnaireResponseGroup.self)
+            case "QuestionnaireResponseGroupQuestion":
+                return try decode(QuestionnaireResponseGroupQuestion.self)
+            case "QuestionnaireResponseGroupQuestionAnswer":
+                return try decode(QuestionnaireResponseGroupQuestionAnswer.self)
+            case "Range":
+                return try decode(Range.self)
+            case "Ratio":
+                return try decode(Ratio.self)
+            case "Reference":
+                return try decode(Reference.self)
+            case "ReferralRequest":
+                return try decode(ReferralRequest.self)
+            case "RelatedPerson":
+                return try decode(RelatedPerson.self)
+            case "Resource":
+                return try decode(Resource.self)
+            case "RiskAssessment":
+                return try decode(RiskAssessment.self)
+            case "RiskAssessmentPrediction":
+                return try decode(RiskAssessmentPrediction.self)
+            case "SampledData":
+                return try decode(SampledData.self)
+            case "Schedule":
+                return try decode(Schedule.self)
+            case "SearchParameter":
+                return try decode(SearchParameter.self)
+            case "SearchParameterContact":
+                return try decode(SearchParameterContact.self)
+            case "Signature":
+                return try decode(Signature.self)
+            case "Slot":
+                return try decode(Slot.self)
+            case "Specimen":
+                return try decode(Specimen.self)
+            case "SpecimenCollection":
+                return try decode(SpecimenCollection.self)
+            case "SpecimenContainer":
+                return try decode(SpecimenContainer.self)
+            case "SpecimenTreatment":
+                return try decode(SpecimenTreatment.self)
+            case "StructureDefinition":
+                return try decode(StructureDefinition.self)
+            case "StructureDefinitionContact":
+                return try decode(StructureDefinitionContact.self)
+            case "StructureDefinitionDifferential":
+                return try decode(StructureDefinitionDifferential.self)
+            case "StructureDefinitionMapping":
+                return try decode(StructureDefinitionMapping.self)
+            case "StructureDefinitionSnapshot":
+                return try decode(StructureDefinitionSnapshot.self)
+            case "Subscription":
+                return try decode(Subscription.self)
+            case "SubscriptionChannel":
+                return try decode(SubscriptionChannel.self)
+            case "Substance":
+                return try decode(Substance.self)
+            case "SubstanceIngredient":
+                return try decode(SubstanceIngredient.self)
+            case "SubstanceInstance":
+                return try decode(SubstanceInstance.self)
+            case "SupplyDelivery":
+                return try decode(SupplyDelivery.self)
+            case "SupplyRequest":
+                return try decode(SupplyRequest.self)
+            case "SupplyRequestWhen":
+                return try decode(SupplyRequestWhen.self)
+            case "TestScript":
+                return try decode(TestScript.self)
+            case "TestScriptContact":
+                return try decode(TestScriptContact.self)
+            case "TestScriptFixture":
+                return try decode(TestScriptFixture.self)
+            case "TestScriptMetadata":
+                return try decode(TestScriptMetadata.self)
+            case "TestScriptMetadataCapability":
+                return try decode(TestScriptMetadataCapability.self)
+            case "TestScriptMetadataLink":
+                return try decode(TestScriptMetadataLink.self)
+            case "TestScriptSetup":
+                return try decode(TestScriptSetup.self)
+            case "TestScriptSetupAction":
+                return try decode(TestScriptSetupAction.self)
+            case "TestScriptSetupActionAssert":
+                return try decode(TestScriptSetupActionAssert.self)
+            case "TestScriptSetupActionOperation":
+                return try decode(TestScriptSetupActionOperation.self)
+            case "TestScriptSetupActionOperationRequestHeader":
+                return try decode(TestScriptSetupActionOperationRequestHeader.self)
+            case "TestScriptTeardown":
+                return try decode(TestScriptTeardown.self)
+            case "TestScriptTeardownAction":
+                return try decode(TestScriptTeardownAction.self)
+            case "TestScriptTest":
+                return try decode(TestScriptTest.self)
+            case "TestScriptTestAction":
+                return try decode(TestScriptTestAction.self)
+            case "TestScriptVariable":
+                return try decode(TestScriptVariable.self)
+            case "Timing":
+                return try decode(Timing.self)
+            case "TimingRepeat":
+                return try decode(TimingRepeat.self)
+            case "ValueSet":
+                return try decode(ValueSet.self)
+            case "ValueSetCodeSystem":
+                return try decode(ValueSetCodeSystem.self)
+            case "ValueSetCodeSystemConcept":
+                return try decode(ValueSetCodeSystemConcept.self)
+            case "ValueSetCodeSystemConceptDesignation":
+                return try decode(ValueSetCodeSystemConceptDesignation.self)
+            case "ValueSetCompose":
+                return try decode(ValueSetCompose.self)
+            case "ValueSetComposeInclude":
+                return try decode(ValueSetComposeInclude.self)
+            case "ValueSetComposeIncludeConcept":
+                return try decode(ValueSetComposeIncludeConcept.self)
+            case "ValueSetComposeIncludeFilter":
+                return try decode(ValueSetComposeIncludeFilter.self)
+            case "ValueSetContact":
+                return try decode(ValueSetContact.self)
+            case "ValueSetExpansion":
+                return try decode(ValueSetExpansion.self)
+            case "ValueSetExpansionContains":
+                return try decode(ValueSetExpansionContains.self)
+            case "ValueSetExpansionParameter":
+                return try decode(ValueSetExpansionParameter.self)
+            case "VisionPrescription":
+                return try decode(VisionPrescription.self)
+            case "VisionPrescriptionDispense":
+                return try decode(VisionPrescriptionDispense.self)
+            default:
+                throw UnkownFhirDecodingTypeError(className: className)
+        }
+    }
 }

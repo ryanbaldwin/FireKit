@@ -2,7 +2,7 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -128,12 +128,12 @@ open class DeviceUseRequest: DomainResource {
         try container.encodeIfPresent(self.bodySiteReference, forKey: .bodySiteReference)
         try container.encodeIfPresent(self.device, forKey: .device)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.indication.flatMap { $0 }, forKey: .indication)
-        try container.encode(self.notes.flatMap { $0.value }, forKey: .notes)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.indication), forKey: .indication)
+        try container.encode(Array(self.notes), forKey: .notes)
         try container.encodeIfPresent(self.orderedOn, forKey: .orderedOn)
         try container.encodeIfPresent(self.priority, forKey: .priority)
-        try container.encode(self.prnReason.flatMap { $0 }, forKey: .prnReason)
+        try container.encode(Array(self.prnReason), forKey: .prnReason)
         try container.encodeIfPresent(self.recordedOn, forKey: .recordedOn)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)

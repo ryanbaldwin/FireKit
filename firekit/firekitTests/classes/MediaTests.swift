@@ -2,7 +2,7 @@
 //  MediaTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     testMediaRealm1(instance!)
   }
 
-    func testMedia1RealmPK() {        
-        do {
-            let instance: FireKit.Media = try runMedia1()
-            let copy = (instance.copy() as! FireKit.Media)
+  func testMedia1RealmPK() { 
+      do {
+        let instance: FireKit.Media = try runMedia1()
+        let copy = (instance.copy() as! FireKit.Media)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testMediaRealm1(_ instance: FireKit.Media) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runMedia1(JSONEncoder().encode(realm.objects(FireKit.Media.self).first!))
         
         // ensure we can update it.
@@ -158,13 +158,13 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     testMediaRealm2(instance!)
   }
 
-    func testMedia2RealmPK() {        
-        do {
-            let instance: FireKit.Media = try runMedia2()
-            let copy = (instance.copy() as! FireKit.Media)
+  func testMedia2RealmPK() { 
+      do {
+        let instance: FireKit.Media = try runMedia2()
+        let copy = (instance.copy() as! FireKit.Media)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -179,9 +179,9 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testMediaRealm2(_ instance: FireKit.Media) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runMedia2(JSONEncoder().encode(realm.objects(FireKit.Media.self).first!))
         
         // ensure we can update it.
@@ -250,13 +250,13 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     testMediaRealm3(instance!)
   }
 
-    func testMedia3RealmPK() {        
-        do {
-            let instance: FireKit.Media = try runMedia3()
-            let copy = (instance.copy() as! FireKit.Media)
+  func testMedia3RealmPK() { 
+      do {
+        let instance: FireKit.Media = try runMedia3()
+        let copy = (instance.copy() as! FireKit.Media)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -271,9 +271,9 @@ class MediaTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testMediaRealm3(_ instance: FireKit.Media) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runMedia3(JSONEncoder().encode(realm.objects(FireKit.Media.self).first!))
         
         // ensure we can update it.

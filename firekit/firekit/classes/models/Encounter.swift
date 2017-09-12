@@ -2,7 +2,7 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -137,23 +137,23 @@ open class Encounter: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.appointment, forKey: .appointment)
         try container.encodeIfPresent(self.class_fhir, forKey: .class_fhir)
-        try container.encode(self.episodeOfCare.flatMap { $0 }, forKey: .episodeOfCare)
+        try container.encode(Array(self.episodeOfCare), forKey: .episodeOfCare)
         try container.encodeIfPresent(self.hospitalization, forKey: .hospitalization)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.incomingReferral.flatMap { $0 }, forKey: .incomingReferral)
-        try container.encode(self.indication.flatMap { $0 }, forKey: .indication)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.incomingReferral), forKey: .incomingReferral)
+        try container.encode(Array(self.indication), forKey: .indication)
         try container.encodeIfPresent(self.length, forKey: .length)
-        try container.encode(self.location.flatMap { $0 }, forKey: .location)
+        try container.encode(Array(self.location), forKey: .location)
         try container.encodeIfPresent(self.partOf, forKey: .partOf)
-        try container.encode(self.participant.flatMap { $0 }, forKey: .participant)
+        try container.encode(Array(self.participant), forKey: .participant)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.period, forKey: .period)
         try container.encodeIfPresent(self.priority, forKey: .priority)
-        try container.encode(self.reason.flatMap { $0 }, forKey: .reason)
+        try container.encode(Array(self.reason), forKey: .reason)
         try container.encodeIfPresent(self.serviceProvider, forKey: .serviceProvider)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.statusHistory.flatMap { $0 }, forKey: .statusHistory)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.statusHistory), forKey: .statusHistory)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	
@@ -528,16 +528,16 @@ open class EncounterHospitalization: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.admitSource, forKey: .admitSource)
-        try container.encode(self.admittingDiagnosis.flatMap { $0 }, forKey: .admittingDiagnosis)
+        try container.encode(Array(self.admittingDiagnosis), forKey: .admittingDiagnosis)
         try container.encodeIfPresent(self.destination, forKey: .destination)
-        try container.encode(self.dietPreference.flatMap { $0 }, forKey: .dietPreference)
-        try container.encode(self.dischargeDiagnosis.flatMap { $0 }, forKey: .dischargeDiagnosis)
+        try container.encode(Array(self.dietPreference), forKey: .dietPreference)
+        try container.encode(Array(self.dischargeDiagnosis), forKey: .dischargeDiagnosis)
         try container.encodeIfPresent(self.dischargeDisposition, forKey: .dischargeDisposition)
         try container.encodeIfPresent(self.origin, forKey: .origin)
         try container.encodeIfPresent(self.preAdmissionIdentifier, forKey: .preAdmissionIdentifier)
         try container.encodeIfPresent(self.reAdmission, forKey: .reAdmission)
-        try container.encode(self.specialArrangement.flatMap { $0 }, forKey: .specialArrangement)
-        try container.encode(self.specialCourtesy.flatMap { $0 }, forKey: .specialCourtesy)
+        try container.encode(Array(self.specialArrangement), forKey: .specialArrangement)
+        try container.encode(Array(self.specialCourtesy), forKey: .specialCourtesy)
     }
 /*
 	
@@ -897,7 +897,7 @@ open class EncounterParticipant: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.individual, forKey: .individual)
         try container.encodeIfPresent(self.period, forKey: .period)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	

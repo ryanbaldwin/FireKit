@@ -2,7 +2,7 @@
 //  NutritionOrderTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm1(instance!)
   }
 
-    func testNutritionOrder1RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder1()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder1RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder1()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm1(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder1(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -179,13 +179,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm2(instance!)
   }
 
-    func testNutritionOrder2RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder2()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder2RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder2()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -200,9 +200,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm2(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder2(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -299,13 +299,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm3(instance!)
   }
 
-    func testNutritionOrder3RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder3()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder3RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder3()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -320,9 +320,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm3(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder3(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -418,13 +418,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm4(instance!)
   }
 
-    func testNutritionOrder4RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder4()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder4RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder4()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -439,9 +439,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm4(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder4(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -534,13 +534,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm5(instance!)
   }
 
-    func testNutritionOrder5RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder5()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder5RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder5()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -555,9 +555,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm5(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder5(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -664,13 +664,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm6(instance!)
   }
 
-    func testNutritionOrder6RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder6()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder6RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder6()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -685,9 +685,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm6(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder6(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -789,13 +789,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm7(instance!)
   }
 
-    func testNutritionOrder7RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder7()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder7RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder7()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -810,9 +810,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm7(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder7(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -916,13 +916,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm8(instance!)
   }
 
-    func testNutritionOrder8RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder8()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder8RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder8()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -937,9 +937,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm8(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder8(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -1039,13 +1039,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm9(instance!)
   }
 
-    func testNutritionOrder9RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder9()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder9RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder9()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -1060,9 +1060,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm9(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder9(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.
@@ -1148,13 +1148,13 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     testNutritionOrderRealm10(instance!)
   }
 
-    func testNutritionOrder10RealmPK() {        
-        do {
-            let instance: FireKit.NutritionOrder = try runNutritionOrder10()
-            let copy = (instance.copy() as! FireKit.NutritionOrder)
+  func testNutritionOrder10RealmPK() { 
+      do {
+        let instance: FireKit.NutritionOrder = try runNutritionOrder10()
+        let copy = (instance.copy() as! FireKit.NutritionOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -1169,9 +1169,9 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNutritionOrderRealm10(_ instance: FireKit.NutritionOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNutritionOrder10(JSONEncoder().encode(realm.objects(FireKit.NutritionOrder.self).first!))
         
         // ensure we can update it.

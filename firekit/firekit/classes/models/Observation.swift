@@ -2,7 +2,7 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -202,19 +202,19 @@ open class Observation: DomainResource {
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.comments, forKey: .comments)
-        try container.encode(self.component.flatMap { $0 }, forKey: .component)
+        try container.encode(Array(self.component), forKey: .component)
         try container.encodeIfPresent(self.dataAbsentReason, forKey: .dataAbsentReason)
         try container.encodeIfPresent(self.device, forKey: .device)
         try container.encodeIfPresent(self.effectiveDateTime, forKey: .effectiveDateTime)
         try container.encodeIfPresent(self.effectivePeriod, forKey: .effectivePeriod)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.interpretation, forKey: .interpretation)
         try container.encodeIfPresent(self.issued, forKey: .issued)
         try container.encodeIfPresent(self.method, forKey: .method)
-        try container.encode(self.performer.flatMap { $0 }, forKey: .performer)
-        try container.encode(self.referenceRange.flatMap { $0 }, forKey: .referenceRange)
-        try container.encode(self.related.flatMap { $0 }, forKey: .related)
+        try container.encode(Array(self.performer), forKey: .performer)
+        try container.encode(Array(self.referenceRange), forKey: .referenceRange)
+        try container.encode(Array(self.related), forKey: .related)
         try container.encodeIfPresent(self.specimen, forKey: .specimen)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
@@ -751,7 +751,7 @@ open class ObservationComponent: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.dataAbsentReason, forKey: .dataAbsentReason)
-        try container.encode(self.referenceRange.flatMap { $0 }, forKey: .referenceRange)
+        try container.encode(Array(self.referenceRange), forKey: .referenceRange)
         try container.encodeIfPresent(self.valueAttachment, forKey: .valueAttachment)
         try container.encodeIfPresent(self.valueCodeableConcept, forKey: .valueCodeableConcept)
         try container.encodeIfPresent(self.valueDateTime, forKey: .valueDateTime)

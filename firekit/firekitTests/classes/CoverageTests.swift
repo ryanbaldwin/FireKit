@@ -2,7 +2,7 @@
 //  CoverageTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
     testCoverageRealm1(instance!)
   }
 
-    func testCoverage1RealmPK() {        
-        do {
-            let instance: FireKit.Coverage = try runCoverage1()
-            let copy = (instance.copy() as! FireKit.Coverage)
+  func testCoverage1RealmPK() { 
+      do {
+        let instance: FireKit.Coverage = try runCoverage1()
+        let copy = (instance.copy() as! FireKit.Coverage)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testCoverageRealm1(_ instance: FireKit.Coverage) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runCoverage1(JSONEncoder().encode(realm.objects(FireKit.Coverage.self).first!))
         
         // ensure we can update it.
@@ -145,13 +145,13 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
     testCoverageRealm2(instance!)
   }
 
-    func testCoverage2RealmPK() {        
-        do {
-            let instance: FireKit.Coverage = try runCoverage2()
-            let copy = (instance.copy() as! FireKit.Coverage)
+  func testCoverage2RealmPK() { 
+      do {
+        let instance: FireKit.Coverage = try runCoverage2()
+        let copy = (instance.copy() as! FireKit.Coverage)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -166,9 +166,9 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testCoverageRealm2(_ instance: FireKit.Coverage) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runCoverage2(JSONEncoder().encode(realm.objects(FireKit.Coverage.self).first!))
         
         // ensure we can update it.

@@ -2,7 +2,7 @@
 //  OrderTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
     testOrderRealm1(instance!)
   }
 
-    func testOrder1RealmPK() {        
-        do {
-            let instance: FireKit.Order = try runOrder1()
-            let copy = (instance.copy() as! FireKit.Order)
+  func testOrder1RealmPK() { 
+      do {
+        let instance: FireKit.Order = try runOrder1()
+        let copy = (instance.copy() as! FireKit.Order)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testOrderRealm1(_ instance: FireKit.Order) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runOrder1(JSONEncoder().encode(realm.objects(FireKit.Order.self).first!))
         
         // ensure we can update it.
@@ -143,13 +143,13 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
     testOrderRealm2(instance!)
   }
 
-    func testOrder2RealmPK() {        
-        do {
-            let instance: FireKit.Order = try runOrder2()
-            let copy = (instance.copy() as! FireKit.Order)
+  func testOrder2RealmPK() { 
+      do {
+        let instance: FireKit.Order = try runOrder2()
+        let copy = (instance.copy() as! FireKit.Order)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -164,9 +164,9 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testOrderRealm2(_ instance: FireKit.Order) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runOrder2(JSONEncoder().encode(realm.objects(FireKit.Order.self).first!))
         
         // ensure we can update it.

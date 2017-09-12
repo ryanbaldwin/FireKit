@@ -2,7 +2,7 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -131,26 +131,26 @@ open class TestScript: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.copyright, forKey: .copyright)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
-        try container.encode(self.fixture.flatMap { $0 }, forKey: .fixture)
+        try container.encode(Array(self.fixture), forKey: .fixture)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.metadata, forKey: .metadata)
         try container.encodeIfPresent(self.multiserver.value, forKey: .multiserver)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.profile.flatMap { $0 }, forKey: .profile)
+        try container.encode(Array(self.profile), forKey: .profile)
         try container.encodeIfPresent(self.publisher, forKey: .publisher)
         try container.encodeIfPresent(self.requirements, forKey: .requirements)
         try container.encodeIfPresent(self.setup, forKey: .setup)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.teardown, forKey: .teardown)
-        try container.encode(self.test.flatMap { $0 }, forKey: .test)
+        try container.encode(Array(self.test), forKey: .test)
         try container.encodeIfPresent(self.url, forKey: .url)
-        try container.encode(self.useContext.flatMap { $0 }, forKey: .useContext)
-        try container.encode(self.variable.flatMap { $0 }, forKey: .variable)
+        try container.encode(Array(self.useContext), forKey: .useContext)
+        try container.encode(Array(self.variable), forKey: .variable)
         try container.encodeIfPresent(self.version, forKey: .version)
     }
 /*
@@ -504,7 +504,7 @@ open class TestScriptContact: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	
@@ -727,8 +727,8 @@ open class TestScriptMetadata: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.capability.flatMap { $0 }, forKey: .capability)
-        try container.encode(self.link.flatMap { $0 }, forKey: .link)
+        try container.encode(Array(self.capability), forKey: .capability)
+        try container.encode(Array(self.link), forKey: .link)
     }
 /*
 	
@@ -858,7 +858,7 @@ open class TestScriptMetadataCapability: BackboneElement {
         try container.encodeIfPresent(self.conformance, forKey: .conformance)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.destination.value, forKey: .destination)
-        try container.encode(self.link.flatMap { $0.value }, forKey: .link)
+        try container.encode(Array(self.link), forKey: .link)
         try container.encodeIfPresent(self.required.value, forKey: .required)
         try container.encodeIfPresent(self.validated.value, forKey: .validated)
     }
@@ -1122,7 +1122,7 @@ open class TestScriptSetup: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.action.flatMap { $0 }, forKey: .action)
+        try container.encode(Array(self.action), forKey: .action)
         try container.encodeIfPresent(self.metadata, forKey: .metadata)
     }
 /*
@@ -1730,7 +1730,7 @@ open class TestScriptSetupActionOperation: BackboneElement {
         try container.encodeIfPresent(self.encodeRequestUrl.value, forKey: .encodeRequestUrl)
         try container.encodeIfPresent(self.label, forKey: .label)
         try container.encodeIfPresent(self.params, forKey: .params)
-        try container.encode(self.requestHeader.flatMap { $0 }, forKey: .requestHeader)
+        try container.encode(Array(self.requestHeader), forKey: .requestHeader)
         try container.encodeIfPresent(self.resource, forKey: .resource)
         try container.encodeIfPresent(self.responseId, forKey: .responseId)
         try container.encodeIfPresent(self.sourceId, forKey: .sourceId)
@@ -2094,7 +2094,7 @@ open class TestScriptTeardown: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.action.flatMap { $0 }, forKey: .action)
+        try container.encode(Array(self.action), forKey: .action)
     }
 /*
 	
@@ -2283,7 +2283,7 @@ open class TestScriptTest: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.action.flatMap { $0 }, forKey: .action)
+        try container.encode(Array(self.action), forKey: .action)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.metadata, forKey: .metadata)
         try container.encodeIfPresent(self.name, forKey: .name)

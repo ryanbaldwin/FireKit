@@ -2,7 +2,7 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -132,19 +132,19 @@ open class DocumentReference: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.authenticator, forKey: .authenticator)
-        try container.encode(self.author.flatMap { $0 }, forKey: .author)
+        try container.encode(Array(self.author), forKey: .author)
         try container.encodeIfPresent(self.class_fhir, forKey: .class_fhir)
-        try container.encode(self.content.flatMap { $0 }, forKey: .content)
+        try container.encode(Array(self.content), forKey: .content)
         try container.encodeIfPresent(self.context, forKey: .context)
         try container.encodeIfPresent(self.created, forKey: .created)
         try container.encodeIfPresent(self.custodian, forKey: .custodian)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.docStatus, forKey: .docStatus)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.indexed, forKey: .indexed)
         try container.encodeIfPresent(self.masterIdentifier, forKey: .masterIdentifier)
-        try container.encode(self.relatesTo.flatMap { $0 }, forKey: .relatesTo)
-        try container.encode(self.securityLabel.flatMap { $0 }, forKey: .securityLabel)
+        try container.encode(Array(self.relatesTo), forKey: .relatesTo)
+        try container.encode(Array(self.securityLabel), forKey: .securityLabel)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
         try container.encodeIfPresent(self.type, forKey: .type)
@@ -461,7 +461,7 @@ open class DocumentReferenceContent: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.attachment, forKey: .attachment)
-        try container.encode(self.format.flatMap { $0 }, forKey: .format)
+        try container.encode(Array(self.format), forKey: .format)
     }
 /*
 	
@@ -595,11 +595,11 @@ open class DocumentReferenceContext: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.event.flatMap { $0 }, forKey: .event)
+        try container.encode(Array(self.event), forKey: .event)
         try container.encodeIfPresent(self.facilityType, forKey: .facilityType)
         try container.encodeIfPresent(self.period, forKey: .period)
         try container.encodeIfPresent(self.practiceSetting, forKey: .practiceSetting)
-        try container.encode(self.related.flatMap { $0 }, forKey: .related)
+        try container.encode(Array(self.related), forKey: .related)
         try container.encodeIfPresent(self.sourcePatientInfo, forKey: .sourcePatientInfo)
     }
 /*

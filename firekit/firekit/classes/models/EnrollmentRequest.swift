@@ -2,7 +2,7 @@
 //  EnrollmentRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EnrollmentRequest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -111,7 +111,7 @@ open class EnrollmentRequest: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.coverage, forKey: .coverage)
         try container.encodeIfPresent(self.created, forKey: .created)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.organization, forKey: .organization)
         try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
         try container.encodeIfPresent(self.provider, forKey: .provider)

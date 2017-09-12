@@ -2,7 +2,7 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -81,8 +81,8 @@ open class OrderResponse: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.fulfillment.flatMap { $0 }, forKey: .fulfillment)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.fulfillment), forKey: .fulfillment)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.orderStatus, forKey: .orderStatus)
         try container.encodeIfPresent(self.request, forKey: .request)
         try container.encodeIfPresent(self.who, forKey: .who)

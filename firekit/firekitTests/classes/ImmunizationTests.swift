@@ -2,7 +2,7 @@
 //  ImmunizationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
     testImmunizationRealm1(instance!)
   }
 
-    func testImmunization1RealmPK() {        
-        do {
-            let instance: FireKit.Immunization = try runImmunization1()
-            let copy = (instance.copy() as! FireKit.Immunization)
+  func testImmunization1RealmPK() { 
+      do {
+        let instance: FireKit.Immunization = try runImmunization1()
+        let copy = (instance.copy() as! FireKit.Immunization)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testImmunizationRealm1(_ instance: FireKit.Immunization) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runImmunization1(JSONEncoder().encode(realm.objects(FireKit.Immunization.self).first!))
         
         // ensure we can update it.
@@ -143,13 +143,13 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
     testImmunizationRealm2(instance!)
   }
 
-    func testImmunization2RealmPK() {        
-        do {
-            let instance: FireKit.Immunization = try runImmunization2()
-            let copy = (instance.copy() as! FireKit.Immunization)
+  func testImmunization2RealmPK() { 
+      do {
+        let instance: FireKit.Immunization = try runImmunization2()
+        let copy = (instance.copy() as! FireKit.Immunization)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -164,9 +164,9 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testImmunizationRealm2(_ instance: FireKit.Immunization) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runImmunization2(JSONEncoder().encode(realm.objects(FireKit.Immunization.self).first!))
         
         // ensure we can update it.

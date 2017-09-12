@@ -2,7 +2,7 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -115,24 +115,24 @@ open class Patient: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.active.value, forKey: .active)
-        try container.encode(self.address.flatMap { $0 }, forKey: .address)
+        try container.encode(Array(self.address), forKey: .address)
         try container.encodeIfPresent(self.animal, forKey: .animal)
         try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
-        try container.encode(self.careProvider.flatMap { $0 }, forKey: .careProvider)
-        try container.encode(self.communication.flatMap { $0 }, forKey: .communication)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.careProvider), forKey: .careProvider)
+        try container.encode(Array(self.communication), forKey: .communication)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.deceasedBoolean.value, forKey: .deceasedBoolean)
         try container.encodeIfPresent(self.deceasedDateTime, forKey: .deceasedDateTime)
         try container.encodeIfPresent(self.gender, forKey: .gender)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.link.flatMap { $0 }, forKey: .link)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.link), forKey: .link)
         try container.encodeIfPresent(self.managingOrganization, forKey: .managingOrganization)
         try container.encodeIfPresent(self.maritalStatus, forKey: .maritalStatus)
         try container.encodeIfPresent(self.multipleBirthBoolean.value, forKey: .multipleBirthBoolean)
         try container.encodeIfPresent(self.multipleBirthInteger.value, forKey: .multipleBirthInteger)
-        try container.encode(self.name.flatMap { $0 }, forKey: .name)
-        try container.encode(self.photo.flatMap { $0 }, forKey: .photo)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.name), forKey: .name)
+        try container.encode(Array(self.photo), forKey: .photo)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	
@@ -732,8 +732,8 @@ open class PatientContact: BackboneElement {
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.organization, forKey: .organization)
         try container.encodeIfPresent(self.period, forKey: .period)
-        try container.encode(self.relationship.flatMap { $0 }, forKey: .relationship)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.relationship), forKey: .relationship)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	

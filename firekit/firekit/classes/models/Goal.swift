@@ -2,7 +2,7 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -121,13 +121,13 @@ open class Goal: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.addresses.flatMap { $0 }, forKey: .addresses)
+        try container.encode(Array(self.addresses), forKey: .addresses)
         try container.encodeIfPresent(self.author, forKey: .author)
-        try container.encode(self.category.flatMap { $0 }, forKey: .category)
+        try container.encode(Array(self.category), forKey: .category)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.note.flatMap { $0 }, forKey: .note)
-        try container.encode(self.outcome.flatMap { $0 }, forKey: .outcome)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.note), forKey: .note)
+        try container.encode(Array(self.outcome), forKey: .outcome)
         try container.encodeIfPresent(self.priority, forKey: .priority)
         try container.encodeIfPresent(self.startCodeableConcept, forKey: .startCodeableConcept)
         try container.encodeIfPresent(self.startDate, forKey: .startDate)

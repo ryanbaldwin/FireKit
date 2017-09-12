@@ -2,7 +2,7 @@
 //  EnrollmentResponseTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class EnrollmentResponseTests: XCTestCase, RealmPersistenceTesting {
     testEnrollmentResponseRealm1(instance!)
   }
 
-    func testEnrollmentResponse1RealmPK() {        
-        do {
-            let instance: FireKit.EnrollmentResponse = try runEnrollmentResponse1()
-            let copy = (instance.copy() as! FireKit.EnrollmentResponse)
+  func testEnrollmentResponse1RealmPK() { 
+      do {
+        let instance: FireKit.EnrollmentResponse = try runEnrollmentResponse1()
+        let copy = (instance.copy() as! FireKit.EnrollmentResponse)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class EnrollmentResponseTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testEnrollmentResponseRealm1(_ instance: FireKit.EnrollmentResponse) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runEnrollmentResponse1(JSONEncoder().encode(realm.objects(FireKit.EnrollmentResponse.self).first!))
         
         // ensure we can update it.

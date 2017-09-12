@@ -2,7 +2,7 @@
 //  Organization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Organization) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -80,12 +80,12 @@ open class Organization: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.active.value, forKey: .active)
-        try container.encode(self.address.flatMap { $0 }, forKey: .address)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.address), forKey: .address)
+        try container.encode(Array(self.contact), forKey: .contact)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.partOf, forKey: .partOf)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*
@@ -283,7 +283,7 @@ open class OrganizationContact: BackboneElement {
         try container.encodeIfPresent(self.address, forKey: .address)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.purpose, forKey: .purpose)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	

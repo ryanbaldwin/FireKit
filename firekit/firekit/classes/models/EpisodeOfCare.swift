@@ -2,7 +2,7 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -102,16 +102,16 @@ open class EpisodeOfCare: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.careManager, forKey: .careManager)
-        try container.encode(self.careTeam.flatMap { $0 }, forKey: .careTeam)
-        try container.encode(self.condition.flatMap { $0 }, forKey: .condition)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.careTeam), forKey: .careTeam)
+        try container.encode(Array(self.condition), forKey: .condition)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.managingOrganization, forKey: .managingOrganization)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.period, forKey: .period)
-        try container.encode(self.referralRequest.flatMap { $0 }, forKey: .referralRequest)
+        try container.encode(Array(self.referralRequest), forKey: .referralRequest)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.statusHistory.flatMap { $0 }, forKey: .statusHistory)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.statusHistory), forKey: .statusHistory)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	
@@ -351,7 +351,7 @@ open class EpisodeOfCareCareTeam: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.member, forKey: .member)
         try container.encodeIfPresent(self.period, forKey: .period)
-        try container.encode(self.role.flatMap { $0 }, forKey: .role)
+        try container.encode(Array(self.role), forKey: .role)
     }
 /*
 	

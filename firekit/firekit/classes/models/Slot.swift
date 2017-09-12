@@ -2,7 +2,7 @@
 //  Slot.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Slot) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -87,7 +87,7 @@ open class Slot: DomainResource {
         try container.encodeIfPresent(self.comment, forKey: .comment)
         try container.encodeIfPresent(self.end, forKey: .end)
         try container.encodeIfPresent(self.freeBusyType, forKey: .freeBusyType)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.overbooked.value, forKey: .overbooked)
         try container.encodeIfPresent(self.schedule, forKey: .schedule)
         try container.encodeIfPresent(self.start, forKey: .start)

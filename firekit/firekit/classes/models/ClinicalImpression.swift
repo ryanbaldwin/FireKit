@@ -2,7 +2,7 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -127,20 +127,20 @@ open class ClinicalImpression: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.action.flatMap { $0 }, forKey: .action)
+        try container.encode(Array(self.action), forKey: .action)
         try container.encodeIfPresent(self.assessor, forKey: .assessor)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.finding.flatMap { $0 }, forKey: .finding)
-        try container.encode(self.investigations.flatMap { $0 }, forKey: .investigations)
+        try container.encode(Array(self.finding), forKey: .finding)
+        try container.encode(Array(self.investigations), forKey: .investigations)
         try container.encodeIfPresent(self.patient, forKey: .patient)
-        try container.encode(self.plan.flatMap { $0 }, forKey: .plan)
+        try container.encode(Array(self.plan), forKey: .plan)
         try container.encodeIfPresent(self.previous, forKey: .previous)
-        try container.encode(self.problem.flatMap { $0 }, forKey: .problem)
+        try container.encode(Array(self.problem), forKey: .problem)
         try container.encodeIfPresent(self.prognosis, forKey: .prognosis)
         try container.encodeIfPresent(self.protocol_fhir, forKey: .protocol_fhir)
-        try container.encode(self.resolved.flatMap { $0 }, forKey: .resolved)
-        try container.encode(self.ruledOut.flatMap { $0 }, forKey: .ruledOut)
+        try container.encode(Array(self.resolved), forKey: .resolved)
+        try container.encode(Array(self.ruledOut), forKey: .ruledOut)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.summary, forKey: .summary)
         try container.encodeIfPresent(self.triggerCodeableConcept, forKey: .triggerCodeableConcept)
@@ -582,7 +582,7 @@ open class ClinicalImpressionInvestigations: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.item.flatMap { $0 }, forKey: .item)
+        try container.encode(Array(self.item), forKey: .item)
     }
 /*
 	

@@ -2,7 +2,7 @@
 //  SupplyRequestTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
     testSupplyRequestRealm1(instance!)
   }
 
-    func testSupplyRequest1RealmPK() {        
-        do {
-            let instance: FireKit.SupplyRequest = try runSupplyRequest1()
-            let copy = (instance.copy() as! FireKit.SupplyRequest)
+  func testSupplyRequest1RealmPK() { 
+      do {
+        let instance: FireKit.SupplyRequest = try runSupplyRequest1()
+        let copy = (instance.copy() as! FireKit.SupplyRequest)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class SupplyRequestTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testSupplyRequestRealm1(_ instance: FireKit.SupplyRequest) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runSupplyRequest1(JSONEncoder().encode(realm.objects(FireKit.SupplyRequest.self).first!))
         
         // ensure we can update it.

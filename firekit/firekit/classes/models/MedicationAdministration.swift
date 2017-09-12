@@ -2,7 +2,7 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -132,20 +132,20 @@ open class MedicationAdministration: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.device.flatMap { $0 }, forKey: .device)
+        try container.encode(Array(self.device), forKey: .device)
         try container.encodeIfPresent(self.dosage, forKey: .dosage)
         try container.encodeIfPresent(self.effectiveTimeDateTime, forKey: .effectiveTimeDateTime)
         try container.encodeIfPresent(self.effectiveTimePeriod, forKey: .effectiveTimePeriod)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.medicationCodeableConcept, forKey: .medicationCodeableConcept)
         try container.encodeIfPresent(self.medicationReference, forKey: .medicationReference)
         try container.encodeIfPresent(self.note, forKey: .note)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.practitioner, forKey: .practitioner)
         try container.encodeIfPresent(self.prescription, forKey: .prescription)
-        try container.encode(self.reasonGiven.flatMap { $0 }, forKey: .reasonGiven)
-        try container.encode(self.reasonNotGiven.flatMap { $0 }, forKey: .reasonNotGiven)
+        try container.encode(Array(self.reasonGiven), forKey: .reasonGiven)
+        try container.encode(Array(self.reasonNotGiven), forKey: .reasonNotGiven)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.wasNotGiven.value, forKey: .wasNotGiven)
     }

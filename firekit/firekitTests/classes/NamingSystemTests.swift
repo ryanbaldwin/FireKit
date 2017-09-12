@@ -2,7 +2,7 @@
 //  NamingSystemTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     testNamingSystemRealm1(instance!)
   }
 
-    func testNamingSystem1RealmPK() {        
-        do {
-            let instance: FireKit.NamingSystem = try runNamingSystem1()
-            let copy = (instance.copy() as! FireKit.NamingSystem)
+  func testNamingSystem1RealmPK() { 
+      do {
+        let instance: FireKit.NamingSystem = try runNamingSystem1()
+        let copy = (instance.copy() as! FireKit.NamingSystem)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNamingSystemRealm1(_ instance: FireKit.NamingSystem) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNamingSystem1(JSONEncoder().encode(realm.objects(FireKit.NamingSystem.self).first!))
         
         // ensure we can update it.
@@ -156,13 +156,13 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     testNamingSystemRealm2(instance!)
   }
 
-    func testNamingSystem2RealmPK() {        
-        do {
-            let instance: FireKit.NamingSystem = try runNamingSystem2()
-            let copy = (instance.copy() as! FireKit.NamingSystem)
+  func testNamingSystem2RealmPK() { 
+      do {
+        let instance: FireKit.NamingSystem = try runNamingSystem2()
+        let copy = (instance.copy() as! FireKit.NamingSystem)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -177,9 +177,9 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNamingSystemRealm2(_ instance: FireKit.NamingSystem) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNamingSystem2(JSONEncoder().encode(realm.objects(FireKit.NamingSystem.self).first!))
         
         // ensure we can update it.
@@ -250,13 +250,13 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     testNamingSystemRealm3(instance!)
   }
 
-    func testNamingSystem3RealmPK() {        
-        do {
-            let instance: FireKit.NamingSystem = try runNamingSystem3()
-            let copy = (instance.copy() as! FireKit.NamingSystem)
+  func testNamingSystem3RealmPK() { 
+      do {
+        let instance: FireKit.NamingSystem = try runNamingSystem3()
+        let copy = (instance.copy() as! FireKit.NamingSystem)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -271,9 +271,9 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testNamingSystemRealm3(_ instance: FireKit.NamingSystem) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runNamingSystem3(JSONEncoder().encode(realm.objects(FireKit.NamingSystem.self).first!))
         
         // ensure we can update it.

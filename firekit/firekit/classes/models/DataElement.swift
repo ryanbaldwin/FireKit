@@ -2,7 +2,7 @@
 //  DataElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DataElement) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -96,19 +96,19 @@ open class DataElement: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.copyright, forKey: .copyright)
         try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encode(self.element.flatMap { $0 }, forKey: .element)
+        try container.encode(Array(self.element), forKey: .element)
         try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.mapping.flatMap { $0 }, forKey: .mapping)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.mapping), forKey: .mapping)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.publisher, forKey: .publisher)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.stringency, forKey: .stringency)
         try container.encodeIfPresent(self.url, forKey: .url)
-        try container.encode(self.useContext.flatMap { $0 }, forKey: .useContext)
+        try container.encode(Array(self.useContext), forKey: .useContext)
         try container.encodeIfPresent(self.version, forKey: .version)
     }
 /*
@@ -372,7 +372,7 @@ open class DataElementContact: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	

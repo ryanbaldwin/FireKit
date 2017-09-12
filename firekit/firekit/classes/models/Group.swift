@@ -2,7 +2,7 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -84,10 +84,10 @@ open class Group: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.actual.value, forKey: .actual)
-        try container.encode(self.characteristic.flatMap { $0 }, forKey: .characteristic)
+        try container.encode(Array(self.characteristic), forKey: .characteristic)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.member.flatMap { $0 }, forKey: .member)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.member), forKey: .member)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.quantity.value, forKey: .quantity)
         try container.encodeIfPresent(self.type, forKey: .type)

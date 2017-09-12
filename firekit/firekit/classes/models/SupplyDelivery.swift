@@ -2,7 +2,7 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -108,7 +108,7 @@ open class SupplyDelivery: DomainResource {
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
-        try container.encode(self.receiver.flatMap { $0 }, forKey: .receiver)
+        try container.encode(Array(self.receiver), forKey: .receiver)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.suppliedItem, forKey: .suppliedItem)
         try container.encodeIfPresent(self.supplier, forKey: .supplier)

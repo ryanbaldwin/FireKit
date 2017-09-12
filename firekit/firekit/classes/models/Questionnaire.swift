@@ -2,7 +2,7 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -84,11 +84,11 @@ open class Questionnaire: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.group, forKey: .group)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.publisher, forKey: .publisher)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.subjectType.flatMap { $0.value }, forKey: .subjectType)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.subjectType), forKey: .subjectType)
+        try container.encode(Array(self.telecom), forKey: .telecom)
         try container.encodeIfPresent(self.version, forKey: .version)
     }
 /*
@@ -288,10 +288,10 @@ open class QuestionnaireGroup: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.concept.flatMap { $0 }, forKey: .concept)
-        try container.encode(self.group.flatMap { $0 }, forKey: .group)
+        try container.encode(Array(self.concept), forKey: .concept)
+        try container.encode(Array(self.group), forKey: .group)
         try container.encodeIfPresent(self.linkId, forKey: .linkId)
-        try container.encode(self.question.flatMap { $0 }, forKey: .question)
+        try container.encode(Array(self.question), forKey: .question)
         try container.encodeIfPresent(self.repeats.value, forKey: .repeats)
         try container.encodeIfPresent(self.required.value, forKey: .required)
         try container.encodeIfPresent(self.text, forKey: .text)
@@ -497,10 +497,10 @@ open class QuestionnaireGroupQuestion: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.concept.flatMap { $0 }, forKey: .concept)
-        try container.encode(self.group.flatMap { $0 }, forKey: .group)
+        try container.encode(Array(self.concept), forKey: .concept)
+        try container.encode(Array(self.group), forKey: .group)
         try container.encodeIfPresent(self.linkId, forKey: .linkId)
-        try container.encode(self.option.flatMap { $0 }, forKey: .option)
+        try container.encode(Array(self.option), forKey: .option)
         try container.encodeIfPresent(self.options, forKey: .options)
         try container.encodeIfPresent(self.repeats.value, forKey: .repeats)
         try container.encodeIfPresent(self.required.value, forKey: .required)

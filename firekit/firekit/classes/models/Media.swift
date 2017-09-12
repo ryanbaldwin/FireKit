@@ -2,7 +2,7 @@
 //  Media.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Media) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -109,7 +109,7 @@ open class Media: DomainResource {
         try container.encodeIfPresent(self.duration.value, forKey: .duration)
         try container.encodeIfPresent(self.frames.value, forKey: .frames)
         try container.encodeIfPresent(self.height.value, forKey: .height)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.operator_fhir, forKey: .operator_fhir)
         try container.encodeIfPresent(self.subject, forKey: .subject)
         try container.encodeIfPresent(self.subtype, forKey: .subtype)

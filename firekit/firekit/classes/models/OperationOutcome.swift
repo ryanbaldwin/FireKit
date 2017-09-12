@@ -2,7 +2,7 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -56,7 +56,7 @@ open class OperationOutcome: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.issue.flatMap { $0 }, forKey: .issue)
+        try container.encode(Array(self.issue), forKey: .issue)
     }
 /*
 	
@@ -169,7 +169,7 @@ open class OperationOutcomeIssue: BackboneElement {
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.details, forKey: .details)
         try container.encodeIfPresent(self.diagnostics, forKey: .diagnostics)
-        try container.encode(self.location.flatMap { $0.value }, forKey: .location)
+        try container.encode(Array(self.location), forKey: .location)
         try container.encodeIfPresent(self.severity, forKey: .severity)
     }
 /*

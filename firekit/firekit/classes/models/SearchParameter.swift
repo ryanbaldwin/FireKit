@@ -2,7 +2,7 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -105,7 +105,7 @@ open class SearchParameter: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.base, forKey: .base)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
@@ -113,7 +113,7 @@ open class SearchParameter: DomainResource {
         try container.encodeIfPresent(self.publisher, forKey: .publisher)
         try container.encodeIfPresent(self.requirements, forKey: .requirements)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.target.flatMap { $0.value }, forKey: .target)
+        try container.encode(Array(self.target), forKey: .target)
         try container.encodeIfPresent(self.type, forKey: .type)
         try container.encodeIfPresent(self.url, forKey: .url)
         try container.encodeIfPresent(self.xpath, forKey: .xpath)
@@ -392,7 +392,7 @@ open class SearchParameterContact: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	

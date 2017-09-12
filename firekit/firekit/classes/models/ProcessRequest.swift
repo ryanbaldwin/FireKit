@@ -2,7 +2,7 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -128,10 +128,10 @@ open class ProcessRequest: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.action, forKey: .action)
         try container.encodeIfPresent(self.created, forKey: .created)
-        try container.encode(self.exclude.flatMap { $0.value }, forKey: .exclude)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.include.flatMap { $0.value }, forKey: .include)
-        try container.encode(self.item.flatMap { $0 }, forKey: .item)
+        try container.encode(Array(self.exclude), forKey: .exclude)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.include), forKey: .include)
+        try container.encode(Array(self.item), forKey: .item)
         try container.encodeIfPresent(self.nullify.value, forKey: .nullify)
         try container.encodeIfPresent(self.organization, forKey: .organization)
         try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)

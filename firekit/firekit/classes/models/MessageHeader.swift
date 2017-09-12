@@ -2,7 +2,7 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -115,8 +115,8 @@ open class MessageHeader: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.author, forKey: .author)
-        try container.encode(self.data.flatMap { $0 }, forKey: .data)
-        try container.encode(self.destination.flatMap { $0 }, forKey: .destination)
+        try container.encode(Array(self.data), forKey: .data)
+        try container.encode(Array(self.destination), forKey: .destination)
         try container.encodeIfPresent(self.enterer, forKey: .enterer)
         try container.encodeIfPresent(self.event, forKey: .event)
         try container.encodeIfPresent(self.reason, forKey: .reason)

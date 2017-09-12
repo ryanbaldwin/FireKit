@@ -2,7 +2,7 @@
 //  AllergyIntoleranceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
     testAllergyIntoleranceRealm1(instance!)
   }
 
-    func testAllergyIntolerance1RealmPK() {        
-        do {
-            let instance: FireKit.AllergyIntolerance = try runAllergyIntolerance1()
-            let copy = (instance.copy() as! FireKit.AllergyIntolerance)
+  func testAllergyIntolerance1RealmPK() { 
+      do {
+        let instance: FireKit.AllergyIntolerance = try runAllergyIntolerance1()
+        let copy = (instance.copy() as! FireKit.AllergyIntolerance)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class AllergyIntoleranceTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAllergyIntoleranceRealm1(_ instance: FireKit.AllergyIntolerance) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAllergyIntolerance1(JSONEncoder().encode(realm.objects(FireKit.AllergyIntolerance.self).first!))
         
         // ensure we can update it.

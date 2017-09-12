@@ -2,7 +2,7 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -119,25 +119,25 @@ open class Contract: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.action.flatMap { $0 }, forKey: .action)
-        try container.encode(self.actionReason.flatMap { $0 }, forKey: .actionReason)
-        try container.encode(self.actor.flatMap { $0 }, forKey: .actor)
+        try container.encode(Array(self.action), forKey: .action)
+        try container.encode(Array(self.actionReason), forKey: .actionReason)
+        try container.encode(Array(self.actor), forKey: .actor)
         try container.encodeIfPresent(self.applies, forKey: .applies)
-        try container.encode(self.authority.flatMap { $0 }, forKey: .authority)
+        try container.encode(Array(self.authority), forKey: .authority)
         try container.encodeIfPresent(self.bindingAttachment, forKey: .bindingAttachment)
         try container.encodeIfPresent(self.bindingReference, forKey: .bindingReference)
-        try container.encode(self.domain.flatMap { $0 }, forKey: .domain)
-        try container.encode(self.friendly.flatMap { $0 }, forKey: .friendly)
+        try container.encode(Array(self.domain), forKey: .domain)
+        try container.encode(Array(self.friendly), forKey: .friendly)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.issued, forKey: .issued)
-        try container.encode(self.legal.flatMap { $0 }, forKey: .legal)
-        try container.encode(self.rule.flatMap { $0 }, forKey: .rule)
-        try container.encode(self.signer.flatMap { $0 }, forKey: .signer)
-        try container.encode(self.subType.flatMap { $0 }, forKey: .subType)
-        try container.encode(self.subject.flatMap { $0 }, forKey: .subject)
-        try container.encode(self.term.flatMap { $0 }, forKey: .term)
+        try container.encode(Array(self.legal), forKey: .legal)
+        try container.encode(Array(self.rule), forKey: .rule)
+        try container.encode(Array(self.signer), forKey: .signer)
+        try container.encode(Array(self.subType), forKey: .subType)
+        try container.encode(Array(self.subject), forKey: .subject)
+        try container.encode(Array(self.term), forKey: .term)
         try container.encodeIfPresent(self.type, forKey: .type)
-        try container.encode(self.valuedItem.flatMap { $0 }, forKey: .valuedItem)
+        try container.encode(Array(self.valuedItem), forKey: .valuedItem)
     }
 /*
 	
@@ -487,7 +487,7 @@ open class ContractActor: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.entity, forKey: .entity)
-        try container.encode(self.role.flatMap { $0 }, forKey: .role)
+        try container.encode(Array(self.role), forKey: .role)
     }
 /*
 	
@@ -1123,18 +1123,18 @@ open class ContractTerm: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.action.flatMap { $0 }, forKey: .action)
-        try container.encode(self.actionReason.flatMap { $0 }, forKey: .actionReason)
-        try container.encode(self.actor.flatMap { $0 }, forKey: .actor)
+        try container.encode(Array(self.action), forKey: .action)
+        try container.encode(Array(self.actionReason), forKey: .actionReason)
+        try container.encode(Array(self.actor), forKey: .actor)
         try container.encodeIfPresent(self.applies, forKey: .applies)
-        try container.encode(self.group.flatMap { $0 }, forKey: .group)
+        try container.encode(Array(self.group), forKey: .group)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.issued, forKey: .issued)
         try container.encodeIfPresent(self.subType, forKey: .subType)
         try container.encodeIfPresent(self.subject, forKey: .subject)
         try container.encodeIfPresent(self.text, forKey: .text)
         try container.encodeIfPresent(self.type, forKey: .type)
-        try container.encode(self.valuedItem.flatMap { $0 }, forKey: .valuedItem)
+        try container.encode(Array(self.valuedItem), forKey: .valuedItem)
     }
 /*
 	
@@ -1376,7 +1376,7 @@ open class ContractTermActor: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.entity, forKey: .entity)
-        try container.encode(self.role.flatMap { $0 }, forKey: .role)
+        try container.encode(Array(self.role), forKey: .role)
     }
 /*
 	

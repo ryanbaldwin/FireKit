@@ -2,7 +2,7 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -55,7 +55,7 @@ open class Element: FHIRAbstractBase {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.extension_fhir.flatMap { $0 }, forKey: .extension_fhir)
+        try container.encode(Array(self.extension_fhir), forKey: .extension_fhir)
         try container.encodeIfPresent(self.id, forKey: .id)
     }
 /*

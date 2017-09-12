@@ -2,7 +2,7 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -309,9 +309,9 @@ open class QuestionnaireResponseGroup: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.group.flatMap { $0 }, forKey: .group)
+        try container.encode(Array(self.group), forKey: .group)
         try container.encodeIfPresent(self.linkId, forKey: .linkId)
-        try container.encode(self.question.flatMap { $0 }, forKey: .question)
+        try container.encode(Array(self.question), forKey: .question)
         try container.encodeIfPresent(self.subject, forKey: .subject)
         try container.encodeIfPresent(self.text, forKey: .text)
         try container.encodeIfPresent(self.title, forKey: .title)
@@ -468,7 +468,7 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.answer.flatMap { $0 }, forKey: .answer)
+        try container.encode(Array(self.answer), forKey: .answer)
         try container.encodeIfPresent(self.linkId, forKey: .linkId)
         try container.encodeIfPresent(self.text, forKey: .text)
     }
@@ -630,7 +630,7 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.group.flatMap { $0 }, forKey: .group)
+        try container.encode(Array(self.group), forKey: .group)
         try container.encodeIfPresent(self.valueAttachment, forKey: .valueAttachment)
         try container.encodeIfPresent(self.valueBoolean.value, forKey: .valueBoolean)
         try container.encodeIfPresent(self.valueCoding, forKey: .valueCoding)

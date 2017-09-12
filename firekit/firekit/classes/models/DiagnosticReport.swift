@@ -2,7 +2,7 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -137,20 +137,20 @@ open class DiagnosticReport: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.codedDiagnosis.flatMap { $0 }, forKey: .codedDiagnosis)
+        try container.encode(Array(self.codedDiagnosis), forKey: .codedDiagnosis)
         try container.encodeIfPresent(self.conclusion, forKey: .conclusion)
         try container.encodeIfPresent(self.effectiveDateTime, forKey: .effectiveDateTime)
         try container.encodeIfPresent(self.effectivePeriod, forKey: .effectivePeriod)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.image.flatMap { $0 }, forKey: .image)
-        try container.encode(self.imagingStudy.flatMap { $0 }, forKey: .imagingStudy)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.image), forKey: .image)
+        try container.encode(Array(self.imagingStudy), forKey: .imagingStudy)
         try container.encodeIfPresent(self.issued, forKey: .issued)
         try container.encodeIfPresent(self.performer, forKey: .performer)
-        try container.encode(self.presentedForm.flatMap { $0 }, forKey: .presentedForm)
-        try container.encode(self.request.flatMap { $0 }, forKey: .request)
-        try container.encode(self.result.flatMap { $0 }, forKey: .result)
-        try container.encode(self.specimen.flatMap { $0 }, forKey: .specimen)
+        try container.encode(Array(self.presentedForm), forKey: .presentedForm)
+        try container.encode(Array(self.request), forKey: .request)
+        try container.encode(Array(self.result), forKey: .result)
+        try container.encode(Array(self.specimen), forKey: .specimen)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
     }

@@ -2,7 +2,7 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -112,22 +112,22 @@ open class ImplementationGuide: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.binary.flatMap { $0.value }, forKey: .binary)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.binary), forKey: .binary)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.copyright, forKey: .copyright)
         try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encode(self.dependency.flatMap { $0 }, forKey: .dependency)
+        try container.encode(Array(self.dependency), forKey: .dependency)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
         try container.encodeIfPresent(self.fhirVersion, forKey: .fhirVersion)
-        try container.encode(self.global.flatMap { $0 }, forKey: .global)
+        try container.encode(Array(self.global), forKey: .global)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.package.flatMap { $0 }, forKey: .package)
+        try container.encode(Array(self.package), forKey: .package)
         try container.encodeIfPresent(self.page, forKey: .page)
         try container.encodeIfPresent(self.publisher, forKey: .publisher)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.url, forKey: .url)
-        try container.encode(self.useContext.flatMap { $0 }, forKey: .useContext)
+        try container.encode(Array(self.useContext), forKey: .useContext)
         try container.encodeIfPresent(self.version, forKey: .version)
     }
 /*
@@ -436,7 +436,7 @@ open class ImplementationGuideContact: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	
@@ -774,7 +774,7 @@ open class ImplementationGuidePackage: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.resource.flatMap { $0 }, forKey: .resource)
+        try container.encode(Array(self.resource), forKey: .resource)
     }
 /*
 	
@@ -1120,10 +1120,10 @@ open class ImplementationGuidePage: BackboneElement {
         try container.encodeIfPresent(self.format, forKey: .format)
         try container.encodeIfPresent(self.kind, forKey: .kind)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.package.flatMap { $0.value }, forKey: .package)
-        try container.encode(self.page.flatMap { $0 }, forKey: .page)
+        try container.encode(Array(self.package), forKey: .package)
+        try container.encode(Array(self.page), forKey: .page)
         try container.encodeIfPresent(self.source, forKey: .source)
-        try container.encode(self.type.flatMap { $0.value }, forKey: .type)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	

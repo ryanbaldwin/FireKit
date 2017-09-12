@@ -2,7 +2,7 @@
 //  ConceptMapTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
     testConceptMapRealm1(instance!)
   }
 
-    func testConceptMap1RealmPK() {        
-        do {
-            let instance: FireKit.ConceptMap = try runConceptMap1()
-            let copy = (instance.copy() as! FireKit.ConceptMap)
+  func testConceptMap1RealmPK() { 
+      do {
+        let instance: FireKit.ConceptMap = try runConceptMap1()
+        let copy = (instance.copy() as! FireKit.ConceptMap)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testConceptMapRealm1(_ instance: FireKit.ConceptMap) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runConceptMap1(JSONEncoder().encode(realm.objects(FireKit.ConceptMap.self).first!))
         
         // ensure we can update it.
@@ -210,13 +210,13 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
     testConceptMapRealm2(instance!)
   }
 
-    func testConceptMap2RealmPK() {        
-        do {
-            let instance: FireKit.ConceptMap = try runConceptMap2()
-            let copy = (instance.copy() as! FireKit.ConceptMap)
+  func testConceptMap2RealmPK() { 
+      do {
+        let instance: FireKit.ConceptMap = try runConceptMap2()
+        let copy = (instance.copy() as! FireKit.ConceptMap)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -231,9 +231,9 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testConceptMapRealm2(_ instance: FireKit.ConceptMap) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runConceptMap2(JSONEncoder().encode(realm.objects(FireKit.ConceptMap.self).first!))
         
         // ensure we can update it.

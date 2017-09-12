@@ -2,7 +2,7 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -1037,13 +1037,13 @@ open class ElementDefinition: Element {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.alias.flatMap { $0.value }, forKey: .alias)
+        try container.encode(Array(self.alias), forKey: .alias)
         try container.encodeIfPresent(self.base, forKey: .base)
         try container.encodeIfPresent(self.binding, forKey: .binding)
-        try container.encode(self.code.flatMap { $0 }, forKey: .code)
+        try container.encode(Array(self.code), forKey: .code)
         try container.encodeIfPresent(self.comments, forKey: .comments)
-        try container.encode(self.condition.flatMap { $0.value }, forKey: .condition)
-        try container.encode(self.constraint.flatMap { $0 }, forKey: .constraint)
+        try container.encode(Array(self.condition), forKey: .condition)
+        try container.encode(Array(self.constraint), forKey: .constraint)
         try container.encodeIfPresent(self.defaultValueAddress, forKey: .defaultValueAddress)
         try container.encodeIfPresent(self.defaultValueAnnotation, forKey: .defaultValueAnnotation)
         try container.encodeIfPresent(self.defaultValueAttachment, forKey: .defaultValueAttachment)
@@ -1147,7 +1147,7 @@ open class ElementDefinition: Element {
         try container.encodeIfPresent(self.isModifier.value, forKey: .isModifier)
         try container.encodeIfPresent(self.isSummary.value, forKey: .isSummary)
         try container.encodeIfPresent(self.label, forKey: .label)
-        try container.encode(self.mapping.flatMap { $0 }, forKey: .mapping)
+        try container.encode(Array(self.mapping), forKey: .mapping)
         try container.encodeIfPresent(self.max, forKey: .max)
         try container.encodeIfPresent(self.maxLength.value, forKey: .maxLength)
         try container.encodeIfPresent(self.maxValueAddress, forKey: .maxValueAddress)
@@ -1255,11 +1255,11 @@ open class ElementDefinition: Element {
         try container.encodeIfPresent(self.patternTiming, forKey: .patternTiming)
         try container.encodeIfPresent(self.patternUnsignedInt.value, forKey: .patternUnsignedInt)
         try container.encodeIfPresent(self.patternUri, forKey: .patternUri)
-        try container.encode(self.representation.flatMap { $0.value }, forKey: .representation)
+        try container.encode(Array(self.representation), forKey: .representation)
         try container.encodeIfPresent(self.requirements, forKey: .requirements)
         try container.encodeIfPresent(self.short, forKey: .short)
         try container.encodeIfPresent(self.slicing, forKey: .slicing)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	
@@ -4611,7 +4611,7 @@ open class ElementDefinitionSlicing: Element {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.discriminator.flatMap { $0.value }, forKey: .discriminator)
+        try container.encode(Array(self.discriminator), forKey: .discriminator)
         try container.encodeIfPresent(self.ordered.value, forKey: .ordered)
         try container.encodeIfPresent(self.rules, forKey: .rules)
     }
@@ -4746,9 +4746,9 @@ open class ElementDefinitionType: Element {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.aggregation.flatMap { $0.value }, forKey: .aggregation)
+        try container.encode(Array(self.aggregation), forKey: .aggregation)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.profile.flatMap { $0.value }, forKey: .profile)
+        try container.encode(Array(self.profile), forKey: .profile)
     }
 /*
 	

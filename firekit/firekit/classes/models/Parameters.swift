@@ -2,7 +2,7 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -51,7 +51,7 @@ open class Parameters: Resource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.parameter.flatMap { $0 }, forKey: .parameter)
+        try container.encode(Array(self.parameter), forKey: .parameter)
     }
 /*
 	
@@ -265,8 +265,7 @@ open class ParametersParameter: BackboneElement {
 
         if let resourceContained = try container.decodeIfPresent(ContainedResource.self, forKey: .resource),
            let resourceType = resourceContained.resourceType {
-            let t = FHIRAbstractBase.resourceType(from: resourceType)
-            self.resource = try container.decodeIfPresent(t, forKey: .resource) as? Resource
+            self.resource = try container.decodeFHIRAbstractBaseIfPresent(resourceType, forKey: .resource) as? Resource
         }
     
         self.valueAddress = try container.decodeIfPresent(Address.self, forKey: .valueAddress)
@@ -308,7 +307,7 @@ open class ParametersParameter: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.part.flatMap { $0 }, forKey: .part)
+        try container.encode(Array(self.part), forKey: .part)
         try container.encodeIfPresent(self.resource, forKey: .resource)
         try container.encodeIfPresent(self.valueAddress, forKey: .valueAddress)
         try container.encodeIfPresent(self.valueAnnotation, forKey: .valueAnnotation)

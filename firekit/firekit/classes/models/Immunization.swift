@@ -2,7 +2,7 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -160,20 +160,20 @@ open class Immunization: DomainResource {
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
         try container.encodeIfPresent(self.expirationDate, forKey: .expirationDate)
         try container.encodeIfPresent(self.explanation, forKey: .explanation)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.lotNumber, forKey: .lotNumber)
         try container.encodeIfPresent(self.manufacturer, forKey: .manufacturer)
-        try container.encode(self.note.flatMap { $0 }, forKey: .note)
+        try container.encode(Array(self.note), forKey: .note)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.performer, forKey: .performer)
-        try container.encode(self.reaction.flatMap { $0 }, forKey: .reaction)
+        try container.encode(Array(self.reaction), forKey: .reaction)
         try container.encodeIfPresent(self.reported.value, forKey: .reported)
         try container.encodeIfPresent(self.requester, forKey: .requester)
         try container.encodeIfPresent(self.route, forKey: .route)
         try container.encodeIfPresent(self.site, forKey: .site)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.vaccinationProtocol.flatMap { $0 }, forKey: .vaccinationProtocol)
+        try container.encode(Array(self.vaccinationProtocol), forKey: .vaccinationProtocol)
         try container.encodeIfPresent(self.vaccineCode, forKey: .vaccineCode)
         try container.encodeIfPresent(self.wasNotGiven.value, forKey: .wasNotGiven)
     }
@@ -527,8 +527,8 @@ open class ImmunizationExplanation: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.reason.flatMap { $0 }, forKey: .reason)
-        try container.encode(self.reasonNotGiven.flatMap { $0 }, forKey: .reasonNotGiven)
+        try container.encode(Array(self.reason), forKey: .reason)
+        try container.encode(Array(self.reasonNotGiven), forKey: .reasonNotGiven)
     }
 /*
 	
@@ -790,7 +790,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
         try container.encodeIfPresent(self.doseStatusReason, forKey: .doseStatusReason)
         try container.encodeIfPresent(self.series, forKey: .series)
         try container.encodeIfPresent(self.seriesDoses.value, forKey: .seriesDoses)
-        try container.encode(self.targetDisease.flatMap { $0 }, forKey: .targetDisease)
+        try container.encode(Array(self.targetDisease), forKey: .targetDisease)
     }
 /*
 	

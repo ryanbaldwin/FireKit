@@ -2,7 +2,7 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -105,18 +105,18 @@ open class NutritionOrder: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.allergyIntolerance.flatMap { $0 }, forKey: .allergyIntolerance)
+        try container.encode(Array(self.allergyIntolerance), forKey: .allergyIntolerance)
         try container.encodeIfPresent(self.dateTime, forKey: .dateTime)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
         try container.encodeIfPresent(self.enteralFormula, forKey: .enteralFormula)
-        try container.encode(self.excludeFoodModifier.flatMap { $0 }, forKey: .excludeFoodModifier)
-        try container.encode(self.foodPreferenceModifier.flatMap { $0 }, forKey: .foodPreferenceModifier)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.excludeFoodModifier), forKey: .excludeFoodModifier)
+        try container.encode(Array(self.foodPreferenceModifier), forKey: .foodPreferenceModifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.oralDiet, forKey: .oralDiet)
         try container.encodeIfPresent(self.orderer, forKey: .orderer)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.supplement.flatMap { $0 }, forKey: .supplement)
+        try container.encode(Array(self.supplement), forKey: .supplement)
     }
 /*
 	
@@ -393,7 +393,7 @@ open class NutritionOrderEnteralFormula: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.additiveProductName, forKey: .additiveProductName)
         try container.encodeIfPresent(self.additiveType, forKey: .additiveType)
-        try container.encode(self.administration.flatMap { $0 }, forKey: .administration)
+        try container.encode(Array(self.administration), forKey: .administration)
         try container.encodeIfPresent(self.administrationInstruction, forKey: .administrationInstruction)
         try container.encodeIfPresent(self.baseFormulaProductName, forKey: .baseFormulaProductName)
         try container.encodeIfPresent(self.baseFormulaType, forKey: .baseFormulaType)
@@ -739,12 +739,12 @@ open class NutritionOrderOralDiet: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.fluidConsistencyType.flatMap { $0 }, forKey: .fluidConsistencyType)
+        try container.encode(Array(self.fluidConsistencyType), forKey: .fluidConsistencyType)
         try container.encodeIfPresent(self.instruction, forKey: .instruction)
-        try container.encode(self.nutrient.flatMap { $0 }, forKey: .nutrient)
-        try container.encode(self.schedule.flatMap { $0 }, forKey: .schedule)
-        try container.encode(self.texture.flatMap { $0 }, forKey: .texture)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.nutrient), forKey: .nutrient)
+        try container.encode(Array(self.schedule), forKey: .schedule)
+        try container.encode(Array(self.texture), forKey: .texture)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	
@@ -1131,7 +1131,7 @@ open class NutritionOrderSupplement: BackboneElement {
         try container.encodeIfPresent(self.instruction, forKey: .instruction)
         try container.encodeIfPresent(self.productName, forKey: .productName)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
-        try container.encode(self.schedule.flatMap { $0 }, forKey: .schedule)
+        try container.encode(Array(self.schedule), forKey: .schedule)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*

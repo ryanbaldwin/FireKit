@@ -2,7 +2,7 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -75,8 +75,8 @@ open class AuditEvent: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.event, forKey: .event)
-        try container.encode(self.object.flatMap { $0 }, forKey: .object)
-        try container.encode(self.participant.flatMap { $0 }, forKey: .participant)
+        try container.encode(Array(self.object), forKey: .object)
+        try container.encode(Array(self.participant), forKey: .participant)
         try container.encodeIfPresent(self.source, forKey: .source)
     }
 /*
@@ -242,8 +242,8 @@ open class AuditEventEvent: BackboneElement {
         try container.encodeIfPresent(self.dateTime, forKey: .dateTime)
         try container.encodeIfPresent(self.outcome, forKey: .outcome)
         try container.encodeIfPresent(self.outcomeDesc, forKey: .outcomeDesc)
-        try container.encode(self.purposeOfEvent.flatMap { $0 }, forKey: .purposeOfEvent)
-        try container.encode(self.subtype.flatMap { $0 }, forKey: .subtype)
+        try container.encode(Array(self.purposeOfEvent), forKey: .purposeOfEvent)
+        try container.encode(Array(self.subtype), forKey: .subtype)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*
@@ -451,14 +451,14 @@ open class AuditEventObject: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encode(Array(self.detail), forKey: .detail)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.lifecycle, forKey: .lifecycle)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.query, forKey: .query)
         try container.encodeIfPresent(self.reference, forKey: .reference)
         try container.encodeIfPresent(self.role, forKey: .role)
-        try container.encode(self.securityLabel.flatMap { $0 }, forKey: .securityLabel)
+        try container.encode(Array(self.securityLabel), forKey: .securityLabel)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*
@@ -818,11 +818,11 @@ open class AuditEventParticipant: BackboneElement {
         try container.encodeIfPresent(self.media, forKey: .media)
         try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.network, forKey: .network)
-        try container.encode(self.policy.flatMap { $0.value }, forKey: .policy)
-        try container.encode(self.purposeOfUse.flatMap { $0 }, forKey: .purposeOfUse)
+        try container.encode(Array(self.policy), forKey: .policy)
+        try container.encode(Array(self.purposeOfUse), forKey: .purposeOfUse)
         try container.encodeIfPresent(self.reference, forKey: .reference)
         try container.encodeIfPresent(self.requestor.value, forKey: .requestor)
-        try container.encode(self.role.flatMap { $0 }, forKey: .role)
+        try container.encode(Array(self.role), forKey: .role)
         try container.encodeIfPresent(self.userId, forKey: .userId)
     }
 /*
@@ -1147,7 +1147,7 @@ open class AuditEventSource: BackboneElement {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.site, forKey: .site)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	

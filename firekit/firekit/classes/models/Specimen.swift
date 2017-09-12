@@ -2,7 +2,7 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -97,13 +97,13 @@ open class Specimen: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.accessionIdentifier, forKey: .accessionIdentifier)
         try container.encodeIfPresent(self.collection, forKey: .collection)
-        try container.encode(self.container.flatMap { $0 }, forKey: .container)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.parent.flatMap { $0 }, forKey: .parent)
+        try container.encode(Array(self.container), forKey: .container)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.parent), forKey: .parent)
         try container.encodeIfPresent(self.receivedTime, forKey: .receivedTime)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
-        try container.encode(self.treatment.flatMap { $0 }, forKey: .treatment)
+        try container.encode(Array(self.treatment), forKey: .treatment)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*
@@ -346,7 +346,7 @@ open class SpecimenCollection: BackboneElement {
         try container.encodeIfPresent(self.collectedDateTime, forKey: .collectedDateTime)
         try container.encodeIfPresent(self.collectedPeriod, forKey: .collectedPeriod)
         try container.encodeIfPresent(self.collector, forKey: .collector)
-        try container.encode(self.comment.flatMap { $0.value }, forKey: .comment)
+        try container.encode(Array(self.comment), forKey: .comment)
         try container.encodeIfPresent(self.method, forKey: .method)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
     }
@@ -540,7 +540,7 @@ open class SpecimenContainer: BackboneElement {
         try container.encodeIfPresent(self.additiveReference, forKey: .additiveReference)
         try container.encodeIfPresent(self.capacity, forKey: .capacity)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.specimenQuantity, forKey: .specimenQuantity)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
@@ -708,7 +708,7 @@ open class SpecimenTreatment: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.additive.flatMap { $0 }, forKey: .additive)
+        try container.encode(Array(self.additive), forKey: .additive)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.procedure, forKey: .procedure)
     }

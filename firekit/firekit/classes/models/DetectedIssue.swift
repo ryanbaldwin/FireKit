@@ -2,7 +2,7 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -95,8 +95,8 @@ open class DetectedIssue: DomainResource {
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.detail, forKey: .detail)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
-        try container.encode(self.implicated.flatMap { $0 }, forKey: .implicated)
-        try container.encode(self.mitigation.flatMap { $0 }, forKey: .mitigation)
+        try container.encode(Array(self.implicated), forKey: .implicated)
+        try container.encode(Array(self.mitigation), forKey: .mitigation)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.reference, forKey: .reference)
         try container.encodeIfPresent(self.severity, forKey: .severity)

@@ -2,7 +2,7 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -137,18 +137,18 @@ open class MedicationDispense: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.authorizingPrescription.flatMap { $0 }, forKey: .authorizingPrescription)
+        try container.encode(Array(self.authorizingPrescription), forKey: .authorizingPrescription)
         try container.encodeIfPresent(self.daysSupply, forKey: .daysSupply)
         try container.encodeIfPresent(self.destination, forKey: .destination)
         try container.encodeIfPresent(self.dispenser, forKey: .dispenser)
-        try container.encode(self.dosageInstruction.flatMap { $0 }, forKey: .dosageInstruction)
+        try container.encode(Array(self.dosageInstruction), forKey: .dosageInstruction)
         try container.encodeIfPresent(self.identifier, forKey: .identifier)
         try container.encodeIfPresent(self.medicationCodeableConcept, forKey: .medicationCodeableConcept)
         try container.encodeIfPresent(self.medicationReference, forKey: .medicationReference)
         try container.encodeIfPresent(self.note, forKey: .note)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
-        try container.encode(self.receiver.flatMap { $0 }, forKey: .receiver)
+        try container.encode(Array(self.receiver), forKey: .receiver)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.substitution, forKey: .substitution)
         try container.encodeIfPresent(self.type, forKey: .type)
@@ -784,8 +784,8 @@ open class MedicationDispenseSubstitution: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.reason.flatMap { $0 }, forKey: .reason)
-        try container.encode(self.responsibleParty.flatMap { $0 }, forKey: .responsibleParty)
+        try container.encode(Array(self.reason), forKey: .reason)
+        try container.encode(Array(self.responsibleParty), forKey: .responsibleParty)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*

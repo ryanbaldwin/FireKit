@@ -2,7 +2,7 @@
 //  Schedule.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Schedule) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -74,9 +74,9 @@ open class Schedule: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.actor, forKey: .actor)
         try container.encodeIfPresent(self.comment, forKey: .comment)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.planningHorizon, forKey: .planningHorizon)
-        try container.encode(self.type.flatMap { $0 }, forKey: .type)
+        try container.encode(Array(self.type), forKey: .type)
     }
 /*
 	

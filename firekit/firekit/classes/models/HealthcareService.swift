@@ -2,7 +2,7 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -134,26 +134,26 @@ open class HealthcareService: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.appointmentRequired.value, forKey: .appointmentRequired)
         try container.encodeIfPresent(self.availabilityExceptions, forKey: .availabilityExceptions)
-        try container.encode(self.availableTime.flatMap { $0 }, forKey: .availableTime)
-        try container.encode(self.characteristic.flatMap { $0 }, forKey: .characteristic)
+        try container.encode(Array(self.availableTime), forKey: .availableTime)
+        try container.encode(Array(self.characteristic), forKey: .characteristic)
         try container.encodeIfPresent(self.comment, forKey: .comment)
-        try container.encode(self.coverageArea.flatMap { $0 }, forKey: .coverageArea)
+        try container.encode(Array(self.coverageArea), forKey: .coverageArea)
         try container.encodeIfPresent(self.eligibility, forKey: .eligibility)
         try container.encodeIfPresent(self.eligibilityNote, forKey: .eligibilityNote)
         try container.encodeIfPresent(self.extraDetails, forKey: .extraDetails)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.location, forKey: .location)
-        try container.encode(self.notAvailable.flatMap { $0 }, forKey: .notAvailable)
+        try container.encode(Array(self.notAvailable), forKey: .notAvailable)
         try container.encodeIfPresent(self.photo, forKey: .photo)
-        try container.encode(self.programName.flatMap { $0.value }, forKey: .programName)
+        try container.encode(Array(self.programName), forKey: .programName)
         try container.encodeIfPresent(self.providedBy, forKey: .providedBy)
         try container.encodeIfPresent(self.publicKey, forKey: .publicKey)
-        try container.encode(self.referralMethod.flatMap { $0 }, forKey: .referralMethod)
+        try container.encode(Array(self.referralMethod), forKey: .referralMethod)
         try container.encodeIfPresent(self.serviceCategory, forKey: .serviceCategory)
         try container.encodeIfPresent(self.serviceName, forKey: .serviceName)
-        try container.encode(self.serviceProvisionCode.flatMap { $0 }, forKey: .serviceProvisionCode)
-        try container.encode(self.serviceType.flatMap { $0 }, forKey: .serviceType)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.serviceProvisionCode), forKey: .serviceProvisionCode)
+        try container.encode(Array(self.serviceType), forKey: .serviceType)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	
@@ -529,7 +529,7 @@ open class HealthcareServiceAvailableTime: BackboneElement {
         try container.encodeIfPresent(self.allDay.value, forKey: .allDay)
         try container.encodeIfPresent(self.availableEndTime, forKey: .availableEndTime)
         try container.encodeIfPresent(self.availableStartTime, forKey: .availableStartTime)
-        try container.encode(self.daysOfWeek.flatMap { $0.value }, forKey: .daysOfWeek)
+        try container.encode(Array(self.daysOfWeek), forKey: .daysOfWeek)
     }
 /*
 	
@@ -769,7 +769,7 @@ open class HealthcareServiceServiceType: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.specialty.flatMap { $0 }, forKey: .specialty)
+        try container.encode(Array(self.specialty), forKey: .specialty)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*

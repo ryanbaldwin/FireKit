@@ -2,7 +2,7 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -54,15 +54,27 @@ open class DomainResource: Resource {
         let container = try decoder.container(keyedBy: CodingKeys.self)
 
         if container.contains(.contained) {
+            // Need to loop through all the contained items twice.
+            // First time through we grab the resource type
+            // the second time through we decode the contained resource for the actual resource type
+            // I cannot find a better way to do this in Apple's Decodable containers.
+            // If there's a way to get at the raw data in a container without decoding it,
+            // please let me know and I will buy you 🍻
+            var containedMap: [Int: ContainedResource] = [:]
             var containedList = try container.nestedUnkeyedContainer(forKey: .contained)
+            print("Inflating \(containedList.count) items.")
             while !containedList.isAtEnd {
-                let contained = try containedList.decode(ContainedResource.self)
-                guard let resourceType = contained.resourceType else { continue }
-                
-                let t = FHIRAbstractBase.resourceType(from: resourceType)
-                let actualContained = try containedList.decode(t)
-                contained.json = try JSONEncoder().encode(actualContained)
+                containedMap[containedList.currentIndex] = try containedList.decode(ContainedResource.self)
             }
+            
+            var secondPass = try container.nestedUnkeyedContainer(forKey: .contained)
+            while !secondPass.isAtEnd {
+                let containedResource = containedMap[secondPass.currentIndex]!
+                let actualResource = try secondPass.decodeFHIRAbstractBase(containedResource.resourceType!)
+                containedResource.json = try JSONEncoder().encode(actualResource)
+            }
+            
+            // TODO: need to append!
         }
         self.extension_fhir.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .extension_fhir) ?? [])
         self.modifierExtension.append(objectsIn: try container.decodeIfPresent([Extension].self, forKey: .modifierExtension) ?? [])
@@ -72,9 +84,9 @@ open class DomainResource: Resource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.contained.flatMap { $0 }, forKey: .contained)
-        try container.encode(self.extension_fhir.flatMap { $0 }, forKey: .extension_fhir)
-        try container.encode(self.modifierExtension.flatMap { $0 }, forKey: .modifierExtension)
+        try container.encode(Array(self.contained), forKey: .contained)
+        try container.encode(Array(self.extension_fhir), forKey: .extension_fhir)
+        try container.encode(Array(self.modifierExtension), forKey: .modifierExtension)
         try container.encodeIfPresent(self.text, forKey: .text)
     }
 /*

@@ -2,7 +2,7 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -50,7 +50,7 @@ open class BackboneElement: Element {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.modifierExtension.flatMap { $0 }, forKey: .modifierExtension)
+        try container.encode(Array(self.modifierExtension), forKey: .modifierExtension)
     }
 /*
 	

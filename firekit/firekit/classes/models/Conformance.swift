@@ -2,7 +2,7 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -128,22 +128,22 @@ open class Conformance: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.acceptUnknown, forKey: .acceptUnknown)
-        try container.encode(self.contact.flatMap { $0 }, forKey: .contact)
+        try container.encode(Array(self.contact), forKey: .contact)
         try container.encodeIfPresent(self.copyright, forKey: .copyright)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.document.flatMap { $0 }, forKey: .document)
+        try container.encode(Array(self.document), forKey: .document)
         try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
         try container.encodeIfPresent(self.fhirVersion, forKey: .fhirVersion)
-        try container.encode(self.format.flatMap { $0.value }, forKey: .format)
+        try container.encode(Array(self.format), forKey: .format)
         try container.encodeIfPresent(self.implementation, forKey: .implementation)
         try container.encodeIfPresent(self.kind, forKey: .kind)
-        try container.encode(self.messaging.flatMap { $0 }, forKey: .messaging)
+        try container.encode(Array(self.messaging), forKey: .messaging)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.profile.flatMap { $0 }, forKey: .profile)
+        try container.encode(Array(self.profile), forKey: .profile)
         try container.encodeIfPresent(self.publisher, forKey: .publisher)
         try container.encodeIfPresent(self.requirements, forKey: .requirements)
-        try container.encode(self.rest.flatMap { $0 }, forKey: .rest)
+        try container.encode(Array(self.rest), forKey: .rest)
         try container.encodeIfPresent(self.software, forKey: .software)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.url, forKey: .url)
@@ -503,7 +503,7 @@ open class ConformanceContact: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	
@@ -854,8 +854,8 @@ open class ConformanceMessaging: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.documentation, forKey: .documentation)
-        try container.encode(self.endpoint.flatMap { $0 }, forKey: .endpoint)
-        try container.encode(self.event.flatMap { $0 }, forKey: .event)
+        try container.encode(Array(self.endpoint), forKey: .endpoint)
+        try container.encode(Array(self.event), forKey: .event)
         try container.encodeIfPresent(self.reliableCache.value, forKey: .reliableCache)
     }
 /*
@@ -1343,13 +1343,13 @@ open class ConformanceRest: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.compartment.flatMap { $0.value }, forKey: .compartment)
+        try container.encode(Array(self.compartment), forKey: .compartment)
         try container.encodeIfPresent(self.documentation, forKey: .documentation)
-        try container.encode(self.interaction.flatMap { $0 }, forKey: .interaction)
+        try container.encode(Array(self.interaction), forKey: .interaction)
         try container.encodeIfPresent(self.mode, forKey: .mode)
-        try container.encode(self.operation.flatMap { $0 }, forKey: .operation)
-        try container.encode(self.resource.flatMap { $0 }, forKey: .resource)
-        try container.encode(self.searchParam.flatMap { $0 }, forKey: .searchParam)
+        try container.encode(Array(self.operation), forKey: .operation)
+        try container.encode(Array(self.resource), forKey: .resource)
+        try container.encode(Array(self.searchParam), forKey: .searchParam)
         try container.encodeIfPresent(self.security, forKey: .security)
         try container.encodeIfPresent(self.transactionMode, forKey: .transactionMode)
     }
@@ -1814,12 +1814,12 @@ open class ConformanceRestResource: BackboneElement {
         try container.encodeIfPresent(self.conditionalCreate.value, forKey: .conditionalCreate)
         try container.encodeIfPresent(self.conditionalDelete, forKey: .conditionalDelete)
         try container.encodeIfPresent(self.conditionalUpdate.value, forKey: .conditionalUpdate)
-        try container.encode(self.interaction.flatMap { $0 }, forKey: .interaction)
+        try container.encode(Array(self.interaction), forKey: .interaction)
         try container.encodeIfPresent(self.profile, forKey: .profile)
         try container.encodeIfPresent(self.readHistory.value, forKey: .readHistory)
-        try container.encode(self.searchInclude.flatMap { $0.value }, forKey: .searchInclude)
-        try container.encode(self.searchParam.flatMap { $0 }, forKey: .searchParam)
-        try container.encode(self.searchRevInclude.flatMap { $0.value }, forKey: .searchRevInclude)
+        try container.encode(Array(self.searchInclude), forKey: .searchInclude)
+        try container.encode(Array(self.searchParam), forKey: .searchParam)
+        try container.encode(Array(self.searchRevInclude), forKey: .searchRevInclude)
         try container.encodeIfPresent(self.type, forKey: .type)
         try container.encodeIfPresent(self.updateCreate.value, forKey: .updateCreate)
         try container.encodeIfPresent(self.versioning, forKey: .versioning)
@@ -2181,12 +2181,12 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.chain.flatMap { $0.value }, forKey: .chain)
+        try container.encode(Array(self.chain), forKey: .chain)
         try container.encodeIfPresent(self.definition, forKey: .definition)
         try container.encodeIfPresent(self.documentation, forKey: .documentation)
-        try container.encode(self.modifier.flatMap { $0.value }, forKey: .modifier)
+        try container.encode(Array(self.modifier), forKey: .modifier)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.target.flatMap { $0.value }, forKey: .target)
+        try container.encode(Array(self.target), forKey: .target)
         try container.encodeIfPresent(self.type, forKey: .type)
     }
 /*
@@ -2356,10 +2356,10 @@ open class ConformanceRestSecurity: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.certificate.flatMap { $0 }, forKey: .certificate)
+        try container.encode(Array(self.certificate), forKey: .certificate)
         try container.encodeIfPresent(self.cors.value, forKey: .cors)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.service.flatMap { $0 }, forKey: .service)
+        try container.encode(Array(self.service), forKey: .service)
     }
 /*
 	

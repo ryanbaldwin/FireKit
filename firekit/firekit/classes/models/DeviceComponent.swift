@@ -2,7 +2,7 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -108,10 +108,10 @@ open class DeviceComponent: DomainResource {
         try container.encodeIfPresent(self.languageCode, forKey: .languageCode)
         try container.encodeIfPresent(self.lastSystemChange, forKey: .lastSystemChange)
         try container.encodeIfPresent(self.measurementPrinciple, forKey: .measurementPrinciple)
-        try container.encode(self.operationalStatus.flatMap { $0 }, forKey: .operationalStatus)
+        try container.encode(Array(self.operationalStatus), forKey: .operationalStatus)
         try container.encodeIfPresent(self.parameterGroup, forKey: .parameterGroup)
         try container.encodeIfPresent(self.parent, forKey: .parent)
-        try container.encode(self.productionSpecification.flatMap { $0 }, forKey: .productionSpecification)
+        try container.encode(Array(self.productionSpecification), forKey: .productionSpecification)
         try container.encodeIfPresent(self.source, forKey: .source)
         try container.encodeIfPresent(self.type, forKey: .type)
     }

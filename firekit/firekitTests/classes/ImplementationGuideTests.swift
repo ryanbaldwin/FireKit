@@ -2,7 +2,7 @@
 //  ImplementationGuideTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
     testImplementationGuideRealm1(instance!)
   }
 
-    func testImplementationGuide1RealmPK() {        
-        do {
-            let instance: FireKit.ImplementationGuide = try runImplementationGuide1()
-            let copy = (instance.copy() as! FireKit.ImplementationGuide)
+  func testImplementationGuide1RealmPK() { 
+      do {
+        let instance: FireKit.ImplementationGuide = try runImplementationGuide1()
+        let copy = (instance.copy() as! FireKit.ImplementationGuide)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testImplementationGuideRealm1(_ instance: FireKit.ImplementationGuide) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runImplementationGuide1(JSONEncoder().encode(realm.objects(FireKit.ImplementationGuide.self).first!))
         
         // ensure we can update it.

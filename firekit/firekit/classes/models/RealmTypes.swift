@@ -63,7 +63,21 @@ final public class RealmDecimal: Object, Codable {
     
     public convenience init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
-        self.init(string: try container.decode(String.self))
+        do {
+            self.init(string: try container.decode(String.self))
+            return
+        } catch {
+            // failed to decode RealmDecimal as String, try Double
+        }
+        
+        do {
+            self.init(string: "\(try container.decode(Double.self))")
+            return
+        } catch {
+            // failed to decode RealmDecimal as Double, try Int
+        }
+        
+        self.init(string: "\(try container.decode(Int.self))")
     }
     
     public func encode(to encoder: Encoder) throws {

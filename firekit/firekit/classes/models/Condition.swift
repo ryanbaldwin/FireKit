@@ -2,7 +2,7 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -178,14 +178,14 @@ open class Condition: DomainResource {
         try container.encodeIfPresent(self.abatementRange, forKey: .abatementRange)
         try container.encodeIfPresent(self.abatementString, forKey: .abatementString)
         try container.encodeIfPresent(self.asserter, forKey: .asserter)
-        try container.encode(self.bodySite.flatMap { $0 }, forKey: .bodySite)
+        try container.encode(Array(self.bodySite), forKey: .bodySite)
         try container.encodeIfPresent(self.category, forKey: .category)
         try container.encodeIfPresent(self.clinicalStatus, forKey: .clinicalStatus)
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.dateRecorded, forKey: .dateRecorded)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.evidence.flatMap { $0 }, forKey: .evidence)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.evidence), forKey: .evidence)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.notes, forKey: .notes)
         try container.encodeIfPresent(self.onsetDateTime, forKey: .onsetDateTime)
         try container.encodeIfPresent(self.onsetPeriod, forKey: .onsetPeriod)
@@ -590,7 +590,7 @@ open class ConditionEvidence: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
+        try container.encode(Array(self.detail), forKey: .detail)
     }
 /*
 	
@@ -693,7 +693,7 @@ open class ConditionStage: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.assessment.flatMap { $0 }, forKey: .assessment)
+        try container.encode(Array(self.assessment), forKey: .assessment)
         try container.encodeIfPresent(self.summary, forKey: .summary)
     }
 /*

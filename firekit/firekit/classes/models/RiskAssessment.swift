@@ -2,7 +2,7 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -95,7 +95,7 @@ open class RiskAssessment: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.basis.flatMap { $0 }, forKey: .basis)
+        try container.encode(Array(self.basis), forKey: .basis)
         try container.encodeIfPresent(self.condition, forKey: .condition)
         try container.encodeIfPresent(self.date, forKey: .date)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
@@ -103,7 +103,7 @@ open class RiskAssessment: DomainResource {
         try container.encodeIfPresent(self.method, forKey: .method)
         try container.encodeIfPresent(self.mitigation, forKey: .mitigation)
         try container.encodeIfPresent(self.performer, forKey: .performer)
-        try container.encode(self.prediction.flatMap { $0 }, forKey: .prediction)
+        try container.encode(Array(self.prediction), forKey: .prediction)
         try container.encodeIfPresent(self.subject, forKey: .subject)
     }
 /*

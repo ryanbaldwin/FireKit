@@ -2,7 +2,7 @@
 //  ObservationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm1(instance!)
   }
 
-    func testObservation1RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation1()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation1RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation1()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm1(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation1(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -172,13 +172,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm2(instance!)
   }
 
-    func testObservation2RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation2()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation2RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation2()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -193,9 +193,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm2(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation2(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -292,13 +292,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm3(instance!)
   }
 
-    func testObservation3RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation3()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation3RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation3()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -313,9 +313,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm3(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation3(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -398,13 +398,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm4(instance!)
   }
 
-    func testObservation4RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation4()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation4RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation4()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -419,9 +419,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm4(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation4(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -506,13 +506,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm5(instance!)
   }
 
-    func testObservation5RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation5()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation5RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation5()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -527,9 +527,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm5(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation5(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -612,13 +612,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm6(instance!)
   }
 
-    func testObservation6RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation6()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation6RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation6()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -633,9 +633,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm6(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation6(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -718,13 +718,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm7(instance!)
   }
 
-    func testObservation7RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation7()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation7RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation7()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -739,9 +739,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm7(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation7(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -830,13 +830,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm8(instance!)
   }
 
-    func testObservation8RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation8()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation8RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation8()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -851,9 +851,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm8(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation8(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -950,13 +950,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm9(instance!)
   }
 
-    func testObservation9RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation9()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation9RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation9()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -971,9 +971,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm9(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation9(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.
@@ -1067,13 +1067,13 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     testObservationRealm10(instance!)
   }
 
-    func testObservation10RealmPK() {        
-        do {
-            let instance: FireKit.Observation = try runObservation10()
-            let copy = (instance.copy() as! FireKit.Observation)
+  func testObservation10RealmPK() { 
+      do {
+        let instance: FireKit.Observation = try runObservation10()
+        let copy = (instance.copy() as! FireKit.Observation)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -1088,9 +1088,9 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testObservationRealm10(_ instance: FireKit.Observation) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runObservation10(JSONEncoder().encode(realm.objects(FireKit.Observation.self).first!))
         
         // ensure we can update it.

@@ -2,7 +2,7 @@
 //  VisionPrescription.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/VisionPrescription) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -87,9 +87,9 @@ open class VisionPrescription: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.dateWritten, forKey: .dateWritten)
-        try container.encode(self.dispense.flatMap { $0 }, forKey: .dispense)
+        try container.encode(Array(self.dispense), forKey: .dispense)
         try container.encodeIfPresent(self.encounter, forKey: .encounter)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.prescriber, forKey: .prescriber)
         try container.encodeIfPresent(self.reasonCodeableConcept, forKey: .reasonCodeableConcept)

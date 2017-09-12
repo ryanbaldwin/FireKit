@@ -2,7 +2,7 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -114,22 +114,22 @@ open class CarePlan: DomainResource {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.activity.flatMap { $0 }, forKey: .activity)
-        try container.encode(self.addresses.flatMap { $0 }, forKey: .addresses)
-        try container.encode(self.author.flatMap { $0 }, forKey: .author)
-        try container.encode(self.category.flatMap { $0 }, forKey: .category)
+        try container.encode(Array(self.activity), forKey: .activity)
+        try container.encode(Array(self.addresses), forKey: .addresses)
+        try container.encode(Array(self.author), forKey: .author)
+        try container.encode(Array(self.category), forKey: .category)
         try container.encodeIfPresent(self.context, forKey: .context)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.goal.flatMap { $0 }, forKey: .goal)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.goal), forKey: .goal)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.modified, forKey: .modified)
         try container.encodeIfPresent(self.note, forKey: .note)
-        try container.encode(self.participant.flatMap { $0 }, forKey: .participant)
+        try container.encode(Array(self.participant), forKey: .participant)
         try container.encodeIfPresent(self.period, forKey: .period)
-        try container.encode(self.relatedPlan.flatMap { $0 }, forKey: .relatedPlan)
+        try container.encode(Array(self.relatedPlan), forKey: .relatedPlan)
         try container.encodeIfPresent(self.status, forKey: .status)
         try container.encodeIfPresent(self.subject, forKey: .subject)
-        try container.encode(self.support.flatMap { $0 }, forKey: .support)
+        try container.encode(Array(self.support), forKey: .support)
     }
 /*
 	
@@ -437,9 +437,9 @@ open class CarePlanActivity: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.actionResulting.flatMap { $0 }, forKey: .actionResulting)
+        try container.encode(Array(self.actionResulting), forKey: .actionResulting)
         try container.encodeIfPresent(self.detail, forKey: .detail)
-        try container.encode(self.progress.flatMap { $0 }, forKey: .progress)
+        try container.encode(Array(self.progress), forKey: .progress)
         try container.encodeIfPresent(self.reference, forKey: .reference)
     }
 /*
@@ -656,15 +656,15 @@ open class CarePlanActivityDetail: BackboneElement {
         try container.encodeIfPresent(self.code, forKey: .code)
         try container.encodeIfPresent(self.dailyAmount, forKey: .dailyAmount)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
-        try container.encode(self.goal.flatMap { $0 }, forKey: .goal)
+        try container.encode(Array(self.goal), forKey: .goal)
         try container.encodeIfPresent(self.location, forKey: .location)
-        try container.encode(self.performer.flatMap { $0 }, forKey: .performer)
+        try container.encode(Array(self.performer), forKey: .performer)
         try container.encodeIfPresent(self.productCodeableConcept, forKey: .productCodeableConcept)
         try container.encodeIfPresent(self.productReference, forKey: .productReference)
         try container.encodeIfPresent(self.prohibited.value, forKey: .prohibited)
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
-        try container.encode(self.reasonCode.flatMap { $0 }, forKey: .reasonCode)
-        try container.encode(self.reasonReference.flatMap { $0 }, forKey: .reasonReference)
+        try container.encode(Array(self.reasonCode), forKey: .reasonCode)
+        try container.encode(Array(self.reasonReference), forKey: .reasonReference)
         try container.encodeIfPresent(self.scheduledPeriod, forKey: .scheduledPeriod)
         try container.encodeIfPresent(self.scheduledString, forKey: .scheduledString)
         try container.encodeIfPresent(self.scheduledTiming, forKey: .scheduledTiming)

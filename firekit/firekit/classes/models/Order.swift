@@ -2,7 +2,7 @@
 //  Order.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Order) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Order) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -97,8 +97,8 @@ open class Order: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.date, forKey: .date)
-        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.detail), forKey: .detail)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.reasonCodeableConcept, forKey: .reasonCodeableConcept)
         try container.encodeIfPresent(self.reasonReference, forKey: .reasonReference)
         try container.encodeIfPresent(self.source, forKey: .source)

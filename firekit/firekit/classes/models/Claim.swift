@@ -2,7 +2,7 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -189,19 +189,19 @@ open class Claim: DomainResource {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.accident, forKey: .accident)
         try container.encodeIfPresent(self.accidentType, forKey: .accidentType)
-        try container.encode(self.additionalMaterials.flatMap { $0 }, forKey: .additionalMaterials)
-        try container.encode(self.condition.flatMap { $0 }, forKey: .condition)
-        try container.encode(self.coverage.flatMap { $0 }, forKey: .coverage)
+        try container.encode(Array(self.additionalMaterials), forKey: .additionalMaterials)
+        try container.encode(Array(self.condition), forKey: .condition)
+        try container.encode(Array(self.coverage), forKey: .coverage)
         try container.encodeIfPresent(self.created, forKey: .created)
-        try container.encode(self.diagnosis.flatMap { $0 }, forKey: .diagnosis)
+        try container.encode(Array(self.diagnosis), forKey: .diagnosis)
         try container.encodeIfPresent(self.enterer, forKey: .enterer)
-        try container.encode(self.exception.flatMap { $0 }, forKey: .exception)
+        try container.encode(Array(self.exception), forKey: .exception)
         try container.encodeIfPresent(self.facility, forKey: .facility)
         try container.encodeIfPresent(self.fundsReserve, forKey: .fundsReserve)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
-        try container.encode(self.interventionException.flatMap { $0 }, forKey: .interventionException)
-        try container.encode(self.item.flatMap { $0 }, forKey: .item)
-        try container.encode(self.missingTeeth.flatMap { $0 }, forKey: .missingTeeth)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.interventionException), forKey: .interventionException)
+        try container.encode(Array(self.item), forKey: .item)
+        try container.encode(Array(self.missingTeeth), forKey: .missingTeeth)
         try container.encodeIfPresent(self.organization, forKey: .organization)
         try container.encodeIfPresent(self.originalPrescription, forKey: .originalPrescription)
         try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
@@ -713,7 +713,7 @@ open class ClaimCoverage: BackboneElement {
         try container.encodeIfPresent(self.coverage, forKey: .coverage)
         try container.encodeIfPresent(self.focal.value, forKey: .focal)
         try container.encodeIfPresent(self.originalRuleset, forKey: .originalRuleset)
-        try container.encode(self.preAuthRef.flatMap { $0.value }, forKey: .preAuthRef)
+        try container.encode(Array(self.preAuthRef), forKey: .preAuthRef)
         try container.encodeIfPresent(self.relationship, forKey: .relationship)
         try container.encodeIfPresent(self.sequence.value, forKey: .sequence)
     }
@@ -1091,10 +1091,10 @@ open class ClaimItem: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.bodySite, forKey: .bodySite)
-        try container.encode(self.detail.flatMap { $0 }, forKey: .detail)
-        try container.encode(self.diagnosisLinkId.flatMap { $0.value }, forKey: .diagnosisLinkId)
+        try container.encode(Array(self.detail), forKey: .detail)
+        try container.encode(Array(self.diagnosisLinkId), forKey: .diagnosisLinkId)
         try container.encodeIfPresent(self.factor, forKey: .factor)
-        try container.encode(self.modifier.flatMap { $0 }, forKey: .modifier)
+        try container.encode(Array(self.modifier), forKey: .modifier)
         try container.encodeIfPresent(self.net, forKey: .net)
         try container.encodeIfPresent(self.points, forKey: .points)
         try container.encodeIfPresent(self.prosthesis, forKey: .prosthesis)
@@ -1103,7 +1103,7 @@ open class ClaimItem: BackboneElement {
         try container.encodeIfPresent(self.sequence.value, forKey: .sequence)
         try container.encodeIfPresent(self.service, forKey: .service)
         try container.encodeIfPresent(self.serviceDate, forKey: .serviceDate)
-        try container.encode(self.subSite.flatMap { $0 }, forKey: .subSite)
+        try container.encode(Array(self.subSite), forKey: .subSite)
         try container.encodeIfPresent(self.type, forKey: .type)
         try container.encodeIfPresent(self.udi, forKey: .udi)
         try container.encodeIfPresent(self.unitPrice, forKey: .unitPrice)
@@ -1457,7 +1457,7 @@ open class ClaimItemDetail: BackboneElement {
         try container.encodeIfPresent(self.quantity, forKey: .quantity)
         try container.encodeIfPresent(self.sequence.value, forKey: .sequence)
         try container.encodeIfPresent(self.service, forKey: .service)
-        try container.encode(self.subDetail.flatMap { $0 }, forKey: .subDetail)
+        try container.encode(Array(self.subDetail), forKey: .subDetail)
         try container.encodeIfPresent(self.type, forKey: .type)
         try container.encodeIfPresent(self.udi, forKey: .udi)
         try container.encodeIfPresent(self.unitPrice, forKey: .unitPrice)

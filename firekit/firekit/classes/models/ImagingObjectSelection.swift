@@ -2,7 +2,7 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -96,7 +96,7 @@ open class ImagingObjectSelection: DomainResource {
         try container.encodeIfPresent(self.authoringTime, forKey: .authoringTime)
         try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
         try container.encodeIfPresent(self.patient, forKey: .patient)
-        try container.encode(self.study.flatMap { $0 }, forKey: .study)
+        try container.encode(Array(self.study), forKey: .study)
         try container.encodeIfPresent(self.title, forKey: .title)
         try container.encodeIfPresent(self.uid, forKey: .uid)
     }
@@ -287,7 +287,7 @@ open class ImagingObjectSelectionStudy: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.imagingStudy, forKey: .imagingStudy)
-        try container.encode(self.series.flatMap { $0 }, forKey: .series)
+        try container.encode(Array(self.series), forKey: .series)
         try container.encodeIfPresent(self.uid, forKey: .uid)
         try container.encodeIfPresent(self.url, forKey: .url)
     }
@@ -428,7 +428,7 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.instance.flatMap { $0 }, forKey: .instance)
+        try container.encode(Array(self.instance), forKey: .instance)
         try container.encodeIfPresent(self.uid, forKey: .uid)
         try container.encodeIfPresent(self.url, forKey: .url)
     }
@@ -559,7 +559,7 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.frames.flatMap { $0 }, forKey: .frames)
+        try container.encode(Array(self.frames), forKey: .frames)
         try container.encodeIfPresent(self.sopClass, forKey: .sopClass)
         try container.encodeIfPresent(self.uid, forKey: .uid)
         try container.encodeIfPresent(self.url, forKey: .url)
@@ -702,7 +702,7 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.frameNumbers.flatMap { $0.value }, forKey: .frameNumbers)
+        try container.encode(Array(self.frameNumbers), forKey: .frameNumbers)
         try container.encodeIfPresent(self.url, forKey: .url)
     }
 /*

@@ -2,7 +2,7 @@
 //  AuditEventTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm1(instance!)
   }
 
-    func testAuditEvent1RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent1()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent1RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent1()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm1(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent1(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.
@@ -152,13 +152,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm2(instance!)
   }
 
-    func testAuditEvent2RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent2()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent2RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent2()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -173,9 +173,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm2(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent2(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.
@@ -256,13 +256,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm3(instance!)
   }
 
-    func testAuditEvent3RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent3()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent3RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent3()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -277,9 +277,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm3(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent3(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.
@@ -385,13 +385,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm4(instance!)
   }
 
-    func testAuditEvent4RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent4()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent4RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent4()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -406,9 +406,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm4(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent4(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.
@@ -506,13 +506,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm5(instance!)
   }
 
-    func testAuditEvent5RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent5()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent5RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent5()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -527,9 +527,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm5(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent5(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.
@@ -615,13 +615,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm6(instance!)
   }
 
-    func testAuditEvent6RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent6()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent6RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent6()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -636,9 +636,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm6(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent6(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.
@@ -724,13 +724,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm7(instance!)
   }
 
-    func testAuditEvent7RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent7()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent7RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent7()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -745,9 +745,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm7(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent7(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.
@@ -877,13 +877,13 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     testAuditEventRealm8(instance!)
   }
 
-    func testAuditEvent8RealmPK() {        
-        do {
-            let instance: FireKit.AuditEvent = try runAuditEvent8()
-            let copy = (instance.copy() as! FireKit.AuditEvent)
+  func testAuditEvent8RealmPK() { 
+      do {
+        let instance: FireKit.AuditEvent = try runAuditEvent8()
+        let copy = (instance.copy() as! FireKit.AuditEvent)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -898,9 +898,9 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testAuditEventRealm8(_ instance: FireKit.AuditEvent) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runAuditEvent8(JSONEncoder().encode(realm.objects(FireKit.AuditEvent.self).first!))
         
         // ensure we can update it.

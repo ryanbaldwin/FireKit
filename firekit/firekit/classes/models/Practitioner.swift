@@ -2,7 +2,7 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -84,16 +84,16 @@ open class Practitioner: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.active.value, forKey: .active)
-        try container.encode(self.address.flatMap { $0 }, forKey: .address)
+        try container.encode(Array(self.address), forKey: .address)
         try container.encodeIfPresent(self.birthDate, forKey: .birthDate)
-        try container.encode(self.communication.flatMap { $0 }, forKey: .communication)
+        try container.encode(Array(self.communication), forKey: .communication)
         try container.encodeIfPresent(self.gender, forKey: .gender)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encode(self.photo.flatMap { $0 }, forKey: .photo)
-        try container.encode(self.practitionerRole.flatMap { $0 }, forKey: .practitionerRole)
-        try container.encode(self.qualification.flatMap { $0 }, forKey: .qualification)
-        try container.encode(self.telecom.flatMap { $0 }, forKey: .telecom)
+        try container.encode(Array(self.photo), forKey: .photo)
+        try container.encode(Array(self.practitionerRole), forKey: .practitionerRole)
+        try container.encode(Array(self.qualification), forKey: .qualification)
+        try container.encode(Array(self.telecom), forKey: .telecom)
     }
 /*
 	
@@ -340,12 +340,12 @@ open class PractitionerPractitionerRole: BackboneElement {
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.healthcareService.flatMap { $0 }, forKey: .healthcareService)
-        try container.encode(self.location.flatMap { $0 }, forKey: .location)
+        try container.encode(Array(self.healthcareService), forKey: .healthcareService)
+        try container.encode(Array(self.location), forKey: .location)
         try container.encodeIfPresent(self.managingOrganization, forKey: .managingOrganization)
         try container.encodeIfPresent(self.period, forKey: .period)
         try container.encodeIfPresent(self.role, forKey: .role)
-        try container.encode(self.specialty.flatMap { $0 }, forKey: .specialty)
+        try container.encode(Array(self.specialty), forKey: .specialty)
     }
 /*
 	
@@ -519,7 +519,7 @@ open class PractitionerQualification: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.code, forKey: .code)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.issuer, forKey: .issuer)
         try container.encodeIfPresent(self.period, forKey: .period)
     }

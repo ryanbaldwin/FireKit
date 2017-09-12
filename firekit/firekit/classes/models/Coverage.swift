@@ -2,7 +2,7 @@
 //  Coverage.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Coverage) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -111,10 +111,10 @@ open class Coverage: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.bin, forKey: .bin)
-        try container.encode(self.contract.flatMap { $0 }, forKey: .contract)
+        try container.encode(Array(self.contract), forKey: .contract)
         try container.encodeIfPresent(self.dependent.value, forKey: .dependent)
         try container.encodeIfPresent(self.group, forKey: .group)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.issuer, forKey: .issuer)
         try container.encodeIfPresent(self.network, forKey: .network)
         try container.encodeIfPresent(self.period, forKey: .period)

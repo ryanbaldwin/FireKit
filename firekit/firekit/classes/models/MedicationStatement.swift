@@ -2,7 +2,7 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -139,10 +139,10 @@ open class MedicationStatement: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.dateAsserted, forKey: .dateAsserted)
-        try container.encode(self.dosage.flatMap { $0 }, forKey: .dosage)
+        try container.encode(Array(self.dosage), forKey: .dosage)
         try container.encodeIfPresent(self.effectiveDateTime, forKey: .effectiveDateTime)
         try container.encodeIfPresent(self.effectivePeriod, forKey: .effectivePeriod)
-        try container.encode(self.identifier.flatMap { $0 }, forKey: .identifier)
+        try container.encode(Array(self.identifier), forKey: .identifier)
         try container.encodeIfPresent(self.informationSource, forKey: .informationSource)
         try container.encodeIfPresent(self.medicationCodeableConcept, forKey: .medicationCodeableConcept)
         try container.encodeIfPresent(self.medicationReference, forKey: .medicationReference)
@@ -150,9 +150,9 @@ open class MedicationStatement: DomainResource {
         try container.encodeIfPresent(self.patient, forKey: .patient)
         try container.encodeIfPresent(self.reasonForUseCodeableConcept, forKey: .reasonForUseCodeableConcept)
         try container.encodeIfPresent(self.reasonForUseReference, forKey: .reasonForUseReference)
-        try container.encode(self.reasonNotTaken.flatMap { $0 }, forKey: .reasonNotTaken)
+        try container.encode(Array(self.reasonNotTaken), forKey: .reasonNotTaken)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.supportingInformation.flatMap { $0 }, forKey: .supportingInformation)
+        try container.encode(Array(self.supportingInformation), forKey: .supportingInformation)
         try container.encodeIfPresent(self.wasNotTaken.value, forKey: .wasNotTaken)
     }
 /*

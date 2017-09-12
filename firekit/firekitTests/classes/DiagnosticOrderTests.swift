@@ -2,7 +2,7 @@
 //  DiagnosticOrderTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticOrderRealm1(instance!)
   }
 
-    func testDiagnosticOrder1RealmPK() {        
-        do {
-            let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder1()
-            let copy = (instance.copy() as! FireKit.DiagnosticOrder)
+  func testDiagnosticOrder1RealmPK() { 
+      do {
+        let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder1()
+        let copy = (instance.copy() as! FireKit.DiagnosticOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testDiagnosticOrderRealm1(_ instance: FireKit.DiagnosticOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runDiagnosticOrder1(JSONEncoder().encode(realm.objects(FireKit.DiagnosticOrder.self).first!))
         
         // ensure we can update it.
@@ -146,13 +146,13 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticOrderRealm2(instance!)
   }
 
-    func testDiagnosticOrder2RealmPK() {        
-        do {
-            let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder2()
-            let copy = (instance.copy() as! FireKit.DiagnosticOrder)
+  func testDiagnosticOrder2RealmPK() { 
+      do {
+        let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder2()
+        let copy = (instance.copy() as! FireKit.DiagnosticOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -167,9 +167,9 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testDiagnosticOrderRealm2(_ instance: FireKit.DiagnosticOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runDiagnosticOrder2(JSONEncoder().encode(realm.objects(FireKit.DiagnosticOrder.self).first!))
         
         // ensure we can update it.
@@ -241,13 +241,13 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     testDiagnosticOrderRealm3(instance!)
   }
 
-    func testDiagnosticOrder3RealmPK() {        
-        do {
-            let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder3()
-            let copy = (instance.copy() as! FireKit.DiagnosticOrder)
+  func testDiagnosticOrder3RealmPK() { 
+      do {
+        let instance: FireKit.DiagnosticOrder = try runDiagnosticOrder3()
+        let copy = (instance.copy() as! FireKit.DiagnosticOrder)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -262,9 +262,9 @@ class DiagnosticOrderTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testDiagnosticOrderRealm3(_ instance: FireKit.DiagnosticOrder) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runDiagnosticOrder3(JSONEncoder().encode(realm.objects(FireKit.DiagnosticOrder.self).first!))
         
         // ensure we can update it.

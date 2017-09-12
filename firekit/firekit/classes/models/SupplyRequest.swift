@@ -2,7 +2,7 @@
 //  SupplyRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyRequest) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -113,7 +113,7 @@ open class SupplyRequest: DomainResource {
         try container.encodeIfPresent(self.reasonReference, forKey: .reasonReference)
         try container.encodeIfPresent(self.source, forKey: .source)
         try container.encodeIfPresent(self.status, forKey: .status)
-        try container.encode(self.supplier.flatMap { $0 }, forKey: .supplier)
+        try container.encode(Array(self.supplier), forKey: .supplier)
         try container.encodeIfPresent(self.when, forKey: .when)
     }
 /*

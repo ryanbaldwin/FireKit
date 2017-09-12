@@ -2,7 +2,7 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-09-11.
 //  2017, SMART Health IT.
 //
 
@@ -100,15 +100,15 @@ open class Provenance: DomainResource {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.activity, forKey: .activity)
-        try container.encode(self.agent.flatMap { $0 }, forKey: .agent)
-        try container.encode(self.entity.flatMap { $0 }, forKey: .entity)
+        try container.encode(Array(self.agent), forKey: .agent)
+        try container.encode(Array(self.entity), forKey: .entity)
         try container.encodeIfPresent(self.location, forKey: .location)
         try container.encodeIfPresent(self.period, forKey: .period)
-        try container.encode(self.policy.flatMap { $0.value }, forKey: .policy)
-        try container.encode(self.reason.flatMap { $0 }, forKey: .reason)
+        try container.encode(Array(self.policy), forKey: .policy)
+        try container.encode(Array(self.reason), forKey: .reason)
         try container.encodeIfPresent(self.recorded, forKey: .recorded)
-        try container.encode(self.signature.flatMap { $0 }, forKey: .signature)
-        try container.encode(self.target.flatMap { $0 }, forKey: .target)
+        try container.encode(Array(self.signature), forKey: .signature)
+        try container.encode(Array(self.target), forKey: .target)
     }
 /*
 	
@@ -346,7 +346,7 @@ open class ProvenanceAgent: BackboneElement {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encodeIfPresent(self.actor, forKey: .actor)
-        try container.encode(self.relatedAgent.flatMap { $0 }, forKey: .relatedAgent)
+        try container.encode(Array(self.relatedAgent), forKey: .relatedAgent)
         try container.encodeIfPresent(self.role, forKey: .role)
         try container.encodeIfPresent(self.userId, forKey: .userId)
     }

@@ -2,7 +2,7 @@
 //  VisionPrescriptionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-10.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-11.
 //  2017, SMART Health IT.
 //
 // Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
@@ -48,13 +48,13 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
     testVisionPrescriptionRealm1(instance!)
   }
 
-    func testVisionPrescription1RealmPK() {        
-        do {
-            let instance: FireKit.VisionPrescription = try runVisionPrescription1()
-            let copy = (instance.copy() as! FireKit.VisionPrescription)
+  func testVisionPrescription1RealmPK() { 
+      do {
+        let instance: FireKit.VisionPrescription = try runVisionPrescription1()
+        let copy = (instance.copy() as! FireKit.VisionPrescription)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -69,9 +69,9 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testVisionPrescriptionRealm1(_ instance: FireKit.VisionPrescription) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runVisionPrescription1(JSONEncoder().encode(realm.objects(FireKit.VisionPrescription.self).first!))
         
         // ensure we can update it.
@@ -168,13 +168,13 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
     testVisionPrescriptionRealm2(instance!)
   }
 
-    func testVisionPrescription2RealmPK() {        
-        do {
-            let instance: FireKit.VisionPrescription = try runVisionPrescription2()
-            let copy = (instance.copy() as! FireKit.VisionPrescription)
+  func testVisionPrescription2RealmPK() { 
+      do {
+        let instance: FireKit.VisionPrescription = try runVisionPrescription2()
+        let copy = (instance.copy() as! FireKit.VisionPrescription)
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
+        XCTAssertNotEqual(instance.pk, copy.pk)
+        try! realm.write { realm.add(instance) }
             // TODO: this whole upsert business is bizzarro
             // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
             // XCTAssertNotEqual(instance.pk, copy.pk)
@@ -189,9 +189,9 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
     }
 
   func testVisionPrescriptionRealm2(_ instance: FireKit.VisionPrescription) {
-      // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
-      // and ensure it passes the all the same tests.
-      try! realm.write { realm.add(instance) }
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+        // and ensure it passes the all the same tests.
+        try! realm.write { realm.add(instance) }
         try! runVisionPrescription2(JSONEncoder().encode(realm.objects(FireKit.VisionPrescription.self).first!))
         
         // ensure we can update it.
