@@ -5,6 +5,8 @@
 //  Generated from FHIR {{ info.version }} ({{ profile.url }}) on {{ info.date }}.
 //  {{ info.year }}, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on {{ info.date }}
+// 	Copyright @ {{ info.year }} Bunnyhug. All rights fall under Apache 2
 
 import Foundation
 import Realm

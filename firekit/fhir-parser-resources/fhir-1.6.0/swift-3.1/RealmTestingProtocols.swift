@@ -3,6 +3,7 @@
 //  FireKit
 //
 //  Created by Ryan Baldwin on 2017-01-25.
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 //
 
 import XCTest

@@ -1,3 +1,6 @@
+# Updated for Realm support by Ryan Baldwin on 2017-08-09
+# Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+
 # These are settings for the FHIR class generator
 from env import *
 from mappings import *

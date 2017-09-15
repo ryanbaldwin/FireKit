@@ -3,7 +3,7 @@
 //  FireKit
 //
 //  Created by Ryan Baldwin on 2017-08-09.
-//  Copyright © 2017 Bunnyhug. All rights reserved.
+//  Copyright © 2017 Bunnyhug. All rights fall under Apache 2
 //
 
 import Foundation
@@ -18,6 +18,7 @@ extension FHIRAbstractBase: CascadeDeletable {
     ///
     /// - Warning: This method may only be called during a write transaction.
     public func cascadeDelete() {
+        // Go through each array first and cascade delete any CascadeDeletables we find.
         try! objectSchema.properties.lazy
             .filter { $0.type == .array }
             .forEach { property in
@@ -26,6 +27,7 @@ extension FHIRAbstractBase: CascadeDeletable {
                 }
         }
         
+        // Go deep-first on each CasecadeDeletable relationship
         try! objectSchema.properties.lazy
             .filter { $0.type == .object }
             .forEach { property in
@@ -51,7 +53,7 @@ extension RealmSwift.List: CascadeDeletable {
     /// otherwise it will attempt to delete the element using the realm managing the element.
     ///
     /// - Warning: This method may only be called during a write transaction.
-    public func cascadeDelete() throws {
+    public func cascadeDelete() {
         try! forEach { object in
             guard let cascadable = object as? CascadeDeletable else {
                 object.realm?.delete(object)

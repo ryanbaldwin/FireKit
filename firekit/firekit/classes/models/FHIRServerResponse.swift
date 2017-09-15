@@ -5,6 +5,9 @@
 //  Created by Pascal Pfiffner on 3/31/15.
 //  2015, SMART Platforms.
 //
+// Updated for Realm support by Ryan Baldwin on 2017-08-09
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+//
 
 import Foundation
 

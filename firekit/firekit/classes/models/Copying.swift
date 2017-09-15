@@ -2,8 +2,8 @@
 //  Copying.swift
 //  FireKit
 //
-//  Created by Ryan Baldwin on 2017-02-15.
-//  Copyright © 2017 University Health Network. All rights reserved.
+// Updated for Realm support by Ryan Baldwin on 2017-08-09
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 //
 
 import Foundation

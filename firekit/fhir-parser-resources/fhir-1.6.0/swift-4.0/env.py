@@ -1,3 +1,6 @@
+# Updated for Realm support by Ryan Baldwin on 2017-08-09
+# Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+
 import jinja2
 import fhirclass
 from mappings import *

@@ -5,28 +5,33 @@
 //  Created by Pascal Pfiffner on 8/27/14.
 //  2014, SMART Health IT.
 //
+//  Updated for Realm support by Ryan Baldwin on 2017-08-09
+//  Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+//
 
 import XCTest
 import FireKit
-
 
 /**
  *  Extension providing a `readJSONFile(filename:)` method to read JSON files from disk.
  */
 extension XCTestCase {
-	
-	class var testsDirectory: String {
-		let dir = #file as NSString
-		let proj = ((dir.deletingLastPathComponent as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent as NSString
-		return proj.appendingPathComponent("firekitTests/fhir-parser/downloads")
-	}
-	
-	func readJSONFile(_ filename: String) throws -> Data {
-		let dir = type(of: self).testsDirectory
-		XCTAssertTrue(FileManager.default.fileExists(atPath: dir), "You must either first download the FHIR spec or manually adjust `XCTestCase.testsDirectory` to point to your FHIR download directory")
-		
-		let path = (dir as NSString).appendingPathComponent(filename)
-		return try Data(contentsOf: URL(fileURLWithPath: path))
-	}
-}
 
+    class var testsDirectory: String {
+        let dir = #file as NSString
+        let proj = ((dir.deletingLastPathComponent as NSString)
+                    .deletingLastPathComponent as NSString).deletingLastPathComponent as NSString
+        return proj.appendingPathComponent("firekitTests/fhir-parser/downloads")
+    }
+
+    func readJSONFile(_ filename: String) throws -> Data {
+        let dir = type(of: self).testsDirectory
+        XCTAssertTrue(FileManager.default.fileExists(atPath: dir), """
+                        You must either first download the FHIR spec or manually adjust
+                        `XCTestCase.testsDirectory` to point to your FHIR download directory
+                        """)
+
+        let path = (dir as NSString).appendingPathComponent(filename)
+        return try Data(contentsOf: URL(fileURLWithPath: path))
+    }
+}

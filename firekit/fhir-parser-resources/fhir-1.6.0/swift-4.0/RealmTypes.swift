@@ -2,8 +2,8 @@
 //  RealmTypes.swift
 //  SwiftFHIR
 //
-//  Created by Ryan Baldwin on 01/21/17
-//  2017, Ryan Baldwin
+// Updated for Realm support by Ryan Baldwin on 2017-08-09
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 //
 
 import Foundation

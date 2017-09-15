@@ -5,6 +5,9 @@
 //  Created by Pascal Pfiffner on 7/2/14.
 //  2014, SMART Health IT.
 //
+// Updated for Realm support by Ryan Baldwin on 2017-08-09
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+//
 
 import Foundation
 

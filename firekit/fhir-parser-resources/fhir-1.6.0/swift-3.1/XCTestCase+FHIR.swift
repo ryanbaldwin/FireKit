@@ -5,6 +5,9 @@
 //  Created by Pascal Pfiffner on 8/27/14.
 //  2014, SMART Health IT.
 //
+//  Updated for Realm support by Ryan Baldwin on {{ info.date }}
+//  Copyright @ {{ info.year }} Bunnyhug. All rights fall under Apache 2
+//
 
 import XCTest
 import FireKit

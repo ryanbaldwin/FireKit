@@ -1,3 +1,6 @@
+# Updated for Realm support by Ryan Baldwin on 2017-08-09
+# Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+
 # Mappings for the FHIR class generator
 
 # Which class names to map to resources and elements
