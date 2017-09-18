@@ -2,10 +2,10 @@
 //  GoalTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runGoal1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runGoal1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runGoal1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Goal successfully, but threw: \(error)")

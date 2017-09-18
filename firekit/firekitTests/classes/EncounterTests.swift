@@ -2,10 +2,10 @@
 //  EncounterTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -158,8 +158,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -275,8 +275,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -393,8 +393,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -492,8 +492,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -601,8 +601,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -709,8 +709,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter7(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter7(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter7(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -809,8 +809,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter8(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter8(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter8(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")
@@ -903,8 +903,8 @@ class EncounterTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runEncounter9(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runEncounter9(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runEncounter9(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Encounter successfully, but threw: \(error)")

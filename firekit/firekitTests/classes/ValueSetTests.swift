@@ -2,10 +2,10 @@
 //  ValueSetTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runValueSet1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runValueSet1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runValueSet1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
@@ -184,8 +184,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runValueSet2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runValueSet2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runValueSet2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
@@ -303,8 +303,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runValueSet3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runValueSet3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runValueSet3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
@@ -408,8 +408,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runValueSet4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runValueSet4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runValueSet4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
@@ -511,8 +511,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runValueSet5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runValueSet5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runValueSet5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")
@@ -620,8 +620,8 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runValueSet6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runValueSet6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runValueSet6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test ValueSet successfully, but threw: \(error)")

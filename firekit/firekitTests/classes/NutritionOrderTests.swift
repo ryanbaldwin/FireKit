@@ -2,10 +2,10 @@
 //  NutritionOrderTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -172,8 +172,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -292,8 +292,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -411,8 +411,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -527,8 +527,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -657,8 +657,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -782,8 +782,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder7(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder7(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder7(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -909,8 +909,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder8(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder8(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder8(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -1032,8 +1032,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder9(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder9(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder9(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")
@@ -1141,8 +1141,8 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runNutritionOrder10(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runNutritionOrder10(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runNutritionOrder10(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test NutritionOrder successfully, but threw: \(error)")

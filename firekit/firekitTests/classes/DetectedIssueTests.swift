@@ -2,10 +2,10 @@
 //  DetectedIssueTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDetectedIssue1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDetectedIssue1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDetectedIssue1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
@@ -126,8 +126,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDetectedIssue2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDetectedIssue2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDetectedIssue2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
@@ -220,8 +220,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDetectedIssue3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDetectedIssue3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDetectedIssue3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
@@ -305,8 +305,8 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDetectedIssue4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDetectedIssue4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDetectedIssue4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")

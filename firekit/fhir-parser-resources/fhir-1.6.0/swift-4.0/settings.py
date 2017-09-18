@@ -54,7 +54,7 @@ manual_profiles = [                                     # all these profiles sho
     (tpl_source + '/FHIRServerResponse.swift', None, []),
     (tpl_source + '/FHIRError.swift', None, []),
     (tpl_source + '/RealmTypes.swift', None, []),
-    (tpl_source + '/Copying.swift', None, []),
+    (tpl_source + '/Populatable.swift', None, []),
 ]
 
 # factory methods

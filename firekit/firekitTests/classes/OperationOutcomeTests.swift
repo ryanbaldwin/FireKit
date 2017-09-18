@@ -2,10 +2,10 @@
 //  OperationOutcomeTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runOperationOutcome1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runOperationOutcome1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runOperationOutcome1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
@@ -129,8 +129,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runOperationOutcome2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runOperationOutcome2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runOperationOutcome2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
@@ -220,8 +220,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runOperationOutcome3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runOperationOutcome3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runOperationOutcome3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
@@ -308,8 +308,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runOperationOutcome4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runOperationOutcome4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runOperationOutcome4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
@@ -397,8 +397,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runOperationOutcome5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runOperationOutcome5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runOperationOutcome5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")
@@ -486,8 +486,8 @@ class OperationOutcomeTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runOperationOutcome6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runOperationOutcome6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runOperationOutcome6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test OperationOutcome successfully, but threw: \(error)")

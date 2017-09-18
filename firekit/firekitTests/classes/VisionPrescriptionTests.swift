@@ -2,10 +2,10 @@
 //  VisionPrescriptionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runVisionPrescription1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runVisionPrescription1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runVisionPrescription1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw: \(error)")
@@ -161,8 +161,8 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runVisionPrescription2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runVisionPrescription2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runVisionPrescription2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test VisionPrescription successfully, but threw: \(error)")

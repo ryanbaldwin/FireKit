@@ -165,6 +165,24 @@ final public class FHIRDate: Object, DateAndTime, Codable {
     }
 }
 
+extension FHIRDate: Populatable {
+    /// Updates this instance from the values stored in `other`
+    ///
+    /// - Parameter other: The FHIRDate whose values are to be migrated to this instance.
+    /// - Warning: This function _must_ be called from within a Realm write transaction.
+    public func populate(from other: FHIRDate) {
+        year = other.year
+        month = other.month
+        day = other.day
+    }
+}
+
+extension FHIRDate: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return FHIRDate(string: "\(self)")!
+    }
+}
+
 /**
 A time during the day, optionally with seconds, usually for human communication. Named `FHIRTime` to match with `FHIRDate`.
 
@@ -335,6 +353,24 @@ final public class FHIRTime: Object, DateAndTime, Codable {
     }
 }
 
+extension FHIRTime: Populatable {
+    /// Updates this instance from the values stored in `other`
+    ///
+    /// - Parameter other: The FHIRTime whose values are to be migrated to this instance.
+    /// - Warning: This function _must_ be called from within a Realm write transaction.
+    public func populate(from other: FHIRTime) {
+        hour = other.hour
+        minute = other.minute
+        second = other.second
+        tookSecondsFromString = other.tookSecondsFromString
+    }
+}
+
+extension FHIRTime: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return FHIRTime(string: "\(self)")!
+    }
+}
 
 /**
  A date, optionally with time, as used in human communication.
@@ -546,6 +582,26 @@ final public class DateTime: Object, DateAndTime, Codable {
     private func updateDateIfNeeded() {
         let d = makeDate(date, time: time, timeZone: timeZone)
         if d != nsDate { nsDate = d }
+    }
+}
+
+extension DateTime: Populatable {
+    /// Updates this instance from the values stored in `other`
+    ///
+    /// - Parameter other: The DateTime whose values are to be migrated to this instance.
+    /// - Warning: This function _must_ be called from within a Realm write transaction.
+    public func populate(from other: DateTime) {
+        timeZone = other.timeZone
+        dateString = other.dateString
+        value = other.value
+//        if date != nil { realm?.delete(date!) }
+//        date = other.date?.copy() as? FHIRDate
+//
+//        if time != nil { realm?.delete(time!) }
+//        time = other.time?.copy() as? FHIRTime
+//
+//        timeZone = other.timeZone
+//        dateString = other.dateString
     }
 }
 
@@ -814,6 +870,17 @@ extension Instant {
     }
 }
 
+extension Instant: Populatable {
+    /// Updates this instance from the values stored in `other`
+    ///
+    /// - Parameter other: The Instant whose values are to be migrated to this instance.
+    /// - Warning: This function _must_ be called from within a Realm write transaction.
+    public func populate(from other: Instant) {
+        timeZone = other.timeZone
+        dateString = other.dateString
+        value = other.value
+    }
+}
 
 /**
 Converts between NSDate and our FHIRDate, FHIRTime, DateTime and Instance structs.
@@ -979,9 +1046,7 @@ class DateAndTimeParser {
                             }
                             else if 4 == hourStr.characters.count {
                                 tzhour = Int(hourStr[..<hourStr.index(hourStr.startIndex, offsetBy: 2)])!
-                                // tzhour = Int(hourStr.substring(to: hourStr.index(hourStr.startIndex, offsetBy: 2)))!
-                                tzmin = Int(hourStr[hourStr.index(hourStr.startIndex, offsetBy: 2)>..])!
-                                // tzmin = Int(hourStr.substring(from: hourStr.index(hourStr.startIndex, offsetBy: 2)))!
+                                tzmin = Int(hourStr[hourStr.index(hourStr.startIndex, offsetBy: 2)...])!
                             }
                             
                             let offset = tzhour * 3600 + tzmin * 60

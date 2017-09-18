@@ -2,10 +2,10 @@
 //  DeviceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDevice1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDevice1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDevice1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
@@ -136,8 +136,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDevice2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDevice2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDevice2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
@@ -229,8 +229,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDevice3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDevice3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDevice3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
@@ -324,8 +324,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDevice4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDevice4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDevice4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")
@@ -416,8 +416,8 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runDevice5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runDevice5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runDevice5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Device successfully, but threw: \(error)")

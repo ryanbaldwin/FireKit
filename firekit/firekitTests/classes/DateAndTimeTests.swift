@@ -96,6 +96,16 @@ class DateTests: XCTestCase {
 		let ns = date.nsDate
         XCTAssertTrue(date == ns.fhir_asDate(), "Conversion to NSDate and back again must not alter `Date`")
 	}
+    
+    func testPopulate() {
+        let date = FHIRDate(string: "1981-03-28")!
+        let other = FHIRDate(string: "1978-11-24")!
+        date.populate(from: other)
+        
+        XCTAssertEqual(date.year, other.year)
+        XCTAssertEqual(date.month, other.month)
+        XCTAssertEqual(date.day, other.day)
+    }
 }
 
 
@@ -224,6 +234,17 @@ class TimeTests: XCTestCase {
 		let ns = time.nsDate
         XCTAssertTrue(time == ns.fhir_asTime(), "Conversion to NSDate and back again must not alter `Time`")
 	}
+    
+    func testPopulate() {
+        let time = FHIRTime(string: "15:42:03")!
+        let other = FHIRTime(string: "00:00:01")!
+        time.populate(from: other)
+        
+        XCTAssertEqual(time.hour, other.hour)
+        XCTAssertEqual(time.minute, other.minute)
+        XCTAssertEqual(time.second, other.second)
+        XCTAssertEqual(time.tookSecondsFromString, other.tookSecondsFromString)
+    }
 }
 
 
@@ -617,6 +638,29 @@ class DateTimeTests: XCTestCase, RealmPersistenceTesting {
         XCTAssertEqual(fetchedNewest.count, 1)
         XCTAssertEqual(fetchedNewest.first?.nsDate, newest.nsDate)
     }
+    
+    func testPopulate() {
+        let date = DateTime(string: "2015-03-28T05:11:44.3+01:00")!
+        let other = DateTime(string: "2012-02-26T11:11:44.3-05:00")!
+        date.populate(from: other)
+        
+        XCTAssertEqual(date.dateString, other.dateString)
+        XCTAssertEqual(date.nsDate, other.nsDate)
+        XCTAssertEqual(date.timeZone, other.timeZone)
+        
+        XCTAssertNotNil(date.date)
+        XCTAssertNotNil(date.time)
+        
+        XCTAssertEqual(date.date!.year, other.date!.year)
+        XCTAssertEqual(date.date!.month, other.date!.month)
+        XCTAssertEqual(date.date!.day, other.date!.day)
+        
+        XCTAssertEqual(date.time!.hour, other.time!.hour)
+        XCTAssertEqual(date.time!.minute, other.time!.minute)
+        XCTAssertEqual(date.time!.second, other.time!.second)
+        
+        XCTAssertEqual(date.nsDate, other.nsDate)
+    }
 }
 
 
@@ -781,5 +825,27 @@ class InstantTests: XCTestCase, RealmPersistenceTesting {
         XCTAssertEqual(fetchedNewest.count, 1)
         XCTAssertEqual(fetchedNewest.first?.nsDate, newest.nsDate)
     }
+    
+    func testPopulate() {
+        let instant = Instant(string: "2015-03-28T05:11:44.3+01:00")!
+        let other = Instant.now
+        instant.populate(from: other)
+        
+        XCTAssertEqual(instant.dateString, other.dateString)
+        XCTAssertEqual(instant.nsDate, other.nsDate)
+        XCTAssertEqual(instant.timeZone, other.timeZone)
+        
+        XCTAssertNotNil(instant.date)
+        XCTAssertNotNil(instant.time)
+        
+        XCTAssertEqual(instant.date.year, other.date.year)
+        XCTAssertEqual(instant.date.month, other.date.month)
+        XCTAssertEqual(instant.date.day, other.date.day)
+        
+        XCTAssertEqual(instant.time.hour, other.time.hour)
+        XCTAssertEqual(instant.time.minute, other.time.minute)
+        XCTAssertEqual(instant.time.second, other.time.second)
+        
+        XCTAssertEqual(instant.nsDate, other.nsDate)
+    }
 }
-

@@ -2,10 +2,10 @@
 //  SubstanceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSubstance1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSubstance1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSubstance1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
@@ -152,8 +152,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSubstance2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSubstance2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSubstance2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
@@ -239,8 +239,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSubstance3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSubstance3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSubstance3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
@@ -326,8 +326,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSubstance4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSubstance4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSubstance4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
@@ -418,8 +418,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSubstance5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSubstance5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSubstance5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")
@@ -518,8 +518,8 @@ class SubstanceTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSubstance6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSubstance6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSubstance6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Substance successfully, but threw: \(error)")

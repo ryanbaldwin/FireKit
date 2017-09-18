@@ -2,10 +2,10 @@
 //  BundleTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
@@ -138,8 +138,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
@@ -253,8 +253,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
@@ -368,8 +368,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
@@ -477,8 +477,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
@@ -592,8 +592,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
@@ -707,8 +707,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle7(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle7(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle7(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")
@@ -822,8 +822,8 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runBundle8(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runBundle8(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runBundle8(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Bundle successfully, but threw: \(error)")

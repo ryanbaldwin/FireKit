@@ -2,10 +2,10 @@
 //  MedicationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")
@@ -139,8 +139,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")
@@ -230,8 +230,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")
@@ -321,8 +321,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")
@@ -412,8 +412,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")
@@ -503,8 +503,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")
@@ -608,8 +608,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication7(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication7(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication7(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")
@@ -699,8 +699,8 @@ class MedicationTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runMedication8(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runMedication8(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runMedication8(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Medication successfully, but threw: \(error)")

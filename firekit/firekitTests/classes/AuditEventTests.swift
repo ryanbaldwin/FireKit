@@ -2,10 +2,10 @@
 //  AuditEventTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
@@ -145,8 +145,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
@@ -249,8 +249,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
@@ -378,8 +378,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
@@ -499,8 +499,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
@@ -608,8 +608,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
@@ -717,8 +717,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent7(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent7(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent7(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")
@@ -870,8 +870,8 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runAuditEvent8(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runAuditEvent8(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runAuditEvent8(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test AuditEvent successfully, but threw: \(error)")

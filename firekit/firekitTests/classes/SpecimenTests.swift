@@ -2,10 +2,10 @@
 //  SpecimenTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSpecimen1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSpecimen1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSpecimen1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw: \(error)")
@@ -139,8 +139,8 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSpecimen2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSpecimen2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSpecimen2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw: \(error)")
@@ -241,8 +241,8 @@ class SpecimenTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runSpecimen3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSpecimen3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runSpecimen3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Specimen successfully, but threw: \(error)")

@@ -2,10 +2,10 @@
 //  PractitionerTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -161,8 +161,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -281,8 +281,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -404,8 +404,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -528,8 +528,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -652,8 +652,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -772,8 +772,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner7(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner7(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner7(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -892,8 +892,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner8(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner8(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner8(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -1008,8 +1008,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner9(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner9(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner9(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")
@@ -1125,8 +1125,8 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runPractitioner10(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runPractitioner10(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runPractitioner10(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test Practitioner successfully, but threw: \(error)")

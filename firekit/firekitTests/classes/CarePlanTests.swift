@@ -2,10 +2,10 @@
 //  CarePlanTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -150,8 +150,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -259,8 +259,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -368,8 +368,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -493,8 +493,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan5(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan5(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan5(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -603,8 +603,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan6(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan6(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan6(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -714,8 +714,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan7(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan7(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan7(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -840,8 +840,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan8(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan8(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan8(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -1060,8 +1060,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan9(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan9(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan9(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")
@@ -1206,8 +1206,8 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runCarePlan10(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCarePlan10(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runCarePlan10(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test CarePlan successfully, but threw: \(error)")

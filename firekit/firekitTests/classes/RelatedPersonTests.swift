@@ -2,10 +2,10 @@
 //  RelatedPersonTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-09-15.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-18.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-09-15
+// Updated for Realm support by Ryan Baldwin on 2017-09-18
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -41,8 +41,8 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runRelatedPerson1(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runRelatedPerson1(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runRelatedPerson1(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw: \(error)")
@@ -142,8 +142,8 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runRelatedPerson2(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runRelatedPerson2(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runRelatedPerson2(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw: \(error)")
@@ -239,8 +239,8 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runRelatedPerson3(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runRelatedPerson3(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runRelatedPerson3(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw: \(error)")
@@ -342,8 +342,8 @@ class RelatedPersonTests: XCTestCase, RealmPersistenceTesting {
       XCTAssertNotNil(copy)
       try runRelatedPerson4(try JSONEncoder().encode(copy!))     
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runRelatedPerson4(JSONEncoder().encode(copy!))  
+      // try! realm.write { copy!.populate(from: instance!) }
+      // try runRelatedPerson4(JSONEncoder().encode(copy!))  
     }
     catch let error {
       XCTAssertTrue(false, "Must instantiate and test RelatedPerson successfully, but threw: \(error)")

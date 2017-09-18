@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		7D37E59B1F644FF30012355C /* Factories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37E5991F644FF20012355C /* Factories.swift */; };
 		7D37E59E1F64508F0012355C /* CascadeDeletable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D37E59D1F64508F0012355C /* CascadeDeletable.swift */; };
-		C2018C201E5D0BCD00523626 /* Copying.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2018C1F1E5D0BCD00523626 /* Copying.swift */; };
 		C20D20E61E3A7FB100027316 /* RealmTestingProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */; };
 		C23F08881E54DA2900B1F9B1 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430D1E37C96C00EE1AEE /* Realm.framework */; };
 		C23F08891E54DA2C00B1F9B1 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430E1E37C96C00EE1AEE /* RealmSwift.framework */; };
@@ -146,6 +145,7 @@
 		C250E32A1E3808B300C9631E /* Timing.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42831E37C6D200EE1AEE /* Timing.swift */; };
 		C250E32B1E3808B300C9631E /* ValueSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42841E37C6D200EE1AEE /* ValueSet.swift */; };
 		C250E32C1E3808B300C9631E /* VisionPrescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF42851E37C6D200EE1AEE /* VisionPrescription.swift */; };
+		C29647911F70293800FB1114 /* Populatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29647901F70293800FB1114 /* Populatable.swift */; };
 		C2A928361E38F11B00A9A8D0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430D1E37C96C00EE1AEE /* Realm.framework */; };
 		C2A928371E38F11B00A9A8D0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430E1E37C96C00EE1AEE /* RealmSwift.framework */; };
 		C2AF41EF1E37C4E300EE1AEE /* FireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF41E51E37C4E300EE1AEE /* FireKit.framework */; };
@@ -2936,9 +2936,9 @@
 /* Begin PBXFileReference section */
 		7D37E5991F644FF20012355C /* Factories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Factories.swift; path = classes/models/Factories.swift; sourceTree = "<group>"; };
 		7D37E59D1F64508F0012355C /* CascadeDeletable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CascadeDeletable.swift; path = classes/models/CascadeDeletable.swift; sourceTree = "<group>"; };
-		C2018C1F1E5D0BCD00523626 /* Copying.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Copying.swift; path = classes/models/Copying.swift; sourceTree = "<group>"; };
 		C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmTestingProtocols.swift; path = classes/RealmTestingProtocols.swift; sourceTree = "<group>"; };
 		C2478ADC1F3B715F001A3E67 /* CascadeDeletableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CascadeDeletableTests.swift; path = classes/CascadeDeletableTests.swift; sourceTree = "<group>"; };
+		C29647901F70293800FB1114 /* Populatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Populatable.swift; path = classes/models/Populatable.swift; sourceTree = "<group>"; };
 		C2AF41E51E37C4E300EE1AEE /* FireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF41E81E37C4E300EE1AEE /* realm-swift-fhir.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "realm-swift-fhir.h"; sourceTree = "<group>"; };
 		C2AF41E91E37C4E300EE1AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -5875,6 +5875,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C26BE05E1F70412F0053CFF9 /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7D37E59D1F64508F0012355C /* CascadeDeletable.swift */,
+				C29647901F70293800FB1114 /* Populatable.swift */,
+			);
+			name = protocols;
+			sourceTree = "<group>";
+		};
 		C2AF41DB1E37C4E300EE1AEE = {
 			isa = PBXGroup;
 			children = (
@@ -5920,8 +5929,7 @@
 		C2AF41FF1E37C50100EE1AEE /* models */ = {
 			isa = PBXGroup;
 			children = (
-				7D37E59D1F64508F0012355C /* CascadeDeletable.swift */,
-				7D37E5991F644FF20012355C /* Factories.swift */,
+				C26BE05E1F70412F0053CFF9 /* protocols */,
 				C2AF42011E37C6D200EE1AEE /* Account.swift */,
 				C2AF42021E37C6D200EE1AEE /* Address.swift */,
 				C2AF42031E37C6D200EE1AEE /* Age.swift */,
@@ -5950,7 +5958,6 @@
 				C2AF421A1E37C6D200EE1AEE /* Conformance.swift */,
 				C2AF421B1E37C6D200EE1AEE /* ContactPoint.swift */,
 				C2AF421C1E37C6D200EE1AEE /* Contract.swift */,
-				C2018C1F1E5D0BCD00523626 /* Copying.swift */,
 				C2AF421D1E37C6D200EE1AEE /* Count.swift */,
 				C2AF421E1E37C6D200EE1AEE /* Coverage.swift */,
 				C2AF421F1E37C6D200EE1AEE /* DataElement.swift */,
@@ -5978,6 +5985,7 @@
 				C2AF42351E37C6D200EE1AEE /* EpisodeOfCare.swift */,
 				C2AF42361E37C6D200EE1AEE /* ExplanationOfBenefit.swift */,
 				C2AF42371E37C6D200EE1AEE /* Extension.swift */,
+				7D37E5991F644FF20012355C /* Factories.swift */,
 				C2AF42381E37C6D200EE1AEE /* FamilyMemberHistory.swift */,
 				C2AF42391E37C6D200EE1AEE /* FHIRAbstractBase.swift */,
 				C2AF423B1E37C6D200EE1AEE /* FHIRAbstractResource.swift */,
@@ -11755,6 +11763,7 @@
 				C250E2C61E3808B300C9631E /* DataElement.swift in Sources */,
 				C250E2D81E3808B300C9631E /* EligibilityResponse.swift in Sources */,
 				C250E2F21E3808B300C9631E /* JSON-extensions.swift in Sources */,
+				C29647911F70293800FB1114 /* Populatable.swift in Sources */,
 				C250E3161E3808B300C9631E /* Range.swift in Sources */,
 				C250E2AF1E3808B300C9631E /* Attachment.swift in Sources */,
 				C250E2DD1E3808B300C9631E /* ExplanationOfBenefit.swift in Sources */,
@@ -11800,7 +11809,6 @@
 				C250E2F71E3808B300C9631E /* MedicationAdministration.swift in Sources */,
 				C250E3121E3808B300C9631E /* Provenance.swift in Sources */,
 				C250E3001E3808B300C9631E /* NutritionOrder.swift in Sources */,
-				C2018C201E5D0BCD00523626 /* Copying.swift in Sources */,
 				C250E2FD1E3808B300C9631E /* Money.swift in Sources */,
 				C250E31B1E3808B300C9631E /* RelatedPerson.swift in Sources */,
 				C250E2D51E3808B300C9631E /* Element.swift in Sources */,

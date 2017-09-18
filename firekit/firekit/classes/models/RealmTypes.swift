@@ -29,6 +29,12 @@ final public class RealmString: Object, Codable {
     }
 }
 
+extension RealmString: Populatable {
+    public func populate(from other: RealmString) {
+        value = other.value
+    }
+}
+
 final public class RealmInt: Object, Codable {
     @objc public dynamic var value: Int = 0
 
@@ -45,6 +51,12 @@ final public class RealmInt: Object, Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.singleValueContainer()
         try container.encode(self.value)
+    }
+}
+
+extension RealmInt: Populatable {
+    public func populate(from other: RealmInt) {
+        value = other.value
     }
 }
 
@@ -110,6 +122,12 @@ final public class RealmDecimal: Object, Codable {
     }    
 }
 
+extension RealmDecimal: Populatable {
+    public func populate(from other: RealmDecimal) {
+        _value = other._value
+    }
+}
+
 final public class RealmURL: Object, Codable {
     @objc private dynamic var _value: String?
     
@@ -141,6 +159,12 @@ final public class RealmURL: Object, Codable {
     
     public override class func ignoredProperties() -> [String] {
         return ["value", "_url"]
+    }
+}
+
+extension RealmURL: Populatable {
+    public func populate(from other: RealmURL) {
+        _value = other._value
     }
 }
 
@@ -204,31 +228,11 @@ final public class ContainedResource: Resource {
         
         try resource.encode(to: encoder)
     }
-    
-    // public override func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-    //     var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()        
-    //     if let js = json {
-    //         if let exist = js["resourceType"] {
-    //             presentKeys.insert("resourceType")
-    //             if let val = exist as? String {
-    //                 self.resourceType = val
-    //             }
-    //             else {
-    //                 errors.append(FHIRJSONError(key: "resourceType", wants: String.self, has: type(of: exist)))
-    //             }
-    //         }
-            
-    //         self.json = NSKeyedArchiver.archivedData(withRootObject: js)
-    //     }
-        
-    //     return errors.isEmpty ? nil : errors
-    // }
-    
-    // public override func asJSON() -> FHIRJSON {
-    //     guard let resource = resource else {
-    //         return ["fhir_comments": "Failed to serialize ContainedResource (\(String(describing: self.resourceType))) because the resource was not set."]
-    //     }
-        
-    //     return resource.asJSON()
-    // }
+}
+
+extension ContainedResource: Populatable {
+    public func populate(from other: ContainedResource) {
+        resourceType = other.resourceType
+        json = other.json
+    }
 }
