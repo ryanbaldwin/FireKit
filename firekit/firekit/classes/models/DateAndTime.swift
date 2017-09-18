@@ -170,7 +170,7 @@ extension FHIRDate: Populatable {
     ///
     /// - Parameter other: The FHIRDate whose values are to be migrated to this instance.
     /// - Warning: This function _must_ be called from within a Realm write transaction.
-    public func populate(from other: FHIRDate) {
+    public func populate<T>(from other: T) where T: FHIRDate {
         year = other.year
         month = other.month
         day = other.day

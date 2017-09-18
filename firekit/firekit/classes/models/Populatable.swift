@@ -7,7 +7,31 @@
 //
 
 import Foundation
+import RealmSwift
 
 public protocol Populatable {
     func populate(from other: Self)
+}
+
+extension Populatable where Self: Resource {
+    public func populate(from other: Resource) {
+        
+    }
+}
+
+extension Element: Populatable {
+    public func populate(from other: Element) {
+        objectSchema.properties.lazy
+            .filter{ $0.type == .object }
+            .forEach{ property in
+                // deep first, down the Element tree
+                if let object = value(forKey: property.name) as? Element {
+                    guard !object.isInvalidated else { return }
+                    
+                    if let other = value(forKey: property.name) as? Element {
+                        object.populate(from: other)
+                    }
+                }
+        }
+    }
 }
