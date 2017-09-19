@@ -33,8 +33,12 @@ final public class RealmString: Object, Codable {
 }
 
 extension RealmString: Populatable {
-    public func populate(from other: RealmString) {
-        value = other.value
+    public func populate(from other: Any) {
+        guard let o = other as? RealmString else {
+            print("Tried to populate a RealmString from \(type(of: other)). Skipping.")
+            return
+        }
+        value = o.value
     }
 }
 
@@ -61,8 +65,12 @@ final public class RealmInt: Object, Codable {
 }
 
 extension RealmInt: Populatable {
-    public func populate(from other: RealmInt) {
-        value = other.value
+    public func populate(from other: Any) {
+        guard let o = other as? RealmInt else {
+            print("Tried to populate a RealmInt from \(type(of: other)). Skipping.")
+            return
+        }
+        value = o.value
     }
 }
 
@@ -132,8 +140,12 @@ final public class RealmDecimal: Object, Codable {
 }
 
 extension RealmDecimal: Populatable {
-    public func populate(from other: RealmDecimal) {
-        _value = other._value
+    public func populate(from other: Any) {
+        guard let o = other as? RealmDecimal else {
+            print("Tried to populate a RealmDecimal from \(type(of: other)). Skipping.")
+            return
+        }
+        _value = o._value
     }
 }
 
@@ -175,8 +187,12 @@ final public class RealmURL: Object, Codable {
 }
 
 extension RealmURL: Populatable {
-    public func populate(from other: RealmURL) {
-        _value = other._value
+    public func populate(from other: Any) {
+        guard let o = other as? RealmURL else {
+            print("Tried to populate a RealmURL from \(type(of: other)). Skipping.")
+            return
+        }
+        _value = o._value
     }
 }
 
@@ -243,8 +259,13 @@ final public class ContainedResource: Resource {
 }
 
 extension ContainedResource: Populatable {
-    public func populate(from other: ContainedResource) {
-        resourceType = other.resourceType
-        json = other.json
+    public func populate(from other: Any) {
+        guard let o = other as? ContainedResource else {
+            print("Tried to populate a ContainedResource from \(type(of: other)). Skipping")
+            return
+        }
+        
+        resourceType = o.resourceType
+        json = o.json
     }
 }

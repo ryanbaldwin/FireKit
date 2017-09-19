@@ -31,3 +31,13 @@ open class FHIRAbstractResource: FHIRAbstractBase {
         try container.encode(type(of: self).resourceType, forKey: .resourceType)
     }
 }
+
+extension FHIRAbstractResource {
+    public func populate(from other: Any) {
+        guard let o = other as? FHIRAbstractResource else {
+            print("Tried to populate a FHIRAbstractResource from \(type(of: other)). Skipping.")
+            return
+        }
+        _versionId = o._versionId
+    }
+}

@@ -173,10 +173,15 @@ extension FHIRDate: Populatable {
     ///
     /// - Parameter other: The FHIRDate whose values are to be migrated to this instance.
     /// - Warning: This function _must_ be called from within a Realm write transaction.
-    public func populate<T>(from other: T) where T: FHIRDate {
-        year = other.year
-        month = other.month
-        day = other.day
+    public func populate(from other: Any) {
+        guard let o = other as? FHIRDate else {
+            print("Tried to populate a FHIRDate from \(type(of: other)). Skipping.")
+            return
+        }
+        
+        year = o.year
+        month = o.month
+        day = o.day
     }
 }
 
@@ -364,11 +369,16 @@ extension FHIRTime: Populatable {
     ///
     /// - Parameter other: The FHIRTime whose values are to be migrated to this instance.
     /// - Warning: This function _must_ be called from within a Realm write transaction.
-    public func populate(from other: FHIRTime) {
-        hour = other.hour
-        minute = other.minute
-        second = other.second
-        tookSecondsFromString = other.tookSecondsFromString
+    public func populate(from other: Any) {
+        guard let o = other as? FHIRTime else {
+            print("Tried to populate a FHIRTime from \(type(of: other)). Skipping.")
+            return
+        }
+        
+        hour = o.hour
+        minute = o.minute
+        second = o.second
+        tookSecondsFromString = o.tookSecondsFromString
     }
 }
 
@@ -599,18 +609,15 @@ extension DateTime: Populatable {
     ///
     /// - Parameter other: The DateTime whose values are to be migrated to this instance.
     /// - Warning: This function _must_ be called from within a Realm write transaction.
-    public func populate(from other: DateTime) {
-        timeZone = other.timeZone
-        dateString = other.dateString
-        value = other.value
-//        if date != nil { realm?.delete(date!) }
-//        date = other.date?.copy() as? FHIRDate
-//
-//        if time != nil { realm?.delete(time!) }
-//        time = other.time?.copy() as? FHIRTime
-//
-//        timeZone = other.timeZone
-//        dateString = other.dateString
+    public func populate(from other: Any) {
+        guard let o = other as? DateTime else {
+            print("Tried to populate a DateTime from \(type(of: other)). Skipping.")
+            return
+        }
+        
+        timeZone = o.timeZone
+        dateString = o.dateString
+        value = o.value
     }
 }
 
@@ -888,10 +895,15 @@ extension Instant: Populatable {
     ///
     /// - Parameter other: The Instant whose values are to be migrated to this instance.
     /// - Warning: This function _must_ be called from within a Realm write transaction.
-    public func populate(from other: Instant) {
-        timeZone = other.timeZone
-        dateString = other.dateString
-        value = other.value
+    public func populate(from other: Any) {
+        guard let o = other as? Instant else {
+            print("Tried to populate a Instant from \(type(of: other)). Skipping.")
+            return
+        }
+        
+        timeZone = o.timeZone
+        dateString = o.dateString
+        value = o.value
     }
 }
 

@@ -77,3 +77,9 @@ open class FHIRAbstractBase: Object, Codable, NSCopying {
         return FHIRAbstractBase()
     }
 }
+
+extension FHIRAbstractBase: Populatable {
+    public func populate(from other: Any) {
+        // nothing to populate.
+    }
+}
