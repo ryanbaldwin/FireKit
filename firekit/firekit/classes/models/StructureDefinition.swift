@@ -2,10 +2,10 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -181,6 +181,8 @@ open class StructureDefinition: DomainResource {
 }
 
 
+
+
 /**
  *  Contact details of the publisher.
  *
@@ -238,6 +240,8 @@ open class StructureDefinitionContact: BackboneElement {
 		return StructureDefinitionContact.init()
 	}
 }
+
+
 
 
 /**
@@ -300,6 +304,8 @@ open class StructureDefinitionDifferential: BackboneElement {
 		return StructureDefinitionDifferential.init()
 	}
 }
+
+
 
 
 /**
@@ -375,6 +381,8 @@ open class StructureDefinitionMapping: BackboneElement {
 }
 
 
+
+
 /**
  *  Snapshot view of the structure.
  *
@@ -435,4 +443,6 @@ open class StructureDefinitionSnapshot: BackboneElement {
 		return StructureDefinitionSnapshot.init()
 	}
 }
+
+
 

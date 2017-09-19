@@ -2,10 +2,10 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -169,6 +169,8 @@ open class TestScript: DomainResource {
 }
 
 
+
+
 /**
  *  Contact details of the publisher.
  *
@@ -226,6 +228,8 @@ open class TestScriptContact: BackboneElement {
 		return TestScriptContact.init()
 	}
 }
+
+
 
 
 /**
@@ -294,6 +298,8 @@ open class TestScriptFixture: BackboneElement {
 }
 
 
+
+
 /**
  *  Required capability that is assumed to function correctly on the FHIR server being tested.
  *
@@ -357,6 +363,8 @@ open class TestScriptMetadata: BackboneElement {
 		return TestScriptMetadata.init()
 	}
 }
+
+
 
 
 /**
@@ -443,6 +451,8 @@ open class TestScriptMetadataCapability: BackboneElement {
 }
 
 
+
+
 /**
  *  Links to the FHIR specification.
  *
@@ -506,6 +516,8 @@ open class TestScriptMetadataLink: BackboneElement {
 		return TestScriptMetadataLink.init()
 	}
 }
+
+
 
 
 /**
@@ -574,6 +586,8 @@ open class TestScriptSetup: BackboneElement {
 }
 
 
+
+
 /**
  *  A setup operation or assert to perform.
  *
@@ -637,6 +651,8 @@ open class TestScriptSetupAction: BackboneElement {
 		return TestScriptSetupAction.init()
 	}
 }
+
+
 
 
 /**
@@ -762,6 +778,8 @@ open class TestScriptSetupActionAssert: BackboneElement {
 }
 
 
+
+
 /**
  *  The setup operation to perform.
  *
@@ -872,6 +890,8 @@ open class TestScriptSetupActionOperation: BackboneElement {
 }
 
 
+
+
 /**
  *  Each operation can have one ore more header elements.
  *
@@ -938,6 +958,8 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 }
 
 
+
+
 /**
  *  A series of required clean up steps.
  *
@@ -999,6 +1021,8 @@ open class TestScriptTeardown: BackboneElement {
 }
 
 
+
+
 /**
  *  One or more teardown operations to perform.
  *
@@ -1055,6 +1079,8 @@ open class TestScriptTeardownAction: BackboneElement {
 		return TestScriptTeardownAction.init()
 	}
 }
+
+
 
 
 /**
@@ -1131,6 +1157,8 @@ open class TestScriptTest: BackboneElement {
 }
 
 
+
+
 /**
  *  A test operation or assert to perform.
  *
@@ -1194,6 +1222,8 @@ open class TestScriptTestAction: BackboneElement {
 		return TestScriptTestAction.init()
 	}
 }
+
+
 
 
 /**
@@ -1267,4 +1297,6 @@ open class TestScriptVariable: BackboneElement {
 		return TestScriptVariable.init()
 	}
 }
+
+
 

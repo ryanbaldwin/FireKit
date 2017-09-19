@@ -2,10 +2,10 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -134,6 +134,8 @@ open class NutritionOrder: DomainResource {
 }
 
 
+
+
 /**
  *  Enteral formula components.
  *
@@ -237,6 +239,8 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 }
 
 
+
+
 /**
  *  Formula feeding instruction as structured data.
  *
@@ -318,6 +322,8 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 }
 
 
+
+
 /**
  *  Oral diet components.
  *
@@ -393,6 +399,8 @@ open class NutritionOrderOralDiet: BackboneElement {
 }
 
 
+
+
 /**
  *  Required  nutrient modifications.
  *
@@ -456,6 +464,8 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 		return NutritionOrderOralDietNutrient.init()
 	}
 }
+
+
 
 
 /**
@@ -522,6 +532,8 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 		return NutritionOrderOralDietTexture.init()
 	}
 }
+
+
 
 
 /**
@@ -599,4 +611,6 @@ open class NutritionOrderSupplement: BackboneElement {
 		return NutritionOrderSupplement.init()
 	}
 }
+
+
 

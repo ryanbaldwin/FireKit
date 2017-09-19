@@ -14,7 +14,7 @@ import RealmSwift
 /**
  *  Abstract superclass for all FHIR data elements.
  */
-open class FHIRAbstractBase: Object, Codable, NSCopying {
+open class FHIRAbstractBase: Object, Codable, NSCopying, Populatable {
 
         /// The name of the resource or element.
     open class var resourceType: String {
@@ -75,5 +75,14 @@ open class FHIRAbstractBase: Object, Codable, NSCopying {
 
     public func copy(with zone: NSZone? = nil) -> Any {
         return FHIRAbstractBase()
+    }
+
+    /// Populates this instance from the values in the other instance.
+    /// The base FHIRAbstractBase version of this function does nothing.
+    ///
+    /// - Parameter other: The other instance of matching type from which
+    ///                    the values are to be copied.
+    public func populate(from other: Any) {
+        // nothing to populate.
     }
 }

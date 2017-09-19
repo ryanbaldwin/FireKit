@@ -2,10 +2,10 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -107,6 +107,8 @@ open class Questionnaire: DomainResource {
 }
 
 
+
+
 /**
  *  Grouped questions.
  *
@@ -188,6 +190,8 @@ open class QuestionnaireGroup: BackboneElement {
 		return QuestionnaireGroup.init()
 	}
 }
+
+
 
 
 /**
@@ -278,4 +282,6 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 		return QuestionnaireGroupQuestion.init()
 	}
 }
+
+
 

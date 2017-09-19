@@ -2,10 +2,10 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -216,6 +216,8 @@ open class ClaimResponse: DomainResource {
 }
 
 
+
+
 /**
  *  Insurer added line items.
  *
@@ -303,6 +305,8 @@ open class ClaimResponseAddItem: BackboneElement {
 }
 
 
+
+
 /**
  *  Added items adjudication.
  *
@@ -376,6 +380,8 @@ open class ClaimResponseAddItemAdjudication: BackboneElement {
 		return ClaimResponseAddItemAdjudication.init()
 	}
 }
+
+
 
 
 /**
@@ -453,6 +459,8 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 }
 
 
+
+
 /**
  *  Added items detail adjudication.
  *
@@ -526,6 +534,8 @@ open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 		return ClaimResponseAddItemDetailAdjudication.init()
 	}
 }
+
+
 
 
 /**
@@ -632,6 +642,8 @@ open class ClaimResponseCoverage: BackboneElement {
 }
 
 
+
+
 /**
  *  Processing errors.
  *
@@ -708,6 +720,8 @@ open class ClaimResponseError: BackboneElement {
 }
 
 
+
+
 /**
  *  Line items.
  *
@@ -779,6 +793,8 @@ open class ClaimResponseItem: BackboneElement {
 		return ClaimResponseItem.init()
 	}
 }
+
+
 
 
 /**
@@ -856,6 +872,8 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 }
 
 
+
+
 /**
  *  Detail line items.
  *
@@ -923,6 +941,8 @@ open class ClaimResponseItemDetail: BackboneElement {
 		return ClaimResponseItemDetail.init()
 	}
 }
+
+
 
 
 /**
@@ -1000,6 +1020,8 @@ open class ClaimResponseItemDetailAdjudication: BackboneElement {
 }
 
 
+
+
 /**
  *  Subdetail line items.
  *
@@ -1063,6 +1085,8 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		return ClaimResponseItemDetailSubDetail.init()
 	}
 }
+
+
 
 
 /**
@@ -1140,6 +1164,8 @@ open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 }
 
 
+
+
 /**
  *  Processing notes.
  *
@@ -1204,4 +1230,6 @@ open class ClaimResponseNote: BackboneElement {
 		return ClaimResponseNote.init()
 	}
 }
+
+
 

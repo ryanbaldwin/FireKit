@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 public protocol Populatable {
     func populate(from other: Any)

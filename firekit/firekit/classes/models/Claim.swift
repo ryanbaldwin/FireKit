@@ -2,10 +2,10 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -233,6 +233,8 @@ open class Claim: DomainResource {
 }
 
 
+
+
 /**
  *  Insurance or medical plan.
  *
@@ -337,6 +339,8 @@ open class ClaimCoverage: BackboneElement {
 }
 
 
+
+
 /**
  *  Diagnosis.
  *
@@ -404,6 +408,8 @@ open class ClaimDiagnosis: BackboneElement {
 		return ClaimDiagnosis.init()
 	}
 }
+
+
 
 
 /**
@@ -560,6 +566,8 @@ open class ClaimItem: BackboneElement {
 }
 
 
+
+
 /**
  *  Additional items.
  *
@@ -677,6 +685,8 @@ open class ClaimItemDetail: BackboneElement {
 }
 
 
+
+
 /**
  *  Additional items.
  *
@@ -790,6 +800,8 @@ open class ClaimItemDetailSubDetail: BackboneElement {
 }
 
 
+
+
 /**
  *  Prosthetic details.
  *
@@ -854,6 +866,8 @@ open class ClaimItemProsthesis: BackboneElement {
 		return ClaimItemProsthesis.init()
 	}
 }
+
+
 
 
 /**
@@ -930,6 +944,8 @@ open class ClaimMissingTeeth: BackboneElement {
 		return ClaimMissingTeeth.init()
 	}
 }
+
+
 
 
 /**
@@ -1009,4 +1025,6 @@ open class ClaimPayee: BackboneElement {
 		return ClaimPayee.init()
 	}
 }
+
+
 

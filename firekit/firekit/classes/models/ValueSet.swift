@@ -2,10 +2,10 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -158,6 +158,8 @@ open class ValueSet: DomainResource {
 }
 
 
+
+
 /**
  *  An inline code system, which is part of this value set.
  *
@@ -231,6 +233,8 @@ open class ValueSetCodeSystem: BackboneElement {
 		return ValueSetCodeSystem.init()
 	}
 }
+
+
 
 
 /**
@@ -315,6 +319,8 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 }
 
 
+
+
 /**
  *  Additional representations for the concept.
  *
@@ -388,6 +394,8 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 }
 
 
+
+
 /**
  *  When value set includes codes from elsewhere.
  *
@@ -450,6 +458,8 @@ open class ValueSetCompose: BackboneElement {
 		return ValueSetCompose.init()
 	}
 }
+
+
 
 
 /**
@@ -523,6 +533,8 @@ open class ValueSetComposeInclude: BackboneElement {
 }
 
 
+
+
 /**
  *  A concept defined in the system.
  *
@@ -590,6 +602,8 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		return ValueSetComposeIncludeConcept.init()
 	}
 }
+
+
 
 
 /**
@@ -664,6 +678,8 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 }
 
 
+
+
 /**
  *  Contact details of the publisher.
  *
@@ -721,6 +737,8 @@ open class ValueSetContact: BackboneElement {
 		return ValueSetContact.init()
 	}
 }
+
+
 
 
 /**
@@ -806,6 +824,8 @@ open class ValueSetExpansion: BackboneElement {
 }
 
 
+
+
 /**
  *  Codes in the value set.
  *
@@ -879,6 +899,8 @@ open class ValueSetExpansionContains: BackboneElement {
 		return ValueSetExpansionContains.init()
 	}
 }
+
+
 
 
 /**
@@ -965,4 +987,6 @@ open class ValueSetExpansionParameter: BackboneElement {
 		return ValueSetExpansionParameter.init()
 	}
 }
+
+
 

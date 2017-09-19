@@ -2,10 +2,10 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -165,6 +165,8 @@ open class Conformance: DomainResource {
 }
 
 
+
+
 /**
  *  Contact details of the publisher.
  *
@@ -222,6 +224,8 @@ open class ConformanceContact: BackboneElement {
 		return ConformanceContact.init()
 	}
 }
+
+
 
 
 /**
@@ -297,6 +301,8 @@ open class ConformanceDocument: BackboneElement {
 }
 
 
+
+
 /**
  *  If this describes a specific instance.
  *
@@ -361,6 +367,8 @@ open class ConformanceImplementation: BackboneElement {
 		return ConformanceImplementation.init()
 	}
 }
+
+
 
 
 /**
@@ -436,6 +444,8 @@ open class ConformanceMessaging: BackboneElement {
 }
 
 
+
+
 /**
  *  A messaging service end-point.
  *
@@ -503,6 +513,8 @@ open class ConformanceMessagingEndpoint: BackboneElement {
 		return ConformanceMessagingEndpoint.init()
 	}
 }
+
+
 
 
 /**
@@ -603,6 +615,8 @@ open class ConformanceMessagingEvent: BackboneElement {
 }
 
 
+
+
 /**
  *  If the endpoint is a RESTful one.
  *
@@ -700,6 +714,8 @@ open class ConformanceRest: BackboneElement {
 }
 
 
+
+
 /**
  *  What operations are supported?.
  *
@@ -763,6 +779,8 @@ open class ConformanceRestInteraction: BackboneElement {
 		return ConformanceRestInteraction.init()
 	}
 }
+
+
 
 
 /**
@@ -832,6 +850,8 @@ open class ConformanceRestOperation: BackboneElement {
 		return ConformanceRestOperation.init()
 	}
 }
+
+
 
 
 /**
@@ -943,6 +963,8 @@ open class ConformanceRestResource: BackboneElement {
 }
 
 
+
+
 /**
  *  What operations are supported?.
  *
@@ -1006,6 +1028,8 @@ open class ConformanceRestResourceInteraction: BackboneElement {
 		return ConformanceRestResourceInteraction.init()
 	}
 }
+
+
 
 
 /**
@@ -1095,6 +1119,8 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 }
 
 
+
+
 /**
  *  Information about security of implementation.
  *
@@ -1162,6 +1188,8 @@ open class ConformanceRestSecurity: BackboneElement {
 }
 
 
+
+
 /**
  *  Certificates associated with security profiles.
  */
@@ -1217,6 +1245,8 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
 		return ConformanceRestSecurityCertificate.init()
 	}
 }
+
+
 
 
 /**
@@ -1287,4 +1317,6 @@ open class ConformanceSoftware: BackboneElement {
 		return ConformanceSoftware.init()
 	}
 }
+
+
 

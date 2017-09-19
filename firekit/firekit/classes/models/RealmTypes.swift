@@ -256,15 +256,14 @@ final public class ContainedResource: Resource {
         
         try resource.encode(to: encoder)
     }
-}
-
-extension ContainedResource: Populatable {
-    public func populate(from other: Any) {
+    
+    public override func populate(from other: Any) {
         guard let o = other as? ContainedResource else {
             print("Tried to populate a ContainedResource from \(type(of: other)). Skipping")
             return
         }
         
+        super.populate(from: other)
         resourceType = o.resourceType
         json = o.json
     }

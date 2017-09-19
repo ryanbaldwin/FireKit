@@ -2,10 +2,10 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -1277,6 +1277,8 @@ open class ElementDefinition: Element {
 }
 
 
+
+
 /**
  *  Base definition information for tools.
  *
@@ -1349,6 +1351,8 @@ open class ElementDefinitionBase: Element {
 		return ElementDefinitionBase.init()
 	}
 }
+
+
 
 
 /**
@@ -1425,6 +1429,8 @@ open class ElementDefinitionBinding: Element {
 		return ElementDefinitionBinding.init()
 	}
 }
+
+
 
 
 /**
@@ -1508,6 +1514,8 @@ open class ElementDefinitionConstraint: Element {
 }
 
 
+
+
 /**
  *  Map element to another set of definitions.
  *
@@ -1576,6 +1584,8 @@ open class ElementDefinitionMapping: Element {
 		return ElementDefinitionMapping.init()
 	}
 }
+
+
 
 
 /**
@@ -1655,6 +1665,8 @@ open class ElementDefinitionSlicing: Element {
 }
 
 
+
+
 /**
  *  Data type and Profile for this element.
  *
@@ -1722,4 +1734,6 @@ open class ElementDefinitionType: Element {
 		return ElementDefinitionType.init()
 	}
 }
+
+
 

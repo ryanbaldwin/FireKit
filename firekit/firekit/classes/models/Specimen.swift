@@ -2,10 +2,10 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -122,6 +122,8 @@ open class Specimen: DomainResource {
 }
 
 
+
+
 /**
  *  Collection details.
  *
@@ -214,6 +216,8 @@ open class SpecimenCollection: BackboneElement {
 		return SpecimenCollection.init()
 	}
 }
+
+
 
 
 /**
@@ -311,6 +315,8 @@ open class SpecimenContainer: BackboneElement {
 }
 
 
+
+
 /**
  *  Treatment and processing step details.
  *
@@ -375,4 +381,6 @@ open class SpecimenTreatment: BackboneElement {
 		return SpecimenTreatment.init()
 	}
 }
+
+
 

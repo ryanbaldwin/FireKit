@@ -2,10 +2,10 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -85,6 +85,8 @@ open class ImmunizationRecommendation: DomainResource {
 		return ImmunizationRecommendation.init()
 	}
 }
+
+
 
 
 /**
@@ -185,6 +187,8 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 }
 
 
+
+
 /**
  *  Dates governing proposed immunization.
  *
@@ -252,6 +256,8 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 		return ImmunizationRecommendationRecommendationDateCriterion.init()
 	}
 }
+
+
 
 
 /**
@@ -322,4 +328,6 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 		return ImmunizationRecommendationRecommendationProtocol.init()
 	}
 }
+
+
 

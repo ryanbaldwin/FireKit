@@ -2,10 +2,10 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-09-18.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-09-19.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-18
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -155,6 +155,8 @@ open class Contract: DomainResource {
 }
 
 
+
+
 /**
  *  Contract Actor.
  *
@@ -221,6 +223,8 @@ open class ContractActor: BackboneElement {
 		return ContractActor.init()
 	}
 }
+
+
 
 
 /**
@@ -298,6 +302,8 @@ open class ContractFriendly: BackboneElement {
 }
 
 
+
+
 /**
  *  Contract Legal Language.
  *
@@ -370,6 +376,8 @@ open class ContractLegal: BackboneElement {
 }
 
 
+
+
 /**
  *  Computable Contract Language.
  *
@@ -440,6 +448,8 @@ open class ContractRule: BackboneElement {
 		return ContractRule.init()
 	}
 }
+
+
 
 
 /**
@@ -517,6 +527,8 @@ open class ContractSigner: BackboneElement {
 		return ContractSigner.init()
 	}
 }
+
+
 
 
 /**
@@ -633,6 +645,8 @@ open class ContractTerm: BackboneElement {
 }
 
 
+
+
 /**
  *  Contract Term Actor List.
  *
@@ -699,6 +713,8 @@ open class ContractTermActor: BackboneElement {
 		return ContractTermActor.init()
 	}
 }
+
+
 
 
 /**
@@ -806,6 +822,8 @@ open class ContractTermValuedItem: BackboneElement {
 }
 
 
+
+
 /**
  *  Contract Valued Item.
  *
@@ -909,4 +927,6 @@ open class ContractValuedItem: BackboneElement {
 		return ContractValuedItem.init()
 	}
 }
+
+
 
