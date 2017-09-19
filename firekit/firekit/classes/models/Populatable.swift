@@ -15,6 +15,7 @@ public protocol Populatable {
 
 extension Populatable where Self: Resource {
     public func populate(from other: Resource) {
+        // deep first
         
     }
 }

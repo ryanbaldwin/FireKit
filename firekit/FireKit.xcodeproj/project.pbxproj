@@ -2921,6 +2921,7 @@
 		C2AF6DAE1E37D5C000EE1AEE /* xdsdocumentreference-questionnaire.canonical.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF63371E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.canonical.json */; };
 		C2AF6DAF1E37D5C000EE1AEE /* xdsdocumentreference-questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF63381E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.json */; };
 		C2AF6DB01E37D5C000EE1AEE /* xdsdocumentreference.profile.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF63391E37D5BB00EE1AEE /* xdsdocumentreference.profile.json */; };
+		C2FFA2B11F7147EC0052021D /* PopulatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FFA2B01F7147EC0052021D /* PopulatableTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -5850,6 +5851,7 @@
 		C2AF63371E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.canonical.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "xdsdocumentreference-questionnaire.canonical.json"; sourceTree = "<group>"; };
 		C2AF63381E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "xdsdocumentreference-questionnaire.json"; sourceTree = "<group>"; };
 		C2AF63391E37D5BB00EE1AEE /* xdsdocumentreference.profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xdsdocumentreference.profile.json; sourceTree = "<group>"; };
+		C2FFA2B01F7147EC0052021D /* PopulatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulatableTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -6070,6 +6072,7 @@
 		C2AF42001E37C58000EE1AEE /* models */ = {
 			isa = PBXGroup;
 			children = (
+				C2FFA2AF1F7147AD0052021D /* protocols */,
 				C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */,
 				C2AF43181E37CCBF00EE1AEE /* AccountTests.swift */,
 				C2AF43191E37CCBF00EE1AEE /* AllergyIntoleranceTests.swift */,
@@ -6164,7 +6167,6 @@
 				C2AF43721E37CCBF00EE1AEE /* ValueSetTests.swift */,
 				C2AF43731E37CCBF00EE1AEE /* VisionPrescriptionTests.swift */,
 				C2AF43741E37CCBF00EE1AEE /* XCTestCase+FHIR.swift */,
-				C2478ADC1F3B715F001A3E67 /* CascadeDeletableTests.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -8869,6 +8871,15 @@
 				C2AF63391E37D5BB00EE1AEE /* xdsdocumentreference.profile.json */,
 			);
 			path = downloads;
+			sourceTree = "<group>";
+		};
+		C2FFA2AF1F7147AD0052021D /* protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C2478ADC1F3B715F001A3E67 /* CascadeDeletableTests.swift */,
+				C2FFA2B01F7147EC0052021D /* PopulatableTests.swift */,
+			);
+			name = protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -11916,6 +11927,7 @@
 				C2AF437D1E37CCBF00EE1AEE /* BundleTests.swift in Sources */,
 				C2AF437F1E37CCBF00EE1AEE /* ClaimResponseTests.swift in Sources */,
 				C2AF43A61E37CCBF00EE1AEE /* ImplementationGuideTests.swift in Sources */,
+				C2FFA2B11F7147EC0052021D /* PopulatableTests.swift in Sources */,
 				C2AF43C61E37CCBF00EE1AEE /* SearchParameterTests.swift in Sources */,
 				C2AF43841E37CCBF00EE1AEE /* CompositionTests.swift in Sources */,
 			);

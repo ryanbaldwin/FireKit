@@ -23,6 +23,7 @@ protocol DateAndTime: CustomStringConvertible, Comparable {
 /// A date for use in human communication. Named `FHIRDate` to avoid the numerous collisions with `Foundation.Date`.
 /// Month and day are optional and there are no timezones.
 final public class FHIRDate: Object, DateAndTime, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
     
     /// The year.
     @objc public dynamic var year: Int = Calendar.current.component(.year, from: Date())
@@ -126,6 +127,8 @@ final public class FHIRDate: Object, DateAndTime, Codable {
         return DateNSDateConverter.sharedConverter.create(fromDate: self)
     }
     
+    override open static func primaryKey() -> String? { return "pk" }
+    
     override public var description: String {
         if let m = month {
             if let d = day {
@@ -190,6 +193,7 @@ Minimum of 00:00 and maximum of < 24:00. There is no timezone. Since decimal pre
 string will remember the seconds string until it is manually set.
 */
 final public class FHIRTime: Object, DateAndTime, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
     
     /// The hour of the day; cannot be higher than 23.
     @objc public dynamic var hour: Int8 = 0 {
@@ -317,6 +321,8 @@ final public class FHIRTime: Object, DateAndTime, Codable {
         return DateNSDateConverter.sharedConverter.create(fromTime: self)
     }
     
+    override open static func primaryKey() -> String? { return "pk" }
+    
     // TODO: this implementation uses a workaround using string coercion instead of format: "%02d:%02d:%@" because %@ with String is not
     // supported on Linux (SR-957)
     public override var description: String {
@@ -378,6 +384,7 @@ extension FHIRTime: NSCopying {
  If a time is specified there must be a timezone; defaults to the system reported local timezone.
  */
 final public class DateTime: Object, DateAndTime, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
     
     /// The original date string representing this DateTime. 
     /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
@@ -563,6 +570,8 @@ final public class DateTime: Object, DateAndTime, Codable {
         return (date ?? FHIRDate.today).description
     }
     
+    override open static func primaryKey() -> String? { return "pk" }
+    
     public override var description: String {
         return makeDescription(date: date, time: time)
     }
@@ -609,6 +618,8 @@ extension DateTime: Populatable {
 An instant in time, known at least to the second and with a timezone, for machine times.
 */
 final public class Instant: Object, DateAndTime, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
+    
     /// The original date string representing this DateTime.
     /// Could be as simple as just a year, such as "2017", or a full ISO8601 datetime string.
     @objc public private(set) dynamic var dateString = ""
@@ -820,6 +831,8 @@ final public class Instant: Object, DateAndTime, Codable {
     public override var description: String {
         return makeDescription(date: date, time: time, timeZoneString: timeZoneString)
     }
+    
+    override open static func primaryKey() -> String? { return "pk" }
     
     public static func <(lhs: Instant, rhs: Instant) -> Bool {
         let lhd = lhs.nsDate

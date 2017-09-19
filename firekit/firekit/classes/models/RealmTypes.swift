@@ -11,6 +11,7 @@ import Realm
 import RealmSwift
 
 final public class RealmString: Object, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
     @objc public dynamic var value: String = ""
 
     public convenience init(val: String) {
@@ -27,6 +28,8 @@ final public class RealmString: Object, Codable {
         var container = encoder.singleValueContainer()
         try container.encode(self.value)
     }
+    
+    override open static func primaryKey() -> String? { return "pk" }
 }
 
 extension RealmString: Populatable {
@@ -36,6 +39,7 @@ extension RealmString: Populatable {
 }
 
 final public class RealmInt: Object, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
     @objc public dynamic var value: Int = 0
 
     public convenience init(val: Int) {
@@ -52,6 +56,8 @@ final public class RealmInt: Object, Codable {
         var container = encoder.singleValueContainer()
         try container.encode(self.value)
     }
+    
+    override open static func primaryKey() -> String? { return "pk" }
 }
 
 extension RealmInt: Populatable {
@@ -61,6 +67,7 @@ extension RealmInt: Populatable {
 }
 
 final public class RealmDecimal: Object, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
     @objc private dynamic var _value = "0"
 
     public var value: Decimal {
@@ -100,6 +107,8 @@ final public class RealmDecimal: Object, Codable {
     public override class func ignoredProperties() -> [String] {
         return ["value"]
     }
+    
+    override open static func primaryKey() -> String? { return "pk" }
 
     public static func ==(lhs: RealmDecimal, rhs: RealmDecimal) -> Bool {
         return lhs.value.isEqual(to: rhs.value)
@@ -129,6 +138,7 @@ extension RealmDecimal: Populatable {
 }
 
 final public class RealmURL: Object, Codable {
+    @objc public dynamic var pk: String = UUID().uuidString
     @objc private dynamic var _value: String?
     
     private var _url: URL? = nil
@@ -160,6 +170,8 @@ final public class RealmURL: Object, Codable {
     public override class func ignoredProperties() -> [String] {
         return ["value", "_url"]
     }
+    
+    override open static func primaryKey() -> String? { return "pk" }
 }
 
 extension RealmURL: Populatable {
