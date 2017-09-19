@@ -174,9 +174,35 @@ open class FamilyMemberHistory: DomainResource {
 		}
 		return FamilyMemberHistory.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? FamilyMemberHistory else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.ageQuantity, from: o.ageQuantity)
+        FireKit.populate(&self.ageRange, from: o.ageRange)
+        ageString = o.ageString
+        bornDate = o.bornDate
+        FireKit.populate(&self.bornPeriod, from: o.bornPeriod)
+        bornString = o.bornString
+        // TODO: condition array
+        date = o.date
+        deceasedBoolean.value = o.deceasedBoolean.value
+        deceasedDate = o.deceasedDate
+        FireKit.populate(&self.deceasedQuantity, from: o.deceasedQuantity)
+        FireKit.populate(&self.deceasedRange, from: o.deceasedRange)
+        deceasedString = o.deceasedString
+        gender = o.gender
+        // TODO: identifier array
+        name = o.name
+        FireKit.populate(&self.note, from: o.note)
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.relationship, from: o.relationship)
+        status = o.status
+    }
 }
-
-
 
 
 /**
@@ -281,7 +307,20 @@ open class FamilyMemberHistoryCondition: BackboneElement {
 		}
 		return FamilyMemberHistoryCondition.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? FamilyMemberHistoryCondition else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.note, from: o.note)
+        FireKit.populate(&self.onsetPeriod, from: o.onsetPeriod)
+        FireKit.populate(&self.onsetQuantity, from: o.onsetQuantity)
+        FireKit.populate(&self.onsetRange, from: o.onsetRange)
+        onsetString = o.onsetString
+        FireKit.populate(&self.outcome, from: o.outcome)
+    }
 }
-
-
 

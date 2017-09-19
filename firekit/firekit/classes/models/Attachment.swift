@@ -93,7 +93,21 @@ open class Attachment: Element {
 		}
 		return Attachment.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Attachment else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        contentType = o.contentType
+        creation = o.creation
+        data = o.data
+        hash_fhir = o.hash_fhir
+        language = o.language
+        size.value = o.size.value
+        title = o.title
+        url = o.url
+    }
 }
-
-
 

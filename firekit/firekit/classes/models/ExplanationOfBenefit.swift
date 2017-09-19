@@ -120,7 +120,23 @@ open class ExplanationOfBenefit: DomainResource {
 		}
 		return ExplanationOfBenefit.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ExplanationOfBenefit else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        created = o.created
+        disposition = o.disposition
+        // TODO: identifier array
+        FireKit.populate(&self.organization, from: o.organization)
+        FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
+        outcome = o.outcome
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.requestOrganization, from: o.requestOrganization)
+        FireKit.populate(&self.requestProvider, from: o.requestProvider)
+        FireKit.populate(&self.ruleset, from: o.ruleset)
+    }
 }
-
-
 

@@ -129,9 +129,28 @@ open class Communication: DomainResource {
 		}
 		return Communication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Communication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.category, from: o.category)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        // TODO: medium array
+        // TODO: payload array
+        // TODO: reason array
+        received = o.received
+        // TODO: recipient array
+        FireKit.populate(&self.requestDetail, from: o.requestDetail)
+        FireKit.populate(&self.sender, from: o.sender)
+        sent = o.sent
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 
 
 /**
@@ -208,7 +227,16 @@ open class CommunicationPayload: BackboneElement {
 		}
 		return CommunicationPayload.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CommunicationPayload else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+        contentString = o.contentString
+    }
 }
-
-
 

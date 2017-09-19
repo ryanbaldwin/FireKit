@@ -213,9 +213,41 @@ open class ClaimResponse: DomainResource {
 		}
 		return ClaimResponse.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponse else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: addItem array
+        // TODO: coverage array
+        created = o.created
+        disposition = o.disposition
+        // TODO: error array
+        FireKit.populate(&self.form, from: o.form)
+        // TODO: identifier array
+        // TODO: item array
+        // TODO: note array
+        FireKit.populate(&self.organization, from: o.organization)
+        FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
+        outcome = o.outcome
+        FireKit.populate(&self.payeeType, from: o.payeeType)
+        FireKit.populate(&self.paymentAdjustment, from: o.paymentAdjustment)
+        FireKit.populate(&self.paymentAdjustmentReason, from: o.paymentAdjustmentReason)
+        FireKit.populate(&self.paymentAmount, from: o.paymentAmount)
+        paymentDate = o.paymentDate
+        FireKit.populate(&self.paymentRef, from: o.paymentRef)
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.requestOrganization, from: o.requestOrganization)
+        FireKit.populate(&self.requestProvider, from: o.requestProvider)
+        FireKit.populate(&self.reserved, from: o.reserved)
+        FireKit.populate(&self.ruleset, from: o.ruleset)
+        FireKit.populate(&self.totalBenefit, from: o.totalBenefit)
+        FireKit.populate(&self.totalCost, from: o.totalCost)
+        FireKit.populate(&self.unallocDeductable, from: o.unallocDeductable)
+    }
 }
-
-
 
 
 /**
@@ -302,9 +334,21 @@ open class ClaimResponseAddItem: BackboneElement {
 		}
 		return ClaimResponseAddItem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseAddItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: adjudication array
+        // TODO: detail array
+        FireKit.populate(&self.fee, from: o.fee)
+        // TODO: noteNumberLinkId array
+        // TODO: sequenceLinkId array
+        FireKit.populate(&self.service, from: o.service)
+    }
 }
-
-
 
 
 /**
@@ -379,9 +423,18 @@ open class ClaimResponseAddItemAdjudication: BackboneElement {
 		}
 		return ClaimResponseAddItemAdjudication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseAddItemAdjudication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.code, from: o.code)
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -456,9 +509,18 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 		}
 		return ClaimResponseAddItemDetail.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseAddItemDetail else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: adjudication array
+        FireKit.populate(&self.fee, from: o.fee)
+        FireKit.populate(&self.service, from: o.service)
+    }
 }
-
-
 
 
 /**
@@ -533,9 +595,18 @@ open class ClaimResponseAddItemDetailAdjudication: BackboneElement {
 		}
 		return ClaimResponseAddItemDetailAdjudication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseAddItemDetailAdjudication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.code, from: o.code)
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -639,9 +710,23 @@ open class ClaimResponseCoverage: BackboneElement {
 		}
 		return ClaimResponseCoverage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseCoverage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        businessArrangement = o.businessArrangement
+        FireKit.populate(&self.claimResponse, from: o.claimResponse)
+        FireKit.populate(&self.coverage, from: o.coverage)
+        focal.value = o.focal.value
+        FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
+        // TODO: preAuthRef array
+        FireKit.populate(&self.relationship, from: o.relationship)
+        sequence.value = o.sequence.value
+    }
 }
-
-
 
 
 /**
@@ -717,9 +802,19 @@ open class ClaimResponseError: BackboneElement {
 		}
 		return ClaimResponseError.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseError else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        detailSequenceLinkId.value = o.detailSequenceLinkId.value
+        sequenceLinkId.value = o.sequenceLinkId.value
+        subdetailSequenceLinkId.value = o.subdetailSequenceLinkId.value
+    }
 }
-
-
 
 
 /**
@@ -792,9 +887,19 @@ open class ClaimResponseItem: BackboneElement {
 		}
 		return ClaimResponseItem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: adjudication array
+        // TODO: detail array
+        // TODO: noteNumber array
+        sequenceLinkId.value = o.sequenceLinkId.value
+    }
 }
-
-
 
 
 /**
@@ -869,9 +974,18 @@ open class ClaimResponseItemAdjudication: BackboneElement {
 		}
 		return ClaimResponseItemAdjudication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseItemAdjudication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.code, from: o.code)
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -940,9 +1054,18 @@ open class ClaimResponseItemDetail: BackboneElement {
 		}
 		return ClaimResponseItemDetail.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseItemDetail else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: adjudication array
+        sequenceLinkId.value = o.sequenceLinkId.value
+        // TODO: subDetail array
+    }
 }
-
-
 
 
 /**
@@ -1017,9 +1140,18 @@ open class ClaimResponseItemDetailAdjudication: BackboneElement {
 		}
 		return ClaimResponseItemDetailAdjudication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseItemDetailAdjudication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.code, from: o.code)
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -1084,9 +1216,17 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 		}
 		return ClaimResponseItemDetailSubDetail.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseItemDetailSubDetail else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: adjudication array
+        sequenceLinkId.value = o.sequenceLinkId.value
+    }
 }
-
-
 
 
 /**
@@ -1161,9 +1301,18 @@ open class ClaimResponseItemDetailSubDetailAdjudication: BackboneElement {
 		}
 		return ClaimResponseItemDetailSubDetailAdjudication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseItemDetailSubDetailAdjudication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.code, from: o.code)
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -1229,7 +1378,16 @@ open class ClaimResponseNote: BackboneElement {
 		}
 		return ClaimResponseNote.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClaimResponseNote else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        number.value = o.number.value
+        text = o.text
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

@@ -119,9 +119,25 @@ open class RiskAssessment: DomainResource {
 		}
 		return RiskAssessment.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? RiskAssessment else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: basis array
+        FireKit.populate(&self.condition, from: o.condition)
+        date = o.date
+        FireKit.populate(&self.encounter, from: o.encounter)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.method, from: o.method)
+        mitigation = o.mitigation
+        FireKit.populate(&self.performer, from: o.performer)
+        // TODO: prediction array
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 
 
 /**
@@ -225,7 +241,21 @@ open class RiskAssessmentPrediction: BackboneElement {
 		}
 		return RiskAssessmentPrediction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? RiskAssessmentPrediction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.outcome, from: o.outcome)
+        FireKit.populate(&self.probabilityCodeableConcept, from: o.probabilityCodeableConcept)
+        probabilityDecimal = o.probabilityDecimal
+        FireKit.populate(&self.probabilityRange, from: o.probabilityRange)
+        rationale = o.rationale
+        relativeRisk = o.relativeRisk
+        FireKit.populate(&self.whenPeriod, from: o.whenPeriod)
+        FireKit.populate(&self.whenRange, from: o.whenRange)
+    }
 }
-
-
 

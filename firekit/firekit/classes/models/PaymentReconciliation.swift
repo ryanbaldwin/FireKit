@@ -154,9 +154,30 @@ open class PaymentReconciliation: DomainResource {
 		}
 		return PaymentReconciliation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PaymentReconciliation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        created = o.created
+        // TODO: detail array
+        disposition = o.disposition
+        FireKit.populate(&self.form, from: o.form)
+        // TODO: identifier array
+        // TODO: note array
+        FireKit.populate(&self.organization, from: o.organization)
+        FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
+        outcome = o.outcome
+        FireKit.populate(&self.period, from: o.period)
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.requestOrganization, from: o.requestOrganization)
+        FireKit.populate(&self.requestProvider, from: o.requestProvider)
+        FireKit.populate(&self.ruleset, from: o.ruleset)
+        FireKit.populate(&self.total, from: o.total)
+    }
 }
-
-
 
 
 /**
@@ -259,9 +280,22 @@ open class PaymentReconciliationDetail: BackboneElement {
 		}
 		return PaymentReconciliationDetail.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PaymentReconciliationDetail else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        date = o.date
+        FireKit.populate(&self.payee, from: o.payee)
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.responce, from: o.responce)
+        FireKit.populate(&self.submitter, from: o.submitter)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -323,7 +357,15 @@ open class PaymentReconciliationNote: BackboneElement {
 		}
 		return PaymentReconciliationNote.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PaymentReconciliationNote else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        text = o.text
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

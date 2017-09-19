@@ -155,9 +155,34 @@ open class ValueSet: DomainResource {
 		}
 		return ValueSet.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSet else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.codeSystem, from: o.codeSystem)
+        FireKit.populate(&self.compose, from: o.compose)
+        // TODO: contact array
+        copyright = o.copyright
+        date = o.date
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.expansion, from: o.expansion)
+        experimental.value = o.experimental.value
+        extensible.value = o.extensible.value
+        FireKit.populate(&self.identifier, from: o.identifier)
+        immutable.value = o.immutable.value
+        lockedDate = o.lockedDate
+        name = o.name
+        publisher = o.publisher
+        requirements = o.requirements
+        status = o.status
+        url = o.url
+        // TODO: useContext array
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -232,9 +257,19 @@ open class ValueSetCodeSystem: BackboneElement {
 		}
 		return ValueSetCodeSystem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCodeSystem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        caseSensitive.value = o.caseSensitive.value
+        // TODO: concept array
+        system = o.system
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -316,9 +351,21 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 		}
 		return ValueSetCodeSystemConcept.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCodeSystemConcept else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        abstract.value = o.abstract.value
+        code = o.code
+        // TODO: concept array
+        definition = o.definition
+        // TODO: designation array
+        display = o.display
+    }
 }
-
-
 
 
 /**
@@ -391,9 +438,18 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 		}
 		return ValueSetCodeSystemConceptDesignation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCodeSystemConceptDesignation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        language = o.language
+        FireKit.populate(&self.use, from: o.use)
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -457,9 +513,18 @@ open class ValueSetCompose: BackboneElement {
 		}
 		return ValueSetCompose.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCompose else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: exclude array
+        // TODO: import_fhir array
+        // TODO: include array
+    }
 }
-
-
 
 
 /**
@@ -530,9 +595,19 @@ open class ValueSetComposeInclude: BackboneElement {
 		}
 		return ValueSetComposeInclude.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetComposeInclude else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: concept array
+        // TODO: filter array
+        system = o.system
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -601,9 +676,18 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 		}
 		return ValueSetComposeIncludeConcept.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetComposeIncludeConcept else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        // TODO: designation array
+        display = o.display
+    }
 }
-
-
 
 
 /**
@@ -675,9 +759,18 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 		}
 		return ValueSetComposeIncludeFilter.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetComposeIncludeFilter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        op = o.op
+        property = o.property
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -736,9 +829,17 @@ open class ValueSetContact: BackboneElement {
 		}
 		return ValueSetContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -821,9 +922,21 @@ open class ValueSetExpansion: BackboneElement {
 		}
 		return ValueSetExpansion.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetExpansion else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: contains array
+        identifier = o.identifier
+        offset.value = o.offset.value
+        // TODO: parameter array
+        timestamp = o.timestamp
+        total.value = o.total.value
+    }
 }
-
-
 
 
 /**
@@ -898,9 +1011,21 @@ open class ValueSetExpansionContains: BackboneElement {
 		}
 		return ValueSetExpansionContains.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetExpansionContains else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        abstract.value = o.abstract.value
+        code = o.code
+        // TODO: contains array
+        display = o.display
+        system = o.system
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -986,7 +1111,20 @@ open class ValueSetExpansionParameter: BackboneElement {
 		}
 		return ValueSetExpansionParameter.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetExpansionParameter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        valueBoolean.value = o.valueBoolean.value
+        valueCode = o.valueCode
+        valueDecimal = o.valueDecimal
+        valueInteger.value = o.valueInteger.value
+        valueString = o.valueString
+        valueUri = o.valueUri
+    }
 }
-
-
 

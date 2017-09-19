@@ -84,9 +84,18 @@ open class ImmunizationRecommendation: DomainResource {
 		}
 		return ImmunizationRecommendation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationRecommendation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: identifier array
+        FireKit.populate(&self.patient, from: o.patient)
+        // TODO: recommendation array
+    }
 }
-
-
 
 
 /**
@@ -184,9 +193,23 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 		}
 		return ImmunizationRecommendationRecommendation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationRecommendationRecommendation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        // TODO: dateCriterion array
+        doseNumber.value = o.doseNumber.value
+        FireKit.populate(&self.forecastStatus, from: o.forecastStatus)
+        FireKit.populate(&self.protocol_fhir, from: o.protocol_fhir)
+        // TODO: supportingImmunization array
+        // TODO: supportingPatientInformation array
+        FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
+    }
 }
-
-
 
 
 /**
@@ -255,9 +278,17 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
 		}
 		return ImmunizationRecommendationRecommendationDateCriterion.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationRecommendationRecommendationDateCriterion else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -327,7 +358,17 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
 		}
 		return ImmunizationRecommendationRecommendationProtocol.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationRecommendationRecommendationProtocol else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.authority, from: o.authority)
+        description_fhir = o.description_fhir
+        doseSequence.value = o.doseSequence.value
+        series = o.series
+    }
 }
-
-
 

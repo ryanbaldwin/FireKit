@@ -151,9 +151,31 @@ open class Goal: DomainResource {
 		}
 		return Goal.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Goal else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: addresses array
+        FireKit.populate(&self.author, from: o.author)
+        // TODO: category array
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        // TODO: note array
+        // TODO: outcome array
+        FireKit.populate(&self.priority, from: o.priority)
+        FireKit.populate(&self.startCodeableConcept, from: o.startCodeableConcept)
+        startDate = o.startDate
+        status = o.status
+        statusDate = o.statusDate
+        FireKit.populate(&self.statusReason, from: o.statusReason)
+        FireKit.populate(&self.subject, from: o.subject)
+        targetDate = o.targetDate
+        FireKit.populate(&self.targetQuantity, from: o.targetQuantity)
+    }
 }
-
-
 
 
 /**
@@ -218,7 +240,15 @@ open class GoalOutcome: BackboneElement {
 		}
 		return GoalOutcome.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? GoalOutcome else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.resultCodeableConcept, from: o.resultCodeableConcept)
+        FireKit.populate(&self.resultReference, from: o.resultReference)
+    }
 }
-
-
 

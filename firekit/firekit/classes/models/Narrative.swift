@@ -74,7 +74,15 @@ open class Narrative: Element {
 		}
 		return Narrative.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Narrative else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        div = o.div
+        status = o.status
+    }
 }
-
-
 

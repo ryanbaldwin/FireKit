@@ -139,9 +139,26 @@ open class MessageHeader: DomainResource {
 		}
 		return MessageHeader.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MessageHeader else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        // TODO: data array
+        // TODO: destination array
+        FireKit.populate(&self.enterer, from: o.enterer)
+        FireKit.populate(&self.event, from: o.event)
+        FireKit.populate(&self.reason, from: o.reason)
+        FireKit.populate(&self.receiver, from: o.receiver)
+        FireKit.populate(&self.response, from: o.response)
+        FireKit.populate(&self.responsible, from: o.responsible)
+        FireKit.populate(&self.source, from: o.source)
+        timestamp = o.timestamp
+    }
 }
-
-
 
 
 /**
@@ -213,9 +230,18 @@ open class MessageHeaderDestination: BackboneElement {
 		}
 		return MessageHeaderDestination.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MessageHeaderDestination else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        endpoint = o.endpoint
+        name = o.name
+        FireKit.populate(&self.target, from: o.target)
+    }
 }
-
-
 
 
 /**
@@ -288,9 +314,18 @@ open class MessageHeaderResponse: BackboneElement {
 		}
 		return MessageHeaderResponse.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MessageHeaderResponse else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        FireKit.populate(&self.details, from: o.details)
+        identifier = o.identifier
+    }
 }
-
-
 
 
 /**
@@ -370,7 +405,18 @@ open class MessageHeaderSource: BackboneElement {
 		}
 		return MessageHeaderSource.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MessageHeaderSource else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.contact, from: o.contact)
+        endpoint = o.endpoint
+        name = o.name
+        software = o.software
+        version = o.version
+    }
 }
-
-
 

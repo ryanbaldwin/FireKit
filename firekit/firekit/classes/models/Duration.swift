@@ -57,7 +57,13 @@ open class Duration: Quantity {
 		}
 		return Duration.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Duration else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+    }
 }
-
-
 

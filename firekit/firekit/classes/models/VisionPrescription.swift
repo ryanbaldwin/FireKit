@@ -108,9 +108,23 @@ open class VisionPrescription: DomainResource {
 		}
 		return VisionPrescription.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? VisionPrescription else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        dateWritten = o.dateWritten
+        // TODO: dispense array
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.prescriber, from: o.prescriber)
+        FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
+        FireKit.populate(&self.reasonReference, from: o.reasonReference)
+    }
 }
-
-
 
 
 /**
@@ -233,7 +247,28 @@ open class VisionPrescriptionDispense: BackboneElement {
 		}
 		return VisionPrescriptionDispense.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? VisionPrescriptionDispense else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        add = o.add
+        axis.value = o.axis.value
+        backCurve = o.backCurve
+        base = o.base
+        brand = o.brand
+        color = o.color
+        cylinder = o.cylinder
+        diameter = o.diameter
+        FireKit.populate(&self.duration, from: o.duration)
+        eye = o.eye
+        notes = o.notes
+        power = o.power
+        prism = o.prism
+        FireKit.populate(&self.product, from: o.product)
+        sphere = o.sphere
+    }
 }
-
-
 

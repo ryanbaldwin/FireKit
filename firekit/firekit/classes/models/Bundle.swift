@@ -90,9 +90,20 @@ open class Bundle: Resource {
 		}
 		return Bundle.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Bundle else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: entry array
+        // TODO: link array
+        FireKit.populate(&self.signature, from: o.signature)
+        total.value = o.total.value
+        type = o.type
+    }
 }
-
-
 
 
 /**
@@ -184,9 +195,21 @@ open class BundleEntry: BackboneElement {
 		}
 		return BundleEntry.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? BundleEntry else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        fullUrl = o.fullUrl
+        // TODO: link array
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.resource, from: o.resource)
+        FireKit.populate(&self.response, from: o.response)
+        FireKit.populate(&self.search, from: o.search)
+    }
 }
-
-
 
 
 /**
@@ -268,9 +291,21 @@ open class BundleEntryRequest: BackboneElement {
 		}
 		return BundleEntryRequest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? BundleEntryRequest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        ifMatch = o.ifMatch
+        ifModifiedSince = o.ifModifiedSince
+        ifNoneExist = o.ifNoneExist
+        ifNoneMatch = o.ifNoneMatch
+        method = o.method
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -343,9 +378,19 @@ open class BundleEntryResponse: BackboneElement {
 		}
 		return BundleEntryResponse.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? BundleEntryResponse else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        etag = o.etag
+        lastModified = o.lastModified
+        location = o.location
+        status = o.status
+    }
 }
-
-
 
 
 /**
@@ -404,9 +449,17 @@ open class BundleEntrySearch: BackboneElement {
 		}
 		return BundleEntrySearch.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? BundleEntrySearch else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        mode = o.mode
+        score = o.score
+    }
 }
-
-
 
 
 /**
@@ -472,7 +525,15 @@ open class BundleLink: BackboneElement {
 		}
 		return BundleLink.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? BundleLink else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        relation = o.relation
+        url = o.url
+    }
 }
-
-
 

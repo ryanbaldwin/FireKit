@@ -130,7 +130,25 @@ open class Media: DomainResource {
 		}
 		return Media.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Media else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.content, from: o.content)
+        deviceName = o.deviceName
+        duration.value = o.duration.value
+        frames.value = o.frames.value
+        height.value = o.height.value
+        // TODO: identifier array
+        FireKit.populate(&self.operator_fhir, from: o.operator_fhir)
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.subtype, from: o.subtype)
+        type = o.type
+        FireKit.populate(&self.view, from: o.view)
+        width.value = o.width.value
+    }
 }
-
-
 

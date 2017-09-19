@@ -104,9 +104,23 @@ open class Questionnaire: DomainResource {
 		}
 		return Questionnaire.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Questionnaire else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        FireKit.populate(&self.group, from: o.group)
+        // TODO: identifier array
+        publisher = o.publisher
+        status = o.status
+        // TODO: subjectType array
+        // TODO: telecom array
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -189,9 +203,23 @@ open class QuestionnaireGroup: BackboneElement {
 		}
 		return QuestionnaireGroup.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireGroup else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: concept array
+        // TODO: group array
+        linkId = o.linkId
+        // TODO: question array
+        repeats.value = o.repeats.value
+        required.value = o.required.value
+        text = o.text
+        title = o.title
+    }
 }
-
-
 
 
 /**
@@ -281,7 +309,22 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 		}
 		return QuestionnaireGroupQuestion.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireGroupQuestion else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: concept array
+        // TODO: group array
+        linkId = o.linkId
+        // TODO: option array
+        FireKit.populate(&self.options, from: o.options)
+        repeats.value = o.repeats.value
+        required.value = o.required.value
+        text = o.text
+        type = o.type
+    }
 }
-
-
 

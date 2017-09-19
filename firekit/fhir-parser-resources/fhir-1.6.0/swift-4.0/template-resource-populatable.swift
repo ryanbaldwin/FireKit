@@ -1,24 +1,18 @@
-extension {{ klass.name }} {
-    public override func populate(from other: {{ klass.name }}) {
-        super.populate(from: other)
+    public override func populate(from other: Any) {
+        guard let o = other as? {{ klass.name }} else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
 {%- for prop in klass.properties %}
     {%- if prop.is_array %}
-        // {{ prop.name }} array
+        // TODO: {{ prop.name }} array 
+    {%- elif prop|populatable %}
+        FireKit.populate(&self.{{ prop.name}}, from: o.{{ prop.name }})
     {%- elif prop|requires_realm_optional %}
-        {{ prop.name }}.value = other.{{ prop.name }}.value
-    {%- elif prop.class_name == 'Resource' %}
-        if {{ prop.name }} == nil && other.{{ prop.name }} != nil {
-            {{ prop.name }} = other.{{ prop.name }}
-        } else if {{ prop.name }} != nil && other.{{ prop.name }} == nil {
-            if realm != nil { 
-                {{ prop.name }}.cascadeDelete()
-            } else {
-                {{ prop.name }} = nil
-            }
-        } else if {{ prop.name }} != nil && other.{{ prop.name }} != nil {
-            {{ prop.name }}!.populate(from: other.{{ prop.name }}!)
-        }
+        {{ prop.name }}.value = o.{{ prop.name }}.value
+    {%- elif prop.is_native %}
+        {{ prop.name }} = o.{{prop.name}}
     {%- endif %}
 {%- endfor %}
     }
-}

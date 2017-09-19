@@ -190,9 +190,36 @@ open class Immunization: DomainResource {
 		}
 		return Immunization.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Immunization else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        FireKit.populate(&self.doseQuantity, from: o.doseQuantity)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        expirationDate = o.expirationDate
+        FireKit.populate(&self.explanation, from: o.explanation)
+        // TODO: identifier array
+        FireKit.populate(&self.location, from: o.location)
+        lotNumber = o.lotNumber
+        FireKit.populate(&self.manufacturer, from: o.manufacturer)
+        // TODO: note array
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.performer, from: o.performer)
+        // TODO: reaction array
+        reported.value = o.reported.value
+        FireKit.populate(&self.requester, from: o.requester)
+        FireKit.populate(&self.route, from: o.route)
+        FireKit.populate(&self.site, from: o.site)
+        status = o.status
+        // TODO: vaccinationProtocol array
+        FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
+        wasNotGiven.value = o.wasNotGiven.value
+    }
 }
-
-
 
 
 /**
@@ -251,9 +278,17 @@ open class ImmunizationExplanation: BackboneElement {
 		}
 		return ImmunizationExplanation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationExplanation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: reason array
+        // TODO: reasonNotGiven array
+    }
 }
-
-
 
 
 /**
@@ -319,9 +354,18 @@ open class ImmunizationReaction: BackboneElement {
 		}
 		return ImmunizationReaction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationReaction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        FireKit.populate(&self.detail, from: o.detail)
+        reported.value = o.reported.value
+    }
 }
-
-
 
 
 /**
@@ -421,7 +465,21 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 		}
 		return ImmunizationVaccinationProtocol.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationVaccinationProtocol else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.authority, from: o.authority)
+        description_fhir = o.description_fhir
+        doseSequence.value = o.doseSequence.value
+        FireKit.populate(&self.doseStatus, from: o.doseStatus)
+        FireKit.populate(&self.doseStatusReason, from: o.doseStatusReason)
+        series = o.series
+        seriesDoses.value = o.seriesDoses.value
+        // TODO: targetDisease array
+    }
 }
-
-
 

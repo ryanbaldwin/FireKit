@@ -140,9 +140,29 @@ open class AllergyIntolerance: DomainResource {
 		}
 		return AllergyIntolerance.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AllergyIntolerance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        category = o.category
+        criticality = o.criticality
+        // TODO: identifier array
+        lastOccurence = o.lastOccurence
+        FireKit.populate(&self.note, from: o.note)
+        onset = o.onset
+        FireKit.populate(&self.patient, from: o.patient)
+        // TODO: reaction array
+        recordedDate = o.recordedDate
+        FireKit.populate(&self.recorder, from: o.recorder)
+        FireKit.populate(&self.reporter, from: o.reporter)
+        status = o.status
+        FireKit.populate(&self.substance, from: o.substance)
+        type = o.type
+    }
 }
-
-
 
 
 /**
@@ -240,7 +260,21 @@ open class AllergyIntoleranceReaction: BackboneElement {
 		}
 		return AllergyIntoleranceReaction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AllergyIntoleranceReaction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        certainty = o.certainty
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.exposureRoute, from: o.exposureRoute)
+        // TODO: manifestation array
+        FireKit.populate(&self.note, from: o.note)
+        onset = o.onset
+        severity = o.severity
+        FireKit.populate(&self.substance, from: o.substance)
+    }
 }
-
-
 

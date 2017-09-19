@@ -1274,9 +1274,238 @@ open class ElementDefinition: Element {
 		}
 		return ElementDefinition.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ElementDefinition else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: alias array
+        FireKit.populate(&self.base, from: o.base)
+        FireKit.populate(&self.binding, from: o.binding)
+        // TODO: code array
+        comments = o.comments
+        // TODO: condition array
+        // TODO: constraint array
+        FireKit.populate(&self.defaultValueAddress, from: o.defaultValueAddress)
+        FireKit.populate(&self.defaultValueAnnotation, from: o.defaultValueAnnotation)
+        FireKit.populate(&self.defaultValueAttachment, from: o.defaultValueAttachment)
+        defaultValueBase64Binary = o.defaultValueBase64Binary
+        defaultValueBoolean.value = o.defaultValueBoolean.value
+        defaultValueCode = o.defaultValueCode
+        FireKit.populate(&self.defaultValueCodeableConcept, from: o.defaultValueCodeableConcept)
+        FireKit.populate(&self.defaultValueCoding, from: o.defaultValueCoding)
+        FireKit.populate(&self.defaultValueContactPoint, from: o.defaultValueContactPoint)
+        defaultValueDate = o.defaultValueDate
+        defaultValueDateTime = o.defaultValueDateTime
+        defaultValueDecimal = o.defaultValueDecimal
+        FireKit.populate(&self.defaultValueHumanName, from: o.defaultValueHumanName)
+        defaultValueId = o.defaultValueId
+        FireKit.populate(&self.defaultValueIdentifier, from: o.defaultValueIdentifier)
+        defaultValueInstant = o.defaultValueInstant
+        defaultValueInteger.value = o.defaultValueInteger.value
+        defaultValueMarkdown = o.defaultValueMarkdown
+        FireKit.populate(&self.defaultValueMeta, from: o.defaultValueMeta)
+        defaultValueOid = o.defaultValueOid
+        FireKit.populate(&self.defaultValuePeriod, from: o.defaultValuePeriod)
+        defaultValuePositiveInt.value = o.defaultValuePositiveInt.value
+        FireKit.populate(&self.defaultValueQuantity, from: o.defaultValueQuantity)
+        FireKit.populate(&self.defaultValueRange, from: o.defaultValueRange)
+        FireKit.populate(&self.defaultValueRatio, from: o.defaultValueRatio)
+        FireKit.populate(&self.defaultValueReference, from: o.defaultValueReference)
+        FireKit.populate(&self.defaultValueSampledData, from: o.defaultValueSampledData)
+        FireKit.populate(&self.defaultValueSignature, from: o.defaultValueSignature)
+        defaultValueString = o.defaultValueString
+        defaultValueTime = o.defaultValueTime
+        FireKit.populate(&self.defaultValueTiming, from: o.defaultValueTiming)
+        defaultValueUnsignedInt.value = o.defaultValueUnsignedInt.value
+        defaultValueUri = o.defaultValueUri
+        definition = o.definition
+        FireKit.populate(&self.exampleAddress, from: o.exampleAddress)
+        FireKit.populate(&self.exampleAnnotation, from: o.exampleAnnotation)
+        FireKit.populate(&self.exampleAttachment, from: o.exampleAttachment)
+        exampleBase64Binary = o.exampleBase64Binary
+        exampleBoolean.value = o.exampleBoolean.value
+        exampleCode = o.exampleCode
+        FireKit.populate(&self.exampleCodeableConcept, from: o.exampleCodeableConcept)
+        FireKit.populate(&self.exampleCoding, from: o.exampleCoding)
+        FireKit.populate(&self.exampleContactPoint, from: o.exampleContactPoint)
+        exampleDate = o.exampleDate
+        exampleDateTime = o.exampleDateTime
+        exampleDecimal = o.exampleDecimal
+        FireKit.populate(&self.exampleHumanName, from: o.exampleHumanName)
+        exampleId = o.exampleId
+        FireKit.populate(&self.exampleIdentifier, from: o.exampleIdentifier)
+        exampleInstant = o.exampleInstant
+        exampleInteger.value = o.exampleInteger.value
+        exampleMarkdown = o.exampleMarkdown
+        FireKit.populate(&self.exampleMeta, from: o.exampleMeta)
+        exampleOid = o.exampleOid
+        FireKit.populate(&self.examplePeriod, from: o.examplePeriod)
+        examplePositiveInt.value = o.examplePositiveInt.value
+        FireKit.populate(&self.exampleQuantity, from: o.exampleQuantity)
+        FireKit.populate(&self.exampleRange, from: o.exampleRange)
+        FireKit.populate(&self.exampleRatio, from: o.exampleRatio)
+        FireKit.populate(&self.exampleReference, from: o.exampleReference)
+        FireKit.populate(&self.exampleSampledData, from: o.exampleSampledData)
+        FireKit.populate(&self.exampleSignature, from: o.exampleSignature)
+        exampleString = o.exampleString
+        exampleTime = o.exampleTime
+        FireKit.populate(&self.exampleTiming, from: o.exampleTiming)
+        exampleUnsignedInt.value = o.exampleUnsignedInt.value
+        exampleUri = o.exampleUri
+        FireKit.populate(&self.fixedAddress, from: o.fixedAddress)
+        FireKit.populate(&self.fixedAnnotation, from: o.fixedAnnotation)
+        FireKit.populate(&self.fixedAttachment, from: o.fixedAttachment)
+        fixedBase64Binary = o.fixedBase64Binary
+        fixedBoolean.value = o.fixedBoolean.value
+        fixedCode = o.fixedCode
+        FireKit.populate(&self.fixedCodeableConcept, from: o.fixedCodeableConcept)
+        FireKit.populate(&self.fixedCoding, from: o.fixedCoding)
+        FireKit.populate(&self.fixedContactPoint, from: o.fixedContactPoint)
+        fixedDate = o.fixedDate
+        fixedDateTime = o.fixedDateTime
+        fixedDecimal = o.fixedDecimal
+        FireKit.populate(&self.fixedHumanName, from: o.fixedHumanName)
+        fixedId = o.fixedId
+        FireKit.populate(&self.fixedIdentifier, from: o.fixedIdentifier)
+        fixedInstant = o.fixedInstant
+        fixedInteger.value = o.fixedInteger.value
+        fixedMarkdown = o.fixedMarkdown
+        FireKit.populate(&self.fixedMeta, from: o.fixedMeta)
+        fixedOid = o.fixedOid
+        FireKit.populate(&self.fixedPeriod, from: o.fixedPeriod)
+        fixedPositiveInt.value = o.fixedPositiveInt.value
+        FireKit.populate(&self.fixedQuantity, from: o.fixedQuantity)
+        FireKit.populate(&self.fixedRange, from: o.fixedRange)
+        FireKit.populate(&self.fixedRatio, from: o.fixedRatio)
+        FireKit.populate(&self.fixedReference, from: o.fixedReference)
+        FireKit.populate(&self.fixedSampledData, from: o.fixedSampledData)
+        FireKit.populate(&self.fixedSignature, from: o.fixedSignature)
+        fixedString = o.fixedString
+        fixedTime = o.fixedTime
+        FireKit.populate(&self.fixedTiming, from: o.fixedTiming)
+        fixedUnsignedInt.value = o.fixedUnsignedInt.value
+        fixedUri = o.fixedUri
+        isModifier.value = o.isModifier.value
+        isSummary.value = o.isSummary.value
+        label = o.label
+        // TODO: mapping array
+        max = o.max
+        maxLength.value = o.maxLength.value
+        FireKit.populate(&self.maxValueAddress, from: o.maxValueAddress)
+        FireKit.populate(&self.maxValueAnnotation, from: o.maxValueAnnotation)
+        FireKit.populate(&self.maxValueAttachment, from: o.maxValueAttachment)
+        maxValueBase64Binary = o.maxValueBase64Binary
+        maxValueBoolean.value = o.maxValueBoolean.value
+        maxValueCode = o.maxValueCode
+        FireKit.populate(&self.maxValueCodeableConcept, from: o.maxValueCodeableConcept)
+        FireKit.populate(&self.maxValueCoding, from: o.maxValueCoding)
+        FireKit.populate(&self.maxValueContactPoint, from: o.maxValueContactPoint)
+        maxValueDate = o.maxValueDate
+        maxValueDateTime = o.maxValueDateTime
+        maxValueDecimal = o.maxValueDecimal
+        FireKit.populate(&self.maxValueHumanName, from: o.maxValueHumanName)
+        maxValueId = o.maxValueId
+        FireKit.populate(&self.maxValueIdentifier, from: o.maxValueIdentifier)
+        maxValueInstant = o.maxValueInstant
+        maxValueInteger.value = o.maxValueInteger.value
+        maxValueMarkdown = o.maxValueMarkdown
+        FireKit.populate(&self.maxValueMeta, from: o.maxValueMeta)
+        maxValueOid = o.maxValueOid
+        FireKit.populate(&self.maxValuePeriod, from: o.maxValuePeriod)
+        maxValuePositiveInt.value = o.maxValuePositiveInt.value
+        FireKit.populate(&self.maxValueQuantity, from: o.maxValueQuantity)
+        FireKit.populate(&self.maxValueRange, from: o.maxValueRange)
+        FireKit.populate(&self.maxValueRatio, from: o.maxValueRatio)
+        FireKit.populate(&self.maxValueReference, from: o.maxValueReference)
+        FireKit.populate(&self.maxValueSampledData, from: o.maxValueSampledData)
+        FireKit.populate(&self.maxValueSignature, from: o.maxValueSignature)
+        maxValueString = o.maxValueString
+        maxValueTime = o.maxValueTime
+        FireKit.populate(&self.maxValueTiming, from: o.maxValueTiming)
+        maxValueUnsignedInt.value = o.maxValueUnsignedInt.value
+        maxValueUri = o.maxValueUri
+        meaningWhenMissing = o.meaningWhenMissing
+        min.value = o.min.value
+        FireKit.populate(&self.minValueAddress, from: o.minValueAddress)
+        FireKit.populate(&self.minValueAnnotation, from: o.minValueAnnotation)
+        FireKit.populate(&self.minValueAttachment, from: o.minValueAttachment)
+        minValueBase64Binary = o.minValueBase64Binary
+        minValueBoolean.value = o.minValueBoolean.value
+        minValueCode = o.minValueCode
+        FireKit.populate(&self.minValueCodeableConcept, from: o.minValueCodeableConcept)
+        FireKit.populate(&self.minValueCoding, from: o.minValueCoding)
+        FireKit.populate(&self.minValueContactPoint, from: o.minValueContactPoint)
+        minValueDate = o.minValueDate
+        minValueDateTime = o.minValueDateTime
+        minValueDecimal = o.minValueDecimal
+        FireKit.populate(&self.minValueHumanName, from: o.minValueHumanName)
+        minValueId = o.minValueId
+        FireKit.populate(&self.minValueIdentifier, from: o.minValueIdentifier)
+        minValueInstant = o.minValueInstant
+        minValueInteger.value = o.minValueInteger.value
+        minValueMarkdown = o.minValueMarkdown
+        FireKit.populate(&self.minValueMeta, from: o.minValueMeta)
+        minValueOid = o.minValueOid
+        FireKit.populate(&self.minValuePeriod, from: o.minValuePeriod)
+        minValuePositiveInt.value = o.minValuePositiveInt.value
+        FireKit.populate(&self.minValueQuantity, from: o.minValueQuantity)
+        FireKit.populate(&self.minValueRange, from: o.minValueRange)
+        FireKit.populate(&self.minValueRatio, from: o.minValueRatio)
+        FireKit.populate(&self.minValueReference, from: o.minValueReference)
+        FireKit.populate(&self.minValueSampledData, from: o.minValueSampledData)
+        FireKit.populate(&self.minValueSignature, from: o.minValueSignature)
+        minValueString = o.minValueString
+        minValueTime = o.minValueTime
+        FireKit.populate(&self.minValueTiming, from: o.minValueTiming)
+        minValueUnsignedInt.value = o.minValueUnsignedInt.value
+        minValueUri = o.minValueUri
+        mustSupport.value = o.mustSupport.value
+        name = o.name
+        nameReference = o.nameReference
+        path = o.path
+        FireKit.populate(&self.patternAddress, from: o.patternAddress)
+        FireKit.populate(&self.patternAnnotation, from: o.patternAnnotation)
+        FireKit.populate(&self.patternAttachment, from: o.patternAttachment)
+        patternBase64Binary = o.patternBase64Binary
+        patternBoolean.value = o.patternBoolean.value
+        patternCode = o.patternCode
+        FireKit.populate(&self.patternCodeableConcept, from: o.patternCodeableConcept)
+        FireKit.populate(&self.patternCoding, from: o.patternCoding)
+        FireKit.populate(&self.patternContactPoint, from: o.patternContactPoint)
+        patternDate = o.patternDate
+        patternDateTime = o.patternDateTime
+        patternDecimal = o.patternDecimal
+        FireKit.populate(&self.patternHumanName, from: o.patternHumanName)
+        patternId = o.patternId
+        FireKit.populate(&self.patternIdentifier, from: o.patternIdentifier)
+        patternInstant = o.patternInstant
+        patternInteger.value = o.patternInteger.value
+        patternMarkdown = o.patternMarkdown
+        FireKit.populate(&self.patternMeta, from: o.patternMeta)
+        patternOid = o.patternOid
+        FireKit.populate(&self.patternPeriod, from: o.patternPeriod)
+        patternPositiveInt.value = o.patternPositiveInt.value
+        FireKit.populate(&self.patternQuantity, from: o.patternQuantity)
+        FireKit.populate(&self.patternRange, from: o.patternRange)
+        FireKit.populate(&self.patternRatio, from: o.patternRatio)
+        FireKit.populate(&self.patternReference, from: o.patternReference)
+        FireKit.populate(&self.patternSampledData, from: o.patternSampledData)
+        FireKit.populate(&self.patternSignature, from: o.patternSignature)
+        patternString = o.patternString
+        patternTime = o.patternTime
+        FireKit.populate(&self.patternTiming, from: o.patternTiming)
+        patternUnsignedInt.value = o.patternUnsignedInt.value
+        patternUri = o.patternUri
+        // TODO: representation array
+        requirements = o.requirements
+        short = o.short
+        FireKit.populate(&self.slicing, from: o.slicing)
+        // TODO: type array
+    }
 }
-
-
 
 
 /**
@@ -1350,9 +1579,18 @@ open class ElementDefinitionBase: Element {
 		}
 		return ElementDefinitionBase.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ElementDefinitionBase else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        max = o.max
+        min.value = o.min.value
+        path = o.path
+    }
 }
-
-
 
 
 /**
@@ -1428,9 +1666,19 @@ open class ElementDefinitionBinding: Element {
 		}
 		return ElementDefinitionBinding.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ElementDefinitionBinding else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        description_fhir = o.description_fhir
+        strength = o.strength
+        FireKit.populate(&self.valueSetReference, from: o.valueSetReference)
+        valueSetUri = o.valueSetUri
+    }
 }
-
-
 
 
 /**
@@ -1511,9 +1759,20 @@ open class ElementDefinitionConstraint: Element {
 		}
 		return ElementDefinitionConstraint.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ElementDefinitionConstraint else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        human = o.human
+        key = o.key
+        requirements = o.requirements
+        severity = o.severity
+        xpath = o.xpath
+    }
 }
-
-
 
 
 /**
@@ -1583,9 +1842,18 @@ open class ElementDefinitionMapping: Element {
 		}
 		return ElementDefinitionMapping.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ElementDefinitionMapping else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        identity = o.identity
+        language = o.language
+        map = o.map
+    }
 }
-
-
 
 
 /**
@@ -1662,9 +1930,19 @@ open class ElementDefinitionSlicing: Element {
 		}
 		return ElementDefinitionSlicing.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ElementDefinitionSlicing else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        description_fhir = o.description_fhir
+        // TODO: discriminator array
+        ordered.value = o.ordered.value
+        rules = o.rules
+    }
 }
-
-
 
 
 /**
@@ -1733,7 +2011,16 @@ open class ElementDefinitionType: Element {
 		}
 		return ElementDefinitionType.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ElementDefinitionType else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: aggregation array
+        code = o.code
+        // TODO: profile array
+    }
 }
-
-
 

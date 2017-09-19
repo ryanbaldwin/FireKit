@@ -50,6 +50,16 @@ def can_upsert(prop):
 
 jinja2.filters.FILTERS['can_upsert'] = can_upsert
 
+non_populatable_types = { 'String', 'Date', 'Data' }
+def populatable(prop):
+	""" Returns true if thsi property can be populated; otherwise false."""
+	return (not prop.is_native
+					and not requires_realm_optional(prop)
+					and prop.class_name not in non_populatable_types
+		)
+
+jinja2.filters.FILTERS['populatable'] = populatable
+
 ### Filters for Unit Tests
 reverse_reservedmap = {v: k for k, v in reservedmap.iteritems()}
 propname_regex = re.compile('\w+')

@@ -178,9 +178,40 @@ open class StructureDefinition: DomainResource {
 		}
 		return StructureDefinition.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? StructureDefinition else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        abstract.value = o.abstract.value
+        base = o.base
+        // TODO: code array
+        constrainedType = o.constrainedType
+        // TODO: contact array
+        // TODO: context array
+        contextType = o.contextType
+        copyright = o.copyright
+        date = o.date
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.differential, from: o.differential)
+        display = o.display
+        experimental.value = o.experimental.value
+        fhirVersion = o.fhirVersion
+        // TODO: identifier array
+        kind = o.kind
+        // TODO: mapping array
+        name = o.name
+        publisher = o.publisher
+        requirements = o.requirements
+        FireKit.populate(&self.snapshot, from: o.snapshot)
+        status = o.status
+        url = o.url
+        // TODO: useContext array
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -239,9 +270,17 @@ open class StructureDefinitionContact: BackboneElement {
 		}
 		return StructureDefinitionContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? StructureDefinitionContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -303,9 +342,16 @@ open class StructureDefinitionDifferential: BackboneElement {
 		}
 		return StructureDefinitionDifferential.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? StructureDefinitionDifferential else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: element array
+    }
 }
-
-
 
 
 /**
@@ -378,9 +424,19 @@ open class StructureDefinitionMapping: BackboneElement {
 		}
 		return StructureDefinitionMapping.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? StructureDefinitionMapping else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        comments = o.comments
+        identity = o.identity
+        name = o.name
+        uri = o.uri
+    }
 }
-
-
 
 
 /**
@@ -442,7 +498,14 @@ open class StructureDefinitionSnapshot: BackboneElement {
 		}
 		return StructureDefinitionSnapshot.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? StructureDefinitionSnapshot else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: element array
+    }
 }
-
-
 

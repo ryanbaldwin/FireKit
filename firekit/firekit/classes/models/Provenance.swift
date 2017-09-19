@@ -123,9 +123,25 @@ open class Provenance: DomainResource {
 		}
 		return Provenance.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Provenance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.activity, from: o.activity)
+        // TODO: agent array
+        // TODO: entity array
+        FireKit.populate(&self.location, from: o.location)
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: policy array
+        // TODO: reason array
+        recorded = o.recorded
+        // TODO: signature array
+        // TODO: target array
+    }
 }
-
-
 
 
 /**
@@ -209,9 +225,19 @@ open class ProvenanceAgent: BackboneElement {
 		}
 		return ProvenanceAgent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProvenanceAgent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.actor, from: o.actor)
+        // TODO: relatedAgent array
+        FireKit.populate(&self.role, from: o.role)
+        FireKit.populate(&self.userId, from: o.userId)
+    }
 }
-
-
 
 
 /**
@@ -282,9 +308,17 @@ open class ProvenanceAgentRelatedAgent: BackboneElement {
 		}
 		return ProvenanceAgentRelatedAgent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProvenanceAgentRelatedAgent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        target = o.target
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -367,7 +401,18 @@ open class ProvenanceEntity: BackboneElement {
 		}
 		return ProvenanceEntity.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProvenanceEntity else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.agent, from: o.agent)
+        display = o.display
+        reference = o.reference
+        role = o.role
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

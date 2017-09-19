@@ -127,7 +127,24 @@ open class Account: DomainResource {
 		}
 		return Account.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Account else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.activePeriod, from: o.activePeriod)
+        FireKit.populate(&self.balance, from: o.balance)
+        FireKit.populate(&self.coveragePeriod, from: o.coveragePeriod)
+        FireKit.populate(&self.currency, from: o.currency)
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        name = o.name
+        FireKit.populate(&self.owner, from: o.owner)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

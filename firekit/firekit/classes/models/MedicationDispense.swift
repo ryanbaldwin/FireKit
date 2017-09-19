@@ -168,9 +168,32 @@ open class MedicationDispense: DomainResource {
 		}
 		return MedicationDispense.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationDispense else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: authorizingPrescription array
+        FireKit.populate(&self.daysSupply, from: o.daysSupply)
+        FireKit.populate(&self.destination, from: o.destination)
+        FireKit.populate(&self.dispenser, from: o.dispenser)
+        // TODO: dosageInstruction array
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
+        FireKit.populate(&self.medicationReference, from: o.medicationReference)
+        note = o.note
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.quantity, from: o.quantity)
+        // TODO: receiver array
+        status = o.status
+        FireKit.populate(&self.substitution, from: o.substitution)
+        FireKit.populate(&self.type, from: o.type)
+        whenHandedOver = o.whenHandedOver
+        whenPrepared = o.whenPrepared
+    }
 }
-
-
 
 
 /**
@@ -313,9 +336,29 @@ open class MedicationDispenseDosageInstruction: BackboneElement {
 		}
 		return MedicationDispenseDosageInstruction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationDispenseDosageInstruction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.additionalInstructions, from: o.additionalInstructions)
+        asNeededBoolean.value = o.asNeededBoolean.value
+        FireKit.populate(&self.asNeededCodeableConcept, from: o.asNeededCodeableConcept)
+        FireKit.populate(&self.doseQuantity, from: o.doseQuantity)
+        FireKit.populate(&self.doseRange, from: o.doseRange)
+        FireKit.populate(&self.maxDosePerPeriod, from: o.maxDosePerPeriod)
+        FireKit.populate(&self.method, from: o.method)
+        FireKit.populate(&self.rateRange, from: o.rateRange)
+        FireKit.populate(&self.rateRatio, from: o.rateRatio)
+        FireKit.populate(&self.route, from: o.route)
+        FireKit.populate(&self.siteCodeableConcept, from: o.siteCodeableConcept)
+        FireKit.populate(&self.siteReference, from: o.siteReference)
+        text = o.text
+        FireKit.populate(&self.timing, from: o.timing)
+    }
 }
-
-
 
 
 /**
@@ -389,7 +432,16 @@ open class MedicationDispenseSubstitution: BackboneElement {
 		}
 		return MedicationDispenseSubstitution.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationDispenseSubstitution else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: reason array
+        // TODO: responsibleParty array
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

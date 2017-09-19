@@ -119,9 +119,24 @@ open class Order: DomainResource {
 		}
 		return Order.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Order else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        // TODO: detail array
+        // TODO: identifier array
+        FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
+        FireKit.populate(&self.reasonReference, from: o.reasonReference)
+        FireKit.populate(&self.source, from: o.source)
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.target, from: o.target)
+        FireKit.populate(&self.when, from: o.when)
+    }
 }
-
-
 
 
 /**
@@ -184,7 +199,15 @@ open class OrderWhen: BackboneElement {
 		}
 		return OrderWhen.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OrderWhen else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.schedule, from: o.schedule)
+    }
 }
-
-
 

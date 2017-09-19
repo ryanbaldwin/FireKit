@@ -94,7 +94,19 @@ open class Identifier: Element {
 		}
 		return Identifier.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Identifier else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.assigner, from: o.assigner)
+        FireKit.populate(&self.period, from: o.period)
+        system = o.system
+        FireKit.populate(&self.type, from: o.type)
+        use = o.use
+        value = o.value
+    }
 }
-
-
 

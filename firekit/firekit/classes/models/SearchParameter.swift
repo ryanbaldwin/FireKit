@@ -132,9 +132,30 @@ open class SearchParameter: DomainResource {
 		}
 		return SearchParameter.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SearchParameter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        base = o.base
+        code = o.code
+        // TODO: contact array
+        date = o.date
+        description_fhir = o.description_fhir
+        experimental.value = o.experimental.value
+        name = o.name
+        publisher = o.publisher
+        requirements = o.requirements
+        status = o.status
+        // TODO: target array
+        type = o.type
+        url = o.url
+        xpath = o.xpath
+        xpathUsage = o.xpathUsage
+    }
 }
-
-
 
 
 /**
@@ -193,7 +214,15 @@ open class SearchParameterContact: BackboneElement {
 		}
 		return SearchParameterContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SearchParameterContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 

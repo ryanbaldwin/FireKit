@@ -138,7 +138,25 @@ open class DeviceUseStatement: DomainResource {
 		}
 		return DeviceUseStatement.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceUseStatement else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.bodySiteCodeableConcept, from: o.bodySiteCodeableConcept)
+        FireKit.populate(&self.bodySiteReference, from: o.bodySiteReference)
+        FireKit.populate(&self.device, from: o.device)
+        // TODO: identifier array
+        // TODO: indication array
+        // TODO: notes array
+        recordedOn = o.recordedOn
+        FireKit.populate(&self.subject, from: o.subject)
+        timingDateTime = o.timingDateTime
+        FireKit.populate(&self.timingPeriod, from: o.timingPeriod)
+        FireKit.populate(&self.timingTiming, from: o.timingTiming)
+        FireKit.populate(&self.whenUsed, from: o.whenUsed)
+    }
 }
-
-
 

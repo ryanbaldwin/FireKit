@@ -40,8 +40,8 @@ open class {{ klass.name }}: {{ klass.superclass.name|default('FHIRAbstractBase'
 		}
 		return {{ klass.name }}.init()
 	}
-}
 
-{# include 'template-resource-populatable.swift' #}
+{% include 'template-resource-populatable.swift' %}
+}
 {% endfor %}
 

@@ -92,7 +92,20 @@ open class HumanName: Element {
 		}
 		return HumanName.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? HumanName else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: family array
+        // TODO: given array
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: prefix array
+        // TODO: suffix array
+        text = o.text
+        use = o.use
+    }
 }
-
-
 

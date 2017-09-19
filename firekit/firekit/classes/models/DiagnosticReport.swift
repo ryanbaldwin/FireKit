@@ -167,9 +167,33 @@ open class DiagnosticReport: DomainResource {
 		}
 		return DiagnosticReport.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DiagnosticReport else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.category, from: o.category)
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: codedDiagnosis array
+        conclusion = o.conclusion
+        effectiveDateTime = o.effectiveDateTime
+        FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        // TODO: image array
+        // TODO: imagingStudy array
+        issued = o.issued
+        FireKit.populate(&self.performer, from: o.performer)
+        // TODO: presentedForm array
+        // TODO: request array
+        // TODO: result array
+        // TODO: specimen array
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 
 
 /**
@@ -238,7 +262,15 @@ open class DiagnosticReportImage: BackboneElement {
 		}
 		return DiagnosticReportImage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DiagnosticReportImage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        comment = o.comment
+        FireKit.populate(&self.link, from: o.link)
+    }
 }
-
-
 

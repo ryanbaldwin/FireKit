@@ -85,7 +85,18 @@ open class ContactPoint: Element {
 		}
 		return ContactPoint.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContactPoint else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.period, from: o.period)
+        rank.value = o.rank.value
+        system = o.system
+        use = o.use
+        value = o.value
+    }
 }
-
-
 

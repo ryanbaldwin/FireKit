@@ -114,9 +114,25 @@ open class DetectedIssue: DomainResource {
 		}
 		return DetectedIssue.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DetectedIssue else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        FireKit.populate(&self.category, from: o.category)
+        date = o.date
+        detail = o.detail
+        FireKit.populate(&self.identifier, from: o.identifier)
+        // TODO: implicated array
+        // TODO: mitigation array
+        FireKit.populate(&self.patient, from: o.patient)
+        reference = o.reference
+        severity = o.severity
+    }
 }
-
-
 
 
 /**
@@ -193,7 +209,16 @@ open class DetectedIssueMitigation: BackboneElement {
 		}
 		return DetectedIssueMitigation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DetectedIssueMitigation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.action, from: o.action)
+        FireKit.populate(&self.author, from: o.author)
+        date = o.date
+    }
 }
-
-
 

@@ -138,7 +138,27 @@ open class Coverage: DomainResource {
 		}
 		return Coverage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Coverage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.bin, from: o.bin)
+        // TODO: contract array
+        dependent.value = o.dependent.value
+        group = o.group
+        // TODO: identifier array
+        FireKit.populate(&self.issuer, from: o.issuer)
+        FireKit.populate(&self.network, from: o.network)
+        FireKit.populate(&self.period, from: o.period)
+        plan = o.plan
+        sequence.value = o.sequence.value
+        subPlan = o.subPlan
+        FireKit.populate(&self.subscriber, from: o.subscriber)
+        FireKit.populate(&self.subscriberId, from: o.subscriberId)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

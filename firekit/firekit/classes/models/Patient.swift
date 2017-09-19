@@ -147,9 +147,34 @@ open class Patient: DomainResource {
 		}
 		return Patient.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Patient else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        active.value = o.active.value
+        // TODO: address array
+        FireKit.populate(&self.animal, from: o.animal)
+        birthDate = o.birthDate
+        // TODO: careProvider array
+        // TODO: communication array
+        // TODO: contact array
+        deceasedBoolean.value = o.deceasedBoolean.value
+        deceasedDateTime = o.deceasedDateTime
+        gender = o.gender
+        // TODO: identifier array
+        // TODO: link array
+        FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
+        FireKit.populate(&self.maritalStatus, from: o.maritalStatus)
+        multipleBirthBoolean.value = o.multipleBirthBoolean.value
+        multipleBirthInteger.value = o.multipleBirthInteger.value
+        // TODO: name array
+        // TODO: photo array
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -227,9 +252,18 @@ open class PatientAnimal: BackboneElement {
 		}
 		return PatientAnimal.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PatientAnimal else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.breed, from: o.breed)
+        FireKit.populate(&self.genderStatus, from: o.genderStatus)
+        FireKit.populate(&self.species, from: o.species)
+    }
 }
-
-
 
 
 /**
@@ -297,9 +331,17 @@ open class PatientCommunication: BackboneElement {
 		}
 		return PatientCommunication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PatientCommunication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.language, from: o.language)
+        preferred.value = o.preferred.value
+    }
 }
-
-
 
 
 /**
@@ -388,9 +430,22 @@ open class PatientContact: BackboneElement {
 		}
 		return PatientContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PatientContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.address, from: o.address)
+        gender = o.gender
+        FireKit.populate(&self.name, from: o.name)
+        FireKit.populate(&self.organization, from: o.organization)
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: relationship array
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -459,7 +514,15 @@ open class PatientLink: BackboneElement {
 		}
 		return PatientLink.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PatientLink else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.other, from: o.other)
+        type = o.type
+    }
 }
-
-
 

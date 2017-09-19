@@ -143,9 +143,30 @@ open class CommunicationRequest: DomainResource {
 		}
 		return CommunicationRequest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CommunicationRequest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.category, from: o.category)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        // TODO: medium array
+        // TODO: payload array
+        FireKit.populate(&self.priority, from: o.priority)
+        // TODO: reason array
+        // TODO: recipient array
+        requestedOn = o.requestedOn
+        FireKit.populate(&self.requester, from: o.requester)
+        scheduledDateTime = o.scheduledDateTime
+        FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)
+        FireKit.populate(&self.sender, from: o.sender)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 
 
 /**
@@ -222,7 +243,16 @@ open class CommunicationRequestPayload: BackboneElement {
 		}
 		return CommunicationRequestPayload.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CommunicationRequestPayload else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+        contentString = o.contentString
+    }
 }
-
-
 

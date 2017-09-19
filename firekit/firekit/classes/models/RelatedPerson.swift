@@ -120,7 +120,23 @@ open class RelatedPerson: DomainResource {
 		}
 		return RelatedPerson.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? RelatedPerson else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: address array
+        birthDate = o.birthDate
+        gender = o.gender
+        // TODO: identifier array
+        FireKit.populate(&self.name, from: o.name)
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: photo array
+        FireKit.populate(&self.relationship, from: o.relationship)
+        // TODO: telecom array
+    }
 }
-
-
 

@@ -129,9 +129,26 @@ open class SupplyRequest: DomainResource {
 		}
 		return SupplyRequest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SupplyRequest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.kind, from: o.kind)
+        FireKit.populate(&self.orderedItem, from: o.orderedItem)
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
+        FireKit.populate(&self.reasonReference, from: o.reasonReference)
+        FireKit.populate(&self.source, from: o.source)
+        status = o.status
+        // TODO: supplier array
+        FireKit.populate(&self.when, from: o.when)
+    }
 }
-
-
 
 
 /**
@@ -194,7 +211,15 @@ open class SupplyRequestWhen: BackboneElement {
 		}
 		return SupplyRequestWhen.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SupplyRequestWhen else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.schedule, from: o.schedule)
+    }
 }
-
-
 

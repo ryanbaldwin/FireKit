@@ -105,7 +105,23 @@ open class Address: Element {
 		}
 		return Address.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Address else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        city = o.city
+        country = o.country
+        district = o.district
+        // TODO: line array
+        FireKit.populate(&self.period, from: o.period)
+        postalCode = o.postalCode
+        state = o.state
+        text = o.text
+        type = o.type
+        use = o.use
+    }
 }
-
-
 

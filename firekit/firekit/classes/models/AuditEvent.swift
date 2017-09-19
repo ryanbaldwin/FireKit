@@ -92,9 +92,19 @@ open class AuditEvent: DomainResource {
 		}
 		return AuditEvent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AuditEvent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.event, from: o.event)
+        // TODO: object array
+        // TODO: participant array
+        FireKit.populate(&self.source, from: o.source)
+    }
 }
-
-
 
 
 /**
@@ -183,9 +193,22 @@ open class AuditEventEvent: BackboneElement {
 		}
 		return AuditEventEvent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AuditEventEvent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        action = o.action
+        dateTime = o.dateTime
+        outcome = o.outcome
+        outcomeDesc = o.outcomeDesc
+        // TODO: purposeOfEvent array
+        // TODO: subtype array
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -289,9 +312,25 @@ open class AuditEventObject: BackboneElement {
 		}
 		return AuditEventObject.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AuditEventObject else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        description_fhir = o.description_fhir
+        // TODO: detail array
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.lifecycle, from: o.lifecycle)
+        name = o.name
+        query = o.query
+        FireKit.populate(&self.reference, from: o.reference)
+        FireKit.populate(&self.role, from: o.role)
+        // TODO: securityLabel array
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -355,9 +394,17 @@ open class AuditEventObjectDetail: BackboneElement {
 		}
 		return AuditEventObjectDetail.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AuditEventObjectDetail else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        type = o.type
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -471,9 +518,26 @@ open class AuditEventParticipant: BackboneElement {
 		}
 		return AuditEventParticipant.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AuditEventParticipant else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        altId = o.altId
+        FireKit.populate(&self.location, from: o.location)
+        FireKit.populate(&self.media, from: o.media)
+        name = o.name
+        FireKit.populate(&self.network, from: o.network)
+        // TODO: policy array
+        // TODO: purposeOfUse array
+        FireKit.populate(&self.reference, from: o.reference)
+        requestor.value = o.requestor.value
+        // TODO: role array
+        FireKit.populate(&self.userId, from: o.userId)
+    }
 }
-
-
 
 
 /**
@@ -532,9 +596,17 @@ open class AuditEventParticipantNetwork: BackboneElement {
 		}
 		return AuditEventParticipantNetwork.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AuditEventParticipantNetwork else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        address = o.address
+        type = o.type
+    }
 }
-
-
 
 
 /**
@@ -604,7 +676,16 @@ open class AuditEventSource: BackboneElement {
 		}
 		return AuditEventSource.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AuditEventSource else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        site = o.site
+        // TODO: type array
+    }
 }
-
-
 

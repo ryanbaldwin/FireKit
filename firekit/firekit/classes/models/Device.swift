@@ -147,7 +147,29 @@ open class Device: DomainResource {
 		}
 		return Device.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Device else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: contact array
+        expiry = o.expiry
+        // TODO: identifier array
+        FireKit.populate(&self.location, from: o.location)
+        lotNumber = o.lotNumber
+        manufactureDate = o.manufactureDate
+        manufacturer = o.manufacturer
+        model = o.model
+        // TODO: note array
+        FireKit.populate(&self.owner, from: o.owner)
+        FireKit.populate(&self.patient, from: o.patient)
+        status = o.status
+        FireKit.populate(&self.type, from: o.type)
+        udi = o.udi
+        url = o.url
+        version = o.version
+    }
 }
-
-
 

@@ -144,9 +144,31 @@ open class CarePlan: DomainResource {
 		}
 		return CarePlan.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CarePlan else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: activity array
+        // TODO: addresses array
+        // TODO: author array
+        // TODO: category array
+        FireKit.populate(&self.context, from: o.context)
+        description_fhir = o.description_fhir
+        // TODO: goal array
+        // TODO: identifier array
+        modified = o.modified
+        FireKit.populate(&self.note, from: o.note)
+        // TODO: participant array
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: relatedPlan array
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        // TODO: support array
+    }
 }
-
-
 
 
 /**
@@ -220,9 +242,19 @@ open class CarePlanActivity: BackboneElement {
 		}
 		return CarePlanActivity.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CarePlanActivity else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: actionResulting array
+        FireKit.populate(&self.detail, from: o.detail)
+        // TODO: progress array
+        FireKit.populate(&self.reference, from: o.reference)
+    }
 }
-
-
 
 
 /**
@@ -382,9 +414,33 @@ open class CarePlanActivityDetail: BackboneElement {
 		}
 		return CarePlanActivityDetail.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CarePlanActivityDetail else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.category, from: o.category)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.dailyAmount, from: o.dailyAmount)
+        description_fhir = o.description_fhir
+        // TODO: goal array
+        FireKit.populate(&self.location, from: o.location)
+        // TODO: performer array
+        FireKit.populate(&self.productCodeableConcept, from: o.productCodeableConcept)
+        FireKit.populate(&self.productReference, from: o.productReference)
+        prohibited.value = o.prohibited.value
+        FireKit.populate(&self.quantity, from: o.quantity)
+        // TODO: reasonCode array
+        // TODO: reasonReference array
+        FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)
+        scheduledString = o.scheduledString
+        FireKit.populate(&self.scheduledTiming, from: o.scheduledTiming)
+        status = o.status
+        FireKit.populate(&self.statusReason, from: o.statusReason)
+    }
 }
-
-
 
 
 /**
@@ -449,9 +505,17 @@ open class CarePlanParticipant: BackboneElement {
 		}
 		return CarePlanParticipant.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CarePlanParticipant else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.member, from: o.member)
+        FireKit.populate(&self.role, from: o.role)
+    }
 }
-
-
 
 
 /**
@@ -519,7 +583,15 @@ open class CarePlanRelatedPlan: BackboneElement {
 		}
 		return CarePlanRelatedPlan.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CarePlanRelatedPlan else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        FireKit.populate(&self.plan, from: o.plan)
+    }
 }
-
-
 

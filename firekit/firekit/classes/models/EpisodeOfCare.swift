@@ -126,9 +126,26 @@ open class EpisodeOfCare: DomainResource {
 		}
 		return EpisodeOfCare.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? EpisodeOfCare else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.careManager, from: o.careManager)
+        // TODO: careTeam array
+        // TODO: condition array
+        // TODO: identifier array
+        FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: referralRequest array
+        status = o.status
+        // TODO: statusHistory array
+        // TODO: type array
+    }
 }
-
-
 
 
 /**
@@ -197,9 +214,18 @@ open class EpisodeOfCareCareTeam: BackboneElement {
 		}
 		return EpisodeOfCareCareTeam.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? EpisodeOfCareCareTeam else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.member, from: o.member)
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: role array
+    }
 }
-
-
 
 
 /**
@@ -269,7 +295,15 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
 		}
 		return EpisodeOfCareStatusHistory.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? EpisodeOfCareStatusHistory else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.period, from: o.period)
+        status = o.status
+    }
 }
-
-
 

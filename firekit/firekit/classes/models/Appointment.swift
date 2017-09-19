@@ -121,9 +121,27 @@ open class Appointment: DomainResource {
 		}
 		return Appointment.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Appointment else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        comment = o.comment
+        description_fhir = o.description_fhir
+        end = o.end
+        // TODO: identifier array
+        minutesDuration.value = o.minutesDuration.value
+        // TODO: participant array
+        priority.value = o.priority.value
+        FireKit.populate(&self.reason, from: o.reason)
+        // TODO: slot array
+        start = o.start
+        status = o.status
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -199,7 +217,17 @@ open class AppointmentParticipant: BackboneElement {
 		}
 		return AppointmentParticipant.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AppointmentParticipant else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.actor, from: o.actor)
+        required = o.required
+        status = o.status
+        // TODO: type array
+    }
 }
-
-
 

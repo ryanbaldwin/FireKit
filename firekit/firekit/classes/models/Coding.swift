@@ -79,7 +79,18 @@ open class Coding: Element {
 		}
 		return Coding.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Coding else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        display = o.display
+        system = o.system
+        userSelected.value = o.userSelected.value
+        version = o.version
+    }
 }
-
-
 

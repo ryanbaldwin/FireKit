@@ -119,7 +119,21 @@ open class Flag: DomainResource {
 		}
 		return Flag.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Flag else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        FireKit.populate(&self.category, from: o.category)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        FireKit.populate(&self.period, from: o.period)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 

@@ -168,9 +168,31 @@ open class MedicationStatement: DomainResource {
 		}
 		return MedicationStatement.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationStatement else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        dateAsserted = o.dateAsserted
+        // TODO: dosage array
+        effectiveDateTime = o.effectiveDateTime
+        FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
+        // TODO: identifier array
+        FireKit.populate(&self.informationSource, from: o.informationSource)
+        FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
+        FireKit.populate(&self.medicationReference, from: o.medicationReference)
+        note = o.note
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.reasonForUseCodeableConcept, from: o.reasonForUseCodeableConcept)
+        FireKit.populate(&self.reasonForUseReference, from: o.reasonForUseReference)
+        // TODO: reasonNotTaken array
+        status = o.status
+        // TODO: supportingInformation array
+        wasNotTaken.value = o.wasNotTaken.value
+    }
 }
-
-
 
 
 /**
@@ -306,7 +328,26 @@ open class MedicationStatementDosage: BackboneElement {
 		}
 		return MedicationStatementDosage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationStatementDosage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        asNeededBoolean.value = o.asNeededBoolean.value
+        FireKit.populate(&self.asNeededCodeableConcept, from: o.asNeededCodeableConcept)
+        FireKit.populate(&self.maxDosePerPeriod, from: o.maxDosePerPeriod)
+        FireKit.populate(&self.method, from: o.method)
+        FireKit.populate(&self.quantityQuantity, from: o.quantityQuantity)
+        FireKit.populate(&self.quantityRange, from: o.quantityRange)
+        FireKit.populate(&self.rateRange, from: o.rateRange)
+        FireKit.populate(&self.rateRatio, from: o.rateRatio)
+        FireKit.populate(&self.route, from: o.route)
+        FireKit.populate(&self.siteCodeableConcept, from: o.siteCodeableConcept)
+        FireKit.populate(&self.siteReference, from: o.siteReference)
+        text = o.text
+        FireKit.populate(&self.timing, from: o.timing)
+    }
 }
-
-
 

@@ -18,24 +18,25 @@ open class FHIRAbstractResource: FHIRAbstractBase {
     private enum CodingKeys: String, CodingKey {
         case resourceType
     }
-	
+    
     /// A specific version id, if the instance was created using `vread`.
-	@objc open dynamic var _versionId: String?
-	override open var description: String {
-		return "<\(type(of: self).resourceType)>"
-	}
+    @objc open dynamic var _versionId: String?
+    override open var description: String {
+        return "<\(type(of: self).resourceType)>"
+    }
     
     public override func encode(to encoder: Encoder) throws {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(type(of: self).resourceType, forKey: .resourceType)
     }
-    
+
     public override func populate(from other: Any) {
         guard let o = other as? FHIRAbstractResource else {
             print("Tried to populate a FHIRAbstractResource from \(type(of: other)). Skipping.")
             return
         }
+        super.populate(from: other)
         _versionId = o._versionId
     }
 }

@@ -71,7 +71,15 @@ open class Element: FHIRAbstractBase {
 		}
 		return Element.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Element else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: extension_fhir array
+        id = o.id
+    }
 }
-
-
 

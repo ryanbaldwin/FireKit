@@ -138,9 +138,28 @@ open class List: DomainResource {
 		}
 		return List.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? List else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        date = o.date
+        FireKit.populate(&self.emptyReason, from: o.emptyReason)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: entry array
+        // TODO: identifier array
+        mode = o.mode
+        note = o.note
+        FireKit.populate(&self.orderedBy, from: o.orderedBy)
+        FireKit.populate(&self.source, from: o.source)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        title = o.title
+    }
 }
-
-
 
 
 /**
@@ -219,7 +238,17 @@ open class ListEntry: BackboneElement {
 		}
 		return ListEntry.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ListEntry else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        deleted.value = o.deleted.value
+        FireKit.populate(&self.flag, from: o.flag)
+        FireKit.populate(&self.item, from: o.item)
+    }
 }
-
-
 

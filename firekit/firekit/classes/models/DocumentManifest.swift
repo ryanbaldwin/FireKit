@@ -123,9 +123,27 @@ open class DocumentManifest: DomainResource {
 		}
 		return DocumentManifest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentManifest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: author array
+        // TODO: content array
+        created = o.created
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        FireKit.populate(&self.masterIdentifier, from: o.masterIdentifier)
+        // TODO: recipient array
+        // TODO: related array
+        source = o.source
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -197,9 +215,17 @@ open class DocumentManifestContent: BackboneElement {
 		}
 		return DocumentManifestContent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentManifestContent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.pAttachment, from: o.pAttachment)
+        FireKit.populate(&self.pReference, from: o.pReference)
+    }
 }
-
-
 
 
 /**
@@ -264,7 +290,15 @@ open class DocumentManifestRelated: BackboneElement {
 		}
 		return DocumentManifestRelated.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentManifestRelated else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.ref, from: o.ref)
+    }
 }
-
-
 

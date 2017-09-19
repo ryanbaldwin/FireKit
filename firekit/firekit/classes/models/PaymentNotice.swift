@@ -132,7 +132,23 @@ open class PaymentNotice: DomainResource {
 		}
 		return PaymentNotice.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PaymentNotice else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        created = o.created
+        // TODO: identifier array
+        FireKit.populate(&self.organization, from: o.organization)
+        FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
+        FireKit.populate(&self.paymentStatus, from: o.paymentStatus)
+        FireKit.populate(&self.provider, from: o.provider)
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.response, from: o.response)
+        FireKit.populate(&self.ruleset, from: o.ruleset)
+        FireKit.populate(&self.target, from: o.target)
+    }
 }
-
-
 

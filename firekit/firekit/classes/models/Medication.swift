@@ -94,9 +94,20 @@ open class Medication: DomainResource {
 		}
 		return Medication.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Medication else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        isBrand.value = o.isBrand.value
+        FireKit.populate(&self.manufacturer, from: o.manufacturer)
+        FireKit.populate(&self.package, from: o.package)
+        FireKit.populate(&self.product, from: o.product)
+    }
 }
-
-
 
 
 /**
@@ -158,9 +169,17 @@ open class MedicationPackage: BackboneElement {
 		}
 		return MedicationPackage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationPackage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.container, from: o.container)
+        // TODO: content array
+    }
 }
-
-
 
 
 /**
@@ -231,9 +250,17 @@ open class MedicationPackageContent: BackboneElement {
 		}
 		return MedicationPackageContent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationPackageContent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.item, from: o.item)
+    }
 }
-
-
 
 
 /**
@@ -299,9 +326,18 @@ open class MedicationProduct: BackboneElement {
 		}
 		return MedicationProduct.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationProduct else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: batch array
+        FireKit.populate(&self.form, from: o.form)
+        // TODO: ingredient array
+    }
 }
-
-
 
 
 /**
@@ -360,9 +396,17 @@ open class MedicationProductBatch: BackboneElement {
 		}
 		return MedicationProductBatch.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationProductBatch else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        expirationDate = o.expirationDate
+        lotNumber = o.lotNumber
+    }
 }
-
-
 
 
 /**
@@ -433,7 +477,15 @@ open class MedicationProductIngredient: BackboneElement {
 		}
 		return MedicationProductIngredient.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationProductIngredient else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.item, from: o.item)
+    }
 }
-
-
 

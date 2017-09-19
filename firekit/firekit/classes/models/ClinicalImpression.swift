@@ -159,9 +159,33 @@ open class ClinicalImpression: DomainResource {
 		}
 		return ClinicalImpression.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClinicalImpression else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: action array
+        FireKit.populate(&self.assessor, from: o.assessor)
+        date = o.date
+        description_fhir = o.description_fhir
+        // TODO: finding array
+        // TODO: investigations array
+        FireKit.populate(&self.patient, from: o.patient)
+        // TODO: plan array
+        FireKit.populate(&self.previous, from: o.previous)
+        // TODO: problem array
+        prognosis = o.prognosis
+        protocol_fhir = o.protocol_fhir
+        // TODO: resolved array
+        // TODO: ruledOut array
+        status = o.status
+        summary = o.summary
+        FireKit.populate(&self.triggerCodeableConcept, from: o.triggerCodeableConcept)
+        FireKit.populate(&self.triggerReference, from: o.triggerReference)
+    }
 }
-
-
 
 
 /**
@@ -229,9 +253,17 @@ open class ClinicalImpressionFinding: BackboneElement {
 		}
 		return ClinicalImpressionFinding.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClinicalImpressionFinding else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        cause = o.cause
+        FireKit.populate(&self.item, from: o.item)
+    }
 }
-
-
 
 
 /**
@@ -301,9 +333,17 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 		}
 		return ClinicalImpressionInvestigations.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClinicalImpressionInvestigations else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: item array
+    }
 }
-
-
 
 
 /**
@@ -369,7 +409,15 @@ open class ClinicalImpressionRuledOut: BackboneElement {
 		}
 		return ClinicalImpressionRuledOut.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ClinicalImpressionRuledOut else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.item, from: o.item)
+        reason = o.reason
+    }
 }
-
-
 

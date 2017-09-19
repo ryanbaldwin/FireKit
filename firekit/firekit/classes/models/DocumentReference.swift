@@ -162,9 +162,32 @@ open class DocumentReference: DomainResource {
 		}
 		return DocumentReference.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentReference else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.authenticator, from: o.authenticator)
+        // TODO: author array
+        FireKit.populate(&self.class_fhir, from: o.class_fhir)
+        // TODO: content array
+        FireKit.populate(&self.context, from: o.context)
+        created = o.created
+        FireKit.populate(&self.custodian, from: o.custodian)
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.docStatus, from: o.docStatus)
+        // TODO: identifier array
+        indexed = o.indexed
+        FireKit.populate(&self.masterIdentifier, from: o.masterIdentifier)
+        // TODO: relatesTo array
+        // TODO: securityLabel array
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -232,9 +255,17 @@ open class DocumentReferenceContent: BackboneElement {
 		}
 		return DocumentReferenceContent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentReferenceContent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.attachment, from: o.attachment)
+        // TODO: format array
+    }
 }
-
-
 
 
 /**
@@ -328,9 +359,22 @@ open class DocumentReferenceContext: BackboneElement {
 		}
 		return DocumentReferenceContext.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentReferenceContext else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: event array
+        FireKit.populate(&self.facilityType, from: o.facilityType)
+        FireKit.populate(&self.period, from: o.period)
+        FireKit.populate(&self.practiceSetting, from: o.practiceSetting)
+        // TODO: related array
+        FireKit.populate(&self.sourcePatientInfo, from: o.sourcePatientInfo)
+    }
 }
-
-
 
 
 /**
@@ -395,9 +439,17 @@ open class DocumentReferenceContextRelated: BackboneElement {
 		}
 		return DocumentReferenceContextRelated.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentReferenceContextRelated else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.ref, from: o.ref)
+    }
 }
-
-
 
 
 /**
@@ -466,7 +518,15 @@ open class DocumentReferenceRelatesTo: BackboneElement {
 		}
 		return DocumentReferenceRelatesTo.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DocumentReferenceRelatesTo else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        FireKit.populate(&self.target, from: o.target)
+    }
 }
-
-
 

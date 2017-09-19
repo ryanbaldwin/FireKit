@@ -124,9 +124,27 @@ open class DiagnosticOrder: DomainResource {
 		}
 		return DiagnosticOrder.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DiagnosticOrder else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: event array
+        // TODO: identifier array
+        // TODO: item array
+        // TODO: note array
+        FireKit.populate(&self.orderer, from: o.orderer)
+        priority = o.priority
+        // TODO: reason array
+        // TODO: specimen array
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        // TODO: supportingInformation array
+    }
 }
-
-
 
 
 /**
@@ -207,9 +225,19 @@ open class DiagnosticOrderEvent: BackboneElement {
 		}
 		return DiagnosticOrderEvent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DiagnosticOrderEvent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.actor, from: o.actor)
+        dateTime = o.dateTime
+        FireKit.populate(&self.description_fhir, from: o.description_fhir)
+        status = o.status
+    }
 }
-
-
 
 
 /**
@@ -293,7 +321,18 @@ open class DiagnosticOrderItem: BackboneElement {
 		}
 		return DiagnosticOrderItem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DiagnosticOrderItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.bodySite, from: o.bodySite)
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: event array
+        // TODO: specimen array
+        status = o.status
+    }
 }
-
-
 

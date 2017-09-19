@@ -242,9 +242,45 @@ open class Observation: DomainResource {
 		}
 		return Observation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Observation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.bodySite, from: o.bodySite)
+        FireKit.populate(&self.category, from: o.category)
+        FireKit.populate(&self.code, from: o.code)
+        comments = o.comments
+        // TODO: component array
+        FireKit.populate(&self.dataAbsentReason, from: o.dataAbsentReason)
+        FireKit.populate(&self.device, from: o.device)
+        effectiveDateTime = o.effectiveDateTime
+        FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        FireKit.populate(&self.interpretation, from: o.interpretation)
+        issued = o.issued
+        FireKit.populate(&self.method, from: o.method)
+        // TODO: performer array
+        // TODO: referenceRange array
+        // TODO: related array
+        FireKit.populate(&self.specimen, from: o.specimen)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
+        FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
+        valueDateTime = o.valueDateTime
+        FireKit.populate(&self.valuePeriod, from: o.valuePeriod)
+        FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
+        FireKit.populate(&self.valueRange, from: o.valueRange)
+        FireKit.populate(&self.valueRatio, from: o.valueRatio)
+        FireKit.populate(&self.valueSampledData, from: o.valueSampledData)
+        valueString = o.valueString
+        valueTime = o.valueTime
+    }
 }
-
-
 
 
 /**
@@ -382,9 +418,28 @@ open class ObservationComponent: BackboneElement {
 		}
 		return ObservationComponent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ObservationComponent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.dataAbsentReason, from: o.dataAbsentReason)
+        // TODO: referenceRange array
+        FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
+        FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
+        valueDateTime = o.valueDateTime
+        FireKit.populate(&self.valuePeriod, from: o.valuePeriod)
+        FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
+        FireKit.populate(&self.valueRange, from: o.valueRange)
+        FireKit.populate(&self.valueRatio, from: o.valueRatio)
+        FireKit.populate(&self.valueSampledData, from: o.valueSampledData)
+        valueString = o.valueString
+        valueTime = o.valueTime
+    }
 }
-
-
 
 
 /**
@@ -467,9 +522,20 @@ open class ObservationReferenceRange: BackboneElement {
 		}
 		return ObservationReferenceRange.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ObservationReferenceRange else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.age, from: o.age)
+        FireKit.populate(&self.high, from: o.high)
+        FireKit.populate(&self.low, from: o.low)
+        FireKit.populate(&self.meaning, from: o.meaning)
+        text = o.text
+    }
 }
-
-
 
 
 /**
@@ -538,7 +604,15 @@ open class ObservationRelated: BackboneElement {
 		}
 		return ObservationRelated.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ObservationRelated else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.target, from: o.target)
+        type = o.type
+    }
 }
-
-
 

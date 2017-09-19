@@ -129,7 +129,24 @@ open class SupplyDelivery: DomainResource {
 		}
 		return SupplyDelivery.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SupplyDelivery else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.destination, from: o.destination)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.quantity, from: o.quantity)
+        // TODO: receiver array
+        status = o.status
+        FireKit.populate(&self.suppliedItem, from: o.suppliedItem)
+        FireKit.populate(&self.supplier, from: o.supplier)
+        time = o.time
+        FireKit.populate(&self.type, from: o.type)
+        FireKit.populate(&self.whenPrepared, from: o.whenPrepared)
+    }
 }
-
-
 

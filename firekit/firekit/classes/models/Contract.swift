@@ -152,9 +152,34 @@ open class Contract: DomainResource {
 		}
 		return Contract.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Contract else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: action array
+        // TODO: actionReason array
+        // TODO: actor array
+        FireKit.populate(&self.applies, from: o.applies)
+        // TODO: authority array
+        FireKit.populate(&self.bindingAttachment, from: o.bindingAttachment)
+        FireKit.populate(&self.bindingReference, from: o.bindingReference)
+        // TODO: domain array
+        // TODO: friendly array
+        FireKit.populate(&self.identifier, from: o.identifier)
+        issued = o.issued
+        // TODO: legal array
+        // TODO: rule array
+        // TODO: signer array
+        // TODO: subType array
+        // TODO: subject array
+        // TODO: term array
+        FireKit.populate(&self.type, from: o.type)
+        // TODO: valuedItem array
+    }
 }
-
-
 
 
 /**
@@ -222,9 +247,17 @@ open class ContractActor: BackboneElement {
 		}
 		return ContractActor.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractActor else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.entity, from: o.entity)
+        // TODO: role array
+    }
 }
-
-
 
 
 /**
@@ -299,9 +332,17 @@ open class ContractFriendly: BackboneElement {
 		}
 		return ContractFriendly.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractFriendly else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+    }
 }
-
-
 
 
 /**
@@ -373,9 +414,17 @@ open class ContractLegal: BackboneElement {
 		}
 		return ContractLegal.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractLegal else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+    }
 }
-
-
 
 
 /**
@@ -447,9 +496,17 @@ open class ContractRule: BackboneElement {
 		}
 		return ContractRule.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractRule else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+    }
 }
-
-
 
 
 /**
@@ -526,9 +583,18 @@ open class ContractSigner: BackboneElement {
 		}
 		return ContractSigner.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractSigner else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.party, from: o.party)
+        signature = o.signature
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -642,9 +708,27 @@ open class ContractTerm: BackboneElement {
 		}
 		return ContractTerm.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractTerm else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: action array
+        // TODO: actionReason array
+        // TODO: actor array
+        FireKit.populate(&self.applies, from: o.applies)
+        // TODO: group array
+        FireKit.populate(&self.identifier, from: o.identifier)
+        issued = o.issued
+        FireKit.populate(&self.subType, from: o.subType)
+        FireKit.populate(&self.subject, from: o.subject)
+        text = o.text
+        FireKit.populate(&self.type, from: o.type)
+        // TODO: valuedItem array
+    }
 }
-
-
 
 
 /**
@@ -712,9 +796,17 @@ open class ContractTermActor: BackboneElement {
 		}
 		return ContractTermActor.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractTermActor else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.entity, from: o.entity)
+        // TODO: role array
+    }
 }
-
-
 
 
 /**
@@ -819,9 +911,24 @@ open class ContractTermValuedItem: BackboneElement {
 		}
 		return ContractTermValuedItem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractTermValuedItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        effectiveTime = o.effectiveTime
+        FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)
+        FireKit.populate(&self.entityReference, from: o.entityReference)
+        factor = o.factor
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.net, from: o.net)
+        points = o.points
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.unitPrice, from: o.unitPrice)
+    }
 }
-
-
 
 
 /**
@@ -926,7 +1033,22 @@ open class ContractValuedItem: BackboneElement {
 		}
 		return ContractValuedItem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractValuedItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        effectiveTime = o.effectiveTime
+        FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)
+        FireKit.populate(&self.entityReference, from: o.entityReference)
+        factor = o.factor
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.net, from: o.net)
+        points = o.points
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.unitPrice, from: o.unitPrice)
+    }
 }
-
-
 

@@ -103,7 +103,17 @@ open class DomainResource: Resource {
 		}
 		return DomainResource.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DomainResource else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: contained array
+        // TODO: extension_fhir array
+        // TODO: modifierExtension array
+        FireKit.populate(&self.text, from: o.text)
+    }
 }
-
-
 

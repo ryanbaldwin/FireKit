@@ -124,9 +124,29 @@ open class DataElement: DomainResource {
 		}
 		return DataElement.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DataElement else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: contact array
+        copyright = o.copyright
+        date = o.date
+        // TODO: element array
+        experimental.value = o.experimental.value
+        // TODO: identifier array
+        // TODO: mapping array
+        name = o.name
+        publisher = o.publisher
+        status = o.status
+        stringency = o.stringency
+        url = o.url
+        // TODO: useContext array
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -185,9 +205,17 @@ open class DataElementContact: BackboneElement {
 		}
 		return DataElementContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DataElementContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -261,7 +289,17 @@ open class DataElementMapping: BackboneElement {
 		}
 		return DataElementMapping.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DataElementMapping else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        comments = o.comments
+        identity = o.identity
+        name = o.name
+        uri = o.uri
+    }
 }
-
-
 

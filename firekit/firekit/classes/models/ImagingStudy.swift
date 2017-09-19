@@ -149,9 +149,31 @@ open class ImagingStudy: DomainResource {
 		}
 		return ImagingStudy.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingStudy else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.accession, from: o.accession)
+        availability = o.availability
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        FireKit.populate(&self.interpreter, from: o.interpreter)
+        // TODO: modalityList array
+        numberOfInstances.value = o.numberOfInstances.value
+        numberOfSeries.value = o.numberOfSeries.value
+        // TODO: order array
+        FireKit.populate(&self.patient, from: o.patient)
+        // TODO: procedure array
+        FireKit.populate(&self.referrer, from: o.referrer)
+        // TODO: series array
+        started = o.started
+        uid = o.uid
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -263,9 +285,26 @@ open class ImagingStudySeries: BackboneElement {
 		}
 		return ImagingStudySeries.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingStudySeries else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        availability = o.availability
+        FireKit.populate(&self.bodySite, from: o.bodySite)
+        description_fhir = o.description_fhir
+        // TODO: instance array
+        FireKit.populate(&self.laterality, from: o.laterality)
+        FireKit.populate(&self.modality, from: o.modality)
+        number.value = o.number.value
+        numberOfInstances.value = o.numberOfInstances.value
+        started = o.started
+        uid = o.uid
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -347,7 +386,19 @@ open class ImagingStudySeriesInstance: BackboneElement {
 		}
 		return ImagingStudySeriesInstance.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingStudySeriesInstance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: content array
+        number.value = o.number.value
+        sopClass = o.sopClass
+        title = o.title
+        type = o.type
+        uid = o.uid
+    }
 }
-
-
 

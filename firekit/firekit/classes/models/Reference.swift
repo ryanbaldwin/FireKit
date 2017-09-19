@@ -67,7 +67,15 @@ open class Reference: Element {
 		}
 		return Reference.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Reference else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        display = o.display
+        reference = o.reference
+    }
 }
-
-
 

@@ -150,9 +150,29 @@ open class Composition: DomainResource {
 		}
 		return Composition.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Composition else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: attester array
+        // TODO: author array
+        FireKit.populate(&self.class_fhir, from: o.class_fhir)
+        confidentiality = o.confidentiality
+        FireKit.populate(&self.custodian, from: o.custodian)
+        date = o.date
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: event array
+        FireKit.populate(&self.identifier, from: o.identifier)
+        // TODO: section array
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        title = o.title
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -224,9 +244,18 @@ open class CompositionAttester: BackboneElement {
 		}
 		return CompositionAttester.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CompositionAttester else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: mode array
+        FireKit.populate(&self.party, from: o.party)
+        time = o.time
+    }
 }
-
-
 
 
 /**
@@ -292,9 +321,18 @@ open class CompositionEvent: BackboneElement {
 		}
 		return CompositionEvent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CompositionEvent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: code array
+        // TODO: detail array
+        FireKit.populate(&self.period, from: o.period)
+    }
 }
-
-
 
 
 /**
@@ -389,7 +427,21 @@ open class CompositionSection: BackboneElement {
 		}
 		return CompositionSection.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CompositionSection else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.emptyReason, from: o.emptyReason)
+        // TODO: entry array
+        mode = o.mode
+        FireKit.populate(&self.orderedBy, from: o.orderedBy)
+        // TODO: section array
+        FireKit.populate(&self.text, from: o.text)
+        title = o.title
+    }
 }
-
-
 

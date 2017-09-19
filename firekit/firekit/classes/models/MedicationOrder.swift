@@ -171,9 +171,32 @@ open class MedicationOrder: DomainResource {
 		}
 		return MedicationOrder.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationOrder else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        dateEnded = o.dateEnded
+        dateWritten = o.dateWritten
+        FireKit.populate(&self.dispenseRequest, from: o.dispenseRequest)
+        // TODO: dosageInstruction array
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
+        FireKit.populate(&self.medicationReference, from: o.medicationReference)
+        note = o.note
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.prescriber, from: o.prescriber)
+        FireKit.populate(&self.priorPrescription, from: o.priorPrescription)
+        FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
+        FireKit.populate(&self.reasonEnded, from: o.reasonEnded)
+        FireKit.populate(&self.reasonReference, from: o.reasonReference)
+        status = o.status
+        FireKit.populate(&self.substitution, from: o.substitution)
+    }
 }
-
-
 
 
 /**
@@ -266,9 +289,21 @@ open class MedicationOrderDispenseRequest: BackboneElement {
 		}
 		return MedicationOrderDispenseRequest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationOrderDispenseRequest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.expectedSupplyDuration, from: o.expectedSupplyDuration)
+        FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
+        FireKit.populate(&self.medicationReference, from: o.medicationReference)
+        numberOfRepeatsAllowed.value = o.numberOfRepeatsAllowed.value
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.validityPeriod, from: o.validityPeriod)
+    }
 }
-
-
 
 
 /**
@@ -411,9 +446,29 @@ open class MedicationOrderDosageInstruction: BackboneElement {
 		}
 		return MedicationOrderDosageInstruction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationOrderDosageInstruction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.additionalInstructions, from: o.additionalInstructions)
+        asNeededBoolean.value = o.asNeededBoolean.value
+        FireKit.populate(&self.asNeededCodeableConcept, from: o.asNeededCodeableConcept)
+        FireKit.populate(&self.doseQuantity, from: o.doseQuantity)
+        FireKit.populate(&self.doseRange, from: o.doseRange)
+        FireKit.populate(&self.maxDosePerPeriod, from: o.maxDosePerPeriod)
+        FireKit.populate(&self.method, from: o.method)
+        FireKit.populate(&self.rateRange, from: o.rateRange)
+        FireKit.populate(&self.rateRatio, from: o.rateRatio)
+        FireKit.populate(&self.route, from: o.route)
+        FireKit.populate(&self.siteCodeableConcept, from: o.siteCodeableConcept)
+        FireKit.populate(&self.siteReference, from: o.siteReference)
+        text = o.text
+        FireKit.populate(&self.timing, from: o.timing)
+    }
 }
-
-
 
 
 /**
@@ -486,7 +541,15 @@ open class MedicationOrderSubstitution: BackboneElement {
 		}
 		return MedicationOrderSubstitution.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationOrderSubstitution else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.reason, from: o.reason)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

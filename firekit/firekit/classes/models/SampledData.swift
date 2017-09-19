@@ -102,7 +102,20 @@ open class SampledData: Element {
 		}
 		return SampledData.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SampledData else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        data = o.data
+        dimensions.value = o.dimensions.value
+        factor = o.factor
+        lowerLimit = o.lowerLimit
+        FireKit.populate(&self.origin, from: o.origin)
+        period = o.period
+        upperLimit = o.upperLimit
+    }
 }
-
-
 

@@ -108,9 +108,26 @@ open class Practitioner: DomainResource {
 		}
 		return Practitioner.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Practitioner else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        active.value = o.active.value
+        // TODO: address array
+        birthDate = o.birthDate
+        // TODO: communication array
+        gender = o.gender
+        // TODO: identifier array
+        FireKit.populate(&self.name, from: o.name)
+        // TODO: photo array
+        // TODO: practitionerRole array
+        // TODO: qualification array
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -194,9 +211,21 @@ open class PractitionerPractitionerRole: BackboneElement {
 		}
 		return PractitionerPractitionerRole.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PractitionerPractitionerRole else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: healthcareService array
+        // TODO: location array
+        FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
+        FireKit.populate(&self.period, from: o.period)
+        FireKit.populate(&self.role, from: o.role)
+        // TODO: specialty array
+    }
 }
-
-
 
 
 /**
@@ -276,7 +305,17 @@ open class PractitionerQualification: BackboneElement {
 		}
 		return PractitionerQualification.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PractitionerQualification else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: identifier array
+        FireKit.populate(&self.issuer, from: o.issuer)
+        FireKit.populate(&self.period, from: o.period)
+    }
 }
-
-
 

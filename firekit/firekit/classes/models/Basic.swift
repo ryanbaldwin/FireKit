@@ -97,7 +97,18 @@ open class Basic: DomainResource {
 		}
 		return Basic.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Basic else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        FireKit.populate(&self.code, from: o.code)
+        created = o.created
+        // TODO: identifier array
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 

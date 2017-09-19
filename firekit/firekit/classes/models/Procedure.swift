@@ -192,9 +192,38 @@ open class Procedure: DomainResource {
 		}
 		return Procedure.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Procedure else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: bodySite array
+        FireKit.populate(&self.category, from: o.category)
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: complication array
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: focalDevice array
+        // TODO: followUp array
+        // TODO: identifier array
+        FireKit.populate(&self.location, from: o.location)
+        notPerformed.value = o.notPerformed.value
+        // TODO: notes array
+        FireKit.populate(&self.outcome, from: o.outcome)
+        performedDateTime = o.performedDateTime
+        FireKit.populate(&self.performedPeriod, from: o.performedPeriod)
+        // TODO: performer array
+        FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
+        // TODO: reasonNotPerformed array
+        FireKit.populate(&self.reasonReference, from: o.reasonReference)
+        // TODO: report array
+        FireKit.populate(&self.request, from: o.request)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        // TODO: used array
+    }
 }
-
-
 
 
 /**
@@ -266,9 +295,17 @@ open class ProcedureFocalDevice: BackboneElement {
 		}
 		return ProcedureFocalDevice.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProcedureFocalDevice else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.action, from: o.action)
+        FireKit.populate(&self.manipulated, from: o.manipulated)
+    }
 }
-
-
 
 
 /**
@@ -333,7 +370,15 @@ open class ProcedurePerformer: BackboneElement {
 		}
 		return ProcedurePerformer.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProcedurePerformer else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.actor, from: o.actor)
+        FireKit.populate(&self.role, from: o.role)
+    }
 }
-
-
 

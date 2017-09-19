@@ -108,9 +108,23 @@ open class Subscription: DomainResource {
 		}
 		return Subscription.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Subscription else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.channel, from: o.channel)
+        // TODO: contact array
+        criteria = o.criteria
+        end = o.end
+        error = o.error
+        reason = o.reason
+        status = o.status
+        // TODO: tag array
+    }
 }
-
-
 
 
 /**
@@ -184,7 +198,17 @@ open class SubscriptionChannel: BackboneElement {
 		}
 		return SubscriptionChannel.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SubscriptionChannel else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        endpoint = o.endpoint
+        header = o.header
+        payload = o.payload
+        type = o.type
+    }
 }
-
-
 

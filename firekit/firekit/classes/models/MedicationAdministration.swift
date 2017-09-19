@@ -162,9 +162,31 @@ open class MedicationAdministration: DomainResource {
 		}
 		return MedicationAdministration.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationAdministration else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: device array
+        FireKit.populate(&self.dosage, from: o.dosage)
+        effectiveTimeDateTime = o.effectiveTimeDateTime
+        FireKit.populate(&self.effectiveTimePeriod, from: o.effectiveTimePeriod)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
+        FireKit.populate(&self.medicationReference, from: o.medicationReference)
+        note = o.note
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.practitioner, from: o.practitioner)
+        FireKit.populate(&self.prescription, from: o.prescription)
+        // TODO: reasonGiven array
+        // TODO: reasonNotGiven array
+        status = o.status
+        wasNotGiven.value = o.wasNotGiven.value
+    }
 }
-
-
 
 
 /**
@@ -268,7 +290,21 @@ open class MedicationAdministrationDosage: BackboneElement {
 		}
 		return MedicationAdministrationDosage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? MedicationAdministrationDosage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.method, from: o.method)
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.rateRange, from: o.rateRange)
+        FireKit.populate(&self.rateRatio, from: o.rateRatio)
+        FireKit.populate(&self.route, from: o.route)
+        FireKit.populate(&self.siteCodeableConcept, from: o.siteCodeableConcept)
+        FireKit.populate(&self.siteReference, from: o.siteReference)
+        text = o.text
+    }
 }
-
-
 

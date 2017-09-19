@@ -71,9 +71,16 @@ open class OperationOutcome: DomainResource {
 		}
 		return OperationOutcome.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OperationOutcome else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: issue array
+    }
 }
-
-
 
 
 /**
@@ -154,7 +161,18 @@ open class OperationOutcomeIssue: BackboneElement {
 		}
 		return OperationOutcomeIssue.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OperationOutcomeIssue else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        FireKit.populate(&self.details, from: o.details)
+        diagnostics = o.diagnostics
+        // TODO: location array
+        severity = o.severity
+    }
 }
-
-
 

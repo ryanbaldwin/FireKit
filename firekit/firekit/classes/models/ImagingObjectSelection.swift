@@ -113,9 +113,22 @@ open class ImagingObjectSelection: DomainResource {
 		}
 		return ImagingObjectSelection.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelection else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        authoringTime = o.authoringTime
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.patient, from: o.patient)
+        // TODO: study array
+        FireKit.populate(&self.title, from: o.title)
+        uid = o.uid
+    }
 }
-
-
 
 
 /**
@@ -192,9 +205,19 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 		}
 		return ImagingObjectSelectionStudy.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudy else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.imagingStudy, from: o.imagingStudy)
+        // TODO: series array
+        uid = o.uid
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -263,9 +286,18 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 		}
 		return ImagingObjectSelectionStudySeries.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudySeries else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: instance array
+        uid = o.uid
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -340,9 +372,19 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 		}
 		return ImagingObjectSelectionStudySeriesInstance.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudySeriesInstance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: frames array
+        sopClass = o.sopClass
+        uid = o.uid
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -408,7 +450,15 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 		}
 		return ImagingObjectSelectionStudySeriesInstanceFrames.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudySeriesInstanceFrames else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: frameNumbers array
+        url = o.url
+    }
 }
-
-
 

@@ -69,7 +69,15 @@ open class CodeableConcept: Element {
 		}
 		return CodeableConcept.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? CodeableConcept else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: coding array
+        text = o.text
+    }
 }
-
-
 

@@ -92,9 +92,21 @@ open class Substance: DomainResource {
 		}
 		return Substance.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Substance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: category array
+        FireKit.populate(&self.code, from: o.code)
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        // TODO: ingredient array
+        // TODO: instance array
+    }
 }
-
-
 
 
 /**
@@ -165,9 +177,17 @@ open class SubstanceIngredient: BackboneElement {
 		}
 		return SubstanceIngredient.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SubstanceIngredient else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.substance, from: o.substance)
+    }
 }
-
-
 
 
 /**
@@ -237,7 +257,16 @@ open class SubstanceInstance: BackboneElement {
 		}
 		return SubstanceInstance.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SubstanceInstance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        expiry = o.expiry
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.quantity, from: o.quantity)
+    }
 }
-
-
 

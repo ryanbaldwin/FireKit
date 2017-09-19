@@ -98,7 +98,19 @@ open class BodySite: DomainResource {
 		}
 		return BodySite.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? BodySite else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        // TODO: image array
+        // TODO: modifier array
+        FireKit.populate(&self.patient, from: o.patient)
+    }
 }
-
-
 

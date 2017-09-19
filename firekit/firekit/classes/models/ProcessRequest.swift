@@ -156,9 +156,31 @@ open class ProcessRequest: DomainResource {
 		}
 		return ProcessRequest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProcessRequest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        action = o.action
+        created = o.created
+        // TODO: exclude array
+        // TODO: identifier array
+        // TODO: include array
+        // TODO: item array
+        nullify.value = o.nullify.value
+        FireKit.populate(&self.organization, from: o.organization)
+        FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
+        FireKit.populate(&self.period, from: o.period)
+        FireKit.populate(&self.provider, from: o.provider)
+        reference = o.reference
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.response, from: o.response)
+        FireKit.populate(&self.ruleset, from: o.ruleset)
+        FireKit.populate(&self.target, from: o.target)
+    }
 }
-
-
 
 
 /**
@@ -219,7 +241,14 @@ open class ProcessRequestItem: BackboneElement {
 		}
 		return ProcessRequestItem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProcessRequestItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        sequenceLinkId.value = o.sequenceLinkId.value
+    }
 }
-
-
 

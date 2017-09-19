@@ -119,9 +119,25 @@ open class Specimen: DomainResource {
 		}
 		return Specimen.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Specimen else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.accessionIdentifier, from: o.accessionIdentifier)
+        FireKit.populate(&self.collection, from: o.collection)
+        // TODO: container array
+        // TODO: identifier array
+        // TODO: parent array
+        receivedTime = o.receivedTime
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        // TODO: treatment array
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -215,9 +231,22 @@ open class SpecimenCollection: BackboneElement {
 		}
 		return SpecimenCollection.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SpecimenCollection else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.bodySite, from: o.bodySite)
+        collectedDateTime = o.collectedDateTime
+        FireKit.populate(&self.collectedPeriod, from: o.collectedPeriod)
+        FireKit.populate(&self.collector, from: o.collector)
+        // TODO: comment array
+        FireKit.populate(&self.method, from: o.method)
+        FireKit.populate(&self.quantity, from: o.quantity)
+    }
 }
-
-
 
 
 /**
@@ -312,9 +341,22 @@ open class SpecimenContainer: BackboneElement {
 		}
 		return SpecimenContainer.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SpecimenContainer else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.additiveCodeableConcept, from: o.additiveCodeableConcept)
+        FireKit.populate(&self.additiveReference, from: o.additiveReference)
+        FireKit.populate(&self.capacity, from: o.capacity)
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        FireKit.populate(&self.specimenQuantity, from: o.specimenQuantity)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -380,7 +422,16 @@ open class SpecimenTreatment: BackboneElement {
 		}
 		return SpecimenTreatment.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SpecimenTreatment else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: additive array
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.procedure, from: o.procedure)
+    }
 }
-
-
 

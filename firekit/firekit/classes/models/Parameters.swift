@@ -66,9 +66,16 @@ open class Parameters: Resource {
 		}
 		return Parameters.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Parameters else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: parameter array
+    }
 }
-
-
 
 
 /**
@@ -327,7 +334,49 @@ open class ParametersParameter: BackboneElement {
 		}
 		return ParametersParameter.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ParametersParameter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: part array
+        FireKit.populate(&self.resource, from: o.resource)
+        FireKit.populate(&self.valueAddress, from: o.valueAddress)
+        FireKit.populate(&self.valueAnnotation, from: o.valueAnnotation)
+        FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
+        valueBase64Binary = o.valueBase64Binary
+        valueBoolean.value = o.valueBoolean.value
+        valueCode = o.valueCode
+        FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
+        FireKit.populate(&self.valueCoding, from: o.valueCoding)
+        FireKit.populate(&self.valueContactPoint, from: o.valueContactPoint)
+        valueDate = o.valueDate
+        valueDateTime = o.valueDateTime
+        valueDecimal = o.valueDecimal
+        FireKit.populate(&self.valueHumanName, from: o.valueHumanName)
+        valueId = o.valueId
+        FireKit.populate(&self.valueIdentifier, from: o.valueIdentifier)
+        valueInstant = o.valueInstant
+        valueInteger.value = o.valueInteger.value
+        valueMarkdown = o.valueMarkdown
+        FireKit.populate(&self.valueMeta, from: o.valueMeta)
+        valueOid = o.valueOid
+        FireKit.populate(&self.valuePeriod, from: o.valuePeriod)
+        valuePositiveInt.value = o.valuePositiveInt.value
+        FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
+        FireKit.populate(&self.valueRange, from: o.valueRange)
+        FireKit.populate(&self.valueRatio, from: o.valueRatio)
+        FireKit.populate(&self.valueReference, from: o.valueReference)
+        FireKit.populate(&self.valueSampledData, from: o.valueSampledData)
+        FireKit.populate(&self.valueSignature, from: o.valueSignature)
+        valueString = o.valueString
+        valueTime = o.valueTime
+        FireKit.populate(&self.valueTiming, from: o.valueTiming)
+        valueUnsignedInt.value = o.valueUnsignedInt.value
+        valueUri = o.valueUri
+    }
 }
-
-
 

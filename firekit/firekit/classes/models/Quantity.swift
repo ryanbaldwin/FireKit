@@ -82,7 +82,18 @@ open class Quantity: Element {
 		}
 		return Quantity.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Quantity else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        comparator = o.comparator
+        system = o.system
+        unit = o.unit
+        value = o.value
+    }
 }
-
-
 

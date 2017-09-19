@@ -106,7 +106,21 @@ open class Slot: DomainResource {
 		}
 		return Slot.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Slot else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        comment = o.comment
+        end = o.end
+        freeBusyType = o.freeBusyType
+        // TODO: identifier array
+        overbooked.value = o.overbooked.value
+        FireKit.populate(&self.schedule, from: o.schedule)
+        start = o.start
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

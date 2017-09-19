@@ -162,9 +162,36 @@ open class Conformance: DomainResource {
 		}
 		return Conformance.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Conformance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        acceptUnknown = o.acceptUnknown
+        // TODO: contact array
+        copyright = o.copyright
+        date = o.date
+        description_fhir = o.description_fhir
+        // TODO: document array
+        experimental.value = o.experimental.value
+        fhirVersion = o.fhirVersion
+        // TODO: format array
+        FireKit.populate(&self.implementation, from: o.implementation)
+        kind = o.kind
+        // TODO: messaging array
+        name = o.name
+        // TODO: profile array
+        publisher = o.publisher
+        requirements = o.requirements
+        // TODO: rest array
+        FireKit.populate(&self.software, from: o.software)
+        status = o.status
+        url = o.url
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -223,9 +250,17 @@ open class ConformanceContact: BackboneElement {
 		}
 		return ConformanceContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -298,9 +333,18 @@ open class ConformanceDocument: BackboneElement {
 		}
 		return ConformanceDocument.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceDocument else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        documentation = o.documentation
+        mode = o.mode
+        FireKit.populate(&self.profile, from: o.profile)
+    }
 }
-
-
 
 
 /**
@@ -366,9 +410,17 @@ open class ConformanceImplementation: BackboneElement {
 		}
 		return ConformanceImplementation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceImplementation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        description_fhir = o.description_fhir
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -441,9 +493,19 @@ open class ConformanceMessaging: BackboneElement {
 		}
 		return ConformanceMessaging.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceMessaging else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        documentation = o.documentation
+        // TODO: endpoint array
+        // TODO: event array
+        reliableCache.value = o.reliableCache.value
+    }
 }
-
-
 
 
 /**
@@ -512,9 +574,17 @@ open class ConformanceMessagingEndpoint: BackboneElement {
 		}
 		return ConformanceMessagingEndpoint.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceMessagingEndpoint else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        address = o.address
+        FireKit.populate(&self.protocol_fhir, from: o.protocol_fhir)
+    }
 }
-
-
 
 
 /**
@@ -612,9 +682,22 @@ open class ConformanceMessagingEvent: BackboneElement {
 		}
 		return ConformanceMessagingEvent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceMessagingEvent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        category = o.category
+        FireKit.populate(&self.code, from: o.code)
+        documentation = o.documentation
+        focus = o.focus
+        mode = o.mode
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.response, from: o.response)
+    }
 }
-
-
 
 
 /**
@@ -711,9 +794,24 @@ open class ConformanceRest: BackboneElement {
 		}
 		return ConformanceRest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: compartment array
+        documentation = o.documentation
+        // TODO: interaction array
+        mode = o.mode
+        // TODO: operation array
+        // TODO: resource array
+        // TODO: searchParam array
+        FireKit.populate(&self.security, from: o.security)
+        transactionMode = o.transactionMode
+    }
 }
-
-
 
 
 /**
@@ -778,9 +876,17 @@ open class ConformanceRestInteraction: BackboneElement {
 		}
 		return ConformanceRestInteraction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRestInteraction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        documentation = o.documentation
+    }
 }
-
-
 
 
 /**
@@ -849,9 +955,17 @@ open class ConformanceRestOperation: BackboneElement {
 		}
 		return ConformanceRestOperation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRestOperation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.definition, from: o.definition)
+        name = o.name
+    }
 }
-
-
 
 
 /**
@@ -960,9 +1074,27 @@ open class ConformanceRestResource: BackboneElement {
 		}
 		return ConformanceRestResource.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRestResource else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        conditionalCreate.value = o.conditionalCreate.value
+        conditionalDelete = o.conditionalDelete
+        conditionalUpdate.value = o.conditionalUpdate.value
+        // TODO: interaction array
+        FireKit.populate(&self.profile, from: o.profile)
+        readHistory.value = o.readHistory.value
+        // TODO: searchInclude array
+        // TODO: searchParam array
+        // TODO: searchRevInclude array
+        type = o.type
+        updateCreate.value = o.updateCreate.value
+        versioning = o.versioning
+    }
 }
-
-
 
 
 /**
@@ -1027,9 +1159,17 @@ open class ConformanceRestResourceInteraction: BackboneElement {
 		}
 		return ConformanceRestResourceInteraction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRestResourceInteraction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        documentation = o.documentation
+    }
 }
-
-
 
 
 /**
@@ -1116,9 +1256,22 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 		}
 		return ConformanceRestResourceSearchParam.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRestResourceSearchParam else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: chain array
+        definition = o.definition
+        documentation = o.documentation
+        // TODO: modifier array
+        name = o.name
+        // TODO: target array
+        type = o.type
+    }
 }
-
-
 
 
 /**
@@ -1185,9 +1338,19 @@ open class ConformanceRestSecurity: BackboneElement {
 		}
 		return ConformanceRestSecurity.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRestSecurity else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: certificate array
+        cors.value = o.cors.value
+        description_fhir = o.description_fhir
+        // TODO: service array
+    }
 }
-
-
 
 
 /**
@@ -1244,9 +1407,17 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
 		}
 		return ConformanceRestSecurityCertificate.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceRestSecurityCertificate else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        blob = o.blob
+        type = o.type
+    }
 }
-
-
 
 
 /**
@@ -1316,7 +1487,16 @@ open class ConformanceSoftware: BackboneElement {
 		}
 		return ConformanceSoftware.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConformanceSoftware else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        releaseDate = o.releaseDate
+        version = o.version
+    }
 }
-
-
 

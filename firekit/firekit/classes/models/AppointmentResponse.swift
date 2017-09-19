@@ -104,7 +104,21 @@ open class AppointmentResponse: DomainResource {
 		}
 		return AppointmentResponse.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AppointmentResponse else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.actor, from: o.actor)
+        FireKit.populate(&self.appointment, from: o.appointment)
+        comment = o.comment
+        end = o.end
+        // TODO: identifier array
+        participantStatus = o.participantStatus
+        // TODO: participantType array
+        start = o.start
+    }
 }
-
-
 

@@ -131,9 +131,27 @@ open class NutritionOrder: DomainResource {
 		}
 		return NutritionOrder.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NutritionOrder else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: allergyIntolerance array
+        dateTime = o.dateTime
+        FireKit.populate(&self.encounter, from: o.encounter)
+        FireKit.populate(&self.enteralFormula, from: o.enteralFormula)
+        // TODO: excludeFoodModifier array
+        // TODO: foodPreferenceModifier array
+        // TODO: identifier array
+        FireKit.populate(&self.oralDiet, from: o.oralDiet)
+        FireKit.populate(&self.orderer, from: o.orderer)
+        FireKit.populate(&self.patient, from: o.patient)
+        status = o.status
+        // TODO: supplement array
+    }
 }
-
-
 
 
 /**
@@ -236,9 +254,24 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 		}
 		return NutritionOrderEnteralFormula.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NutritionOrderEnteralFormula else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        additiveProductName = o.additiveProductName
+        FireKit.populate(&self.additiveType, from: o.additiveType)
+        // TODO: administration array
+        administrationInstruction = o.administrationInstruction
+        baseFormulaProductName = o.baseFormulaProductName
+        FireKit.populate(&self.baseFormulaType, from: o.baseFormulaType)
+        FireKit.populate(&self.caloricDensity, from: o.caloricDensity)
+        FireKit.populate(&self.maxVolumeToDeliver, from: o.maxVolumeToDeliver)
+        FireKit.populate(&self.routeofAdministration, from: o.routeofAdministration)
+    }
 }
-
-
 
 
 /**
@@ -319,9 +352,19 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
 		}
 		return NutritionOrderEnteralFormulaAdministration.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NutritionOrderEnteralFormulaAdministration else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.rateQuantity, from: o.rateQuantity)
+        FireKit.populate(&self.rateRatio, from: o.rateRatio)
+        FireKit.populate(&self.schedule, from: o.schedule)
+    }
 }
-
-
 
 
 /**
@@ -396,9 +439,21 @@ open class NutritionOrderOralDiet: BackboneElement {
 		}
 		return NutritionOrderOralDiet.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NutritionOrderOralDiet else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: fluidConsistencyType array
+        instruction = o.instruction
+        // TODO: nutrient array
+        // TODO: schedule array
+        // TODO: texture array
+        // TODO: type array
+    }
 }
-
-
 
 
 /**
@@ -463,9 +518,17 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
 		}
 		return NutritionOrderOralDietNutrient.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NutritionOrderOralDietNutrient else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.amount, from: o.amount)
+        FireKit.populate(&self.modifier, from: o.modifier)
+    }
 }
-
-
 
 
 /**
@@ -531,9 +594,17 @@ open class NutritionOrderOralDietTexture: BackboneElement {
 		}
 		return NutritionOrderOralDietTexture.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NutritionOrderOralDietTexture else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.foodType, from: o.foodType)
+        FireKit.populate(&self.modifier, from: o.modifier)
+    }
 }
-
-
 
 
 /**
@@ -610,7 +681,18 @@ open class NutritionOrderSupplement: BackboneElement {
 		}
 		return NutritionOrderSupplement.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NutritionOrderSupplement else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        instruction = o.instruction
+        productName = o.productName
+        FireKit.populate(&self.quantity, from: o.quantity)
+        // TODO: schedule array
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 

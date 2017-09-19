@@ -105,9 +105,23 @@ open class Group: DomainResource {
 		}
 		return Group.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Group else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        actual.value = o.actual.value
+        // TODO: characteristic array
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: identifier array
+        // TODO: member array
+        name = o.name
+        quantity.value = o.quantity.value
+        type = o.type
+    }
 }
-
-
 
 
 /**
@@ -212,9 +226,22 @@ open class GroupCharacteristic: BackboneElement {
 		}
 		return GroupCharacteristic.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? GroupCharacteristic else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        exclude.value = o.exclude.value
+        FireKit.populate(&self.period, from: o.period)
+        valueBoolean.value = o.valueBoolean.value
+        FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
+        FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
+        FireKit.populate(&self.valueRange, from: o.valueRange)
+    }
 }
-
-
 
 
 /**
@@ -289,7 +316,16 @@ open class GroupMember: BackboneElement {
 		}
 		return GroupMember.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? GroupMember else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.entity, from: o.entity)
+        inactive.value = o.inactive.value
+        FireKit.populate(&self.period, from: o.period)
+    }
 }
-
-
 

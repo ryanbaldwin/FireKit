@@ -168,9 +168,34 @@ open class Encounter: DomainResource {
 		}
 		return Encounter.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Encounter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.appointment, from: o.appointment)
+        class_fhir = o.class_fhir
+        // TODO: episodeOfCare array
+        FireKit.populate(&self.hospitalization, from: o.hospitalization)
+        // TODO: identifier array
+        // TODO: incomingReferral array
+        // TODO: indication array
+        FireKit.populate(&self.length, from: o.length)
+        // TODO: location array
+        FireKit.populate(&self.partOf, from: o.partOf)
+        // TODO: participant array
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.period, from: o.period)
+        FireKit.populate(&self.priority, from: o.priority)
+        // TODO: reason array
+        FireKit.populate(&self.serviceProvider, from: o.serviceProvider)
+        status = o.status
+        // TODO: statusHistory array
+        // TODO: type array
+    }
 }
-
-
 
 
 /**
@@ -281,9 +306,26 @@ open class EncounterHospitalization: BackboneElement {
 		}
 		return EncounterHospitalization.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? EncounterHospitalization else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.admitSource, from: o.admitSource)
+        // TODO: admittingDiagnosis array
+        FireKit.populate(&self.destination, from: o.destination)
+        // TODO: dietPreference array
+        // TODO: dischargeDiagnosis array
+        FireKit.populate(&self.dischargeDisposition, from: o.dischargeDisposition)
+        FireKit.populate(&self.origin, from: o.origin)
+        FireKit.populate(&self.preAdmissionIdentifier, from: o.preAdmissionIdentifier)
+        FireKit.populate(&self.reAdmission, from: o.reAdmission)
+        // TODO: specialArrangement array
+        // TODO: specialCourtesy array
+    }
 }
-
-
 
 
 /**
@@ -358,9 +400,18 @@ open class EncounterLocation: BackboneElement {
 		}
 		return EncounterLocation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? EncounterLocation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.location, from: o.location)
+        FireKit.populate(&self.period, from: o.period)
+        status = o.status
+    }
 }
-
-
 
 
 /**
@@ -429,9 +480,18 @@ open class EncounterParticipant: BackboneElement {
 		}
 		return EncounterParticipant.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? EncounterParticipant else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.individual, from: o.individual)
+        FireKit.populate(&self.period, from: o.period)
+        // TODO: type array
+    }
 }
-
-
 
 
 /**
@@ -501,7 +561,15 @@ open class EncounterStatusHistory: BackboneElement {
 		}
 		return EncounterStatusHistory.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? EncounterStatusHistory else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.period, from: o.period)
+        status = o.status
+    }
 }
-
-
 

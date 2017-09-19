@@ -130,9 +130,28 @@ open class NamingSystem: DomainResource {
 		}
 		return NamingSystem.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NamingSystem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: contact array
+        date = o.date
+        description_fhir = o.description_fhir
+        kind = o.kind
+        name = o.name
+        publisher = o.publisher
+        FireKit.populate(&self.replacedBy, from: o.replacedBy)
+        responsible = o.responsible
+        status = o.status
+        FireKit.populate(&self.type, from: o.type)
+        // TODO: uniqueId array
+        usage = o.usage
+        // TODO: useContext array
+    }
 }
-
-
 
 
 /**
@@ -191,9 +210,17 @@ open class NamingSystemContact: BackboneElement {
 		}
 		return NamingSystemContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NamingSystemContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -270,7 +297,17 @@ open class NamingSystemUniqueId: BackboneElement {
 		}
 		return NamingSystemUniqueId.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? NamingSystemUniqueId else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.period, from: o.period)
+        preferred.value = o.preferred.value
+        type = o.type
+        value = o.value
+    }
 }
-
-
 

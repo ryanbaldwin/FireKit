@@ -166,9 +166,36 @@ open class TestScript: DomainResource {
 		}
 		return TestScript.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScript else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: contact array
+        copyright = o.copyright
+        date = o.date
+        description_fhir = o.description_fhir
+        experimental.value = o.experimental.value
+        // TODO: fixture array
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.metadata, from: o.metadata)
+        multiserver.value = o.multiserver.value
+        name = o.name
+        // TODO: profile array
+        publisher = o.publisher
+        requirements = o.requirements
+        FireKit.populate(&self.setup, from: o.setup)
+        status = o.status
+        FireKit.populate(&self.teardown, from: o.teardown)
+        // TODO: test array
+        url = o.url
+        // TODO: useContext array
+        // TODO: variable array
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -227,9 +254,17 @@ open class TestScriptContact: BackboneElement {
 		}
 		return TestScriptContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -295,9 +330,18 @@ open class TestScriptFixture: BackboneElement {
 		}
 		return TestScriptFixture.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptFixture else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        autocreate.value = o.autocreate.value
+        autodelete.value = o.autodelete.value
+        FireKit.populate(&self.resource, from: o.resource)
+    }
 }
-
-
 
 
 /**
@@ -362,9 +406,17 @@ open class TestScriptMetadata: BackboneElement {
 		}
 		return TestScriptMetadata.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptMetadata else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: capability array
+        // TODO: link array
+    }
 }
-
-
 
 
 /**
@@ -448,9 +500,21 @@ open class TestScriptMetadataCapability: BackboneElement {
 		}
 		return TestScriptMetadataCapability.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptMetadataCapability else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.conformance, from: o.conformance)
+        description_fhir = o.description_fhir
+        destination.value = o.destination.value
+        // TODO: link array
+        required.value = o.required.value
+        validated.value = o.validated.value
+    }
 }
-
-
 
 
 /**
@@ -515,9 +579,17 @@ open class TestScriptMetadataLink: BackboneElement {
 		}
 		return TestScriptMetadataLink.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptMetadataLink else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        description_fhir = o.description_fhir
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -583,9 +655,17 @@ open class TestScriptSetup: BackboneElement {
 		}
 		return TestScriptSetup.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptSetup else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: action array
+        FireKit.populate(&self.metadata, from: o.metadata)
+    }
 }
-
-
 
 
 /**
@@ -650,9 +730,17 @@ open class TestScriptSetupAction: BackboneElement {
 		}
 		return TestScriptSetupAction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptSetupAction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.assert, from: o.assert)
+        FireKit.populate(&self.operation, from: o.operation)
+    }
 }
-
-
 
 
 /**
@@ -775,9 +863,33 @@ open class TestScriptSetupActionAssert: BackboneElement {
 		}
 		return TestScriptSetupActionAssert.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptSetupActionAssert else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        compareToSourceId = o.compareToSourceId
+        compareToSourcePath = o.compareToSourcePath
+        contentType = o.contentType
+        description_fhir = o.description_fhir
+        direction = o.direction
+        headerField = o.headerField
+        label = o.label
+        minimumId = o.minimumId
+        navigationLinks.value = o.navigationLinks.value
+        operator_fhir = o.operator_fhir
+        path = o.path
+        resource = o.resource
+        response = o.response
+        responseCode = o.responseCode
+        sourceId = o.sourceId
+        validateProfileId = o.validateProfileId
+        value = o.value
+        warningOnly.value = o.warningOnly.value
+    }
 }
-
-
 
 
 /**
@@ -887,9 +999,29 @@ open class TestScriptSetupActionOperation: BackboneElement {
 		}
 		return TestScriptSetupActionOperation.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptSetupActionOperation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        accept = o.accept
+        contentType = o.contentType
+        description_fhir = o.description_fhir
+        destination.value = o.destination.value
+        encodeRequestUrl.value = o.encodeRequestUrl.value
+        label = o.label
+        params = o.params
+        // TODO: requestHeader array
+        resource = o.resource
+        responseId = o.responseId
+        sourceId = o.sourceId
+        targetId = o.targetId
+        FireKit.populate(&self.type, from: o.type)
+        url = o.url
+    }
 }
-
-
 
 
 /**
@@ -955,9 +1087,17 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
 		}
 		return TestScriptSetupActionOperationRequestHeader.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptSetupActionOperationRequestHeader else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        field = o.field
+        value = o.value
+    }
 }
-
-
 
 
 /**
@@ -1018,9 +1158,16 @@ open class TestScriptTeardown: BackboneElement {
 		}
 		return TestScriptTeardown.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptTeardown else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: action array
+    }
 }
-
-
 
 
 /**
@@ -1078,9 +1225,16 @@ open class TestScriptTeardownAction: BackboneElement {
 		}
 		return TestScriptTeardownAction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptTeardownAction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.operation, from: o.operation)
+    }
 }
-
-
 
 
 /**
@@ -1154,9 +1308,19 @@ open class TestScriptTest: BackboneElement {
 		}
 		return TestScriptTest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptTest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: action array
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.metadata, from: o.metadata)
+        name = o.name
+    }
 }
-
-
 
 
 /**
@@ -1221,9 +1385,17 @@ open class TestScriptTestAction: BackboneElement {
 		}
 		return TestScriptTestAction.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptTestAction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.assert, from: o.assert)
+        FireKit.populate(&self.operation, from: o.operation)
+    }
 }
-
-
 
 
 /**
@@ -1296,7 +1468,17 @@ open class TestScriptVariable: BackboneElement {
 		}
 		return TestScriptVariable.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TestScriptVariable else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        headerField = o.headerField
+        name = o.name
+        path = o.path
+        sourceId = o.sourceId
+    }
 }
-
-
 

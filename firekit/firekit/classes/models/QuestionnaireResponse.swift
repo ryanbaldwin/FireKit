@@ -125,9 +125,24 @@ open class QuestionnaireResponse: DomainResource {
 		}
 		return QuestionnaireResponse.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponse else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        authored = o.authored
+        FireKit.populate(&self.encounter, from: o.encounter)
+        FireKit.populate(&self.group, from: o.group)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.questionnaire, from: o.questionnaire)
+        FireKit.populate(&self.source, from: o.source)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 
 
 /**
@@ -205,9 +220,21 @@ open class QuestionnaireResponseGroup: BackboneElement {
 		}
 		return QuestionnaireResponseGroup.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponseGroup else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: group array
+        linkId = o.linkId
+        // TODO: question array
+        FireKit.populate(&self.subject, from: o.subject)
+        text = o.text
+        title = o.title
+    }
 }
-
-
 
 
 /**
@@ -270,9 +297,18 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 		}
 		return QuestionnaireResponseGroupQuestion.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponseGroupQuestion else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: answer array
+        linkId = o.linkId
+        text = o.text
+    }
 }
-
-
 
 
 /**
@@ -391,7 +427,27 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 		}
 		return QuestionnaireResponseGroupQuestionAnswer.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponseGroupQuestionAnswer else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: group array
+        FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
+        valueBoolean.value = o.valueBoolean.value
+        FireKit.populate(&self.valueCoding, from: o.valueCoding)
+        valueDate = o.valueDate
+        valueDateTime = o.valueDateTime
+        valueDecimal = o.valueDecimal
+        valueInstant = o.valueInstant
+        valueInteger.value = o.valueInteger.value
+        FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
+        FireKit.populate(&self.valueReference, from: o.valueReference)
+        valueString = o.valueString
+        valueTime = o.valueTime
+        valueUri = o.valueUri
+    }
 }
-
-
 

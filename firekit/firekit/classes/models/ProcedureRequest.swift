@@ -170,7 +170,31 @@ open class ProcedureRequest: DomainResource {
 		}
 		return ProcedureRequest.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProcedureRequest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        asNeededBoolean.value = o.asNeededBoolean.value
+        FireKit.populate(&self.asNeededCodeableConcept, from: o.asNeededCodeableConcept)
+        // TODO: bodySite array
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: identifier array
+        // TODO: notes array
+        orderedOn = o.orderedOn
+        FireKit.populate(&self.orderer, from: o.orderer)
+        FireKit.populate(&self.performer, from: o.performer)
+        priority = o.priority
+        FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
+        FireKit.populate(&self.reasonReference, from: o.reasonReference)
+        scheduledDateTime = o.scheduledDateTime
+        FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)
+        FireKit.populate(&self.scheduledTiming, from: o.scheduledTiming)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
-
-
 

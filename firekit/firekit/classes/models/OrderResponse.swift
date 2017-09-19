@@ -100,7 +100,20 @@ open class OrderResponse: DomainResource {
 		}
 		return OrderResponse.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OrderResponse else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        date = o.date
+        description_fhir = o.description_fhir
+        // TODO: fulfillment array
+        // TODO: identifier array
+        orderStatus = o.orderStatus
+        FireKit.populate(&self.request, from: o.request)
+        FireKit.populate(&self.who, from: o.who)
+    }
 }
-
-
 

@@ -143,9 +143,32 @@ open class ImplementationGuide: DomainResource {
 		}
 		return ImplementationGuide.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImplementationGuide else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: binary array
+        // TODO: contact array
+        copyright = o.copyright
+        date = o.date
+        // TODO: dependency array
+        description_fhir = o.description_fhir
+        experimental.value = o.experimental.value
+        fhirVersion = o.fhirVersion
+        // TODO: global array
+        name = o.name
+        // TODO: package array
+        FireKit.populate(&self.page, from: o.page)
+        publisher = o.publisher
+        status = o.status
+        url = o.url
+        // TODO: useContext array
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -204,9 +227,17 @@ open class ImplementationGuideContact: BackboneElement {
 		}
 		return ImplementationGuideContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImplementationGuideContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -273,9 +304,17 @@ open class ImplementationGuideDependency: BackboneElement {
 		}
 		return ImplementationGuideDependency.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImplementationGuideDependency else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        type = o.type
+        uri = o.uri
+    }
 }
-
-
 
 
 /**
@@ -344,9 +383,17 @@ open class ImplementationGuideGlobal: BackboneElement {
 		}
 		return ImplementationGuideGlobal.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImplementationGuideGlobal else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.profile, from: o.profile)
+        type = o.type
+    }
 }
-
-
 
 
 /**
@@ -416,9 +463,18 @@ open class ImplementationGuidePackage: BackboneElement {
 		}
 		return ImplementationGuidePackage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImplementationGuidePackage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        description_fhir = o.description_fhir
+        name = o.name
+        // TODO: resource array
+    }
 }
-
-
 
 
 /**
@@ -513,9 +569,22 @@ open class ImplementationGuidePackageResource: BackboneElement {
 		}
 		return ImplementationGuidePackageResource.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImplementationGuidePackageResource else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        acronym = o.acronym
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.exampleFor, from: o.exampleFor)
+        name = o.name
+        purpose = o.purpose
+        FireKit.populate(&self.sourceReference, from: o.sourceReference)
+        sourceUri = o.sourceUri
+    }
 }
-
-
 
 
 /**
@@ -602,7 +671,20 @@ open class ImplementationGuidePage: BackboneElement {
 		}
 		return ImplementationGuidePage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImplementationGuidePage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        format = o.format
+        kind = o.kind
+        name = o.name
+        // TODO: package array
+        // TODO: page array
+        source = o.source
+        // TODO: type array
+    }
 }
-
-
 

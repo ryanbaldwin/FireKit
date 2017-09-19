@@ -153,9 +153,33 @@ open class ConceptMap: DomainResource {
 		}
 		return ConceptMap.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMap else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: contact array
+        copyright = o.copyright
+        date = o.date
+        description_fhir = o.description_fhir
+        // TODO: element array
+        experimental.value = o.experimental.value
+        FireKit.populate(&self.identifier, from: o.identifier)
+        name = o.name
+        publisher = o.publisher
+        requirements = o.requirements
+        FireKit.populate(&self.sourceReference, from: o.sourceReference)
+        sourceUri = o.sourceUri
+        status = o.status
+        FireKit.populate(&self.targetReference, from: o.targetReference)
+        targetUri = o.targetUri
+        url = o.url
+        // TODO: useContext array
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -214,9 +238,17 @@ open class ConceptMapContact: BackboneElement {
 		}
 		return ConceptMapContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -279,9 +311,18 @@ open class ConceptMapElement: BackboneElement {
 		}
 		return ConceptMapElement.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapElement else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        codeSystem = o.codeSystem
+        // TODO: target array
+    }
 }
-
-
 
 
 /**
@@ -362,9 +403,21 @@ open class ConceptMapElementTarget: BackboneElement {
 		}
 		return ConceptMapElementTarget.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapElementTarget else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        codeSystem = o.codeSystem
+        comments = o.comments
+        // TODO: dependsOn array
+        equivalence = o.equivalence
+        // TODO: product array
+    }
 }
-
-
 
 
 /**
@@ -436,7 +489,16 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 		}
 		return ConceptMapElementTargetDependsOn.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapElementTargetDependsOn else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        code = o.code
+        codeSystem = o.codeSystem
+        element = o.element
+    }
 }
-
-
 

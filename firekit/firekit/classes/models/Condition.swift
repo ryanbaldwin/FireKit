@@ -210,9 +210,40 @@ open class Condition: DomainResource {
 		}
 		return Condition.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Condition else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        abatementBoolean.value = o.abatementBoolean.value
+        abatementDateTime = o.abatementDateTime
+        FireKit.populate(&self.abatementPeriod, from: o.abatementPeriod)
+        FireKit.populate(&self.abatementQuantity, from: o.abatementQuantity)
+        FireKit.populate(&self.abatementRange, from: o.abatementRange)
+        abatementString = o.abatementString
+        FireKit.populate(&self.asserter, from: o.asserter)
+        // TODO: bodySite array
+        FireKit.populate(&self.category, from: o.category)
+        clinicalStatus = o.clinicalStatus
+        FireKit.populate(&self.code, from: o.code)
+        dateRecorded = o.dateRecorded
+        FireKit.populate(&self.encounter, from: o.encounter)
+        // TODO: evidence array
+        // TODO: identifier array
+        notes = o.notes
+        onsetDateTime = o.onsetDateTime
+        FireKit.populate(&self.onsetPeriod, from: o.onsetPeriod)
+        FireKit.populate(&self.onsetQuantity, from: o.onsetQuantity)
+        FireKit.populate(&self.onsetRange, from: o.onsetRange)
+        onsetString = o.onsetString
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.severity, from: o.severity)
+        FireKit.populate(&self.stage, from: o.stage)
+        verificationStatus = o.verificationStatus
+    }
 }
-
-
 
 
 /**
@@ -274,9 +305,17 @@ open class ConditionEvidence: BackboneElement {
 		}
 		return ConditionEvidence.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConditionEvidence else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: detail array
+    }
 }
-
-
 
 
 /**
@@ -338,7 +377,15 @@ open class ConditionStage: BackboneElement {
 		}
 		return ConditionStage.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConditionStage else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: assessment array
+        FireKit.populate(&self.summary, from: o.summary)
+    }
 }
-
-
 

@@ -152,9 +152,34 @@ open class OperationDefinition: DomainResource {
 		}
 		return OperationDefinition.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OperationDefinition else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.base, from: o.base)
+        code = o.code
+        // TODO: contact array
+        date = o.date
+        description_fhir = o.description_fhir
+        experimental.value = o.experimental.value
+        idempotent.value = o.idempotent.value
+        instance.value = o.instance.value
+        kind = o.kind
+        name = o.name
+        notes = o.notes
+        // TODO: parameter array
+        publisher = o.publisher
+        requirements = o.requirements
+        status = o.status
+        system.value = o.system.value
+        // TODO: type array
+        url = o.url
+        version = o.version
+    }
 }
-
-
 
 
 /**
@@ -213,9 +238,17 @@ open class OperationDefinitionContact: BackboneElement {
 		}
 		return OperationDefinitionContact.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OperationDefinitionContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        name = o.name
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -317,9 +350,24 @@ open class OperationDefinitionParameter: BackboneElement {
 		}
 		return OperationDefinitionParameter.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OperationDefinitionParameter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.binding, from: o.binding)
+        documentation = o.documentation
+        max = o.max
+        min.value = o.min.value
+        name = o.name
+        // TODO: part array
+        FireKit.populate(&self.profile, from: o.profile)
+        type = o.type
+        use = o.use
+    }
 }
-
-
 
 
 /**
@@ -393,7 +441,16 @@ open class OperationDefinitionParameterBinding: BackboneElement {
 		}
 		return OperationDefinitionParameterBinding.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OperationDefinitionParameterBinding else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        strength = o.strength
+        FireKit.populate(&self.valueSetReference, from: o.valueSetReference)
+        valueSetUri = o.valueSetUri
+    }
 }
-
-
 

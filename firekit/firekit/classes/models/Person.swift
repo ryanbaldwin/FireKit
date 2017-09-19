@@ -107,9 +107,25 @@ open class Person: DomainResource {
 		}
 		return Person.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Person else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        active.value = o.active.value
+        // TODO: address array
+        birthDate = o.birthDate
+        gender = o.gender
+        // TODO: identifier array
+        // TODO: link array
+        FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
+        // TODO: name array
+        FireKit.populate(&self.photo, from: o.photo)
+        // TODO: telecom array
+    }
 }
-
-
 
 
 /**
@@ -175,7 +191,15 @@ open class PersonLink: BackboneElement {
 		}
 		return PersonLink.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? PersonLink else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        assurance = o.assurance
+        FireKit.populate(&self.target, from: o.target)
+    }
 }
-
-
 

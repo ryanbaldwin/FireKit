@@ -82,7 +82,17 @@ open class Resource: FHIRAbstractResource {
 		}
 		return Resource.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Resource else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        id = o.id
+        implicitRules = o.implicitRules
+        language = o.language
+        FireKit.populate(&self.meta, from: o.meta)
+    }
 }
-
-
 

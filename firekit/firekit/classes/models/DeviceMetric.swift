@@ -127,9 +127,25 @@ open class DeviceMetric: DomainResource {
 		}
 		return DeviceMetric.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceMetric else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        // TODO: calibration array
+        category = o.category
+        color = o.color
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.measurementPeriod, from: o.measurementPeriod)
+        operationalStatus = o.operationalStatus
+        FireKit.populate(&self.parent, from: o.parent)
+        FireKit.populate(&self.source, from: o.source)
+        FireKit.populate(&self.type, from: o.type)
+        FireKit.populate(&self.unit, from: o.unit)
+    }
 }
-
-
 
 
 /**
@@ -190,7 +206,16 @@ open class DeviceMetricCalibration: BackboneElement {
 		}
 		return DeviceMetricCalibration.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceMetricCalibration else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        state = o.state
+        time = o.time
+        type = o.type
+    }
 }
-
-
 

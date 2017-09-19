@@ -81,9 +81,18 @@ open class Timing: Element {
 		}
 		return Timing.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Timing else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        // TODO: event array
+        FireKit.populate(&self.repeat_fhir, from: o.repeat_fhir)
+    }
 }
-
-
 
 
 /**
@@ -195,7 +204,26 @@ open class TimingRepeat: Element {
 		}
 		return TimingRepeat.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? TimingRepeat else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.boundsPeriod, from: o.boundsPeriod)
+        FireKit.populate(&self.boundsQuantity, from: o.boundsQuantity)
+        FireKit.populate(&self.boundsRange, from: o.boundsRange)
+        count.value = o.count.value
+        duration = o.duration
+        durationMax = o.durationMax
+        durationUnits = o.durationUnits
+        frequency.value = o.frequency.value
+        frequencyMax.value = o.frequencyMax.value
+        period = o.period
+        periodMax = o.periodMax
+        periodUnits = o.periodUnits
+        when = o.when
+    }
 }
-
-
 

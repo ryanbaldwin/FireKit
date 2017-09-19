@@ -128,9 +128,27 @@ open class Location: DomainResource {
 		}
 		return Location.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Location else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.address, from: o.address)
+        description_fhir = o.description_fhir
+        // TODO: identifier array
+        FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
+        mode = o.mode
+        name = o.name
+        FireKit.populate(&self.partOf, from: o.partOf)
+        FireKit.populate(&self.physicalType, from: o.physicalType)
+        FireKit.populate(&self.position, from: o.position)
+        status = o.status
+        // TODO: telecom array
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -201,7 +219,16 @@ open class LocationPosition: BackboneElement {
 		}
 		return LocationPosition.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? LocationPosition else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        altitude = o.altitude
+        latitude = o.latitude
+        longitude = o.longitude
+    }
 }
-
-
 

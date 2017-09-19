@@ -128,9 +128,25 @@ open class DeviceComponent: DomainResource {
 		}
 		return DeviceComponent.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceComponent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.languageCode, from: o.languageCode)
+        lastSystemChange = o.lastSystemChange
+        measurementPrinciple = o.measurementPrinciple
+        // TODO: operationalStatus array
+        FireKit.populate(&self.parameterGroup, from: o.parameterGroup)
+        FireKit.populate(&self.parent, from: o.parent)
+        // TODO: productionSpecification array
+        FireKit.populate(&self.source, from: o.source)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
-
-
 
 
 /**
@@ -199,7 +215,16 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 		}
 		return DeviceComponentProductionSpecification.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceComponentProductionSpecification else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        FireKit.populate(&self.componentId, from: o.componentId)
+        productionSpec = o.productionSpec
+        FireKit.populate(&self.specType, from: o.specType)
+    }
 }
-
-
 

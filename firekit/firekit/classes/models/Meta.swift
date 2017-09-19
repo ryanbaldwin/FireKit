@@ -82,7 +82,18 @@ open class Meta: Element {
 		}
 		return Meta.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Meta else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        lastUpdated = o.lastUpdated
+        // TODO: profile array
+        // TODO: security array
+        // TODO: tag array
+        versionId = o.versionId
+    }
 }
-
-
 

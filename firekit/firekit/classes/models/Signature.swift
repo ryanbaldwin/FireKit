@@ -101,7 +101,19 @@ open class Signature: Element {
 		}
 		return Signature.init()
 	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Signature else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        super.populate(from: o)
+        blob = o.blob
+        contentType = o.contentType
+        // TODO: type array
+        when = o.when
+        FireKit.populate(&self.whoReference, from: o.whoReference)
+        whoUri = o.whoUri
+    }
 }
-
-
 
