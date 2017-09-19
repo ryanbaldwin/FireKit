@@ -161,10 +161,11 @@ open class ValueSet: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.codeSystem, from: o.codeSystem)
         FireKit.populate(&self.compose, from: o.compose)
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         copyright = o.copyright
         date = o.date
         description_fhir = o.description_fhir
@@ -179,7 +180,7 @@ open class ValueSet: DomainResource {
         requirements = o.requirements
         status = o.status
         url = o.url
-        // TODO: useContext array
+        FireKit.populateList(&self.useContext, from: o.useContext)
         version = o.version
     }
 }
@@ -263,9 +264,10 @@ open class ValueSetCodeSystem: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         caseSensitive.value = o.caseSensitive.value
-        // TODO: concept array
+        FireKit.populateList(&self.concept, from: o.concept)
         system = o.system
         version = o.version
     }
@@ -357,12 +359,13 @@ open class ValueSetCodeSystemConcept: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         abstract.value = o.abstract.value
         code = o.code
-        // TODO: concept array
+        FireKit.populateList(&self.concept, from: o.concept)
         definition = o.definition
-        // TODO: designation array
+        FireKit.populateList(&self.designation, from: o.designation)
         display = o.display
     }
 }
@@ -444,6 +447,7 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         language = o.language
         FireKit.populate(&self.use, from: o.use)
@@ -519,10 +523,11 @@ open class ValueSetCompose: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: exclude array
-        // TODO: import_fhir array
-        // TODO: include array
+        FireKit.populateList(&self.exclude, from: o.exclude)
+        FireKit.populateList(&self.import_fhir, from: o.import_fhir)
+        FireKit.populateList(&self.include, from: o.include)
     }
 }
 
@@ -601,9 +606,10 @@ open class ValueSetComposeInclude: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: concept array
-        // TODO: filter array
+        FireKit.populateList(&self.concept, from: o.concept)
+        FireKit.populateList(&self.filter, from: o.filter)
         system = o.system
         version = o.version
     }
@@ -682,9 +688,10 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
-        // TODO: designation array
+        FireKit.populateList(&self.designation, from: o.designation)
         display = o.display
     }
 }
@@ -765,6 +772,7 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         op = o.op
         property = o.property
@@ -835,9 +843,10 @@ open class ValueSetContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -928,11 +937,12 @@ open class ValueSetExpansion: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: contains array
+        FireKit.populateList(&self.contains, from: o.contains)
         identifier = o.identifier
         offset.value = o.offset.value
-        // TODO: parameter array
+        FireKit.populateList(&self.parameter, from: o.parameter)
         timestamp = o.timestamp
         total.value = o.total.value
     }
@@ -1017,10 +1027,11 @@ open class ValueSetExpansionContains: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         abstract.value = o.abstract.value
         code = o.code
-        // TODO: contains array
+        FireKit.populateList(&self.contains, from: o.contains)
         display = o.display
         system = o.system
         version = o.version
@@ -1117,6 +1128,7 @@ open class ValueSetExpansionParameter: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
         valueBoolean.value = o.valueBoolean.value

@@ -143,13 +143,14 @@ open class ProcessResponse: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         created = o.created
         disposition = o.disposition
-        // TODO: error array
+        FireKit.populateList(&self.error, from: o.error)
         FireKit.populate(&self.form, from: o.form)
-        // TODO: identifier array
-        // TODO: notes array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.notes, from: o.notes)
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
         FireKit.populate(&self.outcome, from: o.outcome)
@@ -226,6 +227,7 @@ open class ProcessResponseNotes: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         text = o.text
         FireKit.populate(&self.type, from: o.type)

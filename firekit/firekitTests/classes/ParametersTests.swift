@@ -15,63 +15,62 @@ import FireKit
 
 
 class ParametersTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.Parameters {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.Parameters {
-      print("Inflating FireKit.Parameters from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.Parameters.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testParameters1() {   
-    var instance: FireKit.Parameters?
-    do {
-      instance = try runParameters1()
-      try runParameters1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.Parameters
-      XCTAssertNotNil(copy)
-      try runParameters1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runParameters1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testParametersRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.Parameters {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.Parameters {
+        print("Inflating FireKit.Parameters from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.Parameters.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testParameters1() {   
+        var instance: FireKit.Parameters?
+        do {
+            instance = try runParameters1()
+            try runParameters1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Parameters successfully, but threw: \(error)")
+        }
 
-  func testParameters1RealmPK() {    
-    do {
-        let instance: FireKit.Parameters = try runParameters1()
-        let copy = (instance.copy() as! FireKit.Parameters)
+        testParametersRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testParameters1Copying() {
+        do {
+            let instance = try runParameters1()
+            let copy = instance.copy() as? FireKit.Parameters
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runParameters1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Parameters's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Parameters successfully, but threw: \(error)")
         }
     }
 
-  func testParametersRealm1(_ instance: FireKit.Parameters) {
+    func testParameters1Populatability() {
+        do {
+            let instance = try runParameters1()
+            let copy = FireKit.Parameters()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runParameters1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Parameters successfully, but threw: \(error)")
+        }
+    }
+
+    func testParametersRealm1(_ instance: FireKit.Parameters) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,17 +103,17 @@ class ParametersTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Parameters.self).count)
-  }
-  
-  @discardableResult
-  func runParameters1(_ data: Data? = nil) throws -> FireKit.Parameters {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "parameters-example.json")
+    }
     
-    XCTAssertEqual(inst.id, "example")
-    XCTAssertEqual(inst.parameter[0].name, "start")
-    XCTAssertEqual(inst.parameter[0].valueDate?.description, "2010-01-01")
-    XCTAssertEqual(inst.parameter[1].name, "end")
-    
-    return inst
-  }
+    @discardableResult
+    func runParameters1(_ data: Data? = nil) throws -> FireKit.Parameters {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "parameters-example.json")
+        
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.parameter[0].name, "start")
+        XCTAssertEqual(inst.parameter[0].valueDate?.description, "2010-01-01")
+        XCTAssertEqual(inst.parameter[1].name, "end")
+
+        return inst
+    }
 }

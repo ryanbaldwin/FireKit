@@ -149,15 +149,16 @@ open class CommunicationRequest: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
-        // TODO: medium array
-        // TODO: payload array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.medium, from: o.medium)
+        FireKit.populateList(&self.payload, from: o.payload)
         FireKit.populate(&self.priority, from: o.priority)
-        // TODO: reason array
-        // TODO: recipient array
+        FireKit.populateList(&self.reason, from: o.reason)
+        FireKit.populateList(&self.recipient, from: o.recipient)
         requestedOn = o.requestedOn
         FireKit.populate(&self.requester, from: o.requester)
         scheduledDateTime = o.scheduledDateTime
@@ -249,6 +250,7 @@ open class CommunicationRequestPayload: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
         FireKit.populate(&self.contentReference, from: o.contentReference)

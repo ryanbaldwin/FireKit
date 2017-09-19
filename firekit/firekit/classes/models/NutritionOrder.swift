@@ -137,19 +137,20 @@ open class NutritionOrder: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: allergyIntolerance array
+        FireKit.populateList(&self.allergyIntolerance, from: o.allergyIntolerance)
         dateTime = o.dateTime
         FireKit.populate(&self.encounter, from: o.encounter)
         FireKit.populate(&self.enteralFormula, from: o.enteralFormula)
-        // TODO: excludeFoodModifier array
-        // TODO: foodPreferenceModifier array
-        // TODO: identifier array
+        FireKit.populateList(&self.excludeFoodModifier, from: o.excludeFoodModifier)
+        FireKit.populateList(&self.foodPreferenceModifier, from: o.foodPreferenceModifier)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.oralDiet, from: o.oralDiet)
         FireKit.populate(&self.orderer, from: o.orderer)
         FireKit.populate(&self.patient, from: o.patient)
         status = o.status
-        // TODO: supplement array
+        FireKit.populateList(&self.supplement, from: o.supplement)
     }
 }
 
@@ -260,10 +261,11 @@ open class NutritionOrderEnteralFormula: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         additiveProductName = o.additiveProductName
         FireKit.populate(&self.additiveType, from: o.additiveType)
-        // TODO: administration array
+        FireKit.populateList(&self.administration, from: o.administration)
         administrationInstruction = o.administrationInstruction
         baseFormulaProductName = o.baseFormulaProductName
         FireKit.populate(&self.baseFormulaType, from: o.baseFormulaType)
@@ -358,6 +360,7 @@ open class NutritionOrderEnteralFormulaAdministration: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.quantity, from: o.quantity)
         FireKit.populate(&self.rateQuantity, from: o.rateQuantity)
@@ -445,13 +448,14 @@ open class NutritionOrderOralDiet: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: fluidConsistencyType array
+        FireKit.populateList(&self.fluidConsistencyType, from: o.fluidConsistencyType)
         instruction = o.instruction
-        // TODO: nutrient array
-        // TODO: schedule array
-        // TODO: texture array
-        // TODO: type array
+        FireKit.populateList(&self.nutrient, from: o.nutrient)
+        FireKit.populateList(&self.schedule, from: o.schedule)
+        FireKit.populateList(&self.texture, from: o.texture)
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 
@@ -524,6 +528,7 @@ open class NutritionOrderOralDietNutrient: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.amount, from: o.amount)
         FireKit.populate(&self.modifier, from: o.modifier)
@@ -600,6 +605,7 @@ open class NutritionOrderOralDietTexture: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.foodType, from: o.foodType)
         FireKit.populate(&self.modifier, from: o.modifier)
@@ -687,11 +693,12 @@ open class NutritionOrderSupplement: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         instruction = o.instruction
         productName = o.productName
         FireKit.populate(&self.quantity, from: o.quantity)
-        // TODO: schedule array
+        FireKit.populateList(&self.schedule, from: o.schedule)
         FireKit.populate(&self.type, from: o.type)
     }
 }

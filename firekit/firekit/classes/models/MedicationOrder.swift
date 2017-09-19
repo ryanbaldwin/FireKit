@@ -177,13 +177,14 @@ open class MedicationOrder: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         dateEnded = o.dateEnded
         dateWritten = o.dateWritten
         FireKit.populate(&self.dispenseRequest, from: o.dispenseRequest)
-        // TODO: dosageInstruction array
+        FireKit.populateList(&self.dosageInstruction, from: o.dosageInstruction)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
         note = o.note
@@ -295,6 +296,7 @@ open class MedicationOrderDispenseRequest: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.expectedSupplyDuration, from: o.expectedSupplyDuration)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
@@ -452,6 +454,7 @@ open class MedicationOrderDosageInstruction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.additionalInstructions, from: o.additionalInstructions)
         asNeededBoolean.value = o.asNeededBoolean.value
@@ -547,6 +550,7 @@ open class MedicationOrderSubstitution: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.reason, from: o.reason)
         FireKit.populate(&self.type, from: o.type)

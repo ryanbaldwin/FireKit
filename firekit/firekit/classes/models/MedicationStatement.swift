@@ -174,12 +174,13 @@ open class MedicationStatement: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         dateAsserted = o.dateAsserted
-        // TODO: dosage array
+        FireKit.populateList(&self.dosage, from: o.dosage)
         effectiveDateTime = o.effectiveDateTime
         FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.informationSource, from: o.informationSource)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
@@ -187,9 +188,9 @@ open class MedicationStatement: DomainResource {
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.reasonForUseCodeableConcept, from: o.reasonForUseCodeableConcept)
         FireKit.populate(&self.reasonForUseReference, from: o.reasonForUseReference)
-        // TODO: reasonNotTaken array
+        FireKit.populateList(&self.reasonNotTaken, from: o.reasonNotTaken)
         status = o.status
-        // TODO: supportingInformation array
+        FireKit.populateList(&self.supportingInformation, from: o.supportingInformation)
         wasNotTaken.value = o.wasNotTaken.value
     }
 }
@@ -334,6 +335,7 @@ open class MedicationStatementDosage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         asNeededBoolean.value = o.asNeededBoolean.value
         FireKit.populate(&self.asNeededCodeableConcept, from: o.asNeededCodeableConcept)

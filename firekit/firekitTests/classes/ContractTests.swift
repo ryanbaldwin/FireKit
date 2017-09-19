@@ -15,63 +15,62 @@ import FireKit
 
 
 class ContractTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.Contract {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.Contract {
-      print("Inflating FireKit.Contract from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.Contract.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testContract1() {   
-    var instance: FireKit.Contract?
-    do {
-      instance = try runContract1()
-      try runContract1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.Contract
-      XCTAssertNotNil(copy)
-      try runContract1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runContract1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test Contract successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testContractRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.Contract {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.Contract {
+        print("Inflating FireKit.Contract from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.Contract.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testContract1() {   
+        var instance: FireKit.Contract?
+        do {
+            instance = try runContract1()
+            try runContract1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Contract successfully, but threw: \(error)")
+        }
 
-  func testContract1RealmPK() {    
-    do {
-        let instance: FireKit.Contract = try runContract1()
-        let copy = (instance.copy() as! FireKit.Contract)
+        testContractRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testContract1Copying() {
+        do {
+            let instance = try runContract1()
+            let copy = instance.copy() as? FireKit.Contract
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runContract1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Contract's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Contract successfully, but threw: \(error)")
         }
     }
 
-  func testContractRealm1(_ instance: FireKit.Contract) {
+    func testContract1Populatability() {
+        do {
+            let instance = try runContract1()
+            let copy = FireKit.Contract()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runContract1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Contract successfully, but threw: \(error)")
+        }
+    }
+
+    func testContractRealm1(_ instance: FireKit.Contract) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,16 +103,16 @@ class ContractTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Contract.self).count)
-  }
-  
-  @discardableResult
-  func runContract1(_ data: Data? = nil) throws -> FireKit.Contract {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "contract-example.json")
+    }
     
-    XCTAssertEqual(inst.id, "C-123")
-    XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the contract</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
+    @discardableResult
+    func runContract1(_ data: Data? = nil) throws -> FireKit.Contract {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "contract-example.json")
+        
+        XCTAssertEqual(inst.id, "C-123")
+        XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the contract</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

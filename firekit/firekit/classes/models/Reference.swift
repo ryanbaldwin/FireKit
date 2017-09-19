@@ -73,6 +73,7 @@ open class Reference: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         display = o.display
         reference = o.reference

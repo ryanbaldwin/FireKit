@@ -103,11 +103,12 @@ open class Basic: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
         FireKit.populate(&self.code, from: o.code)
         created = o.created
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.subject, from: o.subject)
     }
 }

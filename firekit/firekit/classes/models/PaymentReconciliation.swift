@@ -160,13 +160,14 @@ open class PaymentReconciliation: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         created = o.created
-        // TODO: detail array
+        FireKit.populateList(&self.detail, from: o.detail)
         disposition = o.disposition
         FireKit.populate(&self.form, from: o.form)
-        // TODO: identifier array
-        // TODO: note array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.note, from: o.note)
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
         outcome = o.outcome
@@ -286,6 +287,7 @@ open class PaymentReconciliationDetail: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.amount, from: o.amount)
         date = o.date
@@ -363,6 +365,7 @@ open class PaymentReconciliationNote: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         text = o.text
         FireKit.populate(&self.type, from: o.type)

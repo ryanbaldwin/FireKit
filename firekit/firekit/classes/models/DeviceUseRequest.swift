@@ -160,17 +160,18 @@ open class DeviceUseRequest: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.bodySiteCodeableConcept, from: o.bodySiteCodeableConcept)
         FireKit.populate(&self.bodySiteReference, from: o.bodySiteReference)
         FireKit.populate(&self.device, from: o.device)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
-        // TODO: indication array
-        // TODO: notes array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.indication, from: o.indication)
+        FireKit.populateList(&self.notes, from: o.notes)
         orderedOn = o.orderedOn
         priority = o.priority
-        // TODO: prnReason array
+        FireKit.populateList(&self.prnReason, from: o.prnReason)
         recordedOn = o.recordedOn
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)

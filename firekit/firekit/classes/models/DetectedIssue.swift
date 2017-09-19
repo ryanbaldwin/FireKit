@@ -120,14 +120,15 @@ open class DetectedIssue: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
         FireKit.populate(&self.category, from: o.category)
         date = o.date
         detail = o.detail
         FireKit.populate(&self.identifier, from: o.identifier)
-        // TODO: implicated array
-        // TODO: mitigation array
+        FireKit.populateList(&self.implicated, from: o.implicated)
+        FireKit.populateList(&self.mitigation, from: o.mitigation)
         FireKit.populate(&self.patient, from: o.patient)
         reference = o.reference
         severity = o.severity
@@ -215,6 +216,7 @@ open class DetectedIssueMitigation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.action, from: o.action)
         FireKit.populate(&self.author, from: o.author)

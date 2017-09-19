@@ -110,14 +110,15 @@ open class AppointmentResponse: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
         FireKit.populate(&self.appointment, from: o.appointment)
         comment = o.comment
         end = o.end
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         participantStatus = o.participantStatus
-        // TODO: participantType array
+        FireKit.populateList(&self.participantType, from: o.participantType)
         start = o.start
     }
 }

@@ -98,12 +98,13 @@ open class HumanName: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: family array
-        // TODO: given array
+        FireKit.populateList(&self.family, from: o.family)
+        FireKit.populateList(&self.given, from: o.given)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: prefix array
-        // TODO: suffix array
+        FireKit.populateList(&self.prefix, from: o.prefix)
+        FireKit.populateList(&self.suffix, from: o.suffix)
         text = o.text
         use = o.use
     }

@@ -119,12 +119,13 @@ open class ImagingObjectSelection: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
         authoringTime = o.authoringTime
         description_fhir = o.description_fhir
         FireKit.populate(&self.patient, from: o.patient)
-        // TODO: study array
+        FireKit.populateList(&self.study, from: o.study)
         FireKit.populate(&self.title, from: o.title)
         uid = o.uid
     }
@@ -211,9 +212,10 @@ open class ImagingObjectSelectionStudy: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.imagingStudy, from: o.imagingStudy)
-        // TODO: series array
+        FireKit.populateList(&self.series, from: o.series)
         uid = o.uid
         url = o.url
     }
@@ -292,8 +294,9 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: instance array
+        FireKit.populateList(&self.instance, from: o.instance)
         uid = o.uid
         url = o.url
     }
@@ -378,8 +381,9 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: frames array
+        FireKit.populateList(&self.frames, from: o.frames)
         sopClass = o.sopClass
         uid = o.uid
         url = o.url
@@ -456,8 +460,9 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: frameNumbers array
+        FireKit.populateList(&self.frameNumbers, from: o.frameNumbers)
         url = o.url
     }
 }

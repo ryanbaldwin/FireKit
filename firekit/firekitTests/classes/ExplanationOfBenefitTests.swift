@@ -15,63 +15,62 @@ import FireKit
 
 
 class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.ExplanationOfBenefit {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.ExplanationOfBenefit {
-      print("Inflating FireKit.ExplanationOfBenefit from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.ExplanationOfBenefit.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testExplanationOfBenefit1() {   
-    var instance: FireKit.ExplanationOfBenefit?
-    do {
-      instance = try runExplanationOfBenefit1()
-      try runExplanationOfBenefit1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.ExplanationOfBenefit
-      XCTAssertNotNil(copy)
-      try runExplanationOfBenefit1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runExplanationOfBenefit1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testExplanationOfBenefitRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.ExplanationOfBenefit {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.ExplanationOfBenefit {
+        print("Inflating FireKit.ExplanationOfBenefit from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.ExplanationOfBenefit.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testExplanationOfBenefit1() {   
+        var instance: FireKit.ExplanationOfBenefit?
+        do {
+            instance = try runExplanationOfBenefit1()
+            try runExplanationOfBenefit1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit successfully, but threw: \(error)")
+        }
 
-  func testExplanationOfBenefit1RealmPK() {    
-    do {
-        let instance: FireKit.ExplanationOfBenefit = try runExplanationOfBenefit1()
-        let copy = (instance.copy() as! FireKit.ExplanationOfBenefit)
+        testExplanationOfBenefitRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testExplanationOfBenefit1Copying() {
+        do {
+            let instance = try runExplanationOfBenefit1()
+            let copy = instance.copy() as? FireKit.ExplanationOfBenefit
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runExplanationOfBenefit1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test ExplanationOfBenefit's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test ExplanationOfBenefit successfully, but threw: \(error)")
         }
     }
 
-  func testExplanationOfBenefitRealm1(_ instance: FireKit.ExplanationOfBenefit) {
+    func testExplanationOfBenefit1Populatability() {
+        do {
+            let instance = try runExplanationOfBenefit1()
+            let copy = FireKit.ExplanationOfBenefit()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runExplanationOfBenefit1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test ExplanationOfBenefit successfully, but threw: \(error)")
+        }
+    }
+
+    func testExplanationOfBenefitRealm1(_ instance: FireKit.ExplanationOfBenefit) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,24 +103,24 @@ class ExplanationOfBenefitTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.ExplanationOfBenefit.self).count)
-  }
-  
-  @discardableResult
-  func runExplanationOfBenefit1(_ data: Data? = nil) throws -> FireKit.ExplanationOfBenefit {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "explanationofbenefit-example.json")
+    }
     
-    XCTAssertEqual(inst.created?.description, "2014-08-16")
-    XCTAssertEqual(inst.disposition, "Claim settled as per contract.")
-    XCTAssertEqual(inst.id, "R3500")
-    XCTAssertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/eob")
-    XCTAssertEqual(inst.identifier[0].value, "987654321")
-    XCTAssertEqual(inst.organization?.reference, "Organization/2")
-    XCTAssertEqual(inst.outcome, "complete")
-    XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
-    XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
-    XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
+    @discardableResult
+    func runExplanationOfBenefit1(_ data: Data? = nil) throws -> FireKit.ExplanationOfBenefit {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "explanationofbenefit-example.json")
+        
+        XCTAssertEqual(inst.created?.description, "2014-08-16")
+        XCTAssertEqual(inst.disposition, "Claim settled as per contract.")
+        XCTAssertEqual(inst.id, "R3500")
+        XCTAssertEqual(inst.identifier[0].system, "http://www.BenefitsInc.com/fhir/eob")
+        XCTAssertEqual(inst.identifier[0].value, "987654321")
+        XCTAssertEqual(inst.organization?.reference, "Organization/2")
+        XCTAssertEqual(inst.outcome, "complete")
+        XCTAssertEqual(inst.request?.reference, "http://www.BenefitsInc.com/fhir/oralhealthclaim/15476332402")
+        XCTAssertEqual(inst.requestOrganization?.reference, "Organization/1")
+        XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the ExplanationOfBenefit</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

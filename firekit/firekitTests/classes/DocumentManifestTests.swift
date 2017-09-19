@@ -15,63 +15,62 @@ import FireKit
 
 
 class DocumentManifestTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.DocumentManifest {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.DocumentManifest {
-      print("Inflating FireKit.DocumentManifest from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.DocumentManifest.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testDocumentManifest1() {   
-    var instance: FireKit.DocumentManifest?
-    do {
-      instance = try runDocumentManifest1()
-      try runDocumentManifest1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.DocumentManifest
-      XCTAssertNotNil(copy)
-      try runDocumentManifest1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runDocumentManifest1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test DocumentManifest successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testDocumentManifestRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.DocumentManifest {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.DocumentManifest {
+        print("Inflating FireKit.DocumentManifest from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.DocumentManifest.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testDocumentManifest1() {   
+        var instance: FireKit.DocumentManifest?
+        do {
+            instance = try runDocumentManifest1()
+            try runDocumentManifest1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DocumentManifest successfully, but threw: \(error)")
+        }
 
-  func testDocumentManifest1RealmPK() {    
-    do {
-        let instance: FireKit.DocumentManifest = try runDocumentManifest1()
-        let copy = (instance.copy() as! FireKit.DocumentManifest)
+        testDocumentManifestRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testDocumentManifest1Copying() {
+        do {
+            let instance = try runDocumentManifest1()
+            let copy = instance.copy() as? FireKit.DocumentManifest
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runDocumentManifest1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test DocumentManifest's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test DocumentManifest successfully, but threw: \(error)")
         }
     }
 
-  func testDocumentManifestRealm1(_ instance: FireKit.DocumentManifest) {
+    func testDocumentManifest1Populatability() {
+        do {
+            let instance = try runDocumentManifest1()
+            let copy = FireKit.DocumentManifest()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runDocumentManifest1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test DocumentManifest successfully, but threw: \(error)")
+        }
+    }
+
+    func testDocumentManifestRealm1(_ instance: FireKit.DocumentManifest) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,33 +103,33 @@ class DocumentManifestTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DocumentManifest.self).count)
-  }
-  
-  @discardableResult
-  func runDocumentManifest1(_ data: Data? = nil) throws -> FireKit.DocumentManifest {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "documentmanifest-example.json")
+    }
     
-    XCTAssertEqual(inst.author[0].reference, "#a1")
-    XCTAssertEqual(inst.contained[0].id, "a1")
-    XCTAssertEqual(inst.content[0].pReference?.reference, "DocumentReference/example")
-    XCTAssertEqual(inst.created?.description, "2004-12-25T23:50:50-05:00")
-    XCTAssertEqual(inst.description_fhir, "Physical")
-    XCTAssertEqual(inst.id, "example")
-    XCTAssertEqual(inst.identifier[0].system, "http://example.org/documents")
-    XCTAssertEqual(inst.identifier[0].value, "23425234234-2347")
-    XCTAssertEqual(inst.masterIdentifier?.system, "http://example.org/documents")
-    XCTAssertEqual(inst.masterIdentifier?.value, "23425234234-2346")
-    XCTAssertEqual(inst.recipient[0].reference, "Practitioner/xcda1")
-    XCTAssertEqual(inst.related[0].identifier?.system, "http://example.org/documents")
-    XCTAssertEqual(inst.related[0].identifier?.value, "23425234234-9999")
-    XCTAssertEqual(inst.related[0].ref?.reference, "DocumentReference/example")
-    XCTAssertEqual(inst.source, "urn:oid:1.3.6.1.4.1.21367.2009.1.2.1")
-    XCTAssertEqual(inst.status, "current")
-    XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
-    XCTAssertEqual(inst.text?.div, "<div>Text</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    XCTAssertEqual(inst.type?.text, "History and Physical")
-    
-    return inst
-  }
+    @discardableResult
+    func runDocumentManifest1(_ data: Data? = nil) throws -> FireKit.DocumentManifest {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "documentmanifest-example.json")
+        
+        XCTAssertEqual(inst.author[0].reference, "#a1")
+        XCTAssertEqual(inst.contained[0].id, "a1")
+        XCTAssertEqual(inst.content[0].pReference?.reference, "DocumentReference/example")
+        XCTAssertEqual(inst.created?.description, "2004-12-25T23:50:50-05:00")
+        XCTAssertEqual(inst.description_fhir, "Physical")
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.identifier[0].system, "http://example.org/documents")
+        XCTAssertEqual(inst.identifier[0].value, "23425234234-2347")
+        XCTAssertEqual(inst.masterIdentifier?.system, "http://example.org/documents")
+        XCTAssertEqual(inst.masterIdentifier?.value, "23425234234-2346")
+        XCTAssertEqual(inst.recipient[0].reference, "Practitioner/xcda1")
+        XCTAssertEqual(inst.related[0].identifier?.system, "http://example.org/documents")
+        XCTAssertEqual(inst.related[0].identifier?.value, "23425234234-9999")
+        XCTAssertEqual(inst.related[0].ref?.reference, "DocumentReference/example")
+        XCTAssertEqual(inst.source, "urn:oid:1.3.6.1.4.1.21367.2009.1.2.1")
+        XCTAssertEqual(inst.status, "current")
+        XCTAssertEqual(inst.subject?.reference, "Patient/xcda")
+        XCTAssertEqual(inst.text?.div, "<div>Text</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+        XCTAssertEqual(inst.type?.text, "History and Physical")
+
+        return inst
+    }
 }

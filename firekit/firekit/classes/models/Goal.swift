@@ -157,14 +157,15 @@ open class Goal: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: addresses array
+        FireKit.populateList(&self.addresses, from: o.addresses)
         FireKit.populate(&self.author, from: o.author)
-        // TODO: category array
+        FireKit.populateList(&self.category, from: o.category)
         description_fhir = o.description_fhir
-        // TODO: identifier array
-        // TODO: note array
-        // TODO: outcome array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.note, from: o.note)
+        FireKit.populateList(&self.outcome, from: o.outcome)
         FireKit.populate(&self.priority, from: o.priority)
         FireKit.populate(&self.startCodeableConcept, from: o.startCodeableConcept)
         startDate = o.startDate
@@ -246,6 +247,7 @@ open class GoalOutcome: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.resultCodeableConcept, from: o.resultCodeableConcept)
         FireKit.populate(&self.resultReference, from: o.resultReference)

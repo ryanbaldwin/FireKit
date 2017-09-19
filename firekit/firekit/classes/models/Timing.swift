@@ -87,9 +87,10 @@ open class Timing: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: event array
+        FireKit.populateList(&self.event, from: o.event)
         FireKit.populate(&self.repeat_fhir, from: o.repeat_fhir)
     }
 }
@@ -210,6 +211,7 @@ open class TimingRepeat: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.boundsPeriod, from: o.boundsPeriod)
         FireKit.populate(&self.boundsQuantity, from: o.boundsQuantity)

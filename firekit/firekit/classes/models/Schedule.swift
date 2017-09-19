@@ -97,12 +97,13 @@ open class Schedule: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
         comment = o.comment
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.planningHorizon, from: o.planningHorizon)
-        // TODO: type array
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 

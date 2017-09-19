@@ -174,19 +174,20 @@ open class MedicationDispense: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: authorizingPrescription array
+        FireKit.populateList(&self.authorizingPrescription, from: o.authorizingPrescription)
         FireKit.populate(&self.daysSupply, from: o.daysSupply)
         FireKit.populate(&self.destination, from: o.destination)
         FireKit.populate(&self.dispenser, from: o.dispenser)
-        // TODO: dosageInstruction array
+        FireKit.populateList(&self.dosageInstruction, from: o.dosageInstruction)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
         note = o.note
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.quantity, from: o.quantity)
-        // TODO: receiver array
+        FireKit.populateList(&self.receiver, from: o.receiver)
         status = o.status
         FireKit.populate(&self.substitution, from: o.substitution)
         FireKit.populate(&self.type, from: o.type)
@@ -342,6 +343,7 @@ open class MedicationDispenseDosageInstruction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.additionalInstructions, from: o.additionalInstructions)
         asNeededBoolean.value = o.asNeededBoolean.value
@@ -438,9 +440,10 @@ open class MedicationDispenseSubstitution: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: reason array
-        // TODO: responsibleParty array
+        FireKit.populateList(&self.reason, from: o.reason)
+        FireKit.populateList(&self.responsibleParty, from: o.responsibleParty)
         FireKit.populate(&self.type, from: o.type)
     }
 }

@@ -135,15 +135,16 @@ open class Communication: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
-        // TODO: medium array
-        // TODO: payload array
-        // TODO: reason array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.medium, from: o.medium)
+        FireKit.populateList(&self.payload, from: o.payload)
+        FireKit.populateList(&self.reason, from: o.reason)
         received = o.received
-        // TODO: recipient array
+        FireKit.populateList(&self.recipient, from: o.recipient)
         FireKit.populate(&self.requestDetail, from: o.requestDetail)
         FireKit.populate(&self.sender, from: o.sender)
         sent = o.sent
@@ -233,6 +234,7 @@ open class CommunicationPayload: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
         FireKit.populate(&self.contentReference, from: o.contentReference)

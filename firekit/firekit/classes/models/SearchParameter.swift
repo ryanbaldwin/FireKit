@@ -138,10 +138,11 @@ open class SearchParameter: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         base = o.base
         code = o.code
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         date = o.date
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
@@ -149,7 +150,7 @@ open class SearchParameter: DomainResource {
         publisher = o.publisher
         requirements = o.requirements
         status = o.status
-        // TODO: target array
+        FireKit.populateList(&self.target, from: o.target)
         type = o.type
         url = o.url
         xpath = o.xpath
@@ -220,9 +221,10 @@ open class SearchParameterContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 

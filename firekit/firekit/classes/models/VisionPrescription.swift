@@ -114,11 +114,12 @@ open class VisionPrescription: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         dateWritten = o.dateWritten
-        // TODO: dispense array
+        FireKit.populateList(&self.dispense, from: o.dispense)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.prescriber, from: o.prescriber)
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
@@ -253,6 +254,7 @@ open class VisionPrescriptionDispense: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         add = o.add
         axis.value = o.axis.value

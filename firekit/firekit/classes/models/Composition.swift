@@ -156,17 +156,18 @@ open class Composition: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: attester array
-        // TODO: author array
+        FireKit.populateList(&self.attester, from: o.attester)
+        FireKit.populateList(&self.author, from: o.author)
         FireKit.populate(&self.class_fhir, from: o.class_fhir)
         confidentiality = o.confidentiality
         FireKit.populate(&self.custodian, from: o.custodian)
         date = o.date
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: event array
+        FireKit.populateList(&self.event, from: o.event)
         FireKit.populate(&self.identifier, from: o.identifier)
-        // TODO: section array
+        FireKit.populateList(&self.section, from: o.section)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
         title = o.title
@@ -250,8 +251,9 @@ open class CompositionAttester: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: mode array
+        FireKit.populateList(&self.mode, from: o.mode)
         FireKit.populate(&self.party, from: o.party)
         time = o.time
     }
@@ -327,9 +329,10 @@ open class CompositionEvent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: code array
-        // TODO: detail array
+        FireKit.populateList(&self.code, from: o.code)
+        FireKit.populateList(&self.detail, from: o.detail)
         FireKit.populate(&self.period, from: o.period)
     }
 }
@@ -433,13 +436,14 @@ open class CompositionSection: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.emptyReason, from: o.emptyReason)
-        // TODO: entry array
+        FireKit.populateList(&self.entry, from: o.entry)
         mode = o.mode
         FireKit.populate(&self.orderedBy, from: o.orderedBy)
-        // TODO: section array
+        FireKit.populateList(&self.section, from: o.section)
         FireKit.populate(&self.text, from: o.text)
         title = o.title
     }

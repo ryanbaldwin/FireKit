@@ -96,9 +96,10 @@ open class Bundle: Resource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: entry array
-        // TODO: link array
+        FireKit.populateList(&self.entry, from: o.entry)
+        FireKit.populateList(&self.link, from: o.link)
         FireKit.populate(&self.signature, from: o.signature)
         total.value = o.total.value
         type = o.type
@@ -201,9 +202,10 @@ open class BundleEntry: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         fullUrl = o.fullUrl
-        // TODO: link array
+        FireKit.populateList(&self.link, from: o.link)
         FireKit.populate(&self.request, from: o.request)
         FireKit.populate(&self.resource, from: o.resource)
         FireKit.populate(&self.response, from: o.response)
@@ -297,6 +299,7 @@ open class BundleEntryRequest: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         ifMatch = o.ifMatch
         ifModifiedSince = o.ifModifiedSince
@@ -384,6 +387,7 @@ open class BundleEntryResponse: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         etag = o.etag
         lastModified = o.lastModified
@@ -455,6 +459,7 @@ open class BundleEntrySearch: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         mode = o.mode
         score = o.score
@@ -531,6 +536,7 @@ open class BundleLink: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         relation = o.relation
         url = o.url

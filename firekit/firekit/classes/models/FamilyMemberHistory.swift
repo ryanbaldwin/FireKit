@@ -180,6 +180,7 @@ open class FamilyMemberHistory: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.ageQuantity, from: o.ageQuantity)
         FireKit.populate(&self.ageRange, from: o.ageRange)
@@ -187,7 +188,7 @@ open class FamilyMemberHistory: DomainResource {
         bornDate = o.bornDate
         FireKit.populate(&self.bornPeriod, from: o.bornPeriod)
         bornString = o.bornString
-        // TODO: condition array
+        FireKit.populateList(&self.condition, from: o.condition)
         date = o.date
         deceasedBoolean.value = o.deceasedBoolean.value
         deceasedDate = o.deceasedDate
@@ -195,7 +196,7 @@ open class FamilyMemberHistory: DomainResource {
         FireKit.populate(&self.deceasedRange, from: o.deceasedRange)
         deceasedString = o.deceasedString
         gender = o.gender
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         name = o.name
         FireKit.populate(&self.note, from: o.note)
         FireKit.populate(&self.patient, from: o.patient)
@@ -313,6 +314,7 @@ open class FamilyMemberHistoryCondition: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.note, from: o.note)

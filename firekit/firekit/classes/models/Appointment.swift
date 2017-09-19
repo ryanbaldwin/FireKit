@@ -127,16 +127,17 @@ open class Appointment: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         comment = o.comment
         description_fhir = o.description_fhir
         end = o.end
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         minutesDuration.value = o.minutesDuration.value
-        // TODO: participant array
+        FireKit.populateList(&self.participant, from: o.participant)
         priority.value = o.priority.value
         FireKit.populate(&self.reason, from: o.reason)
-        // TODO: slot array
+        FireKit.populateList(&self.slot, from: o.slot)
         start = o.start
         status = o.status
         FireKit.populate(&self.type, from: o.type)
@@ -223,11 +224,12 @@ open class AppointmentParticipant: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
         required = o.required
         status = o.status
-        // TODO: type array
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 

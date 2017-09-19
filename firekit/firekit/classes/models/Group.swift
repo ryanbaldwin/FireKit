@@ -111,12 +111,13 @@ open class Group: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         actual.value = o.actual.value
-        // TODO: characteristic array
+        FireKit.populateList(&self.characteristic, from: o.characteristic)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: identifier array
-        // TODO: member array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.member, from: o.member)
         name = o.name
         quantity.value = o.quantity.value
         type = o.type
@@ -232,6 +233,7 @@ open class GroupCharacteristic: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         exclude.value = o.exclude.value
@@ -322,6 +324,7 @@ open class GroupMember: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.entity, from: o.entity)
         inactive.value = o.inactive.value

@@ -155,20 +155,21 @@ open class ImagingStudy: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.accession, from: o.accession)
         availability = o.availability
         description_fhir = o.description_fhir
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.interpreter, from: o.interpreter)
-        // TODO: modalityList array
+        FireKit.populateList(&self.modalityList, from: o.modalityList)
         numberOfInstances.value = o.numberOfInstances.value
         numberOfSeries.value = o.numberOfSeries.value
-        // TODO: order array
+        FireKit.populateList(&self.order, from: o.order)
         FireKit.populate(&self.patient, from: o.patient)
-        // TODO: procedure array
+        FireKit.populateList(&self.procedure, from: o.procedure)
         FireKit.populate(&self.referrer, from: o.referrer)
-        // TODO: series array
+        FireKit.populateList(&self.series, from: o.series)
         started = o.started
         uid = o.uid
         url = o.url
@@ -291,11 +292,12 @@ open class ImagingStudySeries: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         availability = o.availability
         FireKit.populate(&self.bodySite, from: o.bodySite)
         description_fhir = o.description_fhir
-        // TODO: instance array
+        FireKit.populateList(&self.instance, from: o.instance)
         FireKit.populate(&self.laterality, from: o.laterality)
         FireKit.populate(&self.modality, from: o.modality)
         number.value = o.number.value
@@ -392,8 +394,9 @@ open class ImagingStudySeriesInstance: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: content array
+        FireKit.populateList(&self.content, from: o.content)
         number.value = o.number.value
         sopClass = o.sopClass
         title = o.title

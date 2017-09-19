@@ -100,6 +100,7 @@ open class Medication: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         isBrand.value = o.isBrand.value
@@ -175,9 +176,10 @@ open class MedicationPackage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.container, from: o.container)
-        // TODO: content array
+        FireKit.populateList(&self.content, from: o.content)
     }
 }
 
@@ -256,6 +258,7 @@ open class MedicationPackageContent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.amount, from: o.amount)
         FireKit.populate(&self.item, from: o.item)
@@ -332,10 +335,11 @@ open class MedicationProduct: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: batch array
+        FireKit.populateList(&self.batch, from: o.batch)
         FireKit.populate(&self.form, from: o.form)
-        // TODO: ingredient array
+        FireKit.populateList(&self.ingredient, from: o.ingredient)
     }
 }
 
@@ -402,6 +406,7 @@ open class MedicationProductBatch: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         expirationDate = o.expirationDate
         lotNumber = o.lotNumber
@@ -483,6 +488,7 @@ open class MedicationProductIngredient: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.amount, from: o.amount)
         FireKit.populate(&self.item, from: o.item)

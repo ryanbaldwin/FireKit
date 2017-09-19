@@ -134,10 +134,11 @@ open class Location: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.address, from: o.address)
         description_fhir = o.description_fhir
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         mode = o.mode
         name = o.name
@@ -145,7 +146,7 @@ open class Location: DomainResource {
         FireKit.populate(&self.physicalType, from: o.physicalType)
         FireKit.populate(&self.position, from: o.position)
         status = o.status
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
         FireKit.populate(&self.type, from: o.type)
     }
 }
@@ -225,6 +226,7 @@ open class LocationPosition: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         altitude = o.altitude
         latitude = o.latitude

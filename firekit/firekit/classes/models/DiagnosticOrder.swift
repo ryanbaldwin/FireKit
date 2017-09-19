@@ -130,19 +130,20 @@ open class DiagnosticOrder: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: event array
-        // TODO: identifier array
-        // TODO: item array
-        // TODO: note array
+        FireKit.populateList(&self.event, from: o.event)
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.item, from: o.item)
+        FireKit.populateList(&self.note, from: o.note)
         FireKit.populate(&self.orderer, from: o.orderer)
         priority = o.priority
-        // TODO: reason array
-        // TODO: specimen array
+        FireKit.populateList(&self.reason, from: o.reason)
+        FireKit.populateList(&self.specimen, from: o.specimen)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        // TODO: supportingInformation array
+        FireKit.populateList(&self.supportingInformation, from: o.supportingInformation)
     }
 }
 
@@ -231,6 +232,7 @@ open class DiagnosticOrderEvent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
         dateTime = o.dateTime
@@ -327,11 +329,12 @@ open class DiagnosticOrderItem: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.bodySite, from: o.bodySite)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: event array
-        // TODO: specimen array
+        FireKit.populateList(&self.event, from: o.event)
+        FireKit.populateList(&self.specimen, from: o.specimen)
         status = o.status
     }
 }

@@ -110,14 +110,15 @@ open class Questionnaire: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
         FireKit.populate(&self.group, from: o.group)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         publisher = o.publisher
         status = o.status
-        // TODO: subjectType array
-        // TODO: telecom array
+        FireKit.populateList(&self.subjectType, from: o.subjectType)
+        FireKit.populateList(&self.telecom, from: o.telecom)
         version = o.version
     }
 }
@@ -209,11 +210,12 @@ open class QuestionnaireGroup: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: concept array
-        // TODO: group array
+        FireKit.populateList(&self.concept, from: o.concept)
+        FireKit.populateList(&self.group, from: o.group)
         linkId = o.linkId
-        // TODO: question array
+        FireKit.populateList(&self.question, from: o.question)
         repeats.value = o.repeats.value
         required.value = o.required.value
         text = o.text
@@ -315,11 +317,12 @@ open class QuestionnaireGroupQuestion: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: concept array
-        // TODO: group array
+        FireKit.populateList(&self.concept, from: o.concept)
+        FireKit.populateList(&self.group, from: o.group)
         linkId = o.linkId
-        // TODO: option array
+        FireKit.populateList(&self.option, from: o.option)
         FireKit.populate(&self.options, from: o.options)
         repeats.value = o.repeats.value
         required.value = o.required.value

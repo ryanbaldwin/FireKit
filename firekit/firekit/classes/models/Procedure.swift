@@ -198,30 +198,31 @@ open class Procedure: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: bodySite array
+        FireKit.populateList(&self.bodySite, from: o.bodySite)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: complication array
+        FireKit.populateList(&self.complication, from: o.complication)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: focalDevice array
-        // TODO: followUp array
-        // TODO: identifier array
+        FireKit.populateList(&self.focalDevice, from: o.focalDevice)
+        FireKit.populateList(&self.followUp, from: o.followUp)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.location, from: o.location)
         notPerformed.value = o.notPerformed.value
-        // TODO: notes array
+        FireKit.populateList(&self.notes, from: o.notes)
         FireKit.populate(&self.outcome, from: o.outcome)
         performedDateTime = o.performedDateTime
         FireKit.populate(&self.performedPeriod, from: o.performedPeriod)
-        // TODO: performer array
+        FireKit.populateList(&self.performer, from: o.performer)
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
-        // TODO: reasonNotPerformed array
+        FireKit.populateList(&self.reasonNotPerformed, from: o.reasonNotPerformed)
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
-        // TODO: report array
+        FireKit.populateList(&self.report, from: o.report)
         FireKit.populate(&self.request, from: o.request)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        // TODO: used array
+        FireKit.populateList(&self.used, from: o.used)
     }
 }
 
@@ -301,6 +302,7 @@ open class ProcedureFocalDevice: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.action, from: o.action)
         FireKit.populate(&self.manipulated, from: o.manipulated)
@@ -376,6 +378,7 @@ open class ProcedurePerformer: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
         FireKit.populate(&self.role, from: o.role)

@@ -15,63 +15,62 @@ import FireKit
 
 
 class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.DeviceUseRequest {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.DeviceUseRequest {
-      print("Inflating FireKit.DeviceUseRequest from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.DeviceUseRequest.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testDeviceUseRequest1() {   
-    var instance: FireKit.DeviceUseRequest?
-    do {
-      instance = try runDeviceUseRequest1()
-      try runDeviceUseRequest1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.DeviceUseRequest
-      XCTAssertNotNil(copy)
-      try runDeviceUseRequest1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runDeviceUseRequest1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testDeviceUseRequestRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.DeviceUseRequest {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.DeviceUseRequest {
+        print("Inflating FireKit.DeviceUseRequest from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.DeviceUseRequest.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testDeviceUseRequest1() {   
+        var instance: FireKit.DeviceUseRequest?
+        do {
+            instance = try runDeviceUseRequest1()
+            try runDeviceUseRequest1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest successfully, but threw: \(error)")
+        }
 
-  func testDeviceUseRequest1RealmPK() {    
-    do {
-        let instance: FireKit.DeviceUseRequest = try runDeviceUseRequest1()
-        let copy = (instance.copy() as! FireKit.DeviceUseRequest)
+        testDeviceUseRequestRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testDeviceUseRequest1Copying() {
+        do {
+            let instance = try runDeviceUseRequest1()
+            let copy = instance.copy() as? FireKit.DeviceUseRequest
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runDeviceUseRequest1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test DeviceUseRequest's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test DeviceUseRequest successfully, but threw: \(error)")
         }
     }
 
-  func testDeviceUseRequestRealm1(_ instance: FireKit.DeviceUseRequest) {
+    func testDeviceUseRequest1Populatability() {
+        do {
+            let instance = try runDeviceUseRequest1()
+            let copy = FireKit.DeviceUseRequest()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runDeviceUseRequest1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test DeviceUseRequest successfully, but threw: \(error)")
+        }
+    }
+
+    func testDeviceUseRequestRealm1(_ instance: FireKit.DeviceUseRequest) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,18 +103,18 @@ class DeviceUseRequestTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DeviceUseRequest.self).count)
-  }
-  
-  @discardableResult
-  func runDeviceUseRequest1(_ data: Data? = nil) throws -> FireKit.DeviceUseRequest {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "deviceuserequest-example.json")
+    }
     
-    XCTAssertEqual(inst.device?.reference, "Device/example")
-    XCTAssertEqual(inst.id, "example")
-    XCTAssertEqual(inst.subject?.reference, "Patient/example")
-    XCTAssertEqual(inst.text?.div, "<div>To be filled out at a later time</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
+    @discardableResult
+    func runDeviceUseRequest1(_ data: Data? = nil) throws -> FireKit.DeviceUseRequest {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "deviceuserequest-example.json")
+        
+        XCTAssertEqual(inst.device?.reference, "Device/example")
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.subject?.reference, "Patient/example")
+        XCTAssertEqual(inst.text?.div, "<div>To be filled out at a later time</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

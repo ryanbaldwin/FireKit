@@ -136,8 +136,9 @@ open class NamingSystem: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         date = o.date
         description_fhir = o.description_fhir
         kind = o.kind
@@ -147,9 +148,9 @@ open class NamingSystem: DomainResource {
         responsible = o.responsible
         status = o.status
         FireKit.populate(&self.type, from: o.type)
-        // TODO: uniqueId array
+        FireKit.populateList(&self.uniqueId, from: o.uniqueId)
         usage = o.usage
-        // TODO: useContext array
+        FireKit.populateList(&self.useContext, from: o.useContext)
     }
 }
 
@@ -216,9 +217,10 @@ open class NamingSystemContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -303,6 +305,7 @@ open class NamingSystemUniqueId: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.period, from: o.period)
         preferred.value = o.preferred.value

@@ -88,6 +88,7 @@ open class Resource: FHIRAbstractResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         id = o.id
         implicitRules = o.implicitRules

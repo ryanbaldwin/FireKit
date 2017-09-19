@@ -77,8 +77,9 @@ open class OperationOutcome: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: issue array
+        FireKit.populateList(&self.issue, from: o.issue)
     }
 }
 
@@ -167,11 +168,12 @@ open class OperationOutcomeIssue: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         FireKit.populate(&self.details, from: o.details)
         diagnostics = o.diagnostics
-        // TODO: location array
+        FireKit.populateList(&self.location, from: o.location)
         severity = o.severity
     }
 }

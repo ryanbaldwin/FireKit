@@ -82,6 +82,7 @@ open class Binary: Resource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         content = o.content
         contentType = o.contentType

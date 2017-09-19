@@ -129,15 +129,16 @@ open class DocumentManifest: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: author array
-        // TODO: content array
+        FireKit.populateList(&self.author, from: o.author)
+        FireKit.populateList(&self.content, from: o.content)
         created = o.created
         description_fhir = o.description_fhir
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.masterIdentifier, from: o.masterIdentifier)
-        // TODO: recipient array
-        // TODO: related array
+        FireKit.populateList(&self.recipient, from: o.recipient)
+        FireKit.populateList(&self.related, from: o.related)
         source = o.source
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
@@ -221,6 +222,7 @@ open class DocumentManifestContent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.pAttachment, from: o.pAttachment)
         FireKit.populate(&self.pReference, from: o.pReference)
@@ -296,6 +298,7 @@ open class DocumentManifestRelated: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.ref, from: o.ref)

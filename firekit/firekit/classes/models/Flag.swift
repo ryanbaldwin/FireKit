@@ -125,12 +125,13 @@ open class Flag: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.period, from: o.period)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)

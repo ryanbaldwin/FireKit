@@ -92,6 +92,7 @@ open class Annotation: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.authorReference, from: o.authorReference)
         authorString = o.authorString

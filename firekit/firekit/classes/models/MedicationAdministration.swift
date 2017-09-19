@@ -168,21 +168,22 @@ open class MedicationAdministration: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: device array
+        FireKit.populateList(&self.device, from: o.device)
         FireKit.populate(&self.dosage, from: o.dosage)
         effectiveTimeDateTime = o.effectiveTimeDateTime
         FireKit.populate(&self.effectiveTimePeriod, from: o.effectiveTimePeriod)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
         note = o.note
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.practitioner, from: o.practitioner)
         FireKit.populate(&self.prescription, from: o.prescription)
-        // TODO: reasonGiven array
-        // TODO: reasonNotGiven array
+        FireKit.populateList(&self.reasonGiven, from: o.reasonGiven)
+        FireKit.populateList(&self.reasonNotGiven, from: o.reasonNotGiven)
         status = o.status
         wasNotGiven.value = o.wasNotGiven.value
     }
@@ -296,6 +297,7 @@ open class MedicationAdministrationDosage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.method, from: o.method)
         FireKit.populate(&self.quantity, from: o.quantity)

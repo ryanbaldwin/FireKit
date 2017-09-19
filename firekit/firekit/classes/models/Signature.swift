@@ -107,10 +107,11 @@ open class Signature: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         blob = o.blob
         contentType = o.contentType
-        // TODO: type array
+        FireKit.populateList(&self.type, from: o.type)
         when = o.when
         FireKit.populate(&self.whoReference, from: o.whoReference)
         whoUri = o.whoUri

@@ -111,11 +111,12 @@ open class Address: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         city = o.city
         country = o.country
         district = o.district
-        // TODO: line array
+        FireKit.populateList(&self.line, from: o.line)
         FireKit.populate(&self.period, from: o.period)
         postalCode = o.postalCode
         state = o.state

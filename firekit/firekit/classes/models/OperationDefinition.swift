@@ -158,10 +158,11 @@ open class OperationDefinition: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.base, from: o.base)
         code = o.code
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         date = o.date
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
@@ -170,12 +171,12 @@ open class OperationDefinition: DomainResource {
         kind = o.kind
         name = o.name
         notes = o.notes
-        // TODO: parameter array
+        FireKit.populateList(&self.parameter, from: o.parameter)
         publisher = o.publisher
         requirements = o.requirements
         status = o.status
         system.value = o.system.value
-        // TODO: type array
+        FireKit.populateList(&self.type, from: o.type)
         url = o.url
         version = o.version
     }
@@ -244,9 +245,10 @@ open class OperationDefinitionContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -356,13 +358,14 @@ open class OperationDefinitionParameter: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.binding, from: o.binding)
         documentation = o.documentation
         max = o.max
         min.value = o.min.value
         name = o.name
-        // TODO: part array
+        FireKit.populateList(&self.part, from: o.part)
         FireKit.populate(&self.profile, from: o.profile)
         type = o.type
         use = o.use
@@ -447,6 +450,7 @@ open class OperationDefinitionParameterBinding: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         strength = o.strength
         FireKit.populate(&self.valueSetReference, from: o.valueSetReference)

@@ -173,23 +173,24 @@ open class DiagnosticReport: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: codedDiagnosis array
+        FireKit.populateList(&self.codedDiagnosis, from: o.codedDiagnosis)
         conclusion = o.conclusion
         effectiveDateTime = o.effectiveDateTime
         FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
-        // TODO: image array
-        // TODO: imagingStudy array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.image, from: o.image)
+        FireKit.populateList(&self.imagingStudy, from: o.imagingStudy)
         issued = o.issued
         FireKit.populate(&self.performer, from: o.performer)
-        // TODO: presentedForm array
-        // TODO: request array
-        // TODO: result array
-        // TODO: specimen array
+        FireKit.populateList(&self.presentedForm, from: o.presentedForm)
+        FireKit.populateList(&self.request, from: o.request)
+        FireKit.populateList(&self.result, from: o.result)
+        FireKit.populateList(&self.specimen, from: o.specimen)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
     }
@@ -268,6 +269,7 @@ open class DiagnosticReportImage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         comment = o.comment
         FireKit.populate(&self.link, from: o.link)

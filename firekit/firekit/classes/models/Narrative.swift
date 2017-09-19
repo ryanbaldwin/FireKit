@@ -80,6 +80,7 @@ open class Narrative: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         div = o.div
         status = o.status

@@ -176,14 +176,15 @@ open class ProcedureRequest: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         asNeededBoolean.value = o.asNeededBoolean.value
         FireKit.populate(&self.asNeededCodeableConcept, from: o.asNeededCodeableConcept)
-        // TODO: bodySite array
+        FireKit.populateList(&self.bodySite, from: o.bodySite)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
-        // TODO: notes array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.notes, from: o.notes)
         orderedOn = o.orderedOn
         FireKit.populate(&self.orderer, from: o.orderer)
         FireKit.populate(&self.performer, from: o.performer)

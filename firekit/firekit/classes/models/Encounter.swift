@@ -174,26 +174,27 @@ open class Encounter: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.appointment, from: o.appointment)
         class_fhir = o.class_fhir
-        // TODO: episodeOfCare array
+        FireKit.populateList(&self.episodeOfCare, from: o.episodeOfCare)
         FireKit.populate(&self.hospitalization, from: o.hospitalization)
-        // TODO: identifier array
-        // TODO: incomingReferral array
-        // TODO: indication array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.incomingReferral, from: o.incomingReferral)
+        FireKit.populateList(&self.indication, from: o.indication)
         FireKit.populate(&self.length, from: o.length)
-        // TODO: location array
+        FireKit.populateList(&self.location, from: o.location)
         FireKit.populate(&self.partOf, from: o.partOf)
-        // TODO: participant array
+        FireKit.populateList(&self.participant, from: o.participant)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.period, from: o.period)
         FireKit.populate(&self.priority, from: o.priority)
-        // TODO: reason array
+        FireKit.populateList(&self.reason, from: o.reason)
         FireKit.populate(&self.serviceProvider, from: o.serviceProvider)
         status = o.status
-        // TODO: statusHistory array
-        // TODO: type array
+        FireKit.populateList(&self.statusHistory, from: o.statusHistory)
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 
@@ -312,18 +313,19 @@ open class EncounterHospitalization: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.admitSource, from: o.admitSource)
-        // TODO: admittingDiagnosis array
+        FireKit.populateList(&self.admittingDiagnosis, from: o.admittingDiagnosis)
         FireKit.populate(&self.destination, from: o.destination)
-        // TODO: dietPreference array
-        // TODO: dischargeDiagnosis array
+        FireKit.populateList(&self.dietPreference, from: o.dietPreference)
+        FireKit.populateList(&self.dischargeDiagnosis, from: o.dischargeDiagnosis)
         FireKit.populate(&self.dischargeDisposition, from: o.dischargeDisposition)
         FireKit.populate(&self.origin, from: o.origin)
         FireKit.populate(&self.preAdmissionIdentifier, from: o.preAdmissionIdentifier)
         FireKit.populate(&self.reAdmission, from: o.reAdmission)
-        // TODO: specialArrangement array
-        // TODO: specialCourtesy array
+        FireKit.populateList(&self.specialArrangement, from: o.specialArrangement)
+        FireKit.populateList(&self.specialCourtesy, from: o.specialCourtesy)
     }
 }
 
@@ -406,6 +408,7 @@ open class EncounterLocation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.location, from: o.location)
         FireKit.populate(&self.period, from: o.period)
@@ -486,10 +489,11 @@ open class EncounterParticipant: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.individual, from: o.individual)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: type array
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 
@@ -567,6 +571,7 @@ open class EncounterStatusHistory: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.period, from: o.period)
         status = o.status

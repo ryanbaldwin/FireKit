@@ -77,8 +77,9 @@ open class Element: FHIRAbstractBase {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: extension_fhir array
+        FireKit.populateList(&self.extension_fhir, from: o.extension_fhir)
         id = o.id
     }
 }

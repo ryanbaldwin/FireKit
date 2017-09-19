@@ -15,63 +15,62 @@ import FireKit
 
 
 class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.FamilyMemberHistory {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.FamilyMemberHistory {
-      print("Inflating FireKit.FamilyMemberHistory from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.FamilyMemberHistory.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testFamilyMemberHistory1() {   
-    var instance: FireKit.FamilyMemberHistory?
-    do {
-      instance = try runFamilyMemberHistory1()
-      try runFamilyMemberHistory1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.FamilyMemberHistory
-      XCTAssertNotNil(copy)
-      try runFamilyMemberHistory1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runFamilyMemberHistory1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testFamilyMemberHistoryRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.FamilyMemberHistory {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.FamilyMemberHistory {
+        print("Inflating FireKit.FamilyMemberHistory from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.FamilyMemberHistory.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testFamilyMemberHistory1() {   
+        var instance: FireKit.FamilyMemberHistory?
+        do {
+            instance = try runFamilyMemberHistory1()
+            try runFamilyMemberHistory1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw: \(error)")
+        }
 
-  func testFamilyMemberHistory1RealmPK() {    
-    do {
-        let instance: FireKit.FamilyMemberHistory = try runFamilyMemberHistory1()
-        let copy = (instance.copy() as! FireKit.FamilyMemberHistory)
+        testFamilyMemberHistoryRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testFamilyMemberHistory1Copying() {
+        do {
+            let instance = try runFamilyMemberHistory1()
+            let copy = instance.copy() as? FireKit.FamilyMemberHistory
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runFamilyMemberHistory1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test FamilyMemberHistory successfully, but threw: \(error)")
         }
     }
 
-  func testFamilyMemberHistoryRealm1(_ instance: FireKit.FamilyMemberHistory) {
+    func testFamilyMemberHistory1Populatability() {
+        do {
+            let instance = try runFamilyMemberHistory1()
+            let copy = FireKit.FamilyMemberHistory()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runFamilyMemberHistory1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test FamilyMemberHistory successfully, but threw: \(error)")
+        }
+    }
+
+    func testFamilyMemberHistoryRealm1(_ instance: FireKit.FamilyMemberHistory) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,71 +103,70 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.FamilyMemberHistory.self).count)
-  }
-  
-  @discardableResult
-  func runFamilyMemberHistory1(_ data: Data? = nil) throws -> FireKit.FamilyMemberHistory {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "familymemberhistory-example-mother.json")
-    
-    XCTAssertEqual(inst.condition[0].code?.coding[0].code, "371041009")
-    XCTAssertEqual(inst.condition[0].code?.coding[0].display, "Embolic Stroke")
-    XCTAssertEqual(inst.condition[0].code?.coding[0].system, "http://snomed.info/sct")
-    XCTAssertEqual(inst.condition[0].code?.text, "Stroke")
-    XCTAssertEqual(inst.condition[0].onsetQuantity?.system, "http://unitsofmeasure.org")
-    XCTAssertEqual(inst.condition[0].onsetQuantity?.unit, "a")
-    XCTAssertTrue(inst.condition[0].onsetQuantity?.value! == RealmDecimal(string: "56"))
-    XCTAssertEqual(inst.id, "mother")
-    XCTAssertEqual(inst.patient?.display, "Peter Patient")
-    XCTAssertEqual(inst.patient?.reference, "Patient/100")
-    XCTAssertEqual(inst.relationship?.coding[0].code, "mother")
-    XCTAssertEqual(inst.relationship?.coding[0].system, "http://hl7.org/fhir/familial-relationship")
-    XCTAssertEqual(inst.status, "completed")
-    XCTAssertEqual(inst.text?.div, "<div>Mother died of a stroke aged 56</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
-  
-  func testFamilyMemberHistory2() {   
-    var instance: FireKit.FamilyMemberHistory?
-    do {
-      instance = try runFamilyMemberHistory2()
-      try runFamilyMemberHistory2(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.FamilyMemberHistory
-      XCTAssertNotNil(copy)
-      try runFamilyMemberHistory2(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runFamilyMemberHistory2(JSONEncoder().encode(copy!))  
     }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw: \(error)")
+    
+    @discardableResult
+    func runFamilyMemberHistory1(_ data: Data? = nil) throws -> FireKit.FamilyMemberHistory {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "familymemberhistory-example-mother.json")
+        
+        XCTAssertEqual(inst.condition[0].code?.coding[0].code, "371041009")
+        XCTAssertEqual(inst.condition[0].code?.coding[0].display, "Embolic Stroke")
+        XCTAssertEqual(inst.condition[0].code?.coding[0].system, "http://snomed.info/sct")
+        XCTAssertEqual(inst.condition[0].code?.text, "Stroke")
+        XCTAssertEqual(inst.condition[0].onsetQuantity?.system, "http://unitsofmeasure.org")
+        XCTAssertEqual(inst.condition[0].onsetQuantity?.unit, "a")
+        XCTAssertTrue(inst.condition[0].onsetQuantity?.value! == RealmDecimal(string: "56"))
+        XCTAssertEqual(inst.id, "mother")
+        XCTAssertEqual(inst.patient?.display, "Peter Patient")
+        XCTAssertEqual(inst.patient?.reference, "Patient/100")
+        XCTAssertEqual(inst.relationship?.coding[0].code, "mother")
+        XCTAssertEqual(inst.relationship?.coding[0].system, "http://hl7.org/fhir/familial-relationship")
+        XCTAssertEqual(inst.status, "completed")
+        XCTAssertEqual(inst.text?.div, "<div>Mother died of a stroke aged 56</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
+    
+    func testFamilyMemberHistory2() {   
+        var instance: FireKit.FamilyMemberHistory?
+        do {
+            instance = try runFamilyMemberHistory2()
+            try runFamilyMemberHistory2(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory successfully, but threw: \(error)")
+        }
+
+        testFamilyMemberHistoryRealm2(instance!)
     }
 
-    testFamilyMemberHistoryRealm2(instance!)
-  }
-
-  func testFamilyMemberHistory2RealmPK() {    
-    do {
-        let instance: FireKit.FamilyMemberHistory = try runFamilyMemberHistory2()
-        let copy = (instance.copy() as! FireKit.FamilyMemberHistory)
-
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testFamilyMemberHistory2Copying() {
+        do {
+            let instance = try runFamilyMemberHistory2()
+            let copy = instance.copy() as? FireKit.FamilyMemberHistory
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runFamilyMemberHistory2(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test FamilyMemberHistory's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test FamilyMemberHistory successfully, but threw: \(error)")
         }
     }
 
-  func testFamilyMemberHistoryRealm2(_ instance: FireKit.FamilyMemberHistory) {
+    func testFamilyMemberHistory2Populatability() {
+        do {
+            let instance = try runFamilyMemberHistory2()
+            let copy = FireKit.FamilyMemberHistory()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runFamilyMemberHistory2(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test FamilyMemberHistory successfully, but threw: \(error)")
+        }
+    }
+
+    func testFamilyMemberHistoryRealm2(_ instance: FireKit.FamilyMemberHistory) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -201,30 +199,30 @@ class FamilyMemberHistoryTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.FamilyMemberHistory.self).count)
-  }
-  
-  @discardableResult
-  func runFamilyMemberHistory2(_ data: Data? = nil) throws -> FireKit.FamilyMemberHistory {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "familymemberhistory-example.json")
+    }
     
-    XCTAssertEqual(inst.condition[0].code?.coding[0].code, "315619001")
-    XCTAssertEqual(inst.condition[0].code?.coding[0].display, "Myocardial Infarction")
-    XCTAssertEqual(inst.condition[0].code?.coding[0].system, "http://snomed.info/sct")
-    XCTAssertEqual(inst.condition[0].code?.text, "Heart Attack")
-    XCTAssertEqual(inst.condition[0].note?.text, "Was fishing at the time. At least he went doing someting he loved.")
-    XCTAssertEqual(inst.condition[0].onsetQuantity?.system, "http://unitsofmeasure.org")
-    XCTAssertEqual(inst.condition[0].onsetQuantity?.unit, "a")
-    XCTAssertTrue(inst.condition[0].onsetQuantity?.value! == RealmDecimal(string: "74"))
-    XCTAssertEqual(inst.date?.description, "2011-03-18")
-    XCTAssertEqual(inst.id, "father")
-    XCTAssertEqual(inst.patient?.display, "Peter Patient")
-    XCTAssertEqual(inst.patient?.reference, "Patient/example")
-    XCTAssertEqual(inst.relationship?.coding[0].code, "father")
-    XCTAssertEqual(inst.relationship?.coding[0].system, "http://hl7.org/fhir/familial-relationship")
-    XCTAssertEqual(inst.status, "completed")
-    XCTAssertEqual(inst.text?.div, "<div>Father died of a heart attack aged 74</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
+    @discardableResult
+    func runFamilyMemberHistory2(_ data: Data? = nil) throws -> FireKit.FamilyMemberHistory {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "familymemberhistory-example.json")
+        
+        XCTAssertEqual(inst.condition[0].code?.coding[0].code, "315619001")
+        XCTAssertEqual(inst.condition[0].code?.coding[0].display, "Myocardial Infarction")
+        XCTAssertEqual(inst.condition[0].code?.coding[0].system, "http://snomed.info/sct")
+        XCTAssertEqual(inst.condition[0].code?.text, "Heart Attack")
+        XCTAssertEqual(inst.condition[0].note?.text, "Was fishing at the time. At least he went doing someting he loved.")
+        XCTAssertEqual(inst.condition[0].onsetQuantity?.system, "http://unitsofmeasure.org")
+        XCTAssertEqual(inst.condition[0].onsetQuantity?.unit, "a")
+        XCTAssertTrue(inst.condition[0].onsetQuantity?.value! == RealmDecimal(string: "74"))
+        XCTAssertEqual(inst.date?.description, "2011-03-18")
+        XCTAssertEqual(inst.id, "father")
+        XCTAssertEqual(inst.patient?.display, "Peter Patient")
+        XCTAssertEqual(inst.patient?.reference, "Patient/example")
+        XCTAssertEqual(inst.relationship?.coding[0].code, "father")
+        XCTAssertEqual(inst.relationship?.coding[0].system, "http://hl7.org/fhir/familial-relationship")
+        XCTAssertEqual(inst.status, "completed")
+        XCTAssertEqual(inst.text?.div, "<div>Father died of a heart attack aged 74</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

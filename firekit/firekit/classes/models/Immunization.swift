@@ -196,26 +196,27 @@ open class Immunization: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
         FireKit.populate(&self.doseQuantity, from: o.doseQuantity)
         FireKit.populate(&self.encounter, from: o.encounter)
         expirationDate = o.expirationDate
         FireKit.populate(&self.explanation, from: o.explanation)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.location, from: o.location)
         lotNumber = o.lotNumber
         FireKit.populate(&self.manufacturer, from: o.manufacturer)
-        // TODO: note array
+        FireKit.populateList(&self.note, from: o.note)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.performer, from: o.performer)
-        // TODO: reaction array
+        FireKit.populateList(&self.reaction, from: o.reaction)
         reported.value = o.reported.value
         FireKit.populate(&self.requester, from: o.requester)
         FireKit.populate(&self.route, from: o.route)
         FireKit.populate(&self.site, from: o.site)
         status = o.status
-        // TODO: vaccinationProtocol array
+        FireKit.populateList(&self.vaccinationProtocol, from: o.vaccinationProtocol)
         FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
         wasNotGiven.value = o.wasNotGiven.value
     }
@@ -284,9 +285,10 @@ open class ImmunizationExplanation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: reason array
-        // TODO: reasonNotGiven array
+        FireKit.populateList(&self.reason, from: o.reason)
+        FireKit.populateList(&self.reasonNotGiven, from: o.reasonNotGiven)
     }
 }
 
@@ -360,6 +362,7 @@ open class ImmunizationReaction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
         FireKit.populate(&self.detail, from: o.detail)
@@ -471,6 +474,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.authority, from: o.authority)
         description_fhir = o.description_fhir
@@ -479,7 +483,7 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
         FireKit.populate(&self.doseStatusReason, from: o.doseStatusReason)
         series = o.series
         seriesDoses.value = o.seriesDoses.value
-        // TODO: targetDisease array
+        FireKit.populateList(&self.targetDisease, from: o.targetDisease)
     }
 }
 

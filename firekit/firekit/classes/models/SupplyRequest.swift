@@ -135,6 +135,7 @@ open class SupplyRequest: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -145,7 +146,7 @@ open class SupplyRequest: DomainResource {
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
         FireKit.populate(&self.source, from: o.source)
         status = o.status
-        // TODO: supplier array
+        FireKit.populateList(&self.supplier, from: o.supplier)
         FireKit.populate(&self.when, from: o.when)
     }
 }
@@ -217,6 +218,7 @@ open class SupplyRequestWhen: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.schedule, from: o.schedule)

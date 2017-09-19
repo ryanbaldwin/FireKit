@@ -158,26 +158,27 @@ open class Contract: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: action array
-        // TODO: actionReason array
-        // TODO: actor array
+        FireKit.populateList(&self.action, from: o.action)
+        FireKit.populateList(&self.actionReason, from: o.actionReason)
+        FireKit.populateList(&self.actor, from: o.actor)
         FireKit.populate(&self.applies, from: o.applies)
-        // TODO: authority array
+        FireKit.populateList(&self.authority, from: o.authority)
         FireKit.populate(&self.bindingAttachment, from: o.bindingAttachment)
         FireKit.populate(&self.bindingReference, from: o.bindingReference)
-        // TODO: domain array
-        // TODO: friendly array
+        FireKit.populateList(&self.domain, from: o.domain)
+        FireKit.populateList(&self.friendly, from: o.friendly)
         FireKit.populate(&self.identifier, from: o.identifier)
         issued = o.issued
-        // TODO: legal array
-        // TODO: rule array
-        // TODO: signer array
-        // TODO: subType array
-        // TODO: subject array
-        // TODO: term array
+        FireKit.populateList(&self.legal, from: o.legal)
+        FireKit.populateList(&self.rule, from: o.rule)
+        FireKit.populateList(&self.signer, from: o.signer)
+        FireKit.populateList(&self.subType, from: o.subType)
+        FireKit.populateList(&self.subject, from: o.subject)
+        FireKit.populateList(&self.term, from: o.term)
         FireKit.populate(&self.type, from: o.type)
-        // TODO: valuedItem array
+        FireKit.populateList(&self.valuedItem, from: o.valuedItem)
     }
 }
 
@@ -253,9 +254,10 @@ open class ContractActor: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.entity, from: o.entity)
-        // TODO: role array
+        FireKit.populateList(&self.role, from: o.role)
     }
 }
 
@@ -338,6 +340,7 @@ open class ContractFriendly: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
         FireKit.populate(&self.contentReference, from: o.contentReference)
@@ -420,6 +423,7 @@ open class ContractLegal: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
         FireKit.populate(&self.contentReference, from: o.contentReference)
@@ -502,6 +506,7 @@ open class ContractRule: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
         FireKit.populate(&self.contentReference, from: o.contentReference)
@@ -589,6 +594,7 @@ open class ContractSigner: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.party, from: o.party)
         signature = o.signature
@@ -714,19 +720,20 @@ open class ContractTerm: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: action array
-        // TODO: actionReason array
-        // TODO: actor array
+        FireKit.populateList(&self.action, from: o.action)
+        FireKit.populateList(&self.actionReason, from: o.actionReason)
+        FireKit.populateList(&self.actor, from: o.actor)
         FireKit.populate(&self.applies, from: o.applies)
-        // TODO: group array
+        FireKit.populateList(&self.group, from: o.group)
         FireKit.populate(&self.identifier, from: o.identifier)
         issued = o.issued
         FireKit.populate(&self.subType, from: o.subType)
         FireKit.populate(&self.subject, from: o.subject)
         text = o.text
         FireKit.populate(&self.type, from: o.type)
-        // TODO: valuedItem array
+        FireKit.populateList(&self.valuedItem, from: o.valuedItem)
     }
 }
 
@@ -802,9 +809,10 @@ open class ContractTermActor: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.entity, from: o.entity)
-        // TODO: role array
+        FireKit.populateList(&self.role, from: o.role)
     }
 }
 
@@ -917,6 +925,7 @@ open class ContractTermValuedItem: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         effectiveTime = o.effectiveTime
         FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)
@@ -1039,6 +1048,7 @@ open class ContractValuedItem: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         effectiveTime = o.effectiveTime
         FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)

@@ -144,13 +144,14 @@ open class List: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         date = o.date
         FireKit.populate(&self.emptyReason, from: o.emptyReason)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: entry array
-        // TODO: identifier array
+        FireKit.populateList(&self.entry, from: o.entry)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         mode = o.mode
         note = o.note
         FireKit.populate(&self.orderedBy, from: o.orderedBy)
@@ -244,6 +245,7 @@ open class ListEntry: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
         deleted.value = o.deleted.value

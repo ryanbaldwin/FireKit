@@ -133,8 +133,9 @@ open class DeviceMetric: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: calibration array
+        FireKit.populateList(&self.calibration, from: o.calibration)
         category = o.category
         color = o.color
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -212,6 +213,7 @@ open class DeviceMetricCalibration: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         state = o.state
         time = o.time

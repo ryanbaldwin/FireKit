@@ -72,8 +72,9 @@ open class Parameters: Resource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: parameter array
+        FireKit.populateList(&self.parameter, from: o.parameter)
     }
 }
 
@@ -340,9 +341,10 @@ open class ParametersParameter: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: part array
+        FireKit.populateList(&self.part, from: o.part)
         FireKit.populate(&self.resource, from: o.resource)
         FireKit.populate(&self.valueAddress, from: o.valueAddress)
         FireKit.populate(&self.valueAnnotation, from: o.valueAnnotation)

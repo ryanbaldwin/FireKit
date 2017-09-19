@@ -153,16 +153,17 @@ open class Device: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         expiry = o.expiry
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.location, from: o.location)
         lotNumber = o.lotNumber
         manufactureDate = o.manufactureDate
         manufacturer = o.manufacturer
         model = o.model
-        // TODO: note array
+        FireKit.populateList(&self.note, from: o.note)
         FireKit.populate(&self.owner, from: o.owner)
         FireKit.populate(&self.patient, from: o.patient)
         status = o.status

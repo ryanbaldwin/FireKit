@@ -248,24 +248,25 @@ open class Observation: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.bodySite, from: o.bodySite)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
         comments = o.comments
-        // TODO: component array
+        FireKit.populateList(&self.component, from: o.component)
         FireKit.populate(&self.dataAbsentReason, from: o.dataAbsentReason)
         FireKit.populate(&self.device, from: o.device)
         effectiveDateTime = o.effectiveDateTime
         FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.interpretation, from: o.interpretation)
         issued = o.issued
         FireKit.populate(&self.method, from: o.method)
-        // TODO: performer array
-        // TODO: referenceRange array
-        // TODO: related array
+        FireKit.populateList(&self.performer, from: o.performer)
+        FireKit.populateList(&self.referenceRange, from: o.referenceRange)
+        FireKit.populateList(&self.related, from: o.related)
         FireKit.populate(&self.specimen, from: o.specimen)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
@@ -424,10 +425,11 @@ open class ObservationComponent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.dataAbsentReason, from: o.dataAbsentReason)
-        // TODO: referenceRange array
+        FireKit.populateList(&self.referenceRange, from: o.referenceRange)
         FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
         FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
         valueDateTime = o.valueDateTime
@@ -528,6 +530,7 @@ open class ObservationReferenceRange: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.age, from: o.age)
         FireKit.populate(&self.high, from: o.high)
@@ -610,6 +613,7 @@ open class ObservationRelated: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.target, from: o.target)
         type = o.type

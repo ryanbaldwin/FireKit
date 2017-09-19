@@ -98,13 +98,14 @@ open class Substance: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: category array
+        FireKit.populateList(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
         description_fhir = o.description_fhir
-        // TODO: identifier array
-        // TODO: ingredient array
-        // TODO: instance array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.ingredient, from: o.ingredient)
+        FireKit.populateList(&self.instance, from: o.instance)
     }
 }
 
@@ -183,6 +184,7 @@ open class SubstanceIngredient: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.quantity, from: o.quantity)
         FireKit.populate(&self.substance, from: o.substance)
@@ -263,6 +265,7 @@ open class SubstanceInstance: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         expiry = o.expiry
         FireKit.populate(&self.identifier, from: o.identifier)

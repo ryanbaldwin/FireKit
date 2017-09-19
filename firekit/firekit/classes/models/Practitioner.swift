@@ -114,18 +114,19 @@ open class Practitioner: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         active.value = o.active.value
-        // TODO: address array
+        FireKit.populateList(&self.address, from: o.address)
         birthDate = o.birthDate
-        // TODO: communication array
+        FireKit.populateList(&self.communication, from: o.communication)
         gender = o.gender
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.name, from: o.name)
-        // TODO: photo array
-        // TODO: practitionerRole array
-        // TODO: qualification array
-        // TODO: telecom array
+        FireKit.populateList(&self.photo, from: o.photo)
+        FireKit.populateList(&self.practitionerRole, from: o.practitionerRole)
+        FireKit.populateList(&self.qualification, from: o.qualification)
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -217,13 +218,14 @@ open class PractitionerPractitionerRole: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: healthcareService array
-        // TODO: location array
+        FireKit.populateList(&self.healthcareService, from: o.healthcareService)
+        FireKit.populateList(&self.location, from: o.location)
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         FireKit.populate(&self.period, from: o.period)
         FireKit.populate(&self.role, from: o.role)
-        // TODO: specialty array
+        FireKit.populateList(&self.specialty, from: o.specialty)
     }
 }
 
@@ -311,9 +313,10 @@ open class PractitionerQualification: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.issuer, from: o.issuer)
         FireKit.populate(&self.period, from: o.period)
     }

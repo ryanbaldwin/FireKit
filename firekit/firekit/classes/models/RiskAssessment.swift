@@ -125,8 +125,9 @@ open class RiskAssessment: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: basis array
+        FireKit.populateList(&self.basis, from: o.basis)
         FireKit.populate(&self.condition, from: o.condition)
         date = o.date
         FireKit.populate(&self.encounter, from: o.encounter)
@@ -134,7 +135,7 @@ open class RiskAssessment: DomainResource {
         FireKit.populate(&self.method, from: o.method)
         mitigation = o.mitigation
         FireKit.populate(&self.performer, from: o.performer)
-        // TODO: prediction array
+        FireKit.populateList(&self.prediction, from: o.prediction)
         FireKit.populate(&self.subject, from: o.subject)
     }
 }
@@ -247,6 +248,7 @@ open class RiskAssessmentPrediction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.outcome, from: o.outcome)
         FireKit.populate(&self.probabilityCodeableConcept, from: o.probabilityCodeableConcept)

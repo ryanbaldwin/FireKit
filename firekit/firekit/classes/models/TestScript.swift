@@ -172,27 +172,28 @@ open class TestScript: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         copyright = o.copyright
         date = o.date
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
-        // TODO: fixture array
+        FireKit.populateList(&self.fixture, from: o.fixture)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.metadata, from: o.metadata)
         multiserver.value = o.multiserver.value
         name = o.name
-        // TODO: profile array
+        FireKit.populateList(&self.profile, from: o.profile)
         publisher = o.publisher
         requirements = o.requirements
         FireKit.populate(&self.setup, from: o.setup)
         status = o.status
         FireKit.populate(&self.teardown, from: o.teardown)
-        // TODO: test array
+        FireKit.populateList(&self.test, from: o.test)
         url = o.url
-        // TODO: useContext array
-        // TODO: variable array
+        FireKit.populateList(&self.useContext, from: o.useContext)
+        FireKit.populateList(&self.variable, from: o.variable)
         version = o.version
     }
 }
@@ -260,9 +261,10 @@ open class TestScriptContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -336,6 +338,7 @@ open class TestScriptFixture: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         autocreate.value = o.autocreate.value
         autodelete.value = o.autodelete.value
@@ -412,9 +415,10 @@ open class TestScriptMetadata: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: capability array
-        // TODO: link array
+        FireKit.populateList(&self.capability, from: o.capability)
+        FireKit.populateList(&self.link, from: o.link)
     }
 }
 
@@ -506,11 +510,12 @@ open class TestScriptMetadataCapability: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.conformance, from: o.conformance)
         description_fhir = o.description_fhir
         destination.value = o.destination.value
-        // TODO: link array
+        FireKit.populateList(&self.link, from: o.link)
         required.value = o.required.value
         validated.value = o.validated.value
     }
@@ -585,6 +590,7 @@ open class TestScriptMetadataLink: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         description_fhir = o.description_fhir
         url = o.url
@@ -661,8 +667,9 @@ open class TestScriptSetup: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: action array
+        FireKit.populateList(&self.action, from: o.action)
         FireKit.populate(&self.metadata, from: o.metadata)
     }
 }
@@ -736,6 +743,7 @@ open class TestScriptSetupAction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.assert, from: o.assert)
         FireKit.populate(&self.operation, from: o.operation)
@@ -869,6 +877,7 @@ open class TestScriptSetupActionAssert: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         compareToSourceId = o.compareToSourceId
         compareToSourcePath = o.compareToSourcePath
@@ -1005,6 +1014,7 @@ open class TestScriptSetupActionOperation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         accept = o.accept
         contentType = o.contentType
@@ -1013,7 +1023,7 @@ open class TestScriptSetupActionOperation: BackboneElement {
         encodeRequestUrl.value = o.encodeRequestUrl.value
         label = o.label
         params = o.params
-        // TODO: requestHeader array
+        FireKit.populateList(&self.requestHeader, from: o.requestHeader)
         resource = o.resource
         responseId = o.responseId
         sourceId = o.sourceId
@@ -1093,6 +1103,7 @@ open class TestScriptSetupActionOperationRequestHeader: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         field = o.field
         value = o.value
@@ -1164,8 +1175,9 @@ open class TestScriptTeardown: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: action array
+        FireKit.populateList(&self.action, from: o.action)
     }
 }
 
@@ -1231,6 +1243,7 @@ open class TestScriptTeardownAction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.operation, from: o.operation)
     }
@@ -1314,8 +1327,9 @@ open class TestScriptTest: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: action array
+        FireKit.populateList(&self.action, from: o.action)
         description_fhir = o.description_fhir
         FireKit.populate(&self.metadata, from: o.metadata)
         name = o.name
@@ -1391,6 +1405,7 @@ open class TestScriptTestAction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.assert, from: o.assert)
         FireKit.populate(&self.operation, from: o.operation)
@@ -1474,6 +1489,7 @@ open class TestScriptVariable: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         headerField = o.headerField
         name = o.name

@@ -162,22 +162,23 @@ open class ReferralRequest: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
         dateSent = o.dateSent
         description_fhir = o.description_fhir
         FireKit.populate(&self.encounter, from: o.encounter)
         FireKit.populate(&self.fulfillmentTime, from: o.fulfillmentTime)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.priority, from: o.priority)
         FireKit.populate(&self.reason, from: o.reason)
-        // TODO: recipient array
+        FireKit.populateList(&self.recipient, from: o.recipient)
         FireKit.populate(&self.requester, from: o.requester)
-        // TODO: serviceRequested array
+        FireKit.populateList(&self.serviceRequested, from: o.serviceRequested)
         FireKit.populate(&self.specialty, from: o.specialty)
         status = o.status
-        // TODO: supportingInformation array
+        FireKit.populateList(&self.supportingInformation, from: o.supportingInformation)
         FireKit.populate(&self.type, from: o.type)
     }
 }

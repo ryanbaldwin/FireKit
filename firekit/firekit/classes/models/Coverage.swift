@@ -144,12 +144,13 @@ open class Coverage: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.bin, from: o.bin)
-        // TODO: contract array
+        FireKit.populateList(&self.contract, from: o.contract)
         dependent.value = o.dependent.value
         group = o.group
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.issuer, from: o.issuer)
         FireKit.populate(&self.network, from: o.network)
         FireKit.populate(&self.period, from: o.period)

@@ -153,26 +153,27 @@ open class Patient: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         active.value = o.active.value
-        // TODO: address array
+        FireKit.populateList(&self.address, from: o.address)
         FireKit.populate(&self.animal, from: o.animal)
         birthDate = o.birthDate
-        // TODO: careProvider array
-        // TODO: communication array
-        // TODO: contact array
+        FireKit.populateList(&self.careProvider, from: o.careProvider)
+        FireKit.populateList(&self.communication, from: o.communication)
+        FireKit.populateList(&self.contact, from: o.contact)
         deceasedBoolean.value = o.deceasedBoolean.value
         deceasedDateTime = o.deceasedDateTime
         gender = o.gender
-        // TODO: identifier array
-        // TODO: link array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.link, from: o.link)
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         FireKit.populate(&self.maritalStatus, from: o.maritalStatus)
         multipleBirthBoolean.value = o.multipleBirthBoolean.value
         multipleBirthInteger.value = o.multipleBirthInteger.value
-        // TODO: name array
-        // TODO: photo array
-        // TODO: telecom array
+        FireKit.populateList(&self.name, from: o.name)
+        FireKit.populateList(&self.photo, from: o.photo)
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -258,6 +259,7 @@ open class PatientAnimal: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.breed, from: o.breed)
         FireKit.populate(&self.genderStatus, from: o.genderStatus)
@@ -337,6 +339,7 @@ open class PatientCommunication: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.language, from: o.language)
         preferred.value = o.preferred.value
@@ -436,14 +439,15 @@ open class PatientContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.address, from: o.address)
         gender = o.gender
         FireKit.populate(&self.name, from: o.name)
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: relationship array
-        // TODO: telecom array
+        FireKit.populateList(&self.relationship, from: o.relationship)
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -520,6 +524,7 @@ open class PatientLink: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.other, from: o.other)
         type = o.type

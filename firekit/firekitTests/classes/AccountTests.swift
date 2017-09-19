@@ -15,63 +15,62 @@ import FireKit
 
 
 class AccountTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.Account {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.Account {
-      print("Inflating FireKit.Account from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.Account.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testAccount1() {   
-    var instance: FireKit.Account?
-    do {
-      instance = try runAccount1()
-      try runAccount1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.Account
-      XCTAssertNotNil(copy)
-      try runAccount1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runAccount1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test Account successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testAccountRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.Account {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.Account {
+        print("Inflating FireKit.Account from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.Account.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testAccount1() {   
+        var instance: FireKit.Account?
+        do {
+            instance = try runAccount1()
+            try runAccount1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Account successfully, but threw: \(error)")
+        }
 
-  func testAccount1RealmPK() {    
-    do {
-        let instance: FireKit.Account = try runAccount1()
-        let copy = (instance.copy() as! FireKit.Account)
+        testAccountRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testAccount1Copying() {
+        do {
+            let instance = try runAccount1()
+            let copy = instance.copy() as? FireKit.Account
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runAccount1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Account's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Account successfully, but threw: \(error)")
         }
     }
 
-  func testAccountRealm1(_ instance: FireKit.Account) {
+    func testAccount1Populatability() {
+        do {
+            let instance = try runAccount1()
+            let copy = FireKit.Account()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runAccount1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Account successfully, but threw: \(error)")
+        }
+    }
+
+    func testAccountRealm1(_ instance: FireKit.Account) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,16 +103,16 @@ class AccountTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Account.self).count)
-  }
-  
-  @discardableResult
-  func runAccount1(_ data: Data? = nil) throws -> FireKit.Account {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "account-example.json")
+    }
     
-    XCTAssertEqual(inst.id, "example")
-    XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
+    @discardableResult
+    func runAccount1(_ data: Data? = nil) throws -> FireKit.Account {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "account-example.json")
+        
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

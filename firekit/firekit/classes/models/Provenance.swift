@@ -129,17 +129,18 @@ open class Provenance: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.activity, from: o.activity)
-        // TODO: agent array
-        // TODO: entity array
+        FireKit.populateList(&self.agent, from: o.agent)
+        FireKit.populateList(&self.entity, from: o.entity)
         FireKit.populate(&self.location, from: o.location)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: policy array
-        // TODO: reason array
+        FireKit.populateList(&self.policy, from: o.policy)
+        FireKit.populateList(&self.reason, from: o.reason)
         recorded = o.recorded
-        // TODO: signature array
-        // TODO: target array
+        FireKit.populateList(&self.signature, from: o.signature)
+        FireKit.populateList(&self.target, from: o.target)
     }
 }
 
@@ -231,9 +232,10 @@ open class ProvenanceAgent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
-        // TODO: relatedAgent array
+        FireKit.populateList(&self.relatedAgent, from: o.relatedAgent)
         FireKit.populate(&self.role, from: o.role)
         FireKit.populate(&self.userId, from: o.userId)
     }
@@ -314,6 +316,7 @@ open class ProvenanceAgentRelatedAgent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         target = o.target
         FireKit.populate(&self.type, from: o.type)
@@ -407,6 +410,7 @@ open class ProvenanceEntity: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.agent, from: o.agent)
         display = o.display

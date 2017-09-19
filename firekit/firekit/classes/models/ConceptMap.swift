@@ -159,12 +159,13 @@ open class ConceptMap: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         copyright = o.copyright
         date = o.date
         description_fhir = o.description_fhir
-        // TODO: element array
+        FireKit.populateList(&self.element, from: o.element)
         experimental.value = o.experimental.value
         FireKit.populate(&self.identifier, from: o.identifier)
         name = o.name
@@ -176,7 +177,7 @@ open class ConceptMap: DomainResource {
         FireKit.populate(&self.targetReference, from: o.targetReference)
         targetUri = o.targetUri
         url = o.url
-        // TODO: useContext array
+        FireKit.populateList(&self.useContext, from: o.useContext)
         version = o.version
     }
 }
@@ -244,9 +245,10 @@ open class ConceptMapContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -317,10 +319,11 @@ open class ConceptMapElement: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         codeSystem = o.codeSystem
-        // TODO: target array
+        FireKit.populateList(&self.target, from: o.target)
     }
 }
 
@@ -409,13 +412,14 @@ open class ConceptMapElementTarget: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         codeSystem = o.codeSystem
         comments = o.comments
-        // TODO: dependsOn array
+        FireKit.populateList(&self.dependsOn, from: o.dependsOn)
         equivalence = o.equivalence
-        // TODO: product array
+        FireKit.populateList(&self.product, from: o.product)
     }
 }
 
@@ -495,6 +499,7 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         codeSystem = o.codeSystem

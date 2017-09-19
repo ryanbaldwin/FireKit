@@ -165,21 +165,22 @@ open class ClinicalImpression: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: action array
+        FireKit.populateList(&self.action, from: o.action)
         FireKit.populate(&self.assessor, from: o.assessor)
         date = o.date
         description_fhir = o.description_fhir
-        // TODO: finding array
-        // TODO: investigations array
+        FireKit.populateList(&self.finding, from: o.finding)
+        FireKit.populateList(&self.investigations, from: o.investigations)
         FireKit.populate(&self.patient, from: o.patient)
-        // TODO: plan array
+        FireKit.populateList(&self.plan, from: o.plan)
         FireKit.populate(&self.previous, from: o.previous)
-        // TODO: problem array
+        FireKit.populateList(&self.problem, from: o.problem)
         prognosis = o.prognosis
         protocol_fhir = o.protocol_fhir
-        // TODO: resolved array
-        // TODO: ruledOut array
+        FireKit.populateList(&self.resolved, from: o.resolved)
+        FireKit.populateList(&self.ruledOut, from: o.ruledOut)
         status = o.status
         summary = o.summary
         FireKit.populate(&self.triggerCodeableConcept, from: o.triggerCodeableConcept)
@@ -259,6 +260,7 @@ open class ClinicalImpressionFinding: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         cause = o.cause
         FireKit.populate(&self.item, from: o.item)
@@ -339,9 +341,10 @@ open class ClinicalImpressionInvestigations: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: item array
+        FireKit.populateList(&self.item, from: o.item)
     }
 }
 
@@ -415,6 +418,7 @@ open class ClinicalImpressionRuledOut: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.item, from: o.item)
         reason = o.reason

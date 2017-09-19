@@ -113,17 +113,18 @@ open class Person: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         active.value = o.active.value
-        // TODO: address array
+        FireKit.populateList(&self.address, from: o.address)
         birthDate = o.birthDate
         gender = o.gender
-        // TODO: identifier array
-        // TODO: link array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.link, from: o.link)
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
-        // TODO: name array
+        FireKit.populateList(&self.name, from: o.name)
         FireKit.populate(&self.photo, from: o.photo)
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -197,6 +198,7 @@ open class PersonLink: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         assurance = o.assurance
         FireKit.populate(&self.target, from: o.target)

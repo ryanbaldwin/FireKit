@@ -146,15 +146,16 @@ open class AllergyIntolerance: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         category = o.category
         criticality = o.criticality
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         lastOccurence = o.lastOccurence
         FireKit.populate(&self.note, from: o.note)
         onset = o.onset
         FireKit.populate(&self.patient, from: o.patient)
-        // TODO: reaction array
+        FireKit.populateList(&self.reaction, from: o.reaction)
         recordedDate = o.recordedDate
         FireKit.populate(&self.recorder, from: o.recorder)
         FireKit.populate(&self.reporter, from: o.reporter)
@@ -266,11 +267,12 @@ open class AllergyIntoleranceReaction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         certainty = o.certainty
         description_fhir = o.description_fhir
         FireKit.populate(&self.exposureRoute, from: o.exposureRoute)
-        // TODO: manifestation array
+        FireKit.populateList(&self.manifestation, from: o.manifestation)
         FireKit.populate(&self.note, from: o.note)
         onset = o.onset
         severity = o.severity

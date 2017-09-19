@@ -15,63 +15,62 @@ import FireKit
 
 
 class OrderResponseTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.OrderResponse {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.OrderResponse {
-      print("Inflating FireKit.OrderResponse from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.OrderResponse.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testOrderResponse1() {   
-    var instance: FireKit.OrderResponse?
-    do {
-      instance = try runOrderResponse1()
-      try runOrderResponse1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.OrderResponse
-      XCTAssertNotNil(copy)
-      try runOrderResponse1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runOrderResponse1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test OrderResponse successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testOrderResponseRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.OrderResponse {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.OrderResponse {
+        print("Inflating FireKit.OrderResponse from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.OrderResponse.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testOrderResponse1() {   
+        var instance: FireKit.OrderResponse?
+        do {
+            instance = try runOrderResponse1()
+            try runOrderResponse1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test OrderResponse successfully, but threw: \(error)")
+        }
 
-  func testOrderResponse1RealmPK() {    
-    do {
-        let instance: FireKit.OrderResponse = try runOrderResponse1()
-        let copy = (instance.copy() as! FireKit.OrderResponse)
+        testOrderResponseRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testOrderResponse1Copying() {
+        do {
+            let instance = try runOrderResponse1()
+            let copy = instance.copy() as? FireKit.OrderResponse
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runOrderResponse1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test OrderResponse's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test OrderResponse successfully, but threw: \(error)")
         }
     }
 
-  func testOrderResponseRealm1(_ instance: FireKit.OrderResponse) {
+    func testOrderResponse1Populatability() {
+        do {
+            let instance = try runOrderResponse1()
+            let copy = FireKit.OrderResponse()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runOrderResponse1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test OrderResponse successfully, but threw: \(error)")
+        }
+    }
+
+    func testOrderResponseRealm1(_ instance: FireKit.OrderResponse) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,21 +103,21 @@ class OrderResponseTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.OrderResponse.self).count)
-  }
-  
-  @discardableResult
-  func runOrderResponse1(_ data: Data? = nil) throws -> FireKit.OrderResponse {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "orderresponse-example.json")
+    }
     
-    XCTAssertEqual(inst.date?.description, "2012-12-28T13:10:56+11:00")
-    XCTAssertEqual(inst.fulfillment[0].reference, "DiagnosticReport/101")
-    XCTAssertEqual(inst.id, "example")
-    XCTAssertEqual(inst.orderStatus, "completed")
-    XCTAssertEqual(inst.request?.reference, "Order/example")
-    XCTAssertEqual(inst.text?.div, "<div>Lab Report completed at 13:10 28-Dec 2012</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    XCTAssertEqual(inst.who?.reference, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
-    
-    return inst
-  }
+    @discardableResult
+    func runOrderResponse1(_ data: Data? = nil) throws -> FireKit.OrderResponse {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "orderresponse-example.json")
+        
+        XCTAssertEqual(inst.date?.description, "2012-12-28T13:10:56+11:00")
+        XCTAssertEqual(inst.fulfillment[0].reference, "DiagnosticReport/101")
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.orderStatus, "completed")
+        XCTAssertEqual(inst.request?.reference, "Order/example")
+        XCTAssertEqual(inst.text?.div, "<div>Lab Report completed at 13:10 28-Dec 2012</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+        XCTAssertEqual(inst.who?.reference, "Organization/1832473e-2fe0-452d-abe9-3cdb9879522f")
+
+        return inst
+    }
 }

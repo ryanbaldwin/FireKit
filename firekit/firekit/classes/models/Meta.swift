@@ -88,11 +88,12 @@ open class Meta: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         lastUpdated = o.lastUpdated
-        // TODO: profile array
-        // TODO: security array
-        // TODO: tag array
+        FireKit.populateList(&self.profile, from: o.profile)
+        FireKit.populateList(&self.security, from: o.security)
+        FireKit.populateList(&self.tag, from: o.tag)
         versionId = o.versionId
     }
 }

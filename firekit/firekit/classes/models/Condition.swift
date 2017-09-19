@@ -216,6 +216,7 @@ open class Condition: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         abatementBoolean.value = o.abatementBoolean.value
         abatementDateTime = o.abatementDateTime
@@ -224,14 +225,14 @@ open class Condition: DomainResource {
         FireKit.populate(&self.abatementRange, from: o.abatementRange)
         abatementString = o.abatementString
         FireKit.populate(&self.asserter, from: o.asserter)
-        // TODO: bodySite array
+        FireKit.populateList(&self.bodySite, from: o.bodySite)
         FireKit.populate(&self.category, from: o.category)
         clinicalStatus = o.clinicalStatus
         FireKit.populate(&self.code, from: o.code)
         dateRecorded = o.dateRecorded
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: evidence array
-        // TODO: identifier array
+        FireKit.populateList(&self.evidence, from: o.evidence)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         notes = o.notes
         onsetDateTime = o.onsetDateTime
         FireKit.populate(&self.onsetPeriod, from: o.onsetPeriod)
@@ -311,9 +312,10 @@ open class ConditionEvidence: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        // TODO: detail array
+        FireKit.populateList(&self.detail, from: o.detail)
     }
 }
 
@@ -383,8 +385,9 @@ open class ConditionStage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: assessment array
+        FireKit.populateList(&self.assessment, from: o.assessment)
         FireKit.populate(&self.summary, from: o.summary)
     }
 }

@@ -136,13 +136,14 @@ open class Media: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.content, from: o.content)
         deviceName = o.deviceName
         duration.value = o.duration.value
         frames.value = o.frames.value
         height.value = o.height.value
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.operator_fhir, from: o.operator_fhir)
         FireKit.populate(&self.subject, from: o.subject)
         FireKit.populate(&self.subtype, from: o.subtype)

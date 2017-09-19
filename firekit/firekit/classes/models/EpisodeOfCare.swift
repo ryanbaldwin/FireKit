@@ -132,18 +132,19 @@ open class EpisodeOfCare: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.careManager, from: o.careManager)
-        // TODO: careTeam array
-        // TODO: condition array
-        // TODO: identifier array
+        FireKit.populateList(&self.careTeam, from: o.careTeam)
+        FireKit.populateList(&self.condition, from: o.condition)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: referralRequest array
+        FireKit.populateList(&self.referralRequest, from: o.referralRequest)
         status = o.status
-        // TODO: statusHistory array
-        // TODO: type array
+        FireKit.populateList(&self.statusHistory, from: o.statusHistory)
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 
@@ -220,10 +221,11 @@ open class EpisodeOfCareCareTeam: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.member, from: o.member)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: role array
+        FireKit.populateList(&self.role, from: o.role)
     }
 }
 
@@ -301,6 +303,7 @@ open class EpisodeOfCareStatusHistory: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.period, from: o.period)
         status = o.status

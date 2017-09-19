@@ -162,13 +162,14 @@ open class ProcessRequest: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         action = o.action
         created = o.created
-        // TODO: exclude array
-        // TODO: identifier array
-        // TODO: include array
-        // TODO: item array
+        FireKit.populateList(&self.exclude, from: o.exclude)
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.include, from: o.include)
+        FireKit.populateList(&self.item, from: o.item)
         nullify.value = o.nullify.value
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
@@ -247,6 +248,7 @@ open class ProcessRequestItem: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         sequenceLinkId.value = o.sequenceLinkId.value
     }

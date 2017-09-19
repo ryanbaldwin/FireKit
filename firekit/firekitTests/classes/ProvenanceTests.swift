@@ -15,63 +15,62 @@ import FireKit
 
 
 class ProvenanceTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.Provenance {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.Provenance {
-      print("Inflating FireKit.Provenance from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.Provenance.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testProvenance1() {   
-    var instance: FireKit.Provenance?
-    do {
-      instance = try runProvenance1()
-      try runProvenance1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.Provenance
-      XCTAssertNotNil(copy)
-      try runProvenance1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runProvenance1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testProvenanceRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.Provenance {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.Provenance {
+        print("Inflating FireKit.Provenance from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.Provenance.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testProvenance1() {   
+        var instance: FireKit.Provenance?
+        do {
+            instance = try runProvenance1()
+            try runProvenance1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw: \(error)")
+        }
 
-  func testProvenance1RealmPK() {    
-    do {
-        let instance: FireKit.Provenance = try runProvenance1()
-        let copy = (instance.copy() as! FireKit.Provenance)
+        testProvenanceRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testProvenance1Copying() {
+        do {
+            let instance = try runProvenance1()
+            let copy = instance.copy() as? FireKit.Provenance
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runProvenance1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Provenance's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Provenance successfully, but threw: \(error)")
         }
     }
 
-  func testProvenanceRealm1(_ instance: FireKit.Provenance) {
+    func testProvenance1Populatability() {
+        do {
+            let instance = try runProvenance1()
+            let copy = FireKit.Provenance()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runProvenance1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Provenance successfully, but threw: \(error)")
+        }
+    }
+
+    func testProvenanceRealm1(_ instance: FireKit.Provenance) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,79 +103,78 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Provenance.self).count)
-  }
-  
-  @discardableResult
-  func runProvenance1(_ data: Data? = nil) throws -> FireKit.Provenance {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "provenance-example-sig.json")
-    
-    XCTAssertEqual(inst.activity?.coding[0].code, "AU")
-    XCTAssertEqual(inst.activity?.coding[0].display, "authenticated")
-    XCTAssertEqual(inst.activity?.coding[0].system, "http://hl7.org/fhir/v3/DocumentCompletion")
-    XCTAssertEqual(inst.agent[0].actor?.reference, "Practitioner/xcda-author")
-    XCTAssertEqual(inst.agent[0].role?.code, "verifier")
-    XCTAssertEqual(inst.agent[0].role?.system, "http://hl7.org/fhir/provenance-participant-role")
-    XCTAssertEqual(inst.agent[0].userId?.system, "http://acme.com/fhir/users/sso")
-    XCTAssertEqual(inst.agent[0].userId?.value, "hhd")
-    XCTAssertEqual(inst.id, "signature")
-    XCTAssertEqual(inst.reason[0].coding[0].code, "TREAT")
-    XCTAssertEqual(inst.reason[0].coding[0].display, "treatment")
-    XCTAssertEqual(inst.reason[0].coding[0].system, "http://hl7.org/fhir/v3/ActReason")
-    XCTAssertEqual(inst.recorded?.description, "2015-08-27T08:39:24+10:00")
-    XCTAssertTrue(inst.signature[0].blob! == Base64Binary(val: "Li4u"))
-    XCTAssertEqual(inst.signature[0].contentType, "application/signature+xml")
-    XCTAssertEqual(inst.signature[0].type[0].code, "1.2.840.10065.1.12.1.5")
-    XCTAssertEqual(inst.signature[0].type[0].display, "Verification")
-    XCTAssertEqual(inst.signature[0].type[0].system, "http://hl7.org/fhir/valueset-signature-type")
-    XCTAssertEqual(inst.signature[0].when?.description, "2015-08-27T08:39:24+10:00")
-    XCTAssertEqual(inst.signature[0].whoReference?.reference, "Practitioner/xcda-author")
-    XCTAssertEqual(inst.target[0].reference, "DocumentReference/example")
-    XCTAssertEqual(inst.text?.div, "<div>procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
-  
-  func testProvenance2() {   
-    var instance: FireKit.Provenance?
-    do {
-      instance = try runProvenance2()
-      try runProvenance2(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.Provenance
-      XCTAssertNotNil(copy)
-      try runProvenance2(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runProvenance2(JSONEncoder().encode(copy!))  
     }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw: \(error)")
+    
+    @discardableResult
+    func runProvenance1(_ data: Data? = nil) throws -> FireKit.Provenance {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "provenance-example-sig.json")
+        
+        XCTAssertEqual(inst.activity?.coding[0].code, "AU")
+        XCTAssertEqual(inst.activity?.coding[0].display, "authenticated")
+        XCTAssertEqual(inst.activity?.coding[0].system, "http://hl7.org/fhir/v3/DocumentCompletion")
+        XCTAssertEqual(inst.agent[0].actor?.reference, "Practitioner/xcda-author")
+        XCTAssertEqual(inst.agent[0].role?.code, "verifier")
+        XCTAssertEqual(inst.agent[0].role?.system, "http://hl7.org/fhir/provenance-participant-role")
+        XCTAssertEqual(inst.agent[0].userId?.system, "http://acme.com/fhir/users/sso")
+        XCTAssertEqual(inst.agent[0].userId?.value, "hhd")
+        XCTAssertEqual(inst.id, "signature")
+        XCTAssertEqual(inst.reason[0].coding[0].code, "TREAT")
+        XCTAssertEqual(inst.reason[0].coding[0].display, "treatment")
+        XCTAssertEqual(inst.reason[0].coding[0].system, "http://hl7.org/fhir/v3/ActReason")
+        XCTAssertEqual(inst.recorded?.description, "2015-08-27T08:39:24+10:00")
+        XCTAssertTrue(inst.signature[0].blob! == Base64Binary(val: "Li4u"))
+        XCTAssertEqual(inst.signature[0].contentType, "application/signature+xml")
+        XCTAssertEqual(inst.signature[0].type[0].code, "1.2.840.10065.1.12.1.5")
+        XCTAssertEqual(inst.signature[0].type[0].display, "Verification")
+        XCTAssertEqual(inst.signature[0].type[0].system, "http://hl7.org/fhir/valueset-signature-type")
+        XCTAssertEqual(inst.signature[0].when?.description, "2015-08-27T08:39:24+10:00")
+        XCTAssertEqual(inst.signature[0].whoReference?.reference, "Practitioner/xcda-author")
+        XCTAssertEqual(inst.target[0].reference, "DocumentReference/example")
+        XCTAssertEqual(inst.text?.div, "<div>procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
+    
+    func testProvenance2() {   
+        var instance: FireKit.Provenance?
+        do {
+            instance = try runProvenance2()
+            try runProvenance2(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Provenance successfully, but threw: \(error)")
+        }
+
+        testProvenanceRealm2(instance!)
     }
 
-    testProvenanceRealm2(instance!)
-  }
-
-  func testProvenance2RealmPK() {    
-    do {
-        let instance: FireKit.Provenance = try runProvenance2()
-        let copy = (instance.copy() as! FireKit.Provenance)
-
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testProvenance2Copying() {
+        do {
+            let instance = try runProvenance2()
+            let copy = instance.copy() as? FireKit.Provenance
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runProvenance2(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Provenance's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Provenance successfully, but threw: \(error)")
         }
     }
 
-  func testProvenanceRealm2(_ instance: FireKit.Provenance) {
+    func testProvenance2Populatability() {
+        do {
+            let instance = try runProvenance2()
+            let copy = FireKit.Provenance()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runProvenance2(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Provenance successfully, but threw: \(error)")
+        }
+    }
+
+    func testProvenanceRealm2(_ instance: FireKit.Provenance) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -209,42 +207,42 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Provenance.self).count)
-  }
-  
-  @discardableResult
-  func runProvenance2(_ data: Data? = nil) throws -> FireKit.Provenance {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "provenance-example.json")
+    }
     
-    XCTAssertEqual(inst.agent[0].actor?.reference, "Practitioner/xcda-author")
-    XCTAssertEqual(inst.agent[0].relatedAgent[0].target, "#a1")
-    XCTAssertEqual(inst.agent[0].relatedAgent[0].type?.text, "used")
-    XCTAssertEqual(inst.agent[0].role?.code, "author")
-    XCTAssertEqual(inst.agent[0].role?.system, "http://hl7.org/fhir/provenance-participant-role")
-    XCTAssertEqual(inst.agent[0].userId?.system, "http://acme.com/fhir/users/sso")
-    XCTAssertEqual(inst.agent[0].userId?.value, "hhd")
-    XCTAssertEqual(inst.agent[1].actor?.reference, "Device/software")
-    XCTAssertEqual(inst.agent[1].id, "a1")
-    XCTAssertEqual(inst.agent[1].role?.code, "DEV")
-    XCTAssertEqual(inst.agent[1].role?.system, "http://hl7.org/fhir/v3/ParticipationType")
-    XCTAssertEqual(inst.entity[0].display, "CDA Document in XDS repository")
-    XCTAssertEqual(inst.entity[0].reference, "DocumentReference/90f55916-9d15-4b8f-87a9-2d7ade8670c8")
-    XCTAssertEqual(inst.entity[0].role, "source")
-    XCTAssertEqual(inst.entity[0].type?.code, "57133-1")
-    XCTAssertEqual(inst.entity[0].type?.display, "Referral note")
-    XCTAssertEqual(inst.entity[0].type?.system, "http://loinc.org")
-    XCTAssertEqual(inst.id, "example")
-    XCTAssertEqual(inst.location?.reference, "Location/1")
-    XCTAssertEqual(inst.period?.start?.description, "2015-06-27")
-    XCTAssertEqual(inst.policy[0].value, "http://acme.com/fhir/Consent/25")
-    XCTAssertEqual(inst.reason[0].coding[0].code, "3457005")
-    XCTAssertEqual(inst.reason[0].coding[0].display, "Referral")
-    XCTAssertEqual(inst.reason[0].coding[0].system, "http://snomed.info/sct")
-    XCTAssertEqual(inst.reason[0].text, "Accepting a referral")
-    XCTAssertEqual(inst.recorded?.description, "2015-06-27T08:39:24+10:00")
-    XCTAssertEqual(inst.target[0].reference, "Procedure/example/_history/1")
-    XCTAssertEqual(inst.text?.div, "<div>procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
+    @discardableResult
+    func runProvenance2(_ data: Data? = nil) throws -> FireKit.Provenance {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "provenance-example.json")
+        
+        XCTAssertEqual(inst.agent[0].actor?.reference, "Practitioner/xcda-author")
+        XCTAssertEqual(inst.agent[0].relatedAgent[0].target, "#a1")
+        XCTAssertEqual(inst.agent[0].relatedAgent[0].type?.text, "used")
+        XCTAssertEqual(inst.agent[0].role?.code, "author")
+        XCTAssertEqual(inst.agent[0].role?.system, "http://hl7.org/fhir/provenance-participant-role")
+        XCTAssertEqual(inst.agent[0].userId?.system, "http://acme.com/fhir/users/sso")
+        XCTAssertEqual(inst.agent[0].userId?.value, "hhd")
+        XCTAssertEqual(inst.agent[1].actor?.reference, "Device/software")
+        XCTAssertEqual(inst.agent[1].id, "a1")
+        XCTAssertEqual(inst.agent[1].role?.code, "DEV")
+        XCTAssertEqual(inst.agent[1].role?.system, "http://hl7.org/fhir/v3/ParticipationType")
+        XCTAssertEqual(inst.entity[0].display, "CDA Document in XDS repository")
+        XCTAssertEqual(inst.entity[0].reference, "DocumentReference/90f55916-9d15-4b8f-87a9-2d7ade8670c8")
+        XCTAssertEqual(inst.entity[0].role, "source")
+        XCTAssertEqual(inst.entity[0].type?.code, "57133-1")
+        XCTAssertEqual(inst.entity[0].type?.display, "Referral note")
+        XCTAssertEqual(inst.entity[0].type?.system, "http://loinc.org")
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.location?.reference, "Location/1")
+        XCTAssertEqual(inst.period?.start?.description, "2015-06-27")
+        XCTAssertEqual(inst.policy[0].value, "http://acme.com/fhir/Consent/25")
+        XCTAssertEqual(inst.reason[0].coding[0].code, "3457005")
+        XCTAssertEqual(inst.reason[0].coding[0].display, "Referral")
+        XCTAssertEqual(inst.reason[0].coding[0].system, "http://snomed.info/sct")
+        XCTAssertEqual(inst.reason[0].text, "Accepting a referral")
+        XCTAssertEqual(inst.recorded?.description, "2015-06-27T08:39:24+10:00")
+        XCTAssertEqual(inst.target[0].reference, "Procedure/example/_history/1")
+        XCTAssertEqual(inst.text?.div, "<div>procedure record authored on 27-June 2015 by Harold Hippocrates, MD Content extracted from Referral received 26-June</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

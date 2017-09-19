@@ -168,21 +168,22 @@ open class DocumentReference: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.authenticator, from: o.authenticator)
-        // TODO: author array
+        FireKit.populateList(&self.author, from: o.author)
         FireKit.populate(&self.class_fhir, from: o.class_fhir)
-        // TODO: content array
+        FireKit.populateList(&self.content, from: o.content)
         FireKit.populate(&self.context, from: o.context)
         created = o.created
         FireKit.populate(&self.custodian, from: o.custodian)
         description_fhir = o.description_fhir
         FireKit.populate(&self.docStatus, from: o.docStatus)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         indexed = o.indexed
         FireKit.populate(&self.masterIdentifier, from: o.masterIdentifier)
-        // TODO: relatesTo array
-        // TODO: securityLabel array
+        FireKit.populateList(&self.relatesTo, from: o.relatesTo)
+        FireKit.populateList(&self.securityLabel, from: o.securityLabel)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
         FireKit.populate(&self.type, from: o.type)
@@ -261,9 +262,10 @@ open class DocumentReferenceContent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.attachment, from: o.attachment)
-        // TODO: format array
+        FireKit.populateList(&self.format, from: o.format)
     }
 }
 
@@ -365,13 +367,14 @@ open class DocumentReferenceContext: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.encounter, from: o.encounter)
-        // TODO: event array
+        FireKit.populateList(&self.event, from: o.event)
         FireKit.populate(&self.facilityType, from: o.facilityType)
         FireKit.populate(&self.period, from: o.period)
         FireKit.populate(&self.practiceSetting, from: o.practiceSetting)
-        // TODO: related array
+        FireKit.populateList(&self.related, from: o.related)
         FireKit.populate(&self.sourcePatientInfo, from: o.sourcePatientInfo)
     }
 }
@@ -445,6 +448,7 @@ open class DocumentReferenceContextRelated: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.ref, from: o.ref)
@@ -524,6 +528,7 @@ open class DocumentReferenceRelatesTo: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         FireKit.populate(&self.target, from: o.target)

@@ -150,23 +150,24 @@ open class CarePlan: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: activity array
-        // TODO: addresses array
-        // TODO: author array
-        // TODO: category array
+        FireKit.populateList(&self.activity, from: o.activity)
+        FireKit.populateList(&self.addresses, from: o.addresses)
+        FireKit.populateList(&self.author, from: o.author)
+        FireKit.populateList(&self.category, from: o.category)
         FireKit.populate(&self.context, from: o.context)
         description_fhir = o.description_fhir
-        // TODO: goal array
-        // TODO: identifier array
+        FireKit.populateList(&self.goal, from: o.goal)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         modified = o.modified
         FireKit.populate(&self.note, from: o.note)
-        // TODO: participant array
+        FireKit.populateList(&self.participant, from: o.participant)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: relatedPlan array
+        FireKit.populateList(&self.relatedPlan, from: o.relatedPlan)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        // TODO: support array
+        FireKit.populateList(&self.support, from: o.support)
     }
 }
 
@@ -248,10 +249,11 @@ open class CarePlanActivity: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: actionResulting array
+        FireKit.populateList(&self.actionResulting, from: o.actionResulting)
         FireKit.populate(&self.detail, from: o.detail)
-        // TODO: progress array
+        FireKit.populateList(&self.progress, from: o.progress)
         FireKit.populate(&self.reference, from: o.reference)
     }
 }
@@ -420,20 +422,21 @@ open class CarePlanActivityDetail: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.dailyAmount, from: o.dailyAmount)
         description_fhir = o.description_fhir
-        // TODO: goal array
+        FireKit.populateList(&self.goal, from: o.goal)
         FireKit.populate(&self.location, from: o.location)
-        // TODO: performer array
+        FireKit.populateList(&self.performer, from: o.performer)
         FireKit.populate(&self.productCodeableConcept, from: o.productCodeableConcept)
         FireKit.populate(&self.productReference, from: o.productReference)
         prohibited.value = o.prohibited.value
         FireKit.populate(&self.quantity, from: o.quantity)
-        // TODO: reasonCode array
-        // TODO: reasonReference array
+        FireKit.populateList(&self.reasonCode, from: o.reasonCode)
+        FireKit.populateList(&self.reasonReference, from: o.reasonReference)
         FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)
         scheduledString = o.scheduledString
         FireKit.populate(&self.scheduledTiming, from: o.scheduledTiming)
@@ -511,6 +514,7 @@ open class CarePlanParticipant: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.member, from: o.member)
         FireKit.populate(&self.role, from: o.role)
@@ -589,6 +593,7 @@ open class CarePlanRelatedPlan: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         FireKit.populate(&self.plan, from: o.plan)

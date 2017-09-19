@@ -109,10 +109,11 @@ open class DomainResource: Resource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: contained array
-        // TODO: extension_fhir array
-        // TODO: modifierExtension array
+        FireKit.populateList(&self.contained, from: o.contained)
+        FireKit.populateList(&self.extension_fhir, from: o.extension_fhir)
+        FireKit.populateList(&self.modifierExtension, from: o.modifierExtension)
         FireKit.populate(&self.text, from: o.text)
     }
 }

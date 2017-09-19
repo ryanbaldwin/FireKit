@@ -130,20 +130,21 @@ open class DataElement: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         copyright = o.copyright
         date = o.date
-        // TODO: element array
+        FireKit.populateList(&self.element, from: o.element)
         experimental.value = o.experimental.value
-        // TODO: identifier array
-        // TODO: mapping array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.mapping, from: o.mapping)
         name = o.name
         publisher = o.publisher
         status = o.status
         stringency = o.stringency
         url = o.url
-        // TODO: useContext array
+        FireKit.populateList(&self.useContext, from: o.useContext)
         version = o.version
     }
 }
@@ -211,9 +212,10 @@ open class DataElementContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -295,6 +297,7 @@ open class DataElementMapping: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         comments = o.comments
         identity = o.identity

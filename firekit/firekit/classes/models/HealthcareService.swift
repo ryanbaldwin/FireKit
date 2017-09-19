@@ -174,29 +174,30 @@ open class HealthcareService: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         appointmentRequired.value = o.appointmentRequired.value
         availabilityExceptions = o.availabilityExceptions
-        // TODO: availableTime array
-        // TODO: characteristic array
+        FireKit.populateList(&self.availableTime, from: o.availableTime)
+        FireKit.populateList(&self.characteristic, from: o.characteristic)
         comment = o.comment
-        // TODO: coverageArea array
+        FireKit.populateList(&self.coverageArea, from: o.coverageArea)
         FireKit.populate(&self.eligibility, from: o.eligibility)
         eligibilityNote = o.eligibilityNote
         extraDetails = o.extraDetails
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.location, from: o.location)
-        // TODO: notAvailable array
+        FireKit.populateList(&self.notAvailable, from: o.notAvailable)
         FireKit.populate(&self.photo, from: o.photo)
-        // TODO: programName array
+        FireKit.populateList(&self.programName, from: o.programName)
         FireKit.populate(&self.providedBy, from: o.providedBy)
         publicKey = o.publicKey
-        // TODO: referralMethod array
+        FireKit.populateList(&self.referralMethod, from: o.referralMethod)
         FireKit.populate(&self.serviceCategory, from: o.serviceCategory)
         serviceName = o.serviceName
-        // TODO: serviceProvisionCode array
-        // TODO: serviceType array
-        // TODO: telecom array
+        FireKit.populateList(&self.serviceProvisionCode, from: o.serviceProvisionCode)
+        FireKit.populateList(&self.serviceType, from: o.serviceType)
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -271,11 +272,12 @@ open class HealthcareServiceAvailableTime: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         allDay.value = o.allDay.value
         availableEndTime = o.availableEndTime
         availableStartTime = o.availableStartTime
-        // TODO: daysOfWeek array
+        FireKit.populateList(&self.daysOfWeek, from: o.daysOfWeek)
     }
 }
 
@@ -351,6 +353,7 @@ open class HealthcareServiceNotAvailable: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         description_fhir = o.description_fhir
         FireKit.populate(&self.during, from: o.during)
@@ -429,8 +432,9 @@ open class HealthcareServiceServiceType: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: specialty array
+        FireKit.populateList(&self.specialty, from: o.specialty)
         FireKit.populate(&self.type, from: o.type)
     }
 }

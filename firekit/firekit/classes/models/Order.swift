@@ -125,10 +125,11 @@ open class Order: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
-        // TODO: detail array
-        // TODO: identifier array
+        FireKit.populateList(&self.detail, from: o.detail)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
         FireKit.populate(&self.source, from: o.source)
@@ -205,6 +206,7 @@ open class OrderWhen: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.schedule, from: o.schedule)

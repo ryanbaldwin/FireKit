@@ -149,23 +149,24 @@ open class ImplementationGuide: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: binary array
-        // TODO: contact array
+        FireKit.populateList(&self.binary, from: o.binary)
+        FireKit.populateList(&self.contact, from: o.contact)
         copyright = o.copyright
         date = o.date
-        // TODO: dependency array
+        FireKit.populateList(&self.dependency, from: o.dependency)
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
         fhirVersion = o.fhirVersion
-        // TODO: global array
+        FireKit.populateList(&self.global, from: o.global)
         name = o.name
-        // TODO: package array
+        FireKit.populateList(&self.package, from: o.package)
         FireKit.populate(&self.page, from: o.page)
         publisher = o.publisher
         status = o.status
         url = o.url
-        // TODO: useContext array
+        FireKit.populateList(&self.useContext, from: o.useContext)
         version = o.version
     }
 }
@@ -233,9 +234,10 @@ open class ImplementationGuideContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -310,6 +312,7 @@ open class ImplementationGuideDependency: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         type = o.type
         uri = o.uri
@@ -389,6 +392,7 @@ open class ImplementationGuideGlobal: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.profile, from: o.profile)
         type = o.type
@@ -469,10 +473,11 @@ open class ImplementationGuidePackage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         description_fhir = o.description_fhir
         name = o.name
-        // TODO: resource array
+        FireKit.populateList(&self.resource, from: o.resource)
     }
 }
 
@@ -575,6 +580,7 @@ open class ImplementationGuidePackageResource: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         acronym = o.acronym
         description_fhir = o.description_fhir
@@ -677,14 +683,15 @@ open class ImplementationGuidePage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         format = o.format
         kind = o.kind
         name = o.name
-        // TODO: package array
-        // TODO: page array
+        FireKit.populateList(&self.package, from: o.package)
+        FireKit.populateList(&self.page, from: o.page)
         source = o.source
-        // TODO: type array
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 

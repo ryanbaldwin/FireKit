@@ -126,17 +126,18 @@ open class RelatedPerson: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: address array
+        FireKit.populateList(&self.address, from: o.address)
         birthDate = o.birthDate
         gender = o.gender
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.name, from: o.name)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.period, from: o.period)
-        // TODO: photo array
+        FireKit.populateList(&self.photo, from: o.photo)
         FireKit.populate(&self.relationship, from: o.relationship)
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 

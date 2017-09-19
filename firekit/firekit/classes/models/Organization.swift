@@ -107,14 +107,15 @@ open class Organization: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         active.value = o.active.value
-        // TODO: address array
-        // TODO: contact array
-        // TODO: identifier array
+        FireKit.populateList(&self.address, from: o.address)
+        FireKit.populateList(&self.contact, from: o.contact)
+        FireKit.populateList(&self.identifier, from: o.identifier)
         name = o.name
         FireKit.populate(&self.partOf, from: o.partOf)
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
         FireKit.populate(&self.type, from: o.type)
     }
 }
@@ -197,11 +198,12 @@ open class OrganizationContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.address, from: o.address)
         FireKit.populate(&self.name, from: o.name)
         FireKit.populate(&self.purpose, from: o.purpose)
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 

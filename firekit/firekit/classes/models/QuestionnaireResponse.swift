@@ -131,6 +131,7 @@ open class QuestionnaireResponse: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
         authored = o.authored
@@ -226,10 +227,11 @@ open class QuestionnaireResponseGroup: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: group array
+        FireKit.populateList(&self.group, from: o.group)
         linkId = o.linkId
-        // TODO: question array
+        FireKit.populateList(&self.question, from: o.question)
         FireKit.populate(&self.subject, from: o.subject)
         text = o.text
         title = o.title
@@ -303,8 +305,9 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: answer array
+        FireKit.populateList(&self.answer, from: o.answer)
         linkId = o.linkId
         text = o.text
     }
@@ -433,8 +436,9 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: group array
+        FireKit.populateList(&self.group, from: o.group)
         FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
         valueBoolean.value = o.valueBoolean.value
         FireKit.populate(&self.valueCoding, from: o.valueCoding)

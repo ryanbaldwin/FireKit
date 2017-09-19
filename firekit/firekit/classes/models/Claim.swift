@@ -236,22 +236,23 @@ open class Claim: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         accident = o.accident
         FireKit.populate(&self.accidentType, from: o.accidentType)
-        // TODO: additionalMaterials array
-        // TODO: condition array
-        // TODO: coverage array
+        FireKit.populateList(&self.additionalMaterials, from: o.additionalMaterials)
+        FireKit.populateList(&self.condition, from: o.condition)
+        FireKit.populateList(&self.coverage, from: o.coverage)
         created = o.created
-        // TODO: diagnosis array
+        FireKit.populateList(&self.diagnosis, from: o.diagnosis)
         FireKit.populate(&self.enterer, from: o.enterer)
-        // TODO: exception array
+        FireKit.populateList(&self.exception, from: o.exception)
         FireKit.populate(&self.facility, from: o.facility)
         FireKit.populate(&self.fundsReserve, from: o.fundsReserve)
-        // TODO: identifier array
-        // TODO: interventionException array
-        // TODO: item array
-        // TODO: missingTeeth array
+        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populateList(&self.interventionException, from: o.interventionException)
+        FireKit.populateList(&self.item, from: o.item)
+        FireKit.populateList(&self.missingTeeth, from: o.missingTeeth)
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalPrescription, from: o.originalPrescription)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
@@ -377,13 +378,14 @@ open class ClaimCoverage: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         businessArrangement = o.businessArrangement
         FireKit.populate(&self.claimResponse, from: o.claimResponse)
         FireKit.populate(&self.coverage, from: o.coverage)
         focal.value = o.focal.value
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
-        // TODO: preAuthRef array
+        FireKit.populateList(&self.preAuthRef, from: o.preAuthRef)
         FireKit.populate(&self.relationship, from: o.relationship)
         sequence.value = o.sequence.value
     }
@@ -462,6 +464,7 @@ open class ClaimDiagnosis: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.diagnosis, from: o.diagnosis)
         sequence.value = o.sequence.value
@@ -626,12 +629,13 @@ open class ClaimItem: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.bodySite, from: o.bodySite)
-        // TODO: detail array
-        // TODO: diagnosisLinkId array
+        FireKit.populateList(&self.detail, from: o.detail)
+        FireKit.populateList(&self.diagnosisLinkId, from: o.diagnosisLinkId)
         factor = o.factor
-        // TODO: modifier array
+        FireKit.populateList(&self.modifier, from: o.modifier)
         FireKit.populate(&self.net, from: o.net)
         points = o.points
         FireKit.populate(&self.prosthesis, from: o.prosthesis)
@@ -640,7 +644,7 @@ open class ClaimItem: BackboneElement {
         sequence.value = o.sequence.value
         FireKit.populate(&self.service, from: o.service)
         serviceDate = o.serviceDate
-        // TODO: subSite array
+        FireKit.populateList(&self.subSite, from: o.subSite)
         FireKit.populate(&self.type, from: o.type)
         FireKit.populate(&self.udi, from: o.udi)
         FireKit.populate(&self.unitPrice, from: o.unitPrice)
@@ -768,6 +772,7 @@ open class ClaimItemDetail: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         factor = o.factor
         FireKit.populate(&self.net, from: o.net)
@@ -775,7 +780,7 @@ open class ClaimItemDetail: BackboneElement {
         FireKit.populate(&self.quantity, from: o.quantity)
         sequence.value = o.sequence.value
         FireKit.populate(&self.service, from: o.service)
-        // TODO: subDetail array
+        FireKit.populateList(&self.subDetail, from: o.subDetail)
         FireKit.populate(&self.type, from: o.type)
         FireKit.populate(&self.udi, from: o.udi)
         FireKit.populate(&self.unitPrice, from: o.unitPrice)
@@ -899,6 +904,7 @@ open class ClaimItemDetailSubDetail: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         factor = o.factor
         FireKit.populate(&self.net, from: o.net)
@@ -982,6 +988,7 @@ open class ClaimItemProsthesis: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         initial.value = o.initial.value
         priorDate = o.priorDate
@@ -1069,6 +1076,7 @@ open class ClaimMissingTeeth: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         extractionDate = o.extractionDate
         FireKit.populate(&self.reason, from: o.reason)
@@ -1159,6 +1167,7 @@ open class ClaimPayee: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.person, from: o.person)

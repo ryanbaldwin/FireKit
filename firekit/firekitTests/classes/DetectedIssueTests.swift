@@ -15,63 +15,62 @@ import FireKit
 
 
 class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.DetectedIssue {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.DetectedIssue {
-      print("Inflating FireKit.DetectedIssue from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.DetectedIssue.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testDetectedIssue1() {   
-    var instance: FireKit.DetectedIssue?
-    do {
-      instance = try runDetectedIssue1()
-      try runDetectedIssue1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.DetectedIssue
-      XCTAssertNotNil(copy)
-      try runDetectedIssue1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runDetectedIssue1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testDetectedIssueRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.DetectedIssue {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.DetectedIssue {
+        print("Inflating FireKit.DetectedIssue from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.DetectedIssue.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testDetectedIssue1() {   
+        var instance: FireKit.DetectedIssue?
+        do {
+            instance = try runDetectedIssue1()
+            try runDetectedIssue1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+        }
 
-  func testDetectedIssue1RealmPK() {    
-    do {
-        let instance: FireKit.DetectedIssue = try runDetectedIssue1()
-        let copy = (instance.copy() as! FireKit.DetectedIssue)
+        testDetectedIssueRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testDetectedIssue1Copying() {
+        do {
+            let instance = try runDetectedIssue1()
+            let copy = instance.copy() as? FireKit.DetectedIssue
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runDetectedIssue1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test DetectedIssue's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test DetectedIssue successfully, but threw: \(error)")
         }
     }
 
-  func testDetectedIssueRealm1(_ instance: FireKit.DetectedIssue) {
+    func testDetectedIssue1Populatability() {
+        do {
+            let instance = try runDetectedIssue1()
+            let copy = FireKit.DetectedIssue()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runDetectedIssue1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test DetectedIssue successfully, but threw: \(error)")
+        }
+    }
+
+    func testDetectedIssueRealm1(_ instance: FireKit.DetectedIssue) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,59 +103,58 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DetectedIssue.self).count)
-  }
-  
-  @discardableResult
-  func runDetectedIssue1(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example-allergy.json")
-    
-    XCTAssertEqual(inst.id, "allergy")
-    XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
-  
-  func testDetectedIssue2() {   
-    var instance: FireKit.DetectedIssue?
-    do {
-      instance = try runDetectedIssue2()
-      try runDetectedIssue2(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.DetectedIssue
-      XCTAssertNotNil(copy)
-      try runDetectedIssue2(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runDetectedIssue2(JSONEncoder().encode(copy!))  
     }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+    
+    @discardableResult
+    func runDetectedIssue1(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example-allergy.json")
+        
+        XCTAssertEqual(inst.id, "allergy")
+        XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
+    
+    func testDetectedIssue2() {   
+        var instance: FireKit.DetectedIssue?
+        do {
+            instance = try runDetectedIssue2()
+            try runDetectedIssue2(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+        }
+
+        testDetectedIssueRealm2(instance!)
     }
 
-    testDetectedIssueRealm2(instance!)
-  }
-
-  func testDetectedIssue2RealmPK() {    
-    do {
-        let instance: FireKit.DetectedIssue = try runDetectedIssue2()
-        let copy = (instance.copy() as! FireKit.DetectedIssue)
-
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testDetectedIssue2Copying() {
+        do {
+            let instance = try runDetectedIssue2()
+            let copy = instance.copy() as? FireKit.DetectedIssue
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runDetectedIssue2(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test DetectedIssue's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test DetectedIssue successfully, but threw: \(error)")
         }
     }
 
-  func testDetectedIssueRealm2(_ instance: FireKit.DetectedIssue) {
+    func testDetectedIssue2Populatability() {
+        do {
+            let instance = try runDetectedIssue2()
+            let copy = FireKit.DetectedIssue()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runDetectedIssue2(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test DetectedIssue successfully, but threw: \(error)")
+        }
+    }
+
+    func testDetectedIssueRealm2(_ instance: FireKit.DetectedIssue) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -189,68 +187,67 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DetectedIssue.self).count)
-  }
-  
-  @discardableResult
-  func runDetectedIssue2(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example-dup.json")
-    
-    XCTAssertEqual(inst.author?.reference, "Device/dsp")
-    XCTAssertEqual(inst.category?.coding[0].code, "DUPTHPY")
-    XCTAssertEqual(inst.category?.coding[0].display, "Duplicate Therapy Alert")
-    XCTAssertEqual(inst.category?.coding[0].system, "http://hl7.org/fhir/v3/ActCode")
-    XCTAssertEqual(inst.date?.description, "2013-05-08")
-    XCTAssertEqual(inst.detail, "Similar test was performed within the past 14 days")
-    XCTAssertEqual(inst.id, "duplicate")
-    XCTAssertEqual(inst.implicated[0].display, "Chest CT - ordered May 8, 2013 by Dr. Adam Careful")
-    XCTAssertEqual(inst.implicated[0].reference, "DiagnosticOrder/di")
-    XCTAssertEqual(inst.implicated[1].display, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
-    XCTAssertEqual(inst.implicated[1].reference, "ImagingStudy/example")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
-  
-  func testDetectedIssue3() {   
-    var instance: FireKit.DetectedIssue?
-    do {
-      instance = try runDetectedIssue3()
-      try runDetectedIssue3(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.DetectedIssue
-      XCTAssertNotNil(copy)
-      try runDetectedIssue3(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runDetectedIssue3(JSONEncoder().encode(copy!))  
     }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+    
+    @discardableResult
+    func runDetectedIssue2(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example-dup.json")
+        
+        XCTAssertEqual(inst.author?.reference, "Device/dsp")
+        XCTAssertEqual(inst.category?.coding[0].code, "DUPTHPY")
+        XCTAssertEqual(inst.category?.coding[0].display, "Duplicate Therapy Alert")
+        XCTAssertEqual(inst.category?.coding[0].system, "http://hl7.org/fhir/v3/ActCode")
+        XCTAssertEqual(inst.date?.description, "2013-05-08")
+        XCTAssertEqual(inst.detail, "Similar test was performed within the past 14 days")
+        XCTAssertEqual(inst.id, "duplicate")
+        XCTAssertEqual(inst.implicated[0].display, "Chest CT - ordered May 8, 2013 by Dr. Adam Careful")
+        XCTAssertEqual(inst.implicated[0].reference, "DiagnosticOrder/di")
+        XCTAssertEqual(inst.implicated[1].display, "Image 1 from Series 3: CT Images on Patient MINT (MINT1234) taken at 1-Jan 2011 01:20 AM")
+        XCTAssertEqual(inst.implicated[1].reference, "ImagingStudy/example")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
+    
+    func testDetectedIssue3() {   
+        var instance: FireKit.DetectedIssue?
+        do {
+            instance = try runDetectedIssue3()
+            try runDetectedIssue3(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+        }
+
+        testDetectedIssueRealm3(instance!)
     }
 
-    testDetectedIssueRealm3(instance!)
-  }
-
-  func testDetectedIssue3RealmPK() {    
-    do {
-        let instance: FireKit.DetectedIssue = try runDetectedIssue3()
-        let copy = (instance.copy() as! FireKit.DetectedIssue)
-
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testDetectedIssue3Copying() {
+        do {
+            let instance = try runDetectedIssue3()
+            let copy = instance.copy() as? FireKit.DetectedIssue
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runDetectedIssue3(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test DetectedIssue's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test DetectedIssue successfully, but threw: \(error)")
         }
     }
 
-  func testDetectedIssueRealm3(_ instance: FireKit.DetectedIssue) {
+    func testDetectedIssue3Populatability() {
+        do {
+            let instance = try runDetectedIssue3()
+            let copy = FireKit.DetectedIssue()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runDetectedIssue3(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test DetectedIssue successfully, but threw: \(error)")
+        }
+    }
+
+    func testDetectedIssueRealm3(_ instance: FireKit.DetectedIssue) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -283,59 +280,58 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DetectedIssue.self).count)
-  }
-  
-  @discardableResult
-  func runDetectedIssue3(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example-lab.json")
-    
-    XCTAssertEqual(inst.id, "lab")
-    XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
-  
-  func testDetectedIssue4() {   
-    var instance: FireKit.DetectedIssue?
-    do {
-      instance = try runDetectedIssue4()
-      try runDetectedIssue4(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.DetectedIssue
-      XCTAssertNotNil(copy)
-      try runDetectedIssue4(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runDetectedIssue4(JSONEncoder().encode(copy!))  
     }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+    
+    @discardableResult
+    func runDetectedIssue3(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example-lab.json")
+        
+        XCTAssertEqual(inst.id, "lab")
+        XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
+    
+    func testDetectedIssue4() {   
+        var instance: FireKit.DetectedIssue?
+        do {
+            instance = try runDetectedIssue4()
+            try runDetectedIssue4(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test DetectedIssue successfully, but threw: \(error)")
+        }
+
+        testDetectedIssueRealm4(instance!)
     }
 
-    testDetectedIssueRealm4(instance!)
-  }
-
-  func testDetectedIssue4RealmPK() {    
-    do {
-        let instance: FireKit.DetectedIssue = try runDetectedIssue4()
-        let copy = (instance.copy() as! FireKit.DetectedIssue)
-
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testDetectedIssue4Copying() {
+        do {
+            let instance = try runDetectedIssue4()
+            let copy = instance.copy() as? FireKit.DetectedIssue
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runDetectedIssue4(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test DetectedIssue's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test DetectedIssue successfully, but threw: \(error)")
         }
     }
 
-  func testDetectedIssueRealm4(_ instance: FireKit.DetectedIssue) {
+    func testDetectedIssue4Populatability() {
+        do {
+            let instance = try runDetectedIssue4()
+            let copy = FireKit.DetectedIssue()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runDetectedIssue4(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test DetectedIssue successfully, but threw: \(error)")
+        }
+    }
+
+    func testDetectedIssueRealm4(_ instance: FireKit.DetectedIssue) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -368,32 +364,32 @@ class DetectedIssueTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.DetectedIssue.self).count)
-  }
-  
-  @discardableResult
-  func runDetectedIssue4(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example.json")
+    }
     
-    XCTAssertEqual(inst.author?.reference, "Device/dsp")
-    XCTAssertEqual(inst.category?.coding[0].code, "DRG")
-    XCTAssertEqual(inst.category?.coding[0].display, "Drug Interaction Alert")
-    XCTAssertEqual(inst.category?.coding[0].system, "http://hl7.org/fhir/v3/ActCode")
-    XCTAssertEqual(inst.date?.description, "2014-01-05")
-    XCTAssertEqual(inst.id, "ddi")
-    XCTAssertEqual(inst.implicated[0].display, "500 mg Acetaminophen tablet 1/day, PRN since 2010")
-    XCTAssertEqual(inst.implicated[0].reference, "MedicationStatement/tylenol")
-    XCTAssertEqual(inst.implicated[1].display, "Warfarin 1 MG TAB prescribed Jan. 5, 2014")
-    XCTAssertEqual(inst.implicated[1].reference, "MedicationOrder/warfarin")
-    XCTAssertEqual(inst.mitigation[0].action?.coding[0].code, "13")
-    XCTAssertEqual(inst.mitigation[0].action?.coding[0].display, "Stopped Concurrent Therapy")
-    XCTAssertEqual(inst.mitigation[0].action?.coding[0].system, "http://hl7.org/fhir/v3/ActCode")
-    XCTAssertEqual(inst.mitigation[0].action?.text, "Asked patient to discontinue regular use of Tylenol and to consult with clinician if they need to resume to allow appropriate INR monitoring")
-    XCTAssertEqual(inst.mitigation[0].author?.display, "Dr. Adam Careful")
-    XCTAssertEqual(inst.mitigation[0].author?.reference, "Practitioner/example")
-    XCTAssertEqual(inst.mitigation[0].date?.description, "2014-01-05")
-    XCTAssertEqual(inst.severity, "high")
-    XCTAssertEqual(inst.text?.status, "generated")
-    
-    return inst
-  }
+    @discardableResult
+    func runDetectedIssue4(_ data: Data? = nil) throws -> FireKit.DetectedIssue {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "detectedissue-example.json")
+        
+        XCTAssertEqual(inst.author?.reference, "Device/dsp")
+        XCTAssertEqual(inst.category?.coding[0].code, "DRG")
+        XCTAssertEqual(inst.category?.coding[0].display, "Drug Interaction Alert")
+        XCTAssertEqual(inst.category?.coding[0].system, "http://hl7.org/fhir/v3/ActCode")
+        XCTAssertEqual(inst.date?.description, "2014-01-05")
+        XCTAssertEqual(inst.id, "ddi")
+        XCTAssertEqual(inst.implicated[0].display, "500 mg Acetaminophen tablet 1/day, PRN since 2010")
+        XCTAssertEqual(inst.implicated[0].reference, "MedicationStatement/tylenol")
+        XCTAssertEqual(inst.implicated[1].display, "Warfarin 1 MG TAB prescribed Jan. 5, 2014")
+        XCTAssertEqual(inst.implicated[1].reference, "MedicationOrder/warfarin")
+        XCTAssertEqual(inst.mitigation[0].action?.coding[0].code, "13")
+        XCTAssertEqual(inst.mitigation[0].action?.coding[0].display, "Stopped Concurrent Therapy")
+        XCTAssertEqual(inst.mitigation[0].action?.coding[0].system, "http://hl7.org/fhir/v3/ActCode")
+        XCTAssertEqual(inst.mitigation[0].action?.text, "Asked patient to discontinue regular use of Tylenol and to consult with clinician if they need to resume to allow appropriate INR monitoring")
+        XCTAssertEqual(inst.mitigation[0].author?.display, "Dr. Adam Careful")
+        XCTAssertEqual(inst.mitigation[0].author?.reference, "Practitioner/example")
+        XCTAssertEqual(inst.mitigation[0].date?.description, "2014-01-05")
+        XCTAssertEqual(inst.severity, "high")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

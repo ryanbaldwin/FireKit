@@ -1280,14 +1280,15 @@ open class ElementDefinition: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: alias array
+        FireKit.populateList(&self.alias, from: o.alias)
         FireKit.populate(&self.base, from: o.base)
         FireKit.populate(&self.binding, from: o.binding)
-        // TODO: code array
+        FireKit.populateList(&self.code, from: o.code)
         comments = o.comments
-        // TODO: condition array
-        // TODO: constraint array
+        FireKit.populateList(&self.condition, from: o.condition)
+        FireKit.populateList(&self.constraint, from: o.constraint)
         FireKit.populate(&self.defaultValueAddress, from: o.defaultValueAddress)
         FireKit.populate(&self.defaultValueAnnotation, from: o.defaultValueAnnotation)
         FireKit.populate(&self.defaultValueAttachment, from: o.defaultValueAttachment)
@@ -1391,7 +1392,7 @@ open class ElementDefinition: Element {
         isModifier.value = o.isModifier.value
         isSummary.value = o.isSummary.value
         label = o.label
-        // TODO: mapping array
+        FireKit.populateList(&self.mapping, from: o.mapping)
         max = o.max
         maxLength.value = o.maxLength.value
         FireKit.populate(&self.maxValueAddress, from: o.maxValueAddress)
@@ -1499,11 +1500,11 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.patternTiming, from: o.patternTiming)
         patternUnsignedInt.value = o.patternUnsignedInt.value
         patternUri = o.patternUri
-        // TODO: representation array
+        FireKit.populateList(&self.representation, from: o.representation)
         requirements = o.requirements
         short = o.short
         FireKit.populate(&self.slicing, from: o.slicing)
-        // TODO: type array
+        FireKit.populateList(&self.type, from: o.type)
     }
 }
 
@@ -1585,6 +1586,7 @@ open class ElementDefinitionBase: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         max = o.max
         min.value = o.min.value
@@ -1672,6 +1674,7 @@ open class ElementDefinitionBinding: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         description_fhir = o.description_fhir
         strength = o.strength
@@ -1765,6 +1768,7 @@ open class ElementDefinitionConstraint: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         human = o.human
         key = o.key
@@ -1848,6 +1852,7 @@ open class ElementDefinitionMapping: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         identity = o.identity
         language = o.language
@@ -1936,9 +1941,10 @@ open class ElementDefinitionSlicing: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         description_fhir = o.description_fhir
-        // TODO: discriminator array
+        FireKit.populateList(&self.discriminator, from: o.discriminator)
         ordered.value = o.ordered.value
         rules = o.rules
     }
@@ -2017,10 +2023,11 @@ open class ElementDefinitionType: Element {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: aggregation array
+        FireKit.populateList(&self.aggregation, from: o.aggregation)
         code = o.code
-        // TODO: profile array
+        FireKit.populateList(&self.profile, from: o.profile)
     }
 }
 

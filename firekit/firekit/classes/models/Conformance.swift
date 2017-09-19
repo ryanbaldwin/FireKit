@@ -168,24 +168,25 @@ open class Conformance: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         acceptUnknown = o.acceptUnknown
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         copyright = o.copyright
         date = o.date
         description_fhir = o.description_fhir
-        // TODO: document array
+        FireKit.populateList(&self.document, from: o.document)
         experimental.value = o.experimental.value
         fhirVersion = o.fhirVersion
-        // TODO: format array
+        FireKit.populateList(&self.format, from: o.format)
         FireKit.populate(&self.implementation, from: o.implementation)
         kind = o.kind
-        // TODO: messaging array
+        FireKit.populateList(&self.messaging, from: o.messaging)
         name = o.name
-        // TODO: profile array
+        FireKit.populateList(&self.profile, from: o.profile)
         publisher = o.publisher
         requirements = o.requirements
-        // TODO: rest array
+        FireKit.populateList(&self.rest, from: o.rest)
         FireKit.populate(&self.software, from: o.software)
         status = o.status
         url = o.url
@@ -256,9 +257,10 @@ open class ConformanceContact: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
-        // TODO: telecom array
+        FireKit.populateList(&self.telecom, from: o.telecom)
     }
 }
 
@@ -339,6 +341,7 @@ open class ConformanceDocument: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         documentation = o.documentation
         mode = o.mode
@@ -416,6 +419,7 @@ open class ConformanceImplementation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         description_fhir = o.description_fhir
         url = o.url
@@ -499,10 +503,11 @@ open class ConformanceMessaging: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         documentation = o.documentation
-        // TODO: endpoint array
-        // TODO: event array
+        FireKit.populateList(&self.endpoint, from: o.endpoint)
+        FireKit.populateList(&self.event, from: o.event)
         reliableCache.value = o.reliableCache.value
     }
 }
@@ -580,6 +585,7 @@ open class ConformanceMessagingEndpoint: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         address = o.address
         FireKit.populate(&self.protocol_fhir, from: o.protocol_fhir)
@@ -688,6 +694,7 @@ open class ConformanceMessagingEvent: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         category = o.category
         FireKit.populate(&self.code, from: o.code)
@@ -800,14 +807,15 @@ open class ConformanceRest: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: compartment array
+        FireKit.populateList(&self.compartment, from: o.compartment)
         documentation = o.documentation
-        // TODO: interaction array
+        FireKit.populateList(&self.interaction, from: o.interaction)
         mode = o.mode
-        // TODO: operation array
-        // TODO: resource array
-        // TODO: searchParam array
+        FireKit.populateList(&self.operation, from: o.operation)
+        FireKit.populateList(&self.resource, from: o.resource)
+        FireKit.populateList(&self.searchParam, from: o.searchParam)
         FireKit.populate(&self.security, from: o.security)
         transactionMode = o.transactionMode
     }
@@ -882,6 +890,7 @@ open class ConformanceRestInteraction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         documentation = o.documentation
@@ -961,6 +970,7 @@ open class ConformanceRestOperation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.definition, from: o.definition)
         name = o.name
@@ -1080,16 +1090,17 @@ open class ConformanceRestResource: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         conditionalCreate.value = o.conditionalCreate.value
         conditionalDelete = o.conditionalDelete
         conditionalUpdate.value = o.conditionalUpdate.value
-        // TODO: interaction array
+        FireKit.populateList(&self.interaction, from: o.interaction)
         FireKit.populate(&self.profile, from: o.profile)
         readHistory.value = o.readHistory.value
-        // TODO: searchInclude array
-        // TODO: searchParam array
-        // TODO: searchRevInclude array
+        FireKit.populateList(&self.searchInclude, from: o.searchInclude)
+        FireKit.populateList(&self.searchParam, from: o.searchParam)
+        FireKit.populateList(&self.searchRevInclude, from: o.searchRevInclude)
         type = o.type
         updateCreate.value = o.updateCreate.value
         versioning = o.versioning
@@ -1165,6 +1176,7 @@ open class ConformanceRestResourceInteraction: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         documentation = o.documentation
@@ -1262,13 +1274,14 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: chain array
+        FireKit.populateList(&self.chain, from: o.chain)
         definition = o.definition
         documentation = o.documentation
-        // TODO: modifier array
+        FireKit.populateList(&self.modifier, from: o.modifier)
         name = o.name
-        // TODO: target array
+        FireKit.populateList(&self.target, from: o.target)
         type = o.type
     }
 }
@@ -1344,11 +1357,12 @@ open class ConformanceRestSecurity: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: certificate array
+        FireKit.populateList(&self.certificate, from: o.certificate)
         cors.value = o.cors.value
         description_fhir = o.description_fhir
-        // TODO: service array
+        FireKit.populateList(&self.service, from: o.service)
     }
 }
 
@@ -1413,6 +1427,7 @@ open class ConformanceRestSecurityCertificate: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         blob = o.blob
         type = o.type
@@ -1493,6 +1508,7 @@ open class ConformanceSoftware: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         name = o.name
         releaseDate = o.releaseDate

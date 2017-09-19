@@ -15,63 +15,62 @@ import FireKit
 
 
 class BinaryTests: XCTestCase, RealmPersistenceTesting {    
-  var realm: Realm!
-
-  override func setUp() {
-    realm = makeRealm()
-  }
-
-  func inflateFrom(filename: String) throws -> FireKit.Binary {
-    return try inflateFrom(data: try readJSONFile(filename))
-  }
-  
-  func inflateFrom(data: Data) throws -> FireKit.Binary {
-      print("Inflating FireKit.Binary from data: \(data)")
-      let instance = try JSONDecoder().decode(FireKit.Binary.self, from: data)
-      XCTAssertNotNil(instance, "Must have instantiated a test instance")
-      return instance
-  }
-  
-  func testBinary1() {   
-    var instance: FireKit.Binary?
-    do {
-      instance = try runBinary1()
-      try runBinary1(try JSONEncoder().encode(instance!))    
-      let copy = instance!.copy() as? FireKit.Binary
-      XCTAssertNotNil(copy)
-      try runBinary1(try JSONEncoder().encode(copy!))     
-
-      // try! realm.write { copy!.populate(from: instance!) }
-      // try runBinary1(JSONEncoder().encode(copy!))  
-    }
-    catch let error {
-      XCTAssertTrue(false, "Must instantiate and test Binary successfully, but threw: \(error)")
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
     }
 
-    testBinaryRealm1(instance!)
-  }
+    func inflateFrom(filename: String) throws -> FireKit.Binary {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.Binary {
+        print("Inflating FireKit.Binary from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.Binary.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testBinary1() {   
+        var instance: FireKit.Binary?
+        do {
+            instance = try runBinary1()
+            try runBinary1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Binary successfully, but threw: \(error)")
+        }
 
-  func testBinary1RealmPK() {    
-    do {
-        let instance: FireKit.Binary = try runBinary1()
-        let copy = (instance.copy() as! FireKit.Binary)
+        testBinaryRealm1(instance!)
+    }
 
-        XCTAssertNotEqual(instance.pk, copy.pk)
-        try! realm.write { realm.add(instance) }
-            // TODO: this whole upsert business is bizzarro
-            // try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            // XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            // let prePopulatedCopyPK = copy.pk
-            // _ = copy.populate(from: instance.asJSON())
-            // XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            // XCTAssertNotEqual(copy.pk, instance.pk)
+    func testBinary1Copying() {
+        do {
+            let instance = try runBinary1()
+            let copy = instance.copy() as? FireKit.Binary
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runBinary1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Binary's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Binary successfully, but threw: \(error)")
         }
     }
 
-  func testBinaryRealm1(_ instance: FireKit.Binary) {
+    func testBinary1Populatability() {
+        do {
+            let instance = try runBinary1()
+            let copy = FireKit.Binary()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runBinary1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Binary successfully, but threw: \(error)")
+        }
+    }
+
+    func testBinaryRealm1(_ instance: FireKit.Binary) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
         try! realm.write { realm.add(instance) }
@@ -104,15 +103,15 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Binary.self).count)
-  }
-  
-  @discardableResult
-  func runBinary1(_ data: Data? = nil) throws -> FireKit.Binary {
-      let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "binary-example.json")
+    }
     
-    XCTAssertEqual(inst.contentType, "application/pdf")
-    XCTAssertEqual(inst.id, "example")
-    
-    return inst
-  }
+    @discardableResult
+    func runBinary1(_ data: Data? = nil) throws -> FireKit.Binary {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "binary-example.json")
+        
+        XCTAssertEqual(inst.contentType, "application/pdf")
+        XCTAssertEqual(inst.id, "example")
+
+        return inst
+    }
 }

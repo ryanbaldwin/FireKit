@@ -114,15 +114,16 @@ open class Subscription: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.channel, from: o.channel)
-        // TODO: contact array
+        FireKit.populateList(&self.contact, from: o.contact)
         criteria = o.criteria
         end = o.end
         error = o.error
         reason = o.reason
         status = o.status
-        // TODO: tag array
+        FireKit.populateList(&self.tag, from: o.tag)
     }
 }
 
@@ -204,6 +205,7 @@ open class SubscriptionChannel: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         endpoint = o.endpoint
         header = o.header

@@ -3,10 +3,12 @@
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
+
 {%- for prop in klass.properties %}
     {%- if prop.is_array %}
-        // TODO: {{ prop.name }} array 
+        FireKit.populateList(&self.{{ prop.name }}, from: o.{{ prop.name }})
     {%- elif prop|populatable %}
         FireKit.populate(&self.{{ prop.name}}, from: o.{{ prop.name }})
     {%- elif prop|requires_realm_optional %}

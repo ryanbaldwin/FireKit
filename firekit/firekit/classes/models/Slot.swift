@@ -112,11 +112,12 @@ open class Slot: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         comment = o.comment
         end = o.end
         freeBusyType = o.freeBusyType
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         overbooked.value = o.overbooked.value
         FireKit.populate(&self.schedule, from: o.schedule)
         start = o.start

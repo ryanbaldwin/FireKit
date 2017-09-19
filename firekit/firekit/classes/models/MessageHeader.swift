@@ -145,10 +145,11 @@ open class MessageHeader: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
-        // TODO: data array
-        // TODO: destination array
+        FireKit.populateList(&self.data, from: o.data)
+        FireKit.populateList(&self.destination, from: o.destination)
         FireKit.populate(&self.enterer, from: o.enterer)
         FireKit.populate(&self.event, from: o.event)
         FireKit.populate(&self.reason, from: o.reason)
@@ -236,6 +237,7 @@ open class MessageHeaderDestination: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         endpoint = o.endpoint
         name = o.name
@@ -320,6 +322,7 @@ open class MessageHeaderResponse: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         code = o.code
         FireKit.populate(&self.details, from: o.details)
@@ -411,6 +414,7 @@ open class MessageHeaderSource: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.contact, from: o.contact)
         endpoint = o.endpoint

@@ -90,10 +90,11 @@ open class ImmunizationRecommendation: DomainResource {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
-        // TODO: identifier array
+        FireKit.populateList(&self.identifier, from: o.identifier)
         FireKit.populate(&self.patient, from: o.patient)
-        // TODO: recommendation array
+        FireKit.populateList(&self.recommendation, from: o.recommendation)
     }
 }
 
@@ -199,14 +200,15 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         date = o.date
-        // TODO: dateCriterion array
+        FireKit.populateList(&self.dateCriterion, from: o.dateCriterion)
         doseNumber.value = o.doseNumber.value
         FireKit.populate(&self.forecastStatus, from: o.forecastStatus)
         FireKit.populate(&self.protocol_fhir, from: o.protocol_fhir)
-        // TODO: supportingImmunization array
-        // TODO: supportingPatientInformation array
+        FireKit.populateList(&self.supportingImmunization, from: o.supportingImmunization)
+        FireKit.populateList(&self.supportingPatientInformation, from: o.supportingPatientInformation)
         FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
     }
 }
@@ -284,6 +286,7 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         value = o.value
@@ -364,6 +367,7 @@ open class ImmunizationRecommendationRecommendationProtocol: BackboneElement {
             print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
             return
         }
+        
         super.populate(from: o)
         FireKit.populate(&self.authority, from: o.authority)
         description_fhir = o.description_fhir
