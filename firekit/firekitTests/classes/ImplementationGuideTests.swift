@@ -87,7 +87,7 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
         try! realm.write { realm.add(newInst) }
         
         // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.ImplementationGuide.self, forPrimaryKey: newInst.pk)!
+        let existing = realm.object(ofType: FireKit.ImplementationGuide.self, forPrimaryKey: newInst.pk)!
         
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ImplementationGuide.self).count)

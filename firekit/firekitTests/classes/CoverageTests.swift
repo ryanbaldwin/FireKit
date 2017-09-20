@@ -87,7 +87,7 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
         try! realm.write { realm.add(newInst) }
         
         // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
+        let existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
         
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Coverage.self).count)
@@ -174,7 +174,7 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
         try! realm.write { realm.add(newInst) }
         
         // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
+        let existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
         
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Coverage.self).count)

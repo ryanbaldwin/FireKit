@@ -43,34 +43,42 @@ open class FHIRAbstractBase: Object, Codable, NSCopying, Populatable {
 
     // MARK: - Realm Element convenience method
     func upsert<T: Element>(prop: inout T?, val: T?) {
-        guard let val = val else {
-            prop = nil
+        if prop != nil && val != nil {
+            prop!.populate(from: val! as Any)
+            return
+        }
+        
+        if prop != nil && val == nil {
+            guard let r = realm else {
+                prop?.cascadeDelete()
+                return
+            }
+            
+            r.delete(prop!)
             return
         }
 
-        if prop?.realm != nil {
-//            _ = prop?.populate(from: val)
-        } else if val.realm != nil {
-            prop = (val.copy() as! T)
-        } else {
-            prop = val
-        }
+        prop = val
     }
 
     // ugh, this is so lame.
     func upsert<T: Resource>(prop: inout T?, val: T?) {
-        guard let val = val else {
-            prop = nil
+        if prop != nil && val != nil {
+            prop!.populate(from: val! as Any)
             return
         }
-
-        if prop?.realm != nil {
-//            _ = prop?.populate(from: val)
-        } else if val.realm != nil {
-            prop = (val.copy() as! T)
-        } else {
-            prop = val
+        
+        if prop != nil && val == nil {
+            guard let r = realm else {
+                prop?.cascadeDelete()
+                return
+            }
+            
+            r.delete(prop!)
+            return
         }
+        
+        prop = val
     }
 
     public func copy(with zone: NSZone? = nil) -> Any {
