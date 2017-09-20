@@ -251,7 +251,9 @@ open class Claim: DomainResource {
     
         if self.additionalMaterials.count > o.additionalMaterials.count {
             for i in self.additionalMaterials.count...o.additionalMaterials.count {
+                let objectToRemove = self.additionalMaterials[i]
                 self.additionalMaterials.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -265,7 +267,9 @@ open class Claim: DomainResource {
     
         if self.condition.count > o.condition.count {
             for i in self.condition.count...o.condition.count {
+                let objectToRemove = self.condition[i]
                 self.condition.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -279,7 +283,9 @@ open class Claim: DomainResource {
     
         if self.coverage.count > o.coverage.count {
             for i in self.coverage.count...o.coverage.count {
+                let objectToRemove = self.coverage[i]
                 self.coverage.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.created, from: o.created)
@@ -294,7 +300,9 @@ open class Claim: DomainResource {
     
         if self.diagnosis.count > o.diagnosis.count {
             for i in self.diagnosis.count...o.diagnosis.count {
+                let objectToRemove = self.diagnosis[i]
                 self.diagnosis.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.enterer, from: o.enterer)
@@ -309,7 +317,9 @@ open class Claim: DomainResource {
     
         if self.exception.count > o.exception.count {
             for i in self.exception.count...o.exception.count {
+                let objectToRemove = self.exception[i]
                 self.exception.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.facility, from: o.facility)
@@ -325,7 +335,9 @@ open class Claim: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -339,7 +351,9 @@ open class Claim: DomainResource {
     
         if self.interventionException.count > o.interventionException.count {
             for i in self.interventionException.count...o.interventionException.count {
+                let objectToRemove = self.interventionException[i]
                 self.interventionException.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -353,7 +367,9 @@ open class Claim: DomainResource {
     
         if self.item.count > o.item.count {
             for i in self.item.count...o.item.count {
+                let objectToRemove = self.item[i]
                 self.item.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -367,7 +383,9 @@ open class Claim: DomainResource {
     
         if self.missingTeeth.count > o.missingTeeth.count {
             for i in self.missingTeeth.count...o.missingTeeth.count {
+                let objectToRemove = self.missingTeeth[i]
                 self.missingTeeth.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.organization, from: o.organization)
@@ -513,7 +531,9 @@ open class ClaimCoverage: BackboneElement {
     
         if self.preAuthRef.count > o.preAuthRef.count {
             for i in self.preAuthRef.count...o.preAuthRef.count {
+                let objectToRemove = self.preAuthRef[i]
                 self.preAuthRef.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.relationship, from: o.relationship)
@@ -773,7 +793,9 @@ open class ClaimItem: BackboneElement {
     
         if self.detail.count > o.detail.count {
             for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
                 self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -787,7 +809,9 @@ open class ClaimItem: BackboneElement {
     
         if self.diagnosisLinkId.count > o.diagnosisLinkId.count {
             for i in self.diagnosisLinkId.count...o.diagnosisLinkId.count {
+                let objectToRemove = self.diagnosisLinkId[i]
                 self.diagnosisLinkId.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         factor = o.factor
@@ -802,7 +826,9 @@ open class ClaimItem: BackboneElement {
     
         if self.modifier.count > o.modifier.count {
             for i in self.modifier.count...o.modifier.count {
+                let objectToRemove = self.modifier[i]
                 self.modifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.net, from: o.net)
@@ -824,7 +850,9 @@ open class ClaimItem: BackboneElement {
     
         if self.subSite.count > o.subSite.count {
             for i in self.subSite.count...o.subSite.count {
+                let objectToRemove = self.subSite[i]
                 self.subSite.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)
@@ -973,7 +1001,9 @@ open class ClaimItemDetail: BackboneElement {
     
         if self.subDetail.count > o.subDetail.count {
             for i in self.subDetail.count...o.subDetail.count {
+                let objectToRemove = self.subDetail[i]
                 self.subDetail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)

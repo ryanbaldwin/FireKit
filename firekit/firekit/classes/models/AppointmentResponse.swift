@@ -127,7 +127,9 @@ open class AppointmentResponse: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         participantStatus = o.participantStatus
@@ -142,7 +144,9 @@ open class AppointmentResponse: DomainResource {
     
         if self.participantType.count > o.participantType.count {
             for i in self.participantType.count...o.participantType.count {
+                let objectToRemove = self.participantType[i]
                 self.participantType.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.start, from: o.start)

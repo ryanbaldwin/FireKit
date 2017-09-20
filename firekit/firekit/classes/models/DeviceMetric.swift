@@ -146,7 +146,9 @@ open class DeviceMetric: DomainResource {
     
         if self.calibration.count > o.calibration.count {
             for i in self.calibration.count...o.calibration.count {
+                let objectToRemove = self.calibration[i]
                 self.calibration.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         category = o.category

@@ -1293,7 +1293,9 @@ open class ElementDefinition: Element {
     
         if self.alias.count > o.alias.count {
             for i in self.alias.count...o.alias.count {
+                let objectToRemove = self.alias[i]
                 self.alias.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.base, from: o.base)
@@ -1309,7 +1311,9 @@ open class ElementDefinition: Element {
     
         if self.code.count > o.code.count {
             for i in self.code.count...o.code.count {
+                let objectToRemove = self.code[i]
                 self.code.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         comments = o.comments
@@ -1324,7 +1328,9 @@ open class ElementDefinition: Element {
     
         if self.condition.count > o.condition.count {
             for i in self.condition.count...o.condition.count {
+                let objectToRemove = self.condition[i]
                 self.condition.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -1338,7 +1344,9 @@ open class ElementDefinition: Element {
     
         if self.constraint.count > o.constraint.count {
             for i in self.constraint.count...o.constraint.count {
+                let objectToRemove = self.constraint[i]
                 self.constraint.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.defaultValueAddress, from: o.defaultValueAddress)
@@ -1455,7 +1463,9 @@ open class ElementDefinition: Element {
     
         if self.mapping.count > o.mapping.count {
             for i in self.mapping.count...o.mapping.count {
+                let objectToRemove = self.mapping[i]
                 self.mapping.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         max = o.max
@@ -1576,7 +1586,9 @@ open class ElementDefinition: Element {
     
         if self.representation.count > o.representation.count {
             for i in self.representation.count...o.representation.count {
+                let objectToRemove = self.representation[i]
                 self.representation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         requirements = o.requirements
@@ -1593,7 +1605,9 @@ open class ElementDefinition: Element {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -2046,7 +2060,9 @@ open class ElementDefinitionSlicing: Element {
     
         if self.discriminator.count > o.discriminator.count {
             for i in self.discriminator.count...o.discriminator.count {
+                let objectToRemove = self.discriminator[i]
                 self.discriminator.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         ordered.value = o.ordered.value
@@ -2140,7 +2156,9 @@ open class ElementDefinitionType: Element {
     
         if self.aggregation.count > o.aggregation.count {
             for i in self.aggregation.count...o.aggregation.count {
+                let objectToRemove = self.aggregation[i]
                 self.aggregation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         code = o.code
@@ -2155,7 +2173,9 @@ open class ElementDefinitionType: Element {
     
         if self.profile.count > o.profile.count {
             for i in self.profile.count...o.profile.count {
+                let objectToRemove = self.profile[i]
                 self.profile.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

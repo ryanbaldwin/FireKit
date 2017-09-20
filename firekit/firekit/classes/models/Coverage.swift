@@ -158,7 +158,9 @@ open class Coverage: DomainResource {
     
         if self.contract.count > o.contract.count {
             for i in self.contract.count...o.contract.count {
+                let objectToRemove = self.contract[i]
                 self.contract.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         dependent.value = o.dependent.value
@@ -174,7 +176,9 @@ open class Coverage: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.issuer, from: o.issuer)

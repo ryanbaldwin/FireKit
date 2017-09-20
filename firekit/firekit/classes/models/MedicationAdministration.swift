@@ -181,7 +181,9 @@ open class MedicationAdministration: DomainResource {
     
         if self.device.count > o.device.count {
             for i in self.device.count...o.device.count {
+                let objectToRemove = self.device[i]
                 self.device.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.dosage, from: o.dosage)
@@ -199,7 +201,9 @@ open class MedicationAdministration: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
@@ -219,7 +223,9 @@ open class MedicationAdministration: DomainResource {
     
         if self.reasonGiven.count > o.reasonGiven.count {
             for i in self.reasonGiven.count...o.reasonGiven.count {
+                let objectToRemove = self.reasonGiven[i]
                 self.reasonGiven.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -233,7 +239,9 @@ open class MedicationAdministration: DomainResource {
     
         if self.reasonNotGiven.count > o.reasonNotGiven.count {
             for i in self.reasonNotGiven.count...o.reasonNotGiven.count {
+                let objectToRemove = self.reasonNotGiven[i]
                 self.reasonNotGiven.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status

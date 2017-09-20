@@ -153,7 +153,9 @@ open class SearchParameter: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.date, from: o.date)
@@ -174,7 +176,9 @@ open class SearchParameter: DomainResource {
     
         if self.target.count > o.target.count {
             for i in self.target.count...o.target.count {
+                let objectToRemove = self.target[i]
                 self.target.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         type = o.type
@@ -261,7 +265,9 @@ open class SearchParameterContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

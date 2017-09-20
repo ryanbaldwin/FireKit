@@ -166,7 +166,9 @@ open class Device: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.expiry, from: o.expiry)
@@ -181,7 +183,9 @@ open class Device: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.location, from: o.location)
@@ -200,7 +204,9 @@ open class Device: DomainResource {
     
         if self.note.count > o.note.count {
             for i in self.note.count...o.note.count {
+                let objectToRemove = self.note[i]
                 self.note.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.owner, from: o.owner)

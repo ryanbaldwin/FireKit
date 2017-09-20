@@ -167,7 +167,9 @@ open class Patient: DomainResource {
     
         if self.address.count > o.address.count {
             for i in self.address.count...o.address.count {
+                let objectToRemove = self.address[i]
                 self.address.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.animal, from: o.animal)
@@ -183,7 +185,9 @@ open class Patient: DomainResource {
     
         if self.careProvider.count > o.careProvider.count {
             for i in self.careProvider.count...o.careProvider.count {
+                let objectToRemove = self.careProvider[i]
                 self.careProvider.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -197,7 +201,9 @@ open class Patient: DomainResource {
     
         if self.communication.count > o.communication.count {
             for i in self.communication.count...o.communication.count {
+                let objectToRemove = self.communication[i]
                 self.communication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -211,7 +217,9 @@ open class Patient: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         deceasedBoolean.value = o.deceasedBoolean.value
@@ -228,7 +236,9 @@ open class Patient: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -242,7 +252,9 @@ open class Patient: DomainResource {
     
         if self.link.count > o.link.count {
             for i in self.link.count...o.link.count {
+                let objectToRemove = self.link[i]
                 self.link.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
@@ -260,7 +272,9 @@ open class Patient: DomainResource {
     
         if self.name.count > o.name.count {
             for i in self.name.count...o.name.count {
+                let objectToRemove = self.name[i]
                 self.name.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -274,7 +288,9 @@ open class Patient: DomainResource {
     
         if self.photo.count > o.photo.count {
             for i in self.photo.count...o.photo.count {
+                let objectToRemove = self.photo[i]
                 self.photo.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -288,7 +304,9 @@ open class Patient: DomainResource {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -574,7 +592,9 @@ open class PatientContact: BackboneElement {
     
         if self.relationship.count > o.relationship.count {
             for i in self.relationship.count...o.relationship.count {
+                let objectToRemove = self.relationship[i]
                 self.relationship.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -588,7 +608,9 @@ open class PatientContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

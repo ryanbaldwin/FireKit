@@ -26,7 +26,7 @@ class PaymentReconciliationTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.PaymentReconciliation {
-        print("Inflating FireKit.PaymentReconciliation from data: \(data)")
+        // print("Inflating FireKit.PaymentReconciliation from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.PaymentReconciliation.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

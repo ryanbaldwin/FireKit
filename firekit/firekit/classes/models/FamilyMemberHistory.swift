@@ -199,7 +199,9 @@ open class FamilyMemberHistory: DomainResource {
     
         if self.condition.count > o.condition.count {
             for i in self.condition.count...o.condition.count {
+                let objectToRemove = self.condition[i]
                 self.condition.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.date, from: o.date)
@@ -220,7 +222,9 @@ open class FamilyMemberHistory: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         name = o.name

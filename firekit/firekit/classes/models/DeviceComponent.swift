@@ -151,7 +151,9 @@ open class DeviceComponent: DomainResource {
     
         if self.operationalStatus.count > o.operationalStatus.count {
             for i in self.operationalStatus.count...o.operationalStatus.count {
+                let objectToRemove = self.operationalStatus[i]
                 self.operationalStatus.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.parameterGroup, from: o.parameterGroup)
@@ -167,7 +169,9 @@ open class DeviceComponent: DomainResource {
     
         if self.productionSpecification.count > o.productionSpecification.count {
             for i in self.productionSpecification.count...o.productionSpecification.count {
+                let objectToRemove = self.productionSpecification[i]
                 self.productionSpecification.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.source, from: o.source)

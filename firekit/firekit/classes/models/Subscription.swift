@@ -128,7 +128,9 @@ open class Subscription: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         criteria = o.criteria
@@ -147,7 +149,9 @@ open class Subscription: DomainResource {
     
         if self.tag.count > o.tag.count {
             for i in self.tag.count...o.tag.count {
+                let objectToRemove = self.tag[i]
                 self.tag.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

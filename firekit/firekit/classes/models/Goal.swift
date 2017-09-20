@@ -170,7 +170,9 @@ open class Goal: DomainResource {
     
         if self.addresses.count > o.addresses.count {
             for i in self.addresses.count...o.addresses.count {
+                let objectToRemove = self.addresses[i]
                 self.addresses.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.author, from: o.author)
@@ -185,7 +187,9 @@ open class Goal: DomainResource {
     
         if self.category.count > o.category.count {
             for i in self.category.count...o.category.count {
+                let objectToRemove = self.category[i]
                 self.category.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         description_fhir = o.description_fhir
@@ -200,7 +204,9 @@ open class Goal: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -214,7 +220,9 @@ open class Goal: DomainResource {
     
         if self.note.count > o.note.count {
             for i in self.note.count...o.note.count {
+                let objectToRemove = self.note[i]
                 self.note.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -228,7 +236,9 @@ open class Goal: DomainResource {
     
         if self.outcome.count > o.outcome.count {
             for i in self.outcome.count...o.outcome.count {
+                let objectToRemove = self.outcome[i]
                 self.outcome.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.priority, from: o.priority)

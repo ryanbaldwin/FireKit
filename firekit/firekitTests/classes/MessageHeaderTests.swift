@@ -26,7 +26,7 @@ class MessageHeaderTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.MessageHeader {
-        print("Inflating FireKit.MessageHeader from data: \(data)")
+        // print("Inflating FireKit.MessageHeader from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.MessageHeader.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

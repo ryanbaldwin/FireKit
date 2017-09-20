@@ -111,7 +111,9 @@ open class Substance: DomainResource {
     
         if self.category.count > o.category.count {
             for i in self.category.count...o.category.count {
+                let objectToRemove = self.category[i]
                 self.category.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.code, from: o.code)
@@ -127,7 +129,9 @@ open class Substance: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -141,7 +145,9 @@ open class Substance: DomainResource {
     
         if self.ingredient.count > o.ingredient.count {
             for i in self.ingredient.count...o.ingredient.count {
+                let objectToRemove = self.ingredient[i]
                 self.ingredient.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -155,7 +161,9 @@ open class Substance: DomainResource {
     
         if self.instance.count > o.instance.count {
             for i in self.instance.count...o.instance.count {
+                let objectToRemove = self.instance[i]
                 self.instance.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

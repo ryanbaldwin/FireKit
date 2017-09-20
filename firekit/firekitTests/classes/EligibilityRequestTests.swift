@@ -26,7 +26,7 @@ class EligibilityRequestTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.EligibilityRequest {
-        print("Inflating FireKit.EligibilityRequest from data: \(data)")
+        // print("Inflating FireKit.EligibilityRequest from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.EligibilityRequest.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

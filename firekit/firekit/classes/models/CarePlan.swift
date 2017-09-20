@@ -163,7 +163,9 @@ open class CarePlan: DomainResource {
     
         if self.activity.count > o.activity.count {
             for i in self.activity.count...o.activity.count {
+                let objectToRemove = self.activity[i]
                 self.activity.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -177,7 +179,9 @@ open class CarePlan: DomainResource {
     
         if self.addresses.count > o.addresses.count {
             for i in self.addresses.count...o.addresses.count {
+                let objectToRemove = self.addresses[i]
                 self.addresses.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -191,7 +195,9 @@ open class CarePlan: DomainResource {
     
         if self.author.count > o.author.count {
             for i in self.author.count...o.author.count {
+                let objectToRemove = self.author[i]
                 self.author.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -205,7 +211,9 @@ open class CarePlan: DomainResource {
     
         if self.category.count > o.category.count {
             for i in self.category.count...o.category.count {
+                let objectToRemove = self.category[i]
                 self.category.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.context, from: o.context)
@@ -221,7 +229,9 @@ open class CarePlan: DomainResource {
     
         if self.goal.count > o.goal.count {
             for i in self.goal.count...o.goal.count {
+                let objectToRemove = self.goal[i]
                 self.goal.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -235,7 +245,9 @@ open class CarePlan: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.modified, from: o.modified)
@@ -251,7 +263,9 @@ open class CarePlan: DomainResource {
     
         if self.participant.count > o.participant.count {
             for i in self.participant.count...o.participant.count {
+                let objectToRemove = self.participant[i]
                 self.participant.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.period, from: o.period)
@@ -266,7 +280,9 @@ open class CarePlan: DomainResource {
     
         if self.relatedPlan.count > o.relatedPlan.count {
             for i in self.relatedPlan.count...o.relatedPlan.count {
+                let objectToRemove = self.relatedPlan[i]
                 self.relatedPlan.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status
@@ -282,7 +298,9 @@ open class CarePlan: DomainResource {
     
         if self.support.count > o.support.count {
             for i in self.support.count...o.support.count {
+                let objectToRemove = self.support[i]
                 self.support.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -379,7 +397,9 @@ open class CarePlanActivity: BackboneElement {
     
         if self.actionResulting.count > o.actionResulting.count {
             for i in self.actionResulting.count...o.actionResulting.count {
+                let objectToRemove = self.actionResulting[i]
                 self.actionResulting.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.detail, from: o.detail)
@@ -394,7 +414,9 @@ open class CarePlanActivity: BackboneElement {
     
         if self.progress.count > o.progress.count {
             for i in self.progress.count...o.progress.count {
+                let objectToRemove = self.progress[i]
                 self.progress.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.reference, from: o.reference)
@@ -582,7 +604,9 @@ open class CarePlanActivityDetail: BackboneElement {
     
         if self.goal.count > o.goal.count {
             for i in self.goal.count...o.goal.count {
+                let objectToRemove = self.goal[i]
                 self.goal.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.location, from: o.location)
@@ -597,7 +621,9 @@ open class CarePlanActivityDetail: BackboneElement {
     
         if self.performer.count > o.performer.count {
             for i in self.performer.count...o.performer.count {
+                let objectToRemove = self.performer[i]
                 self.performer.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.productCodeableConcept, from: o.productCodeableConcept)
@@ -615,7 +641,9 @@ open class CarePlanActivityDetail: BackboneElement {
     
         if self.reasonCode.count > o.reasonCode.count {
             for i in self.reasonCode.count...o.reasonCode.count {
+                let objectToRemove = self.reasonCode[i]
                 self.reasonCode.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -629,7 +657,9 @@ open class CarePlanActivityDetail: BackboneElement {
     
         if self.reasonReference.count > o.reasonReference.count {
             for i in self.reasonReference.count...o.reasonReference.count {
+                let objectToRemove = self.reasonReference[i]
                 self.reasonReference.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)

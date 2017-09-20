@@ -102,7 +102,9 @@ open class Meta: Element {
     
         if self.profile.count > o.profile.count {
             for i in self.profile.count...o.profile.count {
+                let objectToRemove = self.profile[i]
                 self.profile.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -116,7 +118,9 @@ open class Meta: Element {
     
         if self.security.count > o.security.count {
             for i in self.security.count...o.security.count {
+                let objectToRemove = self.security[i]
                 self.security.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -130,7 +134,9 @@ open class Meta: Element {
     
         if self.tag.count > o.tag.count {
             for i in self.tag.count...o.tag.count {
+                let objectToRemove = self.tag[i]
                 self.tag.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         versionId = o.versionId

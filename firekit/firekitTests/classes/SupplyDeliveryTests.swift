@@ -26,7 +26,7 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.SupplyDelivery {
-        print("Inflating FireKit.SupplyDelivery from data: \(data)")
+        // print("Inflating FireKit.SupplyDelivery from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.SupplyDelivery.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

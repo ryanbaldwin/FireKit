@@ -26,7 +26,7 @@ class NamingSystemTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.NamingSystem {
-        print("Inflating FireKit.NamingSystem from data: \(data)")
+        // print("Inflating FireKit.NamingSystem from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.NamingSystem.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

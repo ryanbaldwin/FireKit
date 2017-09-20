@@ -191,7 +191,9 @@ open class ProcedureRequest: DomainResource {
     
         if self.bodySite.count > o.bodySite.count {
             for i in self.bodySite.count...o.bodySite.count {
+                let objectToRemove = self.bodySite[i]
                 self.bodySite.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.code, from: o.code)
@@ -207,7 +209,9 @@ open class ProcedureRequest: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -221,7 +225,9 @@ open class ProcedureRequest: DomainResource {
     
         if self.notes.count > o.notes.count {
             for i in self.notes.count...o.notes.count {
+                let objectToRemove = self.notes[i]
                 self.notes.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.orderedOn, from: o.orderedOn)

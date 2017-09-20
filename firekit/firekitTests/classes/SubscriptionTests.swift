@@ -26,7 +26,7 @@ class SubscriptionTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Subscription {
-        print("Inflating FireKit.Subscription from data: \(data)")
+        // print("Inflating FireKit.Subscription from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Subscription.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

@@ -88,7 +88,9 @@ open class CodeableConcept: Element {
     
         if self.coding.count > o.coding.count {
             for i in self.coding.count...o.coding.count {
+                let objectToRemove = self.coding[i]
                 self.coding.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         text = o.text

@@ -122,7 +122,9 @@ open class Signature: Element {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.when, from: o.when)

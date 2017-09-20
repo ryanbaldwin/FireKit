@@ -26,7 +26,7 @@ class ConformanceTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Conformance {
-        print("Inflating FireKit.Conformance from data: \(data)")
+        // print("Inflating FireKit.Conformance from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Conformance.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

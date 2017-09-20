@@ -101,7 +101,9 @@ open class Timing: Element {
     
         if self.event.count > o.event.count {
             for i in self.event.count...o.event.count {
+                let objectToRemove = self.event[i]
                 self.event.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.repeat_fhir, from: o.repeat_fhir)

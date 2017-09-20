@@ -121,7 +121,9 @@ open class Organization: DomainResource {
     
         if self.address.count > o.address.count {
             for i in self.address.count...o.address.count {
+                let objectToRemove = self.address[i]
                 self.address.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -135,7 +137,9 @@ open class Organization: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -149,7 +153,9 @@ open class Organization: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         name = o.name
@@ -165,7 +171,9 @@ open class Organization: DomainResource {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)
@@ -266,7 +274,9 @@ open class OrganizationContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

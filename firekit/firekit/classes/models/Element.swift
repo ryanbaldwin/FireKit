@@ -90,7 +90,9 @@ open class Element: FHIRAbstractBase {
     
         if self.extension_fhir.count > o.extension_fhir.count {
             for i in self.extension_fhir.count...o.extension_fhir.count {
+                let objectToRemove = self.extension_fhir[i]
                 self.extension_fhir.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         id = o.id

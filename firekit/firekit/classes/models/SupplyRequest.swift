@@ -157,7 +157,9 @@ open class SupplyRequest: DomainResource {
     
         if self.supplier.count > o.supplier.count {
             for i in self.supplier.count...o.supplier.count {
+                let objectToRemove = self.supplier[i]
                 self.supplier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.when, from: o.when)

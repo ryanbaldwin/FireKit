@@ -139,7 +139,9 @@ open class Order: DomainResource {
     
         if self.detail.count > o.detail.count {
             for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
                 self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -153,7 +155,9 @@ open class Order: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)

@@ -172,7 +172,9 @@ open class ConceptMap: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         copyright = o.copyright
@@ -189,7 +191,9 @@ open class ConceptMap: DomainResource {
     
         if self.element.count > o.element.count {
             for i in self.element.count...o.element.count {
+                let objectToRemove = self.element[i]
                 self.element.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         experimental.value = o.experimental.value
@@ -214,7 +218,9 @@ open class ConceptMap: DomainResource {
     
         if self.useContext.count > o.useContext.count {
             for i in self.useContext.count...o.useContext.count {
+                let objectToRemove = self.useContext[i]
                 self.useContext.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         version = o.version
@@ -298,7 +304,9 @@ open class ConceptMapContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -386,7 +394,9 @@ open class ConceptMapElement: BackboneElement {
     
         if self.target.count > o.target.count {
             for i in self.target.count...o.target.count {
+                let objectToRemove = self.target[i]
                 self.target.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -493,7 +503,9 @@ open class ConceptMapElementTarget: BackboneElement {
     
         if self.dependsOn.count > o.dependsOn.count {
             for i in self.dependsOn.count...o.dependsOn.count {
+                let objectToRemove = self.dependsOn[i]
                 self.dependsOn.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         equivalence = o.equivalence
@@ -508,7 +520,9 @@ open class ConceptMapElementTarget: BackboneElement {
     
         if self.product.count > o.product.count {
             for i in self.product.count...o.product.count {
+                let objectToRemove = self.product[i]
                 self.product.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

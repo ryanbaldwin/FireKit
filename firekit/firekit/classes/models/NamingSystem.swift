@@ -149,7 +149,9 @@ open class NamingSystem: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.date, from: o.date)
@@ -172,7 +174,9 @@ open class NamingSystem: DomainResource {
     
         if self.uniqueId.count > o.uniqueId.count {
             for i in self.uniqueId.count...o.uniqueId.count {
+                let objectToRemove = self.uniqueId[i]
                 self.uniqueId.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         usage = o.usage
@@ -187,7 +191,9 @@ open class NamingSystem: DomainResource {
     
         if self.useContext.count > o.useContext.count {
             for i in self.useContext.count...o.useContext.count {
+                let objectToRemove = self.useContext[i]
                 self.useContext.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -270,7 +276,9 @@ open class NamingSystemContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

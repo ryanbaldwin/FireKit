@@ -143,7 +143,9 @@ open class Appointment: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         minutesDuration.value = o.minutesDuration.value
@@ -158,7 +160,9 @@ open class Appointment: DomainResource {
     
         if self.participant.count > o.participant.count {
             for i in self.participant.count...o.participant.count {
+                let objectToRemove = self.participant[i]
                 self.participant.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         priority.value = o.priority.value
@@ -174,7 +178,9 @@ open class Appointment: DomainResource {
     
         if self.slot.count > o.slot.count {
             for i in self.slot.count...o.slot.count {
+                let objectToRemove = self.slot[i]
                 self.slot.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.start, from: o.start)
@@ -279,7 +285,9 @@ open class AppointmentParticipant: BackboneElement {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

@@ -128,7 +128,9 @@ open class Practitioner: DomainResource {
     
         if self.address.count > o.address.count {
             for i in self.address.count...o.address.count {
+                let objectToRemove = self.address[i]
                 self.address.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.birthDate, from: o.birthDate)
@@ -143,7 +145,9 @@ open class Practitioner: DomainResource {
     
         if self.communication.count > o.communication.count {
             for i in self.communication.count...o.communication.count {
+                let objectToRemove = self.communication[i]
                 self.communication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         gender = o.gender
@@ -158,7 +162,9 @@ open class Practitioner: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.name, from: o.name)
@@ -173,7 +179,9 @@ open class Practitioner: DomainResource {
     
         if self.photo.count > o.photo.count {
             for i in self.photo.count...o.photo.count {
+                let objectToRemove = self.photo[i]
                 self.photo.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -187,7 +195,9 @@ open class Practitioner: DomainResource {
     
         if self.practitionerRole.count > o.practitionerRole.count {
             for i in self.practitionerRole.count...o.practitionerRole.count {
+                let objectToRemove = self.practitionerRole[i]
                 self.practitionerRole.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -201,7 +211,9 @@ open class Practitioner: DomainResource {
     
         if self.qualification.count > o.qualification.count {
             for i in self.qualification.count...o.qualification.count {
+                let objectToRemove = self.qualification[i]
                 self.qualification.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -215,7 +227,9 @@ open class Practitioner: DomainResource {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -322,7 +336,9 @@ open class PractitionerPractitionerRole: BackboneElement {
     
         if self.healthcareService.count > o.healthcareService.count {
             for i in self.healthcareService.count...o.healthcareService.count {
+                let objectToRemove = self.healthcareService[i]
                 self.healthcareService.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -336,7 +352,9 @@ open class PractitionerPractitionerRole: BackboneElement {
     
         if self.location.count > o.location.count {
             for i in self.location.count...o.location.count {
+                let objectToRemove = self.location[i]
                 self.location.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
@@ -353,7 +371,9 @@ open class PractitionerPractitionerRole: BackboneElement {
     
         if self.specialty.count > o.specialty.count {
             for i in self.specialty.count...o.specialty.count {
+                let objectToRemove = self.specialty[i]
                 self.specialty.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -457,7 +477,9 @@ open class PractitionerQualification: BackboneElement {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.issuer, from: o.issuer)

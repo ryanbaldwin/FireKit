@@ -125,7 +125,9 @@ open class Questionnaire: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         publisher = o.publisher
@@ -141,7 +143,9 @@ open class Questionnaire: DomainResource {
     
         if self.subjectType.count > o.subjectType.count {
             for i in self.subjectType.count...o.subjectType.count {
+                let objectToRemove = self.subjectType[i]
                 self.subjectType.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -155,7 +159,9 @@ open class Questionnaire: DomainResource {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         version = o.version
@@ -262,7 +268,9 @@ open class QuestionnaireGroup: BackboneElement {
     
         if self.concept.count > o.concept.count {
             for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
                 self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -276,7 +284,9 @@ open class QuestionnaireGroup: BackboneElement {
     
         if self.group.count > o.group.count {
             for i in self.group.count...o.group.count {
+                let objectToRemove = self.group[i]
                 self.group.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         linkId = o.linkId
@@ -291,7 +301,9 @@ open class QuestionnaireGroup: BackboneElement {
     
         if self.question.count > o.question.count {
             for i in self.question.count...o.question.count {
+                let objectToRemove = self.question[i]
                 self.question.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         repeats.value = o.repeats.value
@@ -408,7 +420,9 @@ open class QuestionnaireGroupQuestion: BackboneElement {
     
         if self.concept.count > o.concept.count {
             for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
                 self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -422,7 +436,9 @@ open class QuestionnaireGroupQuestion: BackboneElement {
     
         if self.group.count > o.group.count {
             for i in self.group.count...o.group.count {
+                let objectToRemove = self.group[i]
                 self.group.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         linkId = o.linkId
@@ -437,7 +453,9 @@ open class QuestionnaireGroupQuestion: BackboneElement {
     
         if self.option.count > o.option.count {
             for i in self.option.count...o.option.count {
+                let objectToRemove = self.option[i]
                 self.option.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.options, from: o.options)

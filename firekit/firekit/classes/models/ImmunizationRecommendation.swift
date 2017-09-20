@@ -103,7 +103,9 @@ open class ImmunizationRecommendation: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.patient, from: o.patient)
@@ -118,7 +120,9 @@ open class ImmunizationRecommendation: DomainResource {
     
         if self.recommendation.count > o.recommendation.count {
             for i in self.recommendation.count...o.recommendation.count {
+                let objectToRemove = self.recommendation[i]
                 self.recommendation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -240,7 +244,9 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
     
         if self.dateCriterion.count > o.dateCriterion.count {
             for i in self.dateCriterion.count...o.dateCriterion.count {
+                let objectToRemove = self.dateCriterion[i]
                 self.dateCriterion.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         doseNumber.value = o.doseNumber.value
@@ -257,7 +263,9 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
     
         if self.supportingImmunization.count > o.supportingImmunization.count {
             for i in self.supportingImmunization.count...o.supportingImmunization.count {
+                let objectToRemove = self.supportingImmunization[i]
                 self.supportingImmunization.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -271,7 +279,9 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
     
         if self.supportingPatientInformation.count > o.supportingPatientInformation.count {
             for i in self.supportingPatientInformation.count...o.supportingPatientInformation.count {
+                let objectToRemove = self.supportingPatientInformation[i]
                 self.supportingPatientInformation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.vaccineCode, from: o.vaccineCode)

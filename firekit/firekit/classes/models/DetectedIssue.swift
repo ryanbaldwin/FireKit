@@ -138,7 +138,9 @@ open class DetectedIssue: DomainResource {
     
         if self.implicated.count > o.implicated.count {
             for i in self.implicated.count...o.implicated.count {
+                let objectToRemove = self.implicated[i]
                 self.implicated.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -152,7 +154,9 @@ open class DetectedIssue: DomainResource {
     
         if self.mitigation.count > o.mitigation.count {
             for i in self.mitigation.count...o.mitigation.count {
+                let objectToRemove = self.mitigation[i]
                 self.mitigation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.patient, from: o.patient)

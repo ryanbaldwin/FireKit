@@ -128,7 +128,9 @@ open class VisionPrescription: DomainResource {
     
         if self.dispense.count > o.dispense.count {
             for i in self.dispense.count...o.dispense.count {
+                let objectToRemove = self.dispense[i]
                 self.dispense.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.encounter, from: o.encounter)
@@ -143,7 +145,9 @@ open class VisionPrescription: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.patient, from: o.patient)

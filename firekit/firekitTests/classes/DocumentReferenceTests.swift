@@ -26,7 +26,7 @@ class DocumentReferenceTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.DocumentReference {
-        print("Inflating FireKit.DocumentReference from data: \(data)")
+        // print("Inflating FireKit.DocumentReference from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.DocumentReference.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

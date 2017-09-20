@@ -139,7 +139,9 @@ open class RelatedPerson: DomainResource {
     
         if self.address.count > o.address.count {
             for i in self.address.count...o.address.count {
+                let objectToRemove = self.address[i]
                 self.address.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.birthDate, from: o.birthDate)
@@ -155,7 +157,9 @@ open class RelatedPerson: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.name, from: o.name)
@@ -172,7 +176,9 @@ open class RelatedPerson: DomainResource {
     
         if self.photo.count > o.photo.count {
             for i in self.photo.count...o.photo.count {
+                let objectToRemove = self.photo[i]
                 self.photo.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.relationship, from: o.relationship)
@@ -187,7 +193,9 @@ open class RelatedPerson: DomainResource {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

@@ -125,7 +125,9 @@ open class Group: DomainResource {
     
         if self.characteristic.count > o.characteristic.count {
             for i in self.characteristic.count...o.characteristic.count {
+                let objectToRemove = self.characteristic[i]
                 self.characteristic.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.code, from: o.code)
@@ -140,7 +142,9 @@ open class Group: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -154,7 +158,9 @@ open class Group: DomainResource {
     
         if self.member.count > o.member.count {
             for i in self.member.count...o.member.count {
+                let objectToRemove = self.member[i]
                 self.member.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         name = o.name

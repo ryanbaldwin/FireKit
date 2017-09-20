@@ -182,7 +182,9 @@ open class DocumentReference: DomainResource {
     
         if self.author.count > o.author.count {
             for i in self.author.count...o.author.count {
+                let objectToRemove = self.author[i]
                 self.author.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.class_fhir, from: o.class_fhir)
@@ -197,7 +199,9 @@ open class DocumentReference: DomainResource {
     
         if self.content.count > o.content.count {
             for i in self.content.count...o.content.count {
+                let objectToRemove = self.content[i]
                 self.content.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.context, from: o.context)
@@ -216,7 +220,9 @@ open class DocumentReference: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.indexed, from: o.indexed)
@@ -232,7 +238,9 @@ open class DocumentReference: DomainResource {
     
         if self.relatesTo.count > o.relatesTo.count {
             for i in self.relatesTo.count...o.relatesTo.count {
+                let objectToRemove = self.relatesTo[i]
                 self.relatesTo.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -246,7 +254,9 @@ open class DocumentReference: DomainResource {
     
         if self.securityLabel.count > o.securityLabel.count {
             for i in self.securityLabel.count...o.securityLabel.count {
+                let objectToRemove = self.securityLabel[i]
                 self.securityLabel.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status
@@ -341,7 +351,9 @@ open class DocumentReferenceContent: BackboneElement {
     
         if self.format.count > o.format.count {
             for i in self.format.count...o.format.count {
+                let objectToRemove = self.format[i]
                 self.format.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -459,7 +471,9 @@ open class DocumentReferenceContext: BackboneElement {
     
         if self.event.count > o.event.count {
             for i in self.event.count...o.event.count {
+                let objectToRemove = self.event[i]
                 self.event.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.facilityType, from: o.facilityType)
@@ -476,7 +490,9 @@ open class DocumentReferenceContext: BackboneElement {
     
         if self.related.count > o.related.count {
             for i in self.related.count...o.related.count {
+                let objectToRemove = self.related[i]
                 self.related.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.sourcePatientInfo, from: o.sourcePatientInfo)

@@ -119,7 +119,9 @@ open class BodySite: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -133,7 +135,9 @@ open class BodySite: DomainResource {
     
         if self.image.count > o.image.count {
             for i in self.image.count...o.image.count {
+                let objectToRemove = self.image[i]
                 self.image.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -147,7 +151,9 @@ open class BodySite: DomainResource {
     
         if self.modifier.count > o.modifier.count {
             for i in self.modifier.count...o.modifier.count {
+                let objectToRemove = self.modifier[i]
                 self.modifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.patient, from: o.patient)

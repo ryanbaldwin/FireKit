@@ -85,7 +85,9 @@ open class Parameters: Resource {
     
         if self.parameter.count > o.parameter.count {
             for i in self.parameter.count...o.parameter.count {
+                let objectToRemove = self.parameter[i]
                 self.parameter.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -368,7 +370,9 @@ open class ParametersParameter: BackboneElement {
     
         if self.part.count > o.part.count {
             for i in self.part.count...o.part.count {
+                let objectToRemove = self.part[i]
                 self.part.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.resource, from: o.resource)

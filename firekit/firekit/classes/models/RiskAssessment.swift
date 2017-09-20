@@ -138,7 +138,9 @@ open class RiskAssessment: DomainResource {
     
         if self.basis.count > o.basis.count {
             for i in self.basis.count...o.basis.count {
+                let objectToRemove = self.basis[i]
                 self.basis.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.condition, from: o.condition)
@@ -159,7 +161,9 @@ open class RiskAssessment: DomainResource {
     
         if self.prediction.count > o.prediction.count {
             for i in self.prediction.count...o.prediction.count {
+                let objectToRemove = self.prediction[i]
                 self.prediction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.subject, from: o.subject)

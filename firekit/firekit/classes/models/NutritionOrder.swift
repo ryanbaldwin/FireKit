@@ -150,7 +150,9 @@ open class NutritionOrder: DomainResource {
     
         if self.allergyIntolerance.count > o.allergyIntolerance.count {
             for i in self.allergyIntolerance.count...o.allergyIntolerance.count {
+                let objectToRemove = self.allergyIntolerance[i]
                 self.allergyIntolerance.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.dateTime, from: o.dateTime)
@@ -167,7 +169,9 @@ open class NutritionOrder: DomainResource {
     
         if self.excludeFoodModifier.count > o.excludeFoodModifier.count {
             for i in self.excludeFoodModifier.count...o.excludeFoodModifier.count {
+                let objectToRemove = self.excludeFoodModifier[i]
                 self.excludeFoodModifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -181,7 +185,9 @@ open class NutritionOrder: DomainResource {
     
         if self.foodPreferenceModifier.count > o.foodPreferenceModifier.count {
             for i in self.foodPreferenceModifier.count...o.foodPreferenceModifier.count {
+                let objectToRemove = self.foodPreferenceModifier[i]
                 self.foodPreferenceModifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -195,7 +201,9 @@ open class NutritionOrder: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.oralDiet, from: o.oralDiet)
@@ -213,7 +221,9 @@ open class NutritionOrder: DomainResource {
     
         if self.supplement.count > o.supplement.count {
             for i in self.supplement.count...o.supplement.count {
+                let objectToRemove = self.supplement[i]
                 self.supplement.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -341,7 +351,9 @@ open class NutritionOrderEnteralFormula: BackboneElement {
     
         if self.administration.count > o.administration.count {
             for i in self.administration.count...o.administration.count {
+                let objectToRemove = self.administration[i]
                 self.administration.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         administrationInstruction = o.administrationInstruction
@@ -539,7 +551,9 @@ open class NutritionOrderOralDiet: BackboneElement {
     
         if self.fluidConsistencyType.count > o.fluidConsistencyType.count {
             for i in self.fluidConsistencyType.count...o.fluidConsistencyType.count {
+                let objectToRemove = self.fluidConsistencyType[i]
                 self.fluidConsistencyType.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         instruction = o.instruction
@@ -554,7 +568,9 @@ open class NutritionOrderOralDiet: BackboneElement {
     
         if self.nutrient.count > o.nutrient.count {
             for i in self.nutrient.count...o.nutrient.count {
+                let objectToRemove = self.nutrient[i]
                 self.nutrient.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -568,7 +584,9 @@ open class NutritionOrderOralDiet: BackboneElement {
     
         if self.schedule.count > o.schedule.count {
             for i in self.schedule.count...o.schedule.count {
+                let objectToRemove = self.schedule[i]
                 self.schedule.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -582,7 +600,9 @@ open class NutritionOrderOralDiet: BackboneElement {
     
         if self.texture.count > o.texture.count {
             for i in self.texture.count...o.texture.count {
+                let objectToRemove = self.texture[i]
                 self.texture.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -596,7 +616,9 @@ open class NutritionOrderOralDiet: BackboneElement {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -852,7 +874,9 @@ open class NutritionOrderSupplement: BackboneElement {
     
         if self.schedule.count > o.schedule.count {
             for i in self.schedule.count...o.schedule.count {
+                let objectToRemove = self.schedule[i]
                 self.schedule.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)

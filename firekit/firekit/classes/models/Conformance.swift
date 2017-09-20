@@ -182,7 +182,9 @@ open class Conformance: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         copyright = o.copyright
@@ -199,7 +201,9 @@ open class Conformance: DomainResource {
     
         if self.document.count > o.document.count {
             for i in self.document.count...o.document.count {
+                let objectToRemove = self.document[i]
                 self.document.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         experimental.value = o.experimental.value
@@ -215,7 +219,9 @@ open class Conformance: DomainResource {
     
         if self.format.count > o.format.count {
             for i in self.format.count...o.format.count {
+                let objectToRemove = self.format[i]
                 self.format.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.implementation, from: o.implementation)
@@ -231,7 +237,9 @@ open class Conformance: DomainResource {
     
         if self.messaging.count > o.messaging.count {
             for i in self.messaging.count...o.messaging.count {
+                let objectToRemove = self.messaging[i]
                 self.messaging.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         name = o.name
@@ -246,7 +254,9 @@ open class Conformance: DomainResource {
     
         if self.profile.count > o.profile.count {
             for i in self.profile.count...o.profile.count {
+                let objectToRemove = self.profile[i]
                 self.profile.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         publisher = o.publisher
@@ -262,7 +272,9 @@ open class Conformance: DomainResource {
     
         if self.rest.count > o.rest.count {
             for i in self.rest.count...o.rest.count {
+                let objectToRemove = self.rest[i]
                 self.rest.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.software, from: o.software)
@@ -349,7 +361,9 @@ open class ConformanceContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -608,7 +622,9 @@ open class ConformanceMessaging: BackboneElement {
     
         if self.endpoint.count > o.endpoint.count {
             for i in self.endpoint.count...o.endpoint.count {
+                let objectToRemove = self.endpoint[i]
                 self.endpoint.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -622,7 +638,9 @@ open class ConformanceMessaging: BackboneElement {
     
         if self.event.count > o.event.count {
             for i in self.event.count...o.event.count {
+                let objectToRemove = self.event[i]
                 self.event.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         reliableCache.value = o.reliableCache.value
@@ -937,7 +955,9 @@ open class ConformanceRest: BackboneElement {
     
         if self.compartment.count > o.compartment.count {
             for i in self.compartment.count...o.compartment.count {
+                let objectToRemove = self.compartment[i]
                 self.compartment.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         documentation = o.documentation
@@ -952,7 +972,9 @@ open class ConformanceRest: BackboneElement {
     
         if self.interaction.count > o.interaction.count {
             for i in self.interaction.count...o.interaction.count {
+                let objectToRemove = self.interaction[i]
                 self.interaction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         mode = o.mode
@@ -967,7 +989,9 @@ open class ConformanceRest: BackboneElement {
     
         if self.operation.count > o.operation.count {
             for i in self.operation.count...o.operation.count {
+                let objectToRemove = self.operation[i]
                 self.operation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -981,7 +1005,9 @@ open class ConformanceRest: BackboneElement {
     
         if self.resource.count > o.resource.count {
             for i in self.resource.count...o.resource.count {
+                let objectToRemove = self.resource[i]
                 self.resource.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -995,7 +1021,9 @@ open class ConformanceRest: BackboneElement {
     
         if self.searchParam.count > o.searchParam.count {
             for i in self.searchParam.count...o.searchParam.count {
+                let objectToRemove = self.searchParam[i]
                 self.searchParam.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.security, from: o.security)
@@ -1288,7 +1316,9 @@ open class ConformanceRestResource: BackboneElement {
     
         if self.interaction.count > o.interaction.count {
             for i in self.interaction.count...o.interaction.count {
+                let objectToRemove = self.interaction[i]
                 self.interaction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.profile, from: o.profile)
@@ -1304,7 +1334,9 @@ open class ConformanceRestResource: BackboneElement {
     
         if self.searchInclude.count > o.searchInclude.count {
             for i in self.searchInclude.count...o.searchInclude.count {
+                let objectToRemove = self.searchInclude[i]
                 self.searchInclude.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -1318,7 +1350,9 @@ open class ConformanceRestResource: BackboneElement {
     
         if self.searchParam.count > o.searchParam.count {
             for i in self.searchParam.count...o.searchParam.count {
+                let objectToRemove = self.searchParam[i]
                 self.searchParam.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -1332,7 +1366,9 @@ open class ConformanceRestResource: BackboneElement {
     
         if self.searchRevInclude.count > o.searchRevInclude.count {
             for i in self.searchRevInclude.count...o.searchRevInclude.count {
+                let objectToRemove = self.searchRevInclude[i]
                 self.searchRevInclude.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         type = o.type
@@ -1521,7 +1557,9 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
     
         if self.chain.count > o.chain.count {
             for i in self.chain.count...o.chain.count {
+                let objectToRemove = self.chain[i]
                 self.chain.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         definition = o.definition
@@ -1537,7 +1575,9 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
     
         if self.modifier.count > o.modifier.count {
             for i in self.modifier.count...o.modifier.count {
+                let objectToRemove = self.modifier[i]
                 self.modifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         name = o.name
@@ -1552,7 +1592,9 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
     
         if self.target.count > o.target.count {
             for i in self.target.count...o.target.count {
+                let objectToRemove = self.target[i]
                 self.target.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         type = o.type
@@ -1643,7 +1685,9 @@ open class ConformanceRestSecurity: BackboneElement {
     
         if self.certificate.count > o.certificate.count {
             for i in self.certificate.count...o.certificate.count {
+                let objectToRemove = self.certificate[i]
                 self.certificate.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         cors.value = o.cors.value
@@ -1659,7 +1703,9 @@ open class ConformanceRestSecurity: BackboneElement {
     
         if self.service.count > o.service.count {
             for i in self.service.count...o.service.count {
+                let objectToRemove = self.service[i]
                 self.service.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

@@ -26,7 +26,7 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Slot {
-        print("Inflating FireKit.Slot from data: \(data)")
+        // print("Inflating FireKit.Slot from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Slot.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

@@ -176,7 +176,9 @@ open class ValueSet: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         copyright = o.copyright
@@ -204,7 +206,9 @@ open class ValueSet: DomainResource {
     
         if self.useContext.count > o.useContext.count {
             for i in self.useContext.count...o.useContext.count {
+                let objectToRemove = self.useContext[i]
                 self.useContext.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         version = o.version
@@ -304,7 +308,9 @@ open class ValueSetCodeSystem: BackboneElement {
     
         if self.concept.count > o.concept.count {
             for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
                 self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         system = o.system
@@ -413,7 +419,9 @@ open class ValueSetCodeSystemConcept: BackboneElement {
     
         if self.concept.count > o.concept.count {
             for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
                 self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         definition = o.definition
@@ -428,7 +436,9 @@ open class ValueSetCodeSystemConcept: BackboneElement {
     
         if self.designation.count > o.designation.count {
             for i in self.designation.count...o.designation.count {
+                let objectToRemove = self.designation[i]
                 self.designation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         display = o.display
@@ -601,7 +611,9 @@ open class ValueSetCompose: BackboneElement {
     
         if self.exclude.count > o.exclude.count {
             for i in self.exclude.count...o.exclude.count {
+                let objectToRemove = self.exclude[i]
                 self.exclude.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -615,7 +627,9 @@ open class ValueSetCompose: BackboneElement {
     
         if self.import_fhir.count > o.import_fhir.count {
             for i in self.import_fhir.count...o.import_fhir.count {
+                let objectToRemove = self.import_fhir[i]
                 self.import_fhir.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -629,7 +643,9 @@ open class ValueSetCompose: BackboneElement {
     
         if self.include.count > o.include.count {
             for i in self.include.count...o.include.count {
+                let objectToRemove = self.include[i]
                 self.include.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -723,7 +739,9 @@ open class ValueSetComposeInclude: BackboneElement {
     
         if self.concept.count > o.concept.count {
             for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
                 self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -737,7 +755,9 @@ open class ValueSetComposeInclude: BackboneElement {
     
         if self.filter.count > o.filter.count {
             for i in self.filter.count...o.filter.count {
+                let objectToRemove = self.filter[i]
                 self.filter.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         system = o.system
@@ -832,7 +852,9 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
     
         if self.designation.count > o.designation.count {
             for i in self.designation.count...o.designation.count {
+                let objectToRemove = self.designation[i]
                 self.designation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         display = o.display
@@ -1000,7 +1022,9 @@ open class ValueSetContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -1106,7 +1130,9 @@ open class ValueSetExpansion: BackboneElement {
     
         if self.contains.count > o.contains.count {
             for i in self.contains.count...o.contains.count {
+                let objectToRemove = self.contains[i]
                 self.contains.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         identifier = o.identifier
@@ -1122,7 +1148,9 @@ open class ValueSetExpansion: BackboneElement {
     
         if self.parameter.count > o.parameter.count {
             for i in self.parameter.count...o.parameter.count {
+                let objectToRemove = self.parameter[i]
                 self.parameter.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.timestamp, from: o.timestamp)
@@ -1224,7 +1252,9 @@ open class ValueSetExpansionContains: BackboneElement {
     
         if self.contains.count > o.contains.count {
             for i in self.contains.count...o.contains.count {
+                let objectToRemove = self.contains[i]
                 self.contains.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         display = o.display

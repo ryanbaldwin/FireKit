@@ -174,7 +174,9 @@ open class PaymentReconciliation: DomainResource {
     
         if self.detail.count > o.detail.count {
             for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
                 self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         disposition = o.disposition
@@ -190,7 +192,9 @@ open class PaymentReconciliation: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -204,7 +208,9 @@ open class PaymentReconciliation: DomainResource {
     
         if self.note.count > o.note.count {
             for i in self.note.count...o.note.count {
+                let objectToRemove = self.note[i]
                 self.note.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.organization, from: o.organization)

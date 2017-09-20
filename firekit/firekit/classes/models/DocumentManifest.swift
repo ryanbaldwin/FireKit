@@ -142,7 +142,9 @@ open class DocumentManifest: DomainResource {
     
         if self.author.count > o.author.count {
             for i in self.author.count...o.author.count {
+                let objectToRemove = self.author[i]
                 self.author.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -156,7 +158,9 @@ open class DocumentManifest: DomainResource {
     
         if self.content.count > o.content.count {
             for i in self.content.count...o.content.count {
+                let objectToRemove = self.content[i]
                 self.content.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.created, from: o.created)
@@ -172,7 +176,9 @@ open class DocumentManifest: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.masterIdentifier, from: o.masterIdentifier)
@@ -187,7 +193,9 @@ open class DocumentManifest: DomainResource {
     
         if self.recipient.count > o.recipient.count {
             for i in self.recipient.count...o.recipient.count {
+                let objectToRemove = self.recipient[i]
                 self.recipient.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -201,7 +209,9 @@ open class DocumentManifest: DomainResource {
     
         if self.related.count > o.related.count {
             for i in self.related.count...o.related.count {
+                let objectToRemove = self.related[i]
                 self.related.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         source = o.source

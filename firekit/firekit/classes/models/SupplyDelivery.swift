@@ -152,7 +152,9 @@ open class SupplyDelivery: DomainResource {
     
         if self.receiver.count > o.receiver.count {
             for i in self.receiver.count...o.receiver.count {
+                let objectToRemove = self.receiver[i]
                 self.receiver.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status

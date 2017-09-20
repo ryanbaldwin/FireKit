@@ -26,7 +26,7 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.CarePlan {
-        print("Inflating FireKit.CarePlan from data: \(data)")
+        // print("Inflating FireKit.CarePlan from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.CarePlan.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

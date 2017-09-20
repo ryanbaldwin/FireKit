@@ -177,7 +177,9 @@ open class DeviceUseRequest: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -191,7 +193,9 @@ open class DeviceUseRequest: DomainResource {
     
         if self.indication.count > o.indication.count {
             for i in self.indication.count...o.indication.count {
+                let objectToRemove = self.indication[i]
                 self.indication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -205,7 +209,9 @@ open class DeviceUseRequest: DomainResource {
     
         if self.notes.count > o.notes.count {
             for i in self.notes.count...o.notes.count {
+                let objectToRemove = self.notes[i]
                 self.notes.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.orderedOn, from: o.orderedOn)
@@ -221,7 +227,9 @@ open class DeviceUseRequest: DomainResource {
     
         if self.prnReason.count > o.prnReason.count {
             for i in self.prnReason.count...o.prnReason.count {
+                let objectToRemove = self.prnReason[i]
                 self.prnReason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.recordedOn, from: o.recordedOn)

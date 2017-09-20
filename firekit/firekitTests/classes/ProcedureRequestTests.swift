@@ -26,7 +26,7 @@ class ProcedureRequestTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.ProcedureRequest {
-        print("Inflating FireKit.ProcedureRequest from data: \(data)")
+        // print("Inflating FireKit.ProcedureRequest from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.ProcedureRequest.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

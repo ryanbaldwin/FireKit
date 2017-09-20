@@ -199,7 +199,9 @@ open class StructureDefinition: DomainResource {
     
         if self.code.count > o.code.count {
             for i in self.code.count...o.code.count {
+                let objectToRemove = self.code[i]
                 self.code.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         constrainedType = o.constrainedType
@@ -214,7 +216,9 @@ open class StructureDefinition: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -228,7 +232,9 @@ open class StructureDefinition: DomainResource {
     
         if self.context.count > o.context.count {
             for i in self.context.count...o.context.count {
+                let objectToRemove = self.context[i]
                 self.context.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         contextType = o.contextType
@@ -250,7 +256,9 @@ open class StructureDefinition: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         kind = o.kind
@@ -265,7 +273,9 @@ open class StructureDefinition: DomainResource {
     
         if self.mapping.count > o.mapping.count {
             for i in self.mapping.count...o.mapping.count {
+                let objectToRemove = self.mapping[i]
                 self.mapping.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         name = o.name
@@ -285,7 +295,9 @@ open class StructureDefinition: DomainResource {
     
         if self.useContext.count > o.useContext.count {
             for i in self.useContext.count...o.useContext.count {
+                let objectToRemove = self.useContext[i]
                 self.useContext.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         version = o.version
@@ -369,7 +381,9 @@ open class StructureDefinitionContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -454,7 +468,9 @@ open class StructureDefinitionDifferential: BackboneElement {
     
         if self.element.count > o.element.count {
             for i in self.element.count...o.element.count {
+                let objectToRemove = self.element[i]
                 self.element.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -625,7 +641,9 @@ open class StructureDefinitionSnapshot: BackboneElement {
     
         if self.element.count > o.element.count {
             for i in self.element.count...o.element.count {
+                let objectToRemove = self.element[i]
                 self.element.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

@@ -173,7 +173,9 @@ open class OperationDefinition: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.date, from: o.date)
@@ -195,7 +197,9 @@ open class OperationDefinition: DomainResource {
     
         if self.parameter.count > o.parameter.count {
             for i in self.parameter.count...o.parameter.count {
+                let objectToRemove = self.parameter[i]
                 self.parameter.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         publisher = o.publisher
@@ -213,7 +217,9 @@ open class OperationDefinition: DomainResource {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         url = o.url
@@ -298,7 +304,9 @@ open class OperationDefinitionContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -428,7 +436,9 @@ open class OperationDefinitionParameter: BackboneElement {
     
         if self.part.count > o.part.count {
             for i in self.part.count...o.part.count {
+                let objectToRemove = self.part[i]
                 self.part.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.profile, from: o.profile)

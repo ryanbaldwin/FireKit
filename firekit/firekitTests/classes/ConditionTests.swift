@@ -26,7 +26,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Condition {
-        print("Inflating FireKit.Condition from data: \(data)")
+        // print("Inflating FireKit.Condition from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Condition.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

@@ -26,7 +26,7 @@ class BinaryTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Binary {
-        print("Inflating FireKit.Binary from data: \(data)")
+        // print("Inflating FireKit.Binary from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Binary.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

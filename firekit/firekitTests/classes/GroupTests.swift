@@ -26,7 +26,7 @@ class GroupTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Group {
-        print("Inflating FireKit.Group from data: \(data)")
+        // print("Inflating FireKit.Group from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Group.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

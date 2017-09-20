@@ -144,7 +144,9 @@ open class DiagnosticOrder: DomainResource {
     
         if self.event.count > o.event.count {
             for i in self.event.count...o.event.count {
+                let objectToRemove = self.event[i]
                 self.event.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -158,7 +160,9 @@ open class DiagnosticOrder: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -172,7 +176,9 @@ open class DiagnosticOrder: DomainResource {
     
         if self.item.count > o.item.count {
             for i in self.item.count...o.item.count {
+                let objectToRemove = self.item[i]
                 self.item.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -186,7 +192,9 @@ open class DiagnosticOrder: DomainResource {
     
         if self.note.count > o.note.count {
             for i in self.note.count...o.note.count {
+                let objectToRemove = self.note[i]
                 self.note.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.orderer, from: o.orderer)
@@ -202,7 +210,9 @@ open class DiagnosticOrder: DomainResource {
     
         if self.reason.count > o.reason.count {
             for i in self.reason.count...o.reason.count {
+                let objectToRemove = self.reason[i]
                 self.reason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -216,7 +226,9 @@ open class DiagnosticOrder: DomainResource {
     
         if self.specimen.count > o.specimen.count {
             for i in self.specimen.count...o.specimen.count {
+                let objectToRemove = self.specimen[i]
                 self.specimen.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status
@@ -232,7 +244,9 @@ open class DiagnosticOrder: DomainResource {
     
         if self.supportingInformation.count > o.supportingInformation.count {
             for i in self.supportingInformation.count...o.supportingInformation.count {
+                let objectToRemove = self.supportingInformation[i]
                 self.supportingInformation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -435,7 +449,9 @@ open class DiagnosticOrderItem: BackboneElement {
     
         if self.event.count > o.event.count {
             for i in self.event.count...o.event.count {
+                let objectToRemove = self.event[i]
                 self.event.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -449,7 +465,9 @@ open class DiagnosticOrderItem: BackboneElement {
     
         if self.specimen.count > o.specimen.count {
             for i in self.specimen.count...o.specimen.count {
+                let objectToRemove = self.specimen[i]
                 self.specimen.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status

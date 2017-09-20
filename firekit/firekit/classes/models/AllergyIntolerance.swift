@@ -161,7 +161,9 @@ open class AllergyIntolerance: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.lastOccurence, from: o.lastOccurence)
@@ -179,7 +181,9 @@ open class AllergyIntolerance: DomainResource {
     
         if self.reaction.count > o.reaction.count {
             for i in self.reaction.count...o.reaction.count {
+                let objectToRemove = self.reaction[i]
                 self.reaction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.recordedDate, from: o.recordedDate)
@@ -309,7 +313,9 @@ open class AllergyIntoleranceReaction: BackboneElement {
     
         if self.manifestation.count > o.manifestation.count {
             for i in self.manifestation.count...o.manifestation.count {
+                let objectToRemove = self.manifestation[i]
                 self.manifestation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.note, from: o.note)

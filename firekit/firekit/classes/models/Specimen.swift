@@ -140,7 +140,9 @@ open class Specimen: DomainResource {
     
         if self.container.count > o.container.count {
             for i in self.container.count...o.container.count {
+                let objectToRemove = self.container[i]
                 self.container.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -154,7 +156,9 @@ open class Specimen: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -168,7 +172,9 @@ open class Specimen: DomainResource {
     
         if self.parent.count > o.parent.count {
             for i in self.parent.count...o.parent.count {
+                let objectToRemove = self.parent[i]
                 self.parent.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.receivedTime, from: o.receivedTime)
@@ -185,7 +191,9 @@ open class Specimen: DomainResource {
     
         if self.treatment.count > o.treatment.count {
             for i in self.treatment.count...o.treatment.count {
+                let objectToRemove = self.treatment[i]
                 self.treatment.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)
@@ -307,7 +315,9 @@ open class SpecimenCollection: BackboneElement {
     
         if self.comment.count > o.comment.count {
             for i in self.comment.count...o.comment.count {
+                let objectToRemove = self.comment[i]
                 self.comment.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.method, from: o.method)
@@ -431,7 +441,9 @@ open class SpecimenContainer: BackboneElement {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.specimenQuantity, from: o.specimenQuantity)
@@ -522,7 +534,9 @@ open class SpecimenTreatment: BackboneElement {
     
         if self.additive.count > o.additive.count {
             for i in self.additive.count...o.additive.count {
+                let objectToRemove = self.additive[i]
                 self.additive.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         description_fhir = o.description_fhir

@@ -177,7 +177,9 @@ open class ProcessRequest: DomainResource {
     
         if self.exclude.count > o.exclude.count {
             for i in self.exclude.count...o.exclude.count {
+                let objectToRemove = self.exclude[i]
                 self.exclude.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -191,7 +193,9 @@ open class ProcessRequest: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -205,7 +209,9 @@ open class ProcessRequest: DomainResource {
     
         if self.include.count > o.include.count {
             for i in self.include.count...o.include.count {
+                let objectToRemove = self.include[i]
                 self.include.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -219,7 +225,9 @@ open class ProcessRequest: DomainResource {
     
         if self.item.count > o.item.count {
             for i in self.item.count...o.item.count {
+                let objectToRemove = self.item[i]
                 self.item.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         nullify.value = o.nullify.value

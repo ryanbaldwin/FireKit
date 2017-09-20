@@ -146,7 +146,9 @@ open class EpisodeOfCare: DomainResource {
     
         if self.careTeam.count > o.careTeam.count {
             for i in self.careTeam.count...o.careTeam.count {
+                let objectToRemove = self.careTeam[i]
                 self.careTeam.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -160,7 +162,9 @@ open class EpisodeOfCare: DomainResource {
     
         if self.condition.count > o.condition.count {
             for i in self.condition.count...o.condition.count {
+                let objectToRemove = self.condition[i]
                 self.condition.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -174,7 +178,9 @@ open class EpisodeOfCare: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
@@ -191,7 +197,9 @@ open class EpisodeOfCare: DomainResource {
     
         if self.referralRequest.count > o.referralRequest.count {
             for i in self.referralRequest.count...o.referralRequest.count {
+                let objectToRemove = self.referralRequest[i]
                 self.referralRequest.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status
@@ -206,7 +214,9 @@ open class EpisodeOfCare: DomainResource {
     
         if self.statusHistory.count > o.statusHistory.count {
             for i in self.statusHistory.count...o.statusHistory.count {
+                let objectToRemove = self.statusHistory[i]
                 self.statusHistory.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -220,7 +230,9 @@ open class EpisodeOfCare: DomainResource {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -314,7 +326,9 @@ open class EpisodeOfCareCareTeam: BackboneElement {
     
         if self.role.count > o.role.count {
             for i in self.role.count...o.role.count {
+                let objectToRemove = self.role[i]
                 self.role.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

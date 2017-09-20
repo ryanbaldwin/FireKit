@@ -19,7 +19,9 @@
     
         if self.{{prop.name}}.count > o.{{prop.name}}.count {
             for i in self.{{prop.name}}.count...o.{{prop.name}}.count {
+                let objectToRemove = self.{{prop.name}}[i]
                 self.{{prop.name}}.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     {%- elif prop|populatable %}

@@ -26,7 +26,7 @@ class FlagTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Flag {
-        print("Inflating FireKit.Flag from data: \(data)")
+        // print("Inflating FireKit.Flag from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Flag.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

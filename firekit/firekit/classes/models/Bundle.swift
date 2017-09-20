@@ -109,7 +109,9 @@ open class Bundle: Resource {
     
         if self.entry.count > o.entry.count {
             for i in self.entry.count...o.entry.count {
+                let objectToRemove = self.entry[i]
                 self.entry.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -123,7 +125,9 @@ open class Bundle: Resource {
     
         if self.link.count > o.link.count {
             for i in self.link.count...o.link.count {
+                let objectToRemove = self.link[i]
                 self.link.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.signature, from: o.signature)
@@ -242,7 +246,9 @@ open class BundleEntry: BackboneElement {
     
         if self.link.count > o.link.count {
             for i in self.link.count...o.link.count {
+                let objectToRemove = self.link[i]
                 self.link.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.request, from: o.request)

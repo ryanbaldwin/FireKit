@@ -26,7 +26,7 @@ class OrderTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Order {
-        print("Inflating FireKit.Order from data: \(data)")
+        // print("Inflating FireKit.Order from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Order.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

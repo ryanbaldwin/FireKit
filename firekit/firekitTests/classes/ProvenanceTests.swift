@@ -26,7 +26,7 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Provenance {
-        print("Inflating FireKit.Provenance from data: \(data)")
+        // print("Inflating FireKit.Provenance from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Provenance.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

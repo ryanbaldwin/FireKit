@@ -188,7 +188,9 @@ open class MedicationStatement: DomainResource {
     
         if self.dosage.count > o.dosage.count {
             for i in self.dosage.count...o.dosage.count {
+                let objectToRemove = self.dosage[i]
                 self.dosage.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.effectiveDateTime, from: o.effectiveDateTime)
@@ -204,7 +206,9 @@ open class MedicationStatement: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.informationSource, from: o.informationSource)
@@ -225,7 +229,9 @@ open class MedicationStatement: DomainResource {
     
         if self.reasonNotTaken.count > o.reasonNotTaken.count {
             for i in self.reasonNotTaken.count...o.reasonNotTaken.count {
+                let objectToRemove = self.reasonNotTaken[i]
                 self.reasonNotTaken.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status
@@ -240,7 +246,9 @@ open class MedicationStatement: DomainResource {
     
         if self.supportingInformation.count > o.supportingInformation.count {
             for i in self.supportingInformation.count...o.supportingInformation.count {
+                let objectToRemove = self.supportingInformation[i]
                 self.supportingInformation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         wasNotTaken.value = o.wasNotTaken.value

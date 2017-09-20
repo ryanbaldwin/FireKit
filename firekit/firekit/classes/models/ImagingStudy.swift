@@ -171,7 +171,9 @@ open class ImagingStudy: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.interpreter, from: o.interpreter)
@@ -186,7 +188,9 @@ open class ImagingStudy: DomainResource {
     
         if self.modalityList.count > o.modalityList.count {
             for i in self.modalityList.count...o.modalityList.count {
+                let objectToRemove = self.modalityList[i]
                 self.modalityList.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         numberOfInstances.value = o.numberOfInstances.value
@@ -202,7 +206,9 @@ open class ImagingStudy: DomainResource {
     
         if self.order.count > o.order.count {
             for i in self.order.count...o.order.count {
+                let objectToRemove = self.order[i]
                 self.order.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.patient, from: o.patient)
@@ -217,7 +223,9 @@ open class ImagingStudy: DomainResource {
     
         if self.procedure.count > o.procedure.count {
             for i in self.procedure.count...o.procedure.count {
+                let objectToRemove = self.procedure[i]
                 self.procedure.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.referrer, from: o.referrer)
@@ -232,7 +240,9 @@ open class ImagingStudy: DomainResource {
     
         if self.series.count > o.series.count {
             for i in self.series.count...o.series.count {
+                let objectToRemove = self.series[i]
                 self.series.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.started, from: o.started)
@@ -373,7 +383,9 @@ open class ImagingStudySeries: BackboneElement {
     
         if self.instance.count > o.instance.count {
             for i in self.instance.count...o.instance.count {
+                let objectToRemove = self.instance[i]
                 self.instance.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.laterality, from: o.laterality)
@@ -485,7 +497,9 @@ open class ImagingStudySeriesInstance: BackboneElement {
     
         if self.content.count > o.content.count {
             for i in self.content.count...o.content.count {
+                let objectToRemove = self.content[i]
                 self.content.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         number.value = o.number.value

@@ -122,7 +122,9 @@ open class DomainResource: Resource {
     
         if self.contained.count > o.contained.count {
             for i in self.contained.count...o.contained.count {
+                let objectToRemove = self.contained[i]
                 self.contained.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -136,7 +138,9 @@ open class DomainResource: Resource {
     
         if self.extension_fhir.count > o.extension_fhir.count {
             for i in self.extension_fhir.count...o.extension_fhir.count {
+                let objectToRemove = self.extension_fhir[i]
                 self.extension_fhir.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -150,7 +154,9 @@ open class DomainResource: Resource {
     
         if self.modifierExtension.count > o.modifierExtension.count {
             for i in self.modifierExtension.count...o.modifierExtension.count {
+                let objectToRemove = self.modifierExtension[i]
                 self.modifierExtension.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.text, from: o.text)

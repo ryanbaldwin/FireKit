@@ -180,7 +180,9 @@ open class ReferralRequest: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.patient, from: o.patient)
@@ -197,7 +199,9 @@ open class ReferralRequest: DomainResource {
     
         if self.recipient.count > o.recipient.count {
             for i in self.recipient.count...o.recipient.count {
+                let objectToRemove = self.recipient[i]
                 self.recipient.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.requester, from: o.requester)
@@ -212,7 +216,9 @@ open class ReferralRequest: DomainResource {
     
         if self.serviceRequested.count > o.serviceRequested.count {
             for i in self.serviceRequested.count...o.serviceRequested.count {
+                let objectToRemove = self.serviceRequested[i]
                 self.serviceRequested.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.specialty, from: o.specialty)
@@ -228,7 +234,9 @@ open class ReferralRequest: DomainResource {
     
         if self.supportingInformation.count > o.supportingInformation.count {
             for i in self.supportingInformation.count...o.supportingInformation.count {
+                let objectToRemove = self.supportingInformation[i]
                 self.supportingInformation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)

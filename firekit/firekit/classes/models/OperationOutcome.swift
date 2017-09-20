@@ -90,7 +90,9 @@ open class OperationOutcome: DomainResource {
     
         if self.issue.count > o.issue.count {
             for i in self.issue.count...o.issue.count {
+                let objectToRemove = self.issue[i]
                 self.issue.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -197,7 +199,9 @@ open class OperationOutcomeIssue: BackboneElement {
     
         if self.location.count > o.location.count {
             for i in self.location.count...o.location.count {
+                let objectToRemove = self.location[i]
                 self.location.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         severity = o.severity

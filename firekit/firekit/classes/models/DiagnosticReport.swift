@@ -188,7 +188,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.codedDiagnosis.count > o.codedDiagnosis.count {
             for i in self.codedDiagnosis.count...o.codedDiagnosis.count {
+                let objectToRemove = self.codedDiagnosis[i]
                 self.codedDiagnosis.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         conclusion = o.conclusion
@@ -206,7 +208,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -220,7 +224,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.image.count > o.image.count {
             for i in self.image.count...o.image.count {
+                let objectToRemove = self.image[i]
                 self.image.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -234,7 +240,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.imagingStudy.count > o.imagingStudy.count {
             for i in self.imagingStudy.count...o.imagingStudy.count {
+                let objectToRemove = self.imagingStudy[i]
                 self.imagingStudy.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.issued, from: o.issued)
@@ -250,7 +258,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.presentedForm.count > o.presentedForm.count {
             for i in self.presentedForm.count...o.presentedForm.count {
+                let objectToRemove = self.presentedForm[i]
                 self.presentedForm.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -264,7 +274,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.request.count > o.request.count {
             for i in self.request.count...o.request.count {
+                let objectToRemove = self.request[i]
                 self.request.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -278,7 +290,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.result.count > o.result.count {
             for i in self.result.count...o.result.count {
+                let objectToRemove = self.result[i]
                 self.result.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -292,7 +306,9 @@ open class DiagnosticReport: DomainResource {
     
         if self.specimen.count > o.specimen.count {
             for i in self.specimen.count...o.specimen.count {
+                let objectToRemove = self.specimen[i]
                 self.specimen.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status

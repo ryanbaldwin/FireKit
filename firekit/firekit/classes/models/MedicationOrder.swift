@@ -193,7 +193,9 @@ open class MedicationOrder: DomainResource {
     
         if self.dosageInstruction.count > o.dosageInstruction.count {
             for i in self.dosageInstruction.count...o.dosageInstruction.count {
+                let objectToRemove = self.dosageInstruction[i]
                 self.dosageInstruction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.encounter, from: o.encounter)
@@ -208,7 +210,9 @@ open class MedicationOrder: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)

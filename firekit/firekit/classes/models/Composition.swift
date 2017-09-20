@@ -169,7 +169,9 @@ open class Composition: DomainResource {
     
         if self.attester.count > o.attester.count {
             for i in self.attester.count...o.attester.count {
+                let objectToRemove = self.attester[i]
                 self.attester.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -183,7 +185,9 @@ open class Composition: DomainResource {
     
         if self.author.count > o.author.count {
             for i in self.author.count...o.author.count {
+                let objectToRemove = self.author[i]
                 self.author.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.class_fhir, from: o.class_fhir)
@@ -202,7 +206,9 @@ open class Composition: DomainResource {
     
         if self.event.count > o.event.count {
             for i in self.event.count...o.event.count {
+                let objectToRemove = self.event[i]
                 self.event.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -217,7 +223,9 @@ open class Composition: DomainResource {
     
         if self.section.count > o.section.count {
             for i in self.section.count...o.section.count {
+                let objectToRemove = self.section[i]
                 self.section.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status
@@ -316,7 +324,9 @@ open class CompositionAttester: BackboneElement {
     
         if self.mode.count > o.mode.count {
             for i in self.mode.count...o.mode.count {
+                let objectToRemove = self.mode[i]
                 self.mode.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.party, from: o.party)
@@ -407,7 +417,9 @@ open class CompositionEvent: BackboneElement {
     
         if self.code.count > o.code.count {
             for i in self.code.count...o.code.count {
+                let objectToRemove = self.code[i]
                 self.code.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -421,7 +433,9 @@ open class CompositionEvent: BackboneElement {
     
         if self.detail.count > o.detail.count {
             for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
                 self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.period, from: o.period)
@@ -542,7 +556,9 @@ open class CompositionSection: BackboneElement {
     
         if self.entry.count > o.entry.count {
             for i in self.entry.count...o.entry.count {
+                let objectToRemove = self.entry[i]
                 self.entry.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         mode = o.mode
@@ -558,7 +574,9 @@ open class CompositionSection: BackboneElement {
     
         if self.section.count > o.section.count {
             for i in self.section.count...o.section.count {
+                let objectToRemove = self.section[i]
                 self.section.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.text, from: o.text)

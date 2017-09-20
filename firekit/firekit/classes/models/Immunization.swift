@@ -214,7 +214,9 @@ open class Immunization: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.location, from: o.location)
@@ -231,7 +233,9 @@ open class Immunization: DomainResource {
     
         if self.note.count > o.note.count {
             for i in self.note.count...o.note.count {
+                let objectToRemove = self.note[i]
                 self.note.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.patient, from: o.patient)
@@ -247,7 +251,9 @@ open class Immunization: DomainResource {
     
         if self.reaction.count > o.reaction.count {
             for i in self.reaction.count...o.reaction.count {
+                let objectToRemove = self.reaction[i]
                 self.reaction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         reported.value = o.reported.value
@@ -266,7 +272,9 @@ open class Immunization: DomainResource {
     
         if self.vaccinationProtocol.count > o.vaccinationProtocol.count {
             for i in self.vaccinationProtocol.count...o.vaccinationProtocol.count {
+                let objectToRemove = self.vaccinationProtocol[i]
                 self.vaccinationProtocol.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
@@ -350,7 +358,9 @@ open class ImmunizationExplanation: BackboneElement {
     
         if self.reason.count > o.reason.count {
             for i in self.reason.count...o.reason.count {
+                let objectToRemove = self.reason[i]
                 self.reason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -364,7 +374,9 @@ open class ImmunizationExplanation: BackboneElement {
     
         if self.reasonNotGiven.count > o.reasonNotGiven.count {
             for i in self.reasonNotGiven.count...o.reasonNotGiven.count {
+                let objectToRemove = self.reasonNotGiven[i]
                 self.reasonNotGiven.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -572,7 +584,9 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
     
         if self.targetDisease.count > o.targetDisease.count {
             for i in self.targetDisease.count...o.targetDisease.count {
+                let objectToRemove = self.targetDisease[i]
                 self.targetDisease.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

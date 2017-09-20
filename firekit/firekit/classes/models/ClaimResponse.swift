@@ -232,7 +232,9 @@ open class ClaimResponse: DomainResource {
     
         if self.addItem.count > o.addItem.count {
             for i in self.addItem.count...o.addItem.count {
+                let objectToRemove = self.addItem[i]
                 self.addItem.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -246,7 +248,9 @@ open class ClaimResponse: DomainResource {
     
         if self.coverage.count > o.coverage.count {
             for i in self.coverage.count...o.coverage.count {
+                let objectToRemove = self.coverage[i]
                 self.coverage.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.created, from: o.created)
@@ -262,7 +266,9 @@ open class ClaimResponse: DomainResource {
     
         if self.error.count > o.error.count {
             for i in self.error.count...o.error.count {
+                let objectToRemove = self.error[i]
                 self.error.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.form, from: o.form)
@@ -277,7 +283,9 @@ open class ClaimResponse: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -291,7 +299,9 @@ open class ClaimResponse: DomainResource {
     
         if self.item.count > o.item.count {
             for i in self.item.count...o.item.count {
+                let objectToRemove = self.item[i]
                 self.item.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -305,7 +315,9 @@ open class ClaimResponse: DomainResource {
     
         if self.note.count > o.note.count {
             for i in self.note.count...o.note.count {
+                let objectToRemove = self.note[i]
                 self.note.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.organization, from: o.organization)
@@ -432,7 +444,9 @@ open class ClaimResponseAddItem: BackboneElement {
     
         if self.adjudication.count > o.adjudication.count {
             for i in self.adjudication.count...o.adjudication.count {
+                let objectToRemove = self.adjudication[i]
                 self.adjudication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -446,7 +460,9 @@ open class ClaimResponseAddItem: BackboneElement {
     
         if self.detail.count > o.detail.count {
             for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
                 self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.fee, from: o.fee)
@@ -461,7 +477,9 @@ open class ClaimResponseAddItem: BackboneElement {
     
         if self.noteNumberLinkId.count > o.noteNumberLinkId.count {
             for i in self.noteNumberLinkId.count...o.noteNumberLinkId.count {
+                let objectToRemove = self.noteNumberLinkId[i]
                 self.noteNumberLinkId.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -475,7 +493,9 @@ open class ClaimResponseAddItem: BackboneElement {
     
         if self.sequenceLinkId.count > o.sequenceLinkId.count {
             for i in self.sequenceLinkId.count...o.sequenceLinkId.count {
+                let objectToRemove = self.sequenceLinkId[i]
                 self.sequenceLinkId.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.service, from: o.service)
@@ -661,7 +681,9 @@ open class ClaimResponseAddItemDetail: BackboneElement {
     
         if self.adjudication.count > o.adjudication.count {
             for i in self.adjudication.count...o.adjudication.count {
+                let objectToRemove = self.adjudication[i]
                 self.adjudication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.fee, from: o.fee)
@@ -882,7 +904,9 @@ open class ClaimResponseCoverage: BackboneElement {
     
         if self.preAuthRef.count > o.preAuthRef.count {
             for i in self.preAuthRef.count...o.preAuthRef.count {
+                let objectToRemove = self.preAuthRef[i]
                 self.preAuthRef.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.relationship, from: o.relationship)
@@ -1069,7 +1093,9 @@ open class ClaimResponseItem: BackboneElement {
     
         if self.adjudication.count > o.adjudication.count {
             for i in self.adjudication.count...o.adjudication.count {
+                let objectToRemove = self.adjudication[i]
                 self.adjudication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -1083,7 +1109,9 @@ open class ClaimResponseItem: BackboneElement {
     
         if self.detail.count > o.detail.count {
             for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
                 self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -1097,7 +1125,9 @@ open class ClaimResponseItem: BackboneElement {
     
         if self.noteNumber.count > o.noteNumber.count {
             for i in self.noteNumber.count...o.noteNumber.count {
+                let objectToRemove = self.noteNumber[i]
                 self.noteNumber.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         sequenceLinkId.value = o.sequenceLinkId.value
@@ -1277,7 +1307,9 @@ open class ClaimResponseItemDetail: BackboneElement {
     
         if self.adjudication.count > o.adjudication.count {
             for i in self.adjudication.count...o.adjudication.count {
+                let objectToRemove = self.adjudication[i]
                 self.adjudication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         sequenceLinkId.value = o.sequenceLinkId.value
@@ -1292,7 +1324,9 @@ open class ClaimResponseItemDetail: BackboneElement {
     
         if self.subDetail.count > o.subDetail.count {
             for i in self.subDetail.count...o.subDetail.count {
+                let objectToRemove = self.subDetail[i]
                 self.subDetail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -1467,7 +1501,9 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
     
         if self.adjudication.count > o.adjudication.count {
             for i in self.adjudication.count...o.adjudication.count {
+                let objectToRemove = self.adjudication[i]
                 self.adjudication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         sequenceLinkId.value = o.sequenceLinkId.value

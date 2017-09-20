@@ -127,7 +127,9 @@ open class Address: Element {
     
         if self.line.count > o.line.count {
             for i in self.line.count...o.line.count {
+                let objectToRemove = self.line[i]
                 self.line.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.period, from: o.period)

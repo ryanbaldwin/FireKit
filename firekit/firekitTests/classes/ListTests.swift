@@ -26,7 +26,7 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.List {
-        print("Inflating FireKit.List from data: \(data)")
+        // print("Inflating FireKit.List from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.List.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

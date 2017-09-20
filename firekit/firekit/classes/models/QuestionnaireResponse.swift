@@ -240,7 +240,9 @@ open class QuestionnaireResponseGroup: BackboneElement {
     
         if self.group.count > o.group.count {
             for i in self.group.count...o.group.count {
+                let objectToRemove = self.group[i]
                 self.group.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         linkId = o.linkId
@@ -255,7 +257,9 @@ open class QuestionnaireResponseGroup: BackboneElement {
     
         if self.question.count > o.question.count {
             for i in self.question.count...o.question.count {
+                let objectToRemove = self.question[i]
                 self.question.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.subject, from: o.subject)
@@ -344,7 +348,9 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
     
         if self.answer.count > o.answer.count {
             for i in self.answer.count...o.answer.count {
+                let objectToRemove = self.answer[i]
                 self.answer.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         linkId = o.linkId
@@ -488,7 +494,9 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
     
         if self.group.count > o.group.count {
             for i in self.group.count...o.group.count {
+                let objectToRemove = self.group[i]
                 self.group.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.valueAttachment, from: o.valueAttachment)

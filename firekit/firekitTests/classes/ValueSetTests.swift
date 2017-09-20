@@ -26,7 +26,7 @@ class ValueSetTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.ValueSet {
-        print("Inflating FireKit.ValueSet from data: \(data)")
+        // print("Inflating FireKit.ValueSet from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.ValueSet.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

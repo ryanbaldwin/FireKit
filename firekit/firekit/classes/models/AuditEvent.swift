@@ -112,7 +112,9 @@ open class AuditEvent: DomainResource {
     
         if self.object.count > o.object.count {
             for i in self.object.count...o.object.count {
+                let objectToRemove = self.object[i]
                 self.object.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -126,7 +128,9 @@ open class AuditEvent: DomainResource {
     
         if self.participant.count > o.participant.count {
             for i in self.participant.count...o.participant.count {
+                let objectToRemove = self.participant[i]
                 self.participant.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.source, from: o.source)
@@ -243,7 +247,9 @@ open class AuditEventEvent: BackboneElement {
     
         if self.purposeOfEvent.count > o.purposeOfEvent.count {
             for i in self.purposeOfEvent.count...o.purposeOfEvent.count {
+                let objectToRemove = self.purposeOfEvent[i]
                 self.purposeOfEvent.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -257,7 +263,9 @@ open class AuditEventEvent: BackboneElement {
     
         if self.subtype.count > o.subtype.count {
             for i in self.subtype.count...o.subtype.count {
+                let objectToRemove = self.subtype[i]
                 self.subtype.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)
@@ -386,7 +394,9 @@ open class AuditEventObject: BackboneElement {
     
         if self.detail.count > o.detail.count {
             for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
                 self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -406,7 +416,9 @@ open class AuditEventObject: BackboneElement {
     
         if self.securityLabel.count > o.securityLabel.count {
             for i in self.securityLabel.count...o.securityLabel.count {
+                let objectToRemove = self.securityLabel[i]
                 self.securityLabel.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)
@@ -624,7 +636,9 @@ open class AuditEventParticipant: BackboneElement {
     
         if self.policy.count > o.policy.count {
             for i in self.policy.count...o.policy.count {
+                let objectToRemove = self.policy[i]
                 self.policy.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -638,7 +652,9 @@ open class AuditEventParticipant: BackboneElement {
     
         if self.purposeOfUse.count > o.purposeOfUse.count {
             for i in self.purposeOfUse.count...o.purposeOfUse.count {
+                let objectToRemove = self.purposeOfUse[i]
                 self.purposeOfUse.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.reference, from: o.reference)
@@ -654,7 +670,9 @@ open class AuditEventParticipant: BackboneElement {
     
         if self.role.count > o.role.count {
             for i in self.role.count...o.role.count {
+                let objectToRemove = self.role[i]
                 self.role.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.userId, from: o.userId)
@@ -820,7 +838,9 @@ open class AuditEventSource: BackboneElement {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

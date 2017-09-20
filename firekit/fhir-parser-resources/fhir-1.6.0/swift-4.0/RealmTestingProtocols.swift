@@ -25,9 +25,9 @@ extension RealmPersistenceTesting where Self: XCTestCase {
     /// - Returns: A new Realm instance
     func makeRealm() -> Realm {
         var realm: Realm!
-        stopwatch("Time to fire up realm") {
+        // stopwatch("Time to fire up realm") {
             realm = try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "FireKitInMemDB"))
-        }
+        // }
         
         clear(realm)
         return realm

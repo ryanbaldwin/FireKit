@@ -26,7 +26,7 @@ class CommunicationRequestTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.CommunicationRequest {
-        print("Inflating FireKit.CommunicationRequest from data: \(data)")
+        // print("Inflating FireKit.CommunicationRequest from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.CommunicationRequest.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

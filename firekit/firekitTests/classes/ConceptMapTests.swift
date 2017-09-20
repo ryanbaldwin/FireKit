@@ -26,7 +26,7 @@ class ConceptMapTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.ConceptMap {
-        print("Inflating FireKit.ConceptMap from data: \(data)")
+        // print("Inflating FireKit.ConceptMap from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.ConceptMap.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

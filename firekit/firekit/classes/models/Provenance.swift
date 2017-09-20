@@ -143,7 +143,9 @@ open class Provenance: DomainResource {
     
         if self.agent.count > o.agent.count {
             for i in self.agent.count...o.agent.count {
+                let objectToRemove = self.agent[i]
                 self.agent.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -157,7 +159,9 @@ open class Provenance: DomainResource {
     
         if self.entity.count > o.entity.count {
             for i in self.entity.count...o.entity.count {
+                let objectToRemove = self.entity[i]
                 self.entity.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.location, from: o.location)
@@ -173,7 +177,9 @@ open class Provenance: DomainResource {
     
         if self.policy.count > o.policy.count {
             for i in self.policy.count...o.policy.count {
+                let objectToRemove = self.policy[i]
                 self.policy.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -187,7 +193,9 @@ open class Provenance: DomainResource {
     
         if self.reason.count > o.reason.count {
             for i in self.reason.count...o.reason.count {
+                let objectToRemove = self.reason[i]
                 self.reason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.recorded, from: o.recorded)
@@ -202,7 +210,9 @@ open class Provenance: DomainResource {
     
         if self.signature.count > o.signature.count {
             for i in self.signature.count...o.signature.count {
+                let objectToRemove = self.signature[i]
                 self.signature.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -216,7 +226,9 @@ open class Provenance: DomainResource {
     
         if self.target.count > o.target.count {
             for i in self.target.count...o.target.count {
+                let objectToRemove = self.target[i]
                 self.target.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -324,7 +336,9 @@ open class ProvenanceAgent: BackboneElement {
     
         if self.relatedAgent.count > o.relatedAgent.count {
             for i in self.relatedAgent.count...o.relatedAgent.count {
+                let objectToRemove = self.relatedAgent[i]
                 self.relatedAgent.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.role, from: o.role)

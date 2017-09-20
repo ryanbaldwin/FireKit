@@ -159,7 +159,9 @@ open class MessageHeader: DomainResource {
     
         if self.data.count > o.data.count {
             for i in self.data.count...o.data.count {
+                let objectToRemove = self.data[i]
                 self.data.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -173,7 +175,9 @@ open class MessageHeader: DomainResource {
     
         if self.destination.count > o.destination.count {
             for i in self.destination.count...o.destination.count {
+                let objectToRemove = self.destination[i]
                 self.destination.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.enterer, from: o.enterer)

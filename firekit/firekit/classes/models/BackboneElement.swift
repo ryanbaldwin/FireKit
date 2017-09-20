@@ -84,7 +84,9 @@ open class BackboneElement: Element {
     
         if self.modifierExtension.count > o.modifierExtension.count {
             for i in self.modifierExtension.count...o.modifierExtension.count {
+                let objectToRemove = self.modifierExtension[i]
                 self.modifierExtension.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

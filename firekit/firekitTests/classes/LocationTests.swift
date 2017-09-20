@@ -26,7 +26,7 @@ class LocationTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Location {
-        print("Inflating FireKit.Location from data: \(data)")
+        // print("Inflating FireKit.Location from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Location.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

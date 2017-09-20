@@ -190,7 +190,9 @@ open class MedicationPackage: BackboneElement {
     
         if self.content.count > o.content.count {
             for i in self.content.count...o.content.count {
+                let objectToRemove = self.content[i]
                 self.content.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -361,7 +363,9 @@ open class MedicationProduct: BackboneElement {
     
         if self.batch.count > o.batch.count {
             for i in self.batch.count...o.batch.count {
+                let objectToRemove = self.batch[i]
                 self.batch.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.form, from: o.form)
@@ -376,7 +380,9 @@ open class MedicationProduct: BackboneElement {
     
         if self.ingredient.count > o.ingredient.count {
             for i in self.ingredient.count...o.ingredient.count {
+                let objectToRemove = self.ingredient[i]
                 self.ingredient.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

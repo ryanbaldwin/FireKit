@@ -187,7 +187,9 @@ open class MedicationDispense: DomainResource {
     
         if self.authorizingPrescription.count > o.authorizingPrescription.count {
             for i in self.authorizingPrescription.count...o.authorizingPrescription.count {
+                let objectToRemove = self.authorizingPrescription[i]
                 self.authorizingPrescription.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.daysSupply, from: o.daysSupply)
@@ -204,7 +206,9 @@ open class MedicationDispense: DomainResource {
     
         if self.dosageInstruction.count > o.dosageInstruction.count {
             for i in self.dosageInstruction.count...o.dosageInstruction.count {
+                let objectToRemove = self.dosageInstruction[i]
                 self.dosageInstruction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -224,7 +228,9 @@ open class MedicationDispense: DomainResource {
     
         if self.receiver.count > o.receiver.count {
             for i in self.receiver.count...o.receiver.count {
+                let objectToRemove = self.receiver[i]
                 self.receiver.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         status = o.status
@@ -492,7 +498,9 @@ open class MedicationDispenseSubstitution: BackboneElement {
     
         if self.reason.count > o.reason.count {
             for i in self.reason.count...o.reason.count {
+                let objectToRemove = self.reason[i]
                 self.reason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -506,7 +514,9 @@ open class MedicationDispenseSubstitution: BackboneElement {
     
         if self.responsibleParty.count > o.responsibleParty.count {
             for i in self.responsibleParty.count...o.responsibleParty.count {
+                let objectToRemove = self.responsibleParty[i]
                 self.responsibleParty.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.type, from: o.type)

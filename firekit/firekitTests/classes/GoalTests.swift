@@ -26,7 +26,7 @@ class GoalTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Goal {
-        print("Inflating FireKit.Goal from data: \(data)")
+        // print("Inflating FireKit.Goal from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Goal.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

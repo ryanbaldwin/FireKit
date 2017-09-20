@@ -26,7 +26,7 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.VisionPrescription {
-        print("Inflating FireKit.VisionPrescription from data: \(data)")
+        // print("Inflating FireKit.VisionPrescription from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.VisionPrescription.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

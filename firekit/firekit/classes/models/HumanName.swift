@@ -111,7 +111,9 @@ open class HumanName: Element {
     
         if self.family.count > o.family.count {
             for i in self.family.count...o.family.count {
+                let objectToRemove = self.family[i]
                 self.family.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -125,7 +127,9 @@ open class HumanName: Element {
     
         if self.given.count > o.given.count {
             for i in self.given.count...o.given.count {
+                let objectToRemove = self.given[i]
                 self.given.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.period, from: o.period)
@@ -140,7 +144,9 @@ open class HumanName: Element {
     
         if self.prefix.count > o.prefix.count {
             for i in self.prefix.count...o.prefix.count {
+                let objectToRemove = self.prefix[i]
                 self.prefix.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -154,7 +160,9 @@ open class HumanName: Element {
     
         if self.suffix.count > o.suffix.count {
             for i in self.suffix.count...o.suffix.count {
+                let objectToRemove = self.suffix[i]
                 self.suffix.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         text = o.text

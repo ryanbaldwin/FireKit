@@ -26,7 +26,7 @@ class ImplementationGuideTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.ImplementationGuide {
-        print("Inflating FireKit.ImplementationGuide from data: \(data)")
+        // print("Inflating FireKit.ImplementationGuide from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.ImplementationGuide.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

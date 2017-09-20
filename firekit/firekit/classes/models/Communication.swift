@@ -150,7 +150,9 @@ open class Communication: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -164,7 +166,9 @@ open class Communication: DomainResource {
     
         if self.medium.count > o.medium.count {
             for i in self.medium.count...o.medium.count {
+                let objectToRemove = self.medium[i]
                 self.medium.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -178,7 +182,9 @@ open class Communication: DomainResource {
     
         if self.payload.count > o.payload.count {
             for i in self.payload.count...o.payload.count {
+                let objectToRemove = self.payload[i]
                 self.payload.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -192,7 +198,9 @@ open class Communication: DomainResource {
     
         if self.reason.count > o.reason.count {
             for i in self.reason.count...o.reason.count {
+                let objectToRemove = self.reason[i]
                 self.reason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.received, from: o.received)
@@ -207,7 +215,9 @@ open class Communication: DomainResource {
     
         if self.recipient.count > o.recipient.count {
             for i in self.recipient.count...o.recipient.count {
+                let objectToRemove = self.recipient[i]
                 self.recipient.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.requestDetail, from: o.requestDetail)

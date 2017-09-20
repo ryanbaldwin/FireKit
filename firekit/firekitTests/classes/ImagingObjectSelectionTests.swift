@@ -26,7 +26,7 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.ImagingObjectSelection {
-        print("Inflating FireKit.ImagingObjectSelection from data: \(data)")
+        // print("Inflating FireKit.ImagingObjectSelection from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.ImagingObjectSelection.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

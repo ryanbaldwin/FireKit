@@ -162,7 +162,9 @@ open class ImplementationGuide: DomainResource {
     
         if self.binary.count > o.binary.count {
             for i in self.binary.count...o.binary.count {
+                let objectToRemove = self.binary[i]
                 self.binary.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -176,7 +178,9 @@ open class ImplementationGuide: DomainResource {
     
         if self.contact.count > o.contact.count {
             for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
                 self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         copyright = o.copyright
@@ -192,7 +196,9 @@ open class ImplementationGuide: DomainResource {
     
         if self.dependency.count > o.dependency.count {
             for i in self.dependency.count...o.dependency.count {
+                let objectToRemove = self.dependency[i]
                 self.dependency.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         description_fhir = o.description_fhir
@@ -209,7 +215,9 @@ open class ImplementationGuide: DomainResource {
     
         if self.global.count > o.global.count {
             for i in self.global.count...o.global.count {
+                let objectToRemove = self.global[i]
                 self.global.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         name = o.name
@@ -224,7 +232,9 @@ open class ImplementationGuide: DomainResource {
     
         if self.package.count > o.package.count {
             for i in self.package.count...o.package.count {
+                let objectToRemove = self.package[i]
                 self.package.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.page, from: o.page)
@@ -242,7 +252,9 @@ open class ImplementationGuide: DomainResource {
     
         if self.useContext.count > o.useContext.count {
             for i in self.useContext.count...o.useContext.count {
+                let objectToRemove = self.useContext[i]
                 self.useContext.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         version = o.version
@@ -326,7 +338,9 @@ open class ImplementationGuideContact: BackboneElement {
     
         if self.telecom.count > o.telecom.count {
             for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
                 self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -579,7 +593,9 @@ open class ImplementationGuidePackage: BackboneElement {
     
         if self.resource.count > o.resource.count {
             for i in self.resource.count...o.resource.count {
+                let objectToRemove = self.resource[i]
                 self.resource.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }
@@ -803,7 +819,9 @@ open class ImplementationGuidePage: BackboneElement {
     
         if self.package.count > o.package.count {
             for i in self.package.count...o.package.count {
+                let objectToRemove = self.package[i]
                 self.package.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -817,7 +835,9 @@ open class ImplementationGuidePage: BackboneElement {
     
         if self.page.count > o.page.count {
             for i in self.page.count...o.page.count {
+                let objectToRemove = self.page[i]
                 self.page.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         source = o.source
@@ -832,7 +852,9 @@ open class ImplementationGuidePage: BackboneElement {
     
         if self.type.count > o.type.count {
             for i in self.type.count...o.type.count {
+                let objectToRemove = self.type[i]
                 self.type.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

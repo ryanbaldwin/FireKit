@@ -26,7 +26,7 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.Coverage {
-        print("Inflating FireKit.Coverage from data: \(data)")
+        // print("Inflating FireKit.Coverage from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.Coverage.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

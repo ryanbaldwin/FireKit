@@ -26,7 +26,7 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.AuditEvent {
-        print("Inflating FireKit.AuditEvent from data: \(data)")
+        // print("Inflating FireKit.AuditEvent from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.AuditEvent.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance

@@ -211,7 +211,9 @@ open class Procedure: DomainResource {
     
         if self.bodySite.count > o.bodySite.count {
             for i in self.bodySite.count...o.bodySite.count {
+                let objectToRemove = self.bodySite[i]
                 self.bodySite.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.category, from: o.category)
@@ -227,7 +229,9 @@ open class Procedure: DomainResource {
     
         if self.complication.count > o.complication.count {
             for i in self.complication.count...o.complication.count {
+                let objectToRemove = self.complication[i]
                 self.complication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.encounter, from: o.encounter)
@@ -242,7 +246,9 @@ open class Procedure: DomainResource {
     
         if self.focalDevice.count > o.focalDevice.count {
             for i in self.focalDevice.count...o.focalDevice.count {
+                let objectToRemove = self.focalDevice[i]
                 self.focalDevice.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -256,7 +262,9 @@ open class Procedure: DomainResource {
     
         if self.followUp.count > o.followUp.count {
             for i in self.followUp.count...o.followUp.count {
+                let objectToRemove = self.followUp[i]
                 self.followUp.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
 
@@ -270,7 +278,9 @@ open class Procedure: DomainResource {
     
         if self.identifier.count > o.identifier.count {
             for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
                 self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.location, from: o.location)
@@ -286,7 +296,9 @@ open class Procedure: DomainResource {
     
         if self.notes.count > o.notes.count {
             for i in self.notes.count...o.notes.count {
+                let objectToRemove = self.notes[i]
                 self.notes.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.outcome, from: o.outcome)
@@ -303,7 +315,9 @@ open class Procedure: DomainResource {
     
         if self.performer.count > o.performer.count {
             for i in self.performer.count...o.performer.count {
+                let objectToRemove = self.performer[i]
                 self.performer.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
@@ -318,7 +332,9 @@ open class Procedure: DomainResource {
     
         if self.reasonNotPerformed.count > o.reasonNotPerformed.count {
             for i in self.reasonNotPerformed.count...o.reasonNotPerformed.count {
+                let objectToRemove = self.reasonNotPerformed[i]
                 self.reasonNotPerformed.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
@@ -333,7 +349,9 @@ open class Procedure: DomainResource {
     
         if self.report.count > o.report.count {
             for i in self.report.count...o.report.count {
+                let objectToRemove = self.report[i]
                 self.report.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
         FireKit.populate(&self.request, from: o.request)
@@ -350,7 +368,9 @@ open class Procedure: DomainResource {
     
         if self.used.count > o.used.count {
             for i in self.used.count...o.used.count {
+                let objectToRemove = self.used[i]
                 self.used.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
             }
         }
     }

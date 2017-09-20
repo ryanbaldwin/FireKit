@@ -26,7 +26,7 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func inflateFrom(data: Data) throws -> FireKit.NutritionOrder {
-        print("Inflating FireKit.NutritionOrder from data: \(data)")
+        // print("Inflating FireKit.NutritionOrder from data: \(data)")
         let instance = try JSONDecoder().decode(FireKit.NutritionOrder.self, from: data)
         XCTAssertNotNil(instance, "Must have instantiated a test instance")
         return instance
