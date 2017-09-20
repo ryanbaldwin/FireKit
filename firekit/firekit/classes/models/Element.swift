@@ -79,7 +79,20 @@ open class Element: FHIRAbstractBase {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.extension_fhir, from: o.extension_fhir)
+
+        for (index, t) in o.extension_fhir.enumerated() {
+            guard index < self.extension_fhir.count else {
+                self.extension_fhir.append(t)
+                continue
+            }
+            self.extension_fhir[index].populate(from: t)
+        }
+    
+        if self.extension_fhir.count > o.extension_fhir.count {
+            for i in self.extension_fhir.count...o.extension_fhir.count {
+                self.extension_fhir.remove(objectAtIndex: i)
+            }
+        }
         id = o.id
     }
 }

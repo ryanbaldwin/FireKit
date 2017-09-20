@@ -127,15 +127,41 @@ open class RiskAssessment: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.basis, from: o.basis)
+
+        for (index, t) in o.basis.enumerated() {
+            guard index < self.basis.count else {
+                self.basis.append(t)
+                continue
+            }
+            self.basis[index].populate(from: t)
+        }
+    
+        if self.basis.count > o.basis.count {
+            for i in self.basis.count...o.basis.count {
+                self.basis.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.condition, from: o.condition)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.encounter, from: o.encounter)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.method, from: o.method)
         mitigation = o.mitigation
         FireKit.populate(&self.performer, from: o.performer)
-        FireKit.populateList(&self.prediction, from: o.prediction)
+
+        for (index, t) in o.prediction.enumerated() {
+            guard index < self.prediction.count else {
+                self.prediction.append(t)
+                continue
+            }
+            self.prediction[index].populate(from: t)
+        }
+    
+        if self.prediction.count > o.prediction.count {
+            for i in self.prediction.count...o.prediction.count {
+                self.prediction.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.subject, from: o.subject)
     }
 }

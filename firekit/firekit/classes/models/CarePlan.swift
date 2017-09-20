@@ -152,22 +152,139 @@ open class CarePlan: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.activity, from: o.activity)
-        FireKit.populateList(&self.addresses, from: o.addresses)
-        FireKit.populateList(&self.author, from: o.author)
-        FireKit.populateList(&self.category, from: o.category)
+
+        for (index, t) in o.activity.enumerated() {
+            guard index < self.activity.count else {
+                self.activity.append(t)
+                continue
+            }
+            self.activity[index].populate(from: t)
+        }
+    
+        if self.activity.count > o.activity.count {
+            for i in self.activity.count...o.activity.count {
+                self.activity.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.addresses.enumerated() {
+            guard index < self.addresses.count else {
+                self.addresses.append(t)
+                continue
+            }
+            self.addresses[index].populate(from: t)
+        }
+    
+        if self.addresses.count > o.addresses.count {
+            for i in self.addresses.count...o.addresses.count {
+                self.addresses.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.author.enumerated() {
+            guard index < self.author.count else {
+                self.author.append(t)
+                continue
+            }
+            self.author[index].populate(from: t)
+        }
+    
+        if self.author.count > o.author.count {
+            for i in self.author.count...o.author.count {
+                self.author.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.category.enumerated() {
+            guard index < self.category.count else {
+                self.category.append(t)
+                continue
+            }
+            self.category[index].populate(from: t)
+        }
+    
+        if self.category.count > o.category.count {
+            for i in self.category.count...o.category.count {
+                self.category.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.context, from: o.context)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.goal, from: o.goal)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        modified = o.modified
+
+        for (index, t) in o.goal.enumerated() {
+            guard index < self.goal.count else {
+                self.goal.append(t)
+                continue
+            }
+            self.goal[index].populate(from: t)
+        }
+    
+        if self.goal.count > o.goal.count {
+            for i in self.goal.count...o.goal.count {
+                self.goal.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.modified, from: o.modified)
         FireKit.populate(&self.note, from: o.note)
-        FireKit.populateList(&self.participant, from: o.participant)
+
+        for (index, t) in o.participant.enumerated() {
+            guard index < self.participant.count else {
+                self.participant.append(t)
+                continue
+            }
+            self.participant[index].populate(from: t)
+        }
+    
+        if self.participant.count > o.participant.count {
+            for i in self.participant.count...o.participant.count {
+                self.participant.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.period, from: o.period)
-        FireKit.populateList(&self.relatedPlan, from: o.relatedPlan)
+
+        for (index, t) in o.relatedPlan.enumerated() {
+            guard index < self.relatedPlan.count else {
+                self.relatedPlan.append(t)
+                continue
+            }
+            self.relatedPlan[index].populate(from: t)
+        }
+    
+        if self.relatedPlan.count > o.relatedPlan.count {
+            for i in self.relatedPlan.count...o.relatedPlan.count {
+                self.relatedPlan.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        FireKit.populateList(&self.support, from: o.support)
+
+        for (index, t) in o.support.enumerated() {
+            guard index < self.support.count else {
+                self.support.append(t)
+                continue
+            }
+            self.support[index].populate(from: t)
+        }
+    
+        if self.support.count > o.support.count {
+            for i in self.support.count...o.support.count {
+                self.support.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -251,9 +368,35 @@ open class CarePlanActivity: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.actionResulting, from: o.actionResulting)
+
+        for (index, t) in o.actionResulting.enumerated() {
+            guard index < self.actionResulting.count else {
+                self.actionResulting.append(t)
+                continue
+            }
+            self.actionResulting[index].populate(from: t)
+        }
+    
+        if self.actionResulting.count > o.actionResulting.count {
+            for i in self.actionResulting.count...o.actionResulting.count {
+                self.actionResulting.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.detail, from: o.detail)
-        FireKit.populateList(&self.progress, from: o.progress)
+
+        for (index, t) in o.progress.enumerated() {
+            guard index < self.progress.count else {
+                self.progress.append(t)
+                continue
+            }
+            self.progress[index].populate(from: t)
+        }
+    
+        if self.progress.count > o.progress.count {
+            for i in self.progress.count...o.progress.count {
+                self.progress.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.reference, from: o.reference)
     }
 }
@@ -428,15 +571,67 @@ open class CarePlanActivityDetail: BackboneElement {
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.dailyAmount, from: o.dailyAmount)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.goal, from: o.goal)
+
+        for (index, t) in o.goal.enumerated() {
+            guard index < self.goal.count else {
+                self.goal.append(t)
+                continue
+            }
+            self.goal[index].populate(from: t)
+        }
+    
+        if self.goal.count > o.goal.count {
+            for i in self.goal.count...o.goal.count {
+                self.goal.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.location, from: o.location)
-        FireKit.populateList(&self.performer, from: o.performer)
+
+        for (index, t) in o.performer.enumerated() {
+            guard index < self.performer.count else {
+                self.performer.append(t)
+                continue
+            }
+            self.performer[index].populate(from: t)
+        }
+    
+        if self.performer.count > o.performer.count {
+            for i in self.performer.count...o.performer.count {
+                self.performer.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.productCodeableConcept, from: o.productCodeableConcept)
         FireKit.populate(&self.productReference, from: o.productReference)
         prohibited.value = o.prohibited.value
         FireKit.populate(&self.quantity, from: o.quantity)
-        FireKit.populateList(&self.reasonCode, from: o.reasonCode)
-        FireKit.populateList(&self.reasonReference, from: o.reasonReference)
+
+        for (index, t) in o.reasonCode.enumerated() {
+            guard index < self.reasonCode.count else {
+                self.reasonCode.append(t)
+                continue
+            }
+            self.reasonCode[index].populate(from: t)
+        }
+    
+        if self.reasonCode.count > o.reasonCode.count {
+            for i in self.reasonCode.count...o.reasonCode.count {
+                self.reasonCode.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.reasonReference.enumerated() {
+            guard index < self.reasonReference.count else {
+                self.reasonReference.append(t)
+                continue
+            }
+            self.reasonReference[index].populate(from: t)
+        }
+    
+        if self.reasonReference.count > o.reasonReference.count {
+            for i in self.reasonReference.count...o.reasonReference.count {
+                self.reasonReference.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)
         scheduledString = o.scheduledString
         FireKit.populate(&self.scheduledTiming, from: o.scheduledTiming)

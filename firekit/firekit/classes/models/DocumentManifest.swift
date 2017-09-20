@@ -131,14 +131,79 @@ open class DocumentManifest: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.author, from: o.author)
-        FireKit.populateList(&self.content, from: o.content)
-        created = o.created
+
+        for (index, t) in o.author.enumerated() {
+            guard index < self.author.count else {
+                self.author.append(t)
+                continue
+            }
+            self.author[index].populate(from: t)
+        }
+    
+        if self.author.count > o.author.count {
+            for i in self.author.count...o.author.count {
+                self.author.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.content.enumerated() {
+            guard index < self.content.count else {
+                self.content.append(t)
+                continue
+            }
+            self.content[index].populate(from: t)
+        }
+    
+        if self.content.count > o.content.count {
+            for i in self.content.count...o.content.count {
+                self.content.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.created, from: o.created)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.masterIdentifier, from: o.masterIdentifier)
-        FireKit.populateList(&self.recipient, from: o.recipient)
-        FireKit.populateList(&self.related, from: o.related)
+
+        for (index, t) in o.recipient.enumerated() {
+            guard index < self.recipient.count else {
+                self.recipient.append(t)
+                continue
+            }
+            self.recipient[index].populate(from: t)
+        }
+    
+        if self.recipient.count > o.recipient.count {
+            for i in self.recipient.count...o.recipient.count {
+                self.recipient.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.related.enumerated() {
+            guard index < self.related.count else {
+                self.related.append(t)
+                continue
+            }
+            self.related[index].populate(from: t)
+        }
+    
+        if self.related.count > o.related.count {
+            for i in self.related.count...o.related.count {
+                self.related.remove(objectAtIndex: i)
+            }
+        }
         source = o.source
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)

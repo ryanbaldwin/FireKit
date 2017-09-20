@@ -92,9 +92,35 @@ open class ImmunizationRecommendation: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
-        FireKit.populateList(&self.recommendation, from: o.recommendation)
+
+        for (index, t) in o.recommendation.enumerated() {
+            guard index < self.recommendation.count else {
+                self.recommendation.append(t)
+                continue
+            }
+            self.recommendation[index].populate(from: t)
+        }
+    
+        if self.recommendation.count > o.recommendation.count {
+            for i in self.recommendation.count...o.recommendation.count {
+                self.recommendation.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -202,13 +228,52 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
         }
         
         super.populate(from: o)
-        date = o.date
-        FireKit.populateList(&self.dateCriterion, from: o.dateCriterion)
+        FireKit.populate(&self.date, from: o.date)
+
+        for (index, t) in o.dateCriterion.enumerated() {
+            guard index < self.dateCriterion.count else {
+                self.dateCriterion.append(t)
+                continue
+            }
+            self.dateCriterion[index].populate(from: t)
+        }
+    
+        if self.dateCriterion.count > o.dateCriterion.count {
+            for i in self.dateCriterion.count...o.dateCriterion.count {
+                self.dateCriterion.remove(objectAtIndex: i)
+            }
+        }
         doseNumber.value = o.doseNumber.value
         FireKit.populate(&self.forecastStatus, from: o.forecastStatus)
         FireKit.populate(&self.protocol_fhir, from: o.protocol_fhir)
-        FireKit.populateList(&self.supportingImmunization, from: o.supportingImmunization)
-        FireKit.populateList(&self.supportingPatientInformation, from: o.supportingPatientInformation)
+
+        for (index, t) in o.supportingImmunization.enumerated() {
+            guard index < self.supportingImmunization.count else {
+                self.supportingImmunization.append(t)
+                continue
+            }
+            self.supportingImmunization[index].populate(from: t)
+        }
+    
+        if self.supportingImmunization.count > o.supportingImmunization.count {
+            for i in self.supportingImmunization.count...o.supportingImmunization.count {
+                self.supportingImmunization.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.supportingPatientInformation.enumerated() {
+            guard index < self.supportingPatientInformation.count else {
+                self.supportingPatientInformation.append(t)
+                continue
+            }
+            self.supportingPatientInformation[index].populate(from: t)
+        }
+    
+        if self.supportingPatientInformation.count > o.supportingPatientInformation.count {
+            for i in self.supportingPatientInformation.count...o.supportingPatientInformation.count {
+                self.supportingPatientInformation.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
     }
 }
@@ -289,7 +354,7 @@ open class ImmunizationRecommendationRecommendationDateCriterion: BackboneElemen
         
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        value = o.value
+        FireKit.populate(&self.value, from: o.value)
     }
 }
 

@@ -74,7 +74,20 @@ open class Parameters: Resource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.parameter, from: o.parameter)
+
+        for (index, t) in o.parameter.enumerated() {
+            guard index < self.parameter.count else {
+                self.parameter.append(t)
+                continue
+            }
+            self.parameter[index].populate(from: t)
+        }
+    
+        if self.parameter.count > o.parameter.count {
+            for i in self.parameter.count...o.parameter.count {
+                self.parameter.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -344,7 +357,20 @@ open class ParametersParameter: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.part, from: o.part)
+
+        for (index, t) in o.part.enumerated() {
+            guard index < self.part.count else {
+                self.part.append(t)
+                continue
+            }
+            self.part[index].populate(from: t)
+        }
+    
+        if self.part.count > o.part.count {
+            for i in self.part.count...o.part.count {
+                self.part.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.resource, from: o.resource)
         FireKit.populate(&self.valueAddress, from: o.valueAddress)
         FireKit.populate(&self.valueAnnotation, from: o.valueAnnotation)
@@ -355,13 +381,13 @@ open class ParametersParameter: BackboneElement {
         FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
         FireKit.populate(&self.valueCoding, from: o.valueCoding)
         FireKit.populate(&self.valueContactPoint, from: o.valueContactPoint)
-        valueDate = o.valueDate
-        valueDateTime = o.valueDateTime
+        FireKit.populate(&self.valueDate, from: o.valueDate)
+        FireKit.populate(&self.valueDateTime, from: o.valueDateTime)
         valueDecimal = o.valueDecimal
         FireKit.populate(&self.valueHumanName, from: o.valueHumanName)
         valueId = o.valueId
         FireKit.populate(&self.valueIdentifier, from: o.valueIdentifier)
-        valueInstant = o.valueInstant
+        FireKit.populate(&self.valueInstant, from: o.valueInstant)
         valueInteger.value = o.valueInteger.value
         valueMarkdown = o.valueMarkdown
         FireKit.populate(&self.valueMeta, from: o.valueMeta)
@@ -375,7 +401,7 @@ open class ParametersParameter: BackboneElement {
         FireKit.populate(&self.valueSampledData, from: o.valueSampledData)
         FireKit.populate(&self.valueSignature, from: o.valueSignature)
         valueString = o.valueString
-        valueTime = o.valueTime
+        FireKit.populate(&self.valueTime, from: o.valueTime)
         FireKit.populate(&self.valueTiming, from: o.valueTiming)
         valueUnsignedInt.value = o.valueUnsignedInt.value
         valueUri = o.valueUri

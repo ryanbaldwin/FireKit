@@ -1282,13 +1282,65 @@ open class ElementDefinition: Element {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.alias, from: o.alias)
+
+        for (index, t) in o.alias.enumerated() {
+            guard index < self.alias.count else {
+                self.alias.append(t)
+                continue
+            }
+            self.alias[index].populate(from: t)
+        }
+    
+        if self.alias.count > o.alias.count {
+            for i in self.alias.count...o.alias.count {
+                self.alias.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.base, from: o.base)
         FireKit.populate(&self.binding, from: o.binding)
-        FireKit.populateList(&self.code, from: o.code)
+
+        for (index, t) in o.code.enumerated() {
+            guard index < self.code.count else {
+                self.code.append(t)
+                continue
+            }
+            self.code[index].populate(from: t)
+        }
+    
+        if self.code.count > o.code.count {
+            for i in self.code.count...o.code.count {
+                self.code.remove(objectAtIndex: i)
+            }
+        }
         comments = o.comments
-        FireKit.populateList(&self.condition, from: o.condition)
-        FireKit.populateList(&self.constraint, from: o.constraint)
+
+        for (index, t) in o.condition.enumerated() {
+            guard index < self.condition.count else {
+                self.condition.append(t)
+                continue
+            }
+            self.condition[index].populate(from: t)
+        }
+    
+        if self.condition.count > o.condition.count {
+            for i in self.condition.count...o.condition.count {
+                self.condition.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.constraint.enumerated() {
+            guard index < self.constraint.count else {
+                self.constraint.append(t)
+                continue
+            }
+            self.constraint[index].populate(from: t)
+        }
+    
+        if self.constraint.count > o.constraint.count {
+            for i in self.constraint.count...o.constraint.count {
+                self.constraint.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.defaultValueAddress, from: o.defaultValueAddress)
         FireKit.populate(&self.defaultValueAnnotation, from: o.defaultValueAnnotation)
         FireKit.populate(&self.defaultValueAttachment, from: o.defaultValueAttachment)
@@ -1298,13 +1350,13 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.defaultValueCodeableConcept, from: o.defaultValueCodeableConcept)
         FireKit.populate(&self.defaultValueCoding, from: o.defaultValueCoding)
         FireKit.populate(&self.defaultValueContactPoint, from: o.defaultValueContactPoint)
-        defaultValueDate = o.defaultValueDate
-        defaultValueDateTime = o.defaultValueDateTime
+        FireKit.populate(&self.defaultValueDate, from: o.defaultValueDate)
+        FireKit.populate(&self.defaultValueDateTime, from: o.defaultValueDateTime)
         defaultValueDecimal = o.defaultValueDecimal
         FireKit.populate(&self.defaultValueHumanName, from: o.defaultValueHumanName)
         defaultValueId = o.defaultValueId
         FireKit.populate(&self.defaultValueIdentifier, from: o.defaultValueIdentifier)
-        defaultValueInstant = o.defaultValueInstant
+        FireKit.populate(&self.defaultValueInstant, from: o.defaultValueInstant)
         defaultValueInteger.value = o.defaultValueInteger.value
         defaultValueMarkdown = o.defaultValueMarkdown
         FireKit.populate(&self.defaultValueMeta, from: o.defaultValueMeta)
@@ -1318,7 +1370,7 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.defaultValueSampledData, from: o.defaultValueSampledData)
         FireKit.populate(&self.defaultValueSignature, from: o.defaultValueSignature)
         defaultValueString = o.defaultValueString
-        defaultValueTime = o.defaultValueTime
+        FireKit.populate(&self.defaultValueTime, from: o.defaultValueTime)
         FireKit.populate(&self.defaultValueTiming, from: o.defaultValueTiming)
         defaultValueUnsignedInt.value = o.defaultValueUnsignedInt.value
         defaultValueUri = o.defaultValueUri
@@ -1332,13 +1384,13 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.exampleCodeableConcept, from: o.exampleCodeableConcept)
         FireKit.populate(&self.exampleCoding, from: o.exampleCoding)
         FireKit.populate(&self.exampleContactPoint, from: o.exampleContactPoint)
-        exampleDate = o.exampleDate
-        exampleDateTime = o.exampleDateTime
+        FireKit.populate(&self.exampleDate, from: o.exampleDate)
+        FireKit.populate(&self.exampleDateTime, from: o.exampleDateTime)
         exampleDecimal = o.exampleDecimal
         FireKit.populate(&self.exampleHumanName, from: o.exampleHumanName)
         exampleId = o.exampleId
         FireKit.populate(&self.exampleIdentifier, from: o.exampleIdentifier)
-        exampleInstant = o.exampleInstant
+        FireKit.populate(&self.exampleInstant, from: o.exampleInstant)
         exampleInteger.value = o.exampleInteger.value
         exampleMarkdown = o.exampleMarkdown
         FireKit.populate(&self.exampleMeta, from: o.exampleMeta)
@@ -1352,7 +1404,7 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.exampleSampledData, from: o.exampleSampledData)
         FireKit.populate(&self.exampleSignature, from: o.exampleSignature)
         exampleString = o.exampleString
-        exampleTime = o.exampleTime
+        FireKit.populate(&self.exampleTime, from: o.exampleTime)
         FireKit.populate(&self.exampleTiming, from: o.exampleTiming)
         exampleUnsignedInt.value = o.exampleUnsignedInt.value
         exampleUri = o.exampleUri
@@ -1365,13 +1417,13 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.fixedCodeableConcept, from: o.fixedCodeableConcept)
         FireKit.populate(&self.fixedCoding, from: o.fixedCoding)
         FireKit.populate(&self.fixedContactPoint, from: o.fixedContactPoint)
-        fixedDate = o.fixedDate
-        fixedDateTime = o.fixedDateTime
+        FireKit.populate(&self.fixedDate, from: o.fixedDate)
+        FireKit.populate(&self.fixedDateTime, from: o.fixedDateTime)
         fixedDecimal = o.fixedDecimal
         FireKit.populate(&self.fixedHumanName, from: o.fixedHumanName)
         fixedId = o.fixedId
         FireKit.populate(&self.fixedIdentifier, from: o.fixedIdentifier)
-        fixedInstant = o.fixedInstant
+        FireKit.populate(&self.fixedInstant, from: o.fixedInstant)
         fixedInteger.value = o.fixedInteger.value
         fixedMarkdown = o.fixedMarkdown
         FireKit.populate(&self.fixedMeta, from: o.fixedMeta)
@@ -1385,14 +1437,27 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.fixedSampledData, from: o.fixedSampledData)
         FireKit.populate(&self.fixedSignature, from: o.fixedSignature)
         fixedString = o.fixedString
-        fixedTime = o.fixedTime
+        FireKit.populate(&self.fixedTime, from: o.fixedTime)
         FireKit.populate(&self.fixedTiming, from: o.fixedTiming)
         fixedUnsignedInt.value = o.fixedUnsignedInt.value
         fixedUri = o.fixedUri
         isModifier.value = o.isModifier.value
         isSummary.value = o.isSummary.value
         label = o.label
-        FireKit.populateList(&self.mapping, from: o.mapping)
+
+        for (index, t) in o.mapping.enumerated() {
+            guard index < self.mapping.count else {
+                self.mapping.append(t)
+                continue
+            }
+            self.mapping[index].populate(from: t)
+        }
+    
+        if self.mapping.count > o.mapping.count {
+            for i in self.mapping.count...o.mapping.count {
+                self.mapping.remove(objectAtIndex: i)
+            }
+        }
         max = o.max
         maxLength.value = o.maxLength.value
         FireKit.populate(&self.maxValueAddress, from: o.maxValueAddress)
@@ -1404,13 +1469,13 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.maxValueCodeableConcept, from: o.maxValueCodeableConcept)
         FireKit.populate(&self.maxValueCoding, from: o.maxValueCoding)
         FireKit.populate(&self.maxValueContactPoint, from: o.maxValueContactPoint)
-        maxValueDate = o.maxValueDate
-        maxValueDateTime = o.maxValueDateTime
+        FireKit.populate(&self.maxValueDate, from: o.maxValueDate)
+        FireKit.populate(&self.maxValueDateTime, from: o.maxValueDateTime)
         maxValueDecimal = o.maxValueDecimal
         FireKit.populate(&self.maxValueHumanName, from: o.maxValueHumanName)
         maxValueId = o.maxValueId
         FireKit.populate(&self.maxValueIdentifier, from: o.maxValueIdentifier)
-        maxValueInstant = o.maxValueInstant
+        FireKit.populate(&self.maxValueInstant, from: o.maxValueInstant)
         maxValueInteger.value = o.maxValueInteger.value
         maxValueMarkdown = o.maxValueMarkdown
         FireKit.populate(&self.maxValueMeta, from: o.maxValueMeta)
@@ -1424,7 +1489,7 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.maxValueSampledData, from: o.maxValueSampledData)
         FireKit.populate(&self.maxValueSignature, from: o.maxValueSignature)
         maxValueString = o.maxValueString
-        maxValueTime = o.maxValueTime
+        FireKit.populate(&self.maxValueTime, from: o.maxValueTime)
         FireKit.populate(&self.maxValueTiming, from: o.maxValueTiming)
         maxValueUnsignedInt.value = o.maxValueUnsignedInt.value
         maxValueUri = o.maxValueUri
@@ -1439,13 +1504,13 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.minValueCodeableConcept, from: o.minValueCodeableConcept)
         FireKit.populate(&self.minValueCoding, from: o.minValueCoding)
         FireKit.populate(&self.minValueContactPoint, from: o.minValueContactPoint)
-        minValueDate = o.minValueDate
-        minValueDateTime = o.minValueDateTime
+        FireKit.populate(&self.minValueDate, from: o.minValueDate)
+        FireKit.populate(&self.minValueDateTime, from: o.minValueDateTime)
         minValueDecimal = o.minValueDecimal
         FireKit.populate(&self.minValueHumanName, from: o.minValueHumanName)
         minValueId = o.minValueId
         FireKit.populate(&self.minValueIdentifier, from: o.minValueIdentifier)
-        minValueInstant = o.minValueInstant
+        FireKit.populate(&self.minValueInstant, from: o.minValueInstant)
         minValueInteger.value = o.minValueInteger.value
         minValueMarkdown = o.minValueMarkdown
         FireKit.populate(&self.minValueMeta, from: o.minValueMeta)
@@ -1459,7 +1524,7 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.minValueSampledData, from: o.minValueSampledData)
         FireKit.populate(&self.minValueSignature, from: o.minValueSignature)
         minValueString = o.minValueString
-        minValueTime = o.minValueTime
+        FireKit.populate(&self.minValueTime, from: o.minValueTime)
         FireKit.populate(&self.minValueTiming, from: o.minValueTiming)
         minValueUnsignedInt.value = o.minValueUnsignedInt.value
         minValueUri = o.minValueUri
@@ -1476,13 +1541,13 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.patternCodeableConcept, from: o.patternCodeableConcept)
         FireKit.populate(&self.patternCoding, from: o.patternCoding)
         FireKit.populate(&self.patternContactPoint, from: o.patternContactPoint)
-        patternDate = o.patternDate
-        patternDateTime = o.patternDateTime
+        FireKit.populate(&self.patternDate, from: o.patternDate)
+        FireKit.populate(&self.patternDateTime, from: o.patternDateTime)
         patternDecimal = o.patternDecimal
         FireKit.populate(&self.patternHumanName, from: o.patternHumanName)
         patternId = o.patternId
         FireKit.populate(&self.patternIdentifier, from: o.patternIdentifier)
-        patternInstant = o.patternInstant
+        FireKit.populate(&self.patternInstant, from: o.patternInstant)
         patternInteger.value = o.patternInteger.value
         patternMarkdown = o.patternMarkdown
         FireKit.populate(&self.patternMeta, from: o.patternMeta)
@@ -1496,15 +1561,41 @@ open class ElementDefinition: Element {
         FireKit.populate(&self.patternSampledData, from: o.patternSampledData)
         FireKit.populate(&self.patternSignature, from: o.patternSignature)
         patternString = o.patternString
-        patternTime = o.patternTime
+        FireKit.populate(&self.patternTime, from: o.patternTime)
         FireKit.populate(&self.patternTiming, from: o.patternTiming)
         patternUnsignedInt.value = o.patternUnsignedInt.value
         patternUri = o.patternUri
-        FireKit.populateList(&self.representation, from: o.representation)
+
+        for (index, t) in o.representation.enumerated() {
+            guard index < self.representation.count else {
+                self.representation.append(t)
+                continue
+            }
+            self.representation[index].populate(from: t)
+        }
+    
+        if self.representation.count > o.representation.count {
+            for i in self.representation.count...o.representation.count {
+                self.representation.remove(objectAtIndex: i)
+            }
+        }
         requirements = o.requirements
         short = o.short
         FireKit.populate(&self.slicing, from: o.slicing)
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -1944,7 +2035,20 @@ open class ElementDefinitionSlicing: Element {
         
         super.populate(from: o)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.discriminator, from: o.discriminator)
+
+        for (index, t) in o.discriminator.enumerated() {
+            guard index < self.discriminator.count else {
+                self.discriminator.append(t)
+                continue
+            }
+            self.discriminator[index].populate(from: t)
+        }
+    
+        if self.discriminator.count > o.discriminator.count {
+            for i in self.discriminator.count...o.discriminator.count {
+                self.discriminator.remove(objectAtIndex: i)
+            }
+        }
         ordered.value = o.ordered.value
         rules = o.rules
     }
@@ -2025,9 +2129,35 @@ open class ElementDefinitionType: Element {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.aggregation, from: o.aggregation)
+
+        for (index, t) in o.aggregation.enumerated() {
+            guard index < self.aggregation.count else {
+                self.aggregation.append(t)
+                continue
+            }
+            self.aggregation[index].populate(from: t)
+        }
+    
+        if self.aggregation.count > o.aggregation.count {
+            for i in self.aggregation.count...o.aggregation.count {
+                self.aggregation.remove(objectAtIndex: i)
+            }
+        }
         code = o.code
-        FireKit.populateList(&self.profile, from: o.profile)
+
+        for (index, t) in o.profile.enumerated() {
+            guard index < self.profile.count else {
+                self.profile.append(t)
+                continue
+            }
+            self.profile[index].populate(from: t)
+        }
+    
+        if self.profile.count > o.profile.count {
+            for i in self.profile.count...o.profile.count {
+                self.profile.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

@@ -178,23 +178,140 @@ open class Encounter: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.appointment, from: o.appointment)
         class_fhir = o.class_fhir
-        FireKit.populateList(&self.episodeOfCare, from: o.episodeOfCare)
+
+        for (index, t) in o.episodeOfCare.enumerated() {
+            guard index < self.episodeOfCare.count else {
+                self.episodeOfCare.append(t)
+                continue
+            }
+            self.episodeOfCare[index].populate(from: t)
+        }
+    
+        if self.episodeOfCare.count > o.episodeOfCare.count {
+            for i in self.episodeOfCare.count...o.episodeOfCare.count {
+                self.episodeOfCare.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.hospitalization, from: o.hospitalization)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.incomingReferral, from: o.incomingReferral)
-        FireKit.populateList(&self.indication, from: o.indication)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.incomingReferral.enumerated() {
+            guard index < self.incomingReferral.count else {
+                self.incomingReferral.append(t)
+                continue
+            }
+            self.incomingReferral[index].populate(from: t)
+        }
+    
+        if self.incomingReferral.count > o.incomingReferral.count {
+            for i in self.incomingReferral.count...o.incomingReferral.count {
+                self.incomingReferral.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.indication.enumerated() {
+            guard index < self.indication.count else {
+                self.indication.append(t)
+                continue
+            }
+            self.indication[index].populate(from: t)
+        }
+    
+        if self.indication.count > o.indication.count {
+            for i in self.indication.count...o.indication.count {
+                self.indication.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.length, from: o.length)
-        FireKit.populateList(&self.location, from: o.location)
+
+        for (index, t) in o.location.enumerated() {
+            guard index < self.location.count else {
+                self.location.append(t)
+                continue
+            }
+            self.location[index].populate(from: t)
+        }
+    
+        if self.location.count > o.location.count {
+            for i in self.location.count...o.location.count {
+                self.location.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.partOf, from: o.partOf)
-        FireKit.populateList(&self.participant, from: o.participant)
+
+        for (index, t) in o.participant.enumerated() {
+            guard index < self.participant.count else {
+                self.participant.append(t)
+                continue
+            }
+            self.participant[index].populate(from: t)
+        }
+    
+        if self.participant.count > o.participant.count {
+            for i in self.participant.count...o.participant.count {
+                self.participant.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.period, from: o.period)
         FireKit.populate(&self.priority, from: o.priority)
-        FireKit.populateList(&self.reason, from: o.reason)
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                self.reason.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.serviceProvider, from: o.serviceProvider)
         status = o.status
-        FireKit.populateList(&self.statusHistory, from: o.statusHistory)
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.statusHistory.enumerated() {
+            guard index < self.statusHistory.count else {
+                self.statusHistory.append(t)
+                continue
+            }
+            self.statusHistory[index].populate(from: t)
+        }
+    
+        if self.statusHistory.count > o.statusHistory.count {
+            for i in self.statusHistory.count...o.statusHistory.count {
+                self.statusHistory.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -316,16 +433,81 @@ open class EncounterHospitalization: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.admitSource, from: o.admitSource)
-        FireKit.populateList(&self.admittingDiagnosis, from: o.admittingDiagnosis)
+
+        for (index, t) in o.admittingDiagnosis.enumerated() {
+            guard index < self.admittingDiagnosis.count else {
+                self.admittingDiagnosis.append(t)
+                continue
+            }
+            self.admittingDiagnosis[index].populate(from: t)
+        }
+    
+        if self.admittingDiagnosis.count > o.admittingDiagnosis.count {
+            for i in self.admittingDiagnosis.count...o.admittingDiagnosis.count {
+                self.admittingDiagnosis.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.destination, from: o.destination)
-        FireKit.populateList(&self.dietPreference, from: o.dietPreference)
-        FireKit.populateList(&self.dischargeDiagnosis, from: o.dischargeDiagnosis)
+
+        for (index, t) in o.dietPreference.enumerated() {
+            guard index < self.dietPreference.count else {
+                self.dietPreference.append(t)
+                continue
+            }
+            self.dietPreference[index].populate(from: t)
+        }
+    
+        if self.dietPreference.count > o.dietPreference.count {
+            for i in self.dietPreference.count...o.dietPreference.count {
+                self.dietPreference.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.dischargeDiagnosis.enumerated() {
+            guard index < self.dischargeDiagnosis.count else {
+                self.dischargeDiagnosis.append(t)
+                continue
+            }
+            self.dischargeDiagnosis[index].populate(from: t)
+        }
+    
+        if self.dischargeDiagnosis.count > o.dischargeDiagnosis.count {
+            for i in self.dischargeDiagnosis.count...o.dischargeDiagnosis.count {
+                self.dischargeDiagnosis.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.dischargeDisposition, from: o.dischargeDisposition)
         FireKit.populate(&self.origin, from: o.origin)
         FireKit.populate(&self.preAdmissionIdentifier, from: o.preAdmissionIdentifier)
         FireKit.populate(&self.reAdmission, from: o.reAdmission)
-        FireKit.populateList(&self.specialArrangement, from: o.specialArrangement)
-        FireKit.populateList(&self.specialCourtesy, from: o.specialCourtesy)
+
+        for (index, t) in o.specialArrangement.enumerated() {
+            guard index < self.specialArrangement.count else {
+                self.specialArrangement.append(t)
+                continue
+            }
+            self.specialArrangement[index].populate(from: t)
+        }
+    
+        if self.specialArrangement.count > o.specialArrangement.count {
+            for i in self.specialArrangement.count...o.specialArrangement.count {
+                self.specialArrangement.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.specialCourtesy.enumerated() {
+            guard index < self.specialCourtesy.count else {
+                self.specialCourtesy.append(t)
+                continue
+            }
+            self.specialCourtesy[index].populate(from: t)
+        }
+    
+        if self.specialCourtesy.count > o.specialCourtesy.count {
+            for i in self.specialCourtesy.count...o.specialCourtesy.count {
+                self.specialCourtesy.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -493,7 +675,20 @@ open class EncounterParticipant: BackboneElement {
         super.populate(from: o)
         FireKit.populate(&self.individual, from: o.individual)
         FireKit.populate(&self.period, from: o.period)
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

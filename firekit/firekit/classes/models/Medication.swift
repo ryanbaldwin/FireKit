@@ -179,7 +179,20 @@ open class MedicationPackage: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.container, from: o.container)
-        FireKit.populateList(&self.content, from: o.content)
+
+        for (index, t) in o.content.enumerated() {
+            guard index < self.content.count else {
+                self.content.append(t)
+                continue
+            }
+            self.content[index].populate(from: t)
+        }
+    
+        if self.content.count > o.content.count {
+            for i in self.content.count...o.content.count {
+                self.content.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -337,9 +350,35 @@ open class MedicationProduct: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.batch, from: o.batch)
+
+        for (index, t) in o.batch.enumerated() {
+            guard index < self.batch.count else {
+                self.batch.append(t)
+                continue
+            }
+            self.batch[index].populate(from: t)
+        }
+    
+        if self.batch.count > o.batch.count {
+            for i in self.batch.count...o.batch.count {
+                self.batch.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.form, from: o.form)
-        FireKit.populateList(&self.ingredient, from: o.ingredient)
+
+        for (index, t) in o.ingredient.enumerated() {
+            guard index < self.ingredient.count else {
+                self.ingredient.append(t)
+                continue
+            }
+            self.ingredient[index].populate(from: t)
+        }
+    
+        if self.ingredient.count > o.ingredient.count {
+            for i in self.ingredient.count...o.ingredient.count {
+                self.ingredient.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -408,7 +447,7 @@ open class MedicationProductBatch: BackboneElement {
         }
         
         super.populate(from: o)
-        expirationDate = o.expirationDate
+        FireKit.populate(&self.expirationDate, from: o.expirationDate)
         lotNumber = o.lotNumber
     }
 }

@@ -132,15 +132,93 @@ open class Provenance: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.activity, from: o.activity)
-        FireKit.populateList(&self.agent, from: o.agent)
-        FireKit.populateList(&self.entity, from: o.entity)
+
+        for (index, t) in o.agent.enumerated() {
+            guard index < self.agent.count else {
+                self.agent.append(t)
+                continue
+            }
+            self.agent[index].populate(from: t)
+        }
+    
+        if self.agent.count > o.agent.count {
+            for i in self.agent.count...o.agent.count {
+                self.agent.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.entity.enumerated() {
+            guard index < self.entity.count else {
+                self.entity.append(t)
+                continue
+            }
+            self.entity[index].populate(from: t)
+        }
+    
+        if self.entity.count > o.entity.count {
+            for i in self.entity.count...o.entity.count {
+                self.entity.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.location, from: o.location)
         FireKit.populate(&self.period, from: o.period)
-        FireKit.populateList(&self.policy, from: o.policy)
-        FireKit.populateList(&self.reason, from: o.reason)
-        recorded = o.recorded
-        FireKit.populateList(&self.signature, from: o.signature)
-        FireKit.populateList(&self.target, from: o.target)
+
+        for (index, t) in o.policy.enumerated() {
+            guard index < self.policy.count else {
+                self.policy.append(t)
+                continue
+            }
+            self.policy[index].populate(from: t)
+        }
+    
+        if self.policy.count > o.policy.count {
+            for i in self.policy.count...o.policy.count {
+                self.policy.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                self.reason.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.recorded, from: o.recorded)
+
+        for (index, t) in o.signature.enumerated() {
+            guard index < self.signature.count else {
+                self.signature.append(t)
+                continue
+            }
+            self.signature[index].populate(from: t)
+        }
+    
+        if self.signature.count > o.signature.count {
+            for i in self.signature.count...o.signature.count {
+                self.signature.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.target.enumerated() {
+            guard index < self.target.count else {
+                self.target.append(t)
+                continue
+            }
+            self.target[index].populate(from: t)
+        }
+    
+        if self.target.count > o.target.count {
+            for i in self.target.count...o.target.count {
+                self.target.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -235,7 +313,20 @@ open class ProvenanceAgent: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
-        FireKit.populateList(&self.relatedAgent, from: o.relatedAgent)
+
+        for (index, t) in o.relatedAgent.enumerated() {
+            guard index < self.relatedAgent.count else {
+                self.relatedAgent.append(t)
+                continue
+            }
+            self.relatedAgent[index].populate(from: t)
+        }
+    
+        if self.relatedAgent.count > o.relatedAgent.count {
+            for i in self.relatedAgent.count...o.relatedAgent.count {
+                self.relatedAgent.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.role, from: o.role)
         FireKit.populate(&self.userId, from: o.userId)
     }

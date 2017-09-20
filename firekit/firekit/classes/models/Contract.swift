@@ -160,25 +160,194 @@ open class Contract: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.action, from: o.action)
-        FireKit.populateList(&self.actionReason, from: o.actionReason)
-        FireKit.populateList(&self.actor, from: o.actor)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                self.action.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.actionReason.enumerated() {
+            guard index < self.actionReason.count else {
+                self.actionReason.append(t)
+                continue
+            }
+            self.actionReason[index].populate(from: t)
+        }
+    
+        if self.actionReason.count > o.actionReason.count {
+            for i in self.actionReason.count...o.actionReason.count {
+                self.actionReason.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.actor.enumerated() {
+            guard index < self.actor.count else {
+                self.actor.append(t)
+                continue
+            }
+            self.actor[index].populate(from: t)
+        }
+    
+        if self.actor.count > o.actor.count {
+            for i in self.actor.count...o.actor.count {
+                self.actor.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.applies, from: o.applies)
-        FireKit.populateList(&self.authority, from: o.authority)
+
+        for (index, t) in o.authority.enumerated() {
+            guard index < self.authority.count else {
+                self.authority.append(t)
+                continue
+            }
+            self.authority[index].populate(from: t)
+        }
+    
+        if self.authority.count > o.authority.count {
+            for i in self.authority.count...o.authority.count {
+                self.authority.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.bindingAttachment, from: o.bindingAttachment)
         FireKit.populate(&self.bindingReference, from: o.bindingReference)
-        FireKit.populateList(&self.domain, from: o.domain)
-        FireKit.populateList(&self.friendly, from: o.friendly)
+
+        for (index, t) in o.domain.enumerated() {
+            guard index < self.domain.count else {
+                self.domain.append(t)
+                continue
+            }
+            self.domain[index].populate(from: t)
+        }
+    
+        if self.domain.count > o.domain.count {
+            for i in self.domain.count...o.domain.count {
+                self.domain.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.friendly.enumerated() {
+            guard index < self.friendly.count else {
+                self.friendly.append(t)
+                continue
+            }
+            self.friendly[index].populate(from: t)
+        }
+    
+        if self.friendly.count > o.friendly.count {
+            for i in self.friendly.count...o.friendly.count {
+                self.friendly.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.identifier, from: o.identifier)
-        issued = o.issued
-        FireKit.populateList(&self.legal, from: o.legal)
-        FireKit.populateList(&self.rule, from: o.rule)
-        FireKit.populateList(&self.signer, from: o.signer)
-        FireKit.populateList(&self.subType, from: o.subType)
-        FireKit.populateList(&self.subject, from: o.subject)
-        FireKit.populateList(&self.term, from: o.term)
+        FireKit.populate(&self.issued, from: o.issued)
+
+        for (index, t) in o.legal.enumerated() {
+            guard index < self.legal.count else {
+                self.legal.append(t)
+                continue
+            }
+            self.legal[index].populate(from: t)
+        }
+    
+        if self.legal.count > o.legal.count {
+            for i in self.legal.count...o.legal.count {
+                self.legal.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.rule.enumerated() {
+            guard index < self.rule.count else {
+                self.rule.append(t)
+                continue
+            }
+            self.rule[index].populate(from: t)
+        }
+    
+        if self.rule.count > o.rule.count {
+            for i in self.rule.count...o.rule.count {
+                self.rule.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.signer.enumerated() {
+            guard index < self.signer.count else {
+                self.signer.append(t)
+                continue
+            }
+            self.signer[index].populate(from: t)
+        }
+    
+        if self.signer.count > o.signer.count {
+            for i in self.signer.count...o.signer.count {
+                self.signer.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.subType.enumerated() {
+            guard index < self.subType.count else {
+                self.subType.append(t)
+                continue
+            }
+            self.subType[index].populate(from: t)
+        }
+    
+        if self.subType.count > o.subType.count {
+            for i in self.subType.count...o.subType.count {
+                self.subType.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.subject.enumerated() {
+            guard index < self.subject.count else {
+                self.subject.append(t)
+                continue
+            }
+            self.subject[index].populate(from: t)
+        }
+    
+        if self.subject.count > o.subject.count {
+            for i in self.subject.count...o.subject.count {
+                self.subject.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.term.enumerated() {
+            guard index < self.term.count else {
+                self.term.append(t)
+                continue
+            }
+            self.term[index].populate(from: t)
+        }
+    
+        if self.term.count > o.term.count {
+            for i in self.term.count...o.term.count {
+                self.term.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
-        FireKit.populateList(&self.valuedItem, from: o.valuedItem)
+
+        for (index, t) in o.valuedItem.enumerated() {
+            guard index < self.valuedItem.count else {
+                self.valuedItem.append(t)
+                continue
+            }
+            self.valuedItem[index].populate(from: t)
+        }
+    
+        if self.valuedItem.count > o.valuedItem.count {
+            for i in self.valuedItem.count...o.valuedItem.count {
+                self.valuedItem.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -257,7 +426,20 @@ open class ContractActor: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.entity, from: o.entity)
-        FireKit.populateList(&self.role, from: o.role)
+
+        for (index, t) in o.role.enumerated() {
+            guard index < self.role.count else {
+                self.role.append(t)
+                continue
+            }
+            self.role[index].populate(from: t)
+        }
+    
+        if self.role.count > o.role.count {
+            for i in self.role.count...o.role.count {
+                self.role.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -722,18 +904,83 @@ open class ContractTerm: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.action, from: o.action)
-        FireKit.populateList(&self.actionReason, from: o.actionReason)
-        FireKit.populateList(&self.actor, from: o.actor)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                self.action.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.actionReason.enumerated() {
+            guard index < self.actionReason.count else {
+                self.actionReason.append(t)
+                continue
+            }
+            self.actionReason[index].populate(from: t)
+        }
+    
+        if self.actionReason.count > o.actionReason.count {
+            for i in self.actionReason.count...o.actionReason.count {
+                self.actionReason.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.actor.enumerated() {
+            guard index < self.actor.count else {
+                self.actor.append(t)
+                continue
+            }
+            self.actor[index].populate(from: t)
+        }
+    
+        if self.actor.count > o.actor.count {
+            for i in self.actor.count...o.actor.count {
+                self.actor.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.applies, from: o.applies)
-        FireKit.populateList(&self.group, from: o.group)
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                self.group.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.identifier, from: o.identifier)
-        issued = o.issued
+        FireKit.populate(&self.issued, from: o.issued)
         FireKit.populate(&self.subType, from: o.subType)
         FireKit.populate(&self.subject, from: o.subject)
         text = o.text
         FireKit.populate(&self.type, from: o.type)
-        FireKit.populateList(&self.valuedItem, from: o.valuedItem)
+
+        for (index, t) in o.valuedItem.enumerated() {
+            guard index < self.valuedItem.count else {
+                self.valuedItem.append(t)
+                continue
+            }
+            self.valuedItem[index].populate(from: t)
+        }
+    
+        if self.valuedItem.count > o.valuedItem.count {
+            for i in self.valuedItem.count...o.valuedItem.count {
+                self.valuedItem.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -812,7 +1059,20 @@ open class ContractTermActor: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.entity, from: o.entity)
-        FireKit.populateList(&self.role, from: o.role)
+
+        for (index, t) in o.role.enumerated() {
+            guard index < self.role.count else {
+                self.role.append(t)
+                continue
+            }
+            self.role[index].populate(from: t)
+        }
+    
+        if self.role.count > o.role.count {
+            for i in self.role.count...o.role.count {
+                self.role.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -927,7 +1187,7 @@ open class ContractTermValuedItem: BackboneElement {
         }
         
         super.populate(from: o)
-        effectiveTime = o.effectiveTime
+        FireKit.populate(&self.effectiveTime, from: o.effectiveTime)
         FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)
         FireKit.populate(&self.entityReference, from: o.entityReference)
         factor = o.factor
@@ -1050,7 +1310,7 @@ open class ContractValuedItem: BackboneElement {
         }
         
         super.populate(from: o)
-        effectiveTime = o.effectiveTime
+        FireKit.populate(&self.effectiveTime, from: o.effectiveTime)
         FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)
         FireKit.populate(&self.entityReference, from: o.entityReference)
         factor = o.factor

@@ -185,18 +185,44 @@ open class FamilyMemberHistory: DomainResource {
         FireKit.populate(&self.ageQuantity, from: o.ageQuantity)
         FireKit.populate(&self.ageRange, from: o.ageRange)
         ageString = o.ageString
-        bornDate = o.bornDate
+        FireKit.populate(&self.bornDate, from: o.bornDate)
         FireKit.populate(&self.bornPeriod, from: o.bornPeriod)
         bornString = o.bornString
-        FireKit.populateList(&self.condition, from: o.condition)
-        date = o.date
+
+        for (index, t) in o.condition.enumerated() {
+            guard index < self.condition.count else {
+                self.condition.append(t)
+                continue
+            }
+            self.condition[index].populate(from: t)
+        }
+    
+        if self.condition.count > o.condition.count {
+            for i in self.condition.count...o.condition.count {
+                self.condition.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.date, from: o.date)
         deceasedBoolean.value = o.deceasedBoolean.value
-        deceasedDate = o.deceasedDate
+        FireKit.populate(&self.deceasedDate, from: o.deceasedDate)
         FireKit.populate(&self.deceasedQuantity, from: o.deceasedQuantity)
         FireKit.populate(&self.deceasedRange, from: o.deceasedRange)
         deceasedString = o.deceasedString
         gender = o.gender
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
         FireKit.populate(&self.note, from: o.note)
         FireKit.populate(&self.patient, from: o.patient)

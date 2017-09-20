@@ -111,8 +111,21 @@ open class Signature: Element {
         super.populate(from: o)
         blob = o.blob
         contentType = o.contentType
-        FireKit.populateList(&self.type, from: o.type)
-        when = o.when
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.when, from: o.when)
         FireKit.populate(&self.whoReference, from: o.whoReference)
         whoUri = o.whoUri
     }

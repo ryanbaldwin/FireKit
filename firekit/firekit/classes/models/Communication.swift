@@ -139,15 +139,80 @@ open class Communication: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.medium, from: o.medium)
-        FireKit.populateList(&self.payload, from: o.payload)
-        FireKit.populateList(&self.reason, from: o.reason)
-        received = o.received
-        FireKit.populateList(&self.recipient, from: o.recipient)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.medium.enumerated() {
+            guard index < self.medium.count else {
+                self.medium.append(t)
+                continue
+            }
+            self.medium[index].populate(from: t)
+        }
+    
+        if self.medium.count > o.medium.count {
+            for i in self.medium.count...o.medium.count {
+                self.medium.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.payload.enumerated() {
+            guard index < self.payload.count else {
+                self.payload.append(t)
+                continue
+            }
+            self.payload[index].populate(from: t)
+        }
+    
+        if self.payload.count > o.payload.count {
+            for i in self.payload.count...o.payload.count {
+                self.payload.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                self.reason.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.received, from: o.received)
+
+        for (index, t) in o.recipient.enumerated() {
+            guard index < self.recipient.count else {
+                self.recipient.append(t)
+                continue
+            }
+            self.recipient[index].populate(from: t)
+        }
+    
+        if self.recipient.count > o.recipient.count {
+            for i in self.recipient.count...o.recipient.count {
+                self.recipient.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.requestDetail, from: o.requestDetail)
         FireKit.populate(&self.sender, from: o.sender)
-        sent = o.sent
+        FireKit.populate(&self.sent, from: o.sent)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
     }

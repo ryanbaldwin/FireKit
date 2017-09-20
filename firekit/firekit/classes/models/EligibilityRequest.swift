@@ -113,8 +113,21 @@ open class EligibilityRequest: DomainResource {
         }
         
         super.populate(from: o)
-        created = o.created
-        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.created, from: o.created)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
         FireKit.populate(&self.provider, from: o.provider)

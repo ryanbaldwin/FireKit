@@ -117,16 +117,107 @@ open class Practitioner: DomainResource {
         
         super.populate(from: o)
         active.value = o.active.value
-        FireKit.populateList(&self.address, from: o.address)
-        birthDate = o.birthDate
-        FireKit.populateList(&self.communication, from: o.communication)
+
+        for (index, t) in o.address.enumerated() {
+            guard index < self.address.count else {
+                self.address.append(t)
+                continue
+            }
+            self.address[index].populate(from: t)
+        }
+    
+        if self.address.count > o.address.count {
+            for i in self.address.count...o.address.count {
+                self.address.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.birthDate, from: o.birthDate)
+
+        for (index, t) in o.communication.enumerated() {
+            guard index < self.communication.count else {
+                self.communication.append(t)
+                continue
+            }
+            self.communication[index].populate(from: t)
+        }
+    
+        if self.communication.count > o.communication.count {
+            for i in self.communication.count...o.communication.count {
+                self.communication.remove(objectAtIndex: i)
+            }
+        }
         gender = o.gender
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.name, from: o.name)
-        FireKit.populateList(&self.photo, from: o.photo)
-        FireKit.populateList(&self.practitionerRole, from: o.practitionerRole)
-        FireKit.populateList(&self.qualification, from: o.qualification)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.photo.enumerated() {
+            guard index < self.photo.count else {
+                self.photo.append(t)
+                continue
+            }
+            self.photo[index].populate(from: t)
+        }
+    
+        if self.photo.count > o.photo.count {
+            for i in self.photo.count...o.photo.count {
+                self.photo.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.practitionerRole.enumerated() {
+            guard index < self.practitionerRole.count else {
+                self.practitionerRole.append(t)
+                continue
+            }
+            self.practitionerRole[index].populate(from: t)
+        }
+    
+        if self.practitionerRole.count > o.practitionerRole.count {
+            for i in self.practitionerRole.count...o.practitionerRole.count {
+                self.practitionerRole.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.qualification.enumerated() {
+            guard index < self.qualification.count else {
+                self.qualification.append(t)
+                continue
+            }
+            self.qualification[index].populate(from: t)
+        }
+    
+        if self.qualification.count > o.qualification.count {
+            for i in self.qualification.count...o.qualification.count {
+                self.qualification.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -220,12 +311,51 @@ open class PractitionerPractitionerRole: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.healthcareService, from: o.healthcareService)
-        FireKit.populateList(&self.location, from: o.location)
+
+        for (index, t) in o.healthcareService.enumerated() {
+            guard index < self.healthcareService.count else {
+                self.healthcareService.append(t)
+                continue
+            }
+            self.healthcareService[index].populate(from: t)
+        }
+    
+        if self.healthcareService.count > o.healthcareService.count {
+            for i in self.healthcareService.count...o.healthcareService.count {
+                self.healthcareService.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.location.enumerated() {
+            guard index < self.location.count else {
+                self.location.append(t)
+                continue
+            }
+            self.location[index].populate(from: t)
+        }
+    
+        if self.location.count > o.location.count {
+            for i in self.location.count...o.location.count {
+                self.location.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         FireKit.populate(&self.period, from: o.period)
         FireKit.populate(&self.role, from: o.role)
-        FireKit.populateList(&self.specialty, from: o.specialty)
+
+        for (index, t) in o.specialty.enumerated() {
+            guard index < self.specialty.count else {
+                self.specialty.append(t)
+                continue
+            }
+            self.specialty[index].populate(from: t)
+        }
+    
+        if self.specialty.count > o.specialty.count {
+            for i in self.specialty.count...o.specialty.count {
+                self.specialty.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -316,7 +446,20 @@ open class PractitionerQualification: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.issuer, from: o.issuer)
         FireKit.populate(&self.period, from: o.period)
     }

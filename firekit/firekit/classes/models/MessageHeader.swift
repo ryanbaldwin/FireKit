@@ -148,8 +148,34 @@ open class MessageHeader: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
-        FireKit.populateList(&self.data, from: o.data)
-        FireKit.populateList(&self.destination, from: o.destination)
+
+        for (index, t) in o.data.enumerated() {
+            guard index < self.data.count else {
+                self.data.append(t)
+                continue
+            }
+            self.data[index].populate(from: t)
+        }
+    
+        if self.data.count > o.data.count {
+            for i in self.data.count...o.data.count {
+                self.data.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.destination.enumerated() {
+            guard index < self.destination.count else {
+                self.destination.append(t)
+                continue
+            }
+            self.destination[index].populate(from: t)
+        }
+    
+        if self.destination.count > o.destination.count {
+            for i in self.destination.count...o.destination.count {
+                self.destination.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.enterer, from: o.enterer)
         FireKit.populate(&self.event, from: o.event)
         FireKit.populate(&self.reason, from: o.reason)
@@ -157,7 +183,7 @@ open class MessageHeader: DomainResource {
         FireKit.populate(&self.response, from: o.response)
         FireKit.populate(&self.responsible, from: o.responsible)
         FireKit.populate(&self.source, from: o.source)
-        timestamp = o.timestamp
+        FireKit.populate(&self.timestamp, from: o.timestamp)
     }
 }
 

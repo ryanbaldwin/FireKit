@@ -162,12 +162,51 @@ open class PaymentReconciliation: DomainResource {
         }
         
         super.populate(from: o)
-        created = o.created
-        FireKit.populateList(&self.detail, from: o.detail)
+        FireKit.populate(&self.created, from: o.created)
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                self.detail.remove(objectAtIndex: i)
+            }
+        }
         disposition = o.disposition
         FireKit.populate(&self.form, from: o.form)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.note, from: o.note)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.note.enumerated() {
+            guard index < self.note.count else {
+                self.note.append(t)
+                continue
+            }
+            self.note[index].populate(from: t)
+        }
+    
+        if self.note.count > o.note.count {
+            for i in self.note.count...o.note.count {
+                self.note.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
         outcome = o.outcome
@@ -290,7 +329,7 @@ open class PaymentReconciliationDetail: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.amount, from: o.amount)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.payee, from: o.payee)
         FireKit.populate(&self.request, from: o.request)
         FireKit.populate(&self.responce, from: o.responce)

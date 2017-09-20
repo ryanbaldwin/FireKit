@@ -254,32 +254,97 @@ open class Observation: DomainResource {
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
         comments = o.comments
-        FireKit.populateList(&self.component, from: o.component)
+
+        for (index, t) in o.component.enumerated() {
+            guard index < self.component.count else {
+                self.component.append(t)
+                continue
+            }
+            self.component[index].populate(from: t)
+        }
+    
+        if self.component.count > o.component.count {
+            for i in self.component.count...o.component.count {
+                self.component.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.dataAbsentReason, from: o.dataAbsentReason)
         FireKit.populate(&self.device, from: o.device)
-        effectiveDateTime = o.effectiveDateTime
+        FireKit.populate(&self.effectiveDateTime, from: o.effectiveDateTime)
         FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.interpretation, from: o.interpretation)
-        issued = o.issued
+        FireKit.populate(&self.issued, from: o.issued)
         FireKit.populate(&self.method, from: o.method)
-        FireKit.populateList(&self.performer, from: o.performer)
-        FireKit.populateList(&self.referenceRange, from: o.referenceRange)
-        FireKit.populateList(&self.related, from: o.related)
+
+        for (index, t) in o.performer.enumerated() {
+            guard index < self.performer.count else {
+                self.performer.append(t)
+                continue
+            }
+            self.performer[index].populate(from: t)
+        }
+    
+        if self.performer.count > o.performer.count {
+            for i in self.performer.count...o.performer.count {
+                self.performer.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.referenceRange.enumerated() {
+            guard index < self.referenceRange.count else {
+                self.referenceRange.append(t)
+                continue
+            }
+            self.referenceRange[index].populate(from: t)
+        }
+    
+        if self.referenceRange.count > o.referenceRange.count {
+            for i in self.referenceRange.count...o.referenceRange.count {
+                self.referenceRange.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.related.enumerated() {
+            guard index < self.related.count else {
+                self.related.append(t)
+                continue
+            }
+            self.related[index].populate(from: t)
+        }
+    
+        if self.related.count > o.related.count {
+            for i in self.related.count...o.related.count {
+                self.related.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.specimen, from: o.specimen)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
         FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
         FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
-        valueDateTime = o.valueDateTime
+        FireKit.populate(&self.valueDateTime, from: o.valueDateTime)
         FireKit.populate(&self.valuePeriod, from: o.valuePeriod)
         FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
         FireKit.populate(&self.valueRange, from: o.valueRange)
         FireKit.populate(&self.valueRatio, from: o.valueRatio)
         FireKit.populate(&self.valueSampledData, from: o.valueSampledData)
         valueString = o.valueString
-        valueTime = o.valueTime
+        FireKit.populate(&self.valueTime, from: o.valueTime)
     }
 }
 
@@ -429,17 +494,30 @@ open class ObservationComponent: BackboneElement {
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.dataAbsentReason, from: o.dataAbsentReason)
-        FireKit.populateList(&self.referenceRange, from: o.referenceRange)
+
+        for (index, t) in o.referenceRange.enumerated() {
+            guard index < self.referenceRange.count else {
+                self.referenceRange.append(t)
+                continue
+            }
+            self.referenceRange[index].populate(from: t)
+        }
+    
+        if self.referenceRange.count > o.referenceRange.count {
+            for i in self.referenceRange.count...o.referenceRange.count {
+                self.referenceRange.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
         FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
-        valueDateTime = o.valueDateTime
+        FireKit.populate(&self.valueDateTime, from: o.valueDateTime)
         FireKit.populate(&self.valuePeriod, from: o.valuePeriod)
         FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
         FireKit.populate(&self.valueRange, from: o.valueRange)
         FireKit.populate(&self.valueRatio, from: o.valueRatio)
         FireKit.populate(&self.valueSampledData, from: o.valueSampledData)
         valueString = o.valueString
-        valueTime = o.valueTime
+        FireKit.populate(&self.valueTime, from: o.valueTime)
     }
 }
 

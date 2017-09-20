@@ -178,26 +178,156 @@ open class HealthcareService: DomainResource {
         super.populate(from: o)
         appointmentRequired.value = o.appointmentRequired.value
         availabilityExceptions = o.availabilityExceptions
-        FireKit.populateList(&self.availableTime, from: o.availableTime)
-        FireKit.populateList(&self.characteristic, from: o.characteristic)
+
+        for (index, t) in o.availableTime.enumerated() {
+            guard index < self.availableTime.count else {
+                self.availableTime.append(t)
+                continue
+            }
+            self.availableTime[index].populate(from: t)
+        }
+    
+        if self.availableTime.count > o.availableTime.count {
+            for i in self.availableTime.count...o.availableTime.count {
+                self.availableTime.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.characteristic.enumerated() {
+            guard index < self.characteristic.count else {
+                self.characteristic.append(t)
+                continue
+            }
+            self.characteristic[index].populate(from: t)
+        }
+    
+        if self.characteristic.count > o.characteristic.count {
+            for i in self.characteristic.count...o.characteristic.count {
+                self.characteristic.remove(objectAtIndex: i)
+            }
+        }
         comment = o.comment
-        FireKit.populateList(&self.coverageArea, from: o.coverageArea)
+
+        for (index, t) in o.coverageArea.enumerated() {
+            guard index < self.coverageArea.count else {
+                self.coverageArea.append(t)
+                continue
+            }
+            self.coverageArea[index].populate(from: t)
+        }
+    
+        if self.coverageArea.count > o.coverageArea.count {
+            for i in self.coverageArea.count...o.coverageArea.count {
+                self.coverageArea.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.eligibility, from: o.eligibility)
         eligibilityNote = o.eligibilityNote
         extraDetails = o.extraDetails
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.location, from: o.location)
-        FireKit.populateList(&self.notAvailable, from: o.notAvailable)
+
+        for (index, t) in o.notAvailable.enumerated() {
+            guard index < self.notAvailable.count else {
+                self.notAvailable.append(t)
+                continue
+            }
+            self.notAvailable[index].populate(from: t)
+        }
+    
+        if self.notAvailable.count > o.notAvailable.count {
+            for i in self.notAvailable.count...o.notAvailable.count {
+                self.notAvailable.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.photo, from: o.photo)
-        FireKit.populateList(&self.programName, from: o.programName)
+
+        for (index, t) in o.programName.enumerated() {
+            guard index < self.programName.count else {
+                self.programName.append(t)
+                continue
+            }
+            self.programName[index].populate(from: t)
+        }
+    
+        if self.programName.count > o.programName.count {
+            for i in self.programName.count...o.programName.count {
+                self.programName.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.providedBy, from: o.providedBy)
         publicKey = o.publicKey
-        FireKit.populateList(&self.referralMethod, from: o.referralMethod)
+
+        for (index, t) in o.referralMethod.enumerated() {
+            guard index < self.referralMethod.count else {
+                self.referralMethod.append(t)
+                continue
+            }
+            self.referralMethod[index].populate(from: t)
+        }
+    
+        if self.referralMethod.count > o.referralMethod.count {
+            for i in self.referralMethod.count...o.referralMethod.count {
+                self.referralMethod.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.serviceCategory, from: o.serviceCategory)
         serviceName = o.serviceName
-        FireKit.populateList(&self.serviceProvisionCode, from: o.serviceProvisionCode)
-        FireKit.populateList(&self.serviceType, from: o.serviceType)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.serviceProvisionCode.enumerated() {
+            guard index < self.serviceProvisionCode.count else {
+                self.serviceProvisionCode.append(t)
+                continue
+            }
+            self.serviceProvisionCode[index].populate(from: t)
+        }
+    
+        if self.serviceProvisionCode.count > o.serviceProvisionCode.count {
+            for i in self.serviceProvisionCode.count...o.serviceProvisionCode.count {
+                self.serviceProvisionCode.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.serviceType.enumerated() {
+            guard index < self.serviceType.count else {
+                self.serviceType.append(t)
+                continue
+            }
+            self.serviceType[index].populate(from: t)
+        }
+    
+        if self.serviceType.count > o.serviceType.count {
+            for i in self.serviceType.count...o.serviceType.count {
+                self.serviceType.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -275,9 +405,22 @@ open class HealthcareServiceAvailableTime: BackboneElement {
         
         super.populate(from: o)
         allDay.value = o.allDay.value
-        availableEndTime = o.availableEndTime
-        availableStartTime = o.availableStartTime
-        FireKit.populateList(&self.daysOfWeek, from: o.daysOfWeek)
+        FireKit.populate(&self.availableEndTime, from: o.availableEndTime)
+        FireKit.populate(&self.availableStartTime, from: o.availableStartTime)
+
+        for (index, t) in o.daysOfWeek.enumerated() {
+            guard index < self.daysOfWeek.count else {
+                self.daysOfWeek.append(t)
+                continue
+            }
+            self.daysOfWeek[index].populate(from: t)
+        }
+    
+        if self.daysOfWeek.count > o.daysOfWeek.count {
+            for i in self.daysOfWeek.count...o.daysOfWeek.count {
+                self.daysOfWeek.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -434,7 +577,20 @@ open class HealthcareServiceServiceType: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.specialty, from: o.specialty)
+
+        for (index, t) in o.specialty.enumerated() {
+            guard index < self.specialty.count else {
+                self.specialty.append(t)
+                continue
+            }
+            self.specialty[index].populate(from: t)
+        }
+    
+        if self.specialty.count > o.specialty.count {
+            for i in self.specialty.count...o.specialty.count {
+                self.specialty.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }

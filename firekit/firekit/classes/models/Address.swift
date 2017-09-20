@@ -116,7 +116,20 @@ open class Address: Element {
         city = o.city
         country = o.country
         district = o.district
-        FireKit.populateList(&self.line, from: o.line)
+
+        for (index, t) in o.line.enumerated() {
+            guard index < self.line.count else {
+                self.line.append(t)
+                continue
+            }
+            self.line[index].populate(from: t)
+        }
+    
+        if self.line.count > o.line.count {
+            for i in self.line.count...o.line.count {
+                self.line.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.period, from: o.period)
         postalCode = o.postalCode
         state = o.state

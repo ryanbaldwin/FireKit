@@ -138,7 +138,20 @@ open class Location: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.address, from: o.address)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         mode = o.mode
         name = o.name
@@ -146,7 +159,20 @@ open class Location: DomainResource {
         FireKit.populate(&self.physicalType, from: o.physicalType)
         FireKit.populate(&self.position, from: o.position)
         status = o.status
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }

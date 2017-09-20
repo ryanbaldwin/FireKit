@@ -102,7 +102,7 @@ open class Attachment: Element {
         
         super.populate(from: o)
         contentType = o.contentType
-        creation = o.creation
+        FireKit.populate(&self.creation, from: o.creation)
         data = o.data
         hash_fhir = o.hash_fhir
         language = o.language

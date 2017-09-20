@@ -116,15 +116,80 @@ open class Person: DomainResource {
         
         super.populate(from: o)
         active.value = o.active.value
-        FireKit.populateList(&self.address, from: o.address)
-        birthDate = o.birthDate
+
+        for (index, t) in o.address.enumerated() {
+            guard index < self.address.count else {
+                self.address.append(t)
+                continue
+            }
+            self.address[index].populate(from: t)
+        }
+    
+        if self.address.count > o.address.count {
+            for i in self.address.count...o.address.count {
+                self.address.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.birthDate, from: o.birthDate)
         gender = o.gender
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.link, from: o.link)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.link.enumerated() {
+            guard index < self.link.count else {
+                self.link.append(t)
+                continue
+            }
+            self.link[index].populate(from: t)
+        }
+    
+        if self.link.count > o.link.count {
+            for i in self.link.count...o.link.count {
+                self.link.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
-        FireKit.populateList(&self.name, from: o.name)
+
+        for (index, t) in o.name.enumerated() {
+            guard index < self.name.count else {
+                self.name.append(t)
+                continue
+            }
+            self.name[index].populate(from: t)
+        }
+    
+        if self.name.count > o.name.count {
+            for i in self.name.count...o.name.count {
+                self.name.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.photo, from: o.photo)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

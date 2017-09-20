@@ -124,11 +124,37 @@ open class DetectedIssue: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
         FireKit.populate(&self.category, from: o.category)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         detail = o.detail
         FireKit.populate(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.implicated, from: o.implicated)
-        FireKit.populateList(&self.mitigation, from: o.mitigation)
+
+        for (index, t) in o.implicated.enumerated() {
+            guard index < self.implicated.count else {
+                self.implicated.append(t)
+                continue
+            }
+            self.implicated[index].populate(from: t)
+        }
+    
+        if self.implicated.count > o.implicated.count {
+            for i in self.implicated.count...o.implicated.count {
+                self.implicated.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.mitigation.enumerated() {
+            guard index < self.mitigation.count else {
+                self.mitigation.append(t)
+                continue
+            }
+            self.mitigation[index].populate(from: t)
+        }
+    
+        if self.mitigation.count > o.mitigation.count {
+            for i in self.mitigation.count...o.mitigation.count {
+                self.mitigation.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
         reference = o.reference
         severity = o.severity
@@ -220,7 +246,7 @@ open class DetectedIssueMitigation: BackboneElement {
         super.populate(from: o)
         FireKit.populate(&self.action, from: o.action)
         FireKit.populate(&self.author, from: o.author)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
     }
 }
 

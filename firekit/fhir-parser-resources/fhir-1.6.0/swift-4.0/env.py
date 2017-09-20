@@ -53,9 +53,10 @@ jinja2.filters.FILTERS['can_upsert'] = can_upsert
 non_populatable_types = { 'String', 'Date', 'Data' }
 def populatable(prop):
 	""" Returns true if thsi property can be populated; otherwise false."""
-	return (not prop.is_native
-					and not requires_realm_optional(prop)
-					and prop.class_name not in non_populatable_types
+	return ((not prop.is_native
+			and not requires_realm_optional(prop)
+			and prop.class_name not in non_populatable_types) 
+			or prop.class_name in { 'FHIRDate', 'FHIRTime', 'DateTime', 'Instant' }
 		)
 
 jinja2.filters.FILTERS['populatable'] = populatable

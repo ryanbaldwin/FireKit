@@ -100,12 +100,64 @@ open class Substance: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.category, from: o.category)
+
+        for (index, t) in o.category.enumerated() {
+            guard index < self.category.count else {
+                self.category.append(t)
+                continue
+            }
+            self.category[index].populate(from: t)
+        }
+    
+        if self.category.count > o.category.count {
+            for i in self.category.count...o.category.count {
+                self.category.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.code, from: o.code)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.ingredient, from: o.ingredient)
-        FireKit.populateList(&self.instance, from: o.instance)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.ingredient.enumerated() {
+            guard index < self.ingredient.count else {
+                self.ingredient.append(t)
+                continue
+            }
+            self.ingredient[index].populate(from: t)
+        }
+    
+        if self.ingredient.count > o.ingredient.count {
+            for i in self.ingredient.count...o.ingredient.count {
+                self.ingredient.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.instance.enumerated() {
+            guard index < self.instance.count else {
+                self.instance.append(t)
+                continue
+            }
+            self.instance[index].populate(from: t)
+        }
+    
+        if self.instance.count > o.instance.count {
+            for i in self.instance.count...o.instance.count {
+                self.instance.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -267,7 +319,7 @@ open class SubstanceInstance: BackboneElement {
         }
         
         super.populate(from: o)
-        expiry = o.expiry
+        FireKit.populate(&self.expiry, from: o.expiry)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.quantity, from: o.quantity)
     }

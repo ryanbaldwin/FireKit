@@ -147,10 +147,36 @@ open class Coverage: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.bin, from: o.bin)
-        FireKit.populateList(&self.contract, from: o.contract)
+
+        for (index, t) in o.contract.enumerated() {
+            guard index < self.contract.count else {
+                self.contract.append(t)
+                continue
+            }
+            self.contract[index].populate(from: t)
+        }
+    
+        if self.contract.count > o.contract.count {
+            for i in self.contract.count...o.contract.count {
+                self.contract.remove(objectAtIndex: i)
+            }
+        }
         dependent.value = o.dependent.value
         group = o.group
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.issuer, from: o.issuer)
         FireKit.populate(&self.network, from: o.network)
         FireKit.populate(&self.period, from: o.period)

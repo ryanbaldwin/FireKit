@@ -129,13 +129,65 @@ open class Specimen: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.accessionIdentifier, from: o.accessionIdentifier)
         FireKit.populate(&self.collection, from: o.collection)
-        FireKit.populateList(&self.container, from: o.container)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.parent, from: o.parent)
-        receivedTime = o.receivedTime
+
+        for (index, t) in o.container.enumerated() {
+            guard index < self.container.count else {
+                self.container.append(t)
+                continue
+            }
+            self.container[index].populate(from: t)
+        }
+    
+        if self.container.count > o.container.count {
+            for i in self.container.count...o.container.count {
+                self.container.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.parent.enumerated() {
+            guard index < self.parent.count else {
+                self.parent.append(t)
+                continue
+            }
+            self.parent[index].populate(from: t)
+        }
+    
+        if self.parent.count > o.parent.count {
+            for i in self.parent.count...o.parent.count {
+                self.parent.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.receivedTime, from: o.receivedTime)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        FireKit.populateList(&self.treatment, from: o.treatment)
+
+        for (index, t) in o.treatment.enumerated() {
+            guard index < self.treatment.count else {
+                self.treatment.append(t)
+                continue
+            }
+            self.treatment[index].populate(from: t)
+        }
+    
+        if self.treatment.count > o.treatment.count {
+            for i in self.treatment.count...o.treatment.count {
+                self.treatment.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }
@@ -241,10 +293,23 @@ open class SpecimenCollection: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.bodySite, from: o.bodySite)
-        collectedDateTime = o.collectedDateTime
+        FireKit.populate(&self.collectedDateTime, from: o.collectedDateTime)
         FireKit.populate(&self.collectedPeriod, from: o.collectedPeriod)
         FireKit.populate(&self.collector, from: o.collector)
-        FireKit.populateList(&self.comment, from: o.comment)
+
+        for (index, t) in o.comment.enumerated() {
+            guard index < self.comment.count else {
+                self.comment.append(t)
+                continue
+            }
+            self.comment[index].populate(from: t)
+        }
+    
+        if self.comment.count > o.comment.count {
+            for i in self.comment.count...o.comment.count {
+                self.comment.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.method, from: o.method)
         FireKit.populate(&self.quantity, from: o.quantity)
     }
@@ -355,7 +420,20 @@ open class SpecimenContainer: BackboneElement {
         FireKit.populate(&self.additiveReference, from: o.additiveReference)
         FireKit.populate(&self.capacity, from: o.capacity)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.specimenQuantity, from: o.specimenQuantity)
         FireKit.populate(&self.type, from: o.type)
     }
@@ -433,7 +511,20 @@ open class SpecimenTreatment: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.additive, from: o.additive)
+
+        for (index, t) in o.additive.enumerated() {
+            guard index < self.additive.count else {
+                self.additive.append(t)
+                continue
+            }
+            self.additive[index].populate(from: t)
+        }
+    
+        if self.additive.count > o.additive.count {
+            for i in self.additive.count...o.additive.count {
+                self.additive.remove(objectAtIndex: i)
+            }
+        }
         description_fhir = o.description_fhir
         FireKit.populate(&self.procedure, from: o.procedure)
     }

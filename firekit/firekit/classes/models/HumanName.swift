@@ -100,11 +100,63 @@ open class HumanName: Element {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.family, from: o.family)
-        FireKit.populateList(&self.given, from: o.given)
+
+        for (index, t) in o.family.enumerated() {
+            guard index < self.family.count else {
+                self.family.append(t)
+                continue
+            }
+            self.family[index].populate(from: t)
+        }
+    
+        if self.family.count > o.family.count {
+            for i in self.family.count...o.family.count {
+                self.family.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.given.enumerated() {
+            guard index < self.given.count else {
+                self.given.append(t)
+                continue
+            }
+            self.given[index].populate(from: t)
+        }
+    
+        if self.given.count > o.given.count {
+            for i in self.given.count...o.given.count {
+                self.given.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.period, from: o.period)
-        FireKit.populateList(&self.prefix, from: o.prefix)
-        FireKit.populateList(&self.suffix, from: o.suffix)
+
+        for (index, t) in o.prefix.enumerated() {
+            guard index < self.prefix.count else {
+                self.prefix.append(t)
+                continue
+            }
+            self.prefix[index].populate(from: t)
+        }
+    
+        if self.prefix.count > o.prefix.count {
+            for i in self.prefix.count...o.prefix.count {
+                self.prefix.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.suffix.enumerated() {
+            guard index < self.suffix.count else {
+                self.suffix.append(t)
+                continue
+            }
+            self.suffix[index].populate(from: t)
+        }
+    
+        if self.suffix.count > o.suffix.count {
+            for i in self.suffix.count...o.suffix.count {
+                self.suffix.remove(objectAtIndex: i)
+            }
+        }
         text = o.text
         use = o.use
     }

@@ -145,12 +145,51 @@ open class ProcessResponse: DomainResource {
         }
         
         super.populate(from: o)
-        created = o.created
+        FireKit.populate(&self.created, from: o.created)
         disposition = o.disposition
-        FireKit.populateList(&self.error, from: o.error)
+
+        for (index, t) in o.error.enumerated() {
+            guard index < self.error.count else {
+                self.error.append(t)
+                continue
+            }
+            self.error[index].populate(from: t)
+        }
+    
+        if self.error.count > o.error.count {
+            for i in self.error.count...o.error.count {
+                self.error.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.form, from: o.form)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.notes, from: o.notes)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.notes.enumerated() {
+            guard index < self.notes.count else {
+                self.notes.append(t)
+                continue
+            }
+            self.notes[index].populate(from: t)
+        }
+    
+        if self.notes.count > o.notes.count {
+            for i in self.notes.count...o.notes.count {
+                self.notes.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
         FireKit.populate(&self.outcome, from: o.outcome)

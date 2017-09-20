@@ -73,7 +73,20 @@ open class BackboneElement: Element {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.modifierExtension, from: o.modifierExtension)
+
+        for (index, t) in o.modifierExtension.enumerated() {
+            guard index < self.modifierExtension.count else {
+                self.modifierExtension.append(t)
+                continue
+            }
+            self.modifierExtension[index].populate(from: t)
+        }
+    
+        if self.modifierExtension.count > o.modifierExtension.count {
+            for i in self.modifierExtension.count...o.modifierExtension.count {
+                self.modifierExtension.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

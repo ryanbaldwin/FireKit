@@ -77,7 +77,20 @@ open class CodeableConcept: Element {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.coding, from: o.coding)
+
+        for (index, t) in o.coding.enumerated() {
+            guard index < self.coding.count else {
+                self.coding.append(t)
+                continue
+            }
+            self.coding[index].populate(from: t)
+        }
+    
+        if self.coding.count > o.coding.count {
+            for i in self.coding.count...o.coding.count {
+                self.coding.remove(objectAtIndex: i)
+            }
+        }
         text = o.text
     }
 }

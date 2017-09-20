@@ -167,20 +167,111 @@ open class ClinicalImpression: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.action, from: o.action)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                self.action.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.assessor, from: o.assessor)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.finding, from: o.finding)
-        FireKit.populateList(&self.investigations, from: o.investigations)
+
+        for (index, t) in o.finding.enumerated() {
+            guard index < self.finding.count else {
+                self.finding.append(t)
+                continue
+            }
+            self.finding[index].populate(from: t)
+        }
+    
+        if self.finding.count > o.finding.count {
+            for i in self.finding.count...o.finding.count {
+                self.finding.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.investigations.enumerated() {
+            guard index < self.investigations.count else {
+                self.investigations.append(t)
+                continue
+            }
+            self.investigations[index].populate(from: t)
+        }
+    
+        if self.investigations.count > o.investigations.count {
+            for i in self.investigations.count...o.investigations.count {
+                self.investigations.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
-        FireKit.populateList(&self.plan, from: o.plan)
+
+        for (index, t) in o.plan.enumerated() {
+            guard index < self.plan.count else {
+                self.plan.append(t)
+                continue
+            }
+            self.plan[index].populate(from: t)
+        }
+    
+        if self.plan.count > o.plan.count {
+            for i in self.plan.count...o.plan.count {
+                self.plan.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.previous, from: o.previous)
-        FireKit.populateList(&self.problem, from: o.problem)
+
+        for (index, t) in o.problem.enumerated() {
+            guard index < self.problem.count else {
+                self.problem.append(t)
+                continue
+            }
+            self.problem[index].populate(from: t)
+        }
+    
+        if self.problem.count > o.problem.count {
+            for i in self.problem.count...o.problem.count {
+                self.problem.remove(objectAtIndex: i)
+            }
+        }
         prognosis = o.prognosis
         protocol_fhir = o.protocol_fhir
-        FireKit.populateList(&self.resolved, from: o.resolved)
-        FireKit.populateList(&self.ruledOut, from: o.ruledOut)
+
+        for (index, t) in o.resolved.enumerated() {
+            guard index < self.resolved.count else {
+                self.resolved.append(t)
+                continue
+            }
+            self.resolved[index].populate(from: t)
+        }
+    
+        if self.resolved.count > o.resolved.count {
+            for i in self.resolved.count...o.resolved.count {
+                self.resolved.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.ruledOut.enumerated() {
+            guard index < self.ruledOut.count else {
+                self.ruledOut.append(t)
+                continue
+            }
+            self.ruledOut[index].populate(from: t)
+        }
+    
+        if self.ruledOut.count > o.ruledOut.count {
+            for i in self.ruledOut.count...o.ruledOut.count {
+                self.ruledOut.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         summary = o.summary
         FireKit.populate(&self.triggerCodeableConcept, from: o.triggerCodeableConcept)
@@ -344,7 +435,20 @@ open class ClinicalImpressionInvestigations: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        FireKit.populateList(&self.item, from: o.item)
+
+        for (index, t) in o.item.enumerated() {
+            guard index < self.item.count else {
+                self.item.append(t)
+                continue
+            }
+            self.item[index].populate(from: t)
+        }
+    
+        if self.item.count > o.item.count {
+            for i in self.item.count...o.item.count {
+                self.item.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

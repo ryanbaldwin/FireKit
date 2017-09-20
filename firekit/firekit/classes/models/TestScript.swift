@@ -174,26 +174,104 @@ open class TestScript: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.contact, from: o.contact)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         copyright = o.copyright
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
-        FireKit.populateList(&self.fixture, from: o.fixture)
+
+        for (index, t) in o.fixture.enumerated() {
+            guard index < self.fixture.count else {
+                self.fixture.append(t)
+                continue
+            }
+            self.fixture[index].populate(from: t)
+        }
+    
+        if self.fixture.count > o.fixture.count {
+            for i in self.fixture.count...o.fixture.count {
+                self.fixture.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.metadata, from: o.metadata)
         multiserver.value = o.multiserver.value
         name = o.name
-        FireKit.populateList(&self.profile, from: o.profile)
+
+        for (index, t) in o.profile.enumerated() {
+            guard index < self.profile.count else {
+                self.profile.append(t)
+                continue
+            }
+            self.profile[index].populate(from: t)
+        }
+    
+        if self.profile.count > o.profile.count {
+            for i in self.profile.count...o.profile.count {
+                self.profile.remove(objectAtIndex: i)
+            }
+        }
         publisher = o.publisher
         requirements = o.requirements
         FireKit.populate(&self.setup, from: o.setup)
         status = o.status
         FireKit.populate(&self.teardown, from: o.teardown)
-        FireKit.populateList(&self.test, from: o.test)
+
+        for (index, t) in o.test.enumerated() {
+            guard index < self.test.count else {
+                self.test.append(t)
+                continue
+            }
+            self.test[index].populate(from: t)
+        }
+    
+        if self.test.count > o.test.count {
+            for i in self.test.count...o.test.count {
+                self.test.remove(objectAtIndex: i)
+            }
+        }
         url = o.url
-        FireKit.populateList(&self.useContext, from: o.useContext)
-        FireKit.populateList(&self.variable, from: o.variable)
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                self.useContext.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.variable.enumerated() {
+            guard index < self.variable.count else {
+                self.variable.append(t)
+                continue
+            }
+            self.variable[index].populate(from: t)
+        }
+    
+        if self.variable.count > o.variable.count {
+            for i in self.variable.count...o.variable.count {
+                self.variable.remove(objectAtIndex: i)
+            }
+        }
         version = o.version
     }
 }
@@ -264,7 +342,20 @@ open class TestScriptContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -417,8 +508,34 @@ open class TestScriptMetadata: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.capability, from: o.capability)
-        FireKit.populateList(&self.link, from: o.link)
+
+        for (index, t) in o.capability.enumerated() {
+            guard index < self.capability.count else {
+                self.capability.append(t)
+                continue
+            }
+            self.capability[index].populate(from: t)
+        }
+    
+        if self.capability.count > o.capability.count {
+            for i in self.capability.count...o.capability.count {
+                self.capability.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.link.enumerated() {
+            guard index < self.link.count else {
+                self.link.append(t)
+                continue
+            }
+            self.link[index].populate(from: t)
+        }
+    
+        if self.link.count > o.link.count {
+            for i in self.link.count...o.link.count {
+                self.link.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -515,7 +632,20 @@ open class TestScriptMetadataCapability: BackboneElement {
         FireKit.populate(&self.conformance, from: o.conformance)
         description_fhir = o.description_fhir
         destination.value = o.destination.value
-        FireKit.populateList(&self.link, from: o.link)
+
+        for (index, t) in o.link.enumerated() {
+            guard index < self.link.count else {
+                self.link.append(t)
+                continue
+            }
+            self.link[index].populate(from: t)
+        }
+    
+        if self.link.count > o.link.count {
+            for i in self.link.count...o.link.count {
+                self.link.remove(objectAtIndex: i)
+            }
+        }
         required.value = o.required.value
         validated.value = o.validated.value
     }
@@ -669,7 +799,20 @@ open class TestScriptSetup: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.action, from: o.action)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                self.action.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.metadata, from: o.metadata)
     }
 }
@@ -1023,7 +1166,20 @@ open class TestScriptSetupActionOperation: BackboneElement {
         encodeRequestUrl.value = o.encodeRequestUrl.value
         label = o.label
         params = o.params
-        FireKit.populateList(&self.requestHeader, from: o.requestHeader)
+
+        for (index, t) in o.requestHeader.enumerated() {
+            guard index < self.requestHeader.count else {
+                self.requestHeader.append(t)
+                continue
+            }
+            self.requestHeader[index].populate(from: t)
+        }
+    
+        if self.requestHeader.count > o.requestHeader.count {
+            for i in self.requestHeader.count...o.requestHeader.count {
+                self.requestHeader.remove(objectAtIndex: i)
+            }
+        }
         resource = o.resource
         responseId = o.responseId
         sourceId = o.sourceId
@@ -1177,7 +1333,20 @@ open class TestScriptTeardown: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.action, from: o.action)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                self.action.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -1329,7 +1498,20 @@ open class TestScriptTest: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.action, from: o.action)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                self.action.remove(objectAtIndex: i)
+            }
+        }
         description_fhir = o.description_fhir
         FireKit.populate(&self.metadata, from: o.metadata)
         name = o.name

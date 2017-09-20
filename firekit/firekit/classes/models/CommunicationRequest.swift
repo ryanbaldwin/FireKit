@@ -153,15 +153,80 @@ open class CommunicationRequest: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.medium, from: o.medium)
-        FireKit.populateList(&self.payload, from: o.payload)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.medium.enumerated() {
+            guard index < self.medium.count else {
+                self.medium.append(t)
+                continue
+            }
+            self.medium[index].populate(from: t)
+        }
+    
+        if self.medium.count > o.medium.count {
+            for i in self.medium.count...o.medium.count {
+                self.medium.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.payload.enumerated() {
+            guard index < self.payload.count else {
+                self.payload.append(t)
+                continue
+            }
+            self.payload[index].populate(from: t)
+        }
+    
+        if self.payload.count > o.payload.count {
+            for i in self.payload.count...o.payload.count {
+                self.payload.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.priority, from: o.priority)
-        FireKit.populateList(&self.reason, from: o.reason)
-        FireKit.populateList(&self.recipient, from: o.recipient)
-        requestedOn = o.requestedOn
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                self.reason.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.recipient.enumerated() {
+            guard index < self.recipient.count else {
+                self.recipient.append(t)
+                continue
+            }
+            self.recipient[index].populate(from: t)
+        }
+    
+        if self.recipient.count > o.recipient.count {
+            for i in self.recipient.count...o.recipient.count {
+                self.recipient.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.requestedOn, from: o.requestedOn)
         FireKit.populate(&self.requester, from: o.requester)
-        scheduledDateTime = o.scheduledDateTime
+        FireKit.populate(&self.scheduledDateTime, from: o.scheduledDateTime)
         FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)
         FireKit.populate(&self.sender, from: o.sender)
         status = o.status

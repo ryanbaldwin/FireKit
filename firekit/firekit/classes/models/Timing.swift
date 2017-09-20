@@ -90,7 +90,20 @@ open class Timing: Element {
         
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        FireKit.populateList(&self.event, from: o.event)
+
+        for (index, t) in o.event.enumerated() {
+            guard index < self.event.count else {
+                self.event.append(t)
+                continue
+            }
+            self.event[index].populate(from: t)
+        }
+    
+        if self.event.count > o.event.count {
+            for i in self.event.count...o.event.count {
+                self.event.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.repeat_fhir, from: o.repeat_fhir)
     }
 }

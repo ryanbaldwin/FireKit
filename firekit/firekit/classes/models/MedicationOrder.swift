@@ -179,12 +179,38 @@ open class MedicationOrder: DomainResource {
         }
         
         super.populate(from: o)
-        dateEnded = o.dateEnded
-        dateWritten = o.dateWritten
+        FireKit.populate(&self.dateEnded, from: o.dateEnded)
+        FireKit.populate(&self.dateWritten, from: o.dateWritten)
         FireKit.populate(&self.dispenseRequest, from: o.dispenseRequest)
-        FireKit.populateList(&self.dosageInstruction, from: o.dosageInstruction)
+
+        for (index, t) in o.dosageInstruction.enumerated() {
+            guard index < self.dosageInstruction.count else {
+                self.dosageInstruction.append(t)
+                continue
+            }
+            self.dosageInstruction[index].populate(from: t)
+        }
+    
+        if self.dosageInstruction.count > o.dosageInstruction.count {
+            for i in self.dosageInstruction.count...o.dosageInstruction.count {
+                self.dosageInstruction.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
         note = o.note

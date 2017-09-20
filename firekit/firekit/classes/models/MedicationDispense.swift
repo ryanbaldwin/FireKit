@@ -176,23 +176,62 @@ open class MedicationDispense: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.authorizingPrescription, from: o.authorizingPrescription)
+
+        for (index, t) in o.authorizingPrescription.enumerated() {
+            guard index < self.authorizingPrescription.count else {
+                self.authorizingPrescription.append(t)
+                continue
+            }
+            self.authorizingPrescription[index].populate(from: t)
+        }
+    
+        if self.authorizingPrescription.count > o.authorizingPrescription.count {
+            for i in self.authorizingPrescription.count...o.authorizingPrescription.count {
+                self.authorizingPrescription.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.daysSupply, from: o.daysSupply)
         FireKit.populate(&self.destination, from: o.destination)
         FireKit.populate(&self.dispenser, from: o.dispenser)
-        FireKit.populateList(&self.dosageInstruction, from: o.dosageInstruction)
+
+        for (index, t) in o.dosageInstruction.enumerated() {
+            guard index < self.dosageInstruction.count else {
+                self.dosageInstruction.append(t)
+                continue
+            }
+            self.dosageInstruction[index].populate(from: t)
+        }
+    
+        if self.dosageInstruction.count > o.dosageInstruction.count {
+            for i in self.dosageInstruction.count...o.dosageInstruction.count {
+                self.dosageInstruction.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
         note = o.note
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.quantity, from: o.quantity)
-        FireKit.populateList(&self.receiver, from: o.receiver)
+
+        for (index, t) in o.receiver.enumerated() {
+            guard index < self.receiver.count else {
+                self.receiver.append(t)
+                continue
+            }
+            self.receiver[index].populate(from: t)
+        }
+    
+        if self.receiver.count > o.receiver.count {
+            for i in self.receiver.count...o.receiver.count {
+                self.receiver.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         FireKit.populate(&self.substitution, from: o.substitution)
         FireKit.populate(&self.type, from: o.type)
-        whenHandedOver = o.whenHandedOver
-        whenPrepared = o.whenPrepared
+        FireKit.populate(&self.whenHandedOver, from: o.whenHandedOver)
+        FireKit.populate(&self.whenPrepared, from: o.whenPrepared)
     }
 }
 
@@ -442,8 +481,34 @@ open class MedicationDispenseSubstitution: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.reason, from: o.reason)
-        FireKit.populateList(&self.responsibleParty, from: o.responsibleParty)
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                self.reason.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.responsibleParty.enumerated() {
+            guard index < self.responsibleParty.count else {
+                self.responsibleParty.append(t)
+                continue
+            }
+            self.responsibleParty[index].populate(from: t)
+        }
+    
+        if self.responsibleParty.count > o.responsibleParty.count {
+            for i in self.responsibleParty.count...o.responsibleParty.count {
+                self.responsibleParty.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }

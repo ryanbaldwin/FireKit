@@ -138,8 +138,21 @@ open class NamingSystem: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.contact, from: o.contact)
-        date = o.date
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
         kind = o.kind
         name = o.name
@@ -148,9 +161,35 @@ open class NamingSystem: DomainResource {
         responsible = o.responsible
         status = o.status
         FireKit.populate(&self.type, from: o.type)
-        FireKit.populateList(&self.uniqueId, from: o.uniqueId)
+
+        for (index, t) in o.uniqueId.enumerated() {
+            guard index < self.uniqueId.count else {
+                self.uniqueId.append(t)
+                continue
+            }
+            self.uniqueId[index].populate(from: t)
+        }
+    
+        if self.uniqueId.count > o.uniqueId.count {
+            for i in self.uniqueId.count...o.uniqueId.count {
+                self.uniqueId.remove(objectAtIndex: i)
+            }
+        }
         usage = o.usage
-        FireKit.populateList(&self.useContext, from: o.useContext)
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                self.useContext.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -220,7 +259,20 @@ open class NamingSystemContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

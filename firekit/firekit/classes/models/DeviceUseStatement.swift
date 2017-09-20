@@ -149,12 +149,51 @@ open class DeviceUseStatement: DomainResource {
         FireKit.populate(&self.bodySiteCodeableConcept, from: o.bodySiteCodeableConcept)
         FireKit.populate(&self.bodySiteReference, from: o.bodySiteReference)
         FireKit.populate(&self.device, from: o.device)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.indication, from: o.indication)
-        FireKit.populateList(&self.notes, from: o.notes)
-        recordedOn = o.recordedOn
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.indication.enumerated() {
+            guard index < self.indication.count else {
+                self.indication.append(t)
+                continue
+            }
+            self.indication[index].populate(from: t)
+        }
+    
+        if self.indication.count > o.indication.count {
+            for i in self.indication.count...o.indication.count {
+                self.indication.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.notes.enumerated() {
+            guard index < self.notes.count else {
+                self.notes.append(t)
+                continue
+            }
+            self.notes[index].populate(from: t)
+        }
+    
+        if self.notes.count > o.notes.count {
+            for i in self.notes.count...o.notes.count {
+                self.notes.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.recordedOn, from: o.recordedOn)
         FireKit.populate(&self.subject, from: o.subject)
-        timingDateTime = o.timingDateTime
+        FireKit.populate(&self.timingDateTime, from: o.timingDateTime)
         FireKit.populate(&self.timingPeriod, from: o.timingPeriod)
         FireKit.populate(&self.timingTiming, from: o.timingTiming)
         FireKit.populate(&self.whenUsed, from: o.whenUsed)

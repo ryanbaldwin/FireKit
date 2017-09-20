@@ -115,11 +115,37 @@ open class AppointmentResponse: DomainResource {
         FireKit.populate(&self.actor, from: o.actor)
         FireKit.populate(&self.appointment, from: o.appointment)
         comment = o.comment
-        end = o.end
-        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.end, from: o.end)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         participantStatus = o.participantStatus
-        FireKit.populateList(&self.participantType, from: o.participantType)
-        start = o.start
+
+        for (index, t) in o.participantType.enumerated() {
+            guard index < self.participantType.count else {
+                self.participantType.append(t)
+                continue
+            }
+            self.participantType[index].populate(from: t)
+        }
+    
+        if self.participantType.count > o.participantType.count {
+            for i in self.participantType.count...o.participantType.count {
+                self.participantType.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.start, from: o.start)
     }
 }
 

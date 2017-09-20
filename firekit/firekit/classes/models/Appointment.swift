@@ -131,14 +131,53 @@ open class Appointment: DomainResource {
         super.populate(from: o)
         comment = o.comment
         description_fhir = o.description_fhir
-        end = o.end
-        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.end, from: o.end)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         minutesDuration.value = o.minutesDuration.value
-        FireKit.populateList(&self.participant, from: o.participant)
+
+        for (index, t) in o.participant.enumerated() {
+            guard index < self.participant.count else {
+                self.participant.append(t)
+                continue
+            }
+            self.participant[index].populate(from: t)
+        }
+    
+        if self.participant.count > o.participant.count {
+            for i in self.participant.count...o.participant.count {
+                self.participant.remove(objectAtIndex: i)
+            }
+        }
         priority.value = o.priority.value
         FireKit.populate(&self.reason, from: o.reason)
-        FireKit.populateList(&self.slot, from: o.slot)
-        start = o.start
+
+        for (index, t) in o.slot.enumerated() {
+            guard index < self.slot.count else {
+                self.slot.append(t)
+                continue
+            }
+            self.slot[index].populate(from: t)
+        }
+    
+        if self.slot.count > o.slot.count {
+            for i in self.slot.count...o.slot.count {
+                self.slot.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.start, from: o.start)
         status = o.status
         FireKit.populate(&self.type, from: o.type)
     }
@@ -229,7 +268,20 @@ open class AppointmentParticipant: BackboneElement {
         FireKit.populate(&self.actor, from: o.actor)
         required = o.required
         status = o.status
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

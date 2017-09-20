@@ -272,13 +272,13 @@ open class Extension: Element {
         FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)
         FireKit.populate(&self.valueCoding, from: o.valueCoding)
         FireKit.populate(&self.valueContactPoint, from: o.valueContactPoint)
-        valueDate = o.valueDate
-        valueDateTime = o.valueDateTime
+        FireKit.populate(&self.valueDate, from: o.valueDate)
+        FireKit.populate(&self.valueDateTime, from: o.valueDateTime)
         valueDecimal = o.valueDecimal
         FireKit.populate(&self.valueHumanName, from: o.valueHumanName)
         valueId = o.valueId
         FireKit.populate(&self.valueIdentifier, from: o.valueIdentifier)
-        valueInstant = o.valueInstant
+        FireKit.populate(&self.valueInstant, from: o.valueInstant)
         valueInteger.value = o.valueInteger.value
         valueMarkdown = o.valueMarkdown
         FireKit.populate(&self.valueMeta, from: o.valueMeta)
@@ -292,7 +292,7 @@ open class Extension: Element {
         FireKit.populate(&self.valueSampledData, from: o.valueSampledData)
         FireKit.populate(&self.valueSignature, from: o.valueSignature)
         valueString = o.valueString
-        valueTime = o.valueTime
+        FireKit.populate(&self.valueTime, from: o.valueTime)
         FireKit.populate(&self.valueTiming, from: o.valueTiming)
         valueUnsignedInt.value = o.valueUnsignedInt.value
         valueUri = o.valueUri

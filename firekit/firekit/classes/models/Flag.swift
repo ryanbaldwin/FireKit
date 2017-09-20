@@ -131,7 +131,20 @@ open class Flag: DomainResource {
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.period, from: o.period)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)

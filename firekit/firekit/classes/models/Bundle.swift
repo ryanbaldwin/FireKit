@@ -98,8 +98,34 @@ open class Bundle: Resource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.entry, from: o.entry)
-        FireKit.populateList(&self.link, from: o.link)
+
+        for (index, t) in o.entry.enumerated() {
+            guard index < self.entry.count else {
+                self.entry.append(t)
+                continue
+            }
+            self.entry[index].populate(from: t)
+        }
+    
+        if self.entry.count > o.entry.count {
+            for i in self.entry.count...o.entry.count {
+                self.entry.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.link.enumerated() {
+            guard index < self.link.count else {
+                self.link.append(t)
+                continue
+            }
+            self.link[index].populate(from: t)
+        }
+    
+        if self.link.count > o.link.count {
+            for i in self.link.count...o.link.count {
+                self.link.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.signature, from: o.signature)
         total.value = o.total.value
         type = o.type
@@ -205,7 +231,20 @@ open class BundleEntry: BackboneElement {
         
         super.populate(from: o)
         fullUrl = o.fullUrl
-        FireKit.populateList(&self.link, from: o.link)
+
+        for (index, t) in o.link.enumerated() {
+            guard index < self.link.count else {
+                self.link.append(t)
+                continue
+            }
+            self.link[index].populate(from: t)
+        }
+    
+        if self.link.count > o.link.count {
+            for i in self.link.count...o.link.count {
+                self.link.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.request, from: o.request)
         FireKit.populate(&self.resource, from: o.resource)
         FireKit.populate(&self.response, from: o.response)
@@ -302,7 +341,7 @@ open class BundleEntryRequest: BackboneElement {
         
         super.populate(from: o)
         ifMatch = o.ifMatch
-        ifModifiedSince = o.ifModifiedSince
+        FireKit.populate(&self.ifModifiedSince, from: o.ifModifiedSince)
         ifNoneExist = o.ifNoneExist
         ifNoneMatch = o.ifNoneMatch
         method = o.method
@@ -390,7 +429,7 @@ open class BundleEntryResponse: BackboneElement {
         
         super.populate(from: o)
         etag = o.etag
-        lastModified = o.lastModified
+        FireKit.populate(&self.lastModified, from: o.lastModified)
         location = o.location
         status = o.status
     }

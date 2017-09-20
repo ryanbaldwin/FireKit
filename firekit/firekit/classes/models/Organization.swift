@@ -110,12 +110,64 @@ open class Organization: DomainResource {
         
         super.populate(from: o)
         active.value = o.active.value
-        FireKit.populateList(&self.address, from: o.address)
-        FireKit.populateList(&self.contact, from: o.contact)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.address.enumerated() {
+            guard index < self.address.count else {
+                self.address.append(t)
+                continue
+            }
+            self.address[index].populate(from: t)
+        }
+    
+        if self.address.count > o.address.count {
+            for i in self.address.count...o.address.count {
+                self.address.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
         FireKit.populate(&self.partOf, from: o.partOf)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }
@@ -203,7 +255,20 @@ open class OrganizationContact: BackboneElement {
         FireKit.populate(&self.address, from: o.address)
         FireKit.populate(&self.name, from: o.name)
         FireKit.populate(&self.purpose, from: o.purpose)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

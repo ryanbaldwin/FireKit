@@ -170,20 +170,72 @@ open class MedicationAdministration: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.device, from: o.device)
+
+        for (index, t) in o.device.enumerated() {
+            guard index < self.device.count else {
+                self.device.append(t)
+                continue
+            }
+            self.device[index].populate(from: t)
+        }
+    
+        if self.device.count > o.device.count {
+            for i in self.device.count...o.device.count {
+                self.device.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.dosage, from: o.dosage)
-        effectiveTimeDateTime = o.effectiveTimeDateTime
+        FireKit.populate(&self.effectiveTimeDateTime, from: o.effectiveTimeDateTime)
         FireKit.populate(&self.effectiveTimePeriod, from: o.effectiveTimePeriod)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
         note = o.note
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.practitioner, from: o.practitioner)
         FireKit.populate(&self.prescription, from: o.prescription)
-        FireKit.populateList(&self.reasonGiven, from: o.reasonGiven)
-        FireKit.populateList(&self.reasonNotGiven, from: o.reasonNotGiven)
+
+        for (index, t) in o.reasonGiven.enumerated() {
+            guard index < self.reasonGiven.count else {
+                self.reasonGiven.append(t)
+                continue
+            }
+            self.reasonGiven[index].populate(from: t)
+        }
+    
+        if self.reasonGiven.count > o.reasonGiven.count {
+            for i in self.reasonGiven.count...o.reasonGiven.count {
+                self.reasonGiven.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.reasonNotGiven.enumerated() {
+            guard index < self.reasonNotGiven.count else {
+                self.reasonNotGiven.append(t)
+                continue
+            }
+            self.reasonNotGiven[index].populate(from: t)
+        }
+    
+        if self.reasonNotGiven.count > o.reasonNotGiven.count {
+            for i in self.reasonNotGiven.count...o.reasonNotGiven.count {
+                self.reasonNotGiven.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         wasNotGiven.value = o.wasNotGiven.value
     }

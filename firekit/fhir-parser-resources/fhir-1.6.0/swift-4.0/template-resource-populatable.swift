@@ -8,7 +8,20 @@
 
 {%- for prop in klass.properties %}
     {%- if prop.is_array %}
-        FireKit.populateList(&self.{{ prop.name }}, from: o.{{ prop.name }})
+
+        for (index, t) in o.{{prop.name}}.enumerated() {
+            guard index < self.{{prop.name}}.count else {
+                self.{{prop.name}}.append(t)
+                continue
+            }
+            self.{{prop.name}}[index].populate(from: t)
+        }
+    
+        if self.{{prop.name}}.count > o.{{prop.name}}.count {
+            for i in self.{{prop.name}}.count...o.{{prop.name}}.count {
+                self.{{prop.name}}.remove(objectAtIndex: i)
+            }
+        }
     {%- elif prop|populatable %}
         FireKit.populate(&self.{{ prop.name}}, from: o.{{ prop.name }})
     {%- elif prop|requires_realm_optional %}

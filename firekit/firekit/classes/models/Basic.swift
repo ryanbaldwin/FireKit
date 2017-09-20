@@ -107,8 +107,21 @@ open class Basic: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
         FireKit.populate(&self.code, from: o.code)
-        created = o.created
-        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.created, from: o.created)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.subject, from: o.subject)
     }
 }

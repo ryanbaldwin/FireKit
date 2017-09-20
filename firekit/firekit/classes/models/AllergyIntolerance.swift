@@ -150,13 +150,39 @@ open class AllergyIntolerance: DomainResource {
         super.populate(from: o)
         category = o.category
         criticality = o.criticality
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        lastOccurence = o.lastOccurence
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.lastOccurence, from: o.lastOccurence)
         FireKit.populate(&self.note, from: o.note)
-        onset = o.onset
+        FireKit.populate(&self.onset, from: o.onset)
         FireKit.populate(&self.patient, from: o.patient)
-        FireKit.populateList(&self.reaction, from: o.reaction)
-        recordedDate = o.recordedDate
+
+        for (index, t) in o.reaction.enumerated() {
+            guard index < self.reaction.count else {
+                self.reaction.append(t)
+                continue
+            }
+            self.reaction[index].populate(from: t)
+        }
+    
+        if self.reaction.count > o.reaction.count {
+            for i in self.reaction.count...o.reaction.count {
+                self.reaction.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.recordedDate, from: o.recordedDate)
         FireKit.populate(&self.recorder, from: o.recorder)
         FireKit.populate(&self.reporter, from: o.reporter)
         status = o.status
@@ -272,9 +298,22 @@ open class AllergyIntoleranceReaction: BackboneElement {
         certainty = o.certainty
         description_fhir = o.description_fhir
         FireKit.populate(&self.exposureRoute, from: o.exposureRoute)
-        FireKit.populateList(&self.manifestation, from: o.manifestation)
+
+        for (index, t) in o.manifestation.enumerated() {
+            guard index < self.manifestation.count else {
+                self.manifestation.append(t)
+                continue
+            }
+            self.manifestation[index].populate(from: t)
+        }
+    
+        if self.manifestation.count > o.manifestation.count {
+            for i in self.manifestation.count...o.manifestation.count {
+                self.manifestation.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.note, from: o.note)
-        onset = o.onset
+        FireKit.populate(&self.onset, from: o.onset)
         severity = o.severity
         FireKit.populate(&self.substance, from: o.substance)
     }

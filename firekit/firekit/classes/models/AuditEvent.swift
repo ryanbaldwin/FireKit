@@ -101,8 +101,34 @@ open class AuditEvent: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.event, from: o.event)
-        FireKit.populateList(&self.object, from: o.object)
-        FireKit.populateList(&self.participant, from: o.participant)
+
+        for (index, t) in o.object.enumerated() {
+            guard index < self.object.count else {
+                self.object.append(t)
+                continue
+            }
+            self.object[index].populate(from: t)
+        }
+    
+        if self.object.count > o.object.count {
+            for i in self.object.count...o.object.count {
+                self.object.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.participant.enumerated() {
+            guard index < self.participant.count else {
+                self.participant.append(t)
+                continue
+            }
+            self.participant[index].populate(from: t)
+        }
+    
+        if self.participant.count > o.participant.count {
+            for i in self.participant.count...o.participant.count {
+                self.participant.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.source, from: o.source)
     }
 }
@@ -203,11 +229,37 @@ open class AuditEventEvent: BackboneElement {
         
         super.populate(from: o)
         action = o.action
-        dateTime = o.dateTime
+        FireKit.populate(&self.dateTime, from: o.dateTime)
         outcome = o.outcome
         outcomeDesc = o.outcomeDesc
-        FireKit.populateList(&self.purposeOfEvent, from: o.purposeOfEvent)
-        FireKit.populateList(&self.subtype, from: o.subtype)
+
+        for (index, t) in o.purposeOfEvent.enumerated() {
+            guard index < self.purposeOfEvent.count else {
+                self.purposeOfEvent.append(t)
+                continue
+            }
+            self.purposeOfEvent[index].populate(from: t)
+        }
+    
+        if self.purposeOfEvent.count > o.purposeOfEvent.count {
+            for i in self.purposeOfEvent.count...o.purposeOfEvent.count {
+                self.purposeOfEvent.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.subtype.enumerated() {
+            guard index < self.subtype.count else {
+                self.subtype.append(t)
+                continue
+            }
+            self.subtype[index].populate(from: t)
+        }
+    
+        if self.subtype.count > o.subtype.count {
+            for i in self.subtype.count...o.subtype.count {
+                self.subtype.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }
@@ -323,14 +375,40 @@ open class AuditEventObject: BackboneElement {
         
         super.populate(from: o)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.detail, from: o.detail)
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                self.detail.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.lifecycle, from: o.lifecycle)
         name = o.name
         query = o.query
         FireKit.populate(&self.reference, from: o.reference)
         FireKit.populate(&self.role, from: o.role)
-        FireKit.populateList(&self.securityLabel, from: o.securityLabel)
+
+        for (index, t) in o.securityLabel.enumerated() {
+            guard index < self.securityLabel.count else {
+                self.securityLabel.append(t)
+                continue
+            }
+            self.securityLabel[index].populate(from: t)
+        }
+    
+        if self.securityLabel.count > o.securityLabel.count {
+            for i in self.securityLabel.count...o.securityLabel.count {
+                self.securityLabel.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }
@@ -535,11 +613,50 @@ open class AuditEventParticipant: BackboneElement {
         FireKit.populate(&self.media, from: o.media)
         name = o.name
         FireKit.populate(&self.network, from: o.network)
-        FireKit.populateList(&self.policy, from: o.policy)
-        FireKit.populateList(&self.purposeOfUse, from: o.purposeOfUse)
+
+        for (index, t) in o.policy.enumerated() {
+            guard index < self.policy.count else {
+                self.policy.append(t)
+                continue
+            }
+            self.policy[index].populate(from: t)
+        }
+    
+        if self.policy.count > o.policy.count {
+            for i in self.policy.count...o.policy.count {
+                self.policy.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.purposeOfUse.enumerated() {
+            guard index < self.purposeOfUse.count else {
+                self.purposeOfUse.append(t)
+                continue
+            }
+            self.purposeOfUse[index].populate(from: t)
+        }
+    
+        if self.purposeOfUse.count > o.purposeOfUse.count {
+            for i in self.purposeOfUse.count...o.purposeOfUse.count {
+                self.purposeOfUse.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.reference, from: o.reference)
         requestor.value = o.requestor.value
-        FireKit.populateList(&self.role, from: o.role)
+
+        for (index, t) in o.role.enumerated() {
+            guard index < self.role.count else {
+                self.role.append(t)
+                continue
+            }
+            self.role[index].populate(from: t)
+        }
+    
+        if self.role.count > o.role.count {
+            for i in self.role.count...o.role.count {
+                self.role.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.userId, from: o.userId)
     }
 }
@@ -692,7 +809,20 @@ open class AuditEventSource: BackboneElement {
         super.populate(from: o)
         FireKit.populate(&self.identifier, from: o.identifier)
         site = o.site
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

@@ -112,13 +112,52 @@ open class Questionnaire: DomainResource {
         }
         
         super.populate(from: o)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.group, from: o.group)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         publisher = o.publisher
         status = o.status
-        FireKit.populateList(&self.subjectType, from: o.subjectType)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.subjectType.enumerated() {
+            guard index < self.subjectType.count else {
+                self.subjectType.append(t)
+                continue
+            }
+            self.subjectType[index].populate(from: t)
+        }
+    
+        if self.subjectType.count > o.subjectType.count {
+            for i in self.subjectType.count...o.subjectType.count {
+                self.subjectType.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
         version = o.version
     }
 }
@@ -212,10 +251,49 @@ open class QuestionnaireGroup: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.concept, from: o.concept)
-        FireKit.populateList(&self.group, from: o.group)
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                self.concept.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                self.group.remove(objectAtIndex: i)
+            }
+        }
         linkId = o.linkId
-        FireKit.populateList(&self.question, from: o.question)
+
+        for (index, t) in o.question.enumerated() {
+            guard index < self.question.count else {
+                self.question.append(t)
+                continue
+            }
+            self.question[index].populate(from: t)
+        }
+    
+        if self.question.count > o.question.count {
+            for i in self.question.count...o.question.count {
+                self.question.remove(objectAtIndex: i)
+            }
+        }
         repeats.value = o.repeats.value
         required.value = o.required.value
         text = o.text
@@ -319,10 +397,49 @@ open class QuestionnaireGroupQuestion: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.concept, from: o.concept)
-        FireKit.populateList(&self.group, from: o.group)
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                self.concept.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                self.group.remove(objectAtIndex: i)
+            }
+        }
         linkId = o.linkId
-        FireKit.populateList(&self.option, from: o.option)
+
+        for (index, t) in o.option.enumerated() {
+            guard index < self.option.count else {
+                self.option.append(t)
+                continue
+            }
+            self.option[index].populate(from: t)
+        }
+    
+        if self.option.count > o.option.count {
+            for i in self.option.count...o.option.count {
+                self.option.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.options, from: o.options)
         repeats.value = o.repeats.value
         required.value = o.required.value

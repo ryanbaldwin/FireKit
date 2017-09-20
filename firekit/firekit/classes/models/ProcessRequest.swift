@@ -165,11 +165,63 @@ open class ProcessRequest: DomainResource {
         
         super.populate(from: o)
         action = o.action
-        created = o.created
-        FireKit.populateList(&self.exclude, from: o.exclude)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.include, from: o.include)
-        FireKit.populateList(&self.item, from: o.item)
+        FireKit.populate(&self.created, from: o.created)
+
+        for (index, t) in o.exclude.enumerated() {
+            guard index < self.exclude.count else {
+                self.exclude.append(t)
+                continue
+            }
+            self.exclude[index].populate(from: t)
+        }
+    
+        if self.exclude.count > o.exclude.count {
+            for i in self.exclude.count...o.exclude.count {
+                self.exclude.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.include.enumerated() {
+            guard index < self.include.count else {
+                self.include.append(t)
+                continue
+            }
+            self.include[index].populate(from: t)
+        }
+    
+        if self.include.count > o.include.count {
+            for i in self.include.count...o.include.count {
+                self.include.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.item.enumerated() {
+            guard index < self.item.count else {
+                self.item.append(t)
+                continue
+            }
+            self.item[index].populate(from: t)
+        }
+    
+        if self.item.count > o.item.count {
+            for i in self.item.count...o.item.count {
+                self.item.remove(objectAtIndex: i)
+            }
+        }
         nullify.value = o.nullify.value
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)

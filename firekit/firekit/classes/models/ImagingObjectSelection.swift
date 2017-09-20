@@ -122,10 +122,23 @@ open class ImagingObjectSelection: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
-        authoringTime = o.authoringTime
+        FireKit.populate(&self.authoringTime, from: o.authoringTime)
         description_fhir = o.description_fhir
         FireKit.populate(&self.patient, from: o.patient)
-        FireKit.populateList(&self.study, from: o.study)
+
+        for (index, t) in o.study.enumerated() {
+            guard index < self.study.count else {
+                self.study.append(t)
+                continue
+            }
+            self.study[index].populate(from: t)
+        }
+    
+        if self.study.count > o.study.count {
+            for i in self.study.count...o.study.count {
+                self.study.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.title, from: o.title)
         uid = o.uid
     }
@@ -215,7 +228,20 @@ open class ImagingObjectSelectionStudy: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.imagingStudy, from: o.imagingStudy)
-        FireKit.populateList(&self.series, from: o.series)
+
+        for (index, t) in o.series.enumerated() {
+            guard index < self.series.count else {
+                self.series.append(t)
+                continue
+            }
+            self.series[index].populate(from: t)
+        }
+    
+        if self.series.count > o.series.count {
+            for i in self.series.count...o.series.count {
+                self.series.remove(objectAtIndex: i)
+            }
+        }
         uid = o.uid
         url = o.url
     }
@@ -296,7 +322,20 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.instance, from: o.instance)
+
+        for (index, t) in o.instance.enumerated() {
+            guard index < self.instance.count else {
+                self.instance.append(t)
+                continue
+            }
+            self.instance[index].populate(from: t)
+        }
+    
+        if self.instance.count > o.instance.count {
+            for i in self.instance.count...o.instance.count {
+                self.instance.remove(objectAtIndex: i)
+            }
+        }
         uid = o.uid
         url = o.url
     }
@@ -383,7 +422,20 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.frames, from: o.frames)
+
+        for (index, t) in o.frames.enumerated() {
+            guard index < self.frames.count else {
+                self.frames.append(t)
+                continue
+            }
+            self.frames[index].populate(from: t)
+        }
+    
+        if self.frames.count > o.frames.count {
+            for i in self.frames.count...o.frames.count {
+                self.frames.remove(objectAtIndex: i)
+            }
+        }
         sopClass = o.sopClass
         uid = o.uid
         url = o.url
@@ -462,7 +514,20 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.frameNumbers, from: o.frameNumbers)
+
+        for (index, t) in o.frameNumbers.enumerated() {
+            guard index < self.frameNumbers.count else {
+                self.frameNumbers.append(t)
+                continue
+            }
+            self.frameNumbers[index].populate(from: t)
+        }
+    
+        if self.frameNumbers.count > o.frameNumbers.count {
+            for i in self.frameNumbers.count...o.frameNumbers.count {
+                self.frameNumbers.remove(objectAtIndex: i)
+            }
+        }
         url = o.url
     }
 }

@@ -142,15 +142,41 @@ open class SearchParameter: DomainResource {
         super.populate(from: o)
         base = o.base
         code = o.code
-        FireKit.populateList(&self.contact, from: o.contact)
-        date = o.date
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
         name = o.name
         publisher = o.publisher
         requirements = o.requirements
         status = o.status
-        FireKit.populateList(&self.target, from: o.target)
+
+        for (index, t) in o.target.enumerated() {
+            guard index < self.target.count else {
+                self.target.append(t)
+                continue
+            }
+            self.target[index].populate(from: t)
+        }
+    
+        if self.target.count > o.target.count {
+            for i in self.target.count...o.target.count {
+                self.target.remove(objectAtIndex: i)
+            }
+        }
         type = o.type
         url = o.url
         xpath = o.xpath
@@ -224,7 +250,20 @@ open class SearchParameterContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

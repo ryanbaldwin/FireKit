@@ -221,15 +221,93 @@ open class ClaimResponse: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.addItem, from: o.addItem)
-        FireKit.populateList(&self.coverage, from: o.coverage)
-        created = o.created
+
+        for (index, t) in o.addItem.enumerated() {
+            guard index < self.addItem.count else {
+                self.addItem.append(t)
+                continue
+            }
+            self.addItem[index].populate(from: t)
+        }
+    
+        if self.addItem.count > o.addItem.count {
+            for i in self.addItem.count...o.addItem.count {
+                self.addItem.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.coverage.enumerated() {
+            guard index < self.coverage.count else {
+                self.coverage.append(t)
+                continue
+            }
+            self.coverage[index].populate(from: t)
+        }
+    
+        if self.coverage.count > o.coverage.count {
+            for i in self.coverage.count...o.coverage.count {
+                self.coverage.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.created, from: o.created)
         disposition = o.disposition
-        FireKit.populateList(&self.error, from: o.error)
+
+        for (index, t) in o.error.enumerated() {
+            guard index < self.error.count else {
+                self.error.append(t)
+                continue
+            }
+            self.error[index].populate(from: t)
+        }
+    
+        if self.error.count > o.error.count {
+            for i in self.error.count...o.error.count {
+                self.error.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.form, from: o.form)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.item, from: o.item)
-        FireKit.populateList(&self.note, from: o.note)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.item.enumerated() {
+            guard index < self.item.count else {
+                self.item.append(t)
+                continue
+            }
+            self.item[index].populate(from: t)
+        }
+    
+        if self.item.count > o.item.count {
+            for i in self.item.count...o.item.count {
+                self.item.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.note.enumerated() {
+            guard index < self.note.count else {
+                self.note.append(t)
+                continue
+            }
+            self.note[index].populate(from: t)
+        }
+    
+        if self.note.count > o.note.count {
+            for i in self.note.count...o.note.count {
+                self.note.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
         outcome = o.outcome
@@ -237,7 +315,7 @@ open class ClaimResponse: DomainResource {
         FireKit.populate(&self.paymentAdjustment, from: o.paymentAdjustment)
         FireKit.populate(&self.paymentAdjustmentReason, from: o.paymentAdjustmentReason)
         FireKit.populate(&self.paymentAmount, from: o.paymentAmount)
-        paymentDate = o.paymentDate
+        FireKit.populate(&self.paymentDate, from: o.paymentDate)
         FireKit.populate(&self.paymentRef, from: o.paymentRef)
         FireKit.populate(&self.request, from: o.request)
         FireKit.populate(&self.requestOrganization, from: o.requestOrganization)
@@ -343,11 +421,63 @@ open class ClaimResponseAddItem: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.adjudication, from: o.adjudication)
-        FireKit.populateList(&self.detail, from: o.detail)
+
+        for (index, t) in o.adjudication.enumerated() {
+            guard index < self.adjudication.count else {
+                self.adjudication.append(t)
+                continue
+            }
+            self.adjudication[index].populate(from: t)
+        }
+    
+        if self.adjudication.count > o.adjudication.count {
+            for i in self.adjudication.count...o.adjudication.count {
+                self.adjudication.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                self.detail.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.fee, from: o.fee)
-        FireKit.populateList(&self.noteNumberLinkId, from: o.noteNumberLinkId)
-        FireKit.populateList(&self.sequenceLinkId, from: o.sequenceLinkId)
+
+        for (index, t) in o.noteNumberLinkId.enumerated() {
+            guard index < self.noteNumberLinkId.count else {
+                self.noteNumberLinkId.append(t)
+                continue
+            }
+            self.noteNumberLinkId[index].populate(from: t)
+        }
+    
+        if self.noteNumberLinkId.count > o.noteNumberLinkId.count {
+            for i in self.noteNumberLinkId.count...o.noteNumberLinkId.count {
+                self.noteNumberLinkId.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.sequenceLinkId.enumerated() {
+            guard index < self.sequenceLinkId.count else {
+                self.sequenceLinkId.append(t)
+                continue
+            }
+            self.sequenceLinkId[index].populate(from: t)
+        }
+    
+        if self.sequenceLinkId.count > o.sequenceLinkId.count {
+            for i in self.sequenceLinkId.count...o.sequenceLinkId.count {
+                self.sequenceLinkId.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.service, from: o.service)
     }
 }
@@ -520,7 +650,20 @@ open class ClaimResponseAddItemDetail: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.adjudication, from: o.adjudication)
+
+        for (index, t) in o.adjudication.enumerated() {
+            guard index < self.adjudication.count else {
+                self.adjudication.append(t)
+                continue
+            }
+            self.adjudication[index].populate(from: t)
+        }
+    
+        if self.adjudication.count > o.adjudication.count {
+            for i in self.adjudication.count...o.adjudication.count {
+                self.adjudication.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.fee, from: o.fee)
         FireKit.populate(&self.service, from: o.service)
     }
@@ -728,7 +871,20 @@ open class ClaimResponseCoverage: BackboneElement {
         FireKit.populate(&self.coverage, from: o.coverage)
         focal.value = o.focal.value
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
-        FireKit.populateList(&self.preAuthRef, from: o.preAuthRef)
+
+        for (index, t) in o.preAuthRef.enumerated() {
+            guard index < self.preAuthRef.count else {
+                self.preAuthRef.append(t)
+                continue
+            }
+            self.preAuthRef[index].populate(from: t)
+        }
+    
+        if self.preAuthRef.count > o.preAuthRef.count {
+            for i in self.preAuthRef.count...o.preAuthRef.count {
+                self.preAuthRef.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.relationship, from: o.relationship)
         sequence.value = o.sequence.value
     }
@@ -902,9 +1058,48 @@ open class ClaimResponseItem: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.adjudication, from: o.adjudication)
-        FireKit.populateList(&self.detail, from: o.detail)
-        FireKit.populateList(&self.noteNumber, from: o.noteNumber)
+
+        for (index, t) in o.adjudication.enumerated() {
+            guard index < self.adjudication.count else {
+                self.adjudication.append(t)
+                continue
+            }
+            self.adjudication[index].populate(from: t)
+        }
+    
+        if self.adjudication.count > o.adjudication.count {
+            for i in self.adjudication.count...o.adjudication.count {
+                self.adjudication.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                self.detail.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.noteNumber.enumerated() {
+            guard index < self.noteNumber.count else {
+                self.noteNumber.append(t)
+                continue
+            }
+            self.noteNumber[index].populate(from: t)
+        }
+    
+        if self.noteNumber.count > o.noteNumber.count {
+            for i in self.noteNumber.count...o.noteNumber.count {
+                self.noteNumber.remove(objectAtIndex: i)
+            }
+        }
         sequenceLinkId.value = o.sequenceLinkId.value
     }
 }
@@ -1071,9 +1266,35 @@ open class ClaimResponseItemDetail: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.adjudication, from: o.adjudication)
+
+        for (index, t) in o.adjudication.enumerated() {
+            guard index < self.adjudication.count else {
+                self.adjudication.append(t)
+                continue
+            }
+            self.adjudication[index].populate(from: t)
+        }
+    
+        if self.adjudication.count > o.adjudication.count {
+            for i in self.adjudication.count...o.adjudication.count {
+                self.adjudication.remove(objectAtIndex: i)
+            }
+        }
         sequenceLinkId.value = o.sequenceLinkId.value
-        FireKit.populateList(&self.subDetail, from: o.subDetail)
+
+        for (index, t) in o.subDetail.enumerated() {
+            guard index < self.subDetail.count else {
+                self.subDetail.append(t)
+                continue
+            }
+            self.subDetail[index].populate(from: t)
+        }
+    
+        if self.subDetail.count > o.subDetail.count {
+            for i in self.subDetail.count...o.subDetail.count {
+                self.subDetail.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -1235,7 +1456,20 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.adjudication, from: o.adjudication)
+
+        for (index, t) in o.adjudication.enumerated() {
+            guard index < self.adjudication.count else {
+                self.adjudication.append(t)
+                continue
+            }
+            self.adjudication[index].populate(from: t)
+        }
+    
+        if self.adjudication.count > o.adjudication.count {
+            for i in self.adjudication.count...o.adjudication.count {
+                self.adjudication.remove(objectAtIndex: i)
+            }
+        }
         sequenceLinkId.value = o.sequenceLinkId.value
     }
 }

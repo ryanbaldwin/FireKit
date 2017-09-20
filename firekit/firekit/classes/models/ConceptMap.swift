@@ -161,11 +161,37 @@ open class ConceptMap: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.contact, from: o.contact)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         copyright = o.copyright
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.element, from: o.element)
+
+        for (index, t) in o.element.enumerated() {
+            guard index < self.element.count else {
+                self.element.append(t)
+                continue
+            }
+            self.element[index].populate(from: t)
+        }
+    
+        if self.element.count > o.element.count {
+            for i in self.element.count...o.element.count {
+                self.element.remove(objectAtIndex: i)
+            }
+        }
         experimental.value = o.experimental.value
         FireKit.populate(&self.identifier, from: o.identifier)
         name = o.name
@@ -177,7 +203,20 @@ open class ConceptMap: DomainResource {
         FireKit.populate(&self.targetReference, from: o.targetReference)
         targetUri = o.targetUri
         url = o.url
-        FireKit.populateList(&self.useContext, from: o.useContext)
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                self.useContext.remove(objectAtIndex: i)
+            }
+        }
         version = o.version
     }
 }
@@ -248,7 +287,20 @@ open class ConceptMapContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -323,7 +375,20 @@ open class ConceptMapElement: BackboneElement {
         super.populate(from: o)
         code = o.code
         codeSystem = o.codeSystem
-        FireKit.populateList(&self.target, from: o.target)
+
+        for (index, t) in o.target.enumerated() {
+            guard index < self.target.count else {
+                self.target.append(t)
+                continue
+            }
+            self.target[index].populate(from: t)
+        }
+    
+        if self.target.count > o.target.count {
+            for i in self.target.count...o.target.count {
+                self.target.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -417,9 +482,35 @@ open class ConceptMapElementTarget: BackboneElement {
         code = o.code
         codeSystem = o.codeSystem
         comments = o.comments
-        FireKit.populateList(&self.dependsOn, from: o.dependsOn)
+
+        for (index, t) in o.dependsOn.enumerated() {
+            guard index < self.dependsOn.count else {
+                self.dependsOn.append(t)
+                continue
+            }
+            self.dependsOn[index].populate(from: t)
+        }
+    
+        if self.dependsOn.count > o.dependsOn.count {
+            for i in self.dependsOn.count...o.dependsOn.count {
+                self.dependsOn.remove(objectAtIndex: i)
+            }
+        }
         equivalence = o.equivalence
-        FireKit.populateList(&self.product, from: o.product)
+
+        for (index, t) in o.product.enumerated() {
+            guard index < self.product.count else {
+                self.product.append(t)
+                continue
+            }
+            self.product[index].populate(from: t)
+        }
+    
+        if self.product.count > o.product.count {
+            for i in self.product.count...o.product.count {
+                self.product.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

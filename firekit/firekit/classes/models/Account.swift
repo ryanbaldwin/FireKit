@@ -140,7 +140,20 @@ open class Account: DomainResource {
         FireKit.populate(&self.coveragePeriod, from: o.coveragePeriod)
         FireKit.populate(&self.currency, from: o.currency)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
         FireKit.populate(&self.owner, from: o.owner)
         status = o.status

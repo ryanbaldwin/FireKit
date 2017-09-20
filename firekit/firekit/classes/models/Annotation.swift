@@ -97,7 +97,7 @@ open class Annotation: Element {
         FireKit.populate(&self.authorReference, from: o.authorReference)
         authorString = o.authorString
         text = o.text
-        time = o.time
+        FireKit.populate(&self.time, from: o.time)
     }
 }
 

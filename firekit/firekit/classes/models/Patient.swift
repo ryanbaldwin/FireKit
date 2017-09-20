@@ -156,24 +156,141 @@ open class Patient: DomainResource {
         
         super.populate(from: o)
         active.value = o.active.value
-        FireKit.populateList(&self.address, from: o.address)
+
+        for (index, t) in o.address.enumerated() {
+            guard index < self.address.count else {
+                self.address.append(t)
+                continue
+            }
+            self.address[index].populate(from: t)
+        }
+    
+        if self.address.count > o.address.count {
+            for i in self.address.count...o.address.count {
+                self.address.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.animal, from: o.animal)
-        birthDate = o.birthDate
-        FireKit.populateList(&self.careProvider, from: o.careProvider)
-        FireKit.populateList(&self.communication, from: o.communication)
-        FireKit.populateList(&self.contact, from: o.contact)
+        FireKit.populate(&self.birthDate, from: o.birthDate)
+
+        for (index, t) in o.careProvider.enumerated() {
+            guard index < self.careProvider.count else {
+                self.careProvider.append(t)
+                continue
+            }
+            self.careProvider[index].populate(from: t)
+        }
+    
+        if self.careProvider.count > o.careProvider.count {
+            for i in self.careProvider.count...o.careProvider.count {
+                self.careProvider.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.communication.enumerated() {
+            guard index < self.communication.count else {
+                self.communication.append(t)
+                continue
+            }
+            self.communication[index].populate(from: t)
+        }
+    
+        if self.communication.count > o.communication.count {
+            for i in self.communication.count...o.communication.count {
+                self.communication.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         deceasedBoolean.value = o.deceasedBoolean.value
-        deceasedDateTime = o.deceasedDateTime
+        FireKit.populate(&self.deceasedDateTime, from: o.deceasedDateTime)
         gender = o.gender
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.link, from: o.link)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.link.enumerated() {
+            guard index < self.link.count else {
+                self.link.append(t)
+                continue
+            }
+            self.link[index].populate(from: t)
+        }
+    
+        if self.link.count > o.link.count {
+            for i in self.link.count...o.link.count {
+                self.link.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         FireKit.populate(&self.maritalStatus, from: o.maritalStatus)
         multipleBirthBoolean.value = o.multipleBirthBoolean.value
         multipleBirthInteger.value = o.multipleBirthInteger.value
-        FireKit.populateList(&self.name, from: o.name)
-        FireKit.populateList(&self.photo, from: o.photo)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.name.enumerated() {
+            guard index < self.name.count else {
+                self.name.append(t)
+                continue
+            }
+            self.name[index].populate(from: t)
+        }
+    
+        if self.name.count > o.name.count {
+            for i in self.name.count...o.name.count {
+                self.name.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.photo.enumerated() {
+            guard index < self.photo.count else {
+                self.photo.append(t)
+                continue
+            }
+            self.photo[index].populate(from: t)
+        }
+    
+        if self.photo.count > o.photo.count {
+            for i in self.photo.count...o.photo.count {
+                self.photo.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -446,8 +563,34 @@ open class PatientContact: BackboneElement {
         FireKit.populate(&self.name, from: o.name)
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.period, from: o.period)
-        FireKit.populateList(&self.relationship, from: o.relationship)
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.relationship.enumerated() {
+            guard index < self.relationship.count else {
+                self.relationship.append(t)
+                continue
+            }
+            self.relationship[index].populate(from: t)
+        }
+    
+        if self.relationship.count > o.relationship.count {
+            for i in self.relationship.count...o.relationship.count {
+                self.relationship.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

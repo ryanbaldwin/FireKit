@@ -117,13 +117,39 @@ open class Subscription: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.channel, from: o.channel)
-        FireKit.populateList(&self.contact, from: o.contact)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         criteria = o.criteria
-        end = o.end
+        FireKit.populate(&self.end, from: o.end)
         error = o.error
         reason = o.reason
         status = o.status
-        FireKit.populateList(&self.tag, from: o.tag)
+
+        for (index, t) in o.tag.enumerated() {
+            guard index < self.tag.count else {
+                self.tag.append(t)
+                continue
+            }
+            self.tag[index].populate(from: t)
+        }
+    
+        if self.tag.count > o.tag.count {
+            for i in self.tag.count...o.tag.count {
+                self.tag.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

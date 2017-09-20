@@ -147,11 +147,37 @@ open class List: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.emptyReason, from: o.emptyReason)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.entry, from: o.entry)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.entry.enumerated() {
+            guard index < self.entry.count else {
+                self.entry.append(t)
+                continue
+            }
+            self.entry[index].populate(from: t)
+        }
+    
+        if self.entry.count > o.entry.count {
+            for i in self.entry.count...o.entry.count {
+                self.entry.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         mode = o.mode
         note = o.note
         FireKit.populate(&self.orderedBy, from: o.orderedBy)
@@ -247,7 +273,7 @@ open class ListEntry: BackboneElement {
         }
         
         super.populate(from: o)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         deleted.value = o.deleted.value
         FireKit.populate(&self.flag, from: o.flag)
         FireKit.populate(&self.item, from: o.item)

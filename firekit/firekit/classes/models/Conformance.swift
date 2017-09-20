@@ -171,22 +171,100 @@ open class Conformance: DomainResource {
         
         super.populate(from: o)
         acceptUnknown = o.acceptUnknown
-        FireKit.populateList(&self.contact, from: o.contact)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         copyright = o.copyright
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.document, from: o.document)
+
+        for (index, t) in o.document.enumerated() {
+            guard index < self.document.count else {
+                self.document.append(t)
+                continue
+            }
+            self.document[index].populate(from: t)
+        }
+    
+        if self.document.count > o.document.count {
+            for i in self.document.count...o.document.count {
+                self.document.remove(objectAtIndex: i)
+            }
+        }
         experimental.value = o.experimental.value
         fhirVersion = o.fhirVersion
-        FireKit.populateList(&self.format, from: o.format)
+
+        for (index, t) in o.format.enumerated() {
+            guard index < self.format.count else {
+                self.format.append(t)
+                continue
+            }
+            self.format[index].populate(from: t)
+        }
+    
+        if self.format.count > o.format.count {
+            for i in self.format.count...o.format.count {
+                self.format.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.implementation, from: o.implementation)
         kind = o.kind
-        FireKit.populateList(&self.messaging, from: o.messaging)
+
+        for (index, t) in o.messaging.enumerated() {
+            guard index < self.messaging.count else {
+                self.messaging.append(t)
+                continue
+            }
+            self.messaging[index].populate(from: t)
+        }
+    
+        if self.messaging.count > o.messaging.count {
+            for i in self.messaging.count...o.messaging.count {
+                self.messaging.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
-        FireKit.populateList(&self.profile, from: o.profile)
+
+        for (index, t) in o.profile.enumerated() {
+            guard index < self.profile.count else {
+                self.profile.append(t)
+                continue
+            }
+            self.profile[index].populate(from: t)
+        }
+    
+        if self.profile.count > o.profile.count {
+            for i in self.profile.count...o.profile.count {
+                self.profile.remove(objectAtIndex: i)
+            }
+        }
         publisher = o.publisher
         requirements = o.requirements
-        FireKit.populateList(&self.rest, from: o.rest)
+
+        for (index, t) in o.rest.enumerated() {
+            guard index < self.rest.count else {
+                self.rest.append(t)
+                continue
+            }
+            self.rest[index].populate(from: t)
+        }
+    
+        if self.rest.count > o.rest.count {
+            for i in self.rest.count...o.rest.count {
+                self.rest.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.software, from: o.software)
         status = o.status
         url = o.url
@@ -260,7 +338,20 @@ open class ConformanceContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -506,8 +597,34 @@ open class ConformanceMessaging: BackboneElement {
         
         super.populate(from: o)
         documentation = o.documentation
-        FireKit.populateList(&self.endpoint, from: o.endpoint)
-        FireKit.populateList(&self.event, from: o.event)
+
+        for (index, t) in o.endpoint.enumerated() {
+            guard index < self.endpoint.count else {
+                self.endpoint.append(t)
+                continue
+            }
+            self.endpoint[index].populate(from: t)
+        }
+    
+        if self.endpoint.count > o.endpoint.count {
+            for i in self.endpoint.count...o.endpoint.count {
+                self.endpoint.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.event.enumerated() {
+            guard index < self.event.count else {
+                self.event.append(t)
+                continue
+            }
+            self.event[index].populate(from: t)
+        }
+    
+        if self.event.count > o.event.count {
+            for i in self.event.count...o.event.count {
+                self.event.remove(objectAtIndex: i)
+            }
+        }
         reliableCache.value = o.reliableCache.value
     }
 }
@@ -809,13 +926,78 @@ open class ConformanceRest: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.compartment, from: o.compartment)
+
+        for (index, t) in o.compartment.enumerated() {
+            guard index < self.compartment.count else {
+                self.compartment.append(t)
+                continue
+            }
+            self.compartment[index].populate(from: t)
+        }
+    
+        if self.compartment.count > o.compartment.count {
+            for i in self.compartment.count...o.compartment.count {
+                self.compartment.remove(objectAtIndex: i)
+            }
+        }
         documentation = o.documentation
-        FireKit.populateList(&self.interaction, from: o.interaction)
+
+        for (index, t) in o.interaction.enumerated() {
+            guard index < self.interaction.count else {
+                self.interaction.append(t)
+                continue
+            }
+            self.interaction[index].populate(from: t)
+        }
+    
+        if self.interaction.count > o.interaction.count {
+            for i in self.interaction.count...o.interaction.count {
+                self.interaction.remove(objectAtIndex: i)
+            }
+        }
         mode = o.mode
-        FireKit.populateList(&self.operation, from: o.operation)
-        FireKit.populateList(&self.resource, from: o.resource)
-        FireKit.populateList(&self.searchParam, from: o.searchParam)
+
+        for (index, t) in o.operation.enumerated() {
+            guard index < self.operation.count else {
+                self.operation.append(t)
+                continue
+            }
+            self.operation[index].populate(from: t)
+        }
+    
+        if self.operation.count > o.operation.count {
+            for i in self.operation.count...o.operation.count {
+                self.operation.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.resource.enumerated() {
+            guard index < self.resource.count else {
+                self.resource.append(t)
+                continue
+            }
+            self.resource[index].populate(from: t)
+        }
+    
+        if self.resource.count > o.resource.count {
+            for i in self.resource.count...o.resource.count {
+                self.resource.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.searchParam.enumerated() {
+            guard index < self.searchParam.count else {
+                self.searchParam.append(t)
+                continue
+            }
+            self.searchParam[index].populate(from: t)
+        }
+    
+        if self.searchParam.count > o.searchParam.count {
+            for i in self.searchParam.count...o.searchParam.count {
+                self.searchParam.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.security, from: o.security)
         transactionMode = o.transactionMode
     }
@@ -1095,12 +1277,64 @@ open class ConformanceRestResource: BackboneElement {
         conditionalCreate.value = o.conditionalCreate.value
         conditionalDelete = o.conditionalDelete
         conditionalUpdate.value = o.conditionalUpdate.value
-        FireKit.populateList(&self.interaction, from: o.interaction)
+
+        for (index, t) in o.interaction.enumerated() {
+            guard index < self.interaction.count else {
+                self.interaction.append(t)
+                continue
+            }
+            self.interaction[index].populate(from: t)
+        }
+    
+        if self.interaction.count > o.interaction.count {
+            for i in self.interaction.count...o.interaction.count {
+                self.interaction.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.profile, from: o.profile)
         readHistory.value = o.readHistory.value
-        FireKit.populateList(&self.searchInclude, from: o.searchInclude)
-        FireKit.populateList(&self.searchParam, from: o.searchParam)
-        FireKit.populateList(&self.searchRevInclude, from: o.searchRevInclude)
+
+        for (index, t) in o.searchInclude.enumerated() {
+            guard index < self.searchInclude.count else {
+                self.searchInclude.append(t)
+                continue
+            }
+            self.searchInclude[index].populate(from: t)
+        }
+    
+        if self.searchInclude.count > o.searchInclude.count {
+            for i in self.searchInclude.count...o.searchInclude.count {
+                self.searchInclude.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.searchParam.enumerated() {
+            guard index < self.searchParam.count else {
+                self.searchParam.append(t)
+                continue
+            }
+            self.searchParam[index].populate(from: t)
+        }
+    
+        if self.searchParam.count > o.searchParam.count {
+            for i in self.searchParam.count...o.searchParam.count {
+                self.searchParam.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.searchRevInclude.enumerated() {
+            guard index < self.searchRevInclude.count else {
+                self.searchRevInclude.append(t)
+                continue
+            }
+            self.searchRevInclude[index].populate(from: t)
+        }
+    
+        if self.searchRevInclude.count > o.searchRevInclude.count {
+            for i in self.searchRevInclude.count...o.searchRevInclude.count {
+                self.searchRevInclude.remove(objectAtIndex: i)
+            }
+        }
         type = o.type
         updateCreate.value = o.updateCreate.value
         versioning = o.versioning
@@ -1276,12 +1510,51 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.chain, from: o.chain)
+
+        for (index, t) in o.chain.enumerated() {
+            guard index < self.chain.count else {
+                self.chain.append(t)
+                continue
+            }
+            self.chain[index].populate(from: t)
+        }
+    
+        if self.chain.count > o.chain.count {
+            for i in self.chain.count...o.chain.count {
+                self.chain.remove(objectAtIndex: i)
+            }
+        }
         definition = o.definition
         documentation = o.documentation
-        FireKit.populateList(&self.modifier, from: o.modifier)
+
+        for (index, t) in o.modifier.enumerated() {
+            guard index < self.modifier.count else {
+                self.modifier.append(t)
+                continue
+            }
+            self.modifier[index].populate(from: t)
+        }
+    
+        if self.modifier.count > o.modifier.count {
+            for i in self.modifier.count...o.modifier.count {
+                self.modifier.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
-        FireKit.populateList(&self.target, from: o.target)
+
+        for (index, t) in o.target.enumerated() {
+            guard index < self.target.count else {
+                self.target.append(t)
+                continue
+            }
+            self.target[index].populate(from: t)
+        }
+    
+        if self.target.count > o.target.count {
+            for i in self.target.count...o.target.count {
+                self.target.remove(objectAtIndex: i)
+            }
+        }
         type = o.type
     }
 }
@@ -1359,10 +1632,36 @@ open class ConformanceRestSecurity: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.certificate, from: o.certificate)
+
+        for (index, t) in o.certificate.enumerated() {
+            guard index < self.certificate.count else {
+                self.certificate.append(t)
+                continue
+            }
+            self.certificate[index].populate(from: t)
+        }
+    
+        if self.certificate.count > o.certificate.count {
+            for i in self.certificate.count...o.certificate.count {
+                self.certificate.remove(objectAtIndex: i)
+            }
+        }
         cors.value = o.cors.value
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.service, from: o.service)
+
+        for (index, t) in o.service.enumerated() {
+            guard index < self.service.count else {
+                self.service.append(t)
+                continue
+            }
+            self.service[index].populate(from: t)
+        }
+    
+        if self.service.count > o.service.count {
+            for i in self.service.count...o.service.count {
+                self.service.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -1511,7 +1810,7 @@ open class ConformanceSoftware: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        releaseDate = o.releaseDate
+        FireKit.populate(&self.releaseDate, from: o.releaseDate)
         version = o.version
     }
 }

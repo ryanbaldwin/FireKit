@@ -180,18 +180,57 @@ open class ProcedureRequest: DomainResource {
         super.populate(from: o)
         asNeededBoolean.value = o.asNeededBoolean.value
         FireKit.populate(&self.asNeededCodeableConcept, from: o.asNeededCodeableConcept)
-        FireKit.populateList(&self.bodySite, from: o.bodySite)
+
+        for (index, t) in o.bodySite.enumerated() {
+            guard index < self.bodySite.count else {
+                self.bodySite.append(t)
+                continue
+            }
+            self.bodySite[index].populate(from: t)
+        }
+    
+        if self.bodySite.count > o.bodySite.count {
+            for i in self.bodySite.count...o.bodySite.count {
+                self.bodySite.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.notes, from: o.notes)
-        orderedOn = o.orderedOn
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.notes.enumerated() {
+            guard index < self.notes.count else {
+                self.notes.append(t)
+                continue
+            }
+            self.notes[index].populate(from: t)
+        }
+    
+        if self.notes.count > o.notes.count {
+            for i in self.notes.count...o.notes.count {
+                self.notes.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.orderedOn, from: o.orderedOn)
         FireKit.populate(&self.orderer, from: o.orderer)
         FireKit.populate(&self.performer, from: o.performer)
         priority = o.priority
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
-        scheduledDateTime = o.scheduledDateTime
+        FireKit.populate(&self.scheduledDateTime, from: o.scheduledDateTime)
         FireKit.populate(&self.scheduledPeriod, from: o.scheduledPeriod)
         FireKit.populate(&self.scheduledTiming, from: o.scheduledTiming)
         status = o.status

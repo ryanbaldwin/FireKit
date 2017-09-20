@@ -90,10 +90,49 @@ open class Meta: Element {
         }
         
         super.populate(from: o)
-        lastUpdated = o.lastUpdated
-        FireKit.populateList(&self.profile, from: o.profile)
-        FireKit.populateList(&self.security, from: o.security)
-        FireKit.populateList(&self.tag, from: o.tag)
+        FireKit.populate(&self.lastUpdated, from: o.lastUpdated)
+
+        for (index, t) in o.profile.enumerated() {
+            guard index < self.profile.count else {
+                self.profile.append(t)
+                continue
+            }
+            self.profile[index].populate(from: t)
+        }
+    
+        if self.profile.count > o.profile.count {
+            for i in self.profile.count...o.profile.count {
+                self.profile.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.security.enumerated() {
+            guard index < self.security.count else {
+                self.security.append(t)
+                continue
+            }
+            self.security[index].populate(from: t)
+        }
+    
+        if self.security.count > o.security.count {
+            for i in self.security.count...o.security.count {
+                self.security.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.tag.enumerated() {
+            guard index < self.tag.count else {
+                self.tag.append(t)
+                continue
+            }
+            self.tag[index].populate(from: t)
+        }
+    
+        if self.tag.count > o.tag.count {
+            for i in self.tag.count...o.tag.count {
+                self.tag.remove(objectAtIndex: i)
+            }
+        }
         versionId = o.versionId
     }
 }

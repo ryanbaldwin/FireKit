@@ -111,9 +111,48 @@ open class DomainResource: Resource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.contained, from: o.contained)
-        FireKit.populateList(&self.extension_fhir, from: o.extension_fhir)
-        FireKit.populateList(&self.modifierExtension, from: o.modifierExtension)
+
+        for (index, t) in o.contained.enumerated() {
+            guard index < self.contained.count else {
+                self.contained.append(t)
+                continue
+            }
+            self.contained[index].populate(from: t)
+        }
+    
+        if self.contained.count > o.contained.count {
+            for i in self.contained.count...o.contained.count {
+                self.contained.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.extension_fhir.enumerated() {
+            guard index < self.extension_fhir.count else {
+                self.extension_fhir.append(t)
+                continue
+            }
+            self.extension_fhir[index].populate(from: t)
+        }
+    
+        if self.extension_fhir.count > o.extension_fhir.count {
+            for i in self.extension_fhir.count...o.extension_fhir.count {
+                self.extension_fhir.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.modifierExtension.enumerated() {
+            guard index < self.modifierExtension.count else {
+                self.modifierExtension.append(t)
+                continue
+            }
+            self.modifierExtension[index].populate(from: t)
+        }
+    
+        if self.modifierExtension.count > o.modifierExtension.count {
+            for i in self.modifierExtension.count...o.modifierExtension.count {
+                self.modifierExtension.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.text, from: o.text)
     }
 }

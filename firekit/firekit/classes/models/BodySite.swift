@@ -108,9 +108,48 @@ open class BodySite: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.image, from: o.image)
-        FireKit.populateList(&self.modifier, from: o.modifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.image.enumerated() {
+            guard index < self.image.count else {
+                self.image.append(t)
+                continue
+            }
+            self.image[index].populate(from: t)
+        }
+    
+        if self.image.count > o.image.count {
+            for i in self.image.count...o.image.count {
+                self.image.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.modifier.enumerated() {
+            guard index < self.modifier.count else {
+                self.modifier.append(t)
+                continue
+            }
+            self.modifier[index].populate(from: t)
+        }
+    
+        if self.modifier.count > o.modifier.count {
+            for i in self.modifier.count...o.modifier.count {
+                self.modifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
     }
 }

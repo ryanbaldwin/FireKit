@@ -116,10 +116,36 @@ open class VisionPrescription: DomainResource {
         }
         
         super.populate(from: o)
-        dateWritten = o.dateWritten
-        FireKit.populateList(&self.dispense, from: o.dispense)
+        FireKit.populate(&self.dateWritten, from: o.dateWritten)
+
+        for (index, t) in o.dispense.enumerated() {
+            guard index < self.dispense.count else {
+                self.dispense.append(t)
+                continue
+            }
+            self.dispense[index].populate(from: t)
+        }
+    
+        if self.dispense.count > o.dispense.count {
+            for i in self.dispense.count...o.dispense.count {
+                self.dispense.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.prescriber, from: o.prescriber)
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)

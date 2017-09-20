@@ -158,16 +158,68 @@ open class Composition: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.attester, from: o.attester)
-        FireKit.populateList(&self.author, from: o.author)
+
+        for (index, t) in o.attester.enumerated() {
+            guard index < self.attester.count else {
+                self.attester.append(t)
+                continue
+            }
+            self.attester[index].populate(from: t)
+        }
+    
+        if self.attester.count > o.attester.count {
+            for i in self.attester.count...o.attester.count {
+                self.attester.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.author.enumerated() {
+            guard index < self.author.count else {
+                self.author.append(t)
+                continue
+            }
+            self.author[index].populate(from: t)
+        }
+    
+        if self.author.count > o.author.count {
+            for i in self.author.count...o.author.count {
+                self.author.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.class_fhir, from: o.class_fhir)
         confidentiality = o.confidentiality
         FireKit.populate(&self.custodian, from: o.custodian)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.event, from: o.event)
+
+        for (index, t) in o.event.enumerated() {
+            guard index < self.event.count else {
+                self.event.append(t)
+                continue
+            }
+            self.event[index].populate(from: t)
+        }
+    
+        if self.event.count > o.event.count {
+            for i in self.event.count...o.event.count {
+                self.event.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.section, from: o.section)
+
+        for (index, t) in o.section.enumerated() {
+            guard index < self.section.count else {
+                self.section.append(t)
+                continue
+            }
+            self.section[index].populate(from: t)
+        }
+    
+        if self.section.count > o.section.count {
+            for i in self.section.count...o.section.count {
+                self.section.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
         title = o.title
@@ -253,9 +305,22 @@ open class CompositionAttester: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.mode, from: o.mode)
+
+        for (index, t) in o.mode.enumerated() {
+            guard index < self.mode.count else {
+                self.mode.append(t)
+                continue
+            }
+            self.mode[index].populate(from: t)
+        }
+    
+        if self.mode.count > o.mode.count {
+            for i in self.mode.count...o.mode.count {
+                self.mode.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.party, from: o.party)
-        time = o.time
+        FireKit.populate(&self.time, from: o.time)
     }
 }
 
@@ -331,8 +396,34 @@ open class CompositionEvent: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.code, from: o.code)
-        FireKit.populateList(&self.detail, from: o.detail)
+
+        for (index, t) in o.code.enumerated() {
+            guard index < self.code.count else {
+                self.code.append(t)
+                continue
+            }
+            self.code[index].populate(from: t)
+        }
+    
+        if self.code.count > o.code.count {
+            for i in self.code.count...o.code.count {
+                self.code.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                self.detail.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.period, from: o.period)
     }
 }
@@ -440,10 +531,36 @@ open class CompositionSection: BackboneElement {
         super.populate(from: o)
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.emptyReason, from: o.emptyReason)
-        FireKit.populateList(&self.entry, from: o.entry)
+
+        for (index, t) in o.entry.enumerated() {
+            guard index < self.entry.count else {
+                self.entry.append(t)
+                continue
+            }
+            self.entry[index].populate(from: t)
+        }
+    
+        if self.entry.count > o.entry.count {
+            for i in self.entry.count...o.entry.count {
+                self.entry.remove(objectAtIndex: i)
+            }
+        }
         mode = o.mode
         FireKit.populate(&self.orderedBy, from: o.orderedBy)
-        FireKit.populateList(&self.section, from: o.section)
+
+        for (index, t) in o.section.enumerated() {
+            guard index < self.section.count else {
+                self.section.append(t)
+                continue
+            }
+            self.section[index].populate(from: t)
+        }
+    
+        if self.section.count > o.section.count {
+            for i in self.section.count...o.section.count {
+                self.section.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.text, from: o.text)
         title = o.title
     }

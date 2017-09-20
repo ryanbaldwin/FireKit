@@ -200,29 +200,159 @@ open class Procedure: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.bodySite, from: o.bodySite)
+
+        for (index, t) in o.bodySite.enumerated() {
+            guard index < self.bodySite.count else {
+                self.bodySite.append(t)
+                continue
+            }
+            self.bodySite[index].populate(from: t)
+        }
+    
+        if self.bodySite.count > o.bodySite.count {
+            for i in self.bodySite.count...o.bodySite.count {
+                self.bodySite.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
-        FireKit.populateList(&self.complication, from: o.complication)
+
+        for (index, t) in o.complication.enumerated() {
+            guard index < self.complication.count else {
+                self.complication.append(t)
+                continue
+            }
+            self.complication[index].populate(from: t)
+        }
+    
+        if self.complication.count > o.complication.count {
+            for i in self.complication.count...o.complication.count {
+                self.complication.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.focalDevice, from: o.focalDevice)
-        FireKit.populateList(&self.followUp, from: o.followUp)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.focalDevice.enumerated() {
+            guard index < self.focalDevice.count else {
+                self.focalDevice.append(t)
+                continue
+            }
+            self.focalDevice[index].populate(from: t)
+        }
+    
+        if self.focalDevice.count > o.focalDevice.count {
+            for i in self.focalDevice.count...o.focalDevice.count {
+                self.focalDevice.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.followUp.enumerated() {
+            guard index < self.followUp.count else {
+                self.followUp.append(t)
+                continue
+            }
+            self.followUp[index].populate(from: t)
+        }
+    
+        if self.followUp.count > o.followUp.count {
+            for i in self.followUp.count...o.followUp.count {
+                self.followUp.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.location, from: o.location)
         notPerformed.value = o.notPerformed.value
-        FireKit.populateList(&self.notes, from: o.notes)
+
+        for (index, t) in o.notes.enumerated() {
+            guard index < self.notes.count else {
+                self.notes.append(t)
+                continue
+            }
+            self.notes[index].populate(from: t)
+        }
+    
+        if self.notes.count > o.notes.count {
+            for i in self.notes.count...o.notes.count {
+                self.notes.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.outcome, from: o.outcome)
-        performedDateTime = o.performedDateTime
+        FireKit.populate(&self.performedDateTime, from: o.performedDateTime)
         FireKit.populate(&self.performedPeriod, from: o.performedPeriod)
-        FireKit.populateList(&self.performer, from: o.performer)
+
+        for (index, t) in o.performer.enumerated() {
+            guard index < self.performer.count else {
+                self.performer.append(t)
+                continue
+            }
+            self.performer[index].populate(from: t)
+        }
+    
+        if self.performer.count > o.performer.count {
+            for i in self.performer.count...o.performer.count {
+                self.performer.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
-        FireKit.populateList(&self.reasonNotPerformed, from: o.reasonNotPerformed)
+
+        for (index, t) in o.reasonNotPerformed.enumerated() {
+            guard index < self.reasonNotPerformed.count else {
+                self.reasonNotPerformed.append(t)
+                continue
+            }
+            self.reasonNotPerformed[index].populate(from: t)
+        }
+    
+        if self.reasonNotPerformed.count > o.reasonNotPerformed.count {
+            for i in self.reasonNotPerformed.count...o.reasonNotPerformed.count {
+                self.reasonNotPerformed.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
-        FireKit.populateList(&self.report, from: o.report)
+
+        for (index, t) in o.report.enumerated() {
+            guard index < self.report.count else {
+                self.report.append(t)
+                continue
+            }
+            self.report[index].populate(from: t)
+        }
+    
+        if self.report.count > o.report.count {
+            for i in self.report.count...o.report.count {
+                self.report.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.request, from: o.request)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        FireKit.populateList(&self.used, from: o.used)
+
+        for (index, t) in o.used.enumerated() {
+            guard index < self.used.count else {
+                self.used.append(t)
+                continue
+            }
+            self.used[index].populate(from: t)
+        }
+    
+        if self.used.count > o.used.count {
+            for i in self.used.count...o.used.count {
+                self.used.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

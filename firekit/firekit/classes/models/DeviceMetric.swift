@@ -135,7 +135,20 @@ open class DeviceMetric: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.calibration, from: o.calibration)
+
+        for (index, t) in o.calibration.enumerated() {
+            guard index < self.calibration.count else {
+                self.calibration.append(t)
+                continue
+            }
+            self.calibration[index].populate(from: t)
+        }
+    
+        if self.calibration.count > o.calibration.count {
+            for i in self.calibration.count...o.calibration.count {
+                self.calibration.remove(objectAtIndex: i)
+            }
+        }
         category = o.category
         color = o.color
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -216,7 +229,7 @@ open class DeviceMetricCalibration: BackboneElement {
         
         super.populate(from: o)
         state = o.state
-        time = o.time
+        FireKit.populate(&self.time, from: o.time)
         type = o.type
     }
 }

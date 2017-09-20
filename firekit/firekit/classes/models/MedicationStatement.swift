@@ -176,11 +176,37 @@ open class MedicationStatement: DomainResource {
         }
         
         super.populate(from: o)
-        dateAsserted = o.dateAsserted
-        FireKit.populateList(&self.dosage, from: o.dosage)
-        effectiveDateTime = o.effectiveDateTime
+        FireKit.populate(&self.dateAsserted, from: o.dateAsserted)
+
+        for (index, t) in o.dosage.enumerated() {
+            guard index < self.dosage.count else {
+                self.dosage.append(t)
+                continue
+            }
+            self.dosage[index].populate(from: t)
+        }
+    
+        if self.dosage.count > o.dosage.count {
+            for i in self.dosage.count...o.dosage.count {
+                self.dosage.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.effectiveDateTime, from: o.effectiveDateTime)
         FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.informationSource, from: o.informationSource)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
@@ -188,9 +214,35 @@ open class MedicationStatement: DomainResource {
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.reasonForUseCodeableConcept, from: o.reasonForUseCodeableConcept)
         FireKit.populate(&self.reasonForUseReference, from: o.reasonForUseReference)
-        FireKit.populateList(&self.reasonNotTaken, from: o.reasonNotTaken)
+
+        for (index, t) in o.reasonNotTaken.enumerated() {
+            guard index < self.reasonNotTaken.count else {
+                self.reasonNotTaken.append(t)
+                continue
+            }
+            self.reasonNotTaken[index].populate(from: t)
+        }
+    
+        if self.reasonNotTaken.count > o.reasonNotTaken.count {
+            for i in self.reasonNotTaken.count...o.reasonNotTaken.count {
+                self.reasonNotTaken.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
-        FireKit.populateList(&self.supportingInformation, from: o.supportingInformation)
+
+        for (index, t) in o.supportingInformation.enumerated() {
+            guard index < self.supportingInformation.count else {
+                self.supportingInformation.append(t)
+                continue
+            }
+            self.supportingInformation[index].populate(from: t)
+        }
+    
+        if self.supportingInformation.count > o.supportingInformation.count {
+            for i in self.supportingInformation.count...o.supportingInformation.count {
+                self.supportingInformation.remove(objectAtIndex: i)
+            }
+        }
         wasNotTaken.value = o.wasNotTaken.value
     }
 }

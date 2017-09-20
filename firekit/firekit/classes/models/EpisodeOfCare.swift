@@ -135,16 +135,94 @@ open class EpisodeOfCare: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.careManager, from: o.careManager)
-        FireKit.populateList(&self.careTeam, from: o.careTeam)
-        FireKit.populateList(&self.condition, from: o.condition)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.careTeam.enumerated() {
+            guard index < self.careTeam.count else {
+                self.careTeam.append(t)
+                continue
+            }
+            self.careTeam[index].populate(from: t)
+        }
+    
+        if self.careTeam.count > o.careTeam.count {
+            for i in self.careTeam.count...o.careTeam.count {
+                self.careTeam.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.condition.enumerated() {
+            guard index < self.condition.count else {
+                self.condition.append(t)
+                continue
+            }
+            self.condition[index].populate(from: t)
+        }
+    
+        if self.condition.count > o.condition.count {
+            for i in self.condition.count...o.condition.count {
+                self.condition.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.period, from: o.period)
-        FireKit.populateList(&self.referralRequest, from: o.referralRequest)
+
+        for (index, t) in o.referralRequest.enumerated() {
+            guard index < self.referralRequest.count else {
+                self.referralRequest.append(t)
+                continue
+            }
+            self.referralRequest[index].populate(from: t)
+        }
+    
+        if self.referralRequest.count > o.referralRequest.count {
+            for i in self.referralRequest.count...o.referralRequest.count {
+                self.referralRequest.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
-        FireKit.populateList(&self.statusHistory, from: o.statusHistory)
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.statusHistory.enumerated() {
+            guard index < self.statusHistory.count else {
+                self.statusHistory.append(t)
+                continue
+            }
+            self.statusHistory[index].populate(from: t)
+        }
+    
+        if self.statusHistory.count > o.statusHistory.count {
+            for i in self.statusHistory.count...o.statusHistory.count {
+                self.statusHistory.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -225,7 +303,20 @@ open class EpisodeOfCareCareTeam: BackboneElement {
         super.populate(from: o)
         FireKit.populate(&self.member, from: o.member)
         FireKit.populate(&self.period, from: o.period)
-        FireKit.populateList(&self.role, from: o.role)
+
+        for (index, t) in o.role.enumerated() {
+            guard index < self.role.count else {
+                self.role.append(t)
+                continue
+            }
+            self.role[index].populate(from: t)
+        }
+    
+        if self.role.count > o.role.count {
+            for i in self.role.count...o.role.count {
+                self.role.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

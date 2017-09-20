@@ -160,17 +160,82 @@ open class ImagingStudy: DomainResource {
         FireKit.populate(&self.accession, from: o.accession)
         availability = o.availability
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.interpreter, from: o.interpreter)
-        FireKit.populateList(&self.modalityList, from: o.modalityList)
+
+        for (index, t) in o.modalityList.enumerated() {
+            guard index < self.modalityList.count else {
+                self.modalityList.append(t)
+                continue
+            }
+            self.modalityList[index].populate(from: t)
+        }
+    
+        if self.modalityList.count > o.modalityList.count {
+            for i in self.modalityList.count...o.modalityList.count {
+                self.modalityList.remove(objectAtIndex: i)
+            }
+        }
         numberOfInstances.value = o.numberOfInstances.value
         numberOfSeries.value = o.numberOfSeries.value
-        FireKit.populateList(&self.order, from: o.order)
+
+        for (index, t) in o.order.enumerated() {
+            guard index < self.order.count else {
+                self.order.append(t)
+                continue
+            }
+            self.order[index].populate(from: t)
+        }
+    
+        if self.order.count > o.order.count {
+            for i in self.order.count...o.order.count {
+                self.order.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
-        FireKit.populateList(&self.procedure, from: o.procedure)
+
+        for (index, t) in o.procedure.enumerated() {
+            guard index < self.procedure.count else {
+                self.procedure.append(t)
+                continue
+            }
+            self.procedure[index].populate(from: t)
+        }
+    
+        if self.procedure.count > o.procedure.count {
+            for i in self.procedure.count...o.procedure.count {
+                self.procedure.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.referrer, from: o.referrer)
-        FireKit.populateList(&self.series, from: o.series)
-        started = o.started
+
+        for (index, t) in o.series.enumerated() {
+            guard index < self.series.count else {
+                self.series.append(t)
+                continue
+            }
+            self.series[index].populate(from: t)
+        }
+    
+        if self.series.count > o.series.count {
+            for i in self.series.count...o.series.count {
+                self.series.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.started, from: o.started)
         uid = o.uid
         url = o.url
     }
@@ -297,12 +362,25 @@ open class ImagingStudySeries: BackboneElement {
         availability = o.availability
         FireKit.populate(&self.bodySite, from: o.bodySite)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.instance, from: o.instance)
+
+        for (index, t) in o.instance.enumerated() {
+            guard index < self.instance.count else {
+                self.instance.append(t)
+                continue
+            }
+            self.instance[index].populate(from: t)
+        }
+    
+        if self.instance.count > o.instance.count {
+            for i in self.instance.count...o.instance.count {
+                self.instance.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.laterality, from: o.laterality)
         FireKit.populate(&self.modality, from: o.modality)
         number.value = o.number.value
         numberOfInstances.value = o.numberOfInstances.value
-        started = o.started
+        FireKit.populate(&self.started, from: o.started)
         uid = o.uid
         url = o.url
     }
@@ -396,7 +474,20 @@ open class ImagingStudySeriesInstance: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.content, from: o.content)
+
+        for (index, t) in o.content.enumerated() {
+            guard index < self.content.count else {
+                self.content.append(t)
+                continue
+            }
+            self.content[index].populate(from: t)
+        }
+    
+        if self.content.count > o.content.count {
+            for i in self.content.count...o.content.count {
+                self.content.remove(objectAtIndex: i)
+            }
+        }
         number.value = o.number.value
         sopClass = o.sopClass
         title = o.title

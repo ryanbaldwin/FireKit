@@ -162,8 +162,21 @@ open class OperationDefinition: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.base, from: o.base)
         code = o.code
-        FireKit.populateList(&self.contact, from: o.contact)
-        date = o.date
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
         idempotent.value = o.idempotent.value
@@ -171,12 +184,38 @@ open class OperationDefinition: DomainResource {
         kind = o.kind
         name = o.name
         notes = o.notes
-        FireKit.populateList(&self.parameter, from: o.parameter)
+
+        for (index, t) in o.parameter.enumerated() {
+            guard index < self.parameter.count else {
+                self.parameter.append(t)
+                continue
+            }
+            self.parameter[index].populate(from: t)
+        }
+    
+        if self.parameter.count > o.parameter.count {
+            for i in self.parameter.count...o.parameter.count {
+                self.parameter.remove(objectAtIndex: i)
+            }
+        }
         publisher = o.publisher
         requirements = o.requirements
         status = o.status
         system.value = o.system.value
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
         url = o.url
         version = o.version
     }
@@ -248,7 +287,20 @@ open class OperationDefinitionContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -365,7 +417,20 @@ open class OperationDefinitionParameter: BackboneElement {
         max = o.max
         min.value = o.min.value
         name = o.name
-        FireKit.populateList(&self.part, from: o.part)
+
+        for (index, t) in o.part.enumerated() {
+            guard index < self.part.count else {
+                self.part.append(t)
+                continue
+            }
+            self.part[index].populate(from: t)
+        }
+    
+        if self.part.count > o.part.count {
+            for i in self.part.count...o.part.count {
+                self.part.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.profile, from: o.profile)
         type = o.type
         use = o.use

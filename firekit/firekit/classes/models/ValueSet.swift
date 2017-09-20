@@ -165,22 +165,48 @@ open class ValueSet: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.codeSystem, from: o.codeSystem)
         FireKit.populate(&self.compose, from: o.compose)
-        FireKit.populateList(&self.contact, from: o.contact)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         copyright = o.copyright
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
         FireKit.populate(&self.expansion, from: o.expansion)
         experimental.value = o.experimental.value
         extensible.value = o.extensible.value
         FireKit.populate(&self.identifier, from: o.identifier)
         immutable.value = o.immutable.value
-        lockedDate = o.lockedDate
+        FireKit.populate(&self.lockedDate, from: o.lockedDate)
         name = o.name
         publisher = o.publisher
         requirements = o.requirements
         status = o.status
         url = o.url
-        FireKit.populateList(&self.useContext, from: o.useContext)
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                self.useContext.remove(objectAtIndex: i)
+            }
+        }
         version = o.version
     }
 }
@@ -267,7 +293,20 @@ open class ValueSetCodeSystem: BackboneElement {
         
         super.populate(from: o)
         caseSensitive.value = o.caseSensitive.value
-        FireKit.populateList(&self.concept, from: o.concept)
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                self.concept.remove(objectAtIndex: i)
+            }
+        }
         system = o.system
         version = o.version
     }
@@ -363,9 +402,35 @@ open class ValueSetCodeSystemConcept: BackboneElement {
         super.populate(from: o)
         abstract.value = o.abstract.value
         code = o.code
-        FireKit.populateList(&self.concept, from: o.concept)
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                self.concept.remove(objectAtIndex: i)
+            }
+        }
         definition = o.definition
-        FireKit.populateList(&self.designation, from: o.designation)
+
+        for (index, t) in o.designation.enumerated() {
+            guard index < self.designation.count else {
+                self.designation.append(t)
+                continue
+            }
+            self.designation[index].populate(from: t)
+        }
+    
+        if self.designation.count > o.designation.count {
+            for i in self.designation.count...o.designation.count {
+                self.designation.remove(objectAtIndex: i)
+            }
+        }
         display = o.display
     }
 }
@@ -525,9 +590,48 @@ open class ValueSetCompose: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.exclude, from: o.exclude)
-        FireKit.populateList(&self.import_fhir, from: o.import_fhir)
-        FireKit.populateList(&self.include, from: o.include)
+
+        for (index, t) in o.exclude.enumerated() {
+            guard index < self.exclude.count else {
+                self.exclude.append(t)
+                continue
+            }
+            self.exclude[index].populate(from: t)
+        }
+    
+        if self.exclude.count > o.exclude.count {
+            for i in self.exclude.count...o.exclude.count {
+                self.exclude.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.import_fhir.enumerated() {
+            guard index < self.import_fhir.count else {
+                self.import_fhir.append(t)
+                continue
+            }
+            self.import_fhir[index].populate(from: t)
+        }
+    
+        if self.import_fhir.count > o.import_fhir.count {
+            for i in self.import_fhir.count...o.import_fhir.count {
+                self.import_fhir.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.include.enumerated() {
+            guard index < self.include.count else {
+                self.include.append(t)
+                continue
+            }
+            self.include[index].populate(from: t)
+        }
+    
+        if self.include.count > o.include.count {
+            for i in self.include.count...o.include.count {
+                self.include.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -608,8 +712,34 @@ open class ValueSetComposeInclude: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.concept, from: o.concept)
-        FireKit.populateList(&self.filter, from: o.filter)
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                self.concept.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.filter.enumerated() {
+            guard index < self.filter.count else {
+                self.filter.append(t)
+                continue
+            }
+            self.filter[index].populate(from: t)
+        }
+    
+        if self.filter.count > o.filter.count {
+            for i in self.filter.count...o.filter.count {
+                self.filter.remove(objectAtIndex: i)
+            }
+        }
         system = o.system
         version = o.version
     }
@@ -691,7 +821,20 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
         
         super.populate(from: o)
         code = o.code
-        FireKit.populateList(&self.designation, from: o.designation)
+
+        for (index, t) in o.designation.enumerated() {
+            guard index < self.designation.count else {
+                self.designation.append(t)
+                continue
+            }
+            self.designation[index].populate(from: t)
+        }
+    
+        if self.designation.count > o.designation.count {
+            for i in self.designation.count...o.designation.count {
+                self.designation.remove(objectAtIndex: i)
+            }
+        }
         display = o.display
     }
 }
@@ -846,7 +989,20 @@ open class ValueSetContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -939,11 +1095,37 @@ open class ValueSetExpansion: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.contains, from: o.contains)
+
+        for (index, t) in o.contains.enumerated() {
+            guard index < self.contains.count else {
+                self.contains.append(t)
+                continue
+            }
+            self.contains[index].populate(from: t)
+        }
+    
+        if self.contains.count > o.contains.count {
+            for i in self.contains.count...o.contains.count {
+                self.contains.remove(objectAtIndex: i)
+            }
+        }
         identifier = o.identifier
         offset.value = o.offset.value
-        FireKit.populateList(&self.parameter, from: o.parameter)
-        timestamp = o.timestamp
+
+        for (index, t) in o.parameter.enumerated() {
+            guard index < self.parameter.count else {
+                self.parameter.append(t)
+                continue
+            }
+            self.parameter[index].populate(from: t)
+        }
+    
+        if self.parameter.count > o.parameter.count {
+            for i in self.parameter.count...o.parameter.count {
+                self.parameter.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.timestamp, from: o.timestamp)
         total.value = o.total.value
     }
 }
@@ -1031,7 +1213,20 @@ open class ValueSetExpansionContains: BackboneElement {
         super.populate(from: o)
         abstract.value = o.abstract.value
         code = o.code
-        FireKit.populateList(&self.contains, from: o.contains)
+
+        for (index, t) in o.contains.enumerated() {
+            guard index < self.contains.count else {
+                self.contains.append(t)
+                continue
+            }
+            self.contains[index].populate(from: t)
+        }
+    
+        if self.contains.count > o.contains.count {
+            for i in self.contains.count...o.contains.count {
+                self.contains.remove(objectAtIndex: i)
+            }
+        }
         display = o.display
         system = o.system
         version = o.version

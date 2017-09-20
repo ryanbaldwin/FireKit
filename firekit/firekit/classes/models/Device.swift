@@ -155,15 +155,54 @@ open class Device: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.contact, from: o.contact)
-        expiry = o.expiry
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.expiry, from: o.expiry)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.location, from: o.location)
         lotNumber = o.lotNumber
-        manufactureDate = o.manufactureDate
+        FireKit.populate(&self.manufactureDate, from: o.manufactureDate)
         manufacturer = o.manufacturer
         model = o.model
-        FireKit.populateList(&self.note, from: o.note)
+
+        for (index, t) in o.note.enumerated() {
+            guard index < self.note.count else {
+                self.note.append(t)
+                continue
+            }
+            self.note[index].populate(from: t)
+        }
+    
+        if self.note.count > o.note.count {
+            for i in self.note.count...o.note.count {
+                self.note.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.owner, from: o.owner)
         FireKit.populate(&self.patient, from: o.patient)
         status = o.status

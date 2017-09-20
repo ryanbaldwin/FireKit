@@ -137,7 +137,7 @@ open class SupplyRequest: DomainResource {
         }
         
         super.populate(from: o)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.kind, from: o.kind)
         FireKit.populate(&self.orderedItem, from: o.orderedItem)
@@ -146,7 +146,20 @@ open class SupplyRequest: DomainResource {
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
         FireKit.populate(&self.source, from: o.source)
         status = o.status
-        FireKit.populateList(&self.supplier, from: o.supplier)
+
+        for (index, t) in o.supplier.enumerated() {
+            guard index < self.supplier.count else {
+                self.supplier.append(t)
+                continue
+            }
+            self.supplier[index].populate(from: t)
+        }
+    
+        if self.supplier.count > o.supplier.count {
+            for i in self.supplier.count...o.supplier.count {
+                self.supplier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.when, from: o.when)
     }
 }

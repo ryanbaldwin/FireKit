@@ -166,16 +166,68 @@ open class DeviceUseRequest: DomainResource {
         FireKit.populate(&self.bodySiteReference, from: o.bodySiteReference)
         FireKit.populate(&self.device, from: o.device)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.indication, from: o.indication)
-        FireKit.populateList(&self.notes, from: o.notes)
-        orderedOn = o.orderedOn
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.indication.enumerated() {
+            guard index < self.indication.count else {
+                self.indication.append(t)
+                continue
+            }
+            self.indication[index].populate(from: t)
+        }
+    
+        if self.indication.count > o.indication.count {
+            for i in self.indication.count...o.indication.count {
+                self.indication.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.notes.enumerated() {
+            guard index < self.notes.count else {
+                self.notes.append(t)
+                continue
+            }
+            self.notes[index].populate(from: t)
+        }
+    
+        if self.notes.count > o.notes.count {
+            for i in self.notes.count...o.notes.count {
+                self.notes.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.orderedOn, from: o.orderedOn)
         priority = o.priority
-        FireKit.populateList(&self.prnReason, from: o.prnReason)
-        recordedOn = o.recordedOn
+
+        for (index, t) in o.prnReason.enumerated() {
+            guard index < self.prnReason.count else {
+                self.prnReason.append(t)
+                continue
+            }
+            self.prnReason[index].populate(from: t)
+        }
+    
+        if self.prnReason.count > o.prnReason.count {
+            for i in self.prnReason.count...o.prnReason.count {
+                self.prnReason.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.recordedOn, from: o.recordedOn)
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        timingDateTime = o.timingDateTime
+        FireKit.populate(&self.timingDateTime, from: o.timingDateTime)
         FireKit.populate(&self.timingPeriod, from: o.timingPeriod)
         FireKit.populate(&self.timingTiming, from: o.timingTiming)
     }

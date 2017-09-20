@@ -143,7 +143,20 @@ open class Media: DomainResource {
         duration.value = o.duration.value
         frames.value = o.frames.value
         height.value = o.height.value
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.operator_fhir, from: o.operator_fhir)
         FireKit.populate(&self.subject, from: o.subject)
         FireKit.populate(&self.subtype, from: o.subtype)

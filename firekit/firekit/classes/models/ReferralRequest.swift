@@ -164,21 +164,73 @@ open class ReferralRequest: DomainResource {
         }
         
         super.populate(from: o)
-        date = o.date
-        dateSent = o.dateSent
+        FireKit.populate(&self.date, from: o.date)
+        FireKit.populate(&self.dateSent, from: o.dateSent)
         description_fhir = o.description_fhir
         FireKit.populate(&self.encounter, from: o.encounter)
         FireKit.populate(&self.fulfillmentTime, from: o.fulfillmentTime)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.priority, from: o.priority)
         FireKit.populate(&self.reason, from: o.reason)
-        FireKit.populateList(&self.recipient, from: o.recipient)
+
+        for (index, t) in o.recipient.enumerated() {
+            guard index < self.recipient.count else {
+                self.recipient.append(t)
+                continue
+            }
+            self.recipient[index].populate(from: t)
+        }
+    
+        if self.recipient.count > o.recipient.count {
+            for i in self.recipient.count...o.recipient.count {
+                self.recipient.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.requester, from: o.requester)
-        FireKit.populateList(&self.serviceRequested, from: o.serviceRequested)
+
+        for (index, t) in o.serviceRequested.enumerated() {
+            guard index < self.serviceRequested.count else {
+                self.serviceRequested.append(t)
+                continue
+            }
+            self.serviceRequested[index].populate(from: t)
+        }
+    
+        if self.serviceRequested.count > o.serviceRequested.count {
+            for i in self.serviceRequested.count...o.serviceRequested.count {
+                self.serviceRequested.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.specialty, from: o.specialty)
         status = o.status
-        FireKit.populateList(&self.supportingInformation, from: o.supportingInformation)
+
+        for (index, t) in o.supportingInformation.enumerated() {
+            guard index < self.supportingInformation.count else {
+                self.supportingInformation.append(t)
+                continue
+            }
+            self.supportingInformation[index].populate(from: t)
+        }
+    
+        if self.supportingInformation.count > o.supportingInformation.count {
+            for i in self.supportingInformation.count...o.supportingInformation.count {
+                self.supportingInformation.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }

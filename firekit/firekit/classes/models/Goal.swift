@@ -159,21 +159,86 @@ open class Goal: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.addresses, from: o.addresses)
+
+        for (index, t) in o.addresses.enumerated() {
+            guard index < self.addresses.count else {
+                self.addresses.append(t)
+                continue
+            }
+            self.addresses[index].populate(from: t)
+        }
+    
+        if self.addresses.count > o.addresses.count {
+            for i in self.addresses.count...o.addresses.count {
+                self.addresses.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.author, from: o.author)
-        FireKit.populateList(&self.category, from: o.category)
+
+        for (index, t) in o.category.enumerated() {
+            guard index < self.category.count else {
+                self.category.append(t)
+                continue
+            }
+            self.category[index].populate(from: t)
+        }
+    
+        if self.category.count > o.category.count {
+            for i in self.category.count...o.category.count {
+                self.category.remove(objectAtIndex: i)
+            }
+        }
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.note, from: o.note)
-        FireKit.populateList(&self.outcome, from: o.outcome)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.note.enumerated() {
+            guard index < self.note.count else {
+                self.note.append(t)
+                continue
+            }
+            self.note[index].populate(from: t)
+        }
+    
+        if self.note.count > o.note.count {
+            for i in self.note.count...o.note.count {
+                self.note.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.outcome.enumerated() {
+            guard index < self.outcome.count else {
+                self.outcome.append(t)
+                continue
+            }
+            self.outcome[index].populate(from: t)
+        }
+    
+        if self.outcome.count > o.outcome.count {
+            for i in self.outcome.count...o.outcome.count {
+                self.outcome.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.priority, from: o.priority)
         FireKit.populate(&self.startCodeableConcept, from: o.startCodeableConcept)
-        startDate = o.startDate
+        FireKit.populate(&self.startDate, from: o.startDate)
         status = o.status
-        statusDate = o.statusDate
+        FireKit.populate(&self.statusDate, from: o.statusDate)
         FireKit.populate(&self.statusReason, from: o.statusReason)
         FireKit.populate(&self.subject, from: o.subject)
-        targetDate = o.targetDate
+        FireKit.populate(&self.targetDate, from: o.targetDate)
         FireKit.populate(&self.targetQuantity, from: o.targetQuantity)
     }
 }

@@ -139,18 +139,83 @@ open class NutritionOrder: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.allergyIntolerance, from: o.allergyIntolerance)
-        dateTime = o.dateTime
+
+        for (index, t) in o.allergyIntolerance.enumerated() {
+            guard index < self.allergyIntolerance.count else {
+                self.allergyIntolerance.append(t)
+                continue
+            }
+            self.allergyIntolerance[index].populate(from: t)
+        }
+    
+        if self.allergyIntolerance.count > o.allergyIntolerance.count {
+            for i in self.allergyIntolerance.count...o.allergyIntolerance.count {
+                self.allergyIntolerance.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.dateTime, from: o.dateTime)
         FireKit.populate(&self.encounter, from: o.encounter)
         FireKit.populate(&self.enteralFormula, from: o.enteralFormula)
-        FireKit.populateList(&self.excludeFoodModifier, from: o.excludeFoodModifier)
-        FireKit.populateList(&self.foodPreferenceModifier, from: o.foodPreferenceModifier)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.excludeFoodModifier.enumerated() {
+            guard index < self.excludeFoodModifier.count else {
+                self.excludeFoodModifier.append(t)
+                continue
+            }
+            self.excludeFoodModifier[index].populate(from: t)
+        }
+    
+        if self.excludeFoodModifier.count > o.excludeFoodModifier.count {
+            for i in self.excludeFoodModifier.count...o.excludeFoodModifier.count {
+                self.excludeFoodModifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.foodPreferenceModifier.enumerated() {
+            guard index < self.foodPreferenceModifier.count else {
+                self.foodPreferenceModifier.append(t)
+                continue
+            }
+            self.foodPreferenceModifier[index].populate(from: t)
+        }
+    
+        if self.foodPreferenceModifier.count > o.foodPreferenceModifier.count {
+            for i in self.foodPreferenceModifier.count...o.foodPreferenceModifier.count {
+                self.foodPreferenceModifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.oralDiet, from: o.oralDiet)
         FireKit.populate(&self.orderer, from: o.orderer)
         FireKit.populate(&self.patient, from: o.patient)
         status = o.status
-        FireKit.populateList(&self.supplement, from: o.supplement)
+
+        for (index, t) in o.supplement.enumerated() {
+            guard index < self.supplement.count else {
+                self.supplement.append(t)
+                continue
+            }
+            self.supplement[index].populate(from: t)
+        }
+    
+        if self.supplement.count > o.supplement.count {
+            for i in self.supplement.count...o.supplement.count {
+                self.supplement.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -265,7 +330,20 @@ open class NutritionOrderEnteralFormula: BackboneElement {
         super.populate(from: o)
         additiveProductName = o.additiveProductName
         FireKit.populate(&self.additiveType, from: o.additiveType)
-        FireKit.populateList(&self.administration, from: o.administration)
+
+        for (index, t) in o.administration.enumerated() {
+            guard index < self.administration.count else {
+                self.administration.append(t)
+                continue
+            }
+            self.administration[index].populate(from: t)
+        }
+    
+        if self.administration.count > o.administration.count {
+            for i in self.administration.count...o.administration.count {
+                self.administration.remove(objectAtIndex: i)
+            }
+        }
         administrationInstruction = o.administrationInstruction
         baseFormulaProductName = o.baseFormulaProductName
         FireKit.populate(&self.baseFormulaType, from: o.baseFormulaType)
@@ -450,12 +528,77 @@ open class NutritionOrderOralDiet: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.fluidConsistencyType, from: o.fluidConsistencyType)
+
+        for (index, t) in o.fluidConsistencyType.enumerated() {
+            guard index < self.fluidConsistencyType.count else {
+                self.fluidConsistencyType.append(t)
+                continue
+            }
+            self.fluidConsistencyType[index].populate(from: t)
+        }
+    
+        if self.fluidConsistencyType.count > o.fluidConsistencyType.count {
+            for i in self.fluidConsistencyType.count...o.fluidConsistencyType.count {
+                self.fluidConsistencyType.remove(objectAtIndex: i)
+            }
+        }
         instruction = o.instruction
-        FireKit.populateList(&self.nutrient, from: o.nutrient)
-        FireKit.populateList(&self.schedule, from: o.schedule)
-        FireKit.populateList(&self.texture, from: o.texture)
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.nutrient.enumerated() {
+            guard index < self.nutrient.count else {
+                self.nutrient.append(t)
+                continue
+            }
+            self.nutrient[index].populate(from: t)
+        }
+    
+        if self.nutrient.count > o.nutrient.count {
+            for i in self.nutrient.count...o.nutrient.count {
+                self.nutrient.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.schedule.enumerated() {
+            guard index < self.schedule.count else {
+                self.schedule.append(t)
+                continue
+            }
+            self.schedule[index].populate(from: t)
+        }
+    
+        if self.schedule.count > o.schedule.count {
+            for i in self.schedule.count...o.schedule.count {
+                self.schedule.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.texture.enumerated() {
+            guard index < self.texture.count else {
+                self.texture.append(t)
+                continue
+            }
+            self.texture[index].populate(from: t)
+        }
+    
+        if self.texture.count > o.texture.count {
+            for i in self.texture.count...o.texture.count {
+                self.texture.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -698,7 +841,20 @@ open class NutritionOrderSupplement: BackboneElement {
         instruction = o.instruction
         productName = o.productName
         FireKit.populate(&self.quantity, from: o.quantity)
-        FireKit.populateList(&self.schedule, from: o.schedule)
+
+        for (index, t) in o.schedule.enumerated() {
+            guard index < self.schedule.count else {
+                self.schedule.append(t)
+                continue
+            }
+            self.schedule[index].populate(from: t)
+        }
+    
+        if self.schedule.count > o.schedule.count {
+            for i in self.schedule.count...o.schedule.count {
+                self.schedule.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
     }
 }

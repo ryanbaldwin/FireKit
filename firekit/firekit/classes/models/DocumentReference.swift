@@ -171,19 +171,84 @@ open class DocumentReference: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.authenticator, from: o.authenticator)
-        FireKit.populateList(&self.author, from: o.author)
+
+        for (index, t) in o.author.enumerated() {
+            guard index < self.author.count else {
+                self.author.append(t)
+                continue
+            }
+            self.author[index].populate(from: t)
+        }
+    
+        if self.author.count > o.author.count {
+            for i in self.author.count...o.author.count {
+                self.author.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.class_fhir, from: o.class_fhir)
-        FireKit.populateList(&self.content, from: o.content)
+
+        for (index, t) in o.content.enumerated() {
+            guard index < self.content.count else {
+                self.content.append(t)
+                continue
+            }
+            self.content[index].populate(from: t)
+        }
+    
+        if self.content.count > o.content.count {
+            for i in self.content.count...o.content.count {
+                self.content.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.context, from: o.context)
-        created = o.created
+        FireKit.populate(&self.created, from: o.created)
         FireKit.populate(&self.custodian, from: o.custodian)
         description_fhir = o.description_fhir
         FireKit.populate(&self.docStatus, from: o.docStatus)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        indexed = o.indexed
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.indexed, from: o.indexed)
         FireKit.populate(&self.masterIdentifier, from: o.masterIdentifier)
-        FireKit.populateList(&self.relatesTo, from: o.relatesTo)
-        FireKit.populateList(&self.securityLabel, from: o.securityLabel)
+
+        for (index, t) in o.relatesTo.enumerated() {
+            guard index < self.relatesTo.count else {
+                self.relatesTo.append(t)
+                continue
+            }
+            self.relatesTo[index].populate(from: t)
+        }
+    
+        if self.relatesTo.count > o.relatesTo.count {
+            for i in self.relatesTo.count...o.relatesTo.count {
+                self.relatesTo.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.securityLabel.enumerated() {
+            guard index < self.securityLabel.count else {
+                self.securityLabel.append(t)
+                continue
+            }
+            self.securityLabel[index].populate(from: t)
+        }
+    
+        if self.securityLabel.count > o.securityLabel.count {
+            for i in self.securityLabel.count...o.securityLabel.count {
+                self.securityLabel.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
         FireKit.populate(&self.type, from: o.type)
@@ -265,7 +330,20 @@ open class DocumentReferenceContent: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.attachment, from: o.attachment)
-        FireKit.populateList(&self.format, from: o.format)
+
+        for (index, t) in o.format.enumerated() {
+            guard index < self.format.count else {
+                self.format.append(t)
+                continue
+            }
+            self.format[index].populate(from: t)
+        }
+    
+        if self.format.count > o.format.count {
+            for i in self.format.count...o.format.count {
+                self.format.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -370,11 +448,37 @@ open class DocumentReferenceContext: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.event, from: o.event)
+
+        for (index, t) in o.event.enumerated() {
+            guard index < self.event.count else {
+                self.event.append(t)
+                continue
+            }
+            self.event[index].populate(from: t)
+        }
+    
+        if self.event.count > o.event.count {
+            for i in self.event.count...o.event.count {
+                self.event.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.facilityType, from: o.facilityType)
         FireKit.populate(&self.period, from: o.period)
         FireKit.populate(&self.practiceSetting, from: o.practiceSetting)
-        FireKit.populateList(&self.related, from: o.related)
+
+        for (index, t) in o.related.enumerated() {
+            guard index < self.related.count else {
+                self.related.append(t)
+                continue
+            }
+            self.related[index].populate(from: t)
+        }
+    
+        if self.related.count > o.related.count {
+            for i in self.related.count...o.related.count {
+                self.related.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.sourcePatientInfo, from: o.sourcePatientInfo)
     }
 }

@@ -79,7 +79,20 @@ open class OperationOutcome: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.issue, from: o.issue)
+
+        for (index, t) in o.issue.enumerated() {
+            guard index < self.issue.count else {
+                self.issue.append(t)
+                continue
+            }
+            self.issue[index].populate(from: t)
+        }
+    
+        if self.issue.count > o.issue.count {
+            for i in self.issue.count...o.issue.count {
+                self.issue.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -173,7 +186,20 @@ open class OperationOutcomeIssue: BackboneElement {
         code = o.code
         FireKit.populate(&self.details, from: o.details)
         diagnostics = o.diagnostics
-        FireKit.populateList(&self.location, from: o.location)
+
+        for (index, t) in o.location.enumerated() {
+            guard index < self.location.count else {
+                self.location.append(t)
+                continue
+            }
+            self.location[index].populate(from: t)
+        }
+    
+        if self.location.count > o.location.count {
+            for i in self.location.count...o.location.count {
+                self.location.remove(objectAtIndex: i)
+            }
+        }
         severity = o.severity
     }
 }

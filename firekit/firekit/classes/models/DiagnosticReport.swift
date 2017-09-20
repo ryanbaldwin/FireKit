@@ -177,20 +177,124 @@ open class DiagnosticReport: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.category, from: o.category)
         FireKit.populate(&self.code, from: o.code)
-        FireKit.populateList(&self.codedDiagnosis, from: o.codedDiagnosis)
+
+        for (index, t) in o.codedDiagnosis.enumerated() {
+            guard index < self.codedDiagnosis.count else {
+                self.codedDiagnosis.append(t)
+                continue
+            }
+            self.codedDiagnosis[index].populate(from: t)
+        }
+    
+        if self.codedDiagnosis.count > o.codedDiagnosis.count {
+            for i in self.codedDiagnosis.count...o.codedDiagnosis.count {
+                self.codedDiagnosis.remove(objectAtIndex: i)
+            }
+        }
         conclusion = o.conclusion
-        effectiveDateTime = o.effectiveDateTime
+        FireKit.populate(&self.effectiveDateTime, from: o.effectiveDateTime)
         FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.image, from: o.image)
-        FireKit.populateList(&self.imagingStudy, from: o.imagingStudy)
-        issued = o.issued
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.image.enumerated() {
+            guard index < self.image.count else {
+                self.image.append(t)
+                continue
+            }
+            self.image[index].populate(from: t)
+        }
+    
+        if self.image.count > o.image.count {
+            for i in self.image.count...o.image.count {
+                self.image.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.imagingStudy.enumerated() {
+            guard index < self.imagingStudy.count else {
+                self.imagingStudy.append(t)
+                continue
+            }
+            self.imagingStudy[index].populate(from: t)
+        }
+    
+        if self.imagingStudy.count > o.imagingStudy.count {
+            for i in self.imagingStudy.count...o.imagingStudy.count {
+                self.imagingStudy.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.issued, from: o.issued)
         FireKit.populate(&self.performer, from: o.performer)
-        FireKit.populateList(&self.presentedForm, from: o.presentedForm)
-        FireKit.populateList(&self.request, from: o.request)
-        FireKit.populateList(&self.result, from: o.result)
-        FireKit.populateList(&self.specimen, from: o.specimen)
+
+        for (index, t) in o.presentedForm.enumerated() {
+            guard index < self.presentedForm.count else {
+                self.presentedForm.append(t)
+                continue
+            }
+            self.presentedForm[index].populate(from: t)
+        }
+    
+        if self.presentedForm.count > o.presentedForm.count {
+            for i in self.presentedForm.count...o.presentedForm.count {
+                self.presentedForm.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.request.enumerated() {
+            guard index < self.request.count else {
+                self.request.append(t)
+                continue
+            }
+            self.request[index].populate(from: t)
+        }
+    
+        if self.request.count > o.request.count {
+            for i in self.request.count...o.request.count {
+                self.request.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.result.enumerated() {
+            guard index < self.result.count else {
+                self.result.append(t)
+                continue
+            }
+            self.result[index].populate(from: t)
+        }
+    
+        if self.result.count > o.result.count {
+            for i in self.result.count...o.result.count {
+                self.result.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.specimen.enumerated() {
+            guard index < self.specimen.count else {
+                self.specimen.append(t)
+                continue
+            }
+            self.specimen[index].populate(from: t)
+        }
+    
+        if self.specimen.count > o.specimen.count {
+            for i in self.specimen.count...o.specimen.count {
+                self.specimen.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
     }

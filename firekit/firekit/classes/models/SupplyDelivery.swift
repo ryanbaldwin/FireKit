@@ -141,11 +141,24 @@ open class SupplyDelivery: DomainResource {
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.quantity, from: o.quantity)
-        FireKit.populateList(&self.receiver, from: o.receiver)
+
+        for (index, t) in o.receiver.enumerated() {
+            guard index < self.receiver.count else {
+                self.receiver.append(t)
+                continue
+            }
+            self.receiver[index].populate(from: t)
+        }
+    
+        if self.receiver.count > o.receiver.count {
+            for i in self.receiver.count...o.receiver.count {
+                self.receiver.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         FireKit.populate(&self.suppliedItem, from: o.suppliedItem)
         FireKit.populate(&self.supplier, from: o.supplier)
-        time = o.time
+        FireKit.populate(&self.time, from: o.time)
         FireKit.populate(&self.type, from: o.type)
         FireKit.populate(&self.whenPrepared, from: o.whenPrepared)
     }

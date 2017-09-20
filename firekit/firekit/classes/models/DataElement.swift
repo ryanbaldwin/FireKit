@@ -132,19 +132,84 @@ open class DataElement: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.contact, from: o.contact)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         copyright = o.copyright
-        date = o.date
-        FireKit.populateList(&self.element, from: o.element)
+        FireKit.populate(&self.date, from: o.date)
+
+        for (index, t) in o.element.enumerated() {
+            guard index < self.element.count else {
+                self.element.append(t)
+                continue
+            }
+            self.element[index].populate(from: t)
+        }
+    
+        if self.element.count > o.element.count {
+            for i in self.element.count...o.element.count {
+                self.element.remove(objectAtIndex: i)
+            }
+        }
         experimental.value = o.experimental.value
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.mapping, from: o.mapping)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.mapping.enumerated() {
+            guard index < self.mapping.count else {
+                self.mapping.append(t)
+                continue
+            }
+            self.mapping[index].populate(from: t)
+        }
+    
+        if self.mapping.count > o.mapping.count {
+            for i in self.mapping.count...o.mapping.count {
+                self.mapping.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
         publisher = o.publisher
         status = o.status
         stringency = o.stringency
         url = o.url
-        FireKit.populateList(&self.useContext, from: o.useContext)
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                self.useContext.remove(objectAtIndex: i)
+            }
+        }
         version = o.version
     }
 }
@@ -215,7 +280,20 @@ open class DataElementContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

@@ -138,12 +138,38 @@ open class DeviceComponent: DomainResource {
         super.populate(from: o)
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.languageCode, from: o.languageCode)
-        lastSystemChange = o.lastSystemChange
+        FireKit.populate(&self.lastSystemChange, from: o.lastSystemChange)
         measurementPrinciple = o.measurementPrinciple
-        FireKit.populateList(&self.operationalStatus, from: o.operationalStatus)
+
+        for (index, t) in o.operationalStatus.enumerated() {
+            guard index < self.operationalStatus.count else {
+                self.operationalStatus.append(t)
+                continue
+            }
+            self.operationalStatus[index].populate(from: t)
+        }
+    
+        if self.operationalStatus.count > o.operationalStatus.count {
+            for i in self.operationalStatus.count...o.operationalStatus.count {
+                self.operationalStatus.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.parameterGroup, from: o.parameterGroup)
         FireKit.populate(&self.parent, from: o.parent)
-        FireKit.populateList(&self.productionSpecification, from: o.productionSpecification)
+
+        for (index, t) in o.productionSpecification.enumerated() {
+            guard index < self.productionSpecification.count else {
+                self.productionSpecification.append(t)
+                continue
+            }
+            self.productionSpecification[index].populate(from: t)
+        }
+    
+        if self.productionSpecification.count > o.productionSpecification.count {
+            for i in self.productionSpecification.count...o.productionSpecification.count {
+                self.productionSpecification.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.source, from: o.source)
         FireKit.populate(&self.type, from: o.type)
     }

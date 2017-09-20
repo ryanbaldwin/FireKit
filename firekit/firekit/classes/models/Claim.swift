@@ -238,21 +238,138 @@ open class Claim: DomainResource {
         }
         
         super.populate(from: o)
-        accident = o.accident
+        FireKit.populate(&self.accident, from: o.accident)
         FireKit.populate(&self.accidentType, from: o.accidentType)
-        FireKit.populateList(&self.additionalMaterials, from: o.additionalMaterials)
-        FireKit.populateList(&self.condition, from: o.condition)
-        FireKit.populateList(&self.coverage, from: o.coverage)
-        created = o.created
-        FireKit.populateList(&self.diagnosis, from: o.diagnosis)
+
+        for (index, t) in o.additionalMaterials.enumerated() {
+            guard index < self.additionalMaterials.count else {
+                self.additionalMaterials.append(t)
+                continue
+            }
+            self.additionalMaterials[index].populate(from: t)
+        }
+    
+        if self.additionalMaterials.count > o.additionalMaterials.count {
+            for i in self.additionalMaterials.count...o.additionalMaterials.count {
+                self.additionalMaterials.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.condition.enumerated() {
+            guard index < self.condition.count else {
+                self.condition.append(t)
+                continue
+            }
+            self.condition[index].populate(from: t)
+        }
+    
+        if self.condition.count > o.condition.count {
+            for i in self.condition.count...o.condition.count {
+                self.condition.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.coverage.enumerated() {
+            guard index < self.coverage.count else {
+                self.coverage.append(t)
+                continue
+            }
+            self.coverage[index].populate(from: t)
+        }
+    
+        if self.coverage.count > o.coverage.count {
+            for i in self.coverage.count...o.coverage.count {
+                self.coverage.remove(objectAtIndex: i)
+            }
+        }
+        FireKit.populate(&self.created, from: o.created)
+
+        for (index, t) in o.diagnosis.enumerated() {
+            guard index < self.diagnosis.count else {
+                self.diagnosis.append(t)
+                continue
+            }
+            self.diagnosis[index].populate(from: t)
+        }
+    
+        if self.diagnosis.count > o.diagnosis.count {
+            for i in self.diagnosis.count...o.diagnosis.count {
+                self.diagnosis.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.enterer, from: o.enterer)
-        FireKit.populateList(&self.exception, from: o.exception)
+
+        for (index, t) in o.exception.enumerated() {
+            guard index < self.exception.count else {
+                self.exception.append(t)
+                continue
+            }
+            self.exception[index].populate(from: t)
+        }
+    
+        if self.exception.count > o.exception.count {
+            for i in self.exception.count...o.exception.count {
+                self.exception.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.facility, from: o.facility)
         FireKit.populate(&self.fundsReserve, from: o.fundsReserve)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.interventionException, from: o.interventionException)
-        FireKit.populateList(&self.item, from: o.item)
-        FireKit.populateList(&self.missingTeeth, from: o.missingTeeth)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.interventionException.enumerated() {
+            guard index < self.interventionException.count else {
+                self.interventionException.append(t)
+                continue
+            }
+            self.interventionException[index].populate(from: t)
+        }
+    
+        if self.interventionException.count > o.interventionException.count {
+            for i in self.interventionException.count...o.interventionException.count {
+                self.interventionException.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.item.enumerated() {
+            guard index < self.item.count else {
+                self.item.append(t)
+                continue
+            }
+            self.item[index].populate(from: t)
+        }
+    
+        if self.item.count > o.item.count {
+            for i in self.item.count...o.item.count {
+                self.item.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.missingTeeth.enumerated() {
+            guard index < self.missingTeeth.count else {
+                self.missingTeeth.append(t)
+                continue
+            }
+            self.missingTeeth[index].populate(from: t)
+        }
+    
+        if self.missingTeeth.count > o.missingTeeth.count {
+            for i in self.missingTeeth.count...o.missingTeeth.count {
+                self.missingTeeth.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalPrescription, from: o.originalPrescription)
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
@@ -385,7 +502,20 @@ open class ClaimCoverage: BackboneElement {
         FireKit.populate(&self.coverage, from: o.coverage)
         focal.value = o.focal.value
         FireKit.populate(&self.originalRuleset, from: o.originalRuleset)
-        FireKit.populateList(&self.preAuthRef, from: o.preAuthRef)
+
+        for (index, t) in o.preAuthRef.enumerated() {
+            guard index < self.preAuthRef.count else {
+                self.preAuthRef.append(t)
+                continue
+            }
+            self.preAuthRef[index].populate(from: t)
+        }
+    
+        if self.preAuthRef.count > o.preAuthRef.count {
+            for i in self.preAuthRef.count...o.preAuthRef.count {
+                self.preAuthRef.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.relationship, from: o.relationship)
         sequence.value = o.sequence.value
     }
@@ -632,10 +762,49 @@ open class ClaimItem: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.bodySite, from: o.bodySite)
-        FireKit.populateList(&self.detail, from: o.detail)
-        FireKit.populateList(&self.diagnosisLinkId, from: o.diagnosisLinkId)
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                self.detail.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.diagnosisLinkId.enumerated() {
+            guard index < self.diagnosisLinkId.count else {
+                self.diagnosisLinkId.append(t)
+                continue
+            }
+            self.diagnosisLinkId[index].populate(from: t)
+        }
+    
+        if self.diagnosisLinkId.count > o.diagnosisLinkId.count {
+            for i in self.diagnosisLinkId.count...o.diagnosisLinkId.count {
+                self.diagnosisLinkId.remove(objectAtIndex: i)
+            }
+        }
         factor = o.factor
-        FireKit.populateList(&self.modifier, from: o.modifier)
+
+        for (index, t) in o.modifier.enumerated() {
+            guard index < self.modifier.count else {
+                self.modifier.append(t)
+                continue
+            }
+            self.modifier[index].populate(from: t)
+        }
+    
+        if self.modifier.count > o.modifier.count {
+            for i in self.modifier.count...o.modifier.count {
+                self.modifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.net, from: o.net)
         points = o.points
         FireKit.populate(&self.prosthesis, from: o.prosthesis)
@@ -643,8 +812,21 @@ open class ClaimItem: BackboneElement {
         FireKit.populate(&self.quantity, from: o.quantity)
         sequence.value = o.sequence.value
         FireKit.populate(&self.service, from: o.service)
-        serviceDate = o.serviceDate
-        FireKit.populateList(&self.subSite, from: o.subSite)
+        FireKit.populate(&self.serviceDate, from: o.serviceDate)
+
+        for (index, t) in o.subSite.enumerated() {
+            guard index < self.subSite.count else {
+                self.subSite.append(t)
+                continue
+            }
+            self.subSite[index].populate(from: t)
+        }
+    
+        if self.subSite.count > o.subSite.count {
+            for i in self.subSite.count...o.subSite.count {
+                self.subSite.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
         FireKit.populate(&self.udi, from: o.udi)
         FireKit.populate(&self.unitPrice, from: o.unitPrice)
@@ -780,7 +962,20 @@ open class ClaimItemDetail: BackboneElement {
         FireKit.populate(&self.quantity, from: o.quantity)
         sequence.value = o.sequence.value
         FireKit.populate(&self.service, from: o.service)
-        FireKit.populateList(&self.subDetail, from: o.subDetail)
+
+        for (index, t) in o.subDetail.enumerated() {
+            guard index < self.subDetail.count else {
+                self.subDetail.append(t)
+                continue
+            }
+            self.subDetail[index].populate(from: t)
+        }
+    
+        if self.subDetail.count > o.subDetail.count {
+            for i in self.subDetail.count...o.subDetail.count {
+                self.subDetail.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.type, from: o.type)
         FireKit.populate(&self.udi, from: o.udi)
         FireKit.populate(&self.unitPrice, from: o.unitPrice)
@@ -991,7 +1186,7 @@ open class ClaimItemProsthesis: BackboneElement {
         
         super.populate(from: o)
         initial.value = o.initial.value
-        priorDate = o.priorDate
+        FireKit.populate(&self.priorDate, from: o.priorDate)
         FireKit.populate(&self.priorMaterial, from: o.priorMaterial)
     }
 }
@@ -1078,7 +1273,7 @@ open class ClaimMissingTeeth: BackboneElement {
         }
         
         super.populate(from: o)
-        extractionDate = o.extractionDate
+        FireKit.populate(&self.extractionDate, from: o.extractionDate)
         FireKit.populate(&self.reason, from: o.reason)
         FireKit.populate(&self.tooth, from: o.tooth)
     }

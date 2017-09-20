@@ -77,8 +77,8 @@ open class Period: Element {
         }
         
         super.populate(from: o)
-        end = o.end
-        start = o.start
+        FireKit.populate(&self.end, from: o.end)
+        FireKit.populate(&self.start, from: o.start)
     }
 }
 

@@ -198,25 +198,77 @@ open class Immunization: DomainResource {
         }
         
         super.populate(from: o)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.doseQuantity, from: o.doseQuantity)
         FireKit.populate(&self.encounter, from: o.encounter)
-        expirationDate = o.expirationDate
+        FireKit.populate(&self.expirationDate, from: o.expirationDate)
         FireKit.populate(&self.explanation, from: o.explanation)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.location, from: o.location)
         lotNumber = o.lotNumber
         FireKit.populate(&self.manufacturer, from: o.manufacturer)
-        FireKit.populateList(&self.note, from: o.note)
+
+        for (index, t) in o.note.enumerated() {
+            guard index < self.note.count else {
+                self.note.append(t)
+                continue
+            }
+            self.note[index].populate(from: t)
+        }
+    
+        if self.note.count > o.note.count {
+            for i in self.note.count...o.note.count {
+                self.note.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.performer, from: o.performer)
-        FireKit.populateList(&self.reaction, from: o.reaction)
+
+        for (index, t) in o.reaction.enumerated() {
+            guard index < self.reaction.count else {
+                self.reaction.append(t)
+                continue
+            }
+            self.reaction[index].populate(from: t)
+        }
+    
+        if self.reaction.count > o.reaction.count {
+            for i in self.reaction.count...o.reaction.count {
+                self.reaction.remove(objectAtIndex: i)
+            }
+        }
         reported.value = o.reported.value
         FireKit.populate(&self.requester, from: o.requester)
         FireKit.populate(&self.route, from: o.route)
         FireKit.populate(&self.site, from: o.site)
         status = o.status
-        FireKit.populateList(&self.vaccinationProtocol, from: o.vaccinationProtocol)
+
+        for (index, t) in o.vaccinationProtocol.enumerated() {
+            guard index < self.vaccinationProtocol.count else {
+                self.vaccinationProtocol.append(t)
+                continue
+            }
+            self.vaccinationProtocol[index].populate(from: t)
+        }
+    
+        if self.vaccinationProtocol.count > o.vaccinationProtocol.count {
+            for i in self.vaccinationProtocol.count...o.vaccinationProtocol.count {
+                self.vaccinationProtocol.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
         wasNotGiven.value = o.wasNotGiven.value
     }
@@ -287,8 +339,34 @@ open class ImmunizationExplanation: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.reason, from: o.reason)
-        FireKit.populateList(&self.reasonNotGiven, from: o.reasonNotGiven)
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                self.reason.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.reasonNotGiven.enumerated() {
+            guard index < self.reasonNotGiven.count else {
+                self.reasonNotGiven.append(t)
+                continue
+            }
+            self.reasonNotGiven[index].populate(from: t)
+        }
+    
+        if self.reasonNotGiven.count > o.reasonNotGiven.count {
+            for i in self.reasonNotGiven.count...o.reasonNotGiven.count {
+                self.reasonNotGiven.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -364,7 +442,7 @@ open class ImmunizationReaction: BackboneElement {
         }
         
         super.populate(from: o)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         FireKit.populate(&self.detail, from: o.detail)
         reported.value = o.reported.value
     }
@@ -483,7 +561,20 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
         FireKit.populate(&self.doseStatusReason, from: o.doseStatusReason)
         series = o.series
         seriesDoses.value = o.seriesDoses.value
-        FireKit.populateList(&self.targetDisease, from: o.targetDisease)
+
+        for (index, t) in o.targetDisease.enumerated() {
+            guard index < self.targetDisease.count else {
+                self.targetDisease.append(t)
+                continue
+            }
+            self.targetDisease[index].populate(from: t)
+        }
+    
+        if self.targetDisease.count > o.targetDisease.count {
+            for i in self.targetDisease.count...o.targetDisease.count {
+                self.targetDisease.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

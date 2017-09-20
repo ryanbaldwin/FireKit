@@ -108,10 +108,36 @@ open class OrderResponse: DomainResource {
         }
         
         super.populate(from: o)
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
-        FireKit.populateList(&self.fulfillment, from: o.fulfillment)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.fulfillment.enumerated() {
+            guard index < self.fulfillment.count else {
+                self.fulfillment.append(t)
+                continue
+            }
+            self.fulfillment[index].populate(from: t)
+        }
+    
+        if self.fulfillment.count > o.fulfillment.count {
+            for i in self.fulfillment.count...o.fulfillment.count {
+                self.fulfillment.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         orderStatus = o.orderStatus
         FireKit.populate(&self.request, from: o.request)
         FireKit.populate(&self.who, from: o.who)

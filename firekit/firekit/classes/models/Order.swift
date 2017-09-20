@@ -127,9 +127,35 @@ open class Order: DomainResource {
         }
         
         super.populate(from: o)
-        date = o.date
-        FireKit.populateList(&self.detail, from: o.detail)
-        FireKit.populateList(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.date, from: o.date)
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                self.detail.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
         FireKit.populate(&self.reasonReference, from: o.reasonReference)
         FireKit.populate(&self.source, from: o.source)

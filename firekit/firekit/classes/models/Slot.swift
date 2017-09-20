@@ -115,12 +115,25 @@ open class Slot: DomainResource {
         
         super.populate(from: o)
         comment = o.comment
-        end = o.end
+        FireKit.populate(&self.end, from: o.end)
         freeBusyType = o.freeBusyType
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         overbooked.value = o.overbooked.value
         FireKit.populate(&self.schedule, from: o.schedule)
-        start = o.start
+        FireKit.populate(&self.start, from: o.start)
         FireKit.populate(&self.type, from: o.type)
     }
 }

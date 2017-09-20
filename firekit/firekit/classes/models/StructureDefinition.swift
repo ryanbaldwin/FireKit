@@ -188,28 +188,106 @@ open class StructureDefinition: DomainResource {
         super.populate(from: o)
         abstract.value = o.abstract.value
         base = o.base
-        FireKit.populateList(&self.code, from: o.code)
+
+        for (index, t) in o.code.enumerated() {
+            guard index < self.code.count else {
+                self.code.append(t)
+                continue
+            }
+            self.code[index].populate(from: t)
+        }
+    
+        if self.code.count > o.code.count {
+            for i in self.code.count...o.code.count {
+                self.code.remove(objectAtIndex: i)
+            }
+        }
         constrainedType = o.constrainedType
-        FireKit.populateList(&self.contact, from: o.contact)
-        FireKit.populateList(&self.context, from: o.context)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.context.enumerated() {
+            guard index < self.context.count else {
+                self.context.append(t)
+                continue
+            }
+            self.context[index].populate(from: t)
+        }
+    
+        if self.context.count > o.context.count {
+            for i in self.context.count...o.context.count {
+                self.context.remove(objectAtIndex: i)
+            }
+        }
         contextType = o.contextType
         copyright = o.copyright
-        date = o.date
+        FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
         FireKit.populate(&self.differential, from: o.differential)
         display = o.display
         experimental.value = o.experimental.value
         fhirVersion = o.fhirVersion
-        FireKit.populateList(&self.identifier, from: o.identifier)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
         kind = o.kind
-        FireKit.populateList(&self.mapping, from: o.mapping)
+
+        for (index, t) in o.mapping.enumerated() {
+            guard index < self.mapping.count else {
+                self.mapping.append(t)
+                continue
+            }
+            self.mapping[index].populate(from: t)
+        }
+    
+        if self.mapping.count > o.mapping.count {
+            for i in self.mapping.count...o.mapping.count {
+                self.mapping.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
         publisher = o.publisher
         requirements = o.requirements
         FireKit.populate(&self.snapshot, from: o.snapshot)
         status = o.status
         url = o.url
-        FireKit.populateList(&self.useContext, from: o.useContext)
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                self.useContext.remove(objectAtIndex: i)
+            }
+        }
         version = o.version
     }
 }
@@ -280,7 +358,20 @@ open class StructureDefinitionContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -352,7 +443,20 @@ open class StructureDefinitionDifferential: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.element, from: o.element)
+
+        for (index, t) in o.element.enumerated() {
+            guard index < self.element.count else {
+                self.element.append(t)
+                continue
+            }
+            self.element[index].populate(from: t)
+        }
+    
+        if self.element.count > o.element.count {
+            for i in self.element.count...o.element.count {
+                self.element.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -510,7 +614,20 @@ open class StructureDefinitionSnapshot: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.element, from: o.element)
+
+        for (index, t) in o.element.enumerated() {
+            guard index < self.element.count else {
+                self.element.append(t)
+                continue
+            }
+            self.element[index].populate(from: t)
+        }
+    
+        if self.element.count > o.element.count {
+            for i in self.element.count...o.element.count {
+                self.element.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

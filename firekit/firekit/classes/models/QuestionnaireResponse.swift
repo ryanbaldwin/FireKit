@@ -134,7 +134,7 @@ open class QuestionnaireResponse: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.author, from: o.author)
-        authored = o.authored
+        FireKit.populate(&self.authored, from: o.authored)
         FireKit.populate(&self.encounter, from: o.encounter)
         FireKit.populate(&self.group, from: o.group)
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -229,9 +229,35 @@ open class QuestionnaireResponseGroup: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.group, from: o.group)
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                self.group.remove(objectAtIndex: i)
+            }
+        }
         linkId = o.linkId
-        FireKit.populateList(&self.question, from: o.question)
+
+        for (index, t) in o.question.enumerated() {
+            guard index < self.question.count else {
+                self.question.append(t)
+                continue
+            }
+            self.question[index].populate(from: t)
+        }
+    
+        if self.question.count > o.question.count {
+            for i in self.question.count...o.question.count {
+                self.question.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.subject, from: o.subject)
         text = o.text
         title = o.title
@@ -307,7 +333,20 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.answer, from: o.answer)
+
+        for (index, t) in o.answer.enumerated() {
+            guard index < self.answer.count else {
+                self.answer.append(t)
+                continue
+            }
+            self.answer[index].populate(from: t)
+        }
+    
+        if self.answer.count > o.answer.count {
+            for i in self.answer.count...o.answer.count {
+                self.answer.remove(objectAtIndex: i)
+            }
+        }
         linkId = o.linkId
         text = o.text
     }
@@ -438,19 +477,32 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.group, from: o.group)
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                self.group.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
         valueBoolean.value = o.valueBoolean.value
         FireKit.populate(&self.valueCoding, from: o.valueCoding)
-        valueDate = o.valueDate
-        valueDateTime = o.valueDateTime
+        FireKit.populate(&self.valueDate, from: o.valueDate)
+        FireKit.populate(&self.valueDateTime, from: o.valueDateTime)
         valueDecimal = o.valueDecimal
-        valueInstant = o.valueInstant
+        FireKit.populate(&self.valueInstant, from: o.valueInstant)
         valueInteger.value = o.valueInteger.value
         FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
         FireKit.populate(&self.valueReference, from: o.valueReference)
         valueString = o.valueString
-        valueTime = o.valueTime
+        FireKit.populate(&self.valueTime, from: o.valueTime)
         valueUri = o.valueUri
     }
 }

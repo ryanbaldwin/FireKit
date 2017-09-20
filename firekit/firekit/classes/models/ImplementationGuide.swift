@@ -151,22 +151,100 @@ open class ImplementationGuide: DomainResource {
         }
         
         super.populate(from: o)
-        FireKit.populateList(&self.binary, from: o.binary)
-        FireKit.populateList(&self.contact, from: o.contact)
+
+        for (index, t) in o.binary.enumerated() {
+            guard index < self.binary.count else {
+                self.binary.append(t)
+                continue
+            }
+            self.binary[index].populate(from: t)
+        }
+    
+        if self.binary.count > o.binary.count {
+            for i in self.binary.count...o.binary.count {
+                self.binary.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                self.contact.remove(objectAtIndex: i)
+            }
+        }
         copyright = o.copyright
-        date = o.date
-        FireKit.populateList(&self.dependency, from: o.dependency)
+        FireKit.populate(&self.date, from: o.date)
+
+        for (index, t) in o.dependency.enumerated() {
+            guard index < self.dependency.count else {
+                self.dependency.append(t)
+                continue
+            }
+            self.dependency[index].populate(from: t)
+        }
+    
+        if self.dependency.count > o.dependency.count {
+            for i in self.dependency.count...o.dependency.count {
+                self.dependency.remove(objectAtIndex: i)
+            }
+        }
         description_fhir = o.description_fhir
         experimental.value = o.experimental.value
         fhirVersion = o.fhirVersion
-        FireKit.populateList(&self.global, from: o.global)
+
+        for (index, t) in o.global.enumerated() {
+            guard index < self.global.count else {
+                self.global.append(t)
+                continue
+            }
+            self.global[index].populate(from: t)
+        }
+    
+        if self.global.count > o.global.count {
+            for i in self.global.count...o.global.count {
+                self.global.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
-        FireKit.populateList(&self.package, from: o.package)
+
+        for (index, t) in o.package.enumerated() {
+            guard index < self.package.count else {
+                self.package.append(t)
+                continue
+            }
+            self.package[index].populate(from: t)
+        }
+    
+        if self.package.count > o.package.count {
+            for i in self.package.count...o.package.count {
+                self.package.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.page, from: o.page)
         publisher = o.publisher
         status = o.status
         url = o.url
-        FireKit.populateList(&self.useContext, from: o.useContext)
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                self.useContext.remove(objectAtIndex: i)
+            }
+        }
         version = o.version
     }
 }
@@ -237,7 +315,20 @@ open class ImplementationGuideContact: BackboneElement {
         
         super.populate(from: o)
         name = o.name
-        FireKit.populateList(&self.telecom, from: o.telecom)
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                self.telecom.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -477,7 +568,20 @@ open class ImplementationGuidePackage: BackboneElement {
         super.populate(from: o)
         description_fhir = o.description_fhir
         name = o.name
-        FireKit.populateList(&self.resource, from: o.resource)
+
+        for (index, t) in o.resource.enumerated() {
+            guard index < self.resource.count else {
+                self.resource.append(t)
+                continue
+            }
+            self.resource[index].populate(from: t)
+        }
+    
+        if self.resource.count > o.resource.count {
+            for i in self.resource.count...o.resource.count {
+                self.resource.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -688,10 +792,49 @@ open class ImplementationGuidePage: BackboneElement {
         format = o.format
         kind = o.kind
         name = o.name
-        FireKit.populateList(&self.package, from: o.package)
-        FireKit.populateList(&self.page, from: o.page)
+
+        for (index, t) in o.package.enumerated() {
+            guard index < self.package.count else {
+                self.package.append(t)
+                continue
+            }
+            self.package[index].populate(from: t)
+        }
+    
+        if self.package.count > o.package.count {
+            for i in self.package.count...o.package.count {
+                self.package.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.page.enumerated() {
+            guard index < self.page.count else {
+                self.page.append(t)
+                continue
+            }
+            self.page[index].populate(from: t)
+        }
+    
+        if self.page.count > o.page.count {
+            for i in self.page.count...o.page.count {
+                self.page.remove(objectAtIndex: i)
+            }
+        }
         source = o.source
-        FireKit.populateList(&self.type, from: o.type)
+
+        for (index, t) in o.type.enumerated() {
+            guard index < self.type.count else {
+                self.type.append(t)
+                continue
+            }
+            self.type[index].populate(from: t)
+        }
+    
+        if self.type.count > o.type.count {
+            for i in self.type.count...o.type.count {
+                self.type.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 

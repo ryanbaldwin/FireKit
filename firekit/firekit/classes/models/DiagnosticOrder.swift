@@ -133,17 +133,108 @@ open class DiagnosticOrder: DomainResource {
         
         super.populate(from: o)
         FireKit.populate(&self.encounter, from: o.encounter)
-        FireKit.populateList(&self.event, from: o.event)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.item, from: o.item)
-        FireKit.populateList(&self.note, from: o.note)
+
+        for (index, t) in o.event.enumerated() {
+            guard index < self.event.count else {
+                self.event.append(t)
+                continue
+            }
+            self.event[index].populate(from: t)
+        }
+    
+        if self.event.count > o.event.count {
+            for i in self.event.count...o.event.count {
+                self.event.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.item.enumerated() {
+            guard index < self.item.count else {
+                self.item.append(t)
+                continue
+            }
+            self.item[index].populate(from: t)
+        }
+    
+        if self.item.count > o.item.count {
+            for i in self.item.count...o.item.count {
+                self.item.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.note.enumerated() {
+            guard index < self.note.count else {
+                self.note.append(t)
+                continue
+            }
+            self.note[index].populate(from: t)
+        }
+    
+        if self.note.count > o.note.count {
+            for i in self.note.count...o.note.count {
+                self.note.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.orderer, from: o.orderer)
         priority = o.priority
-        FireKit.populateList(&self.reason, from: o.reason)
-        FireKit.populateList(&self.specimen, from: o.specimen)
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                self.reason.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.specimen.enumerated() {
+            guard index < self.specimen.count else {
+                self.specimen.append(t)
+                continue
+            }
+            self.specimen[index].populate(from: t)
+        }
+    
+        if self.specimen.count > o.specimen.count {
+            for i in self.specimen.count...o.specimen.count {
+                self.specimen.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
-        FireKit.populateList(&self.supportingInformation, from: o.supportingInformation)
+
+        for (index, t) in o.supportingInformation.enumerated() {
+            guard index < self.supportingInformation.count else {
+                self.supportingInformation.append(t)
+                continue
+            }
+            self.supportingInformation[index].populate(from: t)
+        }
+    
+        if self.supportingInformation.count > o.supportingInformation.count {
+            for i in self.supportingInformation.count...o.supportingInformation.count {
+                self.supportingInformation.remove(objectAtIndex: i)
+            }
+        }
     }
 }
 
@@ -235,7 +326,7 @@ open class DiagnosticOrderEvent: BackboneElement {
         
         super.populate(from: o)
         FireKit.populate(&self.actor, from: o.actor)
-        dateTime = o.dateTime
+        FireKit.populate(&self.dateTime, from: o.dateTime)
         FireKit.populate(&self.description_fhir, from: o.description_fhir)
         status = o.status
     }
@@ -333,8 +424,34 @@ open class DiagnosticOrderItem: BackboneElement {
         super.populate(from: o)
         FireKit.populate(&self.bodySite, from: o.bodySite)
         FireKit.populate(&self.code, from: o.code)
-        FireKit.populateList(&self.event, from: o.event)
-        FireKit.populateList(&self.specimen, from: o.specimen)
+
+        for (index, t) in o.event.enumerated() {
+            guard index < self.event.count else {
+                self.event.append(t)
+                continue
+            }
+            self.event[index].populate(from: t)
+        }
+    
+        if self.event.count > o.event.count {
+            for i in self.event.count...o.event.count {
+                self.event.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.specimen.enumerated() {
+            guard index < self.specimen.count else {
+                self.specimen.append(t)
+                continue
+            }
+            self.specimen[index].populate(from: t)
+        }
+    
+        if self.specimen.count > o.specimen.count {
+            for i in self.specimen.count...o.specimen.count {
+                self.specimen.remove(objectAtIndex: i)
+            }
+        }
         status = o.status
     }
 }

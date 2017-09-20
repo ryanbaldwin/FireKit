@@ -114,10 +114,49 @@ open class Group: DomainResource {
         
         super.populate(from: o)
         actual.value = o.actual.value
-        FireKit.populateList(&self.characteristic, from: o.characteristic)
+
+        for (index, t) in o.characteristic.enumerated() {
+            guard index < self.characteristic.count else {
+                self.characteristic.append(t)
+                continue
+            }
+            self.characteristic[index].populate(from: t)
+        }
+    
+        if self.characteristic.count > o.characteristic.count {
+            for i in self.characteristic.count...o.characteristic.count {
+                self.characteristic.remove(objectAtIndex: i)
+            }
+        }
         FireKit.populate(&self.code, from: o.code)
-        FireKit.populateList(&self.identifier, from: o.identifier)
-        FireKit.populateList(&self.member, from: o.member)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                self.identifier.remove(objectAtIndex: i)
+            }
+        }
+
+        for (index, t) in o.member.enumerated() {
+            guard index < self.member.count else {
+                self.member.append(t)
+                continue
+            }
+            self.member[index].populate(from: t)
+        }
+    
+        if self.member.count > o.member.count {
+            for i in self.member.count...o.member.count {
+                self.member.remove(objectAtIndex: i)
+            }
+        }
         name = o.name
         quantity.value = o.quantity.value
         type = o.type
