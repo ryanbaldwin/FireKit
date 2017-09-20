@@ -88,16 +88,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition1(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition1(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -196,16 +187,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition2(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition2(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -306,16 +288,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition3(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition3(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -413,16 +386,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition4(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition4(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -523,16 +487,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition5(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition5(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -628,16 +583,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition6(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition6(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -736,16 +682,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition7(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition7(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -846,16 +783,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition8(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition8(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -938,16 +866,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition9(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition9(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 
@@ -1033,16 +952,7 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition10(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Condition.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runCondition10(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Condition.self).count)
 

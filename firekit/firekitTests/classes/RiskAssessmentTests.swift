@@ -88,16 +88,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment1(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment1(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.RiskAssessment.self).count)
 
@@ -186,16 +177,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment2(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment2(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.RiskAssessment.self).count)
 
@@ -270,16 +252,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment3(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment3(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.RiskAssessment.self).count)
 
@@ -363,16 +336,7 @@ class RiskAssessmentTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment4(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.RiskAssessment.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runRiskAssessment4(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.RiskAssessment.self).count)
 

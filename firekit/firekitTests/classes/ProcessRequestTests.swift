@@ -88,16 +88,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest1(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest1(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -177,16 +168,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest2(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest2(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -268,16 +250,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest3(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest3(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -358,16 +331,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest4(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest4(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -450,16 +414,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest5(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest5(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -540,16 +495,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest6(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest6(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -632,16 +578,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest7(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest7(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -723,16 +660,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest8(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest8(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 
@@ -814,16 +742,7 @@ class ProcessRequestTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest9(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ProcessRequest.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runProcessRequest9(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ProcessRequest.self).count)
 

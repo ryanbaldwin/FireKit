@@ -88,16 +88,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle1(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle1(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
@@ -184,16 +175,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle2(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle2(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
@@ -298,16 +280,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle3(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle3(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
@@ -412,16 +385,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle4(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle4(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
@@ -520,16 +484,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle5(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle5(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
@@ -634,16 +589,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle6(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle6(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
@@ -748,16 +694,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle7(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle7(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
@@ -862,16 +799,7 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         
         // first time updating it should inflate children resources/elements which don't exist
         var existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // TODO: populated stuff
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle8(existing.asJSON())
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Bundle.self, forPrimaryKey: newInst.pk)!
-        // try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        // try! runBundle8(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Bundle.self).count)
 
