@@ -2,10 +2,10 @@
 //  Duration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Duration) on 2017-09-19.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Duration) on 2017-09-22.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-19
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation

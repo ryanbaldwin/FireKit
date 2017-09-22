@@ -1,2 +1,2 @@
-github "realm/realm-cocoa" "v2.10.1"
+binary "https://apps.ehealthinnovation.org/frameworks/realmswift/swift-4.0/realmswift.json" "2.10.1"
 github "smart-on-fhir/fhir-parser" "70f814c190a06c0d37baf08a850f0399f0888bde"
