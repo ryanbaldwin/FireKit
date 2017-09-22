@@ -2828,7 +2828,7 @@ extension JSONDecoder {
 
 extension Reference {
     /// Gets a tuple of the FHIR type and ID that makes up this Reference.
-    var parts: (fhirType: String, id: String)? {
+    public var parts: (fhirType: String, id: String)? {
         guard let parts = self.reference?.components(separatedBy: "/"),
         let fhirType = parts.first,
             let id = parts.last else {
@@ -2841,7 +2841,7 @@ extension Reference {
     /// Creates a new Reference and sets the actual `refernece` field with the provided `withReferenceId`
     ///
     /// - Parameter reference: The reference ID to be set on this new instance. e.g. `Patient/123`
-    convenience init?(withReferenceId reference: String?) {
+    public convenience init?(withReferenceId reference: String?) {
         if let ref = reference {
             self.init()
             self.reference = ref
@@ -2854,7 +2854,7 @@ extension Reference {
     ///
     /// - Parameter realm: The realm from which this reference is to be resolved
     /// - Returns: This resolved reference, if one exists; otherwise nil.
-    func resolve<T>(from realm: Realm) -> T? where T: Resource {
+    public func resolve<T>(from realm: Realm) -> T? where T: Resource {
         guard let parts = parts else {
             return nil
         }
