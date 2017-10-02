@@ -2,11 +2,14 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,38 +22,26 @@ open class SearchParameter: DomainResource {
 	override open class var resourceType: String {
 		get { return "SearchParameter" }
 	}
-    
-    public dynamic var base: String?        
-        
-    public dynamic var code: String?        
-        
-    public let contact = RealmSwift.List<SearchParameterContact>()    
-    public dynamic var date: DateTime?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public let experimental = RealmOptional<Bool>()    
-    public dynamic var name: String?        
-        
-    public dynamic var publisher: String?        
-        
-    public dynamic var requirements: String?        
-        
-    public dynamic var status: String?        
-        
-    public let target = RealmSwift.List<RealmString>()    
-    public dynamic var type: String?        
-        
-    public dynamic var url: String?        
-        
-    public dynamic var xpath: String?        
-        
-    public dynamic var xpathUsage: String?        
-    
+
+    @objc public dynamic var base: String?
+    @objc public dynamic var code: String?
+    public let contact = RealmSwift.List<SearchParameterContact>()
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var description_fhir: String?
+    public let experimental = RealmOptional<Bool>()
+    @objc public dynamic var name: String?
+    @objc public dynamic var publisher: String?
+    @objc public dynamic var requirements: String?
+    @objc public dynamic var status: String?
+    public let target = RealmSwift.List<RealmString>()
+    @objc public dynamic var type: String?
+    @objc public dynamic var url: String?
+    @objc public dynamic var xpath: String?
+    @objc public dynamic var xpathUsage: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(base: String, code: String, description_fhir: String, name: String, type: String, url: String) {
-        self.init(json: nil)
+        self.init()
         self.base = base
         self.code = code
         self.description_fhir = description_fhir
@@ -59,221 +50,142 @@ open class SearchParameter: DomainResource {
         self.url = url
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["base"] {
-				presentKeys.insert("base")
-				if let val = exist as? String {
-					self.base = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "base", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "base"))
-			}
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["contact"] {
-				presentKeys.insert("contact")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = SearchParameterContact.instantiate(fromArray: val, owner: self) as? [SearchParameterContact] {
-						if let realm = self.realm { realm.delete(self.contact) }
-						self.contact.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["date"] {
-				presentKeys.insert("date")
-				if let val = exist as? String {
-					self.date = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "description"))
-			}
-			if let exist = js["experimental"] {
-				presentKeys.insert("experimental")
-				if let val = exist as? Bool {
-					self.experimental.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "name"))
-			}
-			if let exist = js["publisher"] {
-				presentKeys.insert("publisher")
-				if let val = exist as? String {
-					self.publisher = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
-				if let val = exist as? String {
-					self.requirements = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? [String] {
-					self.target.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "url"))
-			}
-			if let exist = js["xpath"] {
-				presentKeys.insert("xpath")
-				if let val = exist as? String {
-					self.xpath = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "xpath", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["xpathUsage"] {
-				presentKeys.insert("xpathUsage")
-				if let val = exist as? String {
-					self.xpathUsage = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "xpathUsage", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case base = "base"
+        case code = "code"
+        case contact = "contact"
+        case date = "date"
+        case description_fhir = "description"
+        case experimental = "experimental"
+        case name = "name"
+        case publisher = "publisher"
+        case requirements = "requirements"
+        case status = "status"
+        case target = "target"
+        case type = "type"
+        case url = "url"
+        case xpath = "xpath"
+        case xpathUsage = "xpathUsage"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.base = try container.decodeIfPresent(String.self, forKey: .base)
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.contact.append(objectsIn: try container.decodeIfPresent([SearchParameterContact].self, forKey: .contact) ?? [])
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
+        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.target.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .target) ?? [])
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+        self.xpath = try container.decodeIfPresent(String.self, forKey: .xpath)
+        self.xpathUsage = try container.decodeIfPresent(String.self, forKey: .xpathUsage)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.base, forKey: .base)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(Array(self.contact), forKey: .contact)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.publisher, forKey: .publisher)
+        try container.encodeIfPresent(self.requirements, forKey: .requirements)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encode(Array(self.target), forKey: .target)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encodeIfPresent(self.url, forKey: .url)
+        try container.encodeIfPresent(self.xpath, forKey: .xpath)
+        try container.encodeIfPresent(self.xpathUsage, forKey: .xpathUsage)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SearchParameter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SearchParameter. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return SearchParameter.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let base = self.base {
-			json["base"] = base.asJSON()
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if contact.count > 0 {
-			json["contact"] = Array(contact.map() { $0.asJSON() })
-		}
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let experimental = self.experimental.value {
-			json["experimental"] = experimental.asJSON()
-		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let publisher = self.publisher {
-			json["publisher"] = publisher.asJSON()
-		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if target.count > 0 {
-			json["target"] = Array(target.map() { $0.value })
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		if let xpath = self.xpath {
-			json["xpath"] = xpath.asJSON()
-		}
-		if let xpathUsage = self.xpathUsage {
-			json["xpathUsage"] = xpathUsage.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SearchParameter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        base = o.base
+        code = o.code
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
+                self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.date, from: o.date)
+        description_fhir = o.description_fhir
+        experimental.value = o.experimental.value
+        name = o.name
+        publisher = o.publisher
+        requirements = o.requirements
+        status = o.status
+
+        for (index, t) in o.target.enumerated() {
+            guard index < self.target.count else {
+                self.target.append(t)
+                continue
+            }
+            self.target[index].populate(from: t)
+        }
+    
+        if self.target.count > o.target.count {
+            for i in self.target.count...o.target.count {
+                let objectToRemove = self.target[i]
+                self.target.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        type = o.type
+        url = o.url
+        xpath = o.xpath
+        xpathUsage = o.xpathUsage
+    }
 }
 
 
@@ -286,51 +198,78 @@ open class SearchParameterContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SearchParameterContact" }
 	}
-    
-    public dynamic var name: String?        
-        
+
+    @objc public dynamic var name: String?
     public let telecom = RealmSwift.List<ContactPoint>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
-						if let realm = self.realm { realm.delete(self.telecom) }
-						self.telecom.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encode(Array(self.telecom), forKey: .telecom)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SearchParameterContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SearchParameterContact. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return SearchParameterContact.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if telecom.count > 0 {
-			json["telecom"] = Array(telecom.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SearchParameterContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        name = o.name
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
+                self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 

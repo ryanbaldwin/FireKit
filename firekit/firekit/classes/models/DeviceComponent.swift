@@ -2,11 +2,14 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,195 +23,160 @@ open class DeviceComponent: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceComponent" }
 	}
-    
-    public dynamic var identifier: Identifier?        
+
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var languageCode: CodeableConcept?        
+    }
+    @objc public dynamic var languageCode: CodeableConcept?
     public func upsert(languageCode: CodeableConcept?) {
         upsert(prop: &self.languageCode, val: languageCode)
-    }    
-    public dynamic var lastSystemChange: Instant?        
-        
-    public dynamic var measurementPrinciple: String?        
-        
-    public let operationalStatus = RealmSwift.List<CodeableConcept>()    
-    public dynamic var parameterGroup: CodeableConcept?        
+    }
+    @objc public dynamic var lastSystemChange: Instant?
+    @objc public dynamic var measurementPrinciple: String?
+    public let operationalStatus = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var parameterGroup: CodeableConcept?
     public func upsert(parameterGroup: CodeableConcept?) {
         upsert(prop: &self.parameterGroup, val: parameterGroup)
-    }    
-    public dynamic var parent: Reference?        
+    }
+    @objc public dynamic var parent: Reference?
     public func upsert(parent: Reference?) {
         upsert(prop: &self.parent, val: parent)
-    }    
-    public let productionSpecification = RealmSwift.List<DeviceComponentProductionSpecification>()    
-    public dynamic var source: Reference?        
+    }
+    public let productionSpecification = RealmSwift.List<DeviceComponentProductionSpecification>()
+    @objc public dynamic var source: Reference?
     public func upsert(source: Reference?) {
         upsert(prop: &self.source, val: source)
-    }    
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(identifier: Identifier, lastSystemChange: Instant, type: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.identifier = identifier
         self.lastSystemChange = lastSystemChange
         self.type = type
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "identifier"))
-			}
-			if let exist = js["languageCode"] {
-				presentKeys.insert("languageCode")
-				if let val = exist as? FHIRJSON {
-					upsert(languageCode: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "languageCode", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["lastSystemChange"] {
-				presentKeys.insert("lastSystemChange")
-				if let val = exist as? String {
-					self.lastSystemChange = Instant(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "lastSystemChange", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "lastSystemChange"))
-			}
-			if let exist = js["measurementPrinciple"] {
-				presentKeys.insert("measurementPrinciple")
-				if let val = exist as? String {
-					self.measurementPrinciple = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "measurementPrinciple", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["operationalStatus"] {
-				presentKeys.insert("operationalStatus")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.operationalStatus) }
-						self.operationalStatus.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "operationalStatus", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["parameterGroup"] {
-				presentKeys.insert("parameterGroup")
-				if let val = exist as? FHIRJSON {
-					upsert(parameterGroup: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "parameterGroup", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["parent"] {
-				presentKeys.insert("parent")
-				if let val = exist as? FHIRJSON {
-					upsert(parent: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "parent", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["productionSpecification"] {
-				presentKeys.insert("productionSpecification")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = DeviceComponentProductionSpecification.instantiate(fromArray: val, owner: self) as? [DeviceComponentProductionSpecification] {
-						if let realm = self.realm { realm.delete(self.productionSpecification) }
-						self.productionSpecification.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "productionSpecification", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["source"] {
-				presentKeys.insert("source")
-				if let val = exist as? FHIRJSON {
-					upsert(source: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case identifier = "identifier"
+        case languageCode = "languageCode"
+        case lastSystemChange = "lastSystemChange"
+        case measurementPrinciple = "measurementPrinciple"
+        case operationalStatus = "operationalStatus"
+        case parameterGroup = "parameterGroup"
+        case parent = "parent"
+        case productionSpecification = "productionSpecification"
+        case source = "source"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.languageCode = try container.decodeIfPresent(CodeableConcept.self, forKey: .languageCode)
+        self.lastSystemChange = try container.decodeIfPresent(Instant.self, forKey: .lastSystemChange)
+        self.measurementPrinciple = try container.decodeIfPresent(String.self, forKey: .measurementPrinciple)
+        self.operationalStatus.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .operationalStatus) ?? [])
+        self.parameterGroup = try container.decodeIfPresent(CodeableConcept.self, forKey: .parameterGroup)
+        self.parent = try container.decodeIfPresent(Reference.self, forKey: .parent)
+        self.productionSpecification.append(objectsIn: try container.decodeIfPresent([DeviceComponentProductionSpecification].self, forKey: .productionSpecification) ?? [])
+        self.source = try container.decodeIfPresent(Reference.self, forKey: .source)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.languageCode, forKey: .languageCode)
+        try container.encodeIfPresent(self.lastSystemChange, forKey: .lastSystemChange)
+        try container.encodeIfPresent(self.measurementPrinciple, forKey: .measurementPrinciple)
+        try container.encode(Array(self.operationalStatus), forKey: .operationalStatus)
+        try container.encodeIfPresent(self.parameterGroup, forKey: .parameterGroup)
+        try container.encodeIfPresent(self.parent, forKey: .parent)
+        try container.encode(Array(self.productionSpecification), forKey: .productionSpecification)
+        try container.encodeIfPresent(self.source, forKey: .source)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DeviceComponent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DeviceComponent. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return DeviceComponent.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let languageCode = self.languageCode {
-			json["languageCode"] = languageCode.asJSON()
-		}
-		if let lastSystemChange = self.lastSystemChange {
-			json["lastSystemChange"] = lastSystemChange.asJSON()
-		}
-		if let measurementPrinciple = self.measurementPrinciple {
-			json["measurementPrinciple"] = measurementPrinciple.asJSON()
-		}
-		if operationalStatus.count > 0 {
-			json["operationalStatus"] = Array(operationalStatus.map() { $0.asJSON() })
-		}
-		if let parameterGroup = self.parameterGroup {
-			json["parameterGroup"] = parameterGroup.asJSON()
-		}
-		if let parent = self.parent {
-			json["parent"] = parent.asJSON()
-		}
-		if productionSpecification.count > 0 {
-			json["productionSpecification"] = Array(productionSpecification.map() { $0.asJSON() })
-		}
-		if let source = self.source {
-			json["source"] = source.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceComponent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.languageCode, from: o.languageCode)
+        FireKit.populate(&self.lastSystemChange, from: o.lastSystemChange)
+        measurementPrinciple = o.measurementPrinciple
+
+        for (index, t) in o.operationalStatus.enumerated() {
+            guard index < self.operationalStatus.count else {
+                self.operationalStatus.append(t)
+                continue
+            }
+            self.operationalStatus[index].populate(from: t)
+        }
+    
+        if self.operationalStatus.count > o.operationalStatus.count {
+            for i in self.operationalStatus.count...o.operationalStatus.count {
+                let objectToRemove = self.operationalStatus[i]
+                self.operationalStatus.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.parameterGroup, from: o.parameterGroup)
+        FireKit.populate(&self.parent, from: o.parent)
+
+        for (index, t) in o.productionSpecification.enumerated() {
+            guard index < self.productionSpecification.count else {
+                self.productionSpecification.append(t)
+                continue
+            }
+            self.productionSpecification[index].populate(from: t)
+        }
+    
+        if self.productionSpecification.count > o.productionSpecification.count {
+            for i in self.productionSpecification.count...o.productionSpecification.count {
+                let objectToRemove = self.productionSpecification[i]
+                self.productionSpecification.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.source, from: o.source)
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
 
 
@@ -221,67 +189,74 @@ open class DeviceComponentProductionSpecification: BackboneElement {
 	override open class var resourceType: String {
 		get { return "DeviceComponentProductionSpecification" }
 	}
-    
-    public dynamic var componentId: Identifier?        
+
+    @objc public dynamic var componentId: Identifier?
     public func upsert(componentId: Identifier?) {
         upsert(prop: &self.componentId, val: componentId)
-    }    
-    public dynamic var productionSpec: String?        
-        
-    public dynamic var specType: CodeableConcept?        
+    }
+    @objc public dynamic var productionSpec: String?
+    @objc public dynamic var specType: CodeableConcept?
     public func upsert(specType: CodeableConcept?) {
         upsert(prop: &self.specType, val: specType)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["componentId"] {
-				presentKeys.insert("componentId")
-				if let val = exist as? FHIRJSON {
-					upsert(componentId: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "componentId", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["productionSpec"] {
-				presentKeys.insert("productionSpec")
-				if let val = exist as? String {
-					self.productionSpec = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "productionSpec", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["specType"] {
-				presentKeys.insert("specType")
-				if let val = exist as? FHIRJSON {
-					upsert(specType: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "specType", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case componentId = "componentId"
+        case productionSpec = "productionSpec"
+        case specType = "specType"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.componentId = try container.decodeIfPresent(Identifier.self, forKey: .componentId)
+        self.productionSpec = try container.decodeIfPresent(String.self, forKey: .productionSpec)
+        self.specType = try container.decodeIfPresent(CodeableConcept.self, forKey: .specType)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.componentId, forKey: .componentId)
+        try container.encodeIfPresent(self.productionSpec, forKey: .productionSpec)
+        try container.encodeIfPresent(self.specType, forKey: .specType)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DeviceComponentProductionSpecification.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DeviceComponentProductionSpecification. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return DeviceComponentProductionSpecification.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let componentId = self.componentId {
-			json["componentId"] = componentId.asJSON()
-		}
-		if let productionSpec = self.productionSpec {
-			json["productionSpec"] = productionSpec.asJSON()
-		}
-		if let specType = self.specType {
-			json["specType"] = specType.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceComponentProductionSpecification else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.componentId, from: o.componentId)
+        productionSpec = o.productionSpec
+        FireKit.populate(&self.specType, from: o.specType)
+    }
 }
 

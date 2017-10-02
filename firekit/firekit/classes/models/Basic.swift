@@ -2,11 +2,14 @@
 //  Basic.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Basic) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,108 +23,108 @@ open class Basic: DomainResource {
 	override open class var resourceType: String {
 		get { return "Basic" }
 	}
-    
-    public dynamic var author: Reference?        
+
+    @objc public dynamic var author: Reference?
     public func upsert(author: Reference?) {
         upsert(prop: &self.author, val: author)
-    }    
-    public dynamic var code: CodeableConcept?        
+    }
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var created: FHIRDate?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var subject: Reference?        
+    }
+    @objc public dynamic var created: FHIRDate?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["author"] {
-				presentKeys.insert("author")
-				if let val = exist as? FHIRJSON {
-					upsert(author: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					upsert(code: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["created"] {
-				presentKeys.insert("created")
-				if let val = exist as? String {
-					self.created = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "created", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					upsert(subject: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case author = "author"
+        case code = "code"
+        case created = "created"
+        case identifier = "identifier"
+        case subject = "subject"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.author = try container.decodeIfPresent(Reference.self, forKey: .author)
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.created = try container.decodeIfPresent(FHIRDate.self, forKey: .created)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.author, forKey: .author)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.created, forKey: .created)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Basic.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Basic. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Basic.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let author = self.author {
-			json["author"] = author.asJSON()
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let created = self.created {
-			json["created"] = created.asJSON()
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Basic else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.created, from: o.created)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
+                self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
 

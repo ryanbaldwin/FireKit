@@ -2,10 +2,12 @@
 //  CoverageTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-22.
 //  2017, SMART Health IT.
 //
-// Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
+// Updated for Realm support by Ryan Baldwin on 2017-09-22
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+// 
 
 import XCTest
 import RealmSwift
@@ -13,67 +15,66 @@ import FireKit
 
 
 class CoverageTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
+    }
 
-	override func setUp() {
-		realm = makeRealm()
-	}
-
-	func instantiateFrom(_ filename: String) throws -> FireKit.Coverage {
-		return instantiateFrom(try readJSONFile(filename))
-	}
-	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.Coverage {
-		let instance = FireKit.Coverage(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
-	}
-	
-	func testCoverage1() {		
-		var instance: FireKit.Coverage?
-		do {
-			instance = try runCoverage1()
-			try runCoverage1(instance!.asJSON()) 		
-			let copy = instance!.copy() as? FireKit.Coverage
-			XCTAssertNotNil(copy)
-			try runCoverage1(copy!.asJSON())     
-
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCoverage1(copy!.asJSON())  
-		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
-		}
-
-		testCoverageRealm1(instance!)
-	}
-
-    func testCoverage1RealmPK() {        
+    func inflateFrom(filename: String) throws -> FireKit.Coverage {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.Coverage {
+        // print("Inflating FireKit.Coverage from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.Coverage.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testCoverage1() {   
+        var instance: FireKit.Coverage?
         do {
-            let instance: FireKit.Coverage = try runCoverage1()
-            let copy = (instance.copy() as! FireKit.Coverage)
+            instance = try runCoverage1()
+            try runCoverage1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw: \(error)")
+        }
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            let prePopulatedCopyPK = copy.pk
-            _ = copy.populate(from: instance.asJSON())
-            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            XCTAssertNotEqual(copy.pk, instance.pk)
+        testCoverageRealm1(instance!)
+    }
+
+    func testCoverage1Copying() {
+        do {
+            let instance = try runCoverage1()
+            let copy = instance.copy() as? FireKit.Coverage
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runCoverage1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Coverage's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Coverage successfully, but threw: \(error)")
         }
     }
 
-	func testCoverageRealm1(_ instance: FireKit.Coverage) {
-		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+    func testCoverage1Populatability() {
+        do {
+            let instance = try runCoverage1()
+            let copy = FireKit.Coverage()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runCoverage1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Coverage successfully, but threw: \(error)")
+        }
+    }
+
+    func testCoverageRealm1(_ instance: FireKit.Coverage) {
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
-		try! realm.write {
-                realm.add(instance)
-            }
-        try! runCoverage1(realm.objects(FireKit.Coverage.self).first!.asJSON())
+        try! realm.write { realm.add(instance) }
+        try! runCoverage1(JSONEncoder().encode(realm.objects(FireKit.Coverage.self).first!))
         
         // ensure we can update it.
         try! realm.write { instance.implicitRules = "Rule #1" }
@@ -86,91 +87,81 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
         try! realm.write { realm.add(newInst) }
         
         // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runCoverage1(existing.asJSON())
+        let existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runCoverage1(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Coverage.self).count)
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Coverage.self).count)
-	}
-	
-	@discardableResult
-	func runCoverage1(_ json: FHIRJSON? = nil) throws -> FireKit.Coverage {
-		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("coverage-example-2.json")
-		
-		XCTAssertEqual(inst.dependent.value, 1)
-		XCTAssertEqual(inst.id, "7546D")
-		XCTAssertEqual(inst.identifier[0].system, "http://xyz.com/codes/identifier")
-		XCTAssertEqual(inst.identifier[0].value, "AB9876")
-		XCTAssertEqual(inst.issuer?.reference, "Organization/2")
-		XCTAssertEqual(inst.period?.end?.description, "2012-03-17")
-		XCTAssertEqual(inst.period?.start?.description, "2011-03-17")
-		XCTAssertEqual(inst.plan, "11024")
-		XCTAssertEqual(inst.subPlan, "D15C9")
-		XCTAssertEqual(inst.subscriber?.reference, "Patient/5")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the coverage</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type?.code, "EHCPOL")
-		XCTAssertEqual(inst.type?.display, "extended healthcare")
-		XCTAssertEqual(inst.type?.system, "http://hl7.org/fhir/v3/ActCode")
-		
-		return inst
-	}
-	
-	func testCoverage2() {		
-		var instance: FireKit.Coverage?
-		do {
-			instance = try runCoverage2()
-			try runCoverage2(instance!.asJSON()) 		
-			let copy = instance!.copy() as? FireKit.Coverage
-			XCTAssertNotNil(copy)
-			try runCoverage2(copy!.asJSON())     
+    }
+    
+    @discardableResult
+    func runCoverage1(_ data: Data? = nil) throws -> FireKit.Coverage {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "coverage-example-2.json")
+        
+        XCTAssertEqual(inst.dependent.value, 1)
+        XCTAssertEqual(inst.id, "7546D")
+        XCTAssertEqual(inst.identifier[0].system, "http://xyz.com/codes/identifier")
+        XCTAssertEqual(inst.identifier[0].value, "AB9876")
+        XCTAssertEqual(inst.issuer?.reference, "Organization/2")
+        XCTAssertEqual(inst.period?.end?.description, "2012-03-17")
+        XCTAssertEqual(inst.period?.start?.description, "2011-03-17")
+        XCTAssertEqual(inst.plan, "11024")
+        XCTAssertEqual(inst.subPlan, "D15C9")
+        XCTAssertEqual(inst.subscriber?.reference, "Patient/5")
+        XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the coverage</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+        XCTAssertEqual(inst.type?.code, "EHCPOL")
+        XCTAssertEqual(inst.type?.display, "extended healthcare")
+        XCTAssertEqual(inst.type?.system, "http://hl7.org/fhir/v3/ActCode")
 
-            try! realm.write { copy!.populate(from: instance!) }
-            try runCoverage2(copy!.asJSON())  
-		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw")
-		}
-
-		testCoverageRealm2(instance!)
-	}
-
-    func testCoverage2RealmPK() {        
+        return inst
+    }
+    
+    func testCoverage2() {   
+        var instance: FireKit.Coverage?
         do {
-            let instance: FireKit.Coverage = try runCoverage2()
-            let copy = (instance.copy() as! FireKit.Coverage)
+            instance = try runCoverage2()
+            try runCoverage2(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test Coverage successfully, but threw: \(error)")
+        }
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            let prePopulatedCopyPK = copy.pk
-            _ = copy.populate(from: instance.asJSON())
-            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            XCTAssertNotEqual(copy.pk, instance.pk)
+        testCoverageRealm2(instance!)
+    }
+
+    func testCoverage2Copying() {
+        do {
+            let instance = try runCoverage2()
+            let copy = instance.copy() as? FireKit.Coverage
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runCoverage2(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test Coverage's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test Coverage successfully, but threw: \(error)")
         }
     }
 
-	func testCoverageRealm2(_ instance: FireKit.Coverage) {
-		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+    func testCoverage2Populatability() {
+        do {
+            let instance = try runCoverage2()
+            let copy = FireKit.Coverage()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runCoverage2(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test Coverage successfully, but threw: \(error)")
+        }
+    }
+
+    func testCoverageRealm2(_ instance: FireKit.Coverage) {
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
-		try! realm.write {
-                realm.add(instance)
-            }
-        try! runCoverage2(realm.objects(FireKit.Coverage.self).first!.asJSON())
+        try! realm.write { realm.add(instance) }
+        try! runCoverage2(JSONEncoder().encode(realm.objects(FireKit.Coverage.self).first!))
         
         // ensure we can update it.
         try! realm.write { instance.implicitRules = "Rule #1" }
@@ -183,44 +174,36 @@ class CoverageTests: XCTestCase, RealmPersistenceTesting {
         try! realm.write { realm.add(newInst) }
         
         // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runCoverage2(existing.asJSON())
+        let existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.Coverage.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runCoverage2(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.Coverage.self).count)
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.Coverage.self).count)
-	}
-	
-	@discardableResult
-	func runCoverage2(_ json: FHIRJSON? = nil) throws -> FireKit.Coverage {
-		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("coverage-example.json")
-		
-		XCTAssertEqual(inst.dependent.value, 1)
-		XCTAssertEqual(inst.id, "9876B1")
-		XCTAssertEqual(inst.identifier[0].system, "http://benefitsinc.com/certificate")
-		XCTAssertEqual(inst.identifier[0].value, "12345")
-		XCTAssertEqual(inst.issuer?.reference, "Organization/2")
-		XCTAssertEqual(inst.period?.end?.description, "2012-05-23")
-		XCTAssertEqual(inst.period?.start?.description, "2011-05-23")
-		XCTAssertEqual(inst.plan, "CBI35")
-		XCTAssertEqual(inst.sequence.value, 1)
-		XCTAssertEqual(inst.subPlan, "123")
-		XCTAssertEqual(inst.subscriber?.reference, "Patient/4")
-		XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the coverage</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.type?.code, "EHCPOL")
-		XCTAssertEqual(inst.type?.display, "extended healthcare")
-		XCTAssertEqual(inst.type?.system, "http://hl7.org/fhir/v3/ActCode")
-		
-		return inst
-	}
+    }
+    
+    @discardableResult
+    func runCoverage2(_ data: Data? = nil) throws -> FireKit.Coverage {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "coverage-example.json")
+        
+        XCTAssertEqual(inst.dependent.value, 1)
+        XCTAssertEqual(inst.id, "9876B1")
+        XCTAssertEqual(inst.identifier[0].system, "http://benefitsinc.com/certificate")
+        XCTAssertEqual(inst.identifier[0].value, "12345")
+        XCTAssertEqual(inst.issuer?.reference, "Organization/2")
+        XCTAssertEqual(inst.period?.end?.description, "2012-05-23")
+        XCTAssertEqual(inst.period?.start?.description, "2011-05-23")
+        XCTAssertEqual(inst.plan, "CBI35")
+        XCTAssertEqual(inst.sequence.value, 1)
+        XCTAssertEqual(inst.subPlan, "123")
+        XCTAssertEqual(inst.subscriber?.reference, "Patient/4")
+        XCTAssertEqual(inst.text?.div, "<div>A human-readable rendering of the coverage</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+        XCTAssertEqual(inst.type?.code, "EHCPOL")
+        XCTAssertEqual(inst.type?.display, "extended healthcare")
+        XCTAssertEqual(inst.type?.system, "http://hl7.org/fhir/v3/ActCode")
+
+        return inst
+    }
 }

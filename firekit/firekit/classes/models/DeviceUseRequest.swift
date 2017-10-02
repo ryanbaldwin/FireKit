@@ -2,11 +2,14 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,277 +23,221 @@ open class DeviceUseRequest: DomainResource {
 	override open class var resourceType: String {
 		get { return "DeviceUseRequest" }
 	}
-    
-    public dynamic var bodySiteCodeableConcept: CodeableConcept?        
+
+    @objc public dynamic var bodySiteCodeableConcept: CodeableConcept?
     public func upsert(bodySiteCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.bodySiteCodeableConcept, val: bodySiteCodeableConcept)
-    }    
-    public dynamic var bodySiteReference: Reference?        
+    }
+    @objc public dynamic var bodySiteReference: Reference?
     public func upsert(bodySiteReference: Reference?) {
         upsert(prop: &self.bodySiteReference, val: bodySiteReference)
-    }    
-    public dynamic var device: Reference?        
+    }
+    @objc public dynamic var device: Reference?
     public func upsert(device: Reference?) {
         upsert(prop: &self.device, val: device)
-    }    
-    public dynamic var encounter: Reference?        
+    }
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let indication = RealmSwift.List<CodeableConcept>()    
-    public let notes = RealmSwift.List<RealmString>()    
-    public dynamic var orderedOn: DateTime?        
-        
-    public dynamic var priority: String?        
-        
-    public let prnReason = RealmSwift.List<CodeableConcept>()    
-    public dynamic var recordedOn: DateTime?        
-        
-    public dynamic var status: String?        
-        
-    public dynamic var subject: Reference?        
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    public let indication = RealmSwift.List<CodeableConcept>()
+    public let notes = RealmSwift.List<RealmString>()
+    @objc public dynamic var orderedOn: DateTime?
+    @objc public dynamic var priority: String?
+    public let prnReason = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var recordedOn: DateTime?
+    @objc public dynamic var status: String?
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var timingDateTime: DateTime?        
-        
-    public dynamic var timingPeriod: Period?        
+    }
+    @objc public dynamic var timingDateTime: DateTime?
+    @objc public dynamic var timingPeriod: Period?
     public func upsert(timingPeriod: Period?) {
         upsert(prop: &self.timingPeriod, val: timingPeriod)
-    }    
-    public dynamic var timingTiming: Timing?        
+    }
+    @objc public dynamic var timingTiming: Timing?
     public func upsert(timingTiming: Timing?) {
         upsert(prop: &self.timingTiming, val: timingTiming)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(device: Reference, subject: Reference) {
-        self.init(json: nil)
+        self.init()
         self.device = device
         self.subject = subject
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["bodySiteCodeableConcept"] {
-				presentKeys.insert("bodySiteCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					upsert(bodySiteCodeableConcept: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bodySiteCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["bodySiteReference"] {
-				presentKeys.insert("bodySiteReference")
-				if let val = exist as? FHIRJSON {
-					upsert(bodySiteReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bodySiteReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["device"] {
-				presentKeys.insert("device")
-				if let val = exist as? FHIRJSON {
-					upsert(device: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "device", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "device"))
-			}
-			if let exist = js["encounter"] {
-				presentKeys.insert("encounter")
-				if let val = exist as? FHIRJSON {
-					upsert(encounter: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["indication"] {
-				presentKeys.insert("indication")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.indication) }
-						self.indication.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "indication", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["notes"] {
-				presentKeys.insert("notes")
-				if let val = exist as? [String] {
-					self.notes.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "notes", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["orderedOn"] {
-				presentKeys.insert("orderedOn")
-				if let val = exist as? String {
-					self.orderedOn = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "orderedOn", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["priority"] {
-				presentKeys.insert("priority")
-				if let val = exist as? String {
-					self.priority = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "priority", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["prnReason"] {
-				presentKeys.insert("prnReason")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.prnReason) }
-						self.prnReason.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "prnReason", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["recordedOn"] {
-				presentKeys.insert("recordedOn")
-				if let val = exist as? String {
-					self.recordedOn = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "recordedOn", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					upsert(subject: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "subject"))
-			}
-			if let exist = js["timingDateTime"] {
-				presentKeys.insert("timingDateTime")
-				if let val = exist as? String {
-					self.timingDateTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "timingDateTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["timingPeriod"] {
-				presentKeys.insert("timingPeriod")
-				if let val = exist as? FHIRJSON {
-					upsert(timingPeriod: Period(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "timingPeriod", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["timingTiming"] {
-				presentKeys.insert("timingTiming")
-				if let val = exist as? FHIRJSON {
-					upsert(timingTiming: Timing(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "timingTiming", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case bodySiteCodeableConcept = "bodySiteCodeableConcept"
+        case bodySiteReference = "bodySiteReference"
+        case device = "device"
+        case encounter = "encounter"
+        case identifier = "identifier"
+        case indication = "indication"
+        case notes = "notes"
+        case orderedOn = "orderedOn"
+        case priority = "priority"
+        case prnReason = "prnReason"
+        case recordedOn = "recordedOn"
+        case status = "status"
+        case subject = "subject"
+        case timingDateTime = "timingDateTime"
+        case timingPeriod = "timingPeriod"
+        case timingTiming = "timingTiming"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.bodySiteCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .bodySiteCodeableConcept)
+        self.bodySiteReference = try container.decodeIfPresent(Reference.self, forKey: .bodySiteReference)
+        self.device = try container.decodeIfPresent(Reference.self, forKey: .device)
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.indication.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .indication) ?? [])
+        self.notes.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .notes) ?? [])
+        self.orderedOn = try container.decodeIfPresent(DateTime.self, forKey: .orderedOn)
+        self.priority = try container.decodeIfPresent(String.self, forKey: .priority)
+        self.prnReason.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .prnReason) ?? [])
+        self.recordedOn = try container.decodeIfPresent(DateTime.self, forKey: .recordedOn)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.timingDateTime = try container.decodeIfPresent(DateTime.self, forKey: .timingDateTime)
+        self.timingPeriod = try container.decodeIfPresent(Period.self, forKey: .timingPeriod)
+        self.timingTiming = try container.decodeIfPresent(Timing.self, forKey: .timingTiming)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.bodySiteCodeableConcept, forKey: .bodySiteCodeableConcept)
+        try container.encodeIfPresent(self.bodySiteReference, forKey: .bodySiteReference)
+        try container.encodeIfPresent(self.device, forKey: .device)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.indication), forKey: .indication)
+        try container.encode(Array(self.notes), forKey: .notes)
+        try container.encodeIfPresent(self.orderedOn, forKey: .orderedOn)
+        try container.encodeIfPresent(self.priority, forKey: .priority)
+        try container.encode(Array(self.prnReason), forKey: .prnReason)
+        try container.encodeIfPresent(self.recordedOn, forKey: .recordedOn)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.timingDateTime, forKey: .timingDateTime)
+        try container.encodeIfPresent(self.timingPeriod, forKey: .timingPeriod)
+        try container.encodeIfPresent(self.timingTiming, forKey: .timingTiming)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(DeviceUseRequest.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy DeviceUseRequest. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return DeviceUseRequest.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let bodySiteCodeableConcept = self.bodySiteCodeableConcept {
-			json["bodySiteCodeableConcept"] = bodySiteCodeableConcept.asJSON()
-		}
-		if let bodySiteReference = self.bodySiteReference {
-			json["bodySiteReference"] = bodySiteReference.asJSON()
-		}
-		if let device = self.device {
-			json["device"] = device.asJSON()
-		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if indication.count > 0 {
-			json["indication"] = Array(indication.map() { $0.asJSON() })
-		}
-		if notes.count > 0 {
-			json["notes"] = Array(notes.map() { $0.value })
-		}
-		if let orderedOn = self.orderedOn {
-			json["orderedOn"] = orderedOn.asJSON()
-		}
-		if let priority = self.priority {
-			json["priority"] = priority.asJSON()
-		}
-		if prnReason.count > 0 {
-			json["prnReason"] = Array(prnReason.map() { $0.asJSON() })
-		}
-		if let recordedOn = self.recordedOn {
-			json["recordedOn"] = recordedOn.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		if let timingDateTime = self.timingDateTime {
-			json["timingDateTime"] = timingDateTime.asJSON()
-		}
-		if let timingPeriod = self.timingPeriod {
-			json["timingPeriod"] = timingPeriod.asJSON()
-		}
-		if let timingTiming = self.timingTiming {
-			json["timingTiming"] = timingTiming.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? DeviceUseRequest else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.bodySiteCodeableConcept, from: o.bodySiteCodeableConcept)
+        FireKit.populate(&self.bodySiteReference, from: o.bodySiteReference)
+        FireKit.populate(&self.device, from: o.device)
+        FireKit.populate(&self.encounter, from: o.encounter)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
+                self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.indication.enumerated() {
+            guard index < self.indication.count else {
+                self.indication.append(t)
+                continue
+            }
+            self.indication[index].populate(from: t)
+        }
+    
+        if self.indication.count > o.indication.count {
+            for i in self.indication.count...o.indication.count {
+                let objectToRemove = self.indication[i]
+                self.indication.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.notes.enumerated() {
+            guard index < self.notes.count else {
+                self.notes.append(t)
+                continue
+            }
+            self.notes[index].populate(from: t)
+        }
+    
+        if self.notes.count > o.notes.count {
+            for i in self.notes.count...o.notes.count {
+                let objectToRemove = self.notes[i]
+                self.notes.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.orderedOn, from: o.orderedOn)
+        priority = o.priority
+
+        for (index, t) in o.prnReason.enumerated() {
+            guard index < self.prnReason.count else {
+                self.prnReason.append(t)
+                continue
+            }
+            self.prnReason[index].populate(from: t)
+        }
+    
+        if self.prnReason.count > o.prnReason.count {
+            for i in self.prnReason.count...o.prnReason.count {
+                let objectToRemove = self.prnReason[i]
+                self.prnReason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.recordedOn, from: o.recordedOn)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.timingDateTime, from: o.timingDateTime)
+        FireKit.populate(&self.timingPeriod, from: o.timingPeriod)
+        FireKit.populate(&self.timingTiming, from: o.timingTiming)
+    }
 }
 

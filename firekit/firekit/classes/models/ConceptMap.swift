@@ -2,11 +2,14 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,49 +23,38 @@ open class ConceptMap: DomainResource {
 	override open class var resourceType: String {
 		get { return "ConceptMap" }
 	}
-    
-    public let contact = RealmSwift.List<ConceptMapContact>()    
-    public dynamic var copyright: String?        
-        
-    public dynamic var date: DateTime?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public let element = RealmSwift.List<ConceptMapElement>()    
-    public let experimental = RealmOptional<Bool>()    
-    public dynamic var identifier: Identifier?        
+
+    public let contact = RealmSwift.List<ConceptMapContact>()
+    @objc public dynamic var copyright: String?
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var description_fhir: String?
+    public let element = RealmSwift.List<ConceptMapElement>()
+    public let experimental = RealmOptional<Bool>()
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var name: String?        
-        
-    public dynamic var publisher: String?        
-        
-    public dynamic var requirements: String?        
-        
-    public dynamic var sourceReference: Reference?        
+    }
+    @objc public dynamic var name: String?
+    @objc public dynamic var publisher: String?
+    @objc public dynamic var requirements: String?
+    @objc public dynamic var sourceReference: Reference?
     public func upsert(sourceReference: Reference?) {
         upsert(prop: &self.sourceReference, val: sourceReference)
-    }    
-    public dynamic var sourceUri: String?        
-        
-    public dynamic var status: String?        
-        
-    public dynamic var targetReference: Reference?        
+    }
+    @objc public dynamic var sourceUri: String?
+    @objc public dynamic var status: String?
+    @objc public dynamic var targetReference: Reference?
     public func upsert(targetReference: Reference?) {
         upsert(prop: &self.targetReference, val: targetReference)
-    }    
-    public dynamic var targetUri: String?        
-        
-    public dynamic var url: String?        
-        
-    public let useContext = RealmSwift.List<CodeableConcept>()    
-    public dynamic var version: String?        
-    
+    }
+    @objc public dynamic var targetUri: String?
+    @objc public dynamic var url: String?
+    public let useContext = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var version: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(sourceReference: Reference, sourceUri: String, status: String, targetReference: Reference, targetUri: String) {
-        self.init(json: nil)
+        self.init()
         self.sourceReference = sourceReference
         self.sourceUri = sourceUri
         self.status = status
@@ -70,256 +62,169 @@ open class ConceptMap: DomainResource {
         self.targetUri = targetUri
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["contact"] {
-				presentKeys.insert("contact")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ConceptMapContact.instantiate(fromArray: val, owner: self) as? [ConceptMapContact] {
-						if let realm = self.realm { realm.delete(self.contact) }
-						self.contact.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["copyright"] {
-				presentKeys.insert("copyright")
-				if let val = exist as? String {
-					self.copyright = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["date"] {
-				presentKeys.insert("date")
-				if let val = exist as? String {
-					self.date = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["element"] {
-				presentKeys.insert("element")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ConceptMapElement.instantiate(fromArray: val, owner: self) as? [ConceptMapElement] {
-						if let realm = self.realm { realm.delete(self.element) }
-						self.element.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "element", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["experimental"] {
-				presentKeys.insert("experimental")
-				if let val = exist as? Bool {
-					self.experimental.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["publisher"] {
-				presentKeys.insert("publisher")
-				if let val = exist as? String {
-					self.publisher = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
-				if let val = exist as? String {
-					self.requirements = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["sourceReference"] {
-				presentKeys.insert("sourceReference")
-				if let val = exist as? FHIRJSON {
-					upsert(sourceReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "sourceReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["sourceUri"] {
-				presentKeys.insert("sourceUri")
-				if let val = exist as? String {
-					self.sourceUri = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "sourceUri", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "status"))
-			}
-			if let exist = js["targetReference"] {
-				presentKeys.insert("targetReference")
-				if let val = exist as? FHIRJSON {
-					upsert(targetReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "targetReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["targetUri"] {
-				presentKeys.insert("targetUri")
-				if let val = exist as? String {
-					self.targetUri = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "targetUri", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["useContext"] {
-				presentKeys.insert("useContext")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.useContext) }
-						self.useContext.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
-				}
-			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.sourceUri && nil == self.sourceReference {
-				errors.append(FHIRJSONError(key: "source*"))
-			}
-			if nil == self.targetUri && nil == self.targetReference {
-				errors.append(FHIRJSONError(key: "target*"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case contact = "contact"
+        case copyright = "copyright"
+        case date = "date"
+        case description_fhir = "description"
+        case element = "element"
+        case experimental = "experimental"
+        case identifier = "identifier"
+        case name = "name"
+        case publisher = "publisher"
+        case requirements = "requirements"
+        case sourceReference = "sourceReference"
+        case sourceUri = "sourceUri"
+        case status = "status"
+        case targetReference = "targetReference"
+        case targetUri = "targetUri"
+        case url = "url"
+        case useContext = "useContext"
+        case version = "version"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.contact.append(objectsIn: try container.decodeIfPresent([ConceptMapContact].self, forKey: .contact) ?? [])
+        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.element.append(objectsIn: try container.decodeIfPresent([ConceptMapElement].self, forKey: .element) ?? [])
+        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
+        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
+        self.sourceReference = try container.decodeIfPresent(Reference.self, forKey: .sourceReference)
+        self.sourceUri = try container.decodeIfPresent(String.self, forKey: .sourceUri)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.targetReference = try container.decodeIfPresent(Reference.self, forKey: .targetReference)
+        self.targetUri = try container.decodeIfPresent(String.self, forKey: .targetUri)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+        self.useContext.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) ?? [])
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.contact), forKey: .contact)
+        try container.encodeIfPresent(self.copyright, forKey: .copyright)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(Array(self.element), forKey: .element)
+        try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.publisher, forKey: .publisher)
+        try container.encodeIfPresent(self.requirements, forKey: .requirements)
+        try container.encodeIfPresent(self.sourceReference, forKey: .sourceReference)
+        try container.encodeIfPresent(self.sourceUri, forKey: .sourceUri)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.targetReference, forKey: .targetReference)
+        try container.encodeIfPresent(self.targetUri, forKey: .targetUri)
+        try container.encodeIfPresent(self.url, forKey: .url)
+        try container.encode(Array(self.useContext), forKey: .useContext)
+        try container.encodeIfPresent(self.version, forKey: .version)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMap.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMap. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ConceptMap.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if contact.count > 0 {
-			json["contact"] = Array(contact.map() { $0.asJSON() })
-		}
-		if let copyright = self.copyright {
-			json["copyright"] = copyright.asJSON()
-		}
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if element.count > 0 {
-			json["element"] = Array(element.map() { $0.asJSON() })
-		}
-		if let experimental = self.experimental.value {
-			json["experimental"] = experimental.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let publisher = self.publisher {
-			json["publisher"] = publisher.asJSON()
-		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
-		}
-		if let sourceReference = self.sourceReference {
-			json["sourceReference"] = sourceReference.asJSON()
-		}
-		if let sourceUri = self.sourceUri {
-			json["sourceUri"] = sourceUri.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if let targetReference = self.targetReference {
-			json["targetReference"] = targetReference.asJSON()
-		}
-		if let targetUri = self.targetUri {
-			json["targetUri"] = targetUri.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		if useContext.count > 0 {
-			json["useContext"] = Array(useContext.map() { $0.asJSON() })
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMap else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
+                self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        copyright = o.copyright
+        FireKit.populate(&self.date, from: o.date)
+        description_fhir = o.description_fhir
+
+        for (index, t) in o.element.enumerated() {
+            guard index < self.element.count else {
+                self.element.append(t)
+                continue
+            }
+            self.element[index].populate(from: t)
+        }
+    
+        if self.element.count > o.element.count {
+            for i in self.element.count...o.element.count {
+                let objectToRemove = self.element[i]
+                self.element.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        experimental.value = o.experimental.value
+        FireKit.populate(&self.identifier, from: o.identifier)
+        name = o.name
+        publisher = o.publisher
+        requirements = o.requirements
+        FireKit.populate(&self.sourceReference, from: o.sourceReference)
+        sourceUri = o.sourceUri
+        status = o.status
+        FireKit.populate(&self.targetReference, from: o.targetReference)
+        targetUri = o.targetUri
+        url = o.url
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                let objectToRemove = self.useContext[i]
+                self.useContext.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        version = o.version
+    }
 }
 
 
@@ -332,52 +237,79 @@ open class ConceptMapContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapContact" }
 	}
-    
-    public dynamic var name: String?        
-        
+
+    @objc public dynamic var name: String?
     public let telecom = RealmSwift.List<ContactPoint>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
-						if let realm = self.realm { realm.delete(self.telecom) }
-						self.telecom.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encode(Array(self.telecom), forKey: .telecom)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapContact. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ConceptMapContact.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if telecom.count > 0 {
-			json["telecom"] = Array(telecom.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        name = o.name
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
+                self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -390,66 +322,84 @@ open class ConceptMapElement: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapElement" }
 	}
-    
-    public dynamic var code: String?        
-        
-    public dynamic var codeSystem: String?        
-        
+
+    @objc public dynamic var code: String?
+    @objc public dynamic var codeSystem: String?
     public let target = RealmSwift.List<ConceptMapElementTarget>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["codeSystem"] {
-				presentKeys.insert("codeSystem")
-				if let val = exist as? String {
-					self.codeSystem = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "codeSystem", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ConceptMapElementTarget.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTarget] {
-						if let realm = self.realm { realm.delete(self.target) }
-						self.target.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case codeSystem = "codeSystem"
+        case target = "target"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.codeSystem = try container.decodeIfPresent(String.self, forKey: .codeSystem)
+        self.target.append(objectsIn: try container.decodeIfPresent([ConceptMapElementTarget].self, forKey: .target) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.codeSystem, forKey: .codeSystem)
+        try container.encode(Array(self.target), forKey: .target)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapElement.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapElement. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ConceptMapElement.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let codeSystem = self.codeSystem {
-			json["codeSystem"] = codeSystem.asJSON()
-		}
-		if target.count > 0 {
-			json["target"] = Array(target.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapElement else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        code = o.code
+        codeSystem = o.codeSystem
+
+        for (index, t) in o.target.enumerated() {
+            guard index < self.target.count else {
+                self.target.append(t)
+                continue
+            }
+            self.target[index].populate(from: t)
+        }
+    
+        if self.target.count > o.target.count {
+            for i in self.target.count...o.target.count {
+                let objectToRemove = self.target[i]
+                self.target.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -462,119 +412,120 @@ open class ConceptMapElementTarget: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapElementTarget" }
 	}
-    
-    public dynamic var code: String?        
-        
-    public dynamic var codeSystem: String?        
-        
-    public dynamic var comments: String?        
-        
-    public let dependsOn = RealmSwift.List<ConceptMapElementTargetDependsOn>()    
-    public dynamic var equivalence: String?        
-        
+
+    @objc public dynamic var code: String?
+    @objc public dynamic var codeSystem: String?
+    @objc public dynamic var comments: String?
+    public let dependsOn = RealmSwift.List<ConceptMapElementTargetDependsOn>()
+    @objc public dynamic var equivalence: String?
     public let product = RealmSwift.List<ConceptMapElementTargetDependsOn>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(equivalence: String) {
-        self.init(json: nil)
+        self.init()
         self.equivalence = equivalence
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["codeSystem"] {
-				presentKeys.insert("codeSystem")
-				if let val = exist as? String {
-					self.codeSystem = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "codeSystem", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["comments"] {
-				presentKeys.insert("comments")
-				if let val = exist as? String {
-					self.comments = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "comments", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["dependsOn"] {
-				presentKeys.insert("dependsOn")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ConceptMapElementTargetDependsOn.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTargetDependsOn] {
-						if let realm = self.realm { realm.delete(self.dependsOn) }
-						self.dependsOn.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "dependsOn", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["equivalence"] {
-				presentKeys.insert("equivalence")
-				if let val = exist as? String {
-					self.equivalence = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "equivalence", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "equivalence"))
-			}
-			if let exist = js["product"] {
-				presentKeys.insert("product")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ConceptMapElementTargetDependsOn.instantiate(fromArray: val, owner: self) as? [ConceptMapElementTargetDependsOn] {
-						if let realm = self.realm { realm.delete(self.product) }
-						self.product.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "product", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case codeSystem = "codeSystem"
+        case comments = "comments"
+        case dependsOn = "dependsOn"
+        case equivalence = "equivalence"
+        case product = "product"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.codeSystem = try container.decodeIfPresent(String.self, forKey: .codeSystem)
+        self.comments = try container.decodeIfPresent(String.self, forKey: .comments)
+        self.dependsOn.append(objectsIn: try container.decodeIfPresent([ConceptMapElementTargetDependsOn].self, forKey: .dependsOn) ?? [])
+        self.equivalence = try container.decodeIfPresent(String.self, forKey: .equivalence)
+        self.product.append(objectsIn: try container.decodeIfPresent([ConceptMapElementTargetDependsOn].self, forKey: .product) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.codeSystem, forKey: .codeSystem)
+        try container.encodeIfPresent(self.comments, forKey: .comments)
+        try container.encode(Array(self.dependsOn), forKey: .dependsOn)
+        try container.encodeIfPresent(self.equivalence, forKey: .equivalence)
+        try container.encode(Array(self.product), forKey: .product)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapElementTarget.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapElementTarget. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ConceptMapElementTarget.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let codeSystem = self.codeSystem {
-			json["codeSystem"] = codeSystem.asJSON()
-		}
-		if let comments = self.comments {
-			json["comments"] = comments.asJSON()
-		}
-		if dependsOn.count > 0 {
-			json["dependsOn"] = Array(dependsOn.map() { $0.asJSON() })
-		}
-		if let equivalence = self.equivalence {
-			json["equivalence"] = equivalence.asJSON()
-		}
-		if product.count > 0 {
-			json["product"] = Array(product.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapElementTarget else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        code = o.code
+        codeSystem = o.codeSystem
+        comments = o.comments
+
+        for (index, t) in o.dependsOn.enumerated() {
+            guard index < self.dependsOn.count else {
+                self.dependsOn.append(t)
+                continue
+            }
+            self.dependsOn[index].populate(from: t)
+        }
+    
+        if self.dependsOn.count > o.dependsOn.count {
+            for i in self.dependsOn.count...o.dependsOn.count {
+                let objectToRemove = self.dependsOn[i]
+                self.dependsOn.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        equivalence = o.equivalence
+
+        for (index, t) in o.product.enumerated() {
+            guard index < self.product.count else {
+                self.product.append(t)
+                continue
+            }
+            self.product[index].populate(from: t)
+        }
+    
+        if self.product.count > o.product.count {
+            for i in self.product.count...o.product.count {
+                let objectToRemove = self.product[i]
+                self.product.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -588,80 +539,76 @@ open class ConceptMapElementTargetDependsOn: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ConceptMapElementTargetDependsOn" }
 	}
-    
-    public dynamic var code: String?        
-        
-    public dynamic var codeSystem: String?        
-        
-    public dynamic var element: String?        
-    
+
+    @objc public dynamic var code: String?
+    @objc public dynamic var codeSystem: String?
+    @objc public dynamic var element: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: String, codeSystem: String, element: String) {
-        self.init(json: nil)
+        self.init()
         self.code = code
         self.codeSystem = codeSystem
         self.element = element
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["codeSystem"] {
-				presentKeys.insert("codeSystem")
-				if let val = exist as? String {
-					self.codeSystem = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "codeSystem", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "codeSystem"))
-			}
-			if let exist = js["element"] {
-				presentKeys.insert("element")
-				if let val = exist as? String {
-					self.element = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "element", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "element"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case codeSystem = "codeSystem"
+        case element = "element"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.codeSystem = try container.decodeIfPresent(String.self, forKey: .codeSystem)
+        self.element = try container.decodeIfPresent(String.self, forKey: .element)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.codeSystem, forKey: .codeSystem)
+        try container.encodeIfPresent(self.element, forKey: .element)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ConceptMapElementTargetDependsOn.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ConceptMapElementTargetDependsOn. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ConceptMapElementTargetDependsOn.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let codeSystem = self.codeSystem {
-			json["codeSystem"] = codeSystem.asJSON()
-		}
-		if let element = self.element {
-			json["element"] = element.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ConceptMapElementTargetDependsOn else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        code = o.code
+        codeSystem = o.codeSystem
+        element = o.element
+    }
 }
 

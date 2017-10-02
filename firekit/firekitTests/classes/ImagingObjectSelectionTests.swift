@@ -2,10 +2,12 @@
 //  ImagingObjectSelectionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-22.
 //  2017, SMART Health IT.
 //
-// Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
+// Updated for Realm support by Ryan Baldwin on 2017-09-22
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+// 
 
 import XCTest
 import RealmSwift
@@ -13,67 +15,66 @@ import FireKit
 
 
 class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
+    }
 
-	override func setUp() {
-		realm = makeRealm()
-	}
-
-	func instantiateFrom(_ filename: String) throws -> FireKit.ImagingObjectSelection {
-		return instantiateFrom(try readJSONFile(filename))
-	}
-	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.ImagingObjectSelection {
-		let instance = FireKit.ImagingObjectSelection(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
-	}
-	
-	func testImagingObjectSelection1() {		
-		var instance: FireKit.ImagingObjectSelection?
-		do {
-			instance = try runImagingObjectSelection1()
-			try runImagingObjectSelection1(instance!.asJSON()) 		
-			let copy = instance!.copy() as? FireKit.ImagingObjectSelection
-			XCTAssertNotNil(copy)
-			try runImagingObjectSelection1(copy!.asJSON())     
-
-            try! realm.write { copy!.populate(from: instance!) }
-            try runImagingObjectSelection1(copy!.asJSON())  
-		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test ImagingObjectSelection successfully, but threw")
-		}
-
-		testImagingObjectSelectionRealm1(instance!)
-	}
-
-    func testImagingObjectSelection1RealmPK() {        
+    func inflateFrom(filename: String) throws -> FireKit.ImagingObjectSelection {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.ImagingObjectSelection {
+        // print("Inflating FireKit.ImagingObjectSelection from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.ImagingObjectSelection.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testImagingObjectSelection1() {   
+        var instance: FireKit.ImagingObjectSelection?
         do {
-            let instance: FireKit.ImagingObjectSelection = try runImagingObjectSelection1()
-            let copy = (instance.copy() as! FireKit.ImagingObjectSelection)
+            instance = try runImagingObjectSelection1()
+            try runImagingObjectSelection1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test ImagingObjectSelection successfully, but threw: \(error)")
+        }
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            let prePopulatedCopyPK = copy.pk
-            _ = copy.populate(from: instance.asJSON())
-            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            XCTAssertNotEqual(copy.pk, instance.pk)
+        testImagingObjectSelectionRealm1(instance!)
+    }
+
+    func testImagingObjectSelection1Copying() {
+        do {
+            let instance = try runImagingObjectSelection1()
+            let copy = instance.copy() as? FireKit.ImagingObjectSelection
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runImagingObjectSelection1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test ImagingObjectSelection's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test ImagingObjectSelection successfully, but threw: \(error)")
         }
     }
 
-	func testImagingObjectSelectionRealm1(_ instance: FireKit.ImagingObjectSelection) {
-		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+    func testImagingObjectSelection1Populatability() {
+        do {
+            let instance = try runImagingObjectSelection1()
+            let copy = FireKit.ImagingObjectSelection()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runImagingObjectSelection1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test ImagingObjectSelection successfully, but threw: \(error)")
+        }
+    }
+
+    func testImagingObjectSelectionRealm1(_ instance: FireKit.ImagingObjectSelection) {
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
-		try! realm.write {
-                realm.add(instance)
-            }
-        try! runImagingObjectSelection1(realm.objects(FireKit.ImagingObjectSelection.self).first!.asJSON())
+        try! realm.write { realm.add(instance) }
+        try! runImagingObjectSelection1(JSONEncoder().encode(realm.objects(FireKit.ImagingObjectSelection.self).first!))
         
         // ensure we can update it.
         try! realm.write { instance.implicitRules = "Rule #1" }
@@ -86,51 +87,43 @@ class ImagingObjectSelectionTests: XCTestCase, RealmPersistenceTesting {
         try! realm.write { realm.add(newInst) }
         
         // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.ImagingObjectSelection.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runImagingObjectSelection1(existing.asJSON())
+        let existing = realm.object(ofType: FireKit.ImagingObjectSelection.self, forPrimaryKey: newInst.pk)!
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.ImagingObjectSelection.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runImagingObjectSelection1(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.ImagingObjectSelection.self).count)
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.ImagingObjectSelection.self).count)
-	}
-	
-	@discardableResult
-	func runImagingObjectSelection1(_ json: FHIRJSON? = nil) throws -> FireKit.ImagingObjectSelection {
-		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("imagingobjectselection-example.json")
-		
-		XCTAssertEqual(inst.authoringTime?.description, "2014-11-20T11:01:20-08:00")
-		XCTAssertEqual(inst.description_fhir, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.patient?.reference, "Patient/dicom")
-		XCTAssertEqual(inst.study[0].series[0].instance[0].sopClass, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
-		XCTAssertEqual(inst.study[0].series[0].instance[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092902")
-		XCTAssertEqual(inst.study[0].series[0].instance[0].url, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
-		XCTAssertEqual(inst.study[0].series[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092901")
-		XCTAssertEqual(inst.study[0].series[1].instance[0].sopClass, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
-		XCTAssertEqual(inst.study[0].series[1].instance[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
-		XCTAssertEqual(inst.study[0].series[1].instance[0].url, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")
-		XCTAssertEqual(inst.study[0].series[1].instance[1].sopClass, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
-		XCTAssertEqual(inst.study[0].series[1].instance[1].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092904")
-		XCTAssertEqual(inst.study[0].series[1].instance[1].url, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")
-		XCTAssertEqual(inst.study[0].series[1].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092902")
-		XCTAssertEqual(inst.study[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
-		XCTAssertEqual(inst.text?.div, "<div>A set of images accompanying to an exam document, including one SC image and two CT images, to publish the exam sharing</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		XCTAssertEqual(inst.title?.coding[0].code, "113030")
-		XCTAssertEqual(inst.title?.coding[0].display, "Manifest")
-		XCTAssertEqual(inst.title?.coding[0].system, "http://nema.org/dicom/dicm")
-		XCTAssertEqual(inst.title?.text, "A set of objects that have been exported for sharing")
-		XCTAssertEqual(inst.uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
-		
-		return inst
-	}
+    }
+    
+    @discardableResult
+    func runImagingObjectSelection1(_ data: Data? = nil) throws -> FireKit.ImagingObjectSelection {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "imagingobjectselection-example.json")
+        
+        XCTAssertEqual(inst.authoringTime?.description, "2014-11-20T11:01:20-08:00")
+        XCTAssertEqual(inst.description_fhir, "1 SC image (screen snapshot) and 2 CT images to share a chest CT exam")
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.patient?.reference, "Patient/dicom")
+        XCTAssertEqual(inst.study[0].series[0].instance[0].sopClass, "urn:oid:1.2.840.10008.5.1.4.1.1.7")
+        XCTAssertEqual(inst.study[0].series[0].instance[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092902")
+        XCTAssertEqual(inst.study[0].series[0].instance[0].url, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16749.2599092904")
+        XCTAssertEqual(inst.study[0].series[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092901")
+        XCTAssertEqual(inst.study[0].series[1].instance[0].sopClass, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
+        XCTAssertEqual(inst.study[0].series[1].instance[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092903")
+        XCTAssertEqual(inst.study[0].series[1].instance[0].url, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16748.2599092903")
+        XCTAssertEqual(inst.study[0].series[1].instance[1].sopClass, "urn:oid:1.2.840.10008.5.1.4.1.1.2")
+        XCTAssertEqual(inst.study[0].series[1].instance[1].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092904")
+        XCTAssertEqual(inst.study[0].series[1].instance[1].url, "http://localhost/wado/SCP/2.16.124.113543.6003.189642796.63084.16750.2599092902")
+        XCTAssertEqual(inst.study[0].series[1].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16750.2599092902")
+        XCTAssertEqual(inst.study[0].uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16749.2599092904")
+        XCTAssertEqual(inst.text?.div, "<div>A set of images accompanying to an exam document, including one SC image and two CT images, to publish the exam sharing</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+        XCTAssertEqual(inst.title?.coding[0].code, "113030")
+        XCTAssertEqual(inst.title?.coding[0].display, "Manifest")
+        XCTAssertEqual(inst.title?.coding[0].system, "http://nema.org/dicom/dicm")
+        XCTAssertEqual(inst.title?.text, "A set of objects that have been exported for sharing")
+        XCTAssertEqual(inst.uid, "urn:oid:2.16.124.113543.6003.189642796.63084.16748.2599092901")
+
+        return inst
+    }
 }

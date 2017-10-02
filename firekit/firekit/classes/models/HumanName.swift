@@ -2,11 +2,14 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,117 +22,151 @@ open class HumanName: Element {
 	override open class var resourceType: String {
 		get { return "HumanName" }
 	}
-    
-    public let family = RealmSwift.List<RealmString>()    
-    public let given = RealmSwift.List<RealmString>()    
-    public dynamic var period: Period?        
+
+    public let family = RealmSwift.List<RealmString>()
+    public let given = RealmSwift.List<RealmString>()
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public let prefix = RealmSwift.List<RealmString>()    
-    public let suffix = RealmSwift.List<RealmString>()    
-    public dynamic var text: String?        
-        
-    public dynamic var use: String?        
-    
+    }
+    public let prefix = RealmSwift.List<RealmString>()
+    public let suffix = RealmSwift.List<RealmString>()
+    @objc public dynamic var text: String?
+    @objc public dynamic var use: String?
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["family"] {
-				presentKeys.insert("family")
-				if let val = exist as? [String] {
-					self.family.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "family", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["given"] {
-				presentKeys.insert("given")
-				if let val = exist as? [String] {
-					self.given.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "given", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["period"] {
-				presentKeys.insert("period")
-				if let val = exist as? FHIRJSON {
-					upsert(period: Period(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["prefix"] {
-				presentKeys.insert("prefix")
-				if let val = exist as? [String] {
-					self.prefix.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "prefix", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["suffix"] {
-				presentKeys.insert("suffix")
-				if let val = exist as? [String] {
-					self.suffix.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "suffix", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["use"] {
-				presentKeys.insert("use")
-				if let val = exist as? String {
-					self.use = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "use", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case family = "family"
+        case given = "given"
+        case period = "period"
+        case prefix = "prefix"
+        case suffix = "suffix"
+        case text = "text"
+        case use = "use"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.family.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .family) ?? [])
+        self.given.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .given) ?? [])
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.prefix.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .prefix) ?? [])
+        self.suffix.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .suffix) ?? [])
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.use = try container.decodeIfPresent(String.self, forKey: .use)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.family), forKey: .family)
+        try container.encode(Array(self.given), forKey: .given)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encode(Array(self.prefix), forKey: .prefix)
+        try container.encode(Array(self.suffix), forKey: .suffix)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.use, forKey: .use)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HumanName.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HumanName. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return HumanName.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if family.count > 0 {
-			json["family"] = Array(family.map() { $0.value })
-		}
-		if given.count > 0 {
-			json["given"] = Array(given.map() { $0.value })
-		}
-		if let period = self.period {
-			json["period"] = period.asJSON()
-		}
-		if prefix.count > 0 {
-			json["prefix"] = Array(prefix.map() { $0.value })
-		}
-		if suffix.count > 0 {
-			json["suffix"] = Array(suffix.map() { $0.value })
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		if let use = self.use {
-			json["use"] = use.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? HumanName else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.family.enumerated() {
+            guard index < self.family.count else {
+                self.family.append(t)
+                continue
+            }
+            self.family[index].populate(from: t)
+        }
+    
+        if self.family.count > o.family.count {
+            for i in self.family.count...o.family.count {
+                let objectToRemove = self.family[i]
+                self.family.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.given.enumerated() {
+            guard index < self.given.count else {
+                self.given.append(t)
+                continue
+            }
+            self.given[index].populate(from: t)
+        }
+    
+        if self.given.count > o.given.count {
+            for i in self.given.count...o.given.count {
+                let objectToRemove = self.given[i]
+                self.given.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.period, from: o.period)
+
+        for (index, t) in o.prefix.enumerated() {
+            guard index < self.prefix.count else {
+                self.prefix.append(t)
+                continue
+            }
+            self.prefix[index].populate(from: t)
+        }
+    
+        if self.prefix.count > o.prefix.count {
+            for i in self.prefix.count...o.prefix.count {
+                let objectToRemove = self.prefix[i]
+                self.prefix.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.suffix.enumerated() {
+            guard index < self.suffix.count else {
+                self.suffix.append(t)
+                continue
+            }
+            self.suffix[index].populate(from: t)
+        }
+    
+        if self.suffix.count > o.suffix.count {
+            for i in self.suffix.count...o.suffix.count {
+                let objectToRemove = self.suffix[i]
+                self.suffix.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        text = o.text
+        use = o.use
+    }
 }
 

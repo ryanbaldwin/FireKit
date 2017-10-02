@@ -2,11 +2,14 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,171 +23,126 @@ open class QuestionnaireResponse: DomainResource {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponse" }
 	}
-    
-    public dynamic var author: Reference?        
+
+    @objc public dynamic var author: Reference?
     public func upsert(author: Reference?) {
         upsert(prop: &self.author, val: author)
-    }    
-    public dynamic var authored: DateTime?        
-        
-    public dynamic var encounter: Reference?        
+    }
+    @objc public dynamic var authored: DateTime?
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public dynamic var group: QuestionnaireResponseGroup?        
+    }
+    @objc public dynamic var group: QuestionnaireResponseGroup?
     public func upsert(group: QuestionnaireResponseGroup?) {
         upsert(prop: &self.group, val: group)
-    }    
-    public dynamic var identifier: Identifier?        
+    }
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var questionnaire: Reference?        
+    }
+    @objc public dynamic var questionnaire: Reference?
     public func upsert(questionnaire: Reference?) {
         upsert(prop: &self.questionnaire, val: questionnaire)
-    }    
-    public dynamic var source: Reference?        
+    }
+    @objc public dynamic var source: Reference?
     public func upsert(source: Reference?) {
         upsert(prop: &self.source, val: source)
-    }    
-    public dynamic var status: String?        
-        
-    public dynamic var subject: Reference?        
+    }
+    @objc public dynamic var status: String?
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(status: String) {
-        self.init(json: nil)
+        self.init()
         self.status = status
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["author"] {
-				presentKeys.insert("author")
-				if let val = exist as? FHIRJSON {
-					upsert(author: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["authored"] {
-				presentKeys.insert("authored")
-				if let val = exist as? String {
-					self.authored = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authored", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["encounter"] {
-				presentKeys.insert("encounter")
-				if let val = exist as? FHIRJSON {
-					upsert(encounter: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["group"] {
-				presentKeys.insert("group")
-				if let val = exist as? FHIRJSON {
-					upsert(group: QuestionnaireResponseGroup(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "group", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["questionnaire"] {
-				presentKeys.insert("questionnaire")
-				if let val = exist as? FHIRJSON {
-					upsert(questionnaire: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "questionnaire", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["source"] {
-				presentKeys.insert("source")
-				if let val = exist as? FHIRJSON {
-					upsert(source: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "status"))
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					upsert(subject: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case author = "author"
+        case authored = "authored"
+        case encounter = "encounter"
+        case group = "group"
+        case identifier = "identifier"
+        case questionnaire = "questionnaire"
+        case source = "source"
+        case status = "status"
+        case subject = "subject"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.author = try container.decodeIfPresent(Reference.self, forKey: .author)
+        self.authored = try container.decodeIfPresent(DateTime.self, forKey: .authored)
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.group = try container.decodeIfPresent(QuestionnaireResponseGroup.self, forKey: .group)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.questionnaire = try container.decodeIfPresent(Reference.self, forKey: .questionnaire)
+        self.source = try container.decodeIfPresent(Reference.self, forKey: .source)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.author, forKey: .author)
+        try container.encodeIfPresent(self.authored, forKey: .authored)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encodeIfPresent(self.group, forKey: .group)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.questionnaire, forKey: .questionnaire)
+        try container.encodeIfPresent(self.source, forKey: .source)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponse.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponse. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return QuestionnaireResponse.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let author = self.author {
-			json["author"] = author.asJSON()
-		}
-		if let authored = self.authored {
-			json["authored"] = authored.asJSON()
-		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
-		}
-		if let group = self.group {
-			json["group"] = group.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let questionnaire = self.questionnaire {
-			json["questionnaire"] = questionnaire.asJSON()
-		}
-		if let source = self.source {
-			json["source"] = source.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponse else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        FireKit.populate(&self.authored, from: o.authored)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        FireKit.populate(&self.group, from: o.group)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.questionnaire, from: o.questionnaire)
+        FireKit.populate(&self.source, from: o.source)
+        status = o.status
+        FireKit.populate(&self.subject, from: o.subject)
+    }
 }
 
 
@@ -197,112 +155,117 @@ open class QuestionnaireResponseGroup: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseGroup" }
 	}
-    
-    public let group = RealmSwift.List<QuestionnaireResponseGroup>()    
-    public dynamic var linkId: String?        
-        
-    public let question = RealmSwift.List<QuestionnaireResponseGroupQuestion>()    
-    public dynamic var subject: Reference?        
+
+    public let group = RealmSwift.List<QuestionnaireResponseGroup>()
+    @objc public dynamic var linkId: String?
+    public let question = RealmSwift.List<QuestionnaireResponseGroupQuestion>()
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var text: String?        
-        
-    public dynamic var title: String?        
-    
+    }
+    @objc public dynamic var text: String?
+    @objc public dynamic var title: String?
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["group"] {
-				presentKeys.insert("group")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = QuestionnaireResponseGroup.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroup] {
-						if let realm = self.realm { realm.delete(self.group) }
-						self.group.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["linkId"] {
-				presentKeys.insert("linkId")
-				if let val = exist as? String {
-					self.linkId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["question"] {
-				presentKeys.insert("question")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = QuestionnaireResponseGroupQuestion.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroupQuestion] {
-						if let realm = self.realm { realm.delete(self.question) }
-						self.question.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "question", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					upsert(subject: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["title"] {
-				presentKeys.insert("title")
-				if let val = exist as? String {
-					self.title = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case group = "group"
+        case linkId = "linkId"
+        case question = "question"
+        case subject = "subject"
+        case text = "text"
+        case title = "title"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.group.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroup].self, forKey: .group) ?? [])
+        self.linkId = try container.decodeIfPresent(String.self, forKey: .linkId)
+        self.question.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroupQuestion].self, forKey: .question) ?? [])
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.group), forKey: .group)
+        try container.encodeIfPresent(self.linkId, forKey: .linkId)
+        try container.encode(Array(self.question), forKey: .question)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.title, forKey: .title)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponseGroup.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponseGroup. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return QuestionnaireResponseGroup.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if group.count > 0 {
-			json["group"] = Array(group.map() { $0.asJSON() })
-		}
-		if let linkId = self.linkId {
-			json["linkId"] = linkId.asJSON()
-		}
-		if question.count > 0 {
-			json["question"] = Array(question.map() { $0.asJSON() })
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		if let title = self.title {
-			json["title"] = title.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponseGroup else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                let objectToRemove = self.group[i]
+                self.group.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        linkId = o.linkId
+
+        for (index, t) in o.question.enumerated() {
+            guard index < self.question.count else {
+                self.question.append(t)
+                continue
+            }
+            self.question[index].populate(from: t)
+        }
+    
+        if self.question.count > o.question.count {
+            for i in self.question.count...o.question.count {
+                let objectToRemove = self.question[i]
+                self.question.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.subject, from: o.subject)
+        text = o.text
+        title = o.title
+    }
 }
 
 
@@ -315,66 +278,84 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseGroupQuestion" }
 	}
-    
-    public let answer = RealmSwift.List<QuestionnaireResponseGroupQuestionAnswer>()    
-    public dynamic var linkId: String?        
-        
-    public dynamic var text: String?        
-    
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["answer"] {
-				presentKeys.insert("answer")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = QuestionnaireResponseGroupQuestionAnswer.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroupQuestionAnswer] {
-						if let realm = self.realm { realm.delete(self.answer) }
-						self.answer.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "answer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["linkId"] {
-				presentKeys.insert("linkId")
-				if let val = exist as? String {
-					self.linkId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "linkId", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
-				}
-			}
+    public let answer = RealmSwift.List<QuestionnaireResponseGroupQuestionAnswer>()
+    @objc public dynamic var linkId: String?
+    @objc public dynamic var text: String?
+
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case answer = "answer"
+        case linkId = "linkId"
+        case text = "text"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.answer.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroupQuestionAnswer].self, forKey: .answer) ?? [])
+        self.linkId = try container.decodeIfPresent(String.self, forKey: .linkId)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.answer), forKey: .answer)
+        try container.encodeIfPresent(self.linkId, forKey: .linkId)
+        try container.encodeIfPresent(self.text, forKey: .text)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponseGroupQuestion.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponseGroupQuestion. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return QuestionnaireResponseGroupQuestion.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if answer.count > 0 {
-			json["answer"] = Array(answer.map() { $0.asJSON() })
-		}
-		if let linkId = self.linkId {
-			json["linkId"] = linkId.asJSON()
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponseGroupQuestion else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.answer.enumerated() {
+            guard index < self.answer.count else {
+                self.answer.append(t)
+                continue
+            }
+            self.answer[index].populate(from: t)
+        }
+    
+        if self.answer.count > o.answer.count {
+            for i in self.answer.count...o.answer.count {
+                let objectToRemove = self.answer[i]
+                self.answer.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        linkId = o.linkId
+        text = o.text
+    }
 }
 
 
@@ -387,225 +368,150 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 	override open class var resourceType: String {
 		get { return "QuestionnaireResponseGroupQuestionAnswer" }
 	}
-    
-    public let group = RealmSwift.List<QuestionnaireResponseGroup>()    
-    public dynamic var valueAttachment: Attachment?        
+
+    public let group = RealmSwift.List<QuestionnaireResponseGroup>()
+    @objc public dynamic var valueAttachment: Attachment?
     public func upsert(valueAttachment: Attachment?) {
         upsert(prop: &self.valueAttachment, val: valueAttachment)
-    }    
-    public let valueBoolean = RealmOptional<Bool>()    
-    public dynamic var valueCoding: Coding?        
+    }
+    public let valueBoolean = RealmOptional<Bool>()
+    @objc public dynamic var valueCoding: Coding?
     public func upsert(valueCoding: Coding?) {
         upsert(prop: &self.valueCoding, val: valueCoding)
-    }    
-    public dynamic var valueDate: FHIRDate?        
-        
-    public dynamic var valueDateTime: DateTime?        
-        
-    public dynamic var valueDecimal: RealmDecimal?        
-        
-    public dynamic var valueInstant: Instant?        
-        
-    public let valueInteger = RealmOptional<Int>()    
-    public dynamic var valueQuantity: Quantity?        
+    }
+    @objc public dynamic var valueDate: FHIRDate?
+    @objc public dynamic var valueDateTime: DateTime?
+    @objc public dynamic var valueDecimal: RealmDecimal?
+    @objc public dynamic var valueInstant: Instant?
+    public let valueInteger = RealmOptional<Int>()
+    @objc public dynamic var valueQuantity: Quantity?
     public func upsert(valueQuantity: Quantity?) {
         upsert(prop: &self.valueQuantity, val: valueQuantity)
-    }    
-    public dynamic var valueReference: Reference?        
+    }
+    @objc public dynamic var valueReference: Reference?
     public func upsert(valueReference: Reference?) {
         upsert(prop: &self.valueReference, val: valueReference)
-    }    
-    public dynamic var valueString: String?        
-        
-    public dynamic var valueTime: FHIRTime?        
-        
-    public dynamic var valueUri: String?        
-    
+    }
+    @objc public dynamic var valueString: String?
+    @objc public dynamic var valueTime: FHIRTime?
+    @objc public dynamic var valueUri: String?
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["group"] {
-				presentKeys.insert("group")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = QuestionnaireResponseGroup.instantiate(fromArray: val, owner: self) as? [QuestionnaireResponseGroup] {
-						if let realm = self.realm { realm.delete(self.group) }
-						self.group.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueAttachment"] {
-				presentKeys.insert("valueAttachment")
-				if let val = exist as? FHIRJSON {
-					upsert(valueAttachment: Attachment(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueBoolean"] {
-				presentKeys.insert("valueBoolean")
-				if let val = exist as? Bool {
-					self.valueBoolean.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueCoding"] {
-				presentKeys.insert("valueCoding")
-				if let val = exist as? FHIRJSON {
-					upsert(valueCoding: Coding(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueCoding", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueDate"] {
-				presentKeys.insert("valueDate")
-				if let val = exist as? String {
-					self.valueDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueDate", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueDateTime"] {
-				presentKeys.insert("valueDateTime")
-				if let val = exist as? String {
-					self.valueDateTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueDateTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueDecimal"] {
-				presentKeys.insert("valueDecimal")
-				if let val = exist as? NSNumber {
-					self.valueDecimal = RealmDecimal(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueInstant"] {
-				presentKeys.insert("valueInstant")
-				if let val = exist as? String {
-					self.valueInstant = Instant(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueInstant", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueInteger"] {
-				presentKeys.insert("valueInteger")
-				if let val = exist as? Int {
-					self.valueInteger.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueQuantity"] {
-				presentKeys.insert("valueQuantity")
-				if let val = exist as? FHIRJSON {
-					upsert(valueQuantity: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueQuantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueReference"] {
-				presentKeys.insert("valueReference")
-				if let val = exist as? FHIRJSON {
-					upsert(valueReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueString"] {
-				presentKeys.insert("valueString")
-				if let val = exist as? String {
-					self.valueString = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueTime"] {
-				presentKeys.insert("valueTime")
-				if let val = exist as? String {
-					self.valueTime = FHIRTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueUri"] {
-				presentKeys.insert("valueUri")
-				if let val = exist as? String {
-					self.valueUri = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case group = "group"
+        case valueAttachment = "valueAttachment"
+        case valueBoolean = "valueBoolean"
+        case valueCoding = "valueCoding"
+        case valueDate = "valueDate"
+        case valueDateTime = "valueDateTime"
+        case valueDecimal = "valueDecimal"
+        case valueInstant = "valueInstant"
+        case valueInteger = "valueInteger"
+        case valueQuantity = "valueQuantity"
+        case valueReference = "valueReference"
+        case valueString = "valueString"
+        case valueTime = "valueTime"
+        case valueUri = "valueUri"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.group.append(objectsIn: try container.decodeIfPresent([QuestionnaireResponseGroup].self, forKey: .group) ?? [])
+        self.valueAttachment = try container.decodeIfPresent(Attachment.self, forKey: .valueAttachment)
+        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
+        self.valueCoding = try container.decodeIfPresent(Coding.self, forKey: .valueCoding)
+        self.valueDate = try container.decodeIfPresent(FHIRDate.self, forKey: .valueDate)
+        self.valueDateTime = try container.decodeIfPresent(DateTime.self, forKey: .valueDateTime)
+        self.valueDecimal = try container.decodeIfPresent(RealmDecimal.self, forKey: .valueDecimal)
+        self.valueInstant = try container.decodeIfPresent(Instant.self, forKey: .valueInstant)
+        self.valueInteger.value = try container.decodeIfPresent(Int.self, forKey: .valueInteger)
+        self.valueQuantity = try container.decodeIfPresent(Quantity.self, forKey: .valueQuantity)
+        self.valueReference = try container.decodeIfPresent(Reference.self, forKey: .valueReference)
+        self.valueString = try container.decodeIfPresent(String.self, forKey: .valueString)
+        self.valueTime = try container.decodeIfPresent(FHIRTime.self, forKey: .valueTime)
+        self.valueUri = try container.decodeIfPresent(String.self, forKey: .valueUri)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.group), forKey: .group)
+        try container.encodeIfPresent(self.valueAttachment, forKey: .valueAttachment)
+        try container.encodeIfPresent(self.valueBoolean.value, forKey: .valueBoolean)
+        try container.encodeIfPresent(self.valueCoding, forKey: .valueCoding)
+        try container.encodeIfPresent(self.valueDate, forKey: .valueDate)
+        try container.encodeIfPresent(self.valueDateTime, forKey: .valueDateTime)
+        try container.encodeIfPresent(self.valueDecimal, forKey: .valueDecimal)
+        try container.encodeIfPresent(self.valueInstant, forKey: .valueInstant)
+        try container.encodeIfPresent(self.valueInteger.value, forKey: .valueInteger)
+        try container.encodeIfPresent(self.valueQuantity, forKey: .valueQuantity)
+        try container.encodeIfPresent(self.valueReference, forKey: .valueReference)
+        try container.encodeIfPresent(self.valueString, forKey: .valueString)
+        try container.encodeIfPresent(self.valueTime, forKey: .valueTime)
+        try container.encodeIfPresent(self.valueUri, forKey: .valueUri)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(QuestionnaireResponseGroupQuestionAnswer.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy QuestionnaireResponseGroupQuestionAnswer. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return QuestionnaireResponseGroupQuestionAnswer.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if group.count > 0 {
-			json["group"] = Array(group.map() { $0.asJSON() })
-		}
-		if let valueAttachment = self.valueAttachment {
-			json["valueAttachment"] = valueAttachment.asJSON()
-		}
-		if let valueBoolean = self.valueBoolean.value {
-			json["valueBoolean"] = valueBoolean.asJSON()
-		}
-		if let valueCoding = self.valueCoding {
-			json["valueCoding"] = valueCoding.asJSON()
-		}
-		if let valueDate = self.valueDate {
-			json["valueDate"] = valueDate.asJSON()
-		}
-		if let valueDateTime = self.valueDateTime {
-			json["valueDateTime"] = valueDateTime.asJSON()
-		}
-		if let valueDecimal = self.valueDecimal {
-			json["valueDecimal"] = valueDecimal.asJSON()
-		}
-		if let valueInstant = self.valueInstant {
-			json["valueInstant"] = valueInstant.asJSON()
-		}
-		if let valueInteger = self.valueInteger.value {
-			json["valueInteger"] = valueInteger.asJSON()
-		}
-		if let valueQuantity = self.valueQuantity {
-			json["valueQuantity"] = valueQuantity.asJSON()
-		}
-		if let valueReference = self.valueReference {
-			json["valueReference"] = valueReference.asJSON()
-		}
-		if let valueString = self.valueString {
-			json["valueString"] = valueString.asJSON()
-		}
-		if let valueTime = self.valueTime {
-			json["valueTime"] = valueTime.asJSON()
-		}
-		if let valueUri = self.valueUri {
-			json["valueUri"] = valueUri.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? QuestionnaireResponseGroupQuestionAnswer else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                let objectToRemove = self.group[i]
+                self.group.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
+        valueBoolean.value = o.valueBoolean.value
+        FireKit.populate(&self.valueCoding, from: o.valueCoding)
+        FireKit.populate(&self.valueDate, from: o.valueDate)
+        FireKit.populate(&self.valueDateTime, from: o.valueDateTime)
+        valueDecimal = o.valueDecimal
+        FireKit.populate(&self.valueInstant, from: o.valueInstant)
+        valueInteger.value = o.valueInteger.value
+        FireKit.populate(&self.valueQuantity, from: o.valueQuantity)
+        FireKit.populate(&self.valueReference, from: o.valueReference)
+        valueString = o.valueString
+        FireKit.populate(&self.valueTime, from: o.valueTime)
+        valueUri = o.valueUri
+    }
 }
 

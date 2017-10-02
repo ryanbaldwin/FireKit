@@ -2,11 +2,14 @@
 //  Order.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Order) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Order) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -17,173 +20,153 @@ open class Order: DomainResource {
 	override open class var resourceType: String {
 		get { return "Order" }
 	}
-    
-    public dynamic var date: DateTime?        
-        
-    public let detail = RealmSwift.List<Reference>()    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var reasonCodeableConcept: CodeableConcept?        
+
+    @objc public dynamic var date: DateTime?
+    public let detail = RealmSwift.List<Reference>()
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var reasonCodeableConcept: CodeableConcept?
     public func upsert(reasonCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.reasonCodeableConcept, val: reasonCodeableConcept)
-    }    
-    public dynamic var reasonReference: Reference?        
+    }
+    @objc public dynamic var reasonReference: Reference?
     public func upsert(reasonReference: Reference?) {
         upsert(prop: &self.reasonReference, val: reasonReference)
-    }    
-    public dynamic var source: Reference?        
+    }
+    @objc public dynamic var source: Reference?
     public func upsert(source: Reference?) {
         upsert(prop: &self.source, val: source)
-    }    
-    public dynamic var subject: Reference?        
+    }
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var target: Reference?        
+    }
+    @objc public dynamic var target: Reference?
     public func upsert(target: Reference?) {
         upsert(prop: &self.target, val: target)
-    }    
-    public dynamic var when: OrderWhen?        
+    }
+    @objc public dynamic var when: OrderWhen?
     public func upsert(when: OrderWhen?) {
         upsert(prop: &self.when, val: when)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(detail: [Reference]) {
-        self.init(json: nil)
+        self.init()
         self.detail.append(objectsIn: detail)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["date"] {
-				presentKeys.insert("date")
-				if let val = exist as? String {
-					self.date = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["detail"] {
-				presentKeys.insert("detail")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
-						if let realm = self.realm { realm.delete(self.detail) }
-						self.detail.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "detail", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "detail"))
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reasonCodeableConcept"] {
-				presentKeys.insert("reasonCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					upsert(reasonCodeableConcept: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reasonCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reasonReference"] {
-				presentKeys.insert("reasonReference")
-				if let val = exist as? FHIRJSON {
-					upsert(reasonReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reasonReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["source"] {
-				presentKeys.insert("source")
-				if let val = exist as? FHIRJSON {
-					upsert(source: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "source", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					upsert(subject: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? FHIRJSON {
-					upsert(target: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["when"] {
-				presentKeys.insert("when")
-				if let val = exist as? FHIRJSON {
-					upsert(when: OrderWhen(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "when", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case date = "date"
+        case detail = "detail"
+        case identifier = "identifier"
+        case reasonCodeableConcept = "reasonCodeableConcept"
+        case reasonReference = "reasonReference"
+        case source = "source"
+        case subject = "subject"
+        case target = "target"
+        case when = "when"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.detail.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .detail) ?? [])
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.reasonCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .reasonCodeableConcept)
+        self.reasonReference = try container.decodeIfPresent(Reference.self, forKey: .reasonReference)
+        self.source = try container.decodeIfPresent(Reference.self, forKey: .source)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.target = try container.decodeIfPresent(Reference.self, forKey: .target)
+        self.when = try container.decodeIfPresent(OrderWhen.self, forKey: .when)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encode(Array(self.detail), forKey: .detail)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encodeIfPresent(self.reasonCodeableConcept, forKey: .reasonCodeableConcept)
+        try container.encodeIfPresent(self.reasonReference, forKey: .reasonReference)
+        try container.encodeIfPresent(self.source, forKey: .source)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.target, forKey: .target)
+        try container.encodeIfPresent(self.when, forKey: .when)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Order.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Order. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Order.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if detail.count > 0 {
-			json["detail"] = Array(detail.map() { $0.asJSON() })
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if let reasonCodeableConcept = self.reasonCodeableConcept {
-			json["reasonCodeableConcept"] = reasonCodeableConcept.asJSON()
-		}
-		if let reasonReference = self.reasonReference {
-			json["reasonReference"] = reasonReference.asJSON()
-		}
-		if let source = self.source {
-			json["source"] = source.asJSON()
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		if let target = self.target {
-			json["target"] = target.asJSON()
-		}
-		if let when = self.when {
-			json["when"] = when.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Order else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.date, from: o.date)
+
+        for (index, t) in o.detail.enumerated() {
+            guard index < self.detail.count else {
+                self.detail.append(t)
+                continue
+            }
+            self.detail[index].populate(from: t)
+        }
+    
+        if self.detail.count > o.detail.count {
+            for i in self.detail.count...o.detail.count {
+                let objectToRemove = self.detail[i]
+                self.detail.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
+                self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.reasonCodeableConcept, from: o.reasonCodeableConcept)
+        FireKit.populate(&self.reasonReference, from: o.reasonReference)
+        FireKit.populate(&self.source, from: o.source)
+        FireKit.populate(&self.subject, from: o.subject)
+        FireKit.populate(&self.target, from: o.target)
+        FireKit.populate(&self.when, from: o.when)
+    }
 }
 
 
@@ -194,53 +177,69 @@ open class OrderWhen: BackboneElement {
 	override open class var resourceType: String {
 		get { return "OrderWhen" }
 	}
-    
-    public dynamic var code: CodeableConcept?        
+
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var schedule: Timing?        
+    }
+    @objc public dynamic var schedule: Timing?
     public func upsert(schedule: Timing?) {
         upsert(prop: &self.schedule, val: schedule)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					upsert(code: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["schedule"] {
-				presentKeys.insert("schedule")
-				if let val = exist as? FHIRJSON {
-					upsert(schedule: Timing(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "schedule", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case schedule = "schedule"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.schedule = try container.decodeIfPresent(Timing.self, forKey: .schedule)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.schedule, forKey: .schedule)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(OrderWhen.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy OrderWhen. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return OrderWhen.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let schedule = self.schedule {
-			json["schedule"] = schedule.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? OrderWhen else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.code, from: o.code)
+        FireKit.populate(&self.schedule, from: o.schedule)
+    }
 }
 

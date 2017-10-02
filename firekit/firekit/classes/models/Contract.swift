@@ -2,11 +2,14 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,324 +22,359 @@ open class Contract: DomainResource {
 	override open class var resourceType: String {
 		get { return "Contract" }
 	}
-    
-    public let action = RealmSwift.List<CodeableConcept>()    
-    public let actionReason = RealmSwift.List<CodeableConcept>()    
-    public let actor = RealmSwift.List<ContractActor>()    
-    public dynamic var applies: Period?        
+
+    public let action = RealmSwift.List<CodeableConcept>()
+    public let actionReason = RealmSwift.List<CodeableConcept>()
+    public let actor = RealmSwift.List<ContractActor>()
+    @objc public dynamic var applies: Period?
     public func upsert(applies: Period?) {
         upsert(prop: &self.applies, val: applies)
-    }    
-    public let authority = RealmSwift.List<Reference>()    
-    public dynamic var bindingAttachment: Attachment?        
+    }
+    public let authority = RealmSwift.List<Reference>()
+    @objc public dynamic var bindingAttachment: Attachment?
     public func upsert(bindingAttachment: Attachment?) {
         upsert(prop: &self.bindingAttachment, val: bindingAttachment)
-    }    
-    public dynamic var bindingReference: Reference?        
+    }
+    @objc public dynamic var bindingReference: Reference?
     public func upsert(bindingReference: Reference?) {
         upsert(prop: &self.bindingReference, val: bindingReference)
-    }    
-    public let domain = RealmSwift.List<Reference>()    
-    public let friendly = RealmSwift.List<ContractFriendly>()    
-    public dynamic var identifier: Identifier?        
+    }
+    public let domain = RealmSwift.List<Reference>()
+    public let friendly = RealmSwift.List<ContractFriendly>()
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var issued: DateTime?        
-        
-    public let legal = RealmSwift.List<ContractLegal>()    
-    public let rule = RealmSwift.List<ContractRule>()    
-    public let signer = RealmSwift.List<ContractSigner>()    
-    public let subType = RealmSwift.List<CodeableConcept>()    
-    public let subject = RealmSwift.List<Reference>()    
-    public let term = RealmSwift.List<ContractTerm>()    
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var issued: DateTime?
+    public let legal = RealmSwift.List<ContractLegal>()
+    public let rule = RealmSwift.List<ContractRule>()
+    public let signer = RealmSwift.List<ContractSigner>()
+    public let subType = RealmSwift.List<CodeableConcept>()
+    public let subject = RealmSwift.List<Reference>()
+    public let term = RealmSwift.List<ContractTerm>()
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
-    }    
+    }
     public let valuedItem = RealmSwift.List<ContractValuedItem>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["action"] {
-				presentKeys.insert("action")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.action) }
-						self.action.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["actionReason"] {
-				presentKeys.insert("actionReason")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.actionReason) }
-						self.actionReason.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "actionReason", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["actor"] {
-				presentKeys.insert("actor")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractActor.instantiate(fromArray: val, owner: self) as? [ContractActor] {
-						if let realm = self.realm { realm.delete(self.actor) }
-						self.actor.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "actor", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["applies"] {
-				presentKeys.insert("applies")
-				if let val = exist as? FHIRJSON {
-					upsert(applies: Period(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "applies", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["authority"] {
-				presentKeys.insert("authority")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
-						if let realm = self.realm { realm.delete(self.authority) }
-						self.authority.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authority", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["bindingAttachment"] {
-				presentKeys.insert("bindingAttachment")
-				if let val = exist as? FHIRJSON {
-					upsert(bindingAttachment: Attachment(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bindingAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["bindingReference"] {
-				presentKeys.insert("bindingReference")
-				if let val = exist as? FHIRJSON {
-					upsert(bindingReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "bindingReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["domain"] {
-				presentKeys.insert("domain")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
-						if let realm = self.realm { realm.delete(self.domain) }
-						self.domain.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "domain", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["friendly"] {
-				presentKeys.insert("friendly")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractFriendly.instantiate(fromArray: val, owner: self) as? [ContractFriendly] {
-						if let realm = self.realm { realm.delete(self.friendly) }
-						self.friendly.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "friendly", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["issued"] {
-				presentKeys.insert("issued")
-				if let val = exist as? String {
-					self.issued = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "issued", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["legal"] {
-				presentKeys.insert("legal")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractLegal.instantiate(fromArray: val, owner: self) as? [ContractLegal] {
-						if let realm = self.realm { realm.delete(self.legal) }
-						self.legal.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "legal", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["rule"] {
-				presentKeys.insert("rule")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractRule.instantiate(fromArray: val, owner: self) as? [ContractRule] {
-						if let realm = self.realm { realm.delete(self.rule) }
-						self.rule.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "rule", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["signer"] {
-				presentKeys.insert("signer")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractSigner.instantiate(fromArray: val, owner: self) as? [ContractSigner] {
-						if let realm = self.realm { realm.delete(self.signer) }
-						self.signer.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "signer", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subType"] {
-				presentKeys.insert("subType")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.subType) }
-						self.subType.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subType", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
-						if let realm = self.realm { realm.delete(self.subject) }
-						self.subject.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["term"] {
-				presentKeys.insert("term")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractTerm.instantiate(fromArray: val, owner: self) as? [ContractTerm] {
-						if let realm = self.realm { realm.delete(self.term) }
-						self.term.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "term", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valuedItem"] {
-				presentKeys.insert("valuedItem")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractValuedItem.instantiate(fromArray: val, owner: self) as? [ContractValuedItem] {
-						if let realm = self.realm { realm.delete(self.valuedItem) }
-						self.valuedItem.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valuedItem", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case action = "action"
+        case actionReason = "actionReason"
+        case actor = "actor"
+        case applies = "applies"
+        case authority = "authority"
+        case bindingAttachment = "bindingAttachment"
+        case bindingReference = "bindingReference"
+        case domain = "domain"
+        case friendly = "friendly"
+        case identifier = "identifier"
+        case issued = "issued"
+        case legal = "legal"
+        case rule = "rule"
+        case signer = "signer"
+        case subType = "subType"
+        case subject = "subject"
+        case term = "term"
+        case type = "type"
+        case valuedItem = "valuedItem"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.action.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .action) ?? [])
+        self.actionReason.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .actionReason) ?? [])
+        self.actor.append(objectsIn: try container.decodeIfPresent([ContractActor].self, forKey: .actor) ?? [])
+        self.applies = try container.decodeIfPresent(Period.self, forKey: .applies)
+        self.authority.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .authority) ?? [])
+        self.bindingAttachment = try container.decodeIfPresent(Attachment.self, forKey: .bindingAttachment)
+        self.bindingReference = try container.decodeIfPresent(Reference.self, forKey: .bindingReference)
+        self.domain.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .domain) ?? [])
+        self.friendly.append(objectsIn: try container.decodeIfPresent([ContractFriendly].self, forKey: .friendly) ?? [])
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.issued = try container.decodeIfPresent(DateTime.self, forKey: .issued)
+        self.legal.append(objectsIn: try container.decodeIfPresent([ContractLegal].self, forKey: .legal) ?? [])
+        self.rule.append(objectsIn: try container.decodeIfPresent([ContractRule].self, forKey: .rule) ?? [])
+        self.signer.append(objectsIn: try container.decodeIfPresent([ContractSigner].self, forKey: .signer) ?? [])
+        self.subType.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .subType) ?? [])
+        self.subject.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .subject) ?? [])
+        self.term.append(objectsIn: try container.decodeIfPresent([ContractTerm].self, forKey: .term) ?? [])
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+        self.valuedItem.append(objectsIn: try container.decodeIfPresent([ContractValuedItem].self, forKey: .valuedItem) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.action), forKey: .action)
+        try container.encode(Array(self.actionReason), forKey: .actionReason)
+        try container.encode(Array(self.actor), forKey: .actor)
+        try container.encodeIfPresent(self.applies, forKey: .applies)
+        try container.encode(Array(self.authority), forKey: .authority)
+        try container.encodeIfPresent(self.bindingAttachment, forKey: .bindingAttachment)
+        try container.encodeIfPresent(self.bindingReference, forKey: .bindingReference)
+        try container.encode(Array(self.domain), forKey: .domain)
+        try container.encode(Array(self.friendly), forKey: .friendly)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.issued, forKey: .issued)
+        try container.encode(Array(self.legal), forKey: .legal)
+        try container.encode(Array(self.rule), forKey: .rule)
+        try container.encode(Array(self.signer), forKey: .signer)
+        try container.encode(Array(self.subType), forKey: .subType)
+        try container.encode(Array(self.subject), forKey: .subject)
+        try container.encode(Array(self.term), forKey: .term)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encode(Array(self.valuedItem), forKey: .valuedItem)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Contract.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Contract. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Contract.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if action.count > 0 {
-			json["action"] = Array(action.map() { $0.asJSON() })
-		}
-		if actionReason.count > 0 {
-			json["actionReason"] = Array(actionReason.map() { $0.asJSON() })
-		}
-		if actor.count > 0 {
-			json["actor"] = Array(actor.map() { $0.asJSON() })
-		}
-		if let applies = self.applies {
-			json["applies"] = applies.asJSON()
-		}
-		if authority.count > 0 {
-			json["authority"] = Array(authority.map() { $0.asJSON() })
-		}
-		if let bindingAttachment = self.bindingAttachment {
-			json["bindingAttachment"] = bindingAttachment.asJSON()
-		}
-		if let bindingReference = self.bindingReference {
-			json["bindingReference"] = bindingReference.asJSON()
-		}
-		if domain.count > 0 {
-			json["domain"] = Array(domain.map() { $0.asJSON() })
-		}
-		if friendly.count > 0 {
-			json["friendly"] = Array(friendly.map() { $0.asJSON() })
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let issued = self.issued {
-			json["issued"] = issued.asJSON()
-		}
-		if legal.count > 0 {
-			json["legal"] = Array(legal.map() { $0.asJSON() })
-		}
-		if rule.count > 0 {
-			json["rule"] = Array(rule.map() { $0.asJSON() })
-		}
-		if signer.count > 0 {
-			json["signer"] = Array(signer.map() { $0.asJSON() })
-		}
-		if subType.count > 0 {
-			json["subType"] = Array(subType.map() { $0.asJSON() })
-		}
-		if subject.count > 0 {
-			json["subject"] = Array(subject.map() { $0.asJSON() })
-		}
-		if term.count > 0 {
-			json["term"] = Array(term.map() { $0.asJSON() })
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		if valuedItem.count > 0 {
-			json["valuedItem"] = Array(valuedItem.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Contract else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                let objectToRemove = self.action[i]
+                self.action.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.actionReason.enumerated() {
+            guard index < self.actionReason.count else {
+                self.actionReason.append(t)
+                continue
+            }
+            self.actionReason[index].populate(from: t)
+        }
+    
+        if self.actionReason.count > o.actionReason.count {
+            for i in self.actionReason.count...o.actionReason.count {
+                let objectToRemove = self.actionReason[i]
+                self.actionReason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.actor.enumerated() {
+            guard index < self.actor.count else {
+                self.actor.append(t)
+                continue
+            }
+            self.actor[index].populate(from: t)
+        }
+    
+        if self.actor.count > o.actor.count {
+            for i in self.actor.count...o.actor.count {
+                let objectToRemove = self.actor[i]
+                self.actor.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.applies, from: o.applies)
+
+        for (index, t) in o.authority.enumerated() {
+            guard index < self.authority.count else {
+                self.authority.append(t)
+                continue
+            }
+            self.authority[index].populate(from: t)
+        }
+    
+        if self.authority.count > o.authority.count {
+            for i in self.authority.count...o.authority.count {
+                let objectToRemove = self.authority[i]
+                self.authority.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.bindingAttachment, from: o.bindingAttachment)
+        FireKit.populate(&self.bindingReference, from: o.bindingReference)
+
+        for (index, t) in o.domain.enumerated() {
+            guard index < self.domain.count else {
+                self.domain.append(t)
+                continue
+            }
+            self.domain[index].populate(from: t)
+        }
+    
+        if self.domain.count > o.domain.count {
+            for i in self.domain.count...o.domain.count {
+                let objectToRemove = self.domain[i]
+                self.domain.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.friendly.enumerated() {
+            guard index < self.friendly.count else {
+                self.friendly.append(t)
+                continue
+            }
+            self.friendly[index].populate(from: t)
+        }
+    
+        if self.friendly.count > o.friendly.count {
+            for i in self.friendly.count...o.friendly.count {
+                let objectToRemove = self.friendly[i]
+                self.friendly.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.issued, from: o.issued)
+
+        for (index, t) in o.legal.enumerated() {
+            guard index < self.legal.count else {
+                self.legal.append(t)
+                continue
+            }
+            self.legal[index].populate(from: t)
+        }
+    
+        if self.legal.count > o.legal.count {
+            for i in self.legal.count...o.legal.count {
+                let objectToRemove = self.legal[i]
+                self.legal.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.rule.enumerated() {
+            guard index < self.rule.count else {
+                self.rule.append(t)
+                continue
+            }
+            self.rule[index].populate(from: t)
+        }
+    
+        if self.rule.count > o.rule.count {
+            for i in self.rule.count...o.rule.count {
+                let objectToRemove = self.rule[i]
+                self.rule.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.signer.enumerated() {
+            guard index < self.signer.count else {
+                self.signer.append(t)
+                continue
+            }
+            self.signer[index].populate(from: t)
+        }
+    
+        if self.signer.count > o.signer.count {
+            for i in self.signer.count...o.signer.count {
+                let objectToRemove = self.signer[i]
+                self.signer.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.subType.enumerated() {
+            guard index < self.subType.count else {
+                self.subType.append(t)
+                continue
+            }
+            self.subType[index].populate(from: t)
+        }
+    
+        if self.subType.count > o.subType.count {
+            for i in self.subType.count...o.subType.count {
+                let objectToRemove = self.subType[i]
+                self.subType.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.subject.enumerated() {
+            guard index < self.subject.count else {
+                self.subject.append(t)
+                continue
+            }
+            self.subject[index].populate(from: t)
+        }
+    
+        if self.subject.count > o.subject.count {
+            for i in self.subject.count...o.subject.count {
+                let objectToRemove = self.subject[i]
+                self.subject.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.term.enumerated() {
+            guard index < self.term.count else {
+                self.term.append(t)
+                continue
+            }
+            self.term[index].populate(from: t)
+        }
+    
+        if self.term.count > o.term.count {
+            for i in self.term.count...o.term.count {
+                let objectToRemove = self.term[i]
+                self.term.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.type, from: o.type)
+
+        for (index, t) in o.valuedItem.enumerated() {
+            guard index < self.valuedItem.count else {
+                self.valuedItem.append(t)
+                continue
+            }
+            self.valuedItem[index].populate(from: t)
+        }
+    
+        if self.valuedItem.count > o.valuedItem.count {
+            for i in self.valuedItem.count...o.valuedItem.count {
+                let objectToRemove = self.valuedItem[i]
+                self.valuedItem.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -349,63 +387,88 @@ open class ContractActor: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractActor" }
 	}
-    
-    public dynamic var entity: Reference?        
+
+    @objc public dynamic var entity: Reference?
     public func upsert(entity: Reference?) {
         upsert(prop: &self.entity, val: entity)
-    }    
+    }
     public let role = RealmSwift.List<CodeableConcept>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(entity: Reference) {
-        self.init(json: nil)
+        self.init()
         self.entity = entity
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["entity"] {
-				presentKeys.insert("entity")
-				if let val = exist as? FHIRJSON {
-					upsert(entity: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "entity"))
-			}
-			if let exist = js["role"] {
-				presentKeys.insert("role")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.role) }
-						self.role.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "role", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case entity = "entity"
+        case role = "role"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.entity = try container.decodeIfPresent(Reference.self, forKey: .entity)
+        self.role.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .role) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.entity, forKey: .entity)
+        try container.encode(Array(self.role), forKey: .role)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractActor.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractActor. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractActor.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let entity = self.entity {
-			json["entity"] = entity.asJSON()
-		}
-		if role.count > 0 {
-			json["role"] = Array(role.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractActor else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.entity, from: o.entity)
+
+        for (index, t) in o.role.enumerated() {
+            guard index < self.role.count else {
+                self.role.append(t)
+                continue
+            }
+            self.role[index].populate(from: t)
+        }
+    
+        if self.role.count > o.role.count {
+            for i in self.role.count...o.role.count {
+                let objectToRemove = self.role[i]
+                self.role.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -421,66 +484,77 @@ open class ContractFriendly: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractFriendly" }
 	}
-    
-    public dynamic var contentAttachment: Attachment?        
+
+    @objc public dynamic var contentAttachment: Attachment?
     public func upsert(contentAttachment: Attachment?) {
         upsert(prop: &self.contentAttachment, val: contentAttachment)
-    }    
-    public dynamic var contentReference: Reference?        
+    }
+    @objc public dynamic var contentReference: Reference?
     public func upsert(contentReference: Reference?) {
         upsert(prop: &self.contentReference, val: contentReference)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(contentAttachment: Attachment, contentReference: Reference) {
-        self.init(json: nil)
+        self.init()
         self.contentAttachment = contentAttachment
         self.contentReference = contentReference
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["contentAttachment"] {
-				presentKeys.insert("contentAttachment")
-				if let val = exist as? FHIRJSON {
-					upsert(contentAttachment: Attachment(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["contentReference"] {
-				presentKeys.insert("contentReference")
-				if let val = exist as? FHIRJSON {
-					upsert(contentReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.contentAttachment && nil == self.contentReference {
-				errors.append(FHIRJSONError(key: "content*"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case contentAttachment = "contentAttachment"
+        case contentReference = "contentReference"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.contentAttachment = try container.decodeIfPresent(Attachment.self, forKey: .contentAttachment)
+        self.contentReference = try container.decodeIfPresent(Reference.self, forKey: .contentReference)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.contentAttachment, forKey: .contentAttachment)
+        try container.encodeIfPresent(self.contentReference, forKey: .contentReference)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractFriendly.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractFriendly. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractFriendly.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let contentAttachment = self.contentAttachment {
-			json["contentAttachment"] = contentAttachment.asJSON()
-		}
-		if let contentReference = self.contentReference {
-			json["contentReference"] = contentReference.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractFriendly else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+    }
 }
 
 
@@ -493,66 +567,77 @@ open class ContractLegal: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractLegal" }
 	}
-    
-    public dynamic var contentAttachment: Attachment?        
+
+    @objc public dynamic var contentAttachment: Attachment?
     public func upsert(contentAttachment: Attachment?) {
         upsert(prop: &self.contentAttachment, val: contentAttachment)
-    }    
-    public dynamic var contentReference: Reference?        
+    }
+    @objc public dynamic var contentReference: Reference?
     public func upsert(contentReference: Reference?) {
         upsert(prop: &self.contentReference, val: contentReference)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(contentAttachment: Attachment, contentReference: Reference) {
-        self.init(json: nil)
+        self.init()
         self.contentAttachment = contentAttachment
         self.contentReference = contentReference
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["contentAttachment"] {
-				presentKeys.insert("contentAttachment")
-				if let val = exist as? FHIRJSON {
-					upsert(contentAttachment: Attachment(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["contentReference"] {
-				presentKeys.insert("contentReference")
-				if let val = exist as? FHIRJSON {
-					upsert(contentReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.contentAttachment && nil == self.contentReference {
-				errors.append(FHIRJSONError(key: "content*"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case contentAttachment = "contentAttachment"
+        case contentReference = "contentReference"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.contentAttachment = try container.decodeIfPresent(Attachment.self, forKey: .contentAttachment)
+        self.contentReference = try container.decodeIfPresent(Reference.self, forKey: .contentReference)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.contentAttachment, forKey: .contentAttachment)
+        try container.encodeIfPresent(self.contentReference, forKey: .contentReference)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractLegal.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractLegal. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractLegal.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let contentAttachment = self.contentAttachment {
-			json["contentAttachment"] = contentAttachment.asJSON()
-		}
-		if let contentReference = self.contentReference {
-			json["contentReference"] = contentReference.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractLegal else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+    }
 }
 
 
@@ -565,66 +650,77 @@ open class ContractRule: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractRule" }
 	}
-    
-    public dynamic var contentAttachment: Attachment?        
+
+    @objc public dynamic var contentAttachment: Attachment?
     public func upsert(contentAttachment: Attachment?) {
         upsert(prop: &self.contentAttachment, val: contentAttachment)
-    }    
-    public dynamic var contentReference: Reference?        
+    }
+    @objc public dynamic var contentReference: Reference?
     public func upsert(contentReference: Reference?) {
         upsert(prop: &self.contentReference, val: contentReference)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(contentAttachment: Attachment, contentReference: Reference) {
-        self.init(json: nil)
+        self.init()
         self.contentAttachment = contentAttachment
         self.contentReference = contentReference
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["contentAttachment"] {
-				presentKeys.insert("contentAttachment")
-				if let val = exist as? FHIRJSON {
-					upsert(contentAttachment: Attachment(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentAttachment", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["contentReference"] {
-				presentKeys.insert("contentReference")
-				if let val = exist as? FHIRJSON {
-					upsert(contentReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			
-			// check if nonoptional expanded properties are present
-			if nil == self.contentAttachment && nil == self.contentReference {
-				errors.append(FHIRJSONError(key: "content*"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case contentAttachment = "contentAttachment"
+        case contentReference = "contentReference"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.contentAttachment = try container.decodeIfPresent(Attachment.self, forKey: .contentAttachment)
+        self.contentReference = try container.decodeIfPresent(Reference.self, forKey: .contentReference)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.contentAttachment, forKey: .contentAttachment)
+        try container.encodeIfPresent(self.contentReference, forKey: .contentReference)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractRule.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractRule. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractRule.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let contentAttachment = self.contentAttachment {
-			json["contentAttachment"] = contentAttachment.asJSON()
-		}
-		if let contentReference = self.contentReference {
-			json["contentReference"] = contentReference.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractRule else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.contentAttachment, from: o.contentAttachment)
+        FireKit.populate(&self.contentReference, from: o.contentReference)
+    }
 }
 
 
@@ -637,85 +733,83 @@ open class ContractSigner: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractSigner" }
 	}
-    
-    public dynamic var party: Reference?        
+
+    @objc public dynamic var party: Reference?
     public func upsert(party: Reference?) {
         upsert(prop: &self.party, val: party)
-    }    
-    public dynamic var signature: String?        
-        
-    public dynamic var type: Coding?        
+    }
+    @objc public dynamic var signature: String?
+    @objc public dynamic var type: Coding?
     public func upsert(type: Coding?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(party: Reference, signature: String, type: Coding) {
-        self.init(json: nil)
+        self.init()
         self.party = party
         self.signature = signature
         self.type = type
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["party"] {
-				presentKeys.insert("party")
-				if let val = exist as? FHIRJSON {
-					upsert(party: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "party", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "party"))
-			}
-			if let exist = js["signature"] {
-				presentKeys.insert("signature")
-				if let val = exist as? String {
-					self.signature = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "signature", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "signature"))
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: Coding(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case party = "party"
+        case signature = "signature"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.party = try container.decodeIfPresent(Reference.self, forKey: .party)
+        self.signature = try container.decodeIfPresent(String.self, forKey: .signature)
+        self.type = try container.decodeIfPresent(Coding.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.party, forKey: .party)
+        try container.encodeIfPresent(self.signature, forKey: .signature)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractSigner.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractSigner. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractSigner.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let party = self.party {
-			json["party"] = party.asJSON()
-		}
-		if let signature = self.signature {
-			json["signature"] = signature.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractSigner else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.party, from: o.party)
+        signature = o.signature
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
 
 
@@ -728,210 +822,204 @@ open class ContractTerm: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTerm" }
 	}
-    
-    public let action = RealmSwift.List<CodeableConcept>()    
-    public let actionReason = RealmSwift.List<CodeableConcept>()    
-    public let actor = RealmSwift.List<ContractTermActor>()    
-    public dynamic var applies: Period?        
+
+    public let action = RealmSwift.List<CodeableConcept>()
+    public let actionReason = RealmSwift.List<CodeableConcept>()
+    public let actor = RealmSwift.List<ContractTermActor>()
+    @objc public dynamic var applies: Period?
     public func upsert(applies: Period?) {
         upsert(prop: &self.applies, val: applies)
-    }    
-    public let group = RealmSwift.List<ContractTerm>()    
-    public dynamic var identifier: Identifier?        
+    }
+    public let group = RealmSwift.List<ContractTerm>()
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var issued: DateTime?        
-        
-    public dynamic var subType: CodeableConcept?        
+    }
+    @objc public dynamic var issued: DateTime?
+    @objc public dynamic var subType: CodeableConcept?
     public func upsert(subType: CodeableConcept?) {
         upsert(prop: &self.subType, val: subType)
-    }    
-    public dynamic var subject: Reference?        
+    }
+    @objc public dynamic var subject: Reference?
     public func upsert(subject: Reference?) {
         upsert(prop: &self.subject, val: subject)
-    }    
-    public dynamic var text: String?        
-        
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var text: String?
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
-    }    
+    }
     public let valuedItem = RealmSwift.List<ContractTermValuedItem>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["action"] {
-				presentKeys.insert("action")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.action) }
-						self.action.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "action", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["actionReason"] {
-				presentKeys.insert("actionReason")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.actionReason) }
-						self.actionReason.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "actionReason", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["actor"] {
-				presentKeys.insert("actor")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractTermActor.instantiate(fromArray: val, owner: self) as? [ContractTermActor] {
-						if let realm = self.realm { realm.delete(self.actor) }
-						self.actor.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "actor", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["applies"] {
-				presentKeys.insert("applies")
-				if let val = exist as? FHIRJSON {
-					upsert(applies: Period(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "applies", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["group"] {
-				presentKeys.insert("group")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractTerm.instantiate(fromArray: val, owner: self) as? [ContractTerm] {
-						if let realm = self.realm { realm.delete(self.group) }
-						self.group.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "group", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["issued"] {
-				presentKeys.insert("issued")
-				if let val = exist as? String {
-					self.issued = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "issued", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subType"] {
-				presentKeys.insert("subType")
-				if let val = exist as? FHIRJSON {
-					upsert(subType: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subType", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["subject"] {
-				presentKeys.insert("subject")
-				if let val = exist as? FHIRJSON {
-					upsert(subject: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "subject", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["text"] {
-				presentKeys.insert("text")
-				if let val = exist as? String {
-					self.text = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "text", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valuedItem"] {
-				presentKeys.insert("valuedItem")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContractTermValuedItem.instantiate(fromArray: val, owner: self) as? [ContractTermValuedItem] {
-						if let realm = self.realm { realm.delete(self.valuedItem) }
-						self.valuedItem.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valuedItem", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case action = "action"
+        case actionReason = "actionReason"
+        case actor = "actor"
+        case applies = "applies"
+        case group = "group"
+        case identifier = "identifier"
+        case issued = "issued"
+        case subType = "subType"
+        case subject = "subject"
+        case text = "text"
+        case type = "type"
+        case valuedItem = "valuedItem"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.action.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .action) ?? [])
+        self.actionReason.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .actionReason) ?? [])
+        self.actor.append(objectsIn: try container.decodeIfPresent([ContractTermActor].self, forKey: .actor) ?? [])
+        self.applies = try container.decodeIfPresent(Period.self, forKey: .applies)
+        self.group.append(objectsIn: try container.decodeIfPresent([ContractTerm].self, forKey: .group) ?? [])
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.issued = try container.decodeIfPresent(DateTime.self, forKey: .issued)
+        self.subType = try container.decodeIfPresent(CodeableConcept.self, forKey: .subType)
+        self.subject = try container.decodeIfPresent(Reference.self, forKey: .subject)
+        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+        self.valuedItem.append(objectsIn: try container.decodeIfPresent([ContractTermValuedItem].self, forKey: .valuedItem) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.action), forKey: .action)
+        try container.encode(Array(self.actionReason), forKey: .actionReason)
+        try container.encode(Array(self.actor), forKey: .actor)
+        try container.encodeIfPresent(self.applies, forKey: .applies)
+        try container.encode(Array(self.group), forKey: .group)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.issued, forKey: .issued)
+        try container.encodeIfPresent(self.subType, forKey: .subType)
+        try container.encodeIfPresent(self.subject, forKey: .subject)
+        try container.encodeIfPresent(self.text, forKey: .text)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encode(Array(self.valuedItem), forKey: .valuedItem)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractTerm.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractTerm. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractTerm.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if action.count > 0 {
-			json["action"] = Array(action.map() { $0.asJSON() })
-		}
-		if actionReason.count > 0 {
-			json["actionReason"] = Array(actionReason.map() { $0.asJSON() })
-		}
-		if actor.count > 0 {
-			json["actor"] = Array(actor.map() { $0.asJSON() })
-		}
-		if let applies = self.applies {
-			json["applies"] = applies.asJSON()
-		}
-		if group.count > 0 {
-			json["group"] = Array(group.map() { $0.asJSON() })
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let issued = self.issued {
-			json["issued"] = issued.asJSON()
-		}
-		if let subType = self.subType {
-			json["subType"] = subType.asJSON()
-		}
-		if let subject = self.subject {
-			json["subject"] = subject.asJSON()
-		}
-		if let text = self.text {
-			json["text"] = text.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		if valuedItem.count > 0 {
-			json["valuedItem"] = Array(valuedItem.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractTerm else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.action.enumerated() {
+            guard index < self.action.count else {
+                self.action.append(t)
+                continue
+            }
+            self.action[index].populate(from: t)
+        }
+    
+        if self.action.count > o.action.count {
+            for i in self.action.count...o.action.count {
+                let objectToRemove = self.action[i]
+                self.action.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.actionReason.enumerated() {
+            guard index < self.actionReason.count else {
+                self.actionReason.append(t)
+                continue
+            }
+            self.actionReason[index].populate(from: t)
+        }
+    
+        if self.actionReason.count > o.actionReason.count {
+            for i in self.actionReason.count...o.actionReason.count {
+                let objectToRemove = self.actionReason[i]
+                self.actionReason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.actor.enumerated() {
+            guard index < self.actor.count else {
+                self.actor.append(t)
+                continue
+            }
+            self.actor[index].populate(from: t)
+        }
+    
+        if self.actor.count > o.actor.count {
+            for i in self.actor.count...o.actor.count {
+                let objectToRemove = self.actor[i]
+                self.actor.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.applies, from: o.applies)
+
+        for (index, t) in o.group.enumerated() {
+            guard index < self.group.count else {
+                self.group.append(t)
+                continue
+            }
+            self.group[index].populate(from: t)
+        }
+    
+        if self.group.count > o.group.count {
+            for i in self.group.count...o.group.count {
+                let objectToRemove = self.group[i]
+                self.group.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.issued, from: o.issued)
+        FireKit.populate(&self.subType, from: o.subType)
+        FireKit.populate(&self.subject, from: o.subject)
+        text = o.text
+        FireKit.populate(&self.type, from: o.type)
+
+        for (index, t) in o.valuedItem.enumerated() {
+            guard index < self.valuedItem.count else {
+                self.valuedItem.append(t)
+                continue
+            }
+            self.valuedItem[index].populate(from: t)
+        }
+    
+        if self.valuedItem.count > o.valuedItem.count {
+            for i in self.valuedItem.count...o.valuedItem.count {
+                let objectToRemove = self.valuedItem[i]
+                self.valuedItem.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -944,63 +1032,88 @@ open class ContractTermActor: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTermActor" }
 	}
-    
-    public dynamic var entity: Reference?        
+
+    @objc public dynamic var entity: Reference?
     public func upsert(entity: Reference?) {
         upsert(prop: &self.entity, val: entity)
-    }    
+    }
     public let role = RealmSwift.List<CodeableConcept>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(entity: Reference) {
-        self.init(json: nil)
+        self.init()
         self.entity = entity
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["entity"] {
-				presentKeys.insert("entity")
-				if let val = exist as? FHIRJSON {
-					upsert(entity: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "entity"))
-			}
-			if let exist = js["role"] {
-				presentKeys.insert("role")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.role) }
-						self.role.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "role", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case entity = "entity"
+        case role = "role"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.entity = try container.decodeIfPresent(Reference.self, forKey: .entity)
+        self.role.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .role) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.entity, forKey: .entity)
+        try container.encode(Array(self.role), forKey: .role)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractTermActor.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractTermActor. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractTermActor.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let entity = self.entity {
-			json["entity"] = entity.asJSON()
-		}
-		if role.count > 0 {
-			json["role"] = Array(role.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractTermActor else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.entity, from: o.entity)
+
+        for (index, t) in o.role.enumerated() {
+            guard index < self.role.count else {
+                self.role.append(t)
+                continue
+            }
+            self.role[index].populate(from: t)
+        }
+    
+        if self.role.count > o.role.count {
+            for i in self.role.count...o.role.count {
+                let objectToRemove = self.role[i]
+                self.role.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -1013,160 +1126,117 @@ open class ContractTermValuedItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractTermValuedItem" }
 	}
-    
-    public dynamic var effectiveTime: DateTime?        
-        
-    public dynamic var entityCodeableConcept: CodeableConcept?        
+
+    @objc public dynamic var effectiveTime: DateTime?
+    @objc public dynamic var entityCodeableConcept: CodeableConcept?
     public func upsert(entityCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
-    }    
-    public dynamic var entityReference: Reference?        
+    }
+    @objc public dynamic var entityReference: Reference?
     public func upsert(entityReference: Reference?) {
         upsert(prop: &self.entityReference, val: entityReference)
-    }    
-    public dynamic var factor: RealmDecimal?        
-        
-    public dynamic var identifier: Identifier?        
+    }
+    @objc public dynamic var factor: RealmDecimal?
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var net: Quantity?        
+    }
+    @objc public dynamic var net: Quantity?
     public func upsert(net: Quantity?) {
         upsert(prop: &self.net, val: net)
-    }    
-    public dynamic var points: RealmDecimal?        
-        
-    public dynamic var quantity: Quantity?        
+    }
+    @objc public dynamic var points: RealmDecimal?
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public dynamic var unitPrice: Quantity?        
+    }
+    @objc public dynamic var unitPrice: Quantity?
     public func upsert(unitPrice: Quantity?) {
         upsert(prop: &self.unitPrice, val: unitPrice)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["effectiveTime"] {
-				presentKeys.insert("effectiveTime")
-				if let val = exist as? String {
-					self.effectiveTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "effectiveTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["entityCodeableConcept"] {
-				presentKeys.insert("entityCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					upsert(entityCodeableConcept: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entityCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["entityReference"] {
-				presentKeys.insert("entityReference")
-				if let val = exist as? FHIRJSON {
-					upsert(entityReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entityReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["factor"] {
-				presentKeys.insert("factor")
-				if let val = exist as? NSNumber {
-					self.factor = RealmDecimal(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "factor", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["net"] {
-				presentKeys.insert("net")
-				if let val = exist as? FHIRJSON {
-					upsert(net: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["points"] {
-				presentKeys.insert("points")
-				if let val = exist as? NSNumber {
-					self.points = RealmDecimal(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "points", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					upsert(quantity: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["unitPrice"] {
-				presentKeys.insert("unitPrice")
-				if let val = exist as? FHIRJSON {
-					upsert(unitPrice: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case effectiveTime = "effectiveTime"
+        case entityCodeableConcept = "entityCodeableConcept"
+        case entityReference = "entityReference"
+        case factor = "factor"
+        case identifier = "identifier"
+        case net = "net"
+        case points = "points"
+        case quantity = "quantity"
+        case unitPrice = "unitPrice"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.effectiveTime = try container.decodeIfPresent(DateTime.self, forKey: .effectiveTime)
+        self.entityCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .entityCodeableConcept)
+        self.entityReference = try container.decodeIfPresent(Reference.self, forKey: .entityReference)
+        self.factor = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.net = try container.decodeIfPresent(Quantity.self, forKey: .net)
+        self.points = try container.decodeIfPresent(RealmDecimal.self, forKey: .points)
+        self.quantity = try container.decodeIfPresent(Quantity.self, forKey: .quantity)
+        self.unitPrice = try container.decodeIfPresent(Quantity.self, forKey: .unitPrice)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
+        try container.encodeIfPresent(self.entityCodeableConcept, forKey: .entityCodeableConcept)
+        try container.encodeIfPresent(self.entityReference, forKey: .entityReference)
+        try container.encodeIfPresent(self.factor, forKey: .factor)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.net, forKey: .net)
+        try container.encodeIfPresent(self.points, forKey: .points)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encodeIfPresent(self.unitPrice, forKey: .unitPrice)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractTermValuedItem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractTermValuedItem. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractTermValuedItem.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let effectiveTime = self.effectiveTime {
-			json["effectiveTime"] = effectiveTime.asJSON()
-		}
-		if let entityCodeableConcept = self.entityCodeableConcept {
-			json["entityCodeableConcept"] = entityCodeableConcept.asJSON()
-		}
-		if let entityReference = self.entityReference {
-			json["entityReference"] = entityReference.asJSON()
-		}
-		if let factor = self.factor {
-			json["factor"] = factor.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let net = self.net {
-			json["net"] = net.asJSON()
-		}
-		if let points = self.points {
-			json["points"] = points.asJSON()
-		}
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		if let unitPrice = self.unitPrice {
-			json["unitPrice"] = unitPrice.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractTermValuedItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.effectiveTime, from: o.effectiveTime)
+        FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)
+        FireKit.populate(&self.entityReference, from: o.entityReference)
+        factor = o.factor
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.net, from: o.net)
+        points = o.points
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.unitPrice, from: o.unitPrice)
+    }
 }
 
 
@@ -1179,159 +1249,116 @@ open class ContractValuedItem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ContractValuedItem" }
 	}
-    
-    public dynamic var effectiveTime: DateTime?        
-        
-    public dynamic var entityCodeableConcept: CodeableConcept?        
+
+    @objc public dynamic var effectiveTime: DateTime?
+    @objc public dynamic var entityCodeableConcept: CodeableConcept?
     public func upsert(entityCodeableConcept: CodeableConcept?) {
         upsert(prop: &self.entityCodeableConcept, val: entityCodeableConcept)
-    }    
-    public dynamic var entityReference: Reference?        
+    }
+    @objc public dynamic var entityReference: Reference?
     public func upsert(entityReference: Reference?) {
         upsert(prop: &self.entityReference, val: entityReference)
-    }    
-    public dynamic var factor: RealmDecimal?        
-        
-    public dynamic var identifier: Identifier?        
+    }
+    @objc public dynamic var factor: RealmDecimal?
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var net: Quantity?        
+    }
+    @objc public dynamic var net: Quantity?
     public func upsert(net: Quantity?) {
         upsert(prop: &self.net, val: net)
-    }    
-    public dynamic var points: RealmDecimal?        
-        
-    public dynamic var quantity: Quantity?        
+    }
+    @objc public dynamic var points: RealmDecimal?
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public dynamic var unitPrice: Quantity?        
+    }
+    @objc public dynamic var unitPrice: Quantity?
     public func upsert(unitPrice: Quantity?) {
         upsert(prop: &self.unitPrice, val: unitPrice)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["effectiveTime"] {
-				presentKeys.insert("effectiveTime")
-				if let val = exist as? String {
-					self.effectiveTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "effectiveTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["entityCodeableConcept"] {
-				presentKeys.insert("entityCodeableConcept")
-				if let val = exist as? FHIRJSON {
-					upsert(entityCodeableConcept: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entityCodeableConcept", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["entityReference"] {
-				presentKeys.insert("entityReference")
-				if let val = exist as? FHIRJSON {
-					upsert(entityReference: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entityReference", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["factor"] {
-				presentKeys.insert("factor")
-				if let val = exist as? NSNumber {
-					self.factor = RealmDecimal(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "factor", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["net"] {
-				presentKeys.insert("net")
-				if let val = exist as? FHIRJSON {
-					upsert(net: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "net", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["points"] {
-				presentKeys.insert("points")
-				if let val = exist as? NSNumber {
-					self.points = RealmDecimal(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "points", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					upsert(quantity: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["unitPrice"] {
-				presentKeys.insert("unitPrice")
-				if let val = exist as? FHIRJSON {
-					upsert(unitPrice: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "unitPrice", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case effectiveTime = "effectiveTime"
+        case entityCodeableConcept = "entityCodeableConcept"
+        case entityReference = "entityReference"
+        case factor = "factor"
+        case identifier = "identifier"
+        case net = "net"
+        case points = "points"
+        case quantity = "quantity"
+        case unitPrice = "unitPrice"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.effectiveTime = try container.decodeIfPresent(DateTime.self, forKey: .effectiveTime)
+        self.entityCodeableConcept = try container.decodeIfPresent(CodeableConcept.self, forKey: .entityCodeableConcept)
+        self.entityReference = try container.decodeIfPresent(Reference.self, forKey: .entityReference)
+        self.factor = try container.decodeIfPresent(RealmDecimal.self, forKey: .factor)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.net = try container.decodeIfPresent(Quantity.self, forKey: .net)
+        self.points = try container.decodeIfPresent(RealmDecimal.self, forKey: .points)
+        self.quantity = try container.decodeIfPresent(Quantity.self, forKey: .quantity)
+        self.unitPrice = try container.decodeIfPresent(Quantity.self, forKey: .unitPrice)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
+        try container.encodeIfPresent(self.entityCodeableConcept, forKey: .entityCodeableConcept)
+        try container.encodeIfPresent(self.entityReference, forKey: .entityReference)
+        try container.encodeIfPresent(self.factor, forKey: .factor)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.net, forKey: .net)
+        try container.encodeIfPresent(self.points, forKey: .points)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encodeIfPresent(self.unitPrice, forKey: .unitPrice)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ContractValuedItem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ContractValuedItem. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ContractValuedItem.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let effectiveTime = self.effectiveTime {
-			json["effectiveTime"] = effectiveTime.asJSON()
-		}
-		if let entityCodeableConcept = self.entityCodeableConcept {
-			json["entityCodeableConcept"] = entityCodeableConcept.asJSON()
-		}
-		if let entityReference = self.entityReference {
-			json["entityReference"] = entityReference.asJSON()
-		}
-		if let factor = self.factor {
-			json["factor"] = factor.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let net = self.net {
-			json["net"] = net.asJSON()
-		}
-		if let points = self.points {
-			json["points"] = points.asJSON()
-		}
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		if let unitPrice = self.unitPrice {
-			json["unitPrice"] = unitPrice.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ContractValuedItem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.effectiveTime, from: o.effectiveTime)
+        FireKit.populate(&self.entityCodeableConcept, from: o.entityCodeableConcept)
+        FireKit.populate(&self.entityReference, from: o.entityReference)
+        factor = o.factor
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.net, from: o.net)
+        points = o.points
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.unitPrice, from: o.unitPrice)
+    }
 }
 

@@ -2,10 +2,12 @@
 //  SupplyDeliveryTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-09-22.
 //  2017, SMART Health IT.
 //
-// Tweaked for RealmSupport by Ryan Baldwin, University Health Network.
+// Updated for Realm support by Ryan Baldwin on 2017-09-22
+// Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
+// 
 
 import XCTest
 import RealmSwift
@@ -13,67 +15,66 @@ import FireKit
 
 
 class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {    
-	var realm: Realm!
+    var realm: Realm!
+    
+    override func setUp() {
+        realm = makeRealm()
+    }
 
-	override func setUp() {
-		realm = makeRealm()
-	}
-
-	func instantiateFrom(_ filename: String) throws -> FireKit.SupplyDelivery {
-		return instantiateFrom(try readJSONFile(filename))
-	}
-	
-	func instantiateFrom(_ json: FHIRJSON) -> FireKit.SupplyDelivery {
-		let instance = FireKit.SupplyDelivery(json: json)
-		XCTAssertNotNil(instance, "Must have instantiated a test instance")
-		return instance
-	}
-	
-	func testSupplyDelivery1() {		
-		var instance: FireKit.SupplyDelivery?
-		do {
-			instance = try runSupplyDelivery1()
-			try runSupplyDelivery1(instance!.asJSON()) 		
-			let copy = instance!.copy() as? FireKit.SupplyDelivery
-			XCTAssertNotNil(copy)
-			try runSupplyDelivery1(copy!.asJSON())     
-
-            try! realm.write { copy!.populate(from: instance!) }
-            try runSupplyDelivery1(copy!.asJSON())  
-		}
-		catch {
-			XCTAssertTrue(false, "Must instantiate and test SupplyDelivery successfully, but threw")
-		}
-
-		testSupplyDeliveryRealm1(instance!)
-	}
-
-    func testSupplyDelivery1RealmPK() {        
+    func inflateFrom(filename: String) throws -> FireKit.SupplyDelivery {
+        return try inflateFrom(data: try readJSONFile(filename))
+    }
+    
+    func inflateFrom(data: Data) throws -> FireKit.SupplyDelivery {
+        // print("Inflating FireKit.SupplyDelivery from data: \(data)")
+        let instance = try JSONDecoder().decode(FireKit.SupplyDelivery.self, from: data)
+        XCTAssertNotNil(instance, "Must have instantiated a test instance")
+        return instance
+    }
+    
+    func testSupplyDelivery1() {   
+        var instance: FireKit.SupplyDelivery?
         do {
-            let instance: FireKit.SupplyDelivery = try runSupplyDelivery1()
-            let copy = (instance.copy() as! FireKit.SupplyDelivery)
+            instance = try runSupplyDelivery1()
+            try runSupplyDelivery1(try JSONEncoder().encode(instance!))    
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must instantiate and test SupplyDelivery successfully, but threw: \(error)")
+        }
 
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            try! realm.write { realm.add(instance) }
-            try! realm.write{ _ = instance.populate(from: copy.asJSON()) }
-            XCTAssertNotEqual(instance.pk, copy.pk)
-            
-            let prePopulatedCopyPK = copy.pk
-            _ = copy.populate(from: instance.asJSON())
-            XCTAssertEqual(prePopulatedCopyPK, copy.pk)
-            XCTAssertNotEqual(copy.pk, instance.pk)
+        testSupplyDeliveryRealm1(instance!)
+    }
+
+    func testSupplyDelivery1Copying() {
+        do {
+            let instance = try runSupplyDelivery1()
+            let copy = instance.copy() as? FireKit.SupplyDelivery
+            XCTAssertNotNil(copy)
+            XCTAssertNotEqual(instance.pk, copy?.pk)
+            try runSupplyDelivery1(try JSONEncoder().encode(copy!))
         } catch let error {
-            XCTAssertTrue(false, "Must instantiate and test SupplyDelivery's PKs, but threw: \(error)")
+            XCTAssertTrue(false, "Must copy and test SupplyDelivery successfully, but threw: \(error)")
         }
     }
 
-	func testSupplyDeliveryRealm1(_ instance: FireKit.SupplyDelivery) {
-		// ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
+    func testSupplyDelivery1Populatability() {
+        do {
+            let instance = try runSupplyDelivery1()
+            let copy = FireKit.SupplyDelivery()
+            copy.populate(from: instance)
+            XCTAssertNotEqual(instance.pk, copy.pk)
+            try runSupplyDelivery1(try JSONEncoder().encode(copy))
+        }
+        catch let error {
+            XCTAssertTrue(false, "Must populate an test SupplyDelivery successfully, but threw: \(error)")
+        }
+    }
+
+    func testSupplyDeliveryRealm1(_ instance: FireKit.SupplyDelivery) {
+        // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
-		try! realm.write {
-                realm.add(instance)
-            }
-        try! runSupplyDelivery1(realm.objects(FireKit.SupplyDelivery.self).first!.asJSON())
+        try! realm.write { realm.add(instance) }
+        try! runSupplyDelivery1(JSONEncoder().encode(realm.objects(FireKit.SupplyDelivery.self).first!))
         
         // ensure we can update it.
         try! realm.write { instance.implicitRules = "Rule #1" }
@@ -86,31 +87,23 @@ class SupplyDeliveryTests: XCTestCase, RealmPersistenceTesting {
         try! realm.write { realm.add(newInst) }
         
         // first time updating it should inflate children resources/elements which don't exist
-        var existing = realm.object(ofType: FireKit.SupplyDelivery.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runSupplyDelivery1(existing.asJSON())
+        let existing = realm.object(ofType: FireKit.SupplyDelivery.self, forPrimaryKey: newInst.pk)!
         
-        // second time updating it will overwrite values of child resources/elements, but maintain keys
-        // TODO: Find a way to actually test this instead of breakpoints and eyeballing it.
-        existing = realm.object(ofType: FireKit.SupplyDelivery.self, forPrimaryKey: newInst.pk)!
-        try! realm.write{ _ = existing.populate(from: instance.asJSON()) }
-        try! runSupplyDelivery1(existing.asJSON())
-
         try! realm.write { realm.delete(instance) }        
         XCTAssertEqual(1, realm.objects(FireKit.SupplyDelivery.self).count)
 
         try! realm.write { realm.delete(existing) }
         XCTAssertEqual(0, realm.objects(FireKit.SupplyDelivery.self).count)
-	}
-	
-	@discardableResult
-	func runSupplyDelivery1(_ json: FHIRJSON? = nil) throws -> FireKit.SupplyDelivery {
-		let inst = (nil != json) ? instantiateFrom(json!) : try instantiateFrom("supplydelivery-example.json")
-		
-		XCTAssertEqual(inst.id, "example")
-		XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
-		XCTAssertEqual(inst.text?.status, "generated")
-		
-		return inst
-	}
+    }
+    
+    @discardableResult
+    func runSupplyDelivery1(_ data: Data? = nil) throws -> FireKit.SupplyDelivery {
+        let inst = (data != nil) ? try inflateFrom(data: data!) : try inflateFrom(filename: "supplydelivery-example.json")
+        
+        XCTAssertEqual(inst.id, "example")
+        XCTAssertEqual(inst.text?.div, "<div>[Put rendering here]</div>")
+        XCTAssertEqual(inst.text?.status, "generated")
+
+        return inst
+    }
 }

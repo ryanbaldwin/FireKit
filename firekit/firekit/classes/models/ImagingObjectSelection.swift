@@ -2,11 +2,14 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -25,149 +28,122 @@ open class ImagingObjectSelection: DomainResource {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelection" }
 	}
-    
-    public dynamic var author: Reference?        
+
+    @objc public dynamic var author: Reference?
     public func upsert(author: Reference?) {
         upsert(prop: &self.author, val: author)
-    }    
-    public dynamic var authoringTime: DateTime?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var authoringTime: DateTime?
+    @objc public dynamic var description_fhir: String?
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public let study = RealmSwift.List<ImagingObjectSelectionStudy>()    
-    public dynamic var title: CodeableConcept?        
+    }
+    public let study = RealmSwift.List<ImagingObjectSelectionStudy>()
+    @objc public dynamic var title: CodeableConcept?
     public func upsert(title: CodeableConcept?) {
         upsert(prop: &self.title, val: title)
-    }    
-    public dynamic var uid: String?        
-    
+    }
+    @objc public dynamic var uid: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(patient: Reference, study: [ImagingObjectSelectionStudy], title: CodeableConcept, uid: String) {
-        self.init(json: nil)
+        self.init()
         self.patient = patient
         self.study.append(objectsIn: study)
         self.title = title
         self.uid = uid
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["author"] {
-				presentKeys.insert("author")
-				if let val = exist as? FHIRJSON {
-					upsert(author: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "author", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["authoringTime"] {
-				presentKeys.insert("authoringTime")
-				if let val = exist as? String {
-					self.authoringTime = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authoringTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					upsert(patient: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "patient"))
-			}
-			if let exist = js["study"] {
-				presentKeys.insert("study")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ImagingObjectSelectionStudy.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudy] {
-						if let realm = self.realm { realm.delete(self.study) }
-						self.study.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "study", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "study"))
-			}
-			if let exist = js["title"] {
-				presentKeys.insert("title")
-				if let val = exist as? FHIRJSON {
-					upsert(title: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "title", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "title"))
-			}
-			if let exist = js["uid"] {
-				presentKeys.insert("uid")
-				if let val = exist as? String {
-					self.uid = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "uid"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case author = "author"
+        case authoringTime = "authoringTime"
+        case description_fhir = "description"
+        case patient = "patient"
+        case study = "study"
+        case title = "title"
+        case uid = "uid"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.author = try container.decodeIfPresent(Reference.self, forKey: .author)
+        self.authoringTime = try container.decodeIfPresent(DateTime.self, forKey: .authoringTime)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.study.append(objectsIn: try container.decodeIfPresent([ImagingObjectSelectionStudy].self, forKey: .study) ?? [])
+        self.title = try container.decodeIfPresent(CodeableConcept.self, forKey: .title)
+        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.author, forKey: .author)
+        try container.encodeIfPresent(self.authoringTime, forKey: .authoringTime)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encode(Array(self.study), forKey: .study)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.uid, forKey: .uid)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelection.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelection. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImagingObjectSelection.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let author = self.author {
-			json["author"] = author.asJSON()
-		}
-		if let authoringTime = self.authoringTime {
-			json["authoringTime"] = authoringTime.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
-		}
-		if study.count > 0 {
-			json["study"] = Array(study.map() { $0.asJSON() })
-		}
-		if let title = self.title {
-			json["title"] = title.asJSON()
-		}
-		if let uid = self.uid {
-			json["uid"] = uid.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelection else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.author, from: o.author)
+        FireKit.populate(&self.authoringTime, from: o.authoringTime)
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.patient, from: o.patient)
+
+        for (index, t) in o.study.enumerated() {
+            guard index < self.study.count else {
+                self.study.append(t)
+                continue
+            }
+            self.study[index].populate(from: t)
+        }
+    
+        if self.study.count > o.study.count {
+            for i in self.study.count...o.study.count {
+                let objectToRemove = self.study[i]
+                self.study.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.title, from: o.title)
+        uid = o.uid
+    }
 }
 
 
@@ -180,95 +156,99 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudy" }
 	}
-    
-    public dynamic var imagingStudy: Reference?        
+
+    @objc public dynamic var imagingStudy: Reference?
     public func upsert(imagingStudy: Reference?) {
         upsert(prop: &self.imagingStudy, val: imagingStudy)
-    }    
-    public let series = RealmSwift.List<ImagingObjectSelectionStudySeries>()    
-    public dynamic var uid: String?        
-        
-    public dynamic var url: String?        
-    
+    }
+    public let series = RealmSwift.List<ImagingObjectSelectionStudySeries>()
+    @objc public dynamic var uid: String?
+    @objc public dynamic var url: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(series: [ImagingObjectSelectionStudySeries], uid: String) {
-        self.init(json: nil)
+        self.init()
         self.series.append(objectsIn: series)
         self.uid = uid
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["imagingStudy"] {
-				presentKeys.insert("imagingStudy")
-				if let val = exist as? FHIRJSON {
-					upsert(imagingStudy: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "imagingStudy", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["series"] {
-				presentKeys.insert("series")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ImagingObjectSelectionStudySeries.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeries] {
-						if let realm = self.realm { realm.delete(self.series) }
-						self.series.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "series", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "series"))
-			}
-			if let exist = js["uid"] {
-				presentKeys.insert("uid")
-				if let val = exist as? String {
-					self.uid = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "uid"))
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case imagingStudy = "imagingStudy"
+        case series = "series"
+        case uid = "uid"
+        case url = "url"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.imagingStudy = try container.decodeIfPresent(Reference.self, forKey: .imagingStudy)
+        self.series.append(objectsIn: try container.decodeIfPresent([ImagingObjectSelectionStudySeries].self, forKey: .series) ?? [])
+        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.imagingStudy, forKey: .imagingStudy)
+        try container.encode(Array(self.series), forKey: .series)
+        try container.encodeIfPresent(self.uid, forKey: .uid)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudy.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudy. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImagingObjectSelectionStudy.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let imagingStudy = self.imagingStudy {
-			json["imagingStudy"] = imagingStudy.asJSON()
-		}
-		if series.count > 0 {
-			json["series"] = Array(series.map() { $0.asJSON() })
-		}
-		if let uid = self.uid {
-			json["uid"] = uid.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudy else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.imagingStudy, from: o.imagingStudy)
+
+        for (index, t) in o.series.enumerated() {
+            guard index < self.series.count else {
+                self.series.append(t)
+                continue
+            }
+            self.series[index].populate(from: t)
+        }
+    
+        if self.series.count > o.series.count {
+            for i in self.series.count...o.series.count {
+                let objectToRemove = self.series[i]
+                self.series.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        uid = o.uid
+        url = o.url
+    }
 }
 
 
@@ -281,75 +261,90 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudySeries" }
 	}
-    
-    public let instance = RealmSwift.List<ImagingObjectSelectionStudySeriesInstance>()    
-    public dynamic var uid: String?        
-        
-    public dynamic var url: String?        
-    
+
+    public let instance = RealmSwift.List<ImagingObjectSelectionStudySeriesInstance>()
+    @objc public dynamic var uid: String?
+    @objc public dynamic var url: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(instance: [ImagingObjectSelectionStudySeriesInstance]) {
-        self.init(json: nil)
+        self.init()
         self.instance.append(objectsIn: instance)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["instance"] {
-				presentKeys.insert("instance")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ImagingObjectSelectionStudySeriesInstance.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeriesInstance] {
-						if let realm = self.realm { realm.delete(self.instance) }
-						self.instance.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "instance", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "instance"))
-			}
-			if let exist = js["uid"] {
-				presentKeys.insert("uid")
-				if let val = exist as? String {
-					self.uid = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case instance = "instance"
+        case uid = "uid"
+        case url = "url"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.instance.append(objectsIn: try container.decodeIfPresent([ImagingObjectSelectionStudySeriesInstance].self, forKey: .instance) ?? [])
+        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.instance), forKey: .instance)
+        try container.encodeIfPresent(self.uid, forKey: .uid)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudySeries.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudySeries. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImagingObjectSelectionStudySeries.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if instance.count > 0 {
-			json["instance"] = Array(instance.map() { $0.asJSON() })
-		}
-		if let uid = self.uid {
-			json["uid"] = uid.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudySeries else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.instance.enumerated() {
+            guard index < self.instance.count else {
+                self.instance.append(t)
+                continue
+            }
+            self.instance[index].populate(from: t)
+        }
+    
+        if self.instance.count > o.instance.count {
+            for i in self.instance.count...o.instance.count {
+                let objectToRemove = self.instance[i]
+                self.instance.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        uid = o.uid
+        url = o.url
+    }
 }
 
 
@@ -362,97 +357,97 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudySeriesInstance" }
 	}
-    
-    public let frames = RealmSwift.List<ImagingObjectSelectionStudySeriesInstanceFrames>()    
-    public dynamic var sopClass: String?        
-        
-    public dynamic var uid: String?        
-        
-    public dynamic var url: String?        
-    
+
+    public let frames = RealmSwift.List<ImagingObjectSelectionStudySeriesInstanceFrames>()
+    @objc public dynamic var sopClass: String?
+    @objc public dynamic var uid: String?
+    @objc public dynamic var url: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(sopClass: String, uid: String, url: String) {
-        self.init(json: nil)
+        self.init()
         self.sopClass = sopClass
         self.uid = uid
         self.url = url
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["frames"] {
-				presentKeys.insert("frames")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ImagingObjectSelectionStudySeriesInstanceFrames.instantiate(fromArray: val, owner: self) as? [ImagingObjectSelectionStudySeriesInstanceFrames] {
-						if let realm = self.realm { realm.delete(self.frames) }
-						self.frames.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "frames", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["sopClass"] {
-				presentKeys.insert("sopClass")
-				if let val = exist as? String {
-					self.sopClass = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "sopClass", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "sopClass"))
-			}
-			if let exist = js["uid"] {
-				presentKeys.insert("uid")
-				if let val = exist as? String {
-					self.uid = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "uid", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "uid"))
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "url"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case frames = "frames"
+        case sopClass = "sopClass"
+        case uid = "uid"
+        case url = "url"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.frames.append(objectsIn: try container.decodeIfPresent([ImagingObjectSelectionStudySeriesInstanceFrames].self, forKey: .frames) ?? [])
+        self.sopClass = try container.decodeIfPresent(String.self, forKey: .sopClass)
+        self.uid = try container.decodeIfPresent(String.self, forKey: .uid)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.frames), forKey: .frames)
+        try container.encodeIfPresent(self.sopClass, forKey: .sopClass)
+        try container.encodeIfPresent(self.uid, forKey: .uid)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudySeriesInstance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudySeriesInstance. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImagingObjectSelectionStudySeriesInstance.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if frames.count > 0 {
-			json["frames"] = Array(frames.map() { $0.asJSON() })
-		}
-		if let sopClass = self.sopClass {
-			json["sopClass"] = sopClass.asJSON()
-		}
-		if let uid = self.uid {
-			json["uid"] = uid.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudySeriesInstance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.frames.enumerated() {
+            guard index < self.frames.count else {
+                self.frames.append(t)
+                continue
+            }
+            self.frames[index].populate(from: t)
+        }
+    
+        if self.frames.count > o.frames.count {
+            for i in self.frames.count...o.frames.count {
+                let objectToRemove = self.frames[i]
+                self.frames.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        sopClass = o.sopClass
+        uid = o.uid
+        url = o.url
+    }
 }
 
 
@@ -465,61 +460,85 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImagingObjectSelectionStudySeriesInstanceFrames" }
 	}
-    
-    public let frameNumbers = RealmSwift.List<RealmInt>()    
-    public dynamic var url: String?        
-    
+
+    public let frameNumbers = RealmSwift.List<RealmInt>()
+    @objc public dynamic var url: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(frameNumbers: [Int], url: String) {
-        self.init(json: nil)
+        self.init()
         self.frameNumbers.append(objectsIn: frameNumbers.map{ RealmInt(value: [$0]) })
         self.url = url
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["frameNumbers"] {
-				presentKeys.insert("frameNumbers")
-				if let val = exist as? [Int] {
-					self.frameNumbers.append(objectsIn: val.map{ RealmInt(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "frameNumbers", wants: Array<Int>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "frameNumbers"))
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "url"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case frameNumbers = "frameNumbers"
+        case url = "url"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.frameNumbers.append(objectsIn: try container.decodeIfPresent([RealmInt].self, forKey: .frameNumbers) ?? [])
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.frameNumbers), forKey: .frameNumbers)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImagingObjectSelectionStudySeriesInstanceFrames.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImagingObjectSelectionStudySeriesInstanceFrames. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImagingObjectSelectionStudySeriesInstanceFrames.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if frameNumbers.count > 0 {
-			json["frameNumbers"] = Array(frameNumbers.map() { $0.value })
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImagingObjectSelectionStudySeriesInstanceFrames else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.frameNumbers.enumerated() {
+            guard index < self.frameNumbers.count else {
+                self.frameNumbers.append(t)
+                continue
+            }
+            self.frameNumbers[index].populate(from: t)
+        }
+    
+        if self.frameNumbers.count > o.frameNumbers.count {
+            for i in self.frameNumbers.count...o.frameNumbers.count {
+                let objectToRemove = self.frameNumbers[i]
+                self.frameNumbers.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        url = o.url
+    }
 }
 

@@ -2,11 +2,14 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,306 +22,197 @@ open class ValueSet: DomainResource {
 	override open class var resourceType: String {
 		get { return "ValueSet" }
 	}
-    
-    public dynamic var codeSystem: ValueSetCodeSystem?        
+
+    @objc public dynamic var codeSystem: ValueSetCodeSystem?
     public func upsert(codeSystem: ValueSetCodeSystem?) {
         upsert(prop: &self.codeSystem, val: codeSystem)
-    }    
-    public dynamic var compose: ValueSetCompose?        
+    }
+    @objc public dynamic var compose: ValueSetCompose?
     public func upsert(compose: ValueSetCompose?) {
         upsert(prop: &self.compose, val: compose)
-    }    
-    public let contact = RealmSwift.List<ValueSetContact>()    
-    public dynamic var copyright: String?        
-        
-    public dynamic var date: DateTime?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public dynamic var expansion: ValueSetExpansion?        
+    }
+    public let contact = RealmSwift.List<ValueSetContact>()
+    @objc public dynamic var copyright: String?
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var description_fhir: String?
+    @objc public dynamic var expansion: ValueSetExpansion?
     public func upsert(expansion: ValueSetExpansion?) {
         upsert(prop: &self.expansion, val: expansion)
-    }    
-    public let experimental = RealmOptional<Bool>()    
-    public let extensible = RealmOptional<Bool>()    
-    public dynamic var identifier: Identifier?        
+    }
+    public let experimental = RealmOptional<Bool>()
+    public let extensible = RealmOptional<Bool>()
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public let immutable = RealmOptional<Bool>()    
-    public dynamic var lockedDate: FHIRDate?        
-        
-    public dynamic var name: String?        
-        
-    public dynamic var publisher: String?        
-        
-    public dynamic var requirements: String?        
-        
-    public dynamic var status: String?        
-        
-    public dynamic var url: String?        
-        
-    public let useContext = RealmSwift.List<CodeableConcept>()    
-    public dynamic var version: String?        
-    
+    }
+    public let immutable = RealmOptional<Bool>()
+    @objc public dynamic var lockedDate: FHIRDate?
+    @objc public dynamic var name: String?
+    @objc public dynamic var publisher: String?
+    @objc public dynamic var requirements: String?
+    @objc public dynamic var status: String?
+    @objc public dynamic var url: String?
+    public let useContext = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var version: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(status: String) {
-        self.init(json: nil)
+        self.init()
         self.status = status
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["codeSystem"] {
-				presentKeys.insert("codeSystem")
-				if let val = exist as? FHIRJSON {
-					upsert(codeSystem: ValueSetCodeSystem(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "codeSystem", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["compose"] {
-				presentKeys.insert("compose")
-				if let val = exist as? FHIRJSON {
-					upsert(compose: ValueSetCompose(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "compose", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["contact"] {
-				presentKeys.insert("contact")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetContact.instantiate(fromArray: val, owner: self) as? [ValueSetContact] {
-						if let realm = self.realm { realm.delete(self.contact) }
-						self.contact.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contact", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["copyright"] {
-				presentKeys.insert("copyright")
-				if let val = exist as? String {
-					self.copyright = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "copyright", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["date"] {
-				presentKeys.insert("date")
-				if let val = exist as? String {
-					self.date = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["expansion"] {
-				presentKeys.insert("expansion")
-				if let val = exist as? FHIRJSON {
-					upsert(expansion: ValueSetExpansion(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "expansion", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["experimental"] {
-				presentKeys.insert("experimental")
-				if let val = exist as? Bool {
-					self.experimental.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "experimental", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["extensible"] {
-				presentKeys.insert("extensible")
-				if let val = exist as? Bool {
-					self.extensible.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "extensible", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["immutable"] {
-				presentKeys.insert("immutable")
-				if let val = exist as? Bool {
-					self.immutable.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "immutable", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["lockedDate"] {
-				presentKeys.insert("lockedDate")
-				if let val = exist as? String {
-					self.lockedDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "lockedDate", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["publisher"] {
-				presentKeys.insert("publisher")
-				if let val = exist as? String {
-					self.publisher = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "publisher", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["requirements"] {
-				presentKeys.insert("requirements")
-				if let val = exist as? String {
-					self.requirements = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requirements", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "status"))
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["useContext"] {
-				presentKeys.insert("useContext")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.useContext) }
-						self.useContext.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "useContext", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case codeSystem = "codeSystem"
+        case compose = "compose"
+        case contact = "contact"
+        case copyright = "copyright"
+        case date = "date"
+        case description_fhir = "description"
+        case expansion = "expansion"
+        case experimental = "experimental"
+        case extensible = "extensible"
+        case identifier = "identifier"
+        case immutable = "immutable"
+        case lockedDate = "lockedDate"
+        case name = "name"
+        case publisher = "publisher"
+        case requirements = "requirements"
+        case status = "status"
+        case url = "url"
+        case useContext = "useContext"
+        case version = "version"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.codeSystem = try container.decodeIfPresent(ValueSetCodeSystem.self, forKey: .codeSystem)
+        self.compose = try container.decodeIfPresent(ValueSetCompose.self, forKey: .compose)
+        self.contact.append(objectsIn: try container.decodeIfPresent([ValueSetContact].self, forKey: .contact) ?? [])
+        self.copyright = try container.decodeIfPresent(String.self, forKey: .copyright)
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.expansion = try container.decodeIfPresent(ValueSetExpansion.self, forKey: .expansion)
+        self.experimental.value = try container.decodeIfPresent(Bool.self, forKey: .experimental)
+        self.extensible.value = try container.decodeIfPresent(Bool.self, forKey: .extensible)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.immutable.value = try container.decodeIfPresent(Bool.self, forKey: .immutable)
+        self.lockedDate = try container.decodeIfPresent(FHIRDate.self, forKey: .lockedDate)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.publisher = try container.decodeIfPresent(String.self, forKey: .publisher)
+        self.requirements = try container.decodeIfPresent(String.self, forKey: .requirements)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+        self.useContext.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .useContext) ?? [])
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.codeSystem, forKey: .codeSystem)
+        try container.encodeIfPresent(self.compose, forKey: .compose)
+        try container.encode(Array(self.contact), forKey: .contact)
+        try container.encodeIfPresent(self.copyright, forKey: .copyright)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.expansion, forKey: .expansion)
+        try container.encodeIfPresent(self.experimental.value, forKey: .experimental)
+        try container.encodeIfPresent(self.extensible.value, forKey: .extensible)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.immutable.value, forKey: .immutable)
+        try container.encodeIfPresent(self.lockedDate, forKey: .lockedDate)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.publisher, forKey: .publisher)
+        try container.encodeIfPresent(self.requirements, forKey: .requirements)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.url, forKey: .url)
+        try container.encode(Array(self.useContext), forKey: .useContext)
+        try container.encodeIfPresent(self.version, forKey: .version)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSet.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSet. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSet.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let codeSystem = self.codeSystem {
-			json["codeSystem"] = codeSystem.asJSON()
-		}
-		if let compose = self.compose {
-			json["compose"] = compose.asJSON()
-		}
-		if contact.count > 0 {
-			json["contact"] = Array(contact.map() { $0.asJSON() })
-		}
-		if let copyright = self.copyright {
-			json["copyright"] = copyright.asJSON()
-		}
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let expansion = self.expansion {
-			json["expansion"] = expansion.asJSON()
-		}
-		if let experimental = self.experimental.value {
-			json["experimental"] = experimental.asJSON()
-		}
-		if let extensible = self.extensible.value {
-			json["extensible"] = extensible.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let immutable = self.immutable.value {
-			json["immutable"] = immutable.asJSON()
-		}
-		if let lockedDate = self.lockedDate {
-			json["lockedDate"] = lockedDate.asJSON()
-		}
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let publisher = self.publisher {
-			json["publisher"] = publisher.asJSON()
-		}
-		if let requirements = self.requirements {
-			json["requirements"] = requirements.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		if useContext.count > 0 {
-			json["useContext"] = Array(useContext.map() { $0.asJSON() })
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSet else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.codeSystem, from: o.codeSystem)
+        FireKit.populate(&self.compose, from: o.compose)
+
+        for (index, t) in o.contact.enumerated() {
+            guard index < self.contact.count else {
+                self.contact.append(t)
+                continue
+            }
+            self.contact[index].populate(from: t)
+        }
+    
+        if self.contact.count > o.contact.count {
+            for i in self.contact.count...o.contact.count {
+                let objectToRemove = self.contact[i]
+                self.contact.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        copyright = o.copyright
+        FireKit.populate(&self.date, from: o.date)
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.expansion, from: o.expansion)
+        experimental.value = o.experimental.value
+        extensible.value = o.extensible.value
+        FireKit.populate(&self.identifier, from: o.identifier)
+        immutable.value = o.immutable.value
+        FireKit.populate(&self.lockedDate, from: o.lockedDate)
+        name = o.name
+        publisher = o.publisher
+        requirements = o.requirements
+        status = o.status
+        url = o.url
+
+        for (index, t) in o.useContext.enumerated() {
+            guard index < self.useContext.count else {
+                self.useContext.append(t)
+                continue
+            }
+            self.useContext[index].populate(from: t)
+        }
+    
+        if self.useContext.count > o.useContext.count {
+            for i in self.useContext.count...o.useContext.count {
+                let objectToRemove = self.useContext[i]
+                self.useContext.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        version = o.version
+    }
 }
 
 
@@ -332,92 +226,96 @@ open class ValueSetCodeSystem: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCodeSystem" }
 	}
-    
-    public let caseSensitive = RealmOptional<Bool>()    
-    public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()    
-    public dynamic var system: String?        
-        
-    public dynamic var version: String?        
-    
+
+    public let caseSensitive = RealmOptional<Bool>()
+    public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
+    @objc public dynamic var system: String?
+    @objc public dynamic var version: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(concept: [ValueSetCodeSystemConcept], system: String) {
-        self.init(json: nil)
+        self.init()
         self.concept.append(objectsIn: concept)
         self.system = system
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["caseSensitive"] {
-				presentKeys.insert("caseSensitive")
-				if let val = exist as? Bool {
-					self.caseSensitive.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "caseSensitive", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["concept"] {
-				presentKeys.insert("concept")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetCodeSystemConcept.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConcept] {
-						if let realm = self.realm { realm.delete(self.concept) }
-						self.concept.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "concept"))
-			}
-			if let exist = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "system"))
-			}
-			if let exist = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case caseSensitive = "caseSensitive"
+        case concept = "concept"
+        case system = "system"
+        case version = "version"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.caseSensitive.value = try container.decodeIfPresent(Bool.self, forKey: .caseSensitive)
+        self.concept.append(objectsIn: try container.decodeIfPresent([ValueSetCodeSystemConcept].self, forKey: .concept) ?? [])
+        self.system = try container.decodeIfPresent(String.self, forKey: .system)
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.caseSensitive.value, forKey: .caseSensitive)
+        try container.encode(Array(self.concept), forKey: .concept)
+        try container.encodeIfPresent(self.system, forKey: .system)
+        try container.encodeIfPresent(self.version, forKey: .version)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCodeSystem.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCodeSystem. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetCodeSystem.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let caseSensitive = self.caseSensitive.value {
-			json["caseSensitive"] = caseSensitive.asJSON()
-		}
-		if concept.count > 0 {
-			json["concept"] = Array(concept.map() { $0.asJSON() })
-		}
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCodeSystem else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        caseSensitive.value = o.caseSensitive.value
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
+                self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        system = o.system
+        version = o.version
+    }
 }
 
 
@@ -431,118 +329,120 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCodeSystemConcept" }
 	}
-    
-    public let abstract = RealmOptional<Bool>()    
-    public dynamic var code: String?        
-        
-    public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()    
-    public dynamic var definition: String?        
-        
-    public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()    
-    public dynamic var display: String?        
-    
+
+    public let abstract = RealmOptional<Bool>()
+    @objc public dynamic var code: String?
+    public let concept = RealmSwift.List<ValueSetCodeSystemConcept>()
+    @objc public dynamic var definition: String?
+    public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
+    @objc public dynamic var display: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: String) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["abstract"] {
-				presentKeys.insert("abstract")
-				if let val = exist as? Bool {
-					self.abstract.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["concept"] {
-				presentKeys.insert("concept")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetCodeSystemConcept.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConcept] {
-						if let realm = self.realm { realm.delete(self.concept) }
-						self.concept.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["definition"] {
-				presentKeys.insert("definition")
-				if let val = exist as? String {
-					self.definition = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "definition", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["designation"] {
-				presentKeys.insert("designation")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetCodeSystemConceptDesignation.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConceptDesignation] {
-						if let realm = self.realm { realm.delete(self.designation) }
-						self.designation.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case abstract = "abstract"
+        case code = "code"
+        case concept = "concept"
+        case definition = "definition"
+        case designation = "designation"
+        case display = "display"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.abstract.value = try container.decodeIfPresent(Bool.self, forKey: .abstract)
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.concept.append(objectsIn: try container.decodeIfPresent([ValueSetCodeSystemConcept].self, forKey: .concept) ?? [])
+        self.definition = try container.decodeIfPresent(String.self, forKey: .definition)
+        self.designation.append(objectsIn: try container.decodeIfPresent([ValueSetCodeSystemConceptDesignation].self, forKey: .designation) ?? [])
+        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.abstract.value, forKey: .abstract)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(Array(self.concept), forKey: .concept)
+        try container.encodeIfPresent(self.definition, forKey: .definition)
+        try container.encode(Array(self.designation), forKey: .designation)
+        try container.encodeIfPresent(self.display, forKey: .display)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCodeSystemConcept.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCodeSystemConcept. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetCodeSystemConcept.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let abstract = self.abstract.value {
-			json["abstract"] = abstract.asJSON()
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if concept.count > 0 {
-			json["concept"] = Array(concept.map() { $0.asJSON() })
-		}
-		if let definition = self.definition {
-			json["definition"] = definition.asJSON()
-		}
-		if designation.count > 0 {
-			json["designation"] = Array(designation.map() { $0.asJSON() })
-		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCodeSystemConcept else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        abstract.value = o.abstract.value
+        code = o.code
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
+                self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        definition = o.definition
+
+        for (index, t) in o.designation.enumerated() {
+            guard index < self.designation.count else {
+                self.designation.append(t)
+                continue
+            }
+            self.designation[index].populate(from: t)
+        }
+    
+        if self.designation.count > o.designation.count {
+            for i in self.designation.count...o.designation.count {
+                let objectToRemove = self.designation[i]
+                self.designation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        display = o.display
+    }
 }
 
 
@@ -556,75 +456,78 @@ open class ValueSetCodeSystemConceptDesignation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCodeSystemConceptDesignation" }
 	}
-    
-    public dynamic var language: String?        
-        
-    public dynamic var use: Coding?        
+
+    @objc public dynamic var language: String?
+    @objc public dynamic var use: Coding?
     public func upsert(use: Coding?) {
         upsert(prop: &self.use, val: use)
-    }    
-    public dynamic var value: String?        
-    
+    }
+    @objc public dynamic var value: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(val: String) {
-        self.init(json: nil)
+        self.init()
         self.value = val
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["language"] {
-				presentKeys.insert("language")
-				if let val = exist as? String {
-					self.language = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["use"] {
-				presentKeys.insert("use")
-				if let val = exist as? FHIRJSON {
-					upsert(use: Coding(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "use", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["value"] {
-				presentKeys.insert("value")
-				if let val = exist as? String {
-					self.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "value"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case language = "language"
+        case use = "use"
+        case value = "value"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.language = try container.decodeIfPresent(String.self, forKey: .language)
+        self.use = try container.decodeIfPresent(Coding.self, forKey: .use)
+        self.value = try container.decodeIfPresent(String.self, forKey: .value)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.language, forKey: .language)
+        try container.encodeIfPresent(self.use, forKey: .use)
+        try container.encodeIfPresent(self.value, forKey: .value)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCodeSystemConceptDesignation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCodeSystemConceptDesignation. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetCodeSystemConceptDesignation.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let language = self.language {
-			json["language"] = language.asJSON()
-		}
-		if let use = self.use {
-			json["use"] = use.asJSON()
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCodeSystemConceptDesignation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        language = o.language
+        FireKit.populate(&self.use, from: o.use)
+        value = o.value
+    }
 }
 
 
@@ -638,67 +541,114 @@ open class ValueSetCompose: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetCompose" }
 	}
-    
-    public let exclude = RealmSwift.List<ValueSetComposeInclude>()    
-    public let import_fhir = RealmSwift.List<RealmString>()    
+
+    public let exclude = RealmSwift.List<ValueSetComposeInclude>()
+    public let import_fhir = RealmSwift.List<RealmString>()
     public let include = RealmSwift.List<ValueSetComposeInclude>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["exclude"] {
-				presentKeys.insert("exclude")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetComposeInclude.instantiate(fromArray: val, owner: self) as? [ValueSetComposeInclude] {
-						if let realm = self.realm { realm.delete(self.exclude) }
-						self.exclude.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "exclude", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["import"] {
-				presentKeys.insert("import")
-				if let val = exist as? [String] {
-					self.import_fhir.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "import", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["include"] {
-				presentKeys.insert("include")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetComposeInclude.instantiate(fromArray: val, owner: self) as? [ValueSetComposeInclude] {
-						if let realm = self.realm { realm.delete(self.include) }
-						self.include.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "include", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case exclude = "exclude"
+        case import_fhir = "import"
+        case include = "include"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.exclude.append(objectsIn: try container.decodeIfPresent([ValueSetComposeInclude].self, forKey: .exclude) ?? [])
+        self.import_fhir.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .import_fhir) ?? [])
+        self.include.append(objectsIn: try container.decodeIfPresent([ValueSetComposeInclude].self, forKey: .include) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.exclude), forKey: .exclude)
+        try container.encode(Array(self.import_fhir), forKey: .import_fhir)
+        try container.encode(Array(self.include), forKey: .include)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetCompose.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetCompose. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetCompose.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if exclude.count > 0 {
-			json["exclude"] = Array(exclude.map() { $0.asJSON() })
-		}
-		if import_fhir.count > 0 {
-			json["import"] = Array(import_fhir.map() { $0.value })
-		}
-		if include.count > 0 {
-			json["include"] = Array(include.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetCompose else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.exclude.enumerated() {
+            guard index < self.exclude.count else {
+                self.exclude.append(t)
+                continue
+            }
+            self.exclude[index].populate(from: t)
+        }
+    
+        if self.exclude.count > o.exclude.count {
+            for i in self.exclude.count...o.exclude.count {
+                let objectToRemove = self.exclude[i]
+                self.exclude.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.import_fhir.enumerated() {
+            guard index < self.import_fhir.count else {
+                self.import_fhir.append(t)
+                continue
+            }
+            self.import_fhir[index].populate(from: t)
+        }
+    
+        if self.import_fhir.count > o.import_fhir.count {
+            for i in self.import_fhir.count...o.import_fhir.count {
+                let objectToRemove = self.import_fhir[i]
+                self.import_fhir.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.include.enumerated() {
+            guard index < self.include.count else {
+                self.include.append(t)
+                continue
+            }
+            self.include[index].populate(from: t)
+        }
+    
+        if self.include.count > o.include.count {
+            for i in self.include.count...o.include.count {
+                let objectToRemove = self.include[i]
+                self.include.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -709,91 +659,110 @@ open class ValueSetComposeInclude: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeInclude" }
 	}
-    
-    public let concept = RealmSwift.List<ValueSetComposeIncludeConcept>()    
-    public let filter = RealmSwift.List<ValueSetComposeIncludeFilter>()    
-    public dynamic var system: String?        
-        
-    public dynamic var version: String?        
-    
+
+    public let concept = RealmSwift.List<ValueSetComposeIncludeConcept>()
+    public let filter = RealmSwift.List<ValueSetComposeIncludeFilter>()
+    @objc public dynamic var system: String?
+    @objc public dynamic var version: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(system: String) {
-        self.init(json: nil)
+        self.init()
         self.system = system
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["concept"] {
-				presentKeys.insert("concept")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetComposeIncludeConcept.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeConcept] {
-						if let realm = self.realm { realm.delete(self.concept) }
-						self.concept.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "concept", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["filter"] {
-				presentKeys.insert("filter")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetComposeIncludeFilter.instantiate(fromArray: val, owner: self) as? [ValueSetComposeIncludeFilter] {
-						if let realm = self.realm { realm.delete(self.filter) }
-						self.filter.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "filter", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "system"))
-			}
-			if let exist = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case concept = "concept"
+        case filter = "filter"
+        case system = "system"
+        case version = "version"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.concept.append(objectsIn: try container.decodeIfPresent([ValueSetComposeIncludeConcept].self, forKey: .concept) ?? [])
+        self.filter.append(objectsIn: try container.decodeIfPresent([ValueSetComposeIncludeFilter].self, forKey: .filter) ?? [])
+        self.system = try container.decodeIfPresent(String.self, forKey: .system)
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.concept), forKey: .concept)
+        try container.encode(Array(self.filter), forKey: .filter)
+        try container.encodeIfPresent(self.system, forKey: .system)
+        try container.encodeIfPresent(self.version, forKey: .version)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetComposeInclude.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetComposeInclude. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetComposeInclude.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if concept.count > 0 {
-			json["concept"] = Array(concept.map() { $0.asJSON() })
-		}
-		if filter.count > 0 {
-			json["filter"] = Array(filter.map() { $0.asJSON() })
-		}
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetComposeInclude else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.concept.enumerated() {
+            guard index < self.concept.count else {
+                self.concept.append(t)
+                continue
+            }
+            self.concept[index].populate(from: t)
+        }
+    
+        if self.concept.count > o.concept.count {
+            for i in self.concept.count...o.concept.count {
+                let objectToRemove = self.concept[i]
+                self.concept.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.filter.enumerated() {
+            guard index < self.filter.count else {
+                self.filter.append(t)
+                continue
+            }
+            self.filter[index].populate(from: t)
+        }
+    
+        if self.filter.count > o.filter.count {
+            for i in self.filter.count...o.filter.count {
+                let objectToRemove = self.filter[i]
+                self.filter.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        system = o.system
+        version = o.version
+    }
 }
 
 
@@ -806,75 +775,90 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeConcept" }
 	}
-    
-    public dynamic var code: String?        
-        
-    public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()    
-    public dynamic var display: String?        
-    
+
+    @objc public dynamic var code: String?
+    public let designation = RealmSwift.List<ValueSetCodeSystemConceptDesignation>()
+    @objc public dynamic var display: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: String) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["designation"] {
-				presentKeys.insert("designation")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetCodeSystemConceptDesignation.instantiate(fromArray: val, owner: self) as? [ValueSetCodeSystemConceptDesignation] {
-						if let realm = self.realm { realm.delete(self.designation) }
-						self.designation.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "designation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case code = "code"
+        case designation = "designation"
+        case display = "display"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.designation.append(objectsIn: try container.decodeIfPresent([ValueSetCodeSystemConceptDesignation].self, forKey: .designation) ?? [])
+        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(Array(self.designation), forKey: .designation)
+        try container.encodeIfPresent(self.display, forKey: .display)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetComposeIncludeConcept.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetComposeIncludeConcept. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetComposeIncludeConcept.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if designation.count > 0 {
-			json["designation"] = Array(designation.map() { $0.asJSON() })
-		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetComposeIncludeConcept else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        code = o.code
+
+        for (index, t) in o.designation.enumerated() {
+            guard index < self.designation.count else {
+                self.designation.append(t)
+                continue
+            }
+            self.designation[index].populate(from: t)
+        }
+    
+        if self.designation.count > o.designation.count {
+            for i in self.designation.count...o.designation.count {
+                let objectToRemove = self.designation[i]
+                self.designation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        display = o.display
+    }
 }
 
 
@@ -888,81 +872,77 @@ open class ValueSetComposeIncludeFilter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetComposeIncludeFilter" }
 	}
-    
-    public dynamic var op: String?        
-        
-    public dynamic var property: String?        
-        
-    public dynamic var value: String?        
-    
+
+    @objc public dynamic var op: String?
+    @objc public dynamic var property: String?
+    @objc public dynamic var value: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(op: String, property: String, val: String) {
-        self.init(json: nil)
+        self.init()
         self.op = op
         self.property = property
         self.value = val
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["op"] {
-				presentKeys.insert("op")
-				if let val = exist as? String {
-					self.op = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "op", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "op"))
-			}
-			if let exist = js["property"] {
-				presentKeys.insert("property")
-				if let val = exist as? String {
-					self.property = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "property", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "property"))
-			}
-			if let exist = js["value"] {
-				presentKeys.insert("value")
-				if let val = exist as? String {
-					self.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "value", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "value"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case op = "op"
+        case property = "property"
+        case value = "value"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.op = try container.decodeIfPresent(String.self, forKey: .op)
+        self.property = try container.decodeIfPresent(String.self, forKey: .property)
+        self.value = try container.decodeIfPresent(String.self, forKey: .value)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.op, forKey: .op)
+        try container.encodeIfPresent(self.property, forKey: .property)
+        try container.encodeIfPresent(self.value, forKey: .value)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetComposeIncludeFilter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetComposeIncludeFilter. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetComposeIncludeFilter.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let op = self.op {
-			json["op"] = op.asJSON()
-		}
-		if let property = self.property {
-			json["property"] = property.asJSON()
-		}
-		if let value = self.value {
-			json["value"] = value.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetComposeIncludeFilter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        op = o.op
+        property = o.property
+        value = o.value
+    }
 }
 
 
@@ -975,52 +955,79 @@ open class ValueSetContact: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetContact" }
 	}
-    
-    public dynamic var name: String?        
-        
+
+    @objc public dynamic var name: String?
     public let telecom = RealmSwift.List<ContactPoint>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
-						if let realm = self.realm { realm.delete(self.telecom) }
-						self.telecom.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encode(Array(self.telecom), forKey: .telecom)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetContact.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetContact. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetContact.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if telecom.count > 0 {
-			json["telecom"] = Array(telecom.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetContact else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        name = o.name
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
+                self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -1034,121 +1041,121 @@ open class ValueSetExpansion: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansion" }
 	}
-    
-    public let contains = RealmSwift.List<ValueSetExpansionContains>()    
-    public dynamic var identifier: String?        
-        
-    public let offset = RealmOptional<Int>()    
-    public let parameter = RealmSwift.List<ValueSetExpansionParameter>()    
-    public dynamic var timestamp: DateTime?        
-        
+
+    public let contains = RealmSwift.List<ValueSetExpansionContains>()
+    @objc public dynamic var identifier: String?
+    public let offset = RealmOptional<Int>()
+    public let parameter = RealmSwift.List<ValueSetExpansionParameter>()
+    @objc public dynamic var timestamp: DateTime?
     public let total = RealmOptional<Int>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(identifier: String, timestamp: DateTime) {
-        self.init(json: nil)
+        self.init()
         self.identifier = identifier
         self.timestamp = timestamp
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["contains"] {
-				presentKeys.insert("contains")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetExpansionContains.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionContains] {
-						if let realm = self.realm { realm.delete(self.contains) }
-						self.contains.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contains", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? String {
-					self.identifier = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "identifier"))
-			}
-			if let exist = js["offset"] {
-				presentKeys.insert("offset")
-				if let val = exist as? Int {
-					self.offset.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "offset", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["parameter"] {
-				presentKeys.insert("parameter")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetExpansionParameter.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionParameter] {
-						if let realm = self.realm { realm.delete(self.parameter) }
-						self.parameter.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "parameter", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["timestamp"] {
-				presentKeys.insert("timestamp")
-				if let val = exist as? String {
-					self.timestamp = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "timestamp", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "timestamp"))
-			}
-			if let exist = js["total"] {
-				presentKeys.insert("total")
-				if let val = exist as? Int {
-					self.total.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "total", wants: Int.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case contains = "contains"
+        case identifier = "identifier"
+        case offset = "offset"
+        case parameter = "parameter"
+        case timestamp = "timestamp"
+        case total = "total"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.contains.append(objectsIn: try container.decodeIfPresent([ValueSetExpansionContains].self, forKey: .contains) ?? [])
+        self.identifier = try container.decodeIfPresent(String.self, forKey: .identifier)
+        self.offset.value = try container.decodeIfPresent(Int.self, forKey: .offset)
+        self.parameter.append(objectsIn: try container.decodeIfPresent([ValueSetExpansionParameter].self, forKey: .parameter) ?? [])
+        self.timestamp = try container.decodeIfPresent(DateTime.self, forKey: .timestamp)
+        self.total.value = try container.decodeIfPresent(Int.self, forKey: .total)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.contains), forKey: .contains)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.offset.value, forKey: .offset)
+        try container.encode(Array(self.parameter), forKey: .parameter)
+        try container.encodeIfPresent(self.timestamp, forKey: .timestamp)
+        try container.encodeIfPresent(self.total.value, forKey: .total)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetExpansion.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetExpansion. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetExpansion.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if contains.count > 0 {
-			json["contains"] = Array(contains.map() { $0.asJSON() })
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let offset = self.offset.value {
-			json["offset"] = offset.asJSON()
-		}
-		if parameter.count > 0 {
-			json["parameter"] = Array(parameter.map() { $0.asJSON() })
-		}
-		if let timestamp = self.timestamp {
-			json["timestamp"] = timestamp.asJSON()
-		}
-		if let total = self.total.value {
-			json["total"] = total.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetExpansion else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.contains.enumerated() {
+            guard index < self.contains.count else {
+                self.contains.append(t)
+                continue
+            }
+            self.contains[index].populate(from: t)
+        }
+    
+        if self.contains.count > o.contains.count {
+            for i in self.contains.count...o.contains.count {
+                let objectToRemove = self.contains[i]
+                self.contains.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        identifier = o.identifier
+        offset.value = o.offset.value
+
+        for (index, t) in o.parameter.enumerated() {
+            guard index < self.parameter.count else {
+                self.parameter.append(t)
+                continue
+            }
+            self.parameter[index].populate(from: t)
+        }
+    
+        if self.parameter.count > o.parameter.count {
+            for i in self.parameter.count...o.parameter.count {
+                let objectToRemove = self.parameter[i]
+                self.parameter.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.timestamp, from: o.timestamp)
+        total.value = o.total.value
+    }
 }
 
 
@@ -1161,107 +1168,99 @@ open class ValueSetExpansionContains: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansionContains" }
 	}
-    
-    public let abstract = RealmOptional<Bool>()    
-    public dynamic var code: String?        
-        
-    public let contains = RealmSwift.List<ValueSetExpansionContains>()    
-    public dynamic var display: String?        
-        
-    public dynamic var system: String?        
-        
-    public dynamic var version: String?        
-    
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["abstract"] {
-				presentKeys.insert("abstract")
-				if let val = exist as? Bool {
-					self.abstract.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "abstract", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? String {
-					self.code = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["contains"] {
-				presentKeys.insert("contains")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ValueSetExpansionContains.instantiate(fromArray: val, owner: self) as? [ValueSetExpansionContains] {
-						if let realm = self.realm { realm.delete(self.contains) }
-						self.contains.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contains", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["system"] {
-				presentKeys.insert("system")
-				if let val = exist as? String {
-					self.system = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "system", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["version"] {
-				presentKeys.insert("version")
-				if let val = exist as? String {
-					self.version = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "version", wants: String.self, has: type(of: exist)))
-				}
-			}
+    public let abstract = RealmOptional<Bool>()
+    @objc public dynamic var code: String?
+    public let contains = RealmSwift.List<ValueSetExpansionContains>()
+    @objc public dynamic var display: String?
+    @objc public dynamic var system: String?
+    @objc public dynamic var version: String?
+
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case abstract = "abstract"
+        case code = "code"
+        case contains = "contains"
+        case display = "display"
+        case system = "system"
+        case version = "version"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.abstract.value = try container.decodeIfPresent(Bool.self, forKey: .abstract)
+        self.code = try container.decodeIfPresent(String.self, forKey: .code)
+        self.contains.append(objectsIn: try container.decodeIfPresent([ValueSetExpansionContains].self, forKey: .contains) ?? [])
+        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+        self.system = try container.decodeIfPresent(String.self, forKey: .system)
+        self.version = try container.decodeIfPresent(String.self, forKey: .version)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.abstract.value, forKey: .abstract)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encode(Array(self.contains), forKey: .contains)
+        try container.encodeIfPresent(self.display, forKey: .display)
+        try container.encodeIfPresent(self.system, forKey: .system)
+        try container.encodeIfPresent(self.version, forKey: .version)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetExpansionContains.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetExpansionContains. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetExpansionContains.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let abstract = self.abstract.value {
-			json["abstract"] = abstract.asJSON()
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if contains.count > 0 {
-			json["contains"] = Array(contains.map() { $0.asJSON() })
-		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		if let system = self.system {
-			json["system"] = system.asJSON()
-		}
-		if let version = self.version {
-			json["version"] = version.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetExpansionContains else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        abstract.value = o.abstract.value
+        code = o.code
+
+        for (index, t) in o.contains.enumerated() {
+            guard index < self.contains.count else {
+                self.contains.append(t)
+                continue
+            }
+            self.contains[index].populate(from: t)
+        }
+    
+        if self.contains.count > o.contains.count {
+            for i in self.contains.count...o.contains.count {
+                let objectToRemove = self.contains[i]
+                self.contains.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        display = o.display
+        system = o.system
+        version = o.version
+    }
 }
 
 
@@ -1275,126 +1274,94 @@ open class ValueSetExpansionParameter: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ValueSetExpansionParameter" }
 	}
-    
-    public dynamic var name: String?        
-        
-    public let valueBoolean = RealmOptional<Bool>()    
-    public dynamic var valueCode: String?        
-        
-    public dynamic var valueDecimal: RealmDecimal?        
-        
-    public let valueInteger = RealmOptional<Int>()    
-    public dynamic var valueString: String?        
-        
-    public dynamic var valueUri: String?        
-    
+
+    @objc public dynamic var name: String?
+    public let valueBoolean = RealmOptional<Bool>()
+    @objc public dynamic var valueCode: String?
+    @objc public dynamic var valueDecimal: RealmDecimal?
+    public let valueInteger = RealmOptional<Int>()
+    @objc public dynamic var valueString: String?
+    @objc public dynamic var valueUri: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(name: String) {
-        self.init(json: nil)
+        self.init()
         self.name = name
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["name"] {
-				presentKeys.insert("name")
-				if let val = exist as? String {
-					self.name = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "name", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "name"))
-			}
-			if let exist = js["valueBoolean"] {
-				presentKeys.insert("valueBoolean")
-				if let val = exist as? Bool {
-					self.valueBoolean.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueBoolean", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueCode"] {
-				presentKeys.insert("valueCode")
-				if let val = exist as? String {
-					self.valueCode = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueCode", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueDecimal"] {
-				presentKeys.insert("valueDecimal")
-				if let val = exist as? NSNumber {
-					self.valueDecimal = RealmDecimal(json: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueDecimal", wants: NSNumber.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueInteger"] {
-				presentKeys.insert("valueInteger")
-				if let val = exist as? Int {
-					self.valueInteger.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueInteger", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueString"] {
-				presentKeys.insert("valueString")
-				if let val = exist as? String {
-					self.valueString = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueString", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["valueUri"] {
-				presentKeys.insert("valueUri")
-				if let val = exist as? String {
-					self.valueUri = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "valueUri", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case valueBoolean = "valueBoolean"
+        case valueCode = "valueCode"
+        case valueDecimal = "valueDecimal"
+        case valueInteger = "valueInteger"
+        case valueString = "valueString"
+        case valueUri = "valueUri"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.valueBoolean.value = try container.decodeIfPresent(Bool.self, forKey: .valueBoolean)
+        self.valueCode = try container.decodeIfPresent(String.self, forKey: .valueCode)
+        self.valueDecimal = try container.decodeIfPresent(RealmDecimal.self, forKey: .valueDecimal)
+        self.valueInteger.value = try container.decodeIfPresent(Int.self, forKey: .valueInteger)
+        self.valueString = try container.decodeIfPresent(String.self, forKey: .valueString)
+        self.valueUri = try container.decodeIfPresent(String.self, forKey: .valueUri)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.name, forKey: .name)
+        try container.encodeIfPresent(self.valueBoolean.value, forKey: .valueBoolean)
+        try container.encodeIfPresent(self.valueCode, forKey: .valueCode)
+        try container.encodeIfPresent(self.valueDecimal, forKey: .valueDecimal)
+        try container.encodeIfPresent(self.valueInteger.value, forKey: .valueInteger)
+        try container.encodeIfPresent(self.valueString, forKey: .valueString)
+        try container.encodeIfPresent(self.valueUri, forKey: .valueUri)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ValueSetExpansionParameter.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ValueSetExpansionParameter. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ValueSetExpansionParameter.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let name = self.name {
-			json["name"] = name.asJSON()
-		}
-		if let valueBoolean = self.valueBoolean.value {
-			json["valueBoolean"] = valueBoolean.asJSON()
-		}
-		if let valueCode = self.valueCode {
-			json["valueCode"] = valueCode.asJSON()
-		}
-		if let valueDecimal = self.valueDecimal {
-			json["valueDecimal"] = valueDecimal.asJSON()
-		}
-		if let valueInteger = self.valueInteger.value {
-			json["valueInteger"] = valueInteger.asJSON()
-		}
-		if let valueString = self.valueString {
-			json["valueString"] = valueString.asJSON()
-		}
-		if let valueUri = self.valueUri {
-			json["valueUri"] = valueUri.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ValueSetExpansionParameter else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        name = o.name
+        valueBoolean.value = o.valueBoolean.value
+        valueCode = o.valueCode
+        valueDecimal = o.valueDecimal
+        valueInteger.value = o.valueInteger.value
+        valueString = o.valueString
+        valueUri = o.valueUri
+    }
 }
 

@@ -2,11 +2,14 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,245 +23,176 @@ open class AllergyIntolerance: DomainResource {
 	override open class var resourceType: String {
 		get { return "AllergyIntolerance" }
 	}
-    
-    public dynamic var category: String?        
-        
-    public dynamic var criticality: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var lastOccurence: DateTime?        
-        
-    public dynamic var note: Annotation?        
+
+    @objc public dynamic var category: String?
+    @objc public dynamic var criticality: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var lastOccurence: DateTime?
+    @objc public dynamic var note: Annotation?
     public func upsert(note: Annotation?) {
         upsert(prop: &self.note, val: note)
-    }    
-    public dynamic var onset: DateTime?        
-        
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var onset: DateTime?
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public let reaction = RealmSwift.List<AllergyIntoleranceReaction>()    
-    public dynamic var recordedDate: DateTime?        
-        
-    public dynamic var recorder: Reference?        
+    }
+    public let reaction = RealmSwift.List<AllergyIntoleranceReaction>()
+    @objc public dynamic var recordedDate: DateTime?
+    @objc public dynamic var recorder: Reference?
     public func upsert(recorder: Reference?) {
         upsert(prop: &self.recorder, val: recorder)
-    }    
-    public dynamic var reporter: Reference?        
+    }
+    @objc public dynamic var reporter: Reference?
     public func upsert(reporter: Reference?) {
         upsert(prop: &self.reporter, val: reporter)
-    }    
-    public dynamic var status: String?        
-        
-    public dynamic var substance: CodeableConcept?        
+    }
+    @objc public dynamic var status: String?
+    @objc public dynamic var substance: CodeableConcept?
     public func upsert(substance: CodeableConcept?) {
         upsert(prop: &self.substance, val: substance)
-    }    
-    public dynamic var type: String?        
-    
+    }
+    @objc public dynamic var type: String?
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(patient: Reference, substance: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.patient = patient
         self.substance = substance
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["category"] {
-				presentKeys.insert("category")
-				if let val = exist as? String {
-					self.category = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "category", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["criticality"] {
-				presentKeys.insert("criticality")
-				if let val = exist as? String {
-					self.criticality = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "criticality", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["lastOccurence"] {
-				presentKeys.insert("lastOccurence")
-				if let val = exist as? String {
-					self.lastOccurence = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "lastOccurence", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["note"] {
-				presentKeys.insert("note")
-				if let val = exist as? FHIRJSON {
-					upsert(note: Annotation(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["onset"] {
-				presentKeys.insert("onset")
-				if let val = exist as? String {
-					self.onset = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "onset", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					upsert(patient: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "patient"))
-			}
-			if let exist = js["reaction"] {
-				presentKeys.insert("reaction")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = AllergyIntoleranceReaction.instantiate(fromArray: val, owner: self) as? [AllergyIntoleranceReaction] {
-						if let realm = self.realm { realm.delete(self.reaction) }
-						self.reaction.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reaction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["recordedDate"] {
-				presentKeys.insert("recordedDate")
-				if let val = exist as? String {
-					self.recordedDate = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "recordedDate", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["recorder"] {
-				presentKeys.insert("recorder")
-				if let val = exist as? FHIRJSON {
-					upsert(recorder: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "recorder", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reporter"] {
-				presentKeys.insert("reporter")
-				if let val = exist as? FHIRJSON {
-					upsert(reporter: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reporter", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["substance"] {
-				presentKeys.insert("substance")
-				if let val = exist as? FHIRJSON {
-					upsert(substance: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "substance"))
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? String {
-					self.type = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: String.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case category = "category"
+        case criticality = "criticality"
+        case identifier = "identifier"
+        case lastOccurence = "lastOccurence"
+        case note = "note"
+        case onset = "onset"
+        case patient = "patient"
+        case reaction = "reaction"
+        case recordedDate = "recordedDate"
+        case recorder = "recorder"
+        case reporter = "reporter"
+        case status = "status"
+        case substance = "substance"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.category = try container.decodeIfPresent(String.self, forKey: .category)
+        self.criticality = try container.decodeIfPresent(String.self, forKey: .criticality)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.lastOccurence = try container.decodeIfPresent(DateTime.self, forKey: .lastOccurence)
+        self.note = try container.decodeIfPresent(Annotation.self, forKey: .note)
+        self.onset = try container.decodeIfPresent(DateTime.self, forKey: .onset)
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.reaction.append(objectsIn: try container.decodeIfPresent([AllergyIntoleranceReaction].self, forKey: .reaction) ?? [])
+        self.recordedDate = try container.decodeIfPresent(DateTime.self, forKey: .recordedDate)
+        self.recorder = try container.decodeIfPresent(Reference.self, forKey: .recorder)
+        self.reporter = try container.decodeIfPresent(Reference.self, forKey: .reporter)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.substance = try container.decodeIfPresent(CodeableConcept.self, forKey: .substance)
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.category, forKey: .category)
+        try container.encodeIfPresent(self.criticality, forKey: .criticality)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encodeIfPresent(self.lastOccurence, forKey: .lastOccurence)
+        try container.encodeIfPresent(self.note, forKey: .note)
+        try container.encodeIfPresent(self.onset, forKey: .onset)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encode(Array(self.reaction), forKey: .reaction)
+        try container.encodeIfPresent(self.recordedDate, forKey: .recordedDate)
+        try container.encodeIfPresent(self.recorder, forKey: .recorder)
+        try container.encodeIfPresent(self.reporter, forKey: .reporter)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.substance, forKey: .substance)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AllergyIntolerance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AllergyIntolerance. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return AllergyIntolerance.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let category = self.category {
-			json["category"] = category.asJSON()
-		}
-		if let criticality = self.criticality {
-			json["criticality"] = criticality.asJSON()
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if let lastOccurence = self.lastOccurence {
-			json["lastOccurence"] = lastOccurence.asJSON()
-		}
-		if let note = self.note {
-			json["note"] = note.asJSON()
-		}
-		if let onset = self.onset {
-			json["onset"] = onset.asJSON()
-		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
-		}
-		if reaction.count > 0 {
-			json["reaction"] = Array(reaction.map() { $0.asJSON() })
-		}
-		if let recordedDate = self.recordedDate {
-			json["recordedDate"] = recordedDate.asJSON()
-		}
-		if let recorder = self.recorder {
-			json["recorder"] = recorder.asJSON()
-		}
-		if let reporter = self.reporter {
-			json["reporter"] = reporter.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if let substance = self.substance {
-			json["substance"] = substance.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AllergyIntolerance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        category = o.category
+        criticality = o.criticality
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
+                self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.lastOccurence, from: o.lastOccurence)
+        FireKit.populate(&self.note, from: o.note)
+        FireKit.populate(&self.onset, from: o.onset)
+        FireKit.populate(&self.patient, from: o.patient)
+
+        for (index, t) in o.reaction.enumerated() {
+            guard index < self.reaction.count else {
+                self.reaction.append(t)
+                continue
+            }
+            self.reaction[index].populate(from: t)
+        }
+    
+        if self.reaction.count > o.reaction.count {
+            for i in self.reaction.count...o.reaction.count {
+                let objectToRemove = self.reaction[i]
+                self.reaction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.recordedDate, from: o.recordedDate)
+        FireKit.populate(&self.recorder, from: o.recorder)
+        FireKit.populate(&self.reporter, from: o.reporter)
+        status = o.status
+        FireKit.populate(&self.substance, from: o.substance)
+        type = o.type
+    }
 }
 
 
@@ -271,150 +205,123 @@ open class AllergyIntoleranceReaction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "AllergyIntoleranceReaction" }
 	}
-    
-    public dynamic var certainty: String?        
-        
-    public dynamic var description_fhir: String?        
-        
-    public dynamic var exposureRoute: CodeableConcept?        
+
+    @objc public dynamic var certainty: String?
+    @objc public dynamic var description_fhir: String?
+    @objc public dynamic var exposureRoute: CodeableConcept?
     public func upsert(exposureRoute: CodeableConcept?) {
         upsert(prop: &self.exposureRoute, val: exposureRoute)
-    }    
-    public let manifestation = RealmSwift.List<CodeableConcept>()    
-    public dynamic var note: Annotation?        
+    }
+    public let manifestation = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var note: Annotation?
     public func upsert(note: Annotation?) {
         upsert(prop: &self.note, val: note)
-    }    
-    public dynamic var onset: DateTime?        
-        
-    public dynamic var severity: String?        
-        
-    public dynamic var substance: CodeableConcept?        
+    }
+    @objc public dynamic var onset: DateTime?
+    @objc public dynamic var severity: String?
+    @objc public dynamic var substance: CodeableConcept?
     public func upsert(substance: CodeableConcept?) {
         upsert(prop: &self.substance, val: substance)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(manifestation: [CodeableConcept]) {
-        self.init(json: nil)
+        self.init()
         self.manifestation.append(objectsIn: manifestation)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["certainty"] {
-				presentKeys.insert("certainty")
-				if let val = exist as? String {
-					self.certainty = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "certainty", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["exposureRoute"] {
-				presentKeys.insert("exposureRoute")
-				if let val = exist as? FHIRJSON {
-					upsert(exposureRoute: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "exposureRoute", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["manifestation"] {
-				presentKeys.insert("manifestation")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.manifestation) }
-						self.manifestation.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "manifestation", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "manifestation"))
-			}
-			if let exist = js["note"] {
-				presentKeys.insert("note")
-				if let val = exist as? FHIRJSON {
-					upsert(note: Annotation(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "note", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["onset"] {
-				presentKeys.insert("onset")
-				if let val = exist as? String {
-					self.onset = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "onset", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["severity"] {
-				presentKeys.insert("severity")
-				if let val = exist as? String {
-					self.severity = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "severity", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["substance"] {
-				presentKeys.insert("substance")
-				if let val = exist as? FHIRJSON {
-					upsert(substance: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case certainty = "certainty"
+        case description_fhir = "description"
+        case exposureRoute = "exposureRoute"
+        case manifestation = "manifestation"
+        case note = "note"
+        case onset = "onset"
+        case severity = "severity"
+        case substance = "substance"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.certainty = try container.decodeIfPresent(String.self, forKey: .certainty)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.exposureRoute = try container.decodeIfPresent(CodeableConcept.self, forKey: .exposureRoute)
+        self.manifestation.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .manifestation) ?? [])
+        self.note = try container.decodeIfPresent(Annotation.self, forKey: .note)
+        self.onset = try container.decodeIfPresent(DateTime.self, forKey: .onset)
+        self.severity = try container.decodeIfPresent(String.self, forKey: .severity)
+        self.substance = try container.decodeIfPresent(CodeableConcept.self, forKey: .substance)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.certainty, forKey: .certainty)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.exposureRoute, forKey: .exposureRoute)
+        try container.encode(Array(self.manifestation), forKey: .manifestation)
+        try container.encodeIfPresent(self.note, forKey: .note)
+        try container.encodeIfPresent(self.onset, forKey: .onset)
+        try container.encodeIfPresent(self.severity, forKey: .severity)
+        try container.encodeIfPresent(self.substance, forKey: .substance)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(AllergyIntoleranceReaction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy AllergyIntoleranceReaction. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return AllergyIntoleranceReaction.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let certainty = self.certainty {
-			json["certainty"] = certainty.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let exposureRoute = self.exposureRoute {
-			json["exposureRoute"] = exposureRoute.asJSON()
-		}
-		if manifestation.count > 0 {
-			json["manifestation"] = Array(manifestation.map() { $0.asJSON() })
-		}
-		if let note = self.note {
-			json["note"] = note.asJSON()
-		}
-		if let onset = self.onset {
-			json["onset"] = onset.asJSON()
-		}
-		if let severity = self.severity {
-			json["severity"] = severity.asJSON()
-		}
-		if let substance = self.substance {
-			json["substance"] = substance.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? AllergyIntoleranceReaction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        certainty = o.certainty
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.exposureRoute, from: o.exposureRoute)
+
+        for (index, t) in o.manifestation.enumerated() {
+            guard index < self.manifestation.count else {
+                self.manifestation.append(t)
+                continue
+            }
+            self.manifestation[index].populate(from: t)
+        }
+    
+        if self.manifestation.count > o.manifestation.count {
+            for i in self.manifestation.count...o.manifestation.count {
+                let objectToRemove = self.manifestation[i]
+                self.manifestation.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.note, from: o.note)
+        FireKit.populate(&self.onset, from: o.onset)
+        severity = o.severity
+        FireKit.populate(&self.substance, from: o.substance)
+    }
 }
 

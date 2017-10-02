@@ -2,11 +2,14 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -20,94 +23,123 @@ open class Meta: Element {
 	override open class var resourceType: String {
 		get { return "Meta" }
 	}
-    
-    public dynamic var lastUpdated: Instant?        
-        
-    public let profile = RealmSwift.List<RealmString>()    
-    public let security = RealmSwift.List<Coding>()    
-    public let tag = RealmSwift.List<Coding>()    
-    public dynamic var versionId: String?        
-    
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["lastUpdated"] {
-				presentKeys.insert("lastUpdated")
-				if let val = exist as? String {
-					self.lastUpdated = Instant(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "lastUpdated", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["profile"] {
-				presentKeys.insert("profile")
-				if let val = exist as? [String] {
-					self.profile.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "profile", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["security"] {
-				presentKeys.insert("security")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
-						if let realm = self.realm { realm.delete(self.security) }
-						self.security.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "security", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["tag"] {
-				presentKeys.insert("tag")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Coding.instantiate(fromArray: val, owner: self) as? [Coding] {
-						if let realm = self.realm { realm.delete(self.tag) }
-						self.tag.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "tag", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["versionId"] {
-				presentKeys.insert("versionId")
-				if let val = exist as? String {
-					self.versionId = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "versionId", wants: String.self, has: type(of: exist)))
-				}
-			}
+    @objc public dynamic var lastUpdated: Instant?
+    public let profile = RealmSwift.List<RealmString>()
+    public let security = RealmSwift.List<Coding>()
+    public let tag = RealmSwift.List<Coding>()
+    @objc public dynamic var versionId: String?
+
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case lastUpdated = "lastUpdated"
+        case profile = "profile"
+        case security = "security"
+        case tag = "tag"
+        case versionId = "versionId"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.lastUpdated = try container.decodeIfPresent(Instant.self, forKey: .lastUpdated)
+        self.profile.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .profile) ?? [])
+        self.security.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .security) ?? [])
+        self.tag.append(objectsIn: try container.decodeIfPresent([Coding].self, forKey: .tag) ?? [])
+        self.versionId = try container.decodeIfPresent(String.self, forKey: .versionId)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.lastUpdated, forKey: .lastUpdated)
+        try container.encode(Array(self.profile), forKey: .profile)
+        try container.encode(Array(self.security), forKey: .security)
+        try container.encode(Array(self.tag), forKey: .tag)
+        try container.encodeIfPresent(self.versionId, forKey: .versionId)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Meta.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Meta. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Meta.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let lastUpdated = self.lastUpdated {
-			json["lastUpdated"] = lastUpdated.asJSON()
-		}
-		if profile.count > 0 {
-			json["profile"] = Array(profile.map() { $0.value })
-		}
-		if security.count > 0 {
-			json["security"] = Array(security.map() { $0.asJSON() })
-		}
-		if tag.count > 0 {
-			json["tag"] = Array(tag.map() { $0.asJSON() })
-		}
-		if let versionId = self.versionId {
-			json["versionId"] = versionId.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Meta else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.lastUpdated, from: o.lastUpdated)
+
+        for (index, t) in o.profile.enumerated() {
+            guard index < self.profile.count else {
+                self.profile.append(t)
+                continue
+            }
+            self.profile[index].populate(from: t)
+        }
+    
+        if self.profile.count > o.profile.count {
+            for i in self.profile.count...o.profile.count {
+                let objectToRemove = self.profile[i]
+                self.profile.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.security.enumerated() {
+            guard index < self.security.count else {
+                self.security.append(t)
+                continue
+            }
+            self.security[index].populate(from: t)
+        }
+    
+        if self.security.count > o.security.count {
+            for i in self.security.count...o.security.count {
+                let objectToRemove = self.security[i]
+                self.security.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.tag.enumerated() {
+            guard index < self.tag.count else {
+                self.tag.append(t)
+                continue
+            }
+            self.tag[index].populate(from: t)
+        }
+    
+        if self.tag.count > o.tag.count {
+            for i in self.tag.count...o.tag.count {
+                let objectToRemove = self.tag[i]
+                self.tag.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        versionId = o.versionId
+    }
 }
 

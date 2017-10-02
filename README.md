@@ -104,7 +104,7 @@ You have 2 options:
 7. Build and run the tests as you would for any other Xcode project.
 
 # Modifying FireKit
-All classes and tests in FireKit are generated using [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) and some old Swift3 templates he once had which I modified. Therefore, if you're interested in modifying the classes/tests, then it's best to modify the templates and re-generate the `*.swift` files using the `./generate` tool in step `6` above.
+All classes and tests in FireKit are generated using [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) and some old Swift3 templates he once had which I modified. Therefore, if you're interested in modifying the classes/tests, then it's best to modify the templates and re-generate the `*.swift` files using the `./generate` tool in step `5` above.
 
 The templates can be found in the `fhir-parser-resources/FHIR-1.6.0` directory. The main file's you'll be looking at modifying are:
  - `template-resource.swift`

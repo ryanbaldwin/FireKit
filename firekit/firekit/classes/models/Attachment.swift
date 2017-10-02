@@ -2,11 +2,14 @@
 //  Attachment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Attachment) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,132 +22,93 @@ open class Attachment: Element {
 	override open class var resourceType: String {
 		get { return "Attachment" }
 	}
-    
-    public dynamic var contentType: String?        
-        
-    public dynamic var creation: DateTime?        
-        
-    public dynamic var data: Base64Binary?        
-        
-    public dynamic var hash_fhir: Base64Binary?        
-        
-    public dynamic var language: String?        
-        
-    public let size = RealmOptional<Int>()    
-    public dynamic var title: String?        
-        
-    public dynamic var url: String?        
-    
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["contentType"] {
-				presentKeys.insert("contentType")
-				if let val = exist as? String {
-					self.contentType = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "contentType", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["creation"] {
-				presentKeys.insert("creation")
-				if let val = exist as? String {
-					self.creation = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "creation", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["data"] {
-				presentKeys.insert("data")
-				if let val = exist as? String {
-					self.data = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "data", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["hash"] {
-				presentKeys.insert("hash")
-				if let val = exist as? String {
-					self.hash_fhir = Base64Binary(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "hash", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["language"] {
-				presentKeys.insert("language")
-				if let val = exist as? String {
-					self.language = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "language", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["size"] {
-				presentKeys.insert("size")
-				if let val = exist as? Int {
-					self.size.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "size", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["title"] {
-				presentKeys.insert("title")
-				if let val = exist as? String {
-					self.title = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "title", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["url"] {
-				presentKeys.insert("url")
-				if let val = exist as? String {
-					self.url = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "url", wants: String.self, has: type(of: exist)))
-				}
-			}
+    @objc public dynamic var contentType: String?
+    @objc public dynamic var creation: DateTime?
+    @objc public dynamic var data: Base64Binary?
+    @objc public dynamic var hash_fhir: Base64Binary?
+    @objc public dynamic var language: String?
+    public let size = RealmOptional<Int>()
+    @objc public dynamic var title: String?
+    @objc public dynamic var url: String?
+
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case contentType = "contentType"
+        case creation = "creation"
+        case data = "data"
+        case hash_fhir = "hash"
+        case language = "language"
+        case size = "size"
+        case title = "title"
+        case url = "url"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.contentType = try container.decodeIfPresent(String.self, forKey: .contentType)
+        self.creation = try container.decodeIfPresent(DateTime.self, forKey: .creation)
+        self.data = try container.decodeIfPresent(Base64Binary.self, forKey: .data)
+        self.hash_fhir = try container.decodeIfPresent(Base64Binary.self, forKey: .hash_fhir)
+        self.language = try container.decodeIfPresent(String.self, forKey: .language)
+        self.size.value = try container.decodeIfPresent(Int.self, forKey: .size)
+        self.title = try container.decodeIfPresent(String.self, forKey: .title)
+        self.url = try container.decodeIfPresent(String.self, forKey: .url)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.contentType, forKey: .contentType)
+        try container.encodeIfPresent(self.creation, forKey: .creation)
+        try container.encodeIfPresent(self.data, forKey: .data)
+        try container.encodeIfPresent(self.hash_fhir, forKey: .hash_fhir)
+        try container.encodeIfPresent(self.language, forKey: .language)
+        try container.encodeIfPresent(self.size.value, forKey: .size)
+        try container.encodeIfPresent(self.title, forKey: .title)
+        try container.encodeIfPresent(self.url, forKey: .url)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Attachment.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Attachment. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Attachment.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let contentType = self.contentType {
-			json["contentType"] = contentType.asJSON()
-		}
-		if let creation = self.creation {
-			json["creation"] = creation.asJSON()
-		}
-		if let data = self.data {
-			json["data"] = data.asJSON()
-		}
-		if let hash_fhir = self.hash_fhir {
-			json["hash"] = hash_fhir.asJSON()
-		}
-		if let language = self.language {
-			json["language"] = language.asJSON()
-		}
-		if let size = self.size.value {
-			json["size"] = size.asJSON()
-		}
-		if let title = self.title {
-			json["title"] = title.asJSON()
-		}
-		if let url = self.url {
-			json["url"] = url.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Attachment else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        contentType = o.contentType
+        FireKit.populate(&self.creation, from: o.creation)
+        data = o.data
+        hash_fhir = o.hash_fhir
+        language = o.language
+        size.value = o.size.value
+        title = o.title
+        url = o.url
+    }
 }
 

@@ -2,11 +2,14 @@
 //  SupplyDelivery.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SupplyDelivery) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -19,193 +22,147 @@ open class SupplyDelivery: DomainResource {
 	override open class var resourceType: String {
 		get { return "SupplyDelivery" }
 	}
-    
-    public dynamic var destination: Reference?        
+
+    @objc public dynamic var destination: Reference?
     public func upsert(destination: Reference?) {
         upsert(prop: &self.destination, val: destination)
-    }    
-    public dynamic var identifier: Identifier?        
+    }
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var patient: Reference?        
+    }
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var quantity: Quantity?        
+    }
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public let receiver = RealmSwift.List<Reference>()    
-    public dynamic var status: String?        
-        
-    public dynamic var suppliedItem: Reference?        
+    }
+    public let receiver = RealmSwift.List<Reference>()
+    @objc public dynamic var status: String?
+    @objc public dynamic var suppliedItem: Reference?
     public func upsert(suppliedItem: Reference?) {
         upsert(prop: &self.suppliedItem, val: suppliedItem)
-    }    
-    public dynamic var supplier: Reference?        
+    }
+    @objc public dynamic var supplier: Reference?
     public func upsert(supplier: Reference?) {
         upsert(prop: &self.supplier, val: supplier)
-    }    
-    public dynamic var time: DateTime?        
-        
-    public dynamic var type: CodeableConcept?        
+    }
+    @objc public dynamic var time: DateTime?
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
-    }    
-    public dynamic var whenPrepared: Period?        
+    }
+    @objc public dynamic var whenPrepared: Period?
     public func upsert(whenPrepared: Period?) {
         upsert(prop: &self.whenPrepared, val: whenPrepared)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["destination"] {
-				presentKeys.insert("destination")
-				if let val = exist as? FHIRJSON {
-					upsert(destination: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "destination", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					upsert(patient: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					upsert(quantity: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["receiver"] {
-				presentKeys.insert("receiver")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
-						if let realm = self.realm { realm.delete(self.receiver) }
-						self.receiver.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "receiver", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["suppliedItem"] {
-				presentKeys.insert("suppliedItem")
-				if let val = exist as? FHIRJSON {
-					upsert(suppliedItem: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "suppliedItem", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["supplier"] {
-				presentKeys.insert("supplier")
-				if let val = exist as? FHIRJSON {
-					upsert(supplier: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "supplier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["time"] {
-				presentKeys.insert("time")
-				if let val = exist as? String {
-					self.time = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "time", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["whenPrepared"] {
-				presentKeys.insert("whenPrepared")
-				if let val = exist as? FHIRJSON {
-					upsert(whenPrepared: Period(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "whenPrepared", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case destination = "destination"
+        case identifier = "identifier"
+        case patient = "patient"
+        case quantity = "quantity"
+        case receiver = "receiver"
+        case status = "status"
+        case suppliedItem = "suppliedItem"
+        case supplier = "supplier"
+        case time = "time"
+        case type = "type"
+        case whenPrepared = "whenPrepared"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.destination = try container.decodeIfPresent(Reference.self, forKey: .destination)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.quantity = try container.decodeIfPresent(Quantity.self, forKey: .quantity)
+        self.receiver.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .receiver) ?? [])
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.suppliedItem = try container.decodeIfPresent(Reference.self, forKey: .suppliedItem)
+        self.supplier = try container.decodeIfPresent(Reference.self, forKey: .supplier)
+        self.time = try container.decodeIfPresent(DateTime.self, forKey: .time)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+        self.whenPrepared = try container.decodeIfPresent(Period.self, forKey: .whenPrepared)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.destination, forKey: .destination)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encode(Array(self.receiver), forKey: .receiver)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encodeIfPresent(self.suppliedItem, forKey: .suppliedItem)
+        try container.encodeIfPresent(self.supplier, forKey: .supplier)
+        try container.encodeIfPresent(self.time, forKey: .time)
+        try container.encodeIfPresent(self.type, forKey: .type)
+        try container.encodeIfPresent(self.whenPrepared, forKey: .whenPrepared)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SupplyDelivery.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SupplyDelivery. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return SupplyDelivery.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let destination = self.destination {
-			json["destination"] = destination.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
-		}
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		if receiver.count > 0 {
-			json["receiver"] = Array(receiver.map() { $0.asJSON() })
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if let suppliedItem = self.suppliedItem {
-			json["suppliedItem"] = suppliedItem.asJSON()
-		}
-		if let supplier = self.supplier {
-			json["supplier"] = supplier.asJSON()
-		}
-		if let time = self.time {
-			json["time"] = time.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		if let whenPrepared = self.whenPrepared {
-			json["whenPrepared"] = whenPrepared.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SupplyDelivery else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.destination, from: o.destination)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.quantity, from: o.quantity)
+
+        for (index, t) in o.receiver.enumerated() {
+            guard index < self.receiver.count else {
+                self.receiver.append(t)
+                continue
+            }
+            self.receiver[index].populate(from: t)
+        }
+    
+        if self.receiver.count > o.receiver.count {
+            for i in self.receiver.count...o.receiver.count {
+                let objectToRemove = self.receiver[i]
+                self.receiver.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        status = o.status
+        FireKit.populate(&self.suppliedItem, from: o.suppliedItem)
+        FireKit.populate(&self.supplier, from: o.supplier)
+        FireKit.populate(&self.time, from: o.time)
+        FireKit.populate(&self.type, from: o.type)
+        FireKit.populate(&self.whenPrepared, from: o.whenPrepared)
+    }
 }
 

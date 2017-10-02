@@ -2,11 +2,14 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -17,365 +20,335 @@ open class HealthcareService: DomainResource {
 	override open class var resourceType: String {
 		get { return "HealthcareService" }
 	}
-    
-    public let appointmentRequired = RealmOptional<Bool>()    
-    public dynamic var availabilityExceptions: String?        
-        
-    public let availableTime = RealmSwift.List<HealthcareServiceAvailableTime>()    
-    public let characteristic = RealmSwift.List<CodeableConcept>()    
-    public dynamic var comment: String?        
-        
-    public let coverageArea = RealmSwift.List<Reference>()    
-    public dynamic var eligibility: CodeableConcept?        
+
+    public let appointmentRequired = RealmOptional<Bool>()
+    @objc public dynamic var availabilityExceptions: String?
+    public let availableTime = RealmSwift.List<HealthcareServiceAvailableTime>()
+    public let characteristic = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var comment: String?
+    public let coverageArea = RealmSwift.List<Reference>()
+    @objc public dynamic var eligibility: CodeableConcept?
     public func upsert(eligibility: CodeableConcept?) {
         upsert(prop: &self.eligibility, val: eligibility)
-    }    
-    public dynamic var eligibilityNote: String?        
-        
-    public dynamic var extraDetails: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var location: Reference?        
+    }
+    @objc public dynamic var eligibilityNote: String?
+    @objc public dynamic var extraDetails: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var location: Reference?
     public func upsert(location: Reference?) {
         upsert(prop: &self.location, val: location)
-    }    
-    public let notAvailable = RealmSwift.List<HealthcareServiceNotAvailable>()    
-    public dynamic var photo: Attachment?        
+    }
+    public let notAvailable = RealmSwift.List<HealthcareServiceNotAvailable>()
+    @objc public dynamic var photo: Attachment?
     public func upsert(photo: Attachment?) {
         upsert(prop: &self.photo, val: photo)
-    }    
-    public let programName = RealmSwift.List<RealmString>()    
-    public dynamic var providedBy: Reference?        
+    }
+    public let programName = RealmSwift.List<RealmString>()
+    @objc public dynamic var providedBy: Reference?
     public func upsert(providedBy: Reference?) {
         upsert(prop: &self.providedBy, val: providedBy)
-    }    
-    public dynamic var publicKey: String?        
-        
-    public let referralMethod = RealmSwift.List<CodeableConcept>()    
-    public dynamic var serviceCategory: CodeableConcept?        
+    }
+    @objc public dynamic var publicKey: String?
+    public let referralMethod = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var serviceCategory: CodeableConcept?
     public func upsert(serviceCategory: CodeableConcept?) {
         upsert(prop: &self.serviceCategory, val: serviceCategory)
-    }    
-    public dynamic var serviceName: String?        
-        
-    public let serviceProvisionCode = RealmSwift.List<CodeableConcept>()    
-    public let serviceType = RealmSwift.List<HealthcareServiceServiceType>()    
+    }
+    @objc public dynamic var serviceName: String?
+    public let serviceProvisionCode = RealmSwift.List<CodeableConcept>()
+    public let serviceType = RealmSwift.List<HealthcareServiceServiceType>()
     public let telecom = RealmSwift.List<ContactPoint>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(location: Reference) {
-        self.init(json: nil)
+        self.init()
         self.location = location
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["appointmentRequired"] {
-				presentKeys.insert("appointmentRequired")
-				if let val = exist as? Bool {
-					self.appointmentRequired.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "appointmentRequired", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["availabilityExceptions"] {
-				presentKeys.insert("availabilityExceptions")
-				if let val = exist as? String {
-					self.availabilityExceptions = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "availabilityExceptions", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["availableTime"] {
-				presentKeys.insert("availableTime")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = HealthcareServiceAvailableTime.instantiate(fromArray: val, owner: self) as? [HealthcareServiceAvailableTime] {
-						if let realm = self.realm { realm.delete(self.availableTime) }
-						self.availableTime.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "availableTime", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["characteristic"] {
-				presentKeys.insert("characteristic")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.characteristic) }
-						self.characteristic.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "characteristic", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["comment"] {
-				presentKeys.insert("comment")
-				if let val = exist as? String {
-					self.comment = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "comment", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["coverageArea"] {
-				presentKeys.insert("coverageArea")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
-						if let realm = self.realm { realm.delete(self.coverageArea) }
-						self.coverageArea.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "coverageArea", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["eligibility"] {
-				presentKeys.insert("eligibility")
-				if let val = exist as? FHIRJSON {
-					upsert(eligibility: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "eligibility", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["eligibilityNote"] {
-				presentKeys.insert("eligibilityNote")
-				if let val = exist as? String {
-					self.eligibilityNote = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "eligibilityNote", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["extraDetails"] {
-				presentKeys.insert("extraDetails")
-				if let val = exist as? String {
-					self.extraDetails = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "extraDetails", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["location"] {
-				presentKeys.insert("location")
-				if let val = exist as? FHIRJSON {
-					upsert(location: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "location"))
-			}
-			if let exist = js["notAvailable"] {
-				presentKeys.insert("notAvailable")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = HealthcareServiceNotAvailable.instantiate(fromArray: val, owner: self) as? [HealthcareServiceNotAvailable] {
-						if let realm = self.realm { realm.delete(self.notAvailable) }
-						self.notAvailable.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "notAvailable", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["photo"] {
-				presentKeys.insert("photo")
-				if let val = exist as? FHIRJSON {
-					upsert(photo: Attachment(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "photo", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["programName"] {
-				presentKeys.insert("programName")
-				if let val = exist as? [String] {
-					self.programName.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "programName", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["providedBy"] {
-				presentKeys.insert("providedBy")
-				if let val = exist as? FHIRJSON {
-					upsert(providedBy: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "providedBy", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["publicKey"] {
-				presentKeys.insert("publicKey")
-				if let val = exist as? String {
-					self.publicKey = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "publicKey", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["referralMethod"] {
-				presentKeys.insert("referralMethod")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.referralMethod) }
-						self.referralMethod.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "referralMethod", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["serviceCategory"] {
-				presentKeys.insert("serviceCategory")
-				if let val = exist as? FHIRJSON {
-					upsert(serviceCategory: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "serviceCategory", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["serviceName"] {
-				presentKeys.insert("serviceName")
-				if let val = exist as? String {
-					self.serviceName = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "serviceName", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["serviceProvisionCode"] {
-				presentKeys.insert("serviceProvisionCode")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.serviceProvisionCode) }
-						self.serviceProvisionCode.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "serviceProvisionCode", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["serviceType"] {
-				presentKeys.insert("serviceType")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = HealthcareServiceServiceType.instantiate(fromArray: val, owner: self) as? [HealthcareServiceServiceType] {
-						if let realm = self.realm { realm.delete(self.serviceType) }
-						self.serviceType.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "serviceType", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["telecom"] {
-				presentKeys.insert("telecom")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ContactPoint.instantiate(fromArray: val, owner: self) as? [ContactPoint] {
-						if let realm = self.realm { realm.delete(self.telecom) }
-						self.telecom.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "telecom", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case appointmentRequired = "appointmentRequired"
+        case availabilityExceptions = "availabilityExceptions"
+        case availableTime = "availableTime"
+        case characteristic = "characteristic"
+        case comment = "comment"
+        case coverageArea = "coverageArea"
+        case eligibility = "eligibility"
+        case eligibilityNote = "eligibilityNote"
+        case extraDetails = "extraDetails"
+        case identifier = "identifier"
+        case location = "location"
+        case notAvailable = "notAvailable"
+        case photo = "photo"
+        case programName = "programName"
+        case providedBy = "providedBy"
+        case publicKey = "publicKey"
+        case referralMethod = "referralMethod"
+        case serviceCategory = "serviceCategory"
+        case serviceName = "serviceName"
+        case serviceProvisionCode = "serviceProvisionCode"
+        case serviceType = "serviceType"
+        case telecom = "telecom"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.appointmentRequired.value = try container.decodeIfPresent(Bool.self, forKey: .appointmentRequired)
+        self.availabilityExceptions = try container.decodeIfPresent(String.self, forKey: .availabilityExceptions)
+        self.availableTime.append(objectsIn: try container.decodeIfPresent([HealthcareServiceAvailableTime].self, forKey: .availableTime) ?? [])
+        self.characteristic.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .characteristic) ?? [])
+        self.comment = try container.decodeIfPresent(String.self, forKey: .comment)
+        self.coverageArea.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .coverageArea) ?? [])
+        self.eligibility = try container.decodeIfPresent(CodeableConcept.self, forKey: .eligibility)
+        self.eligibilityNote = try container.decodeIfPresent(String.self, forKey: .eligibilityNote)
+        self.extraDetails = try container.decodeIfPresent(String.self, forKey: .extraDetails)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.location = try container.decodeIfPresent(Reference.self, forKey: .location)
+        self.notAvailable.append(objectsIn: try container.decodeIfPresent([HealthcareServiceNotAvailable].self, forKey: .notAvailable) ?? [])
+        self.photo = try container.decodeIfPresent(Attachment.self, forKey: .photo)
+        self.programName.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .programName) ?? [])
+        self.providedBy = try container.decodeIfPresent(Reference.self, forKey: .providedBy)
+        self.publicKey = try container.decodeIfPresent(String.self, forKey: .publicKey)
+        self.referralMethod.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .referralMethod) ?? [])
+        self.serviceCategory = try container.decodeIfPresent(CodeableConcept.self, forKey: .serviceCategory)
+        self.serviceName = try container.decodeIfPresent(String.self, forKey: .serviceName)
+        self.serviceProvisionCode.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .serviceProvisionCode) ?? [])
+        self.serviceType.append(objectsIn: try container.decodeIfPresent([HealthcareServiceServiceType].self, forKey: .serviceType) ?? [])
+        self.telecom.append(objectsIn: try container.decodeIfPresent([ContactPoint].self, forKey: .telecom) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.appointmentRequired.value, forKey: .appointmentRequired)
+        try container.encodeIfPresent(self.availabilityExceptions, forKey: .availabilityExceptions)
+        try container.encode(Array(self.availableTime), forKey: .availableTime)
+        try container.encode(Array(self.characteristic), forKey: .characteristic)
+        try container.encodeIfPresent(self.comment, forKey: .comment)
+        try container.encode(Array(self.coverageArea), forKey: .coverageArea)
+        try container.encodeIfPresent(self.eligibility, forKey: .eligibility)
+        try container.encodeIfPresent(self.eligibilityNote, forKey: .eligibilityNote)
+        try container.encodeIfPresent(self.extraDetails, forKey: .extraDetails)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encode(Array(self.notAvailable), forKey: .notAvailable)
+        try container.encodeIfPresent(self.photo, forKey: .photo)
+        try container.encode(Array(self.programName), forKey: .programName)
+        try container.encodeIfPresent(self.providedBy, forKey: .providedBy)
+        try container.encodeIfPresent(self.publicKey, forKey: .publicKey)
+        try container.encode(Array(self.referralMethod), forKey: .referralMethod)
+        try container.encodeIfPresent(self.serviceCategory, forKey: .serviceCategory)
+        try container.encodeIfPresent(self.serviceName, forKey: .serviceName)
+        try container.encode(Array(self.serviceProvisionCode), forKey: .serviceProvisionCode)
+        try container.encode(Array(self.serviceType), forKey: .serviceType)
+        try container.encode(Array(self.telecom), forKey: .telecom)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareService.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareService. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return HealthcareService.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let appointmentRequired = self.appointmentRequired.value {
-			json["appointmentRequired"] = appointmentRequired.asJSON()
-		}
-		if let availabilityExceptions = self.availabilityExceptions {
-			json["availabilityExceptions"] = availabilityExceptions.asJSON()
-		}
-		if availableTime.count > 0 {
-			json["availableTime"] = Array(availableTime.map() { $0.asJSON() })
-		}
-		if characteristic.count > 0 {
-			json["characteristic"] = Array(characteristic.map() { $0.asJSON() })
-		}
-		if let comment = self.comment {
-			json["comment"] = comment.asJSON()
-		}
-		if coverageArea.count > 0 {
-			json["coverageArea"] = Array(coverageArea.map() { $0.asJSON() })
-		}
-		if let eligibility = self.eligibility {
-			json["eligibility"] = eligibility.asJSON()
-		}
-		if let eligibilityNote = self.eligibilityNote {
-			json["eligibilityNote"] = eligibilityNote.asJSON()
-		}
-		if let extraDetails = self.extraDetails {
-			json["extraDetails"] = extraDetails.asJSON()
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if let location = self.location {
-			json["location"] = location.asJSON()
-		}
-		if notAvailable.count > 0 {
-			json["notAvailable"] = Array(notAvailable.map() { $0.asJSON() })
-		}
-		if let photo = self.photo {
-			json["photo"] = photo.asJSON()
-		}
-		if programName.count > 0 {
-			json["programName"] = Array(programName.map() { $0.value })
-		}
-		if let providedBy = self.providedBy {
-			json["providedBy"] = providedBy.asJSON()
-		}
-		if let publicKey = self.publicKey {
-			json["publicKey"] = publicKey.asJSON()
-		}
-		if referralMethod.count > 0 {
-			json["referralMethod"] = Array(referralMethod.map() { $0.asJSON() })
-		}
-		if let serviceCategory = self.serviceCategory {
-			json["serviceCategory"] = serviceCategory.asJSON()
-		}
-		if let serviceName = self.serviceName {
-			json["serviceName"] = serviceName.asJSON()
-		}
-		if serviceProvisionCode.count > 0 {
-			json["serviceProvisionCode"] = Array(serviceProvisionCode.map() { $0.asJSON() })
-		}
-		if serviceType.count > 0 {
-			json["serviceType"] = Array(serviceType.map() { $0.asJSON() })
-		}
-		if telecom.count > 0 {
-			json["telecom"] = Array(telecom.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? HealthcareService else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        appointmentRequired.value = o.appointmentRequired.value
+        availabilityExceptions = o.availabilityExceptions
+
+        for (index, t) in o.availableTime.enumerated() {
+            guard index < self.availableTime.count else {
+                self.availableTime.append(t)
+                continue
+            }
+            self.availableTime[index].populate(from: t)
+        }
+    
+        if self.availableTime.count > o.availableTime.count {
+            for i in self.availableTime.count...o.availableTime.count {
+                let objectToRemove = self.availableTime[i]
+                self.availableTime.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.characteristic.enumerated() {
+            guard index < self.characteristic.count else {
+                self.characteristic.append(t)
+                continue
+            }
+            self.characteristic[index].populate(from: t)
+        }
+    
+        if self.characteristic.count > o.characteristic.count {
+            for i in self.characteristic.count...o.characteristic.count {
+                let objectToRemove = self.characteristic[i]
+                self.characteristic.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        comment = o.comment
+
+        for (index, t) in o.coverageArea.enumerated() {
+            guard index < self.coverageArea.count else {
+                self.coverageArea.append(t)
+                continue
+            }
+            self.coverageArea[index].populate(from: t)
+        }
+    
+        if self.coverageArea.count > o.coverageArea.count {
+            for i in self.coverageArea.count...o.coverageArea.count {
+                let objectToRemove = self.coverageArea[i]
+                self.coverageArea.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.eligibility, from: o.eligibility)
+        eligibilityNote = o.eligibilityNote
+        extraDetails = o.extraDetails
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
+                self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.location, from: o.location)
+
+        for (index, t) in o.notAvailable.enumerated() {
+            guard index < self.notAvailable.count else {
+                self.notAvailable.append(t)
+                continue
+            }
+            self.notAvailable[index].populate(from: t)
+        }
+    
+        if self.notAvailable.count > o.notAvailable.count {
+            for i in self.notAvailable.count...o.notAvailable.count {
+                let objectToRemove = self.notAvailable[i]
+                self.notAvailable.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.photo, from: o.photo)
+
+        for (index, t) in o.programName.enumerated() {
+            guard index < self.programName.count else {
+                self.programName.append(t)
+                continue
+            }
+            self.programName[index].populate(from: t)
+        }
+    
+        if self.programName.count > o.programName.count {
+            for i in self.programName.count...o.programName.count {
+                let objectToRemove = self.programName[i]
+                self.programName.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.providedBy, from: o.providedBy)
+        publicKey = o.publicKey
+
+        for (index, t) in o.referralMethod.enumerated() {
+            guard index < self.referralMethod.count else {
+                self.referralMethod.append(t)
+                continue
+            }
+            self.referralMethod[index].populate(from: t)
+        }
+    
+        if self.referralMethod.count > o.referralMethod.count {
+            for i in self.referralMethod.count...o.referralMethod.count {
+                let objectToRemove = self.referralMethod[i]
+                self.referralMethod.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.serviceCategory, from: o.serviceCategory)
+        serviceName = o.serviceName
+
+        for (index, t) in o.serviceProvisionCode.enumerated() {
+            guard index < self.serviceProvisionCode.count else {
+                self.serviceProvisionCode.append(t)
+                continue
+            }
+            self.serviceProvisionCode[index].populate(from: t)
+        }
+    
+        if self.serviceProvisionCode.count > o.serviceProvisionCode.count {
+            for i in self.serviceProvisionCode.count...o.serviceProvisionCode.count {
+                let objectToRemove = self.serviceProvisionCode[i]
+                self.serviceProvisionCode.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.serviceType.enumerated() {
+            guard index < self.serviceType.count else {
+                self.serviceType.append(t)
+                continue
+            }
+            self.serviceType[index].populate(from: t)
+        }
+    
+        if self.serviceType.count > o.serviceType.count {
+            for i in self.serviceType.count...o.serviceType.count {
+                let objectToRemove = self.serviceType[i]
+                self.serviceType.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.telecom.enumerated() {
+            guard index < self.telecom.count else {
+                self.telecom.append(t)
+                continue
+            }
+            self.telecom[index].populate(from: t)
+        }
+    
+        if self.telecom.count > o.telecom.count {
+            for i in self.telecom.count...o.telecom.count {
+                let objectToRemove = self.telecom[i]
+                self.telecom.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -388,76 +361,89 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceAvailableTime" }
 	}
-    
-    public let allDay = RealmOptional<Bool>()    
-    public dynamic var availableEndTime: FHIRTime?        
-        
-    public dynamic var availableStartTime: FHIRTime?        
-        
+
+    public let allDay = RealmOptional<Bool>()
+    @objc public dynamic var availableEndTime: FHIRTime?
+    @objc public dynamic var availableStartTime: FHIRTime?
     public let daysOfWeek = RealmSwift.List<RealmString>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["allDay"] {
-				presentKeys.insert("allDay")
-				if let val = exist as? Bool {
-					self.allDay.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "allDay", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["availableEndTime"] {
-				presentKeys.insert("availableEndTime")
-				if let val = exist as? String {
-					self.availableEndTime = FHIRTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "availableEndTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["availableStartTime"] {
-				presentKeys.insert("availableStartTime")
-				if let val = exist as? String {
-					self.availableStartTime = FHIRTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "availableStartTime", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["daysOfWeek"] {
-				presentKeys.insert("daysOfWeek")
-				if let val = exist as? [String] {
-					self.daysOfWeek.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "daysOfWeek", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case allDay = "allDay"
+        case availableEndTime = "availableEndTime"
+        case availableStartTime = "availableStartTime"
+        case daysOfWeek = "daysOfWeek"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.allDay.value = try container.decodeIfPresent(Bool.self, forKey: .allDay)
+        self.availableEndTime = try container.decodeIfPresent(FHIRTime.self, forKey: .availableEndTime)
+        self.availableStartTime = try container.decodeIfPresent(FHIRTime.self, forKey: .availableStartTime)
+        self.daysOfWeek.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .daysOfWeek) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.allDay.value, forKey: .allDay)
+        try container.encodeIfPresent(self.availableEndTime, forKey: .availableEndTime)
+        try container.encodeIfPresent(self.availableStartTime, forKey: .availableStartTime)
+        try container.encode(Array(self.daysOfWeek), forKey: .daysOfWeek)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareServiceAvailableTime.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareServiceAvailableTime. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return HealthcareServiceAvailableTime.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let allDay = self.allDay.value {
-			json["allDay"] = allDay.asJSON()
-		}
-		if let availableEndTime = self.availableEndTime {
-			json["availableEndTime"] = availableEndTime.asJSON()
-		}
-		if let availableStartTime = self.availableStartTime {
-			json["availableStartTime"] = availableStartTime.asJSON()
-		}
-		if daysOfWeek.count > 0 {
-			json["daysOfWeek"] = Array(daysOfWeek.map() { $0.value })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? HealthcareServiceAvailableTime else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        allDay.value = o.allDay.value
+        FireKit.populate(&self.availableEndTime, from: o.availableEndTime)
+        FireKit.populate(&self.availableStartTime, from: o.availableStartTime)
+
+        for (index, t) in o.daysOfWeek.enumerated() {
+            guard index < self.daysOfWeek.count else {
+                self.daysOfWeek.append(t)
+                continue
+            }
+            self.daysOfWeek[index].populate(from: t)
+        }
+    
+        if self.daysOfWeek.count > o.daysOfWeek.count {
+            for i in self.daysOfWeek.count...o.daysOfWeek.count {
+                let objectToRemove = self.daysOfWeek[i]
+                self.daysOfWeek.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -470,61 +456,73 @@ open class HealthcareServiceNotAvailable: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceNotAvailable" }
 	}
-    
-    public dynamic var description_fhir: String?        
-        
-    public dynamic var during: Period?        
+
+    @objc public dynamic var description_fhir: String?
+    @objc public dynamic var during: Period?
     public func upsert(during: Period?) {
         upsert(prop: &self.during, val: during)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(description_fhir: String) {
-        self.init(json: nil)
+        self.init()
         self.description_fhir = description_fhir
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "description"))
-			}
-			if let exist = js["during"] {
-				presentKeys.insert("during")
-				if let val = exist as? FHIRJSON {
-					upsert(during: Period(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "during", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case description_fhir = "description"
+        case during = "during"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.during = try container.decodeIfPresent(Period.self, forKey: .during)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.during, forKey: .during)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareServiceNotAvailable.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareServiceNotAvailable. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return HealthcareServiceNotAvailable.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let during = self.during {
-			json["during"] = during.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? HealthcareServiceNotAvailable else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        description_fhir = o.description_fhir
+        FireKit.populate(&self.during, from: o.during)
+    }
 }
 
 
@@ -537,62 +535,87 @@ open class HealthcareServiceServiceType: BackboneElement {
 	override open class var resourceType: String {
 		get { return "HealthcareServiceServiceType" }
 	}
-    
-    public let specialty = RealmSwift.List<CodeableConcept>()    
-    public dynamic var type: CodeableConcept?        
+
+    public let specialty = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(type: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.type = type
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["specialty"] {
-				presentKeys.insert("specialty")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.specialty) }
-						self.specialty.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "specialty", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case specialty = "specialty"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.specialty.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .specialty) ?? [])
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.specialty), forKey: .specialty)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(HealthcareServiceServiceType.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy HealthcareServiceServiceType. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return HealthcareServiceServiceType.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if specialty.count > 0 {
-			json["specialty"] = Array(specialty.map() { $0.asJSON() })
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? HealthcareServiceServiceType else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.specialty.enumerated() {
+            guard index < self.specialty.count else {
+                self.specialty.append(t)
+                continue
+            }
+            self.specialty[index].populate(from: t)
+        }
+    
+        if self.specialty.count > o.specialty.count {
+            for i in self.specialty.count...o.specialty.count {
+                let objectToRemove = self.specialty[i]
+                self.specialty.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
 

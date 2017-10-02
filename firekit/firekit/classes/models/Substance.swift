@@ -2,11 +2,14 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -17,125 +20,153 @@ open class Substance: DomainResource {
 	override open class var resourceType: String {
 		get { return "Substance" }
 	}
-    
-    public let category = RealmSwift.List<CodeableConcept>()    
-    public dynamic var code: CodeableConcept?        
+
+    public let category = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var code: CodeableConcept?
     public func upsert(code: CodeableConcept?) {
         upsert(prop: &self.code, val: code)
-    }    
-    public dynamic var description_fhir: String?        
-        
-    public let identifier = RealmSwift.List<Identifier>()    
-    public let ingredient = RealmSwift.List<SubstanceIngredient>()    
+    }
+    @objc public dynamic var description_fhir: String?
+    public let identifier = RealmSwift.List<Identifier>()
+    public let ingredient = RealmSwift.List<SubstanceIngredient>()
     public let instance = RealmSwift.List<SubstanceInstance>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(code: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.code = code
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["category"] {
-				presentKeys.insert("category")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.category) }
-						self.category.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "category", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["code"] {
-				presentKeys.insert("code")
-				if let val = exist as? FHIRJSON {
-					upsert(code: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "code", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "code"))
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["ingredient"] {
-				presentKeys.insert("ingredient")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = SubstanceIngredient.instantiate(fromArray: val, owner: self) as? [SubstanceIngredient] {
-						if let realm = self.realm { realm.delete(self.ingredient) }
-						self.ingredient.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "ingredient", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["instance"] {
-				presentKeys.insert("instance")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = SubstanceInstance.instantiate(fromArray: val, owner: self) as? [SubstanceInstance] {
-						if let realm = self.realm { realm.delete(self.instance) }
-						self.instance.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "instance", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case category = "category"
+        case code = "code"
+        case description_fhir = "description"
+        case identifier = "identifier"
+        case ingredient = "ingredient"
+        case instance = "instance"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.category.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .category) ?? [])
+        self.code = try container.decodeIfPresent(CodeableConcept.self, forKey: .code)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.ingredient.append(objectsIn: try container.decodeIfPresent([SubstanceIngredient].self, forKey: .ingredient) ?? [])
+        self.instance.append(objectsIn: try container.decodeIfPresent([SubstanceInstance].self, forKey: .instance) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.category), forKey: .category)
+        try container.encodeIfPresent(self.code, forKey: .code)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encode(Array(self.ingredient), forKey: .ingredient)
+        try container.encode(Array(self.instance), forKey: .instance)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Substance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Substance. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Substance.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if category.count > 0 {
-			json["category"] = Array(category.map() { $0.asJSON() })
-		}
-		if let code = self.code {
-			json["code"] = code.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if ingredient.count > 0 {
-			json["ingredient"] = Array(ingredient.map() { $0.asJSON() })
-		}
-		if instance.count > 0 {
-			json["instance"] = Array(instance.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Substance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.category.enumerated() {
+            guard index < self.category.count else {
+                self.category.append(t)
+                continue
+            }
+            self.category[index].populate(from: t)
+        }
+    
+        if self.category.count > o.category.count {
+            for i in self.category.count...o.category.count {
+                let objectToRemove = self.category[i]
+                self.category.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.code, from: o.code)
+        description_fhir = o.description_fhir
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
+                self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.ingredient.enumerated() {
+            guard index < self.ingredient.count else {
+                self.ingredient.append(t)
+                continue
+            }
+            self.ingredient[index].populate(from: t)
+        }
+    
+        if self.ingredient.count > o.ingredient.count {
+            for i in self.ingredient.count...o.ingredient.count {
+                let objectToRemove = self.ingredient[i]
+                self.ingredient.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.instance.enumerated() {
+            guard index < self.instance.count else {
+                self.instance.append(t)
+                continue
+            }
+            self.instance[index].populate(from: t)
+        }
+    
+        if self.instance.count > o.instance.count {
+            for i in self.instance.count...o.instance.count {
+                let objectToRemove = self.instance[i]
+                self.instance.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -148,63 +179,76 @@ open class SubstanceIngredient: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubstanceIngredient" }
 	}
-    
-    public dynamic var quantity: Ratio?        
+
+    @objc public dynamic var quantity: Ratio?
     public func upsert(quantity: Ratio?) {
         upsert(prop: &self.quantity, val: quantity)
-    }    
-    public dynamic var substance: Reference?        
+    }
+    @objc public dynamic var substance: Reference?
     public func upsert(substance: Reference?) {
         upsert(prop: &self.substance, val: substance)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(substance: Reference) {
-        self.init(json: nil)
+        self.init()
         self.substance = substance
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					upsert(quantity: Ratio(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["substance"] {
-				presentKeys.insert("substance")
-				if let val = exist as? FHIRJSON {
-					upsert(substance: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "substance", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "substance"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case quantity = "quantity"
+        case substance = "substance"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.quantity = try container.decodeIfPresent(Ratio.self, forKey: .quantity)
+        self.substance = try container.decodeIfPresent(Reference.self, forKey: .substance)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+        try container.encodeIfPresent(self.substance, forKey: .substance)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SubstanceIngredient.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SubstanceIngredient. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return SubstanceIngredient.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		if let substance = self.substance {
-			json["substance"] = substance.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SubstanceIngredient else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.quantity, from: o.quantity)
+        FireKit.populate(&self.substance, from: o.substance)
+    }
 }
 
 
@@ -218,67 +262,74 @@ open class SubstanceInstance: BackboneElement {
 	override open class var resourceType: String {
 		get { return "SubstanceInstance" }
 	}
-    
-    public dynamic var expiry: DateTime?        
-        
-    public dynamic var identifier: Identifier?        
+
+    @objc public dynamic var expiry: DateTime?
+    @objc public dynamic var identifier: Identifier?
     public func upsert(identifier: Identifier?) {
         upsert(prop: &self.identifier, val: identifier)
-    }    
-    public dynamic var quantity: Quantity?        
+    }
+    @objc public dynamic var quantity: Quantity?
     public func upsert(quantity: Quantity?) {
         upsert(prop: &self.quantity, val: quantity)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["expiry"] {
-				presentKeys.insert("expiry")
-				if let val = exist as? String {
-					self.expiry = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "expiry", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? FHIRJSON {
-					upsert(identifier: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["quantity"] {
-				presentKeys.insert("quantity")
-				if let val = exist as? FHIRJSON {
-					upsert(quantity: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "quantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case expiry = "expiry"
+        case identifier = "identifier"
+        case quantity = "quantity"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.expiry = try container.decodeIfPresent(DateTime.self, forKey: .expiry)
+        self.identifier = try container.decodeIfPresent(Identifier.self, forKey: .identifier)
+        self.quantity = try container.decodeIfPresent(Quantity.self, forKey: .quantity)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.expiry, forKey: .expiry)
+        try container.encodeIfPresent(self.identifier, forKey: .identifier)
+        try container.encodeIfPresent(self.quantity, forKey: .quantity)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(SubstanceInstance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy SubstanceInstance. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return SubstanceInstance.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let expiry = self.expiry {
-			json["expiry"] = expiry.asJSON()
-		}
-		if let identifier = self.identifier {
-			json["identifier"] = identifier.asJSON()
-		}
-		if let quantity = self.quantity {
-			json["quantity"] = quantity.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? SubstanceInstance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.expiry, from: o.expiry)
+        FireKit.populate(&self.identifier, from: o.identifier)
+        FireKit.populate(&self.quantity, from: o.quantity)
+    }
 }
 

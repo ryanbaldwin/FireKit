@@ -2,11 +2,14 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -25,190 +28,210 @@ open class Provenance: DomainResource {
 	override open class var resourceType: String {
 		get { return "Provenance" }
 	}
-    
-    public dynamic var activity: CodeableConcept?        
+
+    @objc public dynamic var activity: CodeableConcept?
     public func upsert(activity: CodeableConcept?) {
         upsert(prop: &self.activity, val: activity)
-    }    
-    public let agent = RealmSwift.List<ProvenanceAgent>()    
-    public let entity = RealmSwift.List<ProvenanceEntity>()    
-    public dynamic var location: Reference?        
+    }
+    public let agent = RealmSwift.List<ProvenanceAgent>()
+    public let entity = RealmSwift.List<ProvenanceEntity>()
+    @objc public dynamic var location: Reference?
     public func upsert(location: Reference?) {
         upsert(prop: &self.location, val: location)
-    }    
-    public dynamic var period: Period?        
+    }
+    @objc public dynamic var period: Period?
     public func upsert(period: Period?) {
         upsert(prop: &self.period, val: period)
-    }    
-    public let policy = RealmSwift.List<RealmString>()    
-    public let reason = RealmSwift.List<CodeableConcept>()    
-    public dynamic var recorded: Instant?        
-        
-    public let signature = RealmSwift.List<Signature>()    
+    }
+    public let policy = RealmSwift.List<RealmString>()
+    public let reason = RealmSwift.List<CodeableConcept>()
+    @objc public dynamic var recorded: Instant?
+    public let signature = RealmSwift.List<Signature>()
     public let target = RealmSwift.List<Reference>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(recorded: Instant, target: [Reference]) {
-        self.init(json: nil)
+        self.init()
         self.recorded = recorded
         self.target.append(objectsIn: target)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["activity"] {
-				presentKeys.insert("activity")
-				if let val = exist as? FHIRJSON {
-					upsert(activity: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "activity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["agent"] {
-				presentKeys.insert("agent")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ProvenanceAgent.instantiate(fromArray: val, owner: self) as? [ProvenanceAgent] {
-						if let realm = self.realm { realm.delete(self.agent) }
-						self.agent.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "agent", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["entity"] {
-				presentKeys.insert("entity")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ProvenanceEntity.instantiate(fromArray: val, owner: self) as? [ProvenanceEntity] {
-						if let realm = self.realm { realm.delete(self.entity) }
-						self.entity.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "entity", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["location"] {
-				presentKeys.insert("location")
-				if let val = exist as? FHIRJSON {
-					upsert(location: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["period"] {
-				presentKeys.insert("period")
-				if let val = exist as? FHIRJSON {
-					upsert(period: Period(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "period", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["policy"] {
-				presentKeys.insert("policy")
-				if let val = exist as? [String] {
-					self.policy.append(objectsIn: val.map{ RealmString(value: [$0]) })
-				}
-				else {
-					errors.append(FHIRJSONError(key: "policy", wants: Array<String>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reason"] {
-				presentKeys.insert("reason")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.reason) }
-						self.reason.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reason", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["recorded"] {
-				presentKeys.insert("recorded")
-				if let val = exist as? String {
-					self.recorded = Instant(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "recorded", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "recorded"))
-			}
-			if let exist = js["signature"] {
-				presentKeys.insert("signature")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Signature.instantiate(fromArray: val, owner: self) as? [Signature] {
-						if let realm = self.realm { realm.delete(self.signature) }
-						self.signature.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "signature", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Reference.instantiate(fromArray: val, owner: self) as? [Reference] {
-						if let realm = self.realm { realm.delete(self.target) }
-						self.target.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "target"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case activity = "activity"
+        case agent = "agent"
+        case entity = "entity"
+        case location = "location"
+        case period = "period"
+        case policy = "policy"
+        case reason = "reason"
+        case recorded = "recorded"
+        case signature = "signature"
+        case target = "target"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.activity = try container.decodeIfPresent(CodeableConcept.self, forKey: .activity)
+        self.agent.append(objectsIn: try container.decodeIfPresent([ProvenanceAgent].self, forKey: .agent) ?? [])
+        self.entity.append(objectsIn: try container.decodeIfPresent([ProvenanceEntity].self, forKey: .entity) ?? [])
+        self.location = try container.decodeIfPresent(Reference.self, forKey: .location)
+        self.period = try container.decodeIfPresent(Period.self, forKey: .period)
+        self.policy.append(objectsIn: try container.decodeIfPresent([RealmString].self, forKey: .policy) ?? [])
+        self.reason.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .reason) ?? [])
+        self.recorded = try container.decodeIfPresent(Instant.self, forKey: .recorded)
+        self.signature.append(objectsIn: try container.decodeIfPresent([Signature].self, forKey: .signature) ?? [])
+        self.target.append(objectsIn: try container.decodeIfPresent([Reference].self, forKey: .target) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.activity, forKey: .activity)
+        try container.encode(Array(self.agent), forKey: .agent)
+        try container.encode(Array(self.entity), forKey: .entity)
+        try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encodeIfPresent(self.period, forKey: .period)
+        try container.encode(Array(self.policy), forKey: .policy)
+        try container.encode(Array(self.reason), forKey: .reason)
+        try container.encodeIfPresent(self.recorded, forKey: .recorded)
+        try container.encode(Array(self.signature), forKey: .signature)
+        try container.encode(Array(self.target), forKey: .target)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Provenance.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Provenance. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Provenance.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let activity = self.activity {
-			json["activity"] = activity.asJSON()
-		}
-		if agent.count > 0 {
-			json["agent"] = Array(agent.map() { $0.asJSON() })
-		}
-		if entity.count > 0 {
-			json["entity"] = Array(entity.map() { $0.asJSON() })
-		}
-		if let location = self.location {
-			json["location"] = location.asJSON()
-		}
-		if let period = self.period {
-			json["period"] = period.asJSON()
-		}
-		if policy.count > 0 {
-			json["policy"] = Array(policy.map() { $0.value })
-		}
-		if reason.count > 0 {
-			json["reason"] = Array(reason.map() { $0.asJSON() })
-		}
-		if let recorded = self.recorded {
-			json["recorded"] = recorded.asJSON()
-		}
-		if signature.count > 0 {
-			json["signature"] = Array(signature.map() { $0.asJSON() })
-		}
-		if target.count > 0 {
-			json["target"] = Array(target.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Provenance else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.activity, from: o.activity)
+
+        for (index, t) in o.agent.enumerated() {
+            guard index < self.agent.count else {
+                self.agent.append(t)
+                continue
+            }
+            self.agent[index].populate(from: t)
+        }
+    
+        if self.agent.count > o.agent.count {
+            for i in self.agent.count...o.agent.count {
+                let objectToRemove = self.agent[i]
+                self.agent.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.entity.enumerated() {
+            guard index < self.entity.count else {
+                self.entity.append(t)
+                continue
+            }
+            self.entity[index].populate(from: t)
+        }
+    
+        if self.entity.count > o.entity.count {
+            for i in self.entity.count...o.entity.count {
+                let objectToRemove = self.entity[i]
+                self.entity.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.location, from: o.location)
+        FireKit.populate(&self.period, from: o.period)
+
+        for (index, t) in o.policy.enumerated() {
+            guard index < self.policy.count else {
+                self.policy.append(t)
+                continue
+            }
+            self.policy[index].populate(from: t)
+        }
+    
+        if self.policy.count > o.policy.count {
+            for i in self.policy.count...o.policy.count {
+                let objectToRemove = self.policy[i]
+                self.policy.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                let objectToRemove = self.reason[i]
+                self.reason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.recorded, from: o.recorded)
+
+        for (index, t) in o.signature.enumerated() {
+            guard index < self.signature.count else {
+                self.signature.append(t)
+                continue
+            }
+            self.signature[index].populate(from: t)
+        }
+    
+        if self.signature.count > o.signature.count {
+            for i in self.signature.count...o.signature.count {
+                let objectToRemove = self.signature[i]
+                self.signature.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.target.enumerated() {
+            guard index < self.target.count else {
+                self.target.append(t)
+                continue
+            }
+            self.target[index].populate(from: t)
+        }
+    
+        if self.target.count > o.target.count {
+            for i in self.target.count...o.target.count {
+                let objectToRemove = self.target[i]
+                self.target.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -223,95 +246,104 @@ open class ProvenanceAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceAgent" }
 	}
-    
-    public dynamic var actor: Reference?        
+
+    @objc public dynamic var actor: Reference?
     public func upsert(actor: Reference?) {
         upsert(prop: &self.actor, val: actor)
-    }    
-    public let relatedAgent = RealmSwift.List<ProvenanceAgentRelatedAgent>()    
-    public dynamic var role: Coding?        
+    }
+    public let relatedAgent = RealmSwift.List<ProvenanceAgentRelatedAgent>()
+    @objc public dynamic var role: Coding?
     public func upsert(role: Coding?) {
         upsert(prop: &self.role, val: role)
-    }    
-    public dynamic var userId: Identifier?        
+    }
+    @objc public dynamic var userId: Identifier?
     public func upsert(userId: Identifier?) {
         upsert(prop: &self.userId, val: userId)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(role: Coding) {
-        self.init(json: nil)
+        self.init()
         self.role = role
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["actor"] {
-				presentKeys.insert("actor")
-				if let val = exist as? FHIRJSON {
-					upsert(actor: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "actor", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["relatedAgent"] {
-				presentKeys.insert("relatedAgent")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ProvenanceAgentRelatedAgent.instantiate(fromArray: val, owner: self) as? [ProvenanceAgentRelatedAgent] {
-						if let realm = self.realm { realm.delete(self.relatedAgent) }
-						self.relatedAgent.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "relatedAgent", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["role"] {
-				presentKeys.insert("role")
-				if let val = exist as? FHIRJSON {
-					upsert(role: Coding(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "role", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "role"))
-			}
-			if let exist = js["userId"] {
-				presentKeys.insert("userId")
-				if let val = exist as? FHIRJSON {
-					upsert(userId: Identifier(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "userId", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case actor = "actor"
+        case relatedAgent = "relatedAgent"
+        case role = "role"
+        case userId = "userId"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.actor = try container.decodeIfPresent(Reference.self, forKey: .actor)
+        self.relatedAgent.append(objectsIn: try container.decodeIfPresent([ProvenanceAgentRelatedAgent].self, forKey: .relatedAgent) ?? [])
+        self.role = try container.decodeIfPresent(Coding.self, forKey: .role)
+        self.userId = try container.decodeIfPresent(Identifier.self, forKey: .userId)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.actor, forKey: .actor)
+        try container.encode(Array(self.relatedAgent), forKey: .relatedAgent)
+        try container.encodeIfPresent(self.role, forKey: .role)
+        try container.encodeIfPresent(self.userId, forKey: .userId)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProvenanceAgent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProvenanceAgent. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ProvenanceAgent.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let actor = self.actor {
-			json["actor"] = actor.asJSON()
-		}
-		if relatedAgent.count > 0 {
-			json["relatedAgent"] = Array(relatedAgent.map() { $0.asJSON() })
-		}
-		if let role = self.role {
-			json["role"] = role.asJSON()
-		}
-		if let userId = self.userId {
-			json["userId"] = userId.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProvenanceAgent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.actor, from: o.actor)
+
+        for (index, t) in o.relatedAgent.enumerated() {
+            guard index < self.relatedAgent.count else {
+                self.relatedAgent.append(t)
+                continue
+            }
+            self.relatedAgent[index].populate(from: t)
+        }
+    
+        if self.relatedAgent.count > o.relatedAgent.count {
+            for i in self.relatedAgent.count...o.relatedAgent.count {
+                let objectToRemove = self.relatedAgent[i]
+                self.relatedAgent.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.role, from: o.role)
+        FireKit.populate(&self.userId, from: o.userId)
+    }
 }
 
 
@@ -326,65 +358,74 @@ open class ProvenanceAgentRelatedAgent: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceAgentRelatedAgent" }
 	}
-    
-    public dynamic var target: String?        
-        
-    public dynamic var type: CodeableConcept?        
+
+    @objc public dynamic var target: String?
+    @objc public dynamic var type: CodeableConcept?
     public func upsert(type: CodeableConcept?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(target: String, type: CodeableConcept) {
-        self.init(json: nil)
+        self.init()
         self.target = target
         self.type = type
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["target"] {
-				presentKeys.insert("target")
-				if let val = exist as? String {
-					self.target = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "target", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "target"))
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case target = "target"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.target = try container.decodeIfPresent(String.self, forKey: .target)
+        self.type = try container.decodeIfPresent(CodeableConcept.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.target, forKey: .target)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProvenanceAgentRelatedAgent.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProvenanceAgentRelatedAgent. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ProvenanceAgentRelatedAgent.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let target = self.target {
-			json["target"] = target.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProvenanceAgentRelatedAgent else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        target = o.target
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
 
 
@@ -395,112 +436,92 @@ open class ProvenanceEntity: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ProvenanceEntity" }
 	}
-    
-    public dynamic var agent: ProvenanceAgent?        
+
+    @objc public dynamic var agent: ProvenanceAgent?
     public func upsert(agent: ProvenanceAgent?) {
         upsert(prop: &self.agent, val: agent)
-    }    
-    public dynamic var display: String?        
-        
-    public dynamic var reference: String?        
-        
-    public dynamic var role: String?        
-        
-    public dynamic var type: Coding?        
+    }
+    @objc public dynamic var display: String?
+    @objc public dynamic var reference: String?
+    @objc public dynamic var role: String?
+    @objc public dynamic var type: Coding?
     public func upsert(type: Coding?) {
         upsert(prop: &self.type, val: type)
     }
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(reference: String, role: String, type: Coding) {
-        self.init(json: nil)
+        self.init()
         self.reference = reference
         self.role = role
         self.type = type
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["agent"] {
-				presentKeys.insert("agent")
-				if let val = exist as? FHIRJSON {
-					upsert(agent: ProvenanceAgent(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "agent", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["display"] {
-				presentKeys.insert("display")
-				if let val = exist as? String {
-					self.display = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "display", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reference"] {
-				presentKeys.insert("reference")
-				if let val = exist as? String {
-					self.reference = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reference", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "reference"))
-			}
-			if let exist = js["role"] {
-				presentKeys.insert("role")
-				if let val = exist as? String {
-					self.role = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "role", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "role"))
-			}
-			if let exist = js["type"] {
-				presentKeys.insert("type")
-				if let val = exist as? FHIRJSON {
-					upsert(type: Coding(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "type", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "type"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case agent = "agent"
+        case display = "display"
+        case reference = "reference"
+        case role = "role"
+        case type = "type"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.agent = try container.decodeIfPresent(ProvenanceAgent.self, forKey: .agent)
+        self.display = try container.decodeIfPresent(String.self, forKey: .display)
+        self.reference = try container.decodeIfPresent(String.self, forKey: .reference)
+        self.role = try container.decodeIfPresent(String.self, forKey: .role)
+        self.type = try container.decodeIfPresent(Coding.self, forKey: .type)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.agent, forKey: .agent)
+        try container.encodeIfPresent(self.display, forKey: .display)
+        try container.encodeIfPresent(self.reference, forKey: .reference)
+        try container.encodeIfPresent(self.role, forKey: .role)
+        try container.encodeIfPresent(self.type, forKey: .type)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ProvenanceEntity.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ProvenanceEntity. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ProvenanceEntity.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let agent = self.agent {
-			json["agent"] = agent.asJSON()
-		}
-		if let display = self.display {
-			json["display"] = display.asJSON()
-		}
-		if let reference = self.reference {
-			json["reference"] = reference.asJSON()
-		}
-		if let role = self.role {
-			json["role"] = role.asJSON()
-		}
-		if let type = self.type {
-			json["type"] = type.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ProvenanceEntity else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.agent, from: o.agent)
+        display = o.display
+        reference = o.reference
+        role = o.role
+        FireKit.populate(&self.type, from: o.type)
+    }
 }
 

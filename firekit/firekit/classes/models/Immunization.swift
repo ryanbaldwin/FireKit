@@ -2,11 +2,14 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-04-06.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-09-22.
 //  2017, SMART Health IT.
 //
+// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
+import Realm
 import RealmSwift
 
 
@@ -21,69 +24,65 @@ open class Immunization: DomainResource {
 	override open class var resourceType: String {
 		get { return "Immunization" }
 	}
-    
-    public dynamic var date: DateTime?        
-        
-    public dynamic var doseQuantity: Quantity?        
+
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var doseQuantity: Quantity?
     public func upsert(doseQuantity: Quantity?) {
         upsert(prop: &self.doseQuantity, val: doseQuantity)
-    }    
-    public dynamic var encounter: Reference?        
+    }
+    @objc public dynamic var encounter: Reference?
     public func upsert(encounter: Reference?) {
         upsert(prop: &self.encounter, val: encounter)
-    }    
-    public dynamic var expirationDate: FHIRDate?        
-        
-    public dynamic var explanation: ImmunizationExplanation?        
+    }
+    @objc public dynamic var expirationDate: FHIRDate?
+    @objc public dynamic var explanation: ImmunizationExplanation?
     public func upsert(explanation: ImmunizationExplanation?) {
         upsert(prop: &self.explanation, val: explanation)
-    }    
-    public let identifier = RealmSwift.List<Identifier>()    
-    public dynamic var location: Reference?        
+    }
+    public let identifier = RealmSwift.List<Identifier>()
+    @objc public dynamic var location: Reference?
     public func upsert(location: Reference?) {
         upsert(prop: &self.location, val: location)
-    }    
-    public dynamic var lotNumber: String?        
-        
-    public dynamic var manufacturer: Reference?        
+    }
+    @objc public dynamic var lotNumber: String?
+    @objc public dynamic var manufacturer: Reference?
     public func upsert(manufacturer: Reference?) {
         upsert(prop: &self.manufacturer, val: manufacturer)
-    }    
-    public let note = RealmSwift.List<Annotation>()    
-    public dynamic var patient: Reference?        
+    }
+    public let note = RealmSwift.List<Annotation>()
+    @objc public dynamic var patient: Reference?
     public func upsert(patient: Reference?) {
         upsert(prop: &self.patient, val: patient)
-    }    
-    public dynamic var performer: Reference?        
+    }
+    @objc public dynamic var performer: Reference?
     public func upsert(performer: Reference?) {
         upsert(prop: &self.performer, val: performer)
-    }    
-    public let reaction = RealmSwift.List<ImmunizationReaction>()    
-    public let reported = RealmOptional<Bool>()    
-    public dynamic var requester: Reference?        
+    }
+    public let reaction = RealmSwift.List<ImmunizationReaction>()
+    public let reported = RealmOptional<Bool>()
+    @objc public dynamic var requester: Reference?
     public func upsert(requester: Reference?) {
         upsert(prop: &self.requester, val: requester)
-    }    
-    public dynamic var route: CodeableConcept?        
+    }
+    @objc public dynamic var route: CodeableConcept?
     public func upsert(route: CodeableConcept?) {
         upsert(prop: &self.route, val: route)
-    }    
-    public dynamic var site: CodeableConcept?        
+    }
+    @objc public dynamic var site: CodeableConcept?
     public func upsert(site: CodeableConcept?) {
         upsert(prop: &self.site, val: site)
-    }    
-    public dynamic var status: String?        
-        
-    public let vaccinationProtocol = RealmSwift.List<ImmunizationVaccinationProtocol>()    
-    public dynamic var vaccineCode: CodeableConcept?        
+    }
+    @objc public dynamic var status: String?
+    public let vaccinationProtocol = RealmSwift.List<ImmunizationVaccinationProtocol>()
+    @objc public dynamic var vaccineCode: CodeableConcept?
     public func upsert(vaccineCode: CodeableConcept?) {
         upsert(prop: &self.vaccineCode, val: vaccineCode)
-    }    
+    }
     public let wasNotGiven = RealmOptional<Bool>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(patient: Reference, reported: Bool, status: String, vaccineCode: CodeableConcept, wasNotGiven: Bool) {
-        self.init(json: nil)
+        self.init()
         self.patient = patient
         self.reported.value = reported
         self.status = status
@@ -91,299 +90,196 @@ open class Immunization: DomainResource {
         self.wasNotGiven.value = wasNotGiven
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["date"] {
-				presentKeys.insert("date")
-				if let val = exist as? String {
-					self.date = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["doseQuantity"] {
-				presentKeys.insert("doseQuantity")
-				if let val = exist as? FHIRJSON {
-					upsert(doseQuantity: Quantity(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "doseQuantity", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["encounter"] {
-				presentKeys.insert("encounter")
-				if let val = exist as? FHIRJSON {
-					upsert(encounter: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "encounter", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["expirationDate"] {
-				presentKeys.insert("expirationDate")
-				if let val = exist as? String {
-					self.expirationDate = FHIRDate(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "expirationDate", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["explanation"] {
-				presentKeys.insert("explanation")
-				if let val = exist as? FHIRJSON {
-					upsert(explanation: ImmunizationExplanation(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "explanation", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["identifier"] {
-				presentKeys.insert("identifier")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Identifier.instantiate(fromArray: val, owner: self) as? [Identifier] {
-						if let realm = self.realm { realm.delete(self.identifier) }
-						self.identifier.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "identifier", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["location"] {
-				presentKeys.insert("location")
-				if let val = exist as? FHIRJSON {
-					upsert(location: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "location", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["lotNumber"] {
-				presentKeys.insert("lotNumber")
-				if let val = exist as? String {
-					self.lotNumber = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "lotNumber", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["manufacturer"] {
-				presentKeys.insert("manufacturer")
-				if let val = exist as? FHIRJSON {
-					upsert(manufacturer: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "manufacturer", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["note"] {
-				presentKeys.insert("note")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = Annotation.instantiate(fromArray: val, owner: self) as? [Annotation] {
-						if let realm = self.realm { realm.delete(self.note) }
-						self.note.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "note", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["patient"] {
-				presentKeys.insert("patient")
-				if let val = exist as? FHIRJSON {
-					upsert(patient: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "patient", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "patient"))
-			}
-			if let exist = js["performer"] {
-				presentKeys.insert("performer")
-				if let val = exist as? FHIRJSON {
-					upsert(performer: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "performer", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reaction"] {
-				presentKeys.insert("reaction")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ImmunizationReaction.instantiate(fromArray: val, owner: self) as? [ImmunizationReaction] {
-						if let realm = self.realm { realm.delete(self.reaction) }
-						self.reaction.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reaction", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reported"] {
-				presentKeys.insert("reported")
-				if let val = exist as? Bool {
-					self.reported.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reported", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "reported"))
-			}
-			if let exist = js["requester"] {
-				presentKeys.insert("requester")
-				if let val = exist as? FHIRJSON {
-					upsert(requester: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "requester", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["route"] {
-				presentKeys.insert("route")
-				if let val = exist as? FHIRJSON {
-					upsert(route: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "route", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["site"] {
-				presentKeys.insert("site")
-				if let val = exist as? FHIRJSON {
-					upsert(site: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "site", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["status"] {
-				presentKeys.insert("status")
-				if let val = exist as? String {
-					self.status = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "status", wants: String.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "status"))
-			}
-			if let exist = js["vaccinationProtocol"] {
-				presentKeys.insert("vaccinationProtocol")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = ImmunizationVaccinationProtocol.instantiate(fromArray: val, owner: self) as? [ImmunizationVaccinationProtocol] {
-						if let realm = self.realm { realm.delete(self.vaccinationProtocol) }
-						self.vaccinationProtocol.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "vaccinationProtocol", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["vaccineCode"] {
-				presentKeys.insert("vaccineCode")
-				if let val = exist as? FHIRJSON {
-					upsert(vaccineCode: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "vaccineCode", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "vaccineCode"))
-			}
-			if let exist = js["wasNotGiven"] {
-				presentKeys.insert("wasNotGiven")
-				if let val = exist as? Bool {
-					self.wasNotGiven.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "wasNotGiven", wants: Bool.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "wasNotGiven"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case date = "date"
+        case doseQuantity = "doseQuantity"
+        case encounter = "encounter"
+        case expirationDate = "expirationDate"
+        case explanation = "explanation"
+        case identifier = "identifier"
+        case location = "location"
+        case lotNumber = "lotNumber"
+        case manufacturer = "manufacturer"
+        case note = "note"
+        case patient = "patient"
+        case performer = "performer"
+        case reaction = "reaction"
+        case reported = "reported"
+        case requester = "requester"
+        case route = "route"
+        case site = "site"
+        case status = "status"
+        case vaccinationProtocol = "vaccinationProtocol"
+        case vaccineCode = "vaccineCode"
+        case wasNotGiven = "wasNotGiven"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.doseQuantity = try container.decodeIfPresent(Quantity.self, forKey: .doseQuantity)
+        self.encounter = try container.decodeIfPresent(Reference.self, forKey: .encounter)
+        self.expirationDate = try container.decodeIfPresent(FHIRDate.self, forKey: .expirationDate)
+        self.explanation = try container.decodeIfPresent(ImmunizationExplanation.self, forKey: .explanation)
+        self.identifier.append(objectsIn: try container.decodeIfPresent([Identifier].self, forKey: .identifier) ?? [])
+        self.location = try container.decodeIfPresent(Reference.self, forKey: .location)
+        self.lotNumber = try container.decodeIfPresent(String.self, forKey: .lotNumber)
+        self.manufacturer = try container.decodeIfPresent(Reference.self, forKey: .manufacturer)
+        self.note.append(objectsIn: try container.decodeIfPresent([Annotation].self, forKey: .note) ?? [])
+        self.patient = try container.decodeIfPresent(Reference.self, forKey: .patient)
+        self.performer = try container.decodeIfPresent(Reference.self, forKey: .performer)
+        self.reaction.append(objectsIn: try container.decodeIfPresent([ImmunizationReaction].self, forKey: .reaction) ?? [])
+        self.reported.value = try container.decodeIfPresent(Bool.self, forKey: .reported)
+        self.requester = try container.decodeIfPresent(Reference.self, forKey: .requester)
+        self.route = try container.decodeIfPresent(CodeableConcept.self, forKey: .route)
+        self.site = try container.decodeIfPresent(CodeableConcept.self, forKey: .site)
+        self.status = try container.decodeIfPresent(String.self, forKey: .status)
+        self.vaccinationProtocol.append(objectsIn: try container.decodeIfPresent([ImmunizationVaccinationProtocol].self, forKey: .vaccinationProtocol) ?? [])
+        self.vaccineCode = try container.decodeIfPresent(CodeableConcept.self, forKey: .vaccineCode)
+        self.wasNotGiven.value = try container.decodeIfPresent(Bool.self, forKey: .wasNotGiven)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.doseQuantity, forKey: .doseQuantity)
+        try container.encodeIfPresent(self.encounter, forKey: .encounter)
+        try container.encodeIfPresent(self.expirationDate, forKey: .expirationDate)
+        try container.encodeIfPresent(self.explanation, forKey: .explanation)
+        try container.encode(Array(self.identifier), forKey: .identifier)
+        try container.encodeIfPresent(self.location, forKey: .location)
+        try container.encodeIfPresent(self.lotNumber, forKey: .lotNumber)
+        try container.encodeIfPresent(self.manufacturer, forKey: .manufacturer)
+        try container.encode(Array(self.note), forKey: .note)
+        try container.encodeIfPresent(self.patient, forKey: .patient)
+        try container.encodeIfPresent(self.performer, forKey: .performer)
+        try container.encode(Array(self.reaction), forKey: .reaction)
+        try container.encodeIfPresent(self.reported.value, forKey: .reported)
+        try container.encodeIfPresent(self.requester, forKey: .requester)
+        try container.encodeIfPresent(self.route, forKey: .route)
+        try container.encodeIfPresent(self.site, forKey: .site)
+        try container.encodeIfPresent(self.status, forKey: .status)
+        try container.encode(Array(self.vaccinationProtocol), forKey: .vaccinationProtocol)
+        try container.encodeIfPresent(self.vaccineCode, forKey: .vaccineCode)
+        try container.encodeIfPresent(self.wasNotGiven.value, forKey: .wasNotGiven)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(Immunization.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy Immunization. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return Immunization.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let doseQuantity = self.doseQuantity {
-			json["doseQuantity"] = doseQuantity.asJSON()
-		}
-		if let encounter = self.encounter {
-			json["encounter"] = encounter.asJSON()
-		}
-		if let expirationDate = self.expirationDate {
-			json["expirationDate"] = expirationDate.asJSON()
-		}
-		if let explanation = self.explanation {
-			json["explanation"] = explanation.asJSON()
-		}
-		if identifier.count > 0 {
-			json["identifier"] = Array(identifier.map() { $0.asJSON() })
-		}
-		if let location = self.location {
-			json["location"] = location.asJSON()
-		}
-		if let lotNumber = self.lotNumber {
-			json["lotNumber"] = lotNumber.asJSON()
-		}
-		if let manufacturer = self.manufacturer {
-			json["manufacturer"] = manufacturer.asJSON()
-		}
-		if note.count > 0 {
-			json["note"] = Array(note.map() { $0.asJSON() })
-		}
-		if let patient = self.patient {
-			json["patient"] = patient.asJSON()
-		}
-		if let performer = self.performer {
-			json["performer"] = performer.asJSON()
-		}
-		if reaction.count > 0 {
-			json["reaction"] = Array(reaction.map() { $0.asJSON() })
-		}
-		if let reported = self.reported.value {
-			json["reported"] = reported.asJSON()
-		}
-		if let requester = self.requester {
-			json["requester"] = requester.asJSON()
-		}
-		if let route = self.route {
-			json["route"] = route.asJSON()
-		}
-		if let site = self.site {
-			json["site"] = site.asJSON()
-		}
-		if let status = self.status {
-			json["status"] = status.asJSON()
-		}
-		if vaccinationProtocol.count > 0 {
-			json["vaccinationProtocol"] = Array(vaccinationProtocol.map() { $0.asJSON() })
-		}
-		if let vaccineCode = self.vaccineCode {
-			json["vaccineCode"] = vaccineCode.asJSON()
-		}
-		if let wasNotGiven = self.wasNotGiven.value {
-			json["wasNotGiven"] = wasNotGiven.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? Immunization else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.date, from: o.date)
+        FireKit.populate(&self.doseQuantity, from: o.doseQuantity)
+        FireKit.populate(&self.encounter, from: o.encounter)
+        FireKit.populate(&self.expirationDate, from: o.expirationDate)
+        FireKit.populate(&self.explanation, from: o.explanation)
+
+        for (index, t) in o.identifier.enumerated() {
+            guard index < self.identifier.count else {
+                self.identifier.append(t)
+                continue
+            }
+            self.identifier[index].populate(from: t)
+        }
+    
+        if self.identifier.count > o.identifier.count {
+            for i in self.identifier.count...o.identifier.count {
+                let objectToRemove = self.identifier[i]
+                self.identifier.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.location, from: o.location)
+        lotNumber = o.lotNumber
+        FireKit.populate(&self.manufacturer, from: o.manufacturer)
+
+        for (index, t) in o.note.enumerated() {
+            guard index < self.note.count else {
+                self.note.append(t)
+                continue
+            }
+            self.note[index].populate(from: t)
+        }
+    
+        if self.note.count > o.note.count {
+            for i in self.note.count...o.note.count {
+                let objectToRemove = self.note[i]
+                self.note.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.patient, from: o.patient)
+        FireKit.populate(&self.performer, from: o.performer)
+
+        for (index, t) in o.reaction.enumerated() {
+            guard index < self.reaction.count else {
+                self.reaction.append(t)
+                continue
+            }
+            self.reaction[index].populate(from: t)
+        }
+    
+        if self.reaction.count > o.reaction.count {
+            for i in self.reaction.count...o.reaction.count {
+                let objectToRemove = self.reaction[i]
+                self.reaction.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        reported.value = o.reported.value
+        FireKit.populate(&self.requester, from: o.requester)
+        FireKit.populate(&self.route, from: o.route)
+        FireKit.populate(&self.site, from: o.site)
+        status = o.status
+
+        for (index, t) in o.vaccinationProtocol.enumerated() {
+            guard index < self.vaccinationProtocol.count else {
+                self.vaccinationProtocol.append(t)
+                continue
+            }
+            self.vaccinationProtocol[index].populate(from: t)
+        }
+    
+        if self.vaccinationProtocol.count > o.vaccinationProtocol.count {
+            for i in self.vaccinationProtocol.count...o.vaccinationProtocol.count {
+                let objectToRemove = self.vaccinationProtocol[i]
+                self.vaccinationProtocol.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+        FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
+        wasNotGiven.value = o.wasNotGiven.value
+    }
 }
 
 
@@ -396,54 +292,94 @@ open class ImmunizationExplanation: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationExplanation" }
 	}
-    
-    public let reason = RealmSwift.List<CodeableConcept>()    
+
+    public let reason = RealmSwift.List<CodeableConcept>()
     public let reasonNotGiven = RealmSwift.List<CodeableConcept>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["reason"] {
-				presentKeys.insert("reason")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.reason) }
-						self.reason.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reason", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reasonNotGiven"] {
-				presentKeys.insert("reasonNotGiven")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.reasonNotGiven) }
-						self.reasonNotGiven.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reasonNotGiven", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case reason = "reason"
+        case reasonNotGiven = "reasonNotGiven"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.reason.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .reason) ?? [])
+        self.reasonNotGiven.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .reasonNotGiven) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(Array(self.reason), forKey: .reason)
+        try container.encode(Array(self.reasonNotGiven), forKey: .reasonNotGiven)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationExplanation.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationExplanation. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImmunizationExplanation.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if reason.count > 0 {
-			json["reason"] = Array(reason.map() { $0.asJSON() })
-		}
-		if reasonNotGiven.count > 0 {
-			json["reasonNotGiven"] = Array(reasonNotGiven.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationExplanation else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+
+        for (index, t) in o.reason.enumerated() {
+            guard index < self.reason.count else {
+                self.reason.append(t)
+                continue
+            }
+            self.reason[index].populate(from: t)
+        }
+    
+        if self.reason.count > o.reason.count {
+            for i in self.reason.count...o.reason.count {
+                let objectToRemove = self.reason[i]
+                self.reason.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+
+        for (index, t) in o.reasonNotGiven.enumerated() {
+            guard index < self.reasonNotGiven.count else {
+                self.reasonNotGiven.append(t)
+                continue
+            }
+            self.reasonNotGiven[index].populate(from: t)
+        }
+    
+        if self.reasonNotGiven.count > o.reasonNotGiven.count {
+            for i in self.reasonNotGiven.count...o.reasonNotGiven.count {
+                let objectToRemove = self.reasonNotGiven[i]
+                self.reasonNotGiven.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
 
@@ -456,65 +392,72 @@ open class ImmunizationReaction: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationReaction" }
 	}
-    
-    public dynamic var date: DateTime?        
-        
-    public dynamic var detail: Reference?        
+
+    @objc public dynamic var date: DateTime?
+    @objc public dynamic var detail: Reference?
     public func upsert(detail: Reference?) {
         upsert(prop: &self.detail, val: detail)
-    }    
+    }
     public let reported = RealmOptional<Bool>()
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["date"] {
-				presentKeys.insert("date")
-				if let val = exist as? String {
-					self.date = DateTime(string: val)
-				}
-				else {
-					errors.append(FHIRJSONError(key: "date", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["detail"] {
-				presentKeys.insert("detail")
-				if let val = exist as? FHIRJSON {
-					upsert(detail: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "detail", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["reported"] {
-				presentKeys.insert("reported")
-				if let val = exist as? Bool {
-					self.reported.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "reported", wants: Bool.self, has: type(of: exist)))
-				}
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case date = "date"
+        case detail = "detail"
+        case reported = "reported"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.date = try container.decodeIfPresent(DateTime.self, forKey: .date)
+        self.detail = try container.decodeIfPresent(Reference.self, forKey: .detail)
+        self.reported.value = try container.decodeIfPresent(Bool.self, forKey: .reported)
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.date, forKey: .date)
+        try container.encodeIfPresent(self.detail, forKey: .detail)
+        try container.encodeIfPresent(self.reported.value, forKey: .reported)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationReaction.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationReaction. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImmunizationReaction.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let date = self.date {
-			json["date"] = date.asJSON()
-		}
-		if let detail = self.detail {
-			json["detail"] = detail.asJSON()
-		}
-		if let reported = self.reported.value {
-			json["reported"] = reported.asJSON()
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationReaction else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.date, from: o.date)
+        FireKit.populate(&self.detail, from: o.detail)
+        reported.value = o.reported.value
+    }
 }
 
 
@@ -527,156 +470,125 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
 	override open class var resourceType: String {
 		get { return "ImmunizationVaccinationProtocol" }
 	}
-    
-    public dynamic var authority: Reference?        
+
+    @objc public dynamic var authority: Reference?
     public func upsert(authority: Reference?) {
         upsert(prop: &self.authority, val: authority)
-    }    
-    public dynamic var description_fhir: String?        
-        
-    public let doseSequence = RealmOptional<Int>()    
-    public dynamic var doseStatus: CodeableConcept?        
+    }
+    @objc public dynamic var description_fhir: String?
+    public let doseSequence = RealmOptional<Int>()
+    @objc public dynamic var doseStatus: CodeableConcept?
     public func upsert(doseStatus: CodeableConcept?) {
         upsert(prop: &self.doseStatus, val: doseStatus)
-    }    
-    public dynamic var doseStatusReason: CodeableConcept?        
+    }
+    @objc public dynamic var doseStatusReason: CodeableConcept?
     public func upsert(doseStatusReason: CodeableConcept?) {
         upsert(prop: &self.doseStatusReason, val: doseStatusReason)
-    }    
-    public dynamic var series: String?        
-        
-    public let seriesDoses = RealmOptional<Int>()    
+    }
+    @objc public dynamic var series: String?
+    public let seriesDoses = RealmOptional<Int>()
     public let targetDisease = RealmSwift.List<CodeableConcept>()
 
     /** Convenience initializer, taking all required properties as arguments. */
     public convenience init(doseSequence: Int, doseStatus: CodeableConcept, targetDisease: [CodeableConcept]) {
-        self.init(json: nil)
+        self.init()
         self.doseSequence.value = doseSequence
         self.doseStatus = doseStatus
         self.targetDisease.append(objectsIn: targetDisease)
     }
 
-	
-	override open func populate(from json: FHIRJSON?, presentKeys: inout Set<String>) -> [FHIRJSONError]? {
-		var errors = super.populate(from: json, presentKeys: &presentKeys) ?? [FHIRJSONError]()
-		if let js = json {
-			if let exist = js["authority"] {
-				presentKeys.insert("authority")
-				if let val = exist as? FHIRJSON {
-					upsert(authority: Reference(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "authority", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["description"] {
-				presentKeys.insert("description")
-				if let val = exist as? String {
-					self.description_fhir = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "description", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["doseSequence"] {
-				presentKeys.insert("doseSequence")
-				if let val = exist as? Int {
-					self.doseSequence.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "doseSequence", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "doseSequence"))
-			}
-			if let exist = js["doseStatus"] {
-				presentKeys.insert("doseStatus")
-				if let val = exist as? FHIRJSON {
-					upsert(doseStatus: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "doseStatus", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "doseStatus"))
-			}
-			if let exist = js["doseStatusReason"] {
-				presentKeys.insert("doseStatusReason")
-				if let val = exist as? FHIRJSON {
-					upsert(doseStatusReason: CodeableConcept(json: val, owner: self))
-				}
-				else {
-					errors.append(FHIRJSONError(key: "doseStatusReason", wants: FHIRJSON.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["series"] {
-				presentKeys.insert("series")
-				if let val = exist as? String {
-					self.series = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "series", wants: String.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["seriesDoses"] {
-				presentKeys.insert("seriesDoses")
-				if let val = exist as? Int {
-					self.seriesDoses.value = val
-				}
-				else {
-					errors.append(FHIRJSONError(key: "seriesDoses", wants: Int.self, has: type(of: exist)))
-				}
-			}
-			if let exist = js["targetDisease"] {
-				presentKeys.insert("targetDisease")
-				if let val = exist as? [FHIRJSON] {
-					if let vals = CodeableConcept.instantiate(fromArray: val, owner: self) as? [CodeableConcept] {
-						if let realm = self.realm { realm.delete(self.targetDisease) }
-						self.targetDisease.append(objectsIn: vals)
-					}
-				}
-				else {
-					errors.append(FHIRJSONError(key: "targetDisease", wants: Array<FHIRJSON>.self, has: type(of: exist)))
-				}
-			}
-			else {
-				errors.append(FHIRJSONError(key: "targetDisease"))
-			}
+    // MARK: Codable
+    private enum CodingKeys: String, CodingKey {
+        case authority = "authority"
+        case description_fhir = "description"
+        case doseSequence = "doseSequence"
+        case doseStatus = "doseStatus"
+        case doseStatusReason = "doseStatusReason"
+        case series = "series"
+        case seriesDoses = "seriesDoses"
+        case targetDisease = "targetDisease"
+    }
+    
+    public required init() {
+      super.init()
+    }
+
+    public required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    public required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
+    }
+
+    public required init(from decoder: Decoder) throws {
+        try super.init(from: decoder)
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        self.authority = try container.decodeIfPresent(Reference.self, forKey: .authority)
+        self.description_fhir = try container.decodeIfPresent(String.self, forKey: .description_fhir)
+        self.doseSequence.value = try container.decodeIfPresent(Int.self, forKey: .doseSequence)
+        self.doseStatus = try container.decodeIfPresent(CodeableConcept.self, forKey: .doseStatus)
+        self.doseStatusReason = try container.decodeIfPresent(CodeableConcept.self, forKey: .doseStatusReason)
+        self.series = try container.decodeIfPresent(String.self, forKey: .series)
+        self.seriesDoses.value = try container.decodeIfPresent(Int.self, forKey: .seriesDoses)
+        self.targetDisease.append(objectsIn: try container.decodeIfPresent([CodeableConcept].self, forKey: .targetDisease) ?? [])
+    }
+
+    public override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(self.authority, forKey: .authority)
+        try container.encodeIfPresent(self.description_fhir, forKey: .description_fhir)
+        try container.encodeIfPresent(self.doseSequence.value, forKey: .doseSequence)
+        try container.encodeIfPresent(self.doseStatus, forKey: .doseStatus)
+        try container.encodeIfPresent(self.doseStatusReason, forKey: .doseStatusReason)
+        try container.encodeIfPresent(self.series, forKey: .series)
+        try container.encodeIfPresent(self.seriesDoses.value, forKey: .seriesDoses)
+        try container.encode(Array(self.targetDisease), forKey: .targetDisease)
+    }
+
+	public override func copy(with zone: NSZone? = nil) -> Any {
+		do {
+			let data = try JSONEncoder().encode(self)
+			let clone = try JSONDecoder().decode(ImmunizationVaccinationProtocol.self, from: data)
+			return clone
+		} catch let error {
+			print("Failed to copy ImmunizationVaccinationProtocol. Will return empty instance: \(error))")
 		}
-		return errors.isEmpty ? nil : errors
+		return ImmunizationVaccinationProtocol.init()
 	}
-	
-	override open func asJSON() -> FHIRJSON {
-		var json = super.asJSON()
-		
-		if let authority = self.authority {
-			json["authority"] = authority.asJSON()
-		}
-		if let description_fhir = self.description_fhir {
-			json["description"] = description_fhir.asJSON()
-		}
-		if let doseSequence = self.doseSequence.value {
-			json["doseSequence"] = doseSequence.asJSON()
-		}
-		if let doseStatus = self.doseStatus {
-			json["doseStatus"] = doseStatus.asJSON()
-		}
-		if let doseStatusReason = self.doseStatusReason {
-			json["doseStatusReason"] = doseStatusReason.asJSON()
-		}
-		if let series = self.series {
-			json["series"] = series.asJSON()
-		}
-		if let seriesDoses = self.seriesDoses.value {
-			json["seriesDoses"] = seriesDoses.asJSON()
-		}
-		if targetDisease.count > 0 {
-			json["targetDisease"] = Array(targetDisease.map() { $0.asJSON() })
-		}
-		
-		return json
-	}
+
+    public override func populate(from other: Any) {
+        guard let o = other as? ImmunizationVaccinationProtocol else {
+            print("Tried to populate \(Swift.type(of: self)) with values from \(Swift.type(of: other)). Skipping.")
+            return
+        }
+        
+        super.populate(from: o)
+        FireKit.populate(&self.authority, from: o.authority)
+        description_fhir = o.description_fhir
+        doseSequence.value = o.doseSequence.value
+        FireKit.populate(&self.doseStatus, from: o.doseStatus)
+        FireKit.populate(&self.doseStatusReason, from: o.doseStatusReason)
+        series = o.series
+        seriesDoses.value = o.seriesDoses.value
+
+        for (index, t) in o.targetDisease.enumerated() {
+            guard index < self.targetDisease.count else {
+                self.targetDisease.append(t)
+                continue
+            }
+            self.targetDisease[index].populate(from: t)
+        }
+    
+        if self.targetDisease.count > o.targetDisease.count {
+            for i in self.targetDisease.count...o.targetDisease.count {
+                let objectToRemove = self.targetDisease[i]
+                self.targetDisease.remove(objectAtIndex: i)
+                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
+            }
+        }
+    }
 }
 
