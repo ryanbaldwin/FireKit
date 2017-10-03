@@ -30,8 +30,8 @@ import FireKit
 // You can hydrate a patient with some JSON from your FHIR Server and 
 // natively save it to a Realm
 let realm = try! Realm()
-let patientResponseJSON = someMagicalFHIREndpoint(patientId: 123)
-let patient = Patient(json: patientResponseJSON)
+let patientResponseJSONData = someMagicalFHIREndpoint(patientId: 123)
+let patient = try! JSONDecoder().decode(Patient.self, from: patientResponseJSONData)
 try! realm.write { realm.add(patient) }
  
 // Alternatively you can Create your own patient
@@ -86,11 +86,9 @@ You have 2 options:
 1. [Carthage](https://github.com/Carthage/Carthage) (which will download the binaries attached to the appropriate Release)
 2. Good ol' fashioned Clone 'n Build.
 
-> **ATTENTION**: All Swift 3.1 releases have been renamed to `FireKit`. If the Swift 3.0.2 release the old name of the library, `RealmSwiftFHIR`, applies. If you are using Swift 3.0.2, anywhere you see the word `FireKit` you should intentionally misread it as `RealmSwiftFHIR`. I would apologize for the confusion but naming is _hard_.
-
 ## Carthage
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-2. Add `github "ryanbaldwin/FireKit" == 2.31.03` to the your `Cartfile` (see [Versioning](#versioning) for more info)
+2. Add `github "ryanbaldwin/FireKit" == 2.40.01` to the your `Cartfile` (see [Versioning](#versioning) for more info)
 3. Do a quick `carthage update` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
 
@@ -120,16 +118,16 @@ Welcome to Crazytown! There are a lot of moving parts when it comes to versionin
 - "Minor" version number is actually the Swift Version (`31` for `Swift 3.1`)
 - The build number is the typical build number, the _actual_ build number.
 
-Current of `FireKit` is `v2.31.03` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
+Current of `FireKit` is `v2.40.01` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
 
 ## Version Matrix
 | Swift Version | DSTU2        | STU3  |
 | :---          | :---:        | :---: |
+| 4.0			| `v2.40.01`   | n/a   |
 | 3.1           | `v2.31.03`   | n/a   |
 | 3.0.2         | `v0.2.3`     | n/a   |
 
-An STU3 version for Swift 3.1 should be coming soon-ish.
-*Update*: I'm way behind on this. I'm trying to get a lot of kinks out before splitting versions. Sorry. 😔
+*Update*: I'm way behind on creating a version for STU3. I'm trying to get a lot of kinks out before splitting versions. Sorry. 😔
 
 # What's Distinct to FireKit
 While most of FireKit follows as closely as possible to [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR)'s original implementation, certain provisions had to be made in order to accomodate Realm.
