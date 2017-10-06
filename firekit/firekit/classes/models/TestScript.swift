@@ -2,10 +2,10 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -183,12 +183,10 @@ open class TestScript: DomainResource {
             self.contact[index].populate(from: t)
         }
     
-        if self.contact.count > o.contact.count {
-            for i in self.contact.count...o.contact.count {
-                let objectToRemove = self.contact[i]
-                self.contact.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contact.count > o.contact.count {
+            let objectToRemove = self.contact.last!
+            self.contact.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         copyright = o.copyright
         FireKit.populate(&self.date, from: o.date)
@@ -203,12 +201,10 @@ open class TestScript: DomainResource {
             self.fixture[index].populate(from: t)
         }
     
-        if self.fixture.count > o.fixture.count {
-            for i in self.fixture.count...o.fixture.count {
-                let objectToRemove = self.fixture[i]
-                self.fixture.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.fixture.count > o.fixture.count {
+            let objectToRemove = self.fixture.last!
+            self.fixture.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.metadata, from: o.metadata)
@@ -223,12 +219,10 @@ open class TestScript: DomainResource {
             self.profile[index].populate(from: t)
         }
     
-        if self.profile.count > o.profile.count {
-            for i in self.profile.count...o.profile.count {
-                let objectToRemove = self.profile[i]
-                self.profile.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.profile.count > o.profile.count {
+            let objectToRemove = self.profile.last!
+            self.profile.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         publisher = o.publisher
         requirements = o.requirements
@@ -244,12 +238,10 @@ open class TestScript: DomainResource {
             self.test[index].populate(from: t)
         }
     
-        if self.test.count > o.test.count {
-            for i in self.test.count...o.test.count {
-                let objectToRemove = self.test[i]
-                self.test.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.test.count > o.test.count {
+            let objectToRemove = self.test.last!
+            self.test.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         url = o.url
 
@@ -261,12 +253,10 @@ open class TestScript: DomainResource {
             self.useContext[index].populate(from: t)
         }
     
-        if self.useContext.count > o.useContext.count {
-            for i in self.useContext.count...o.useContext.count {
-                let objectToRemove = self.useContext[i]
-                self.useContext.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.useContext.count > o.useContext.count {
+            let objectToRemove = self.useContext.last!
+            self.useContext.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.variable.enumerated() {
@@ -277,12 +267,10 @@ open class TestScript: DomainResource {
             self.variable[index].populate(from: t)
         }
     
-        if self.variable.count > o.variable.count {
-            for i in self.variable.count...o.variable.count {
-                let objectToRemove = self.variable[i]
-                self.variable.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.variable.count > o.variable.count {
+            let objectToRemove = self.variable.last!
+            self.variable.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         version = o.version
     }
@@ -363,12 +351,10 @@ open class TestScriptContact: BackboneElement {
             self.telecom[index].populate(from: t)
         }
     
-        if self.telecom.count > o.telecom.count {
-            for i in self.telecom.count...o.telecom.count {
-                let objectToRemove = self.telecom[i]
-                self.telecom.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.telecom.count > o.telecom.count {
+            let objectToRemove = self.telecom.last!
+            self.telecom.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -531,12 +517,10 @@ open class TestScriptMetadata: BackboneElement {
             self.capability[index].populate(from: t)
         }
     
-        if self.capability.count > o.capability.count {
-            for i in self.capability.count...o.capability.count {
-                let objectToRemove = self.capability[i]
-                self.capability.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.capability.count > o.capability.count {
+            let objectToRemove = self.capability.last!
+            self.capability.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.link.enumerated() {
@@ -547,12 +531,10 @@ open class TestScriptMetadata: BackboneElement {
             self.link[index].populate(from: t)
         }
     
-        if self.link.count > o.link.count {
-            for i in self.link.count...o.link.count {
-                let objectToRemove = self.link[i]
-                self.link.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.link.count > o.link.count {
+            let objectToRemove = self.link.last!
+            self.link.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -659,12 +641,10 @@ open class TestScriptMetadataCapability: BackboneElement {
             self.link[index].populate(from: t)
         }
     
-        if self.link.count > o.link.count {
-            for i in self.link.count...o.link.count {
-                let objectToRemove = self.link[i]
-                self.link.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.link.count > o.link.count {
+            let objectToRemove = self.link.last!
+            self.link.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         required.value = o.required.value
         validated.value = o.validated.value
@@ -828,12 +808,10 @@ open class TestScriptSetup: BackboneElement {
             self.action[index].populate(from: t)
         }
     
-        if self.action.count > o.action.count {
-            for i in self.action.count...o.action.count {
-                let objectToRemove = self.action[i]
-                self.action.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.action.count > o.action.count {
+            let objectToRemove = self.action.last!
+            self.action.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.metadata, from: o.metadata)
     }
@@ -1197,12 +1175,10 @@ open class TestScriptSetupActionOperation: BackboneElement {
             self.requestHeader[index].populate(from: t)
         }
     
-        if self.requestHeader.count > o.requestHeader.count {
-            for i in self.requestHeader.count...o.requestHeader.count {
-                let objectToRemove = self.requestHeader[i]
-                self.requestHeader.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.requestHeader.count > o.requestHeader.count {
+            let objectToRemove = self.requestHeader.last!
+            self.requestHeader.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         resource = o.resource
         responseId = o.responseId
@@ -1366,12 +1342,10 @@ open class TestScriptTeardown: BackboneElement {
             self.action[index].populate(from: t)
         }
     
-        if self.action.count > o.action.count {
-            for i in self.action.count...o.action.count {
-                let objectToRemove = self.action[i]
-                self.action.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.action.count > o.action.count {
+            let objectToRemove = self.action.last!
+            self.action.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -1533,12 +1507,10 @@ open class TestScriptTest: BackboneElement {
             self.action[index].populate(from: t)
         }
     
-        if self.action.count > o.action.count {
-            for i in self.action.count...o.action.count {
-                let objectToRemove = self.action[i]
-                self.action.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.action.count > o.action.count {
+            let objectToRemove = self.action.last!
+            self.action.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         description_fhir = o.description_fhir
         FireKit.populate(&self.metadata, from: o.metadata)

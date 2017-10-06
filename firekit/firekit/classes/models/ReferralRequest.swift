@@ -2,10 +2,10 @@
 //  ReferralRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ReferralRequest) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -178,12 +178,10 @@ open class ReferralRequest: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.priority, from: o.priority)
@@ -197,12 +195,10 @@ open class ReferralRequest: DomainResource {
             self.recipient[index].populate(from: t)
         }
     
-        if self.recipient.count > o.recipient.count {
-            for i in self.recipient.count...o.recipient.count {
-                let objectToRemove = self.recipient[i]
-                self.recipient.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.recipient.count > o.recipient.count {
+            let objectToRemove = self.recipient.last!
+            self.recipient.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.requester, from: o.requester)
 
@@ -214,12 +210,10 @@ open class ReferralRequest: DomainResource {
             self.serviceRequested[index].populate(from: t)
         }
     
-        if self.serviceRequested.count > o.serviceRequested.count {
-            for i in self.serviceRequested.count...o.serviceRequested.count {
-                let objectToRemove = self.serviceRequested[i]
-                self.serviceRequested.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.serviceRequested.count > o.serviceRequested.count {
+            let objectToRemove = self.serviceRequested.last!
+            self.serviceRequested.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.specialty, from: o.specialty)
         status = o.status
@@ -232,12 +226,10 @@ open class ReferralRequest: DomainResource {
             self.supportingInformation[index].populate(from: t)
         }
     
-        if self.supportingInformation.count > o.supportingInformation.count {
-            for i in self.supportingInformation.count...o.supportingInformation.count {
-                let objectToRemove = self.supportingInformation[i]
-                self.supportingInformation.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.supportingInformation.count > o.supportingInformation.count {
+            let objectToRemove = self.supportingInformation.last!
+            self.supportingInformation.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.type, from: o.type)
     }

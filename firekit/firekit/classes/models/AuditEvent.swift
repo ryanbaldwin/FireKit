@@ -2,10 +2,10 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -110,12 +110,10 @@ open class AuditEvent: DomainResource {
             self.object[index].populate(from: t)
         }
     
-        if self.object.count > o.object.count {
-            for i in self.object.count...o.object.count {
-                let objectToRemove = self.object[i]
-                self.object.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.object.count > o.object.count {
+            let objectToRemove = self.object.last!
+            self.object.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.participant.enumerated() {
@@ -126,12 +124,10 @@ open class AuditEvent: DomainResource {
             self.participant[index].populate(from: t)
         }
     
-        if self.participant.count > o.participant.count {
-            for i in self.participant.count...o.participant.count {
-                let objectToRemove = self.participant[i]
-                self.participant.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.participant.count > o.participant.count {
+            let objectToRemove = self.participant.last!
+            self.participant.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.source, from: o.source)
     }
@@ -245,12 +241,10 @@ open class AuditEventEvent: BackboneElement {
             self.purposeOfEvent[index].populate(from: t)
         }
     
-        if self.purposeOfEvent.count > o.purposeOfEvent.count {
-            for i in self.purposeOfEvent.count...o.purposeOfEvent.count {
-                let objectToRemove = self.purposeOfEvent[i]
-                self.purposeOfEvent.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.purposeOfEvent.count > o.purposeOfEvent.count {
+            let objectToRemove = self.purposeOfEvent.last!
+            self.purposeOfEvent.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.subtype.enumerated() {
@@ -261,12 +255,10 @@ open class AuditEventEvent: BackboneElement {
             self.subtype[index].populate(from: t)
         }
     
-        if self.subtype.count > o.subtype.count {
-            for i in self.subtype.count...o.subtype.count {
-                let objectToRemove = self.subtype[i]
-                self.subtype.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.subtype.count > o.subtype.count {
+            let objectToRemove = self.subtype.last!
+            self.subtype.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.type, from: o.type)
     }
@@ -392,12 +384,10 @@ open class AuditEventObject: BackboneElement {
             self.detail[index].populate(from: t)
         }
     
-        if self.detail.count > o.detail.count {
-            for i in self.detail.count...o.detail.count {
-                let objectToRemove = self.detail[i]
-                self.detail.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.detail.count > o.detail.count {
+            let objectToRemove = self.detail.last!
+            self.detail.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.lifecycle, from: o.lifecycle)
@@ -414,12 +404,10 @@ open class AuditEventObject: BackboneElement {
             self.securityLabel[index].populate(from: t)
         }
     
-        if self.securityLabel.count > o.securityLabel.count {
-            for i in self.securityLabel.count...o.securityLabel.count {
-                let objectToRemove = self.securityLabel[i]
-                self.securityLabel.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.securityLabel.count > o.securityLabel.count {
+            let objectToRemove = self.securityLabel.last!
+            self.securityLabel.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.type, from: o.type)
     }
@@ -634,12 +622,10 @@ open class AuditEventParticipant: BackboneElement {
             self.policy[index].populate(from: t)
         }
     
-        if self.policy.count > o.policy.count {
-            for i in self.policy.count...o.policy.count {
-                let objectToRemove = self.policy[i]
-                self.policy.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.policy.count > o.policy.count {
+            let objectToRemove = self.policy.last!
+            self.policy.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.purposeOfUse.enumerated() {
@@ -650,12 +636,10 @@ open class AuditEventParticipant: BackboneElement {
             self.purposeOfUse[index].populate(from: t)
         }
     
-        if self.purposeOfUse.count > o.purposeOfUse.count {
-            for i in self.purposeOfUse.count...o.purposeOfUse.count {
-                let objectToRemove = self.purposeOfUse[i]
-                self.purposeOfUse.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.purposeOfUse.count > o.purposeOfUse.count {
+            let objectToRemove = self.purposeOfUse.last!
+            self.purposeOfUse.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.reference, from: o.reference)
         requestor.value = o.requestor.value
@@ -668,12 +652,10 @@ open class AuditEventParticipant: BackboneElement {
             self.role[index].populate(from: t)
         }
     
-        if self.role.count > o.role.count {
-            for i in self.role.count...o.role.count {
-                let objectToRemove = self.role[i]
-                self.role.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.role.count > o.role.count {
+            let objectToRemove = self.role.last!
+            self.role.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.userId, from: o.userId)
     }
@@ -836,12 +818,10 @@ open class AuditEventSource: BackboneElement {
             self.type[index].populate(from: t)
         }
     
-        if self.type.count > o.type.count {
-            for i in self.type.count...o.type.count {
-                let objectToRemove = self.type[i]
-                self.type.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.type.count > o.type.count {
+            let objectToRemove = self.type.last!
+            self.type.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

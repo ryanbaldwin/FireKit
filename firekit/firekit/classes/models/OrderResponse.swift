@@ -2,10 +2,10 @@
 //  OrderResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OrderResponse) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -119,12 +119,10 @@ open class OrderResponse: DomainResource {
             self.fulfillment[index].populate(from: t)
         }
     
-        if self.fulfillment.count > o.fulfillment.count {
-            for i in self.fulfillment.count...o.fulfillment.count {
-                let objectToRemove = self.fulfillment[i]
-                self.fulfillment.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.fulfillment.count > o.fulfillment.count {
+            let objectToRemove = self.fulfillment.last!
+            self.fulfillment.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.identifier.enumerated() {
@@ -135,12 +133,10 @@ open class OrderResponse: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         orderStatus = o.orderStatus
         FireKit.populate(&self.request, from: o.request)

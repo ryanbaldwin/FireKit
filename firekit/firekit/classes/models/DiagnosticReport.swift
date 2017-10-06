@@ -2,10 +2,10 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -186,12 +186,10 @@ open class DiagnosticReport: DomainResource {
             self.codedDiagnosis[index].populate(from: t)
         }
     
-        if self.codedDiagnosis.count > o.codedDiagnosis.count {
-            for i in self.codedDiagnosis.count...o.codedDiagnosis.count {
-                let objectToRemove = self.codedDiagnosis[i]
-                self.codedDiagnosis.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.codedDiagnosis.count > o.codedDiagnosis.count {
+            let objectToRemove = self.codedDiagnosis.last!
+            self.codedDiagnosis.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         conclusion = o.conclusion
         FireKit.populate(&self.effectiveDateTime, from: o.effectiveDateTime)
@@ -206,12 +204,10 @@ open class DiagnosticReport: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.image.enumerated() {
@@ -222,12 +218,10 @@ open class DiagnosticReport: DomainResource {
             self.image[index].populate(from: t)
         }
     
-        if self.image.count > o.image.count {
-            for i in self.image.count...o.image.count {
-                let objectToRemove = self.image[i]
-                self.image.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.image.count > o.image.count {
+            let objectToRemove = self.image.last!
+            self.image.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.imagingStudy.enumerated() {
@@ -238,12 +232,10 @@ open class DiagnosticReport: DomainResource {
             self.imagingStudy[index].populate(from: t)
         }
     
-        if self.imagingStudy.count > o.imagingStudy.count {
-            for i in self.imagingStudy.count...o.imagingStudy.count {
-                let objectToRemove = self.imagingStudy[i]
-                self.imagingStudy.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.imagingStudy.count > o.imagingStudy.count {
+            let objectToRemove = self.imagingStudy.last!
+            self.imagingStudy.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.issued, from: o.issued)
         FireKit.populate(&self.performer, from: o.performer)
@@ -256,12 +248,10 @@ open class DiagnosticReport: DomainResource {
             self.presentedForm[index].populate(from: t)
         }
     
-        if self.presentedForm.count > o.presentedForm.count {
-            for i in self.presentedForm.count...o.presentedForm.count {
-                let objectToRemove = self.presentedForm[i]
-                self.presentedForm.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.presentedForm.count > o.presentedForm.count {
+            let objectToRemove = self.presentedForm.last!
+            self.presentedForm.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.request.enumerated() {
@@ -272,12 +262,10 @@ open class DiagnosticReport: DomainResource {
             self.request[index].populate(from: t)
         }
     
-        if self.request.count > o.request.count {
-            for i in self.request.count...o.request.count {
-                let objectToRemove = self.request[i]
-                self.request.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.request.count > o.request.count {
+            let objectToRemove = self.request.last!
+            self.request.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.result.enumerated() {
@@ -288,12 +276,10 @@ open class DiagnosticReport: DomainResource {
             self.result[index].populate(from: t)
         }
     
-        if self.result.count > o.result.count {
-            for i in self.result.count...o.result.count {
-                let objectToRemove = self.result[i]
-                self.result.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.result.count > o.result.count {
+            let objectToRemove = self.result.last!
+            self.result.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.specimen.enumerated() {
@@ -304,12 +290,10 @@ open class DiagnosticReport: DomainResource {
             self.specimen[index].populate(from: t)
         }
     
-        if self.specimen.count > o.specimen.count {
-            for i in self.specimen.count...o.specimen.count {
-                let objectToRemove = self.specimen[i]
-                self.specimen.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.specimen.count > o.specimen.count {
+            let objectToRemove = self.specimen.last!
+            self.specimen.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)

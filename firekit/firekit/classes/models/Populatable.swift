@@ -39,20 +39,3 @@ func populate<T: RealmSwift.Object>(_ target: inout T?, from other: T?) where T:
     
     target?.populate(from: other as Any)
 }
-
-// This will be the refactored chunk for populating arrays,  if I can ever get it to work.
-// func populateList<T>(_ target: inout RealmSwift.List<T>, from other: RealmSwift.List<T>) where T: Populatable {
-//     for (index, t) in other.enumerated() {
-//         guard index < target.count else {
-//             target.append(t)
-//             return
-//         }
-//         target[index].populate(from: t)
-//     }
-    
-//     if target.count > other.count {
-//         for i in target.count...other.count {
-//             target.remove(at: i)
-//         }
-//     }
-// }

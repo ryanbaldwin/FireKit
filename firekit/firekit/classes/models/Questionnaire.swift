@@ -2,10 +2,10 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -123,12 +123,10 @@ open class Questionnaire: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         publisher = o.publisher
         status = o.status
@@ -141,12 +139,10 @@ open class Questionnaire: DomainResource {
             self.subjectType[index].populate(from: t)
         }
     
-        if self.subjectType.count > o.subjectType.count {
-            for i in self.subjectType.count...o.subjectType.count {
-                let objectToRemove = self.subjectType[i]
-                self.subjectType.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.subjectType.count > o.subjectType.count {
+            let objectToRemove = self.subjectType.last!
+            self.subjectType.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.telecom.enumerated() {
@@ -157,12 +153,10 @@ open class Questionnaire: DomainResource {
             self.telecom[index].populate(from: t)
         }
     
-        if self.telecom.count > o.telecom.count {
-            for i in self.telecom.count...o.telecom.count {
-                let objectToRemove = self.telecom[i]
-                self.telecom.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.telecom.count > o.telecom.count {
+            let objectToRemove = self.telecom.last!
+            self.telecom.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         version = o.version
     }
@@ -266,12 +260,10 @@ open class QuestionnaireGroup: BackboneElement {
             self.concept[index].populate(from: t)
         }
     
-        if self.concept.count > o.concept.count {
-            for i in self.concept.count...o.concept.count {
-                let objectToRemove = self.concept[i]
-                self.concept.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.concept.count > o.concept.count {
+            let objectToRemove = self.concept.last!
+            self.concept.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.group.enumerated() {
@@ -282,12 +274,10 @@ open class QuestionnaireGroup: BackboneElement {
             self.group[index].populate(from: t)
         }
     
-        if self.group.count > o.group.count {
-            for i in self.group.count...o.group.count {
-                let objectToRemove = self.group[i]
-                self.group.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.group.count > o.group.count {
+            let objectToRemove = self.group.last!
+            self.group.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         linkId = o.linkId
 
@@ -299,12 +289,10 @@ open class QuestionnaireGroup: BackboneElement {
             self.question[index].populate(from: t)
         }
     
-        if self.question.count > o.question.count {
-            for i in self.question.count...o.question.count {
-                let objectToRemove = self.question[i]
-                self.question.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.question.count > o.question.count {
+            let objectToRemove = self.question.last!
+            self.question.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         repeats.value = o.repeats.value
         required.value = o.required.value
@@ -418,12 +406,10 @@ open class QuestionnaireGroupQuestion: BackboneElement {
             self.concept[index].populate(from: t)
         }
     
-        if self.concept.count > o.concept.count {
-            for i in self.concept.count...o.concept.count {
-                let objectToRemove = self.concept[i]
-                self.concept.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.concept.count > o.concept.count {
+            let objectToRemove = self.concept.last!
+            self.concept.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.group.enumerated() {
@@ -434,12 +420,10 @@ open class QuestionnaireGroupQuestion: BackboneElement {
             self.group[index].populate(from: t)
         }
     
-        if self.group.count > o.group.count {
-            for i in self.group.count...o.group.count {
-                let objectToRemove = self.group[i]
-                self.group.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.group.count > o.group.count {
+            let objectToRemove = self.group.last!
+            self.group.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         linkId = o.linkId
 
@@ -451,12 +435,10 @@ open class QuestionnaireGroupQuestion: BackboneElement {
             self.option[index].populate(from: t)
         }
     
-        if self.option.count > o.option.count {
-            for i in self.option.count...o.option.count {
-                let objectToRemove = self.option[i]
-                self.option.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.option.count > o.option.count {
+            let objectToRemove = self.option.last!
+            self.option.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.options, from: o.options)
         repeats.value = o.repeats.value

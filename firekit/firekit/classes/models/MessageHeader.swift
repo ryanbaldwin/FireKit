@@ -2,10 +2,10 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -157,12 +157,10 @@ open class MessageHeader: DomainResource {
             self.data[index].populate(from: t)
         }
     
-        if self.data.count > o.data.count {
-            for i in self.data.count...o.data.count {
-                let objectToRemove = self.data[i]
-                self.data.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.data.count > o.data.count {
+            let objectToRemove = self.data.last!
+            self.data.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.destination.enumerated() {
@@ -173,12 +171,10 @@ open class MessageHeader: DomainResource {
             self.destination[index].populate(from: t)
         }
     
-        if self.destination.count > o.destination.count {
-            for i in self.destination.count...o.destination.count {
-                let objectToRemove = self.destination[i]
-                self.destination.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.destination.count > o.destination.count {
+            let objectToRemove = self.destination.last!
+            self.destination.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.enterer, from: o.enterer)
         FireKit.populate(&self.event, from: o.event)

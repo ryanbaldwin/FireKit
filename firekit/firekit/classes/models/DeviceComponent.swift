@@ -2,10 +2,10 @@
 //  DeviceComponent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceComponent) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -149,12 +149,10 @@ open class DeviceComponent: DomainResource {
             self.operationalStatus[index].populate(from: t)
         }
     
-        if self.operationalStatus.count > o.operationalStatus.count {
-            for i in self.operationalStatus.count...o.operationalStatus.count {
-                let objectToRemove = self.operationalStatus[i]
-                self.operationalStatus.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.operationalStatus.count > o.operationalStatus.count {
+            let objectToRemove = self.operationalStatus.last!
+            self.operationalStatus.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.parameterGroup, from: o.parameterGroup)
         FireKit.populate(&self.parent, from: o.parent)
@@ -167,12 +165,10 @@ open class DeviceComponent: DomainResource {
             self.productionSpecification[index].populate(from: t)
         }
     
-        if self.productionSpecification.count > o.productionSpecification.count {
-            for i in self.productionSpecification.count...o.productionSpecification.count {
-                let objectToRemove = self.productionSpecification[i]
-                self.productionSpecification.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.productionSpecification.count > o.productionSpecification.count {
+            let objectToRemove = self.productionSpecification.last!
+            self.productionSpecification.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.source, from: o.source)
         FireKit.populate(&self.type, from: o.type)

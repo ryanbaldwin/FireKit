@@ -2,10 +2,10 @@
 //  EpisodeOfCare.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/EpisodeOfCare) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -144,12 +144,10 @@ open class EpisodeOfCare: DomainResource {
             self.careTeam[index].populate(from: t)
         }
     
-        if self.careTeam.count > o.careTeam.count {
-            for i in self.careTeam.count...o.careTeam.count {
-                let objectToRemove = self.careTeam[i]
-                self.careTeam.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.careTeam.count > o.careTeam.count {
+            let objectToRemove = self.careTeam.last!
+            self.careTeam.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.condition.enumerated() {
@@ -160,12 +158,10 @@ open class EpisodeOfCare: DomainResource {
             self.condition[index].populate(from: t)
         }
     
-        if self.condition.count > o.condition.count {
-            for i in self.condition.count...o.condition.count {
-                let objectToRemove = self.condition[i]
-                self.condition.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.condition.count > o.condition.count {
+            let objectToRemove = self.condition.last!
+            self.condition.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.identifier.enumerated() {
@@ -176,12 +172,10 @@ open class EpisodeOfCare: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.managingOrganization, from: o.managingOrganization)
         FireKit.populate(&self.patient, from: o.patient)
@@ -195,12 +189,10 @@ open class EpisodeOfCare: DomainResource {
             self.referralRequest[index].populate(from: t)
         }
     
-        if self.referralRequest.count > o.referralRequest.count {
-            for i in self.referralRequest.count...o.referralRequest.count {
-                let objectToRemove = self.referralRequest[i]
-                self.referralRequest.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.referralRequest.count > o.referralRequest.count {
+            let objectToRemove = self.referralRequest.last!
+            self.referralRequest.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
 
@@ -212,12 +204,10 @@ open class EpisodeOfCare: DomainResource {
             self.statusHistory[index].populate(from: t)
         }
     
-        if self.statusHistory.count > o.statusHistory.count {
-            for i in self.statusHistory.count...o.statusHistory.count {
-                let objectToRemove = self.statusHistory[i]
-                self.statusHistory.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.statusHistory.count > o.statusHistory.count {
+            let objectToRemove = self.statusHistory.last!
+            self.statusHistory.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.type.enumerated() {
@@ -228,12 +218,10 @@ open class EpisodeOfCare: DomainResource {
             self.type[index].populate(from: t)
         }
     
-        if self.type.count > o.type.count {
-            for i in self.type.count...o.type.count {
-                let objectToRemove = self.type[i]
-                self.type.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.type.count > o.type.count {
+            let objectToRemove = self.type.last!
+            self.type.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -324,12 +312,10 @@ open class EpisodeOfCareCareTeam: BackboneElement {
             self.role[index].populate(from: t)
         }
     
-        if self.role.count > o.role.count {
-            for i in self.role.count...o.role.count {
-                let objectToRemove = self.role[i]
-                self.role.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.role.count > o.role.count {
+            let objectToRemove = self.role.last!
+            self.role.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

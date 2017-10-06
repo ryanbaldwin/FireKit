@@ -2,10 +2,10 @@
 //  DeviceUseRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseRequest) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -175,12 +175,10 @@ open class DeviceUseRequest: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.indication.enumerated() {
@@ -191,12 +189,10 @@ open class DeviceUseRequest: DomainResource {
             self.indication[index].populate(from: t)
         }
     
-        if self.indication.count > o.indication.count {
-            for i in self.indication.count...o.indication.count {
-                let objectToRemove = self.indication[i]
-                self.indication.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.indication.count > o.indication.count {
+            let objectToRemove = self.indication.last!
+            self.indication.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.notes.enumerated() {
@@ -207,12 +203,10 @@ open class DeviceUseRequest: DomainResource {
             self.notes[index].populate(from: t)
         }
     
-        if self.notes.count > o.notes.count {
-            for i in self.notes.count...o.notes.count {
-                let objectToRemove = self.notes[i]
-                self.notes.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.notes.count > o.notes.count {
+            let objectToRemove = self.notes.last!
+            self.notes.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.orderedOn, from: o.orderedOn)
         priority = o.priority
@@ -225,12 +219,10 @@ open class DeviceUseRequest: DomainResource {
             self.prnReason[index].populate(from: t)
         }
     
-        if self.prnReason.count > o.prnReason.count {
-            for i in self.prnReason.count...o.prnReason.count {
-                let objectToRemove = self.prnReason[i]
-                self.prnReason.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.prnReason.count > o.prnReason.count {
+            let objectToRemove = self.prnReason.last!
+            self.prnReason.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.recordedOn, from: o.recordedOn)
         status = o.status

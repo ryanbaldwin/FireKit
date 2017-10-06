@@ -2,10 +2,10 @@
 //  Meta.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Meta) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -100,12 +100,10 @@ open class Meta: Element {
             self.profile[index].populate(from: t)
         }
     
-        if self.profile.count > o.profile.count {
-            for i in self.profile.count...o.profile.count {
-                let objectToRemove = self.profile[i]
-                self.profile.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.profile.count > o.profile.count {
+            let objectToRemove = self.profile.last!
+            self.profile.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.security.enumerated() {
@@ -116,12 +114,10 @@ open class Meta: Element {
             self.security[index].populate(from: t)
         }
     
-        if self.security.count > o.security.count {
-            for i in self.security.count...o.security.count {
-                let objectToRemove = self.security[i]
-                self.security.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.security.count > o.security.count {
+            let objectToRemove = self.security.last!
+            self.security.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.tag.enumerated() {
@@ -132,12 +128,10 @@ open class Meta: Element {
             self.tag[index].populate(from: t)
         }
     
-        if self.tag.count > o.tag.count {
-            for i in self.tag.count...o.tag.count {
-                let objectToRemove = self.tag[i]
-                self.tag.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.tag.count > o.tag.count {
+            let objectToRemove = self.tag.last!
+            self.tag.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         versionId = o.versionId
     }

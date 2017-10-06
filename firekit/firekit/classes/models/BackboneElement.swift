@@ -2,10 +2,10 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -82,12 +82,10 @@ open class BackboneElement: Element {
             self.modifierExtension[index].populate(from: t)
         }
     
-        if self.modifierExtension.count > o.modifierExtension.count {
-            for i in self.modifierExtension.count...o.modifierExtension.count {
-                let objectToRemove = self.modifierExtension[i]
-                self.modifierExtension.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.modifierExtension.count > o.modifierExtension.count {
+            let objectToRemove = self.modifierExtension.last!
+            self.modifierExtension.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

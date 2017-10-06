@@ -2,10 +2,10 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -138,12 +138,10 @@ open class Specimen: DomainResource {
             self.container[index].populate(from: t)
         }
     
-        if self.container.count > o.container.count {
-            for i in self.container.count...o.container.count {
-                let objectToRemove = self.container[i]
-                self.container.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.container.count > o.container.count {
+            let objectToRemove = self.container.last!
+            self.container.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.identifier.enumerated() {
@@ -154,12 +152,10 @@ open class Specimen: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.parent.enumerated() {
@@ -170,12 +166,10 @@ open class Specimen: DomainResource {
             self.parent[index].populate(from: t)
         }
     
-        if self.parent.count > o.parent.count {
-            for i in self.parent.count...o.parent.count {
-                let objectToRemove = self.parent[i]
-                self.parent.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.parent.count > o.parent.count {
+            let objectToRemove = self.parent.last!
+            self.parent.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.receivedTime, from: o.receivedTime)
         status = o.status
@@ -189,12 +183,10 @@ open class Specimen: DomainResource {
             self.treatment[index].populate(from: t)
         }
     
-        if self.treatment.count > o.treatment.count {
-            for i in self.treatment.count...o.treatment.count {
-                let objectToRemove = self.treatment[i]
-                self.treatment.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.treatment.count > o.treatment.count {
+            let objectToRemove = self.treatment.last!
+            self.treatment.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.type, from: o.type)
     }
@@ -313,12 +305,10 @@ open class SpecimenCollection: BackboneElement {
             self.comment[index].populate(from: t)
         }
     
-        if self.comment.count > o.comment.count {
-            for i in self.comment.count...o.comment.count {
-                let objectToRemove = self.comment[i]
-                self.comment.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.comment.count > o.comment.count {
+            let objectToRemove = self.comment.last!
+            self.comment.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.method, from: o.method)
         FireKit.populate(&self.quantity, from: o.quantity)
@@ -439,12 +429,10 @@ open class SpecimenContainer: BackboneElement {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.specimenQuantity, from: o.specimenQuantity)
         FireKit.populate(&self.type, from: o.type)
@@ -532,12 +520,10 @@ open class SpecimenTreatment: BackboneElement {
             self.additive[index].populate(from: t)
         }
     
-        if self.additive.count > o.additive.count {
-            for i in self.additive.count...o.additive.count {
-                let objectToRemove = self.additive[i]
-                self.additive.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.additive.count > o.additive.count {
+            let objectToRemove = self.additive.last!
+            self.additive.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         description_fhir = o.description_fhir
         FireKit.populate(&self.procedure, from: o.procedure)

@@ -2,10 +2,10 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -109,12 +109,10 @@ open class Substance: DomainResource {
             self.category[index].populate(from: t)
         }
     
-        if self.category.count > o.category.count {
-            for i in self.category.count...o.category.count {
-                let objectToRemove = self.category[i]
-                self.category.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.category.count > o.category.count {
+            let objectToRemove = self.category.last!
+            self.category.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.code, from: o.code)
         description_fhir = o.description_fhir
@@ -127,12 +125,10 @@ open class Substance: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.ingredient.enumerated() {
@@ -143,12 +139,10 @@ open class Substance: DomainResource {
             self.ingredient[index].populate(from: t)
         }
     
-        if self.ingredient.count > o.ingredient.count {
-            for i in self.ingredient.count...o.ingredient.count {
-                let objectToRemove = self.ingredient[i]
-                self.ingredient.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.ingredient.count > o.ingredient.count {
+            let objectToRemove = self.ingredient.last!
+            self.ingredient.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.instance.enumerated() {
@@ -159,12 +153,10 @@ open class Substance: DomainResource {
             self.instance[index].populate(from: t)
         }
     
-        if self.instance.count > o.instance.count {
-            for i in self.instance.count...o.instance.count {
-                let objectToRemove = self.instance[i]
-                self.instance.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.instance.count > o.instance.count {
+            let objectToRemove = self.instance.last!
+            self.instance.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

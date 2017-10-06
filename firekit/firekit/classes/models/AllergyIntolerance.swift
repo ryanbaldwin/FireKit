@@ -2,10 +2,10 @@
 //  AllergyIntolerance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AllergyIntolerance) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -159,12 +159,10 @@ open class AllergyIntolerance: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.lastOccurence, from: o.lastOccurence)
         FireKit.populate(&self.note, from: o.note)
@@ -179,12 +177,10 @@ open class AllergyIntolerance: DomainResource {
             self.reaction[index].populate(from: t)
         }
     
-        if self.reaction.count > o.reaction.count {
-            for i in self.reaction.count...o.reaction.count {
-                let objectToRemove = self.reaction[i]
-                self.reaction.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reaction.count > o.reaction.count {
+            let objectToRemove = self.reaction.last!
+            self.reaction.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.recordedDate, from: o.recordedDate)
         FireKit.populate(&self.recorder, from: o.recorder)
@@ -311,12 +307,10 @@ open class AllergyIntoleranceReaction: BackboneElement {
             self.manifestation[index].populate(from: t)
         }
     
-        if self.manifestation.count > o.manifestation.count {
-            for i in self.manifestation.count...o.manifestation.count {
-                let objectToRemove = self.manifestation[i]
-                self.manifestation.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.manifestation.count > o.manifestation.count {
+            let objectToRemove = self.manifestation.last!
+            self.manifestation.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.note, from: o.note)
         FireKit.populate(&self.onset, from: o.onset)

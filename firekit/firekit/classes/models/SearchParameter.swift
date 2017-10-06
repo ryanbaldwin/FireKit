@@ -2,10 +2,10 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -151,12 +151,10 @@ open class SearchParameter: DomainResource {
             self.contact[index].populate(from: t)
         }
     
-        if self.contact.count > o.contact.count {
-            for i in self.contact.count...o.contact.count {
-                let objectToRemove = self.contact[i]
-                self.contact.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contact.count > o.contact.count {
+            let objectToRemove = self.contact.last!
+            self.contact.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
@@ -174,12 +172,10 @@ open class SearchParameter: DomainResource {
             self.target[index].populate(from: t)
         }
     
-        if self.target.count > o.target.count {
-            for i in self.target.count...o.target.count {
-                let objectToRemove = self.target[i]
-                self.target.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.target.count > o.target.count {
+            let objectToRemove = self.target.last!
+            self.target.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         type = o.type
         url = o.url
@@ -263,12 +259,10 @@ open class SearchParameterContact: BackboneElement {
             self.telecom[index].populate(from: t)
         }
     
-        if self.telecom.count > o.telecom.count {
-            for i in self.telecom.count...o.telecom.count {
-                let objectToRemove = self.telecom[i]
-                self.telecom.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.telecom.count > o.telecom.count {
+            let objectToRemove = self.telecom.last!
+            self.telecom.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

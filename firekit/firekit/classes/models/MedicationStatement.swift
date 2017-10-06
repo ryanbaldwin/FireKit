@@ -2,10 +2,10 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -186,12 +186,10 @@ open class MedicationStatement: DomainResource {
             self.dosage[index].populate(from: t)
         }
     
-        if self.dosage.count > o.dosage.count {
-            for i in self.dosage.count...o.dosage.count {
-                let objectToRemove = self.dosage[i]
-                self.dosage.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.dosage.count > o.dosage.count {
+            let objectToRemove = self.dosage.last!
+            self.dosage.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.effectiveDateTime, from: o.effectiveDateTime)
         FireKit.populate(&self.effectivePeriod, from: o.effectivePeriod)
@@ -204,12 +202,10 @@ open class MedicationStatement: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.informationSource, from: o.informationSource)
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
@@ -227,12 +223,10 @@ open class MedicationStatement: DomainResource {
             self.reasonNotTaken[index].populate(from: t)
         }
     
-        if self.reasonNotTaken.count > o.reasonNotTaken.count {
-            for i in self.reasonNotTaken.count...o.reasonNotTaken.count {
-                let objectToRemove = self.reasonNotTaken[i]
-                self.reasonNotTaken.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reasonNotTaken.count > o.reasonNotTaken.count {
+            let objectToRemove = self.reasonNotTaken.last!
+            self.reasonNotTaken.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
 
@@ -244,12 +238,10 @@ open class MedicationStatement: DomainResource {
             self.supportingInformation[index].populate(from: t)
         }
     
-        if self.supportingInformation.count > o.supportingInformation.count {
-            for i in self.supportingInformation.count...o.supportingInformation.count {
-                let objectToRemove = self.supportingInformation[i]
-                self.supportingInformation.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.supportingInformation.count > o.supportingInformation.count {
+            let objectToRemove = self.supportingInformation.last!
+            self.supportingInformation.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         wasNotTaken.value = o.wasNotTaken.value
     }

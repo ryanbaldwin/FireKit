@@ -2,10 +2,10 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -141,12 +141,10 @@ open class Appointment: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         minutesDuration.value = o.minutesDuration.value
 
@@ -158,12 +156,10 @@ open class Appointment: DomainResource {
             self.participant[index].populate(from: t)
         }
     
-        if self.participant.count > o.participant.count {
-            for i in self.participant.count...o.participant.count {
-                let objectToRemove = self.participant[i]
-                self.participant.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.participant.count > o.participant.count {
+            let objectToRemove = self.participant.last!
+            self.participant.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         priority.value = o.priority.value
         FireKit.populate(&self.reason, from: o.reason)
@@ -176,12 +172,10 @@ open class Appointment: DomainResource {
             self.slot[index].populate(from: t)
         }
     
-        if self.slot.count > o.slot.count {
-            for i in self.slot.count...o.slot.count {
-                let objectToRemove = self.slot[i]
-                self.slot.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.slot.count > o.slot.count {
+            let objectToRemove = self.slot.last!
+            self.slot.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.start, from: o.start)
         status = o.status
@@ -283,12 +277,10 @@ open class AppointmentParticipant: BackboneElement {
             self.type[index].populate(from: t)
         }
     
-        if self.type.count > o.type.count {
-            for i in self.type.count...o.type.count {
-                let objectToRemove = self.type[i]
-                self.type.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.type.count > o.type.count {
+            let objectToRemove = self.type.last!
+            self.type.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

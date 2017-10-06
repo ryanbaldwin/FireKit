@@ -2,10 +2,10 @@
 //  ProcessRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessRequest) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -175,12 +175,10 @@ open class ProcessRequest: DomainResource {
             self.exclude[index].populate(from: t)
         }
     
-        if self.exclude.count > o.exclude.count {
-            for i in self.exclude.count...o.exclude.count {
-                let objectToRemove = self.exclude[i]
-                self.exclude.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.exclude.count > o.exclude.count {
+            let objectToRemove = self.exclude.last!
+            self.exclude.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.identifier.enumerated() {
@@ -191,12 +189,10 @@ open class ProcessRequest: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.include.enumerated() {
@@ -207,12 +203,10 @@ open class ProcessRequest: DomainResource {
             self.include[index].populate(from: t)
         }
     
-        if self.include.count > o.include.count {
-            for i in self.include.count...o.include.count {
-                let objectToRemove = self.include[i]
-                self.include.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.include.count > o.include.count {
+            let objectToRemove = self.include.last!
+            self.include.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.item.enumerated() {
@@ -223,12 +217,10 @@ open class ProcessRequest: DomainResource {
             self.item[index].populate(from: t)
         }
     
-        if self.item.count > o.item.count {
-            for i in self.item.count...o.item.count {
-                let objectToRemove = self.item[i]
-                self.item.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.item.count > o.item.count {
+            let objectToRemove = self.item.last!
+            self.item.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         nullify.value = o.nullify.value
         FireKit.populate(&self.organization, from: o.organization)

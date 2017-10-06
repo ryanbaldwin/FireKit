@@ -2,10 +2,10 @@
 //  Group.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Group) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -123,12 +123,10 @@ open class Group: DomainResource {
             self.characteristic[index].populate(from: t)
         }
     
-        if self.characteristic.count > o.characteristic.count {
-            for i in self.characteristic.count...o.characteristic.count {
-                let objectToRemove = self.characteristic[i]
-                self.characteristic.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.characteristic.count > o.characteristic.count {
+            let objectToRemove = self.characteristic.last!
+            self.characteristic.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.code, from: o.code)
 
@@ -140,12 +138,10 @@ open class Group: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.member.enumerated() {
@@ -156,12 +152,10 @@ open class Group: DomainResource {
             self.member[index].populate(from: t)
         }
     
-        if self.member.count > o.member.count {
-            for i in self.member.count...o.member.count {
-                let objectToRemove = self.member[i]
-                self.member.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.member.count > o.member.count {
+            let objectToRemove = self.member.last!
+            self.member.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         name = o.name
         quantity.value = o.quantity.value

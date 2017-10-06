@@ -2,10 +2,10 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -134,12 +134,10 @@ open class ImagingObjectSelection: DomainResource {
             self.study[index].populate(from: t)
         }
     
-        if self.study.count > o.study.count {
-            for i in self.study.count...o.study.count {
-                let objectToRemove = self.study[i]
-                self.study.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.study.count > o.study.count {
+            let objectToRemove = self.study.last!
+            self.study.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.title, from: o.title)
         uid = o.uid
@@ -239,12 +237,10 @@ open class ImagingObjectSelectionStudy: BackboneElement {
             self.series[index].populate(from: t)
         }
     
-        if self.series.count > o.series.count {
-            for i in self.series.count...o.series.count {
-                let objectToRemove = self.series[i]
-                self.series.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.series.count > o.series.count {
+            let objectToRemove = self.series.last!
+            self.series.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         uid = o.uid
         url = o.url
@@ -335,12 +331,10 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
             self.instance[index].populate(from: t)
         }
     
-        if self.instance.count > o.instance.count {
-            for i in self.instance.count...o.instance.count {
-                let objectToRemove = self.instance[i]
-                self.instance.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.instance.count > o.instance.count {
+            let objectToRemove = self.instance.last!
+            self.instance.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         uid = o.uid
         url = o.url
@@ -437,12 +431,10 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
             self.frames[index].populate(from: t)
         }
     
-        if self.frames.count > o.frames.count {
-            for i in self.frames.count...o.frames.count {
-                let objectToRemove = self.frames[i]
-                self.frames.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.frames.count > o.frames.count {
+            let objectToRemove = self.frames.last!
+            self.frames.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         sopClass = o.sopClass
         uid = o.uid
@@ -531,12 +523,10 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
             self.frameNumbers[index].populate(from: t)
         }
     
-        if self.frameNumbers.count > o.frameNumbers.count {
-            for i in self.frameNumbers.count...o.frameNumbers.count {
-                let objectToRemove = self.frameNumbers[i]
-                self.frameNumbers.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.frameNumbers.count > o.frameNumbers.count {
+            let objectToRemove = self.frameNumbers.last!
+            self.frameNumbers.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         url = o.url
     }

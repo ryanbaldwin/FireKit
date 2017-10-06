@@ -2,10 +2,10 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -167,12 +167,10 @@ open class Composition: DomainResource {
             self.attester[index].populate(from: t)
         }
     
-        if self.attester.count > o.attester.count {
-            for i in self.attester.count...o.attester.count {
-                let objectToRemove = self.attester[i]
-                self.attester.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.attester.count > o.attester.count {
+            let objectToRemove = self.attester.last!
+            self.attester.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.author.enumerated() {
@@ -183,12 +181,10 @@ open class Composition: DomainResource {
             self.author[index].populate(from: t)
         }
     
-        if self.author.count > o.author.count {
-            for i in self.author.count...o.author.count {
-                let objectToRemove = self.author[i]
-                self.author.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.author.count > o.author.count {
+            let objectToRemove = self.author.last!
+            self.author.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.class_fhir, from: o.class_fhir)
         confidentiality = o.confidentiality
@@ -204,12 +200,10 @@ open class Composition: DomainResource {
             self.event[index].populate(from: t)
         }
     
-        if self.event.count > o.event.count {
-            for i in self.event.count...o.event.count {
-                let objectToRemove = self.event[i]
-                self.event.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.event.count > o.event.count {
+            let objectToRemove = self.event.last!
+            self.event.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.identifier, from: o.identifier)
 
@@ -221,12 +215,10 @@ open class Composition: DomainResource {
             self.section[index].populate(from: t)
         }
     
-        if self.section.count > o.section.count {
-            for i in self.section.count...o.section.count {
-                let objectToRemove = self.section[i]
-                self.section.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.section.count > o.section.count {
+            let objectToRemove = self.section.last!
+            self.section.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
@@ -322,12 +314,10 @@ open class CompositionAttester: BackboneElement {
             self.mode[index].populate(from: t)
         }
     
-        if self.mode.count > o.mode.count {
-            for i in self.mode.count...o.mode.count {
-                let objectToRemove = self.mode[i]
-                self.mode.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.mode.count > o.mode.count {
+            let objectToRemove = self.mode.last!
+            self.mode.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.party, from: o.party)
         FireKit.populate(&self.time, from: o.time)
@@ -415,12 +405,10 @@ open class CompositionEvent: BackboneElement {
             self.code[index].populate(from: t)
         }
     
-        if self.code.count > o.code.count {
-            for i in self.code.count...o.code.count {
-                let objectToRemove = self.code[i]
-                self.code.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.code.count > o.code.count {
+            let objectToRemove = self.code.last!
+            self.code.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.detail.enumerated() {
@@ -431,12 +419,10 @@ open class CompositionEvent: BackboneElement {
             self.detail[index].populate(from: t)
         }
     
-        if self.detail.count > o.detail.count {
-            for i in self.detail.count...o.detail.count {
-                let objectToRemove = self.detail[i]
-                self.detail.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.detail.count > o.detail.count {
+            let objectToRemove = self.detail.last!
+            self.detail.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.period, from: o.period)
     }
@@ -554,12 +540,10 @@ open class CompositionSection: BackboneElement {
             self.entry[index].populate(from: t)
         }
     
-        if self.entry.count > o.entry.count {
-            for i in self.entry.count...o.entry.count {
-                let objectToRemove = self.entry[i]
-                self.entry.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.entry.count > o.entry.count {
+            let objectToRemove = self.entry.last!
+            self.entry.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         mode = o.mode
         FireKit.populate(&self.orderedBy, from: o.orderedBy)
@@ -572,12 +556,10 @@ open class CompositionSection: BackboneElement {
             self.section[index].populate(from: t)
         }
     
-        if self.section.count > o.section.count {
-            for i in self.section.count...o.section.count {
-                let objectToRemove = self.section[i]
-                self.section.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.section.count > o.section.count {
+            let objectToRemove = self.section.last!
+            self.section.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.text, from: o.text)
         title = o.title

@@ -2,10 +2,10 @@
 //  NamingSystem.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NamingSystem) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -147,12 +147,10 @@ open class NamingSystem: DomainResource {
             self.contact[index].populate(from: t)
         }
     
-        if self.contact.count > o.contact.count {
-            for i in self.contact.count...o.contact.count {
-                let objectToRemove = self.contact[i]
-                self.contact.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contact.count > o.contact.count {
+            let objectToRemove = self.contact.last!
+            self.contact.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.date, from: o.date)
         description_fhir = o.description_fhir
@@ -172,12 +170,10 @@ open class NamingSystem: DomainResource {
             self.uniqueId[index].populate(from: t)
         }
     
-        if self.uniqueId.count > o.uniqueId.count {
-            for i in self.uniqueId.count...o.uniqueId.count {
-                let objectToRemove = self.uniqueId[i]
-                self.uniqueId.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.uniqueId.count > o.uniqueId.count {
+            let objectToRemove = self.uniqueId.last!
+            self.uniqueId.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         usage = o.usage
 
@@ -189,12 +185,10 @@ open class NamingSystem: DomainResource {
             self.useContext[index].populate(from: t)
         }
     
-        if self.useContext.count > o.useContext.count {
-            for i in self.useContext.count...o.useContext.count {
-                let objectToRemove = self.useContext[i]
-                self.useContext.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.useContext.count > o.useContext.count {
+            let objectToRemove = self.useContext.last!
+            self.useContext.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -274,12 +268,10 @@ open class NamingSystemContact: BackboneElement {
             self.telecom[index].populate(from: t)
         }
     
-        if self.telecom.count > o.telecom.count {
-            for i in self.telecom.count...o.telecom.count {
-                let objectToRemove = self.telecom[i]
-                self.telecom.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.telecom.count > o.telecom.count {
+            let objectToRemove = self.telecom.last!
+            self.telecom.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

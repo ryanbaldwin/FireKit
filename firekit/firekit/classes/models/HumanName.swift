@@ -2,10 +2,10 @@
 //  HumanName.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HumanName) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -109,12 +109,10 @@ open class HumanName: Element {
             self.family[index].populate(from: t)
         }
     
-        if self.family.count > o.family.count {
-            for i in self.family.count...o.family.count {
-                let objectToRemove = self.family[i]
-                self.family.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.family.count > o.family.count {
+            let objectToRemove = self.family.last!
+            self.family.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.given.enumerated() {
@@ -125,12 +123,10 @@ open class HumanName: Element {
             self.given[index].populate(from: t)
         }
     
-        if self.given.count > o.given.count {
-            for i in self.given.count...o.given.count {
-                let objectToRemove = self.given[i]
-                self.given.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.given.count > o.given.count {
+            let objectToRemove = self.given.last!
+            self.given.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.period, from: o.period)
 
@@ -142,12 +138,10 @@ open class HumanName: Element {
             self.prefix[index].populate(from: t)
         }
     
-        if self.prefix.count > o.prefix.count {
-            for i in self.prefix.count...o.prefix.count {
-                let objectToRemove = self.prefix[i]
-                self.prefix.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.prefix.count > o.prefix.count {
+            let objectToRemove = self.prefix.last!
+            self.prefix.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.suffix.enumerated() {
@@ -158,12 +152,10 @@ open class HumanName: Element {
             self.suffix[index].populate(from: t)
         }
     
-        if self.suffix.count > o.suffix.count {
-            for i in self.suffix.count...o.suffix.count {
-                let objectToRemove = self.suffix[i]
-                self.suffix.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.suffix.count > o.suffix.count {
+            let objectToRemove = self.suffix.last!
+            self.suffix.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         text = o.text
         use = o.use

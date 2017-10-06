@@ -2,10 +2,10 @@
 //  MedicationAdministration.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationAdministration) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -179,12 +179,10 @@ open class MedicationAdministration: DomainResource {
             self.device[index].populate(from: t)
         }
     
-        if self.device.count > o.device.count {
-            for i in self.device.count...o.device.count {
-                let objectToRemove = self.device[i]
-                self.device.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.device.count > o.device.count {
+            let objectToRemove = self.device.last!
+            self.device.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.dosage, from: o.dosage)
         FireKit.populate(&self.effectiveTimeDateTime, from: o.effectiveTimeDateTime)
@@ -199,12 +197,10 @@ open class MedicationAdministration: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.medicationCodeableConcept, from: o.medicationCodeableConcept)
         FireKit.populate(&self.medicationReference, from: o.medicationReference)
@@ -221,12 +217,10 @@ open class MedicationAdministration: DomainResource {
             self.reasonGiven[index].populate(from: t)
         }
     
-        if self.reasonGiven.count > o.reasonGiven.count {
-            for i in self.reasonGiven.count...o.reasonGiven.count {
-                let objectToRemove = self.reasonGiven[i]
-                self.reasonGiven.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reasonGiven.count > o.reasonGiven.count {
+            let objectToRemove = self.reasonGiven.last!
+            self.reasonGiven.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.reasonNotGiven.enumerated() {
@@ -237,12 +231,10 @@ open class MedicationAdministration: DomainResource {
             self.reasonNotGiven[index].populate(from: t)
         }
     
-        if self.reasonNotGiven.count > o.reasonNotGiven.count {
-            for i in self.reasonNotGiven.count...o.reasonNotGiven.count {
-                let objectToRemove = self.reasonNotGiven[i]
-                self.reasonNotGiven.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reasonNotGiven.count > o.reasonNotGiven.count {
+            let objectToRemove = self.reasonNotGiven.last!
+            self.reasonNotGiven.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
         wasNotGiven.value = o.wasNotGiven.value

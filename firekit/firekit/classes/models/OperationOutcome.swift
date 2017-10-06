@@ -2,10 +2,10 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -88,12 +88,10 @@ open class OperationOutcome: DomainResource {
             self.issue[index].populate(from: t)
         }
     
-        if self.issue.count > o.issue.count {
-            for i in self.issue.count...o.issue.count {
-                let objectToRemove = self.issue[i]
-                self.issue.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.issue.count > o.issue.count {
+            let objectToRemove = self.issue.last!
+            self.issue.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -197,12 +195,10 @@ open class OperationOutcomeIssue: BackboneElement {
             self.location[index].populate(from: t)
         }
     
-        if self.location.count > o.location.count {
-            for i in self.location.count...o.location.count {
-                let objectToRemove = self.location[i]
-                self.location.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.location.count > o.location.count {
+            let objectToRemove = self.location.last!
+            self.location.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         severity = o.severity
     }

@@ -2,10 +2,10 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -136,12 +136,10 @@ open class RiskAssessment: DomainResource {
             self.basis[index].populate(from: t)
         }
     
-        if self.basis.count > o.basis.count {
-            for i in self.basis.count...o.basis.count {
-                let objectToRemove = self.basis[i]
-                self.basis.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.basis.count > o.basis.count {
+            let objectToRemove = self.basis.last!
+            self.basis.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.condition, from: o.condition)
         FireKit.populate(&self.date, from: o.date)
@@ -159,12 +157,10 @@ open class RiskAssessment: DomainResource {
             self.prediction[index].populate(from: t)
         }
     
-        if self.prediction.count > o.prediction.count {
-            for i in self.prediction.count...o.prediction.count {
-                let objectToRemove = self.prediction[i]
-                self.prediction.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.prediction.count > o.prediction.count {
+            let objectToRemove = self.prediction.last!
+            self.prediction.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.subject, from: o.subject)
     }

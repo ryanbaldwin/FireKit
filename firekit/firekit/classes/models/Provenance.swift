@@ -2,10 +2,10 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -141,12 +141,10 @@ open class Provenance: DomainResource {
             self.agent[index].populate(from: t)
         }
     
-        if self.agent.count > o.agent.count {
-            for i in self.agent.count...o.agent.count {
-                let objectToRemove = self.agent[i]
-                self.agent.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.agent.count > o.agent.count {
+            let objectToRemove = self.agent.last!
+            self.agent.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.entity.enumerated() {
@@ -157,12 +155,10 @@ open class Provenance: DomainResource {
             self.entity[index].populate(from: t)
         }
     
-        if self.entity.count > o.entity.count {
-            for i in self.entity.count...o.entity.count {
-                let objectToRemove = self.entity[i]
-                self.entity.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.entity.count > o.entity.count {
+            let objectToRemove = self.entity.last!
+            self.entity.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.location, from: o.location)
         FireKit.populate(&self.period, from: o.period)
@@ -175,12 +171,10 @@ open class Provenance: DomainResource {
             self.policy[index].populate(from: t)
         }
     
-        if self.policy.count > o.policy.count {
-            for i in self.policy.count...o.policy.count {
-                let objectToRemove = self.policy[i]
-                self.policy.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.policy.count > o.policy.count {
+            let objectToRemove = self.policy.last!
+            self.policy.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.reason.enumerated() {
@@ -191,12 +185,10 @@ open class Provenance: DomainResource {
             self.reason[index].populate(from: t)
         }
     
-        if self.reason.count > o.reason.count {
-            for i in self.reason.count...o.reason.count {
-                let objectToRemove = self.reason[i]
-                self.reason.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reason.count > o.reason.count {
+            let objectToRemove = self.reason.last!
+            self.reason.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.recorded, from: o.recorded)
 
@@ -208,12 +200,10 @@ open class Provenance: DomainResource {
             self.signature[index].populate(from: t)
         }
     
-        if self.signature.count > o.signature.count {
-            for i in self.signature.count...o.signature.count {
-                let objectToRemove = self.signature[i]
-                self.signature.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.signature.count > o.signature.count {
+            let objectToRemove = self.signature.last!
+            self.signature.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.target.enumerated() {
@@ -224,12 +214,10 @@ open class Provenance: DomainResource {
             self.target[index].populate(from: t)
         }
     
-        if self.target.count > o.target.count {
-            for i in self.target.count...o.target.count {
-                let objectToRemove = self.target[i]
-                self.target.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.target.count > o.target.count {
+            let objectToRemove = self.target.last!
+            self.target.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -334,12 +322,10 @@ open class ProvenanceAgent: BackboneElement {
             self.relatedAgent[index].populate(from: t)
         }
     
-        if self.relatedAgent.count > o.relatedAgent.count {
-            for i in self.relatedAgent.count...o.relatedAgent.count {
-                let objectToRemove = self.relatedAgent[i]
-                self.relatedAgent.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.relatedAgent.count > o.relatedAgent.count {
+            let objectToRemove = self.relatedAgent.last!
+            self.relatedAgent.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.role, from: o.role)
         FireKit.populate(&self.userId, from: o.userId)

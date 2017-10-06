@@ -2,10 +2,10 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -263,12 +263,10 @@ open class Observation: DomainResource {
             self.component[index].populate(from: t)
         }
     
-        if self.component.count > o.component.count {
-            for i in self.component.count...o.component.count {
-                let objectToRemove = self.component[i]
-                self.component.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.component.count > o.component.count {
+            let objectToRemove = self.component.last!
+            self.component.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.dataAbsentReason, from: o.dataAbsentReason)
         FireKit.populate(&self.device, from: o.device)
@@ -284,12 +282,10 @@ open class Observation: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.interpretation, from: o.interpretation)
         FireKit.populate(&self.issued, from: o.issued)
@@ -303,12 +299,10 @@ open class Observation: DomainResource {
             self.performer[index].populate(from: t)
         }
     
-        if self.performer.count > o.performer.count {
-            for i in self.performer.count...o.performer.count {
-                let objectToRemove = self.performer[i]
-                self.performer.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.performer.count > o.performer.count {
+            let objectToRemove = self.performer.last!
+            self.performer.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.referenceRange.enumerated() {
@@ -319,12 +313,10 @@ open class Observation: DomainResource {
             self.referenceRange[index].populate(from: t)
         }
     
-        if self.referenceRange.count > o.referenceRange.count {
-            for i in self.referenceRange.count...o.referenceRange.count {
-                let objectToRemove = self.referenceRange[i]
-                self.referenceRange.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.referenceRange.count > o.referenceRange.count {
+            let objectToRemove = self.referenceRange.last!
+            self.referenceRange.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.related.enumerated() {
@@ -335,12 +327,10 @@ open class Observation: DomainResource {
             self.related[index].populate(from: t)
         }
     
-        if self.related.count > o.related.count {
-            for i in self.related.count...o.related.count {
-                let objectToRemove = self.related[i]
-                self.related.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.related.count > o.related.count {
+            let objectToRemove = self.related.last!
+            self.related.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.specimen, from: o.specimen)
         status = o.status
@@ -513,12 +503,10 @@ open class ObservationComponent: BackboneElement {
             self.referenceRange[index].populate(from: t)
         }
     
-        if self.referenceRange.count > o.referenceRange.count {
-            for i in self.referenceRange.count...o.referenceRange.count {
-                let objectToRemove = self.referenceRange[i]
-                self.referenceRange.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.referenceRange.count > o.referenceRange.count {
+            let objectToRemove = self.referenceRange.last!
+            self.referenceRange.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.valueAttachment, from: o.valueAttachment)
         FireKit.populate(&self.valueCodeableConcept, from: o.valueCodeableConcept)

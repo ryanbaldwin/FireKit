@@ -2,10 +2,10 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -169,12 +169,10 @@ open class ImagingStudy: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.interpreter, from: o.interpreter)
 
@@ -186,12 +184,10 @@ open class ImagingStudy: DomainResource {
             self.modalityList[index].populate(from: t)
         }
     
-        if self.modalityList.count > o.modalityList.count {
-            for i in self.modalityList.count...o.modalityList.count {
-                let objectToRemove = self.modalityList[i]
-                self.modalityList.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.modalityList.count > o.modalityList.count {
+            let objectToRemove = self.modalityList.last!
+            self.modalityList.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         numberOfInstances.value = o.numberOfInstances.value
         numberOfSeries.value = o.numberOfSeries.value
@@ -204,12 +200,10 @@ open class ImagingStudy: DomainResource {
             self.order[index].populate(from: t)
         }
     
-        if self.order.count > o.order.count {
-            for i in self.order.count...o.order.count {
-                let objectToRemove = self.order[i]
-                self.order.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.order.count > o.order.count {
+            let objectToRemove = self.order.last!
+            self.order.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.patient, from: o.patient)
 
@@ -221,12 +215,10 @@ open class ImagingStudy: DomainResource {
             self.procedure[index].populate(from: t)
         }
     
-        if self.procedure.count > o.procedure.count {
-            for i in self.procedure.count...o.procedure.count {
-                let objectToRemove = self.procedure[i]
-                self.procedure.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.procedure.count > o.procedure.count {
+            let objectToRemove = self.procedure.last!
+            self.procedure.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.referrer, from: o.referrer)
 
@@ -238,12 +230,10 @@ open class ImagingStudy: DomainResource {
             self.series[index].populate(from: t)
         }
     
-        if self.series.count > o.series.count {
-            for i in self.series.count...o.series.count {
-                let objectToRemove = self.series[i]
-                self.series.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.series.count > o.series.count {
+            let objectToRemove = self.series.last!
+            self.series.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.started, from: o.started)
         uid = o.uid
@@ -381,12 +371,10 @@ open class ImagingStudySeries: BackboneElement {
             self.instance[index].populate(from: t)
         }
     
-        if self.instance.count > o.instance.count {
-            for i in self.instance.count...o.instance.count {
-                let objectToRemove = self.instance[i]
-                self.instance.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.instance.count > o.instance.count {
+            let objectToRemove = self.instance.last!
+            self.instance.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.laterality, from: o.laterality)
         FireKit.populate(&self.modality, from: o.modality)
@@ -495,12 +483,10 @@ open class ImagingStudySeriesInstance: BackboneElement {
             self.content[index].populate(from: t)
         }
     
-        if self.content.count > o.content.count {
-            for i in self.content.count...o.content.count {
-                let objectToRemove = self.content[i]
-                self.content.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.content.count > o.content.count {
+            let objectToRemove = self.content.last!
+            self.content.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         number.value = o.number.value
         sopClass = o.sopClass
