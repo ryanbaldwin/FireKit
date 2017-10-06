@@ -148,6 +148,8 @@
 		C29647911F70293800FB1114 /* Populatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29647901F70293800FB1114 /* Populatable.swift */; };
 		C2A928361E38F11B00A9A8D0 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430D1E37C96C00EE1AEE /* Realm.framework */; };
 		C2A928371E38F11B00A9A8D0 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF430E1E37C96C00EE1AEE /* RealmSwift.framework */; };
+		C2ADFE8B1F86C6D2005DFF45 /* Realm+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADFE8A1F86C6D2005DFF45 /* Realm+Extensions.swift */; };
+		C2ADFE8D1F86C8E0005DFF45 /* RealmUpsertTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2ADFE8C1F86C8E0005DFF45 /* RealmUpsertTests.swift */; };
 		C2AF41EF1E37C4E300EE1AEE /* FireKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2AF41E51E37C4E300EE1AEE /* FireKit.framework */; };
 		C2AF41F61E37C4E300EE1AEE /* realm-swift-fhir.h in Headers */ = {isa = PBXBuildFile; fileRef = C2AF41E81E37C4E300EE1AEE /* realm-swift-fhir.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C2AF43751E37CCBF00EE1AEE /* AccountTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2AF43181E37CCBF00EE1AEE /* AccountTests.swift */; };
@@ -2940,6 +2942,8 @@
 		C20D20E21E3A7BAF00027316 /* RealmTestingProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RealmTestingProtocols.swift; path = classes/RealmTestingProtocols.swift; sourceTree = "<group>"; };
 		C2478ADC1F3B715F001A3E67 /* CascadeDeletableTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CascadeDeletableTests.swift; path = classes/CascadeDeletableTests.swift; sourceTree = "<group>"; };
 		C29647901F70293800FB1114 /* Populatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Populatable.swift; path = classes/models/Populatable.swift; sourceTree = "<group>"; };
+		C2ADFE8A1F86C6D2005DFF45 /* Realm+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Realm+Extensions.swift"; path = "classes/models/Realm+Extensions.swift"; sourceTree = "<group>"; };
+		C2ADFE8C1F86C8E0005DFF45 /* RealmUpsertTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmUpsertTests.swift; sourceTree = "<group>"; };
 		C2AF41E51E37C4E300EE1AEE /* FireKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FireKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C2AF41E81E37C4E300EE1AEE /* realm-swift-fhir.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "realm-swift-fhir.h"; sourceTree = "<group>"; };
 		C2AF41E91E37C4E300EE1AEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -6044,6 +6048,7 @@
 				C2AF426E1E37C6D200EE1AEE /* QuestionnaireResponse.swift */,
 				C2AF426F1E37C6D200EE1AEE /* Range.swift */,
 				C2AF42701E37C6D200EE1AEE /* Ratio.swift */,
+				C2ADFE8A1F86C6D2005DFF45 /* Realm+Extensions.swift */,
 				C2AF42711E37C6D200EE1AEE /* RealmTypes.swift */,
 				C2AF42721E37C6D200EE1AEE /* Reference.swift */,
 				C2AF42731E37C6D200EE1AEE /* ReferralRequest.swift */,
@@ -6167,6 +6172,7 @@
 				C2AF43721E37CCBF00EE1AEE /* ValueSetTests.swift */,
 				C2AF43731E37CCBF00EE1AEE /* VisionPrescriptionTests.swift */,
 				C2AF43741E37CCBF00EE1AEE /* XCTestCase+FHIR.swift */,
+				C2ADFE8C1F86C8E0005DFF45 /* RealmUpsertTests.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -11713,6 +11719,7 @@
 				C250E2CA1E3808B300C9631E /* DeviceComponent.swift in Sources */,
 				C250E2ED1E3808B300C9631E /* ImagingObjectSelection.swift in Sources */,
 				C250E2E81E3808B300C9631E /* Goal.swift in Sources */,
+				C2ADFE8B1F86C6D2005DFF45 /* Realm+Extensions.swift in Sources */,
 				C250E2F01E3808B300C9631E /* ImmunizationRecommendation.swift in Sources */,
 				C250E2D01E3808B300C9631E /* Distance.swift in Sources */,
 				C250E2C91E3808B300C9631E /* Device.swift in Sources */,
@@ -11929,6 +11936,7 @@
 				C2AF43A61E37CCBF00EE1AEE /* ImplementationGuideTests.swift in Sources */,
 				C2FFA2B11F7147EC0052021D /* PopulatableTests.swift in Sources */,
 				C2AF43C61E37CCBF00EE1AEE /* SearchParameterTests.swift in Sources */,
+				C2ADFE8D1F86C8E0005DFF45 /* RealmUpsertTests.swift in Sources */,
 				C2AF43841E37CCBF00EE1AEE /* CompositionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
