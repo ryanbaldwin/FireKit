@@ -2,10 +2,10 @@
 //  Immunization.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Immunization) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -212,12 +212,10 @@ open class Immunization: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.location, from: o.location)
         lotNumber = o.lotNumber
@@ -231,12 +229,10 @@ open class Immunization: DomainResource {
             self.note[index].populate(from: t)
         }
     
-        if self.note.count > o.note.count {
-            for i in self.note.count...o.note.count {
-                let objectToRemove = self.note[i]
-                self.note.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.note.count > o.note.count {
+            let objectToRemove = self.note.last!
+            self.note.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.patient, from: o.patient)
         FireKit.populate(&self.performer, from: o.performer)
@@ -249,12 +245,10 @@ open class Immunization: DomainResource {
             self.reaction[index].populate(from: t)
         }
     
-        if self.reaction.count > o.reaction.count {
-            for i in self.reaction.count...o.reaction.count {
-                let objectToRemove = self.reaction[i]
-                self.reaction.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reaction.count > o.reaction.count {
+            let objectToRemove = self.reaction.last!
+            self.reaction.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         reported.value = o.reported.value
         FireKit.populate(&self.requester, from: o.requester)
@@ -270,12 +264,10 @@ open class Immunization: DomainResource {
             self.vaccinationProtocol[index].populate(from: t)
         }
     
-        if self.vaccinationProtocol.count > o.vaccinationProtocol.count {
-            for i in self.vaccinationProtocol.count...o.vaccinationProtocol.count {
-                let objectToRemove = self.vaccinationProtocol[i]
-                self.vaccinationProtocol.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.vaccinationProtocol.count > o.vaccinationProtocol.count {
+            let objectToRemove = self.vaccinationProtocol.last!
+            self.vaccinationProtocol.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.vaccineCode, from: o.vaccineCode)
         wasNotGiven.value = o.wasNotGiven.value
@@ -356,12 +348,10 @@ open class ImmunizationExplanation: BackboneElement {
             self.reason[index].populate(from: t)
         }
     
-        if self.reason.count > o.reason.count {
-            for i in self.reason.count...o.reason.count {
-                let objectToRemove = self.reason[i]
-                self.reason.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reason.count > o.reason.count {
+            let objectToRemove = self.reason.last!
+            self.reason.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.reasonNotGiven.enumerated() {
@@ -372,12 +362,10 @@ open class ImmunizationExplanation: BackboneElement {
             self.reasonNotGiven[index].populate(from: t)
         }
     
-        if self.reasonNotGiven.count > o.reasonNotGiven.count {
-            for i in self.reasonNotGiven.count...o.reasonNotGiven.count {
-                let objectToRemove = self.reasonNotGiven[i]
-                self.reasonNotGiven.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reasonNotGiven.count > o.reasonNotGiven.count {
+            let objectToRemove = self.reasonNotGiven.last!
+            self.reasonNotGiven.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -582,12 +570,10 @@ open class ImmunizationVaccinationProtocol: BackboneElement {
             self.targetDisease[index].populate(from: t)
         }
     
-        if self.targetDisease.count > o.targetDisease.count {
-            for i in self.targetDisease.count...o.targetDisease.count {
-                let objectToRemove = self.targetDisease[i]
-                self.targetDisease.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.targetDisease.count > o.targetDisease.count {
+            let objectToRemove = self.targetDisease.last!
+            self.targetDisease.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

@@ -2,10 +2,10 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -169,12 +169,10 @@ open class Contract: DomainResource {
             self.action[index].populate(from: t)
         }
     
-        if self.action.count > o.action.count {
-            for i in self.action.count...o.action.count {
-                let objectToRemove = self.action[i]
-                self.action.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.action.count > o.action.count {
+            let objectToRemove = self.action.last!
+            self.action.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.actionReason.enumerated() {
@@ -185,12 +183,10 @@ open class Contract: DomainResource {
             self.actionReason[index].populate(from: t)
         }
     
-        if self.actionReason.count > o.actionReason.count {
-            for i in self.actionReason.count...o.actionReason.count {
-                let objectToRemove = self.actionReason[i]
-                self.actionReason.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.actionReason.count > o.actionReason.count {
+            let objectToRemove = self.actionReason.last!
+            self.actionReason.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.actor.enumerated() {
@@ -201,12 +197,10 @@ open class Contract: DomainResource {
             self.actor[index].populate(from: t)
         }
     
-        if self.actor.count > o.actor.count {
-            for i in self.actor.count...o.actor.count {
-                let objectToRemove = self.actor[i]
-                self.actor.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.actor.count > o.actor.count {
+            let objectToRemove = self.actor.last!
+            self.actor.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.applies, from: o.applies)
 
@@ -218,12 +212,10 @@ open class Contract: DomainResource {
             self.authority[index].populate(from: t)
         }
     
-        if self.authority.count > o.authority.count {
-            for i in self.authority.count...o.authority.count {
-                let objectToRemove = self.authority[i]
-                self.authority.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.authority.count > o.authority.count {
+            let objectToRemove = self.authority.last!
+            self.authority.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.bindingAttachment, from: o.bindingAttachment)
         FireKit.populate(&self.bindingReference, from: o.bindingReference)
@@ -236,12 +228,10 @@ open class Contract: DomainResource {
             self.domain[index].populate(from: t)
         }
     
-        if self.domain.count > o.domain.count {
-            for i in self.domain.count...o.domain.count {
-                let objectToRemove = self.domain[i]
-                self.domain.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.domain.count > o.domain.count {
+            let objectToRemove = self.domain.last!
+            self.domain.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.friendly.enumerated() {
@@ -252,12 +242,10 @@ open class Contract: DomainResource {
             self.friendly[index].populate(from: t)
         }
     
-        if self.friendly.count > o.friendly.count {
-            for i in self.friendly.count...o.friendly.count {
-                let objectToRemove = self.friendly[i]
-                self.friendly.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.friendly.count > o.friendly.count {
+            let objectToRemove = self.friendly.last!
+            self.friendly.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.issued, from: o.issued)
@@ -270,12 +258,10 @@ open class Contract: DomainResource {
             self.legal[index].populate(from: t)
         }
     
-        if self.legal.count > o.legal.count {
-            for i in self.legal.count...o.legal.count {
-                let objectToRemove = self.legal[i]
-                self.legal.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.legal.count > o.legal.count {
+            let objectToRemove = self.legal.last!
+            self.legal.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.rule.enumerated() {
@@ -286,12 +272,10 @@ open class Contract: DomainResource {
             self.rule[index].populate(from: t)
         }
     
-        if self.rule.count > o.rule.count {
-            for i in self.rule.count...o.rule.count {
-                let objectToRemove = self.rule[i]
-                self.rule.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.rule.count > o.rule.count {
+            let objectToRemove = self.rule.last!
+            self.rule.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.signer.enumerated() {
@@ -302,12 +286,10 @@ open class Contract: DomainResource {
             self.signer[index].populate(from: t)
         }
     
-        if self.signer.count > o.signer.count {
-            for i in self.signer.count...o.signer.count {
-                let objectToRemove = self.signer[i]
-                self.signer.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.signer.count > o.signer.count {
+            let objectToRemove = self.signer.last!
+            self.signer.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.subType.enumerated() {
@@ -318,12 +300,10 @@ open class Contract: DomainResource {
             self.subType[index].populate(from: t)
         }
     
-        if self.subType.count > o.subType.count {
-            for i in self.subType.count...o.subType.count {
-                let objectToRemove = self.subType[i]
-                self.subType.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.subType.count > o.subType.count {
+            let objectToRemove = self.subType.last!
+            self.subType.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.subject.enumerated() {
@@ -334,12 +314,10 @@ open class Contract: DomainResource {
             self.subject[index].populate(from: t)
         }
     
-        if self.subject.count > o.subject.count {
-            for i in self.subject.count...o.subject.count {
-                let objectToRemove = self.subject[i]
-                self.subject.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.subject.count > o.subject.count {
+            let objectToRemove = self.subject.last!
+            self.subject.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.term.enumerated() {
@@ -350,12 +328,10 @@ open class Contract: DomainResource {
             self.term[index].populate(from: t)
         }
     
-        if self.term.count > o.term.count {
-            for i in self.term.count...o.term.count {
-                let objectToRemove = self.term[i]
-                self.term.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.term.count > o.term.count {
+            let objectToRemove = self.term.last!
+            self.term.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.type, from: o.type)
 
@@ -367,12 +343,10 @@ open class Contract: DomainResource {
             self.valuedItem[index].populate(from: t)
         }
     
-        if self.valuedItem.count > o.valuedItem.count {
-            for i in self.valuedItem.count...o.valuedItem.count {
-                let objectToRemove = self.valuedItem[i]
-                self.valuedItem.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.valuedItem.count > o.valuedItem.count {
+            let objectToRemove = self.valuedItem.last!
+            self.valuedItem.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -461,12 +435,10 @@ open class ContractActor: BackboneElement {
             self.role[index].populate(from: t)
         }
     
-        if self.role.count > o.role.count {
-            for i in self.role.count...o.role.count {
-                let objectToRemove = self.role[i]
-                self.role.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.role.count > o.role.count {
+            let objectToRemove = self.role.last!
+            self.role.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -941,12 +913,10 @@ open class ContractTerm: BackboneElement {
             self.action[index].populate(from: t)
         }
     
-        if self.action.count > o.action.count {
-            for i in self.action.count...o.action.count {
-                let objectToRemove = self.action[i]
-                self.action.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.action.count > o.action.count {
+            let objectToRemove = self.action.last!
+            self.action.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.actionReason.enumerated() {
@@ -957,12 +927,10 @@ open class ContractTerm: BackboneElement {
             self.actionReason[index].populate(from: t)
         }
     
-        if self.actionReason.count > o.actionReason.count {
-            for i in self.actionReason.count...o.actionReason.count {
-                let objectToRemove = self.actionReason[i]
-                self.actionReason.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.actionReason.count > o.actionReason.count {
+            let objectToRemove = self.actionReason.last!
+            self.actionReason.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.actor.enumerated() {
@@ -973,12 +941,10 @@ open class ContractTerm: BackboneElement {
             self.actor[index].populate(from: t)
         }
     
-        if self.actor.count > o.actor.count {
-            for i in self.actor.count...o.actor.count {
-                let objectToRemove = self.actor[i]
-                self.actor.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.actor.count > o.actor.count {
+            let objectToRemove = self.actor.last!
+            self.actor.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.applies, from: o.applies)
 
@@ -990,12 +956,10 @@ open class ContractTerm: BackboneElement {
             self.group[index].populate(from: t)
         }
     
-        if self.group.count > o.group.count {
-            for i in self.group.count...o.group.count {
-                let objectToRemove = self.group[i]
-                self.group.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.group.count > o.group.count {
+            let objectToRemove = self.group.last!
+            self.group.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.identifier, from: o.identifier)
         FireKit.populate(&self.issued, from: o.issued)
@@ -1012,12 +976,10 @@ open class ContractTerm: BackboneElement {
             self.valuedItem[index].populate(from: t)
         }
     
-        if self.valuedItem.count > o.valuedItem.count {
-            for i in self.valuedItem.count...o.valuedItem.count {
-                let objectToRemove = self.valuedItem[i]
-                self.valuedItem.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.valuedItem.count > o.valuedItem.count {
+            let objectToRemove = self.valuedItem.last!
+            self.valuedItem.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -1106,12 +1068,10 @@ open class ContractTermActor: BackboneElement {
             self.role[index].populate(from: t)
         }
     
-        if self.role.count > o.role.count {
-            for i in self.role.count...o.role.count {
-                let objectToRemove = self.role[i]
-                self.role.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.role.count > o.role.count {
+            let objectToRemove = self.role.last!
+            self.role.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

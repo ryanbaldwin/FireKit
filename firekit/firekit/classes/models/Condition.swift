@@ -2,10 +2,10 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -234,12 +234,10 @@ open class Condition: DomainResource {
             self.bodySite[index].populate(from: t)
         }
     
-        if self.bodySite.count > o.bodySite.count {
-            for i in self.bodySite.count...o.bodySite.count {
-                let objectToRemove = self.bodySite[i]
-                self.bodySite.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.bodySite.count > o.bodySite.count {
+            let objectToRemove = self.bodySite.last!
+            self.bodySite.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.category, from: o.category)
         clinicalStatus = o.clinicalStatus
@@ -255,12 +253,10 @@ open class Condition: DomainResource {
             self.evidence[index].populate(from: t)
         }
     
-        if self.evidence.count > o.evidence.count {
-            for i in self.evidence.count...o.evidence.count {
-                let objectToRemove = self.evidence[i]
-                self.evidence.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.evidence.count > o.evidence.count {
+            let objectToRemove = self.evidence.last!
+            self.evidence.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.identifier.enumerated() {
@@ -271,12 +267,10 @@ open class Condition: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         notes = o.notes
         FireKit.populate(&self.onsetDateTime, from: o.onsetDateTime)
@@ -369,12 +363,10 @@ open class ConditionEvidence: BackboneElement {
             self.detail[index].populate(from: t)
         }
     
-        if self.detail.count > o.detail.count {
-            for i in self.detail.count...o.detail.count {
-                let objectToRemove = self.detail[i]
-                self.detail.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.detail.count > o.detail.count {
+            let objectToRemove = self.detail.last!
+            self.detail.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -456,12 +448,10 @@ open class ConditionStage: BackboneElement {
             self.assessment[index].populate(from: t)
         }
     
-        if self.assessment.count > o.assessment.count {
-            for i in self.assessment.count...o.assessment.count {
-                let objectToRemove = self.assessment[i]
-                self.assessment.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.assessment.count > o.assessment.count {
+            let objectToRemove = self.assessment.last!
+            self.assessment.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.summary, from: o.summary)
     }

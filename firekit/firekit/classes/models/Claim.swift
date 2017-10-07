@@ -2,10 +2,10 @@
 //  Claim.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Claim) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -249,12 +249,10 @@ open class Claim: DomainResource {
             self.additionalMaterials[index].populate(from: t)
         }
     
-        if self.additionalMaterials.count > o.additionalMaterials.count {
-            for i in self.additionalMaterials.count...o.additionalMaterials.count {
-                let objectToRemove = self.additionalMaterials[i]
-                self.additionalMaterials.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.additionalMaterials.count > o.additionalMaterials.count {
+            let objectToRemove = self.additionalMaterials.last!
+            self.additionalMaterials.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.condition.enumerated() {
@@ -265,12 +263,10 @@ open class Claim: DomainResource {
             self.condition[index].populate(from: t)
         }
     
-        if self.condition.count > o.condition.count {
-            for i in self.condition.count...o.condition.count {
-                let objectToRemove = self.condition[i]
-                self.condition.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.condition.count > o.condition.count {
+            let objectToRemove = self.condition.last!
+            self.condition.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.coverage.enumerated() {
@@ -281,12 +277,10 @@ open class Claim: DomainResource {
             self.coverage[index].populate(from: t)
         }
     
-        if self.coverage.count > o.coverage.count {
-            for i in self.coverage.count...o.coverage.count {
-                let objectToRemove = self.coverage[i]
-                self.coverage.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.coverage.count > o.coverage.count {
+            let objectToRemove = self.coverage.last!
+            self.coverage.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.created, from: o.created)
 
@@ -298,12 +292,10 @@ open class Claim: DomainResource {
             self.diagnosis[index].populate(from: t)
         }
     
-        if self.diagnosis.count > o.diagnosis.count {
-            for i in self.diagnosis.count...o.diagnosis.count {
-                let objectToRemove = self.diagnosis[i]
-                self.diagnosis.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.diagnosis.count > o.diagnosis.count {
+            let objectToRemove = self.diagnosis.last!
+            self.diagnosis.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.enterer, from: o.enterer)
 
@@ -315,12 +307,10 @@ open class Claim: DomainResource {
             self.exception[index].populate(from: t)
         }
     
-        if self.exception.count > o.exception.count {
-            for i in self.exception.count...o.exception.count {
-                let objectToRemove = self.exception[i]
-                self.exception.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.exception.count > o.exception.count {
+            let objectToRemove = self.exception.last!
+            self.exception.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.facility, from: o.facility)
         FireKit.populate(&self.fundsReserve, from: o.fundsReserve)
@@ -333,12 +323,10 @@ open class Claim: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.interventionException.enumerated() {
@@ -349,12 +337,10 @@ open class Claim: DomainResource {
             self.interventionException[index].populate(from: t)
         }
     
-        if self.interventionException.count > o.interventionException.count {
-            for i in self.interventionException.count...o.interventionException.count {
-                let objectToRemove = self.interventionException[i]
-                self.interventionException.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.interventionException.count > o.interventionException.count {
+            let objectToRemove = self.interventionException.last!
+            self.interventionException.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.item.enumerated() {
@@ -365,12 +351,10 @@ open class Claim: DomainResource {
             self.item[index].populate(from: t)
         }
     
-        if self.item.count > o.item.count {
-            for i in self.item.count...o.item.count {
-                let objectToRemove = self.item[i]
-                self.item.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.item.count > o.item.count {
+            let objectToRemove = self.item.last!
+            self.item.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.missingTeeth.enumerated() {
@@ -381,12 +365,10 @@ open class Claim: DomainResource {
             self.missingTeeth[index].populate(from: t)
         }
     
-        if self.missingTeeth.count > o.missingTeeth.count {
-            for i in self.missingTeeth.count...o.missingTeeth.count {
-                let objectToRemove = self.missingTeeth[i]
-                self.missingTeeth.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.missingTeeth.count > o.missingTeeth.count {
+            let objectToRemove = self.missingTeeth.last!
+            self.missingTeeth.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.organization, from: o.organization)
         FireKit.populate(&self.originalPrescription, from: o.originalPrescription)
@@ -529,12 +511,10 @@ open class ClaimCoverage: BackboneElement {
             self.preAuthRef[index].populate(from: t)
         }
     
-        if self.preAuthRef.count > o.preAuthRef.count {
-            for i in self.preAuthRef.count...o.preAuthRef.count {
-                let objectToRemove = self.preAuthRef[i]
-                self.preAuthRef.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.preAuthRef.count > o.preAuthRef.count {
+            let objectToRemove = self.preAuthRef.last!
+            self.preAuthRef.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.relationship, from: o.relationship)
         sequence.value = o.sequence.value
@@ -791,12 +771,10 @@ open class ClaimItem: BackboneElement {
             self.detail[index].populate(from: t)
         }
     
-        if self.detail.count > o.detail.count {
-            for i in self.detail.count...o.detail.count {
-                let objectToRemove = self.detail[i]
-                self.detail.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.detail.count > o.detail.count {
+            let objectToRemove = self.detail.last!
+            self.detail.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.diagnosisLinkId.enumerated() {
@@ -807,12 +785,10 @@ open class ClaimItem: BackboneElement {
             self.diagnosisLinkId[index].populate(from: t)
         }
     
-        if self.diagnosisLinkId.count > o.diagnosisLinkId.count {
-            for i in self.diagnosisLinkId.count...o.diagnosisLinkId.count {
-                let objectToRemove = self.diagnosisLinkId[i]
-                self.diagnosisLinkId.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.diagnosisLinkId.count > o.diagnosisLinkId.count {
+            let objectToRemove = self.diagnosisLinkId.last!
+            self.diagnosisLinkId.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         factor = o.factor
 
@@ -824,12 +800,10 @@ open class ClaimItem: BackboneElement {
             self.modifier[index].populate(from: t)
         }
     
-        if self.modifier.count > o.modifier.count {
-            for i in self.modifier.count...o.modifier.count {
-                let objectToRemove = self.modifier[i]
-                self.modifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.modifier.count > o.modifier.count {
+            let objectToRemove = self.modifier.last!
+            self.modifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.net, from: o.net)
         points = o.points
@@ -848,12 +822,10 @@ open class ClaimItem: BackboneElement {
             self.subSite[index].populate(from: t)
         }
     
-        if self.subSite.count > o.subSite.count {
-            for i in self.subSite.count...o.subSite.count {
-                let objectToRemove = self.subSite[i]
-                self.subSite.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.subSite.count > o.subSite.count {
+            let objectToRemove = self.subSite.last!
+            self.subSite.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.type, from: o.type)
         FireKit.populate(&self.udi, from: o.udi)
@@ -999,12 +971,10 @@ open class ClaimItemDetail: BackboneElement {
             self.subDetail[index].populate(from: t)
         }
     
-        if self.subDetail.count > o.subDetail.count {
-            for i in self.subDetail.count...o.subDetail.count {
-                let objectToRemove = self.subDetail[i]
-                self.subDetail.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.subDetail.count > o.subDetail.count {
+            let objectToRemove = self.subDetail.last!
+            self.subDetail.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.type, from: o.type)
         FireKit.populate(&self.udi, from: o.udi)

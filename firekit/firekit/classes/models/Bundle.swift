@@ -2,10 +2,10 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -107,12 +107,10 @@ open class Bundle: Resource {
             self.entry[index].populate(from: t)
         }
     
-        if self.entry.count > o.entry.count {
-            for i in self.entry.count...o.entry.count {
-                let objectToRemove = self.entry[i]
-                self.entry.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.entry.count > o.entry.count {
+            let objectToRemove = self.entry.last!
+            self.entry.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.link.enumerated() {
@@ -123,12 +121,10 @@ open class Bundle: Resource {
             self.link[index].populate(from: t)
         }
     
-        if self.link.count > o.link.count {
-            for i in self.link.count...o.link.count {
-                let objectToRemove = self.link[i]
-                self.link.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.link.count > o.link.count {
+            let objectToRemove = self.link.last!
+            self.link.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.signature, from: o.signature)
         total.value = o.total.value
@@ -244,12 +240,10 @@ open class BundleEntry: BackboneElement {
             self.link[index].populate(from: t)
         }
     
-        if self.link.count > o.link.count {
-            for i in self.link.count...o.link.count {
-                let objectToRemove = self.link[i]
-                self.link.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.link.count > o.link.count {
+            let objectToRemove = self.link.last!
+            self.link.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.request, from: o.request)
         FireKit.populate(&self.resource, from: o.resource)

@@ -2,10 +2,10 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -174,12 +174,10 @@ open class ValueSet: DomainResource {
             self.contact[index].populate(from: t)
         }
     
-        if self.contact.count > o.contact.count {
-            for i in self.contact.count...o.contact.count {
-                let objectToRemove = self.contact[i]
-                self.contact.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contact.count > o.contact.count {
+            let objectToRemove = self.contact.last!
+            self.contact.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         copyright = o.copyright
         FireKit.populate(&self.date, from: o.date)
@@ -204,12 +202,10 @@ open class ValueSet: DomainResource {
             self.useContext[index].populate(from: t)
         }
     
-        if self.useContext.count > o.useContext.count {
-            for i in self.useContext.count...o.useContext.count {
-                let objectToRemove = self.useContext[i]
-                self.useContext.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.useContext.count > o.useContext.count {
+            let objectToRemove = self.useContext.last!
+            self.useContext.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         version = o.version
     }
@@ -306,12 +302,10 @@ open class ValueSetCodeSystem: BackboneElement {
             self.concept[index].populate(from: t)
         }
     
-        if self.concept.count > o.concept.count {
-            for i in self.concept.count...o.concept.count {
-                let objectToRemove = self.concept[i]
-                self.concept.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.concept.count > o.concept.count {
+            let objectToRemove = self.concept.last!
+            self.concept.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         system = o.system
         version = o.version
@@ -417,12 +411,10 @@ open class ValueSetCodeSystemConcept: BackboneElement {
             self.concept[index].populate(from: t)
         }
     
-        if self.concept.count > o.concept.count {
-            for i in self.concept.count...o.concept.count {
-                let objectToRemove = self.concept[i]
-                self.concept.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.concept.count > o.concept.count {
+            let objectToRemove = self.concept.last!
+            self.concept.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         definition = o.definition
 
@@ -434,12 +426,10 @@ open class ValueSetCodeSystemConcept: BackboneElement {
             self.designation[index].populate(from: t)
         }
     
-        if self.designation.count > o.designation.count {
-            for i in self.designation.count...o.designation.count {
-                let objectToRemove = self.designation[i]
-                self.designation.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.designation.count > o.designation.count {
+            let objectToRemove = self.designation.last!
+            self.designation.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         display = o.display
     }
@@ -609,12 +599,10 @@ open class ValueSetCompose: BackboneElement {
             self.exclude[index].populate(from: t)
         }
     
-        if self.exclude.count > o.exclude.count {
-            for i in self.exclude.count...o.exclude.count {
-                let objectToRemove = self.exclude[i]
-                self.exclude.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.exclude.count > o.exclude.count {
+            let objectToRemove = self.exclude.last!
+            self.exclude.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.import_fhir.enumerated() {
@@ -625,12 +613,10 @@ open class ValueSetCompose: BackboneElement {
             self.import_fhir[index].populate(from: t)
         }
     
-        if self.import_fhir.count > o.import_fhir.count {
-            for i in self.import_fhir.count...o.import_fhir.count {
-                let objectToRemove = self.import_fhir[i]
-                self.import_fhir.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.import_fhir.count > o.import_fhir.count {
+            let objectToRemove = self.import_fhir.last!
+            self.import_fhir.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.include.enumerated() {
@@ -641,12 +627,10 @@ open class ValueSetCompose: BackboneElement {
             self.include[index].populate(from: t)
         }
     
-        if self.include.count > o.include.count {
-            for i in self.include.count...o.include.count {
-                let objectToRemove = self.include[i]
-                self.include.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.include.count > o.include.count {
+            let objectToRemove = self.include.last!
+            self.include.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -737,12 +721,10 @@ open class ValueSetComposeInclude: BackboneElement {
             self.concept[index].populate(from: t)
         }
     
-        if self.concept.count > o.concept.count {
-            for i in self.concept.count...o.concept.count {
-                let objectToRemove = self.concept[i]
-                self.concept.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.concept.count > o.concept.count {
+            let objectToRemove = self.concept.last!
+            self.concept.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.filter.enumerated() {
@@ -753,12 +735,10 @@ open class ValueSetComposeInclude: BackboneElement {
             self.filter[index].populate(from: t)
         }
     
-        if self.filter.count > o.filter.count {
-            for i in self.filter.count...o.filter.count {
-                let objectToRemove = self.filter[i]
-                self.filter.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.filter.count > o.filter.count {
+            let objectToRemove = self.filter.last!
+            self.filter.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         system = o.system
         version = o.version
@@ -850,12 +830,10 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
             self.designation[index].populate(from: t)
         }
     
-        if self.designation.count > o.designation.count {
-            for i in self.designation.count...o.designation.count {
-                let objectToRemove = self.designation[i]
-                self.designation.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.designation.count > o.designation.count {
+            let objectToRemove = self.designation.last!
+            self.designation.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         display = o.display
     }
@@ -1020,12 +998,10 @@ open class ValueSetContact: BackboneElement {
             self.telecom[index].populate(from: t)
         }
     
-        if self.telecom.count > o.telecom.count {
-            for i in self.telecom.count...o.telecom.count {
-                let objectToRemove = self.telecom[i]
-                self.telecom.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.telecom.count > o.telecom.count {
+            let objectToRemove = self.telecom.last!
+            self.telecom.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -1128,12 +1104,10 @@ open class ValueSetExpansion: BackboneElement {
             self.contains[index].populate(from: t)
         }
     
-        if self.contains.count > o.contains.count {
-            for i in self.contains.count...o.contains.count {
-                let objectToRemove = self.contains[i]
-                self.contains.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contains.count > o.contains.count {
+            let objectToRemove = self.contains.last!
+            self.contains.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         identifier = o.identifier
         offset.value = o.offset.value
@@ -1146,12 +1120,10 @@ open class ValueSetExpansion: BackboneElement {
             self.parameter[index].populate(from: t)
         }
     
-        if self.parameter.count > o.parameter.count {
-            for i in self.parameter.count...o.parameter.count {
-                let objectToRemove = self.parameter[i]
-                self.parameter.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.parameter.count > o.parameter.count {
+            let objectToRemove = self.parameter.last!
+            self.parameter.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.timestamp, from: o.timestamp)
         total.value = o.total.value
@@ -1250,12 +1222,10 @@ open class ValueSetExpansionContains: BackboneElement {
             self.contains[index].populate(from: t)
         }
     
-        if self.contains.count > o.contains.count {
-            for i in self.contains.count...o.contains.count {
-                let objectToRemove = self.contains[i]
-                self.contains.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contains.count > o.contains.count {
+            let objectToRemove = self.contains.last!
+            self.contains.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         display = o.display
         system = o.system

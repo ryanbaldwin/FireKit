@@ -2,10 +2,10 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -188,12 +188,10 @@ open class MedicationPackage: BackboneElement {
             self.content[index].populate(from: t)
         }
     
-        if self.content.count > o.content.count {
-            for i in self.content.count...o.content.count {
-                let objectToRemove = self.content[i]
-                self.content.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.content.count > o.content.count {
+            let objectToRemove = self.content.last!
+            self.content.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -361,12 +359,10 @@ open class MedicationProduct: BackboneElement {
             self.batch[index].populate(from: t)
         }
     
-        if self.batch.count > o.batch.count {
-            for i in self.batch.count...o.batch.count {
-                let objectToRemove = self.batch[i]
-                self.batch.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.batch.count > o.batch.count {
+            let objectToRemove = self.batch.last!
+            self.batch.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.form, from: o.form)
 
@@ -378,12 +374,10 @@ open class MedicationProduct: BackboneElement {
             self.ingredient[index].populate(from: t)
         }
     
-        if self.ingredient.count > o.ingredient.count {
-            for i in self.ingredient.count...o.ingredient.count {
-                let objectToRemove = self.ingredient[i]
-                self.ingredient.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.ingredient.count > o.ingredient.count {
+            let objectToRemove = self.ingredient.last!
+            self.ingredient.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

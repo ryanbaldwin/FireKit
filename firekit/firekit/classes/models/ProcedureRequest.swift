@@ -2,10 +2,10 @@
 //  ProcedureRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcedureRequest) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -189,12 +189,10 @@ open class ProcedureRequest: DomainResource {
             self.bodySite[index].populate(from: t)
         }
     
-        if self.bodySite.count > o.bodySite.count {
-            for i in self.bodySite.count...o.bodySite.count {
-                let objectToRemove = self.bodySite[i]
-                self.bodySite.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.bodySite.count > o.bodySite.count {
+            let objectToRemove = self.bodySite.last!
+            self.bodySite.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.code, from: o.code)
         FireKit.populate(&self.encounter, from: o.encounter)
@@ -207,12 +205,10 @@ open class ProcedureRequest: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.notes.enumerated() {
@@ -223,12 +219,10 @@ open class ProcedureRequest: DomainResource {
             self.notes[index].populate(from: t)
         }
     
-        if self.notes.count > o.notes.count {
-            for i in self.notes.count...o.notes.count {
-                let objectToRemove = self.notes[i]
-                self.notes.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.notes.count > o.notes.count {
+            let objectToRemove = self.notes.last!
+            self.notes.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.orderedOn, from: o.orderedOn)
         FireKit.populate(&self.orderer, from: o.orderer)

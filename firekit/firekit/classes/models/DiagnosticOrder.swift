@@ -2,10 +2,10 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -142,12 +142,10 @@ open class DiagnosticOrder: DomainResource {
             self.event[index].populate(from: t)
         }
     
-        if self.event.count > o.event.count {
-            for i in self.event.count...o.event.count {
-                let objectToRemove = self.event[i]
-                self.event.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.event.count > o.event.count {
+            let objectToRemove = self.event.last!
+            self.event.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.identifier.enumerated() {
@@ -158,12 +156,10 @@ open class DiagnosticOrder: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.item.enumerated() {
@@ -174,12 +170,10 @@ open class DiagnosticOrder: DomainResource {
             self.item[index].populate(from: t)
         }
     
-        if self.item.count > o.item.count {
-            for i in self.item.count...o.item.count {
-                let objectToRemove = self.item[i]
-                self.item.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.item.count > o.item.count {
+            let objectToRemove = self.item.last!
+            self.item.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.note.enumerated() {
@@ -190,12 +184,10 @@ open class DiagnosticOrder: DomainResource {
             self.note[index].populate(from: t)
         }
     
-        if self.note.count > o.note.count {
-            for i in self.note.count...o.note.count {
-                let objectToRemove = self.note[i]
-                self.note.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.note.count > o.note.count {
+            let objectToRemove = self.note.last!
+            self.note.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.orderer, from: o.orderer)
         priority = o.priority
@@ -208,12 +200,10 @@ open class DiagnosticOrder: DomainResource {
             self.reason[index].populate(from: t)
         }
     
-        if self.reason.count > o.reason.count {
-            for i in self.reason.count...o.reason.count {
-                let objectToRemove = self.reason[i]
-                self.reason.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reason.count > o.reason.count {
+            let objectToRemove = self.reason.last!
+            self.reason.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.specimen.enumerated() {
@@ -224,12 +214,10 @@ open class DiagnosticOrder: DomainResource {
             self.specimen[index].populate(from: t)
         }
     
-        if self.specimen.count > o.specimen.count {
-            for i in self.specimen.count...o.specimen.count {
-                let objectToRemove = self.specimen[i]
-                self.specimen.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.specimen.count > o.specimen.count {
+            let objectToRemove = self.specimen.last!
+            self.specimen.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
         FireKit.populate(&self.subject, from: o.subject)
@@ -242,12 +230,10 @@ open class DiagnosticOrder: DomainResource {
             self.supportingInformation[index].populate(from: t)
         }
     
-        if self.supportingInformation.count > o.supportingInformation.count {
-            for i in self.supportingInformation.count...o.supportingInformation.count {
-                let objectToRemove = self.supportingInformation[i]
-                self.supportingInformation.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.supportingInformation.count > o.supportingInformation.count {
+            let objectToRemove = self.supportingInformation.last!
+            self.supportingInformation.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -447,12 +433,10 @@ open class DiagnosticOrderItem: BackboneElement {
             self.event[index].populate(from: t)
         }
     
-        if self.event.count > o.event.count {
-            for i in self.event.count...o.event.count {
-                let objectToRemove = self.event[i]
-                self.event.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.event.count > o.event.count {
+            let objectToRemove = self.event.last!
+            self.event.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.specimen.enumerated() {
@@ -463,12 +447,10 @@ open class DiagnosticOrderItem: BackboneElement {
             self.specimen[index].populate(from: t)
         }
     
-        if self.specimen.count > o.specimen.count {
-            for i in self.specimen.count...o.specimen.count {
-                let objectToRemove = self.specimen[i]
-                self.specimen.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.specimen.count > o.specimen.count {
+            let objectToRemove = self.specimen.last!
+            self.specimen.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
     }

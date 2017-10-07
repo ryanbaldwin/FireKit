@@ -1,0 +1,38 @@
+{
+    "folders": [
+        {
+            "follow_symlinks": true,
+            "path": "."
+        }
+    ],
+    "build_systems": [
+        {
+            "name": "Xcode Build",
+            "shell": true,
+            "target": "ansi_color_build",
+            "syntax": "Packages/ANSIescape/ANSI.tmLanguage",
+            "cmd": ["xcodebuild build -workspace $project_path/$project_base_name.xcworkspace -configuration Debug -scheme 'FireKit-iOS' -destination generic/platform=iOS | xcpretty --simple --color"],
+            
+            "variants": [
+                {
+                    "name": "Xcode Run Tests",
+                    "cmd": ["xcodebuild test -workspace $project_path/$project_base_name.xcworkspace -scheme 'FireKit-iOS' -destination 'platform=iOS Simulator,name=iPhone 8,OS=11.0' | xcpretty -t --color"]
+                },
+                {
+                    "name": "Generate Classes (Swift 4)",
+                    "cmd": ["cd $project_path/$project_base_name & ./generate swift-4.0"]
+                },
+                {
+                    "name": "Xcode Build Release",
+                    "cmd": [ "~/local/bin/xctool",
+                             "-project", "$project_path/$project_base_name.xcodeproj",
+                             "-configuration", "Release"],
+                },
+                {
+                    "name": "Xcode Run Release",
+                    "cmd": [ "$~/build/Products/Release/$project_base_name.app/Contents/MacOS/$project_base_name" ],
+                }
+            ]
+        }
+    ]
+}

@@ -2,10 +2,10 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -83,12 +83,10 @@ open class Parameters: Resource {
             self.parameter[index].populate(from: t)
         }
     
-        if self.parameter.count > o.parameter.count {
-            for i in self.parameter.count...o.parameter.count {
-                let objectToRemove = self.parameter[i]
-                self.parameter.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.parameter.count > o.parameter.count {
+            let objectToRemove = self.parameter.last!
+            self.parameter.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -368,12 +366,10 @@ open class ParametersParameter: BackboneElement {
             self.part[index].populate(from: t)
         }
     
-        if self.part.count > o.part.count {
-            for i in self.part.count...o.part.count {
-                let objectToRemove = self.part[i]
-                self.part.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.part.count > o.part.count {
+            let objectToRemove = self.part.last!
+            self.part.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.resource, from: o.resource)
         FireKit.populate(&self.valueAddress, from: o.valueAddress)

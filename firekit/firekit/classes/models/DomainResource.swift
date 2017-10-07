@@ -2,10 +2,10 @@
 //  DomainResource.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DomainResource) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -120,12 +120,10 @@ open class DomainResource: Resource {
             self.contained[index].populate(from: t)
         }
     
-        if self.contained.count > o.contained.count {
-            for i in self.contained.count...o.contained.count {
-                let objectToRemove = self.contained[i]
-                self.contained.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contained.count > o.contained.count {
+            let objectToRemove = self.contained.last!
+            self.contained.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.extension_fhir.enumerated() {
@@ -136,12 +134,10 @@ open class DomainResource: Resource {
             self.extension_fhir[index].populate(from: t)
         }
     
-        if self.extension_fhir.count > o.extension_fhir.count {
-            for i in self.extension_fhir.count...o.extension_fhir.count {
-                let objectToRemove = self.extension_fhir[i]
-                self.extension_fhir.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.extension_fhir.count > o.extension_fhir.count {
+            let objectToRemove = self.extension_fhir.last!
+            self.extension_fhir.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.modifierExtension.enumerated() {
@@ -152,12 +148,10 @@ open class DomainResource: Resource {
             self.modifierExtension[index].populate(from: t)
         }
     
-        if self.modifierExtension.count > o.modifierExtension.count {
-            for i in self.modifierExtension.count...o.modifierExtension.count {
-                let objectToRemove = self.modifierExtension[i]
-                self.modifierExtension.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.modifierExtension.count > o.modifierExtension.count {
+            let objectToRemove = self.modifierExtension.last!
+            self.modifierExtension.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.text, from: o.text)
     }

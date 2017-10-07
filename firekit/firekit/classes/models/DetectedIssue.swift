@@ -2,10 +2,10 @@
 //  DetectedIssue.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DetectedIssue) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -136,12 +136,10 @@ open class DetectedIssue: DomainResource {
             self.implicated[index].populate(from: t)
         }
     
-        if self.implicated.count > o.implicated.count {
-            for i in self.implicated.count...o.implicated.count {
-                let objectToRemove = self.implicated[i]
-                self.implicated.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.implicated.count > o.implicated.count {
+            let objectToRemove = self.implicated.last!
+            self.implicated.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.mitigation.enumerated() {
@@ -152,12 +150,10 @@ open class DetectedIssue: DomainResource {
             self.mitigation[index].populate(from: t)
         }
     
-        if self.mitigation.count > o.mitigation.count {
-            for i in self.mitigation.count...o.mitigation.count {
-                let objectToRemove = self.mitigation[i]
-                self.mitigation.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.mitigation.count > o.mitigation.count {
+            let objectToRemove = self.mitigation.last!
+            self.mitigation.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.patient, from: o.patient)
         reference = o.reference

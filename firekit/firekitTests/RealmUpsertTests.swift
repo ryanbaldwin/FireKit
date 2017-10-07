@@ -53,6 +53,51 @@ class RealmUpsertTests: XCTestCase, RealmPersistenceTesting {
         XCTAssertEqual("female", realm.objects(Patient.self).first?.gender)
     }
     
+    func testUpsertWillRemoveItemsThatNoLongerExist() {
+        let patientA2 = inflatePatient(fromFile: "patient-example-a.json")
+        patientA2.name.removeAll()
+        try! realm.write { realm.upsert(patientA2) }
+        
+        let patients = realm.objects(Patient.self)
+        XCTAssertEqual(1, patients.count)
+        XCTAssertEqual(0, patients.first?.name.count)
+    }
+    
+    func testUpsertWillAddItemsThatAreNew() {
+        let patientA2 = inflatePatient(fromFile: "patient-example-a.json")
+        
+        let name = HumanName()
+        name.family.append(RealmString(val: "Ward"))
+        name.given.append(RealmString(val: "Adam"))
+        patientA2.name.append(name)
+        
+        try! realm.write { realm.upsert(patientA2) }
+        
+        let patients = realm.objects(Patient.self)
+        XCTAssertEqual(1, patients.count)
+        XCTAssertEqual(2, patients.first!.name.count)
+    }
+    
+    func testUpsertWillUpdateItemsInPlace() {
+        let patientA2 = inflatePatient(fromFile: "patient-example-a.json")
+        
+        let name = patientA2.name.first!
+        name.family.first!.value = "Roberts"
+        name.given.first!.value = "Steve"
+        
+        try! realm.write { realm.upsert(patientA2) }
+        let patients = realm.objects(Patient.self)
+        XCTAssertEqual(1, patients.count)
+        XCTAssertEqual(1, patients.first!.name.count)
+        
+        let upsertedName = patients.first!.name.first!
+        XCTAssertEqual(1, upsertedName.family.count)
+        XCTAssertEqual(1, upsertedName.given.count)
+        
+        XCTAssertEqual("Roberts", upsertedName.family.first?.value)
+        XCTAssertEqual("Steve", upsertedName.given.first?.value)
+    }
+    
     func testUpdatedResourceDoesNotHaveSuperfluousElements() {
         let patient = realm.objects(Patient.self).first!
         let contactCount = patient.contact.count

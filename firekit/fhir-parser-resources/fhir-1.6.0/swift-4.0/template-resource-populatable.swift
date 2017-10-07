@@ -17,13 +17,12 @@
             self.{{prop.name}}[index].populate(from: t)
         }
     
-        if self.{{prop.name}}.count > o.{{prop.name}}.count {
-            for i in self.{{prop.name}}.count...o.{{prop.name}}.count {
-                let objectToRemove = self.{{prop.name}}[i]
-                self.{{prop.name}}.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.{{ prop.name }}.count > o.{{ prop.name }}.count {
+            let objectToRemove = self.{{ prop.name }}.last!
+            self.{{ prop.name }}.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
+        
     {%- elif prop|populatable %}
         FireKit.populate(&self.{{ prop.name}}, from: o.{{ prop.name }})
     {%- elif prop|requires_realm_optional %}

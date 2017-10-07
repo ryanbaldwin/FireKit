@@ -2,10 +2,10 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -176,12 +176,10 @@ open class ClinicalImpression: DomainResource {
             self.action[index].populate(from: t)
         }
     
-        if self.action.count > o.action.count {
-            for i in self.action.count...o.action.count {
-                let objectToRemove = self.action[i]
-                self.action.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.action.count > o.action.count {
+            let objectToRemove = self.action.last!
+            self.action.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.assessor, from: o.assessor)
         FireKit.populate(&self.date, from: o.date)
@@ -195,12 +193,10 @@ open class ClinicalImpression: DomainResource {
             self.finding[index].populate(from: t)
         }
     
-        if self.finding.count > o.finding.count {
-            for i in self.finding.count...o.finding.count {
-                let objectToRemove = self.finding[i]
-                self.finding.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.finding.count > o.finding.count {
+            let objectToRemove = self.finding.last!
+            self.finding.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.investigations.enumerated() {
@@ -211,12 +207,10 @@ open class ClinicalImpression: DomainResource {
             self.investigations[index].populate(from: t)
         }
     
-        if self.investigations.count > o.investigations.count {
-            for i in self.investigations.count...o.investigations.count {
-                let objectToRemove = self.investigations[i]
-                self.investigations.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.investigations.count > o.investigations.count {
+            let objectToRemove = self.investigations.last!
+            self.investigations.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.patient, from: o.patient)
 
@@ -228,12 +222,10 @@ open class ClinicalImpression: DomainResource {
             self.plan[index].populate(from: t)
         }
     
-        if self.plan.count > o.plan.count {
-            for i in self.plan.count...o.plan.count {
-                let objectToRemove = self.plan[i]
-                self.plan.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.plan.count > o.plan.count {
+            let objectToRemove = self.plan.last!
+            self.plan.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.previous, from: o.previous)
 
@@ -245,12 +237,10 @@ open class ClinicalImpression: DomainResource {
             self.problem[index].populate(from: t)
         }
     
-        if self.problem.count > o.problem.count {
-            for i in self.problem.count...o.problem.count {
-                let objectToRemove = self.problem[i]
-                self.problem.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.problem.count > o.problem.count {
+            let objectToRemove = self.problem.last!
+            self.problem.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         prognosis = o.prognosis
         protocol_fhir = o.protocol_fhir
@@ -263,12 +253,10 @@ open class ClinicalImpression: DomainResource {
             self.resolved[index].populate(from: t)
         }
     
-        if self.resolved.count > o.resolved.count {
-            for i in self.resolved.count...o.resolved.count {
-                let objectToRemove = self.resolved[i]
-                self.resolved.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.resolved.count > o.resolved.count {
+            let objectToRemove = self.resolved.last!
+            self.resolved.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.ruledOut.enumerated() {
@@ -279,12 +267,10 @@ open class ClinicalImpression: DomainResource {
             self.ruledOut[index].populate(from: t)
         }
     
-        if self.ruledOut.count > o.ruledOut.count {
-            for i in self.ruledOut.count...o.ruledOut.count {
-                let objectToRemove = self.ruledOut[i]
-                self.ruledOut.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.ruledOut.count > o.ruledOut.count {
+            let objectToRemove = self.ruledOut.last!
+            self.ruledOut.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         status = o.status
         summary = o.summary
@@ -458,12 +444,10 @@ open class ClinicalImpressionInvestigations: BackboneElement {
             self.item[index].populate(from: t)
         }
     
-        if self.item.count > o.item.count {
-            for i in self.item.count...o.item.count {
-                let objectToRemove = self.item[i]
-                self.item.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.item.count > o.item.count {
+            let objectToRemove = self.item.last!
+            self.item.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

@@ -2,10 +2,10 @@
 //  ConceptMap.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ConceptMap) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -170,12 +170,10 @@ open class ConceptMap: DomainResource {
             self.contact[index].populate(from: t)
         }
     
-        if self.contact.count > o.contact.count {
-            for i in self.contact.count...o.contact.count {
-                let objectToRemove = self.contact[i]
-                self.contact.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.contact.count > o.contact.count {
+            let objectToRemove = self.contact.last!
+            self.contact.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         copyright = o.copyright
         FireKit.populate(&self.date, from: o.date)
@@ -189,12 +187,10 @@ open class ConceptMap: DomainResource {
             self.element[index].populate(from: t)
         }
     
-        if self.element.count > o.element.count {
-            for i in self.element.count...o.element.count {
-                let objectToRemove = self.element[i]
-                self.element.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.element.count > o.element.count {
+            let objectToRemove = self.element.last!
+            self.element.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         experimental.value = o.experimental.value
         FireKit.populate(&self.identifier, from: o.identifier)
@@ -216,12 +212,10 @@ open class ConceptMap: DomainResource {
             self.useContext[index].populate(from: t)
         }
     
-        if self.useContext.count > o.useContext.count {
-            for i in self.useContext.count...o.useContext.count {
-                let objectToRemove = self.useContext[i]
-                self.useContext.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.useContext.count > o.useContext.count {
+            let objectToRemove = self.useContext.last!
+            self.useContext.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         version = o.version
     }
@@ -302,12 +296,10 @@ open class ConceptMapContact: BackboneElement {
             self.telecom[index].populate(from: t)
         }
     
-        if self.telecom.count > o.telecom.count {
-            for i in self.telecom.count...o.telecom.count {
-                let objectToRemove = self.telecom[i]
-                self.telecom.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.telecom.count > o.telecom.count {
+            let objectToRemove = self.telecom.last!
+            self.telecom.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -392,12 +384,10 @@ open class ConceptMapElement: BackboneElement {
             self.target[index].populate(from: t)
         }
     
-        if self.target.count > o.target.count {
-            for i in self.target.count...o.target.count {
-                let objectToRemove = self.target[i]
-                self.target.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.target.count > o.target.count {
+            let objectToRemove = self.target.last!
+            self.target.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }
@@ -501,12 +491,10 @@ open class ConceptMapElementTarget: BackboneElement {
             self.dependsOn[index].populate(from: t)
         }
     
-        if self.dependsOn.count > o.dependsOn.count {
-            for i in self.dependsOn.count...o.dependsOn.count {
-                let objectToRemove = self.dependsOn[i]
-                self.dependsOn.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.dependsOn.count > o.dependsOn.count {
+            let objectToRemove = self.dependsOn.last!
+            self.dependsOn.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         equivalence = o.equivalence
 
@@ -518,12 +506,10 @@ open class ConceptMapElementTarget: BackboneElement {
             self.product[index].populate(from: t)
         }
     
-        if self.product.count > o.product.count {
-            for i in self.product.count...o.product.count {
-                let objectToRemove = self.product[i]
-                self.product.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.product.count > o.product.count {
+            let objectToRemove = self.product.last!
+            self.product.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
     }
 }

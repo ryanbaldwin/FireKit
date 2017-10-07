@@ -2,10 +2,10 @@
 //  CommunicationRequest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2017-09-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CommunicationRequest) on 2017-10-06.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-09-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-10-06
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -162,12 +162,10 @@ open class CommunicationRequest: DomainResource {
             self.identifier[index].populate(from: t)
         }
     
-        if self.identifier.count > o.identifier.count {
-            for i in self.identifier.count...o.identifier.count {
-                let objectToRemove = self.identifier[i]
-                self.identifier.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.identifier.count > o.identifier.count {
+            let objectToRemove = self.identifier.last!
+            self.identifier.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.medium.enumerated() {
@@ -178,12 +176,10 @@ open class CommunicationRequest: DomainResource {
             self.medium[index].populate(from: t)
         }
     
-        if self.medium.count > o.medium.count {
-            for i in self.medium.count...o.medium.count {
-                let objectToRemove = self.medium[i]
-                self.medium.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.medium.count > o.medium.count {
+            let objectToRemove = self.medium.last!
+            self.medium.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.payload.enumerated() {
@@ -194,12 +190,10 @@ open class CommunicationRequest: DomainResource {
             self.payload[index].populate(from: t)
         }
     
-        if self.payload.count > o.payload.count {
-            for i in self.payload.count...o.payload.count {
-                let objectToRemove = self.payload[i]
-                self.payload.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.payload.count > o.payload.count {
+            let objectToRemove = self.payload.last!
+            self.payload.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.priority, from: o.priority)
 
@@ -211,12 +205,10 @@ open class CommunicationRequest: DomainResource {
             self.reason[index].populate(from: t)
         }
     
-        if self.reason.count > o.reason.count {
-            for i in self.reason.count...o.reason.count {
-                let objectToRemove = self.reason[i]
-                self.reason.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.reason.count > o.reason.count {
+            let objectToRemove = self.reason.last!
+            self.reason.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
 
         for (index, t) in o.recipient.enumerated() {
@@ -227,12 +219,10 @@ open class CommunicationRequest: DomainResource {
             self.recipient[index].populate(from: t)
         }
     
-        if self.recipient.count > o.recipient.count {
-            for i in self.recipient.count...o.recipient.count {
-                let objectToRemove = self.recipient[i]
-                self.recipient.remove(objectAtIndex: i)
-                try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
-            }
+        while self.recipient.count > o.recipient.count {
+            let objectToRemove = self.recipient.last!
+            self.recipient.removeLast()
+            try! (objectToRemove as? CascadeDeletable)?.cascadeDelete() ?? realm?.delete(objectToRemove)
         }
         FireKit.populate(&self.requestedOn, from: o.requestedOn)
         FireKit.populate(&self.requester, from: o.requester)
