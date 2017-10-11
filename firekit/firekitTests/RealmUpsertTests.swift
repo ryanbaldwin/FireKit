@@ -119,16 +119,18 @@ class RealmUpsertTests: XCTestCase, RealmPersistenceTesting {
     }
     
     func testUpsertedListWillUpdateExistingItems() {
-        let patientA = inflatePatient(fromFile: "patient-example-a.json")
+        let patientA: Patient = inflatePatient(fromFile: "patient-example-a.json")
         patientA.gender = "female"
-        try! realm.write { realm.upsert([patientA]) }
+        let patients: [Patient] = [patientA]
+        try! realm.write {realm.upsert(patients)}
+        
         
         XCTAssertEqual(1, realm.objects(Patient.self).count)
         XCTAssertEqual("female", realm.objects(Patient.self).first?.gender)
     }
     
     func testUpsertedListWillInsertNewItems() {
-        let patientB = inflatePatient(fromFile: "patient-example-b.json")
+        let patientB: Patient = inflatePatient(fromFile: "patient-example-b.json")
         try! realm.write { realm.upsert([patientB]) }
         
         XCTAssertEqual(2, realm.objects(Patient.self).count)
