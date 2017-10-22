@@ -621,6 +621,12 @@ extension DateTime: Populatable {
     }
 }
 
+extension DateTime: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return DateTime(string: "\(self)")!
+    }
+}
+
 /**
 An instant in time, known at least to the second and with a timezone, for machine times.
 */
@@ -904,6 +910,12 @@ extension Instant: Populatable {
         timeZone = o.timeZone
         dateString = o.dateString
         value = o.value
+    }
+}
+
+extension Instant: NSCopying {
+    public func copy(with zone: NSZone? = nil) -> Any {
+        return Instant(string: "\(self)")!
     }
 }
 

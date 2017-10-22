@@ -51,10 +51,12 @@ open class FHIRAbstractBase: Object, Codable, NSCopying, Populatable {
         if prop != nil && val == nil {
             guard let r = realm else {
                 prop?.cascadeDelete()
+                prop = nil
                 return
             }
             
             r.delete(prop!)
+            prop = nil
             return
         }
 
@@ -71,10 +73,12 @@ open class FHIRAbstractBase: Object, Codable, NSCopying, Populatable {
         if prop != nil && val == nil {
             guard let r = realm else {
                 prop?.cascadeDelete()
+                prop = nil
                 return
             }
             
             r.delete(prop!)
+            prop = nil
             return
         }
         

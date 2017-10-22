@@ -72,6 +72,14 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func test{{ class.name}}{{loop.index }}NillingPopulatability() {
+        do {
+            let instance = try run{{ class.name }}{{ loop.index}}()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: {{ class.name() }}) }
+        }
+    }
+
     func test{{ class.name}}Realm{{ loop.index }}(_ instance: FireKit.{{class.name}}) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.

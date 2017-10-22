@@ -21,12 +21,13 @@ public protocol Populatable {
 /// - Attention: This function _must_ be called from within a Realm `write` transaction
 func populate<T: RealmSwift.Object>(_ target: inout T?, from other: T?) where T: Populatable {
     guard target != nil else {
-        target = other
+        target = other?.copy() as? T
         return
     }
     
     guard other != nil else {
         guard let cascadable = target as? CascadeDeletable else {
+            target?.realm?.delete(target!)
             target = nil
             return
         }
@@ -34,6 +35,7 @@ func populate<T: RealmSwift.Object>(_ target: inout T?, from other: T?) where T:
         // force try, as populate<T> should be called from within 
         // realm write transaction.
         try! cascadable.cascadeDelete()
+        target = nil
         return
     }
     
