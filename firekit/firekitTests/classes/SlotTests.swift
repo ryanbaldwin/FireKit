@@ -2,10 +2,10 @@
 //  SlotTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Slot successfully, but threw: \(error)")
+        }
+    }
+
+    func testSlot1NillingPopulatability() {
+        do {
+            let instance = try runSlot1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Slot()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Slot successfully, but threw: \(error)")
         }
     }
 
@@ -155,6 +165,16 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testSlot2NillingPopulatability() {
+        do {
+            let instance = try runSlot2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Slot()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Slot successfully, but threw: \(error)")
+        }
+    }
+
     func testSlotRealm2(_ instance: FireKit.Slot) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -237,6 +257,16 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testSlot3NillingPopulatability() {
+        do {
+            let instance = try runSlot3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Slot()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Slot successfully, but threw: \(error)")
+        }
+    }
+
     func testSlotRealm3(_ instance: FireKit.Slot) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -316,6 +346,16 @@ class SlotTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Slot successfully, but threw: \(error)")
+        }
+    }
+
+    func testSlot4NillingPopulatability() {
+        do {
+            let instance = try runSlot4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Slot()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Slot successfully, but threw: \(error)")
         }
     }
 

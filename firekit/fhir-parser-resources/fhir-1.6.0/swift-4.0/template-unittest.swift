@@ -74,9 +74,11 @@ class {{ class.name }}Tests: XCTestCase, RealmPersistenceTesting {
 
     func test{{ class.name}}{{loop.index }}NillingPopulatability() {
         do {
-            let instance = try run{{ class.name }}{{ loop.index}}()
+            let instance = try run{{ class.name }}{{ loop.index }}()
             try! realm.write { realm.add(instance) }
-            try! realm.write { instance.populate(from: {{ class.name() }}) }
+            try! realm.write { instance.populate(from: FireKit.{{ class.name }}()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test {{ class.name }} successfully, but threw: \(error)")
         }
     }
 

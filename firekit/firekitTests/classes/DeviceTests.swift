@@ -2,10 +2,10 @@
 //  DeviceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Device successfully, but threw: \(error)")
+        }
+    }
+
+    func testDevice1NillingPopulatability() {
+        do {
+            let instance = try runDevice1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Device()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Device successfully, but threw: \(error)")
         }
     }
 
@@ -155,6 +165,16 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testDevice2NillingPopulatability() {
+        do {
+            let instance = try runDevice2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Device()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Device successfully, but threw: \(error)")
+        }
+    }
+
     func testDeviceRealm2(_ instance: FireKit.Device) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -235,6 +255,16 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Device successfully, but threw: \(error)")
+        }
+    }
+
+    func testDevice3NillingPopulatability() {
+        do {
+            let instance = try runDevice3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Device()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Device successfully, but threw: \(error)")
         }
     }
 
@@ -323,6 +353,16 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testDevice4NillingPopulatability() {
+        do {
+            let instance = try runDevice4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Device()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Device successfully, but threw: \(error)")
+        }
+    }
+
     func testDeviceRealm4(_ instance: FireKit.Device) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -402,6 +442,16 @@ class DeviceTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Device successfully, but threw: \(error)")
+        }
+    }
+
+    func testDevice5NillingPopulatability() {
+        do {
+            let instance = try runDevice5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Device()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Device successfully, but threw: \(error)")
         }
     }
 

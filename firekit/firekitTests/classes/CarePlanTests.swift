@@ -2,10 +2,10 @@
 //  CarePlanTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
+    func testCarePlan1NillingPopulatability() {
+        do {
+            let instance = try runCarePlan1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
         }
     }
 
@@ -169,6 +179,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testCarePlan2NillingPopulatability() {
+        do {
+            let instance = try runCarePlan2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
     func testCarePlanRealm2(_ instance: FireKit.CarePlan) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -268,6 +288,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testCarePlan3NillingPopulatability() {
+        do {
+            let instance = try runCarePlan3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
     func testCarePlanRealm3(_ instance: FireKit.CarePlan) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -364,6 +394,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
+    func testCarePlan4NillingPopulatability() {
+        do {
+            let instance = try runCarePlan4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
         }
     }
 
@@ -482,6 +522,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testCarePlan5NillingPopulatability() {
+        do {
+            let instance = try runCarePlan5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
     func testCarePlanRealm5(_ instance: FireKit.CarePlan) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -579,6 +629,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
+    func testCarePlan6NillingPopulatability() {
+        do {
+            let instance = try runCarePlan6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
         }
     }
 
@@ -680,6 +740,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
+    func testCarePlan7NillingPopulatability() {
+        do {
+            let instance = try runCarePlan7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
         }
     }
 
@@ -796,6 +866,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
+    func testCarePlan8NillingPopulatability() {
+        do {
+            let instance = try runCarePlan8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
         }
     }
 
@@ -1009,6 +1089,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testCarePlan9NillingPopulatability() {
+        do {
+            let instance = try runCarePlan9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
     func testCarePlanRealm9(_ instance: FireKit.CarePlan) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -1142,6 +1232,16 @@ class CarePlanTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test CarePlan successfully, but threw: \(error)")
+        }
+    }
+
+    func testCarePlan10NillingPopulatability() {
+        do {
+            let instance = try runCarePlan10()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.CarePlan()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test CarePlan successfully, but threw: \(error)")
         }
     }
 

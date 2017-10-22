@@ -2,10 +2,10 @@
 //  OrganizationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Organization successfully, but threw: \(error)")
+        }
+    }
+
+    func testOrganization1NillingPopulatability() {
+        do {
+            let instance = try runOrganization1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
         }
     }
 
@@ -178,6 +188,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testOrganization2NillingPopulatability() {
+        do {
+            let instance = try runOrganization2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
+        }
+    }
+
     func testOrganizationRealm2(_ instance: FireKit.Organization) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -271,6 +291,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testOrganization3NillingPopulatability() {
+        do {
+            let instance = try runOrganization3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
+        }
+    }
+
     func testOrganizationRealm3(_ instance: FireKit.Organization) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -361,6 +391,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Organization successfully, but threw: \(error)")
+        }
+    }
+
+    func testOrganization4NillingPopulatability() {
+        do {
+            let instance = try runOrganization4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
         }
     }
 
@@ -473,6 +513,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testOrganization5NillingPopulatability() {
+        do {
+            let instance = try runOrganization5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
+        }
+    }
+
     func testOrganizationRealm5(_ instance: FireKit.Organization) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -566,6 +616,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testOrganization6NillingPopulatability() {
+        do {
+            let instance = try runOrganization6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
+        }
+    }
+
     func testOrganizationRealm6(_ instance: FireKit.Organization) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -652,6 +712,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testOrganization7NillingPopulatability() {
+        do {
+            let instance = try runOrganization7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
+        }
+    }
+
     func testOrganizationRealm7(_ instance: FireKit.Organization) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -730,6 +800,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testOrganization8NillingPopulatability() {
+        do {
+            let instance = try runOrganization8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
+        }
+    }
+
     func testOrganizationRealm8(_ instance: FireKit.Organization) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -805,6 +885,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Organization successfully, but threw: \(error)")
+        }
+    }
+
+    func testOrganization9NillingPopulatability() {
+        do {
+            let instance = try runOrganization9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
         }
     }
 
@@ -889,6 +979,16 @@ class OrganizationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Organization successfully, but threw: \(error)")
+        }
+    }
+
+    func testOrganization10NillingPopulatability() {
+        do {
+            let instance = try runOrganization10()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Organization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Organization successfully, but threw: \(error)")
         }
     }
 

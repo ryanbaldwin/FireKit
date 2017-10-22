@@ -2,10 +2,10 @@
 //  PractitionerTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
+    func testPractitioner1NillingPopulatability() {
+        do {
+            let instance = try runPractitioner1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
         }
     }
 
@@ -180,6 +190,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testPractitioner2NillingPopulatability() {
+        do {
+            let instance = try runPractitioner2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
     func testPractitionerRealm2(_ instance: FireKit.Practitioner) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -287,6 +307,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
+    func testPractitioner3NillingPopulatability() {
+        do {
+            let instance = try runPractitioner3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
         }
     }
 
@@ -400,6 +430,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
+    func testPractitioner4NillingPopulatability() {
+        do {
+            let instance = try runPractitioner4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
         }
     }
 
@@ -517,6 +557,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testPractitioner5NillingPopulatability() {
+        do {
+            let instance = try runPractitioner5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
     func testPractitionerRealm5(_ instance: FireKit.Practitioner) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -631,6 +681,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testPractitioner6NillingPopulatability() {
+        do {
+            let instance = try runPractitioner6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
     func testPractitionerRealm6(_ instance: FireKit.Practitioner) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -738,6 +798,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
+    func testPractitioner7NillingPopulatability() {
+        do {
+            let instance = try runPractitioner7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
         }
     }
 
@@ -851,6 +921,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testPractitioner8NillingPopulatability() {
+        do {
+            let instance = try runPractitioner8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
     func testPractitionerRealm8(_ instance: FireKit.Practitioner) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -954,6 +1034,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
+    func testPractitioner9NillingPopulatability() {
+        do {
+            let instance = try runPractitioner9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
         }
     }
 
@@ -1061,6 +1151,16 @@ class PractitionerTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Practitioner successfully, but threw: \(error)")
+        }
+    }
+
+    func testPractitioner10NillingPopulatability() {
+        do {
+            let instance = try runPractitioner10()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Practitioner()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Practitioner successfully, but threw: \(error)")
         }
     }
 

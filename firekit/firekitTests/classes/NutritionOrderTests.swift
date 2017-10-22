@@ -2,10 +2,10 @@
 //  NutritionOrderTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
+    func testNutritionOrder1NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
         }
     }
 
@@ -191,6 +201,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testNutritionOrder2NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
     func testNutritionOrderRealm2(_ instance: FireKit.NutritionOrder) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -298,6 +318,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
+    func testNutritionOrder3NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
         }
     }
 
@@ -410,6 +440,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testNutritionOrder4NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
     func testNutritionOrderRealm4(_ instance: FireKit.NutritionOrder) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -513,6 +553,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
+    func testNutritionOrder5NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
         }
     }
 
@@ -636,6 +686,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testNutritionOrder6NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
     func testNutritionOrderRealm6(_ instance: FireKit.NutritionOrder) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -748,6 +808,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
+    func testNutritionOrder7NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
         }
     }
 
@@ -868,6 +938,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testNutritionOrder8NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
     func testNutritionOrderRealm8(_ instance: FireKit.NutritionOrder) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -981,6 +1061,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testNutritionOrder9NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
     func testNutritionOrderRealm9(_ instance: FireKit.NutritionOrder) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -1077,6 +1167,16 @@ class NutritionOrderTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test NutritionOrder successfully, but threw: \(error)")
+        }
+    }
+
+    func testNutritionOrder10NillingPopulatability() {
+        do {
+            let instance = try runNutritionOrder10()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.NutritionOrder()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test NutritionOrder successfully, but threw: \(error)")
         }
     }
 

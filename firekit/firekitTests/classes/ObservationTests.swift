@@ -2,10 +2,10 @@
 //  ObservationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Observation successfully, but threw: \(error)")
+        }
+    }
+
+    func testObservation1NillingPopulatability() {
+        do {
+            let instance = try runObservation1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
         }
     }
 
@@ -184,6 +194,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testObservation2NillingPopulatability() {
+        do {
+            let instance = try runObservation2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
+        }
+    }
+
     func testObservationRealm2(_ instance: FireKit.Observation) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -294,6 +314,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testObservation3NillingPopulatability() {
+        do {
+            let instance = try runObservation3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
+        }
+    }
+
     func testObservationRealm3(_ instance: FireKit.Observation) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -387,6 +417,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Observation successfully, but threw: \(error)")
+        }
+    }
+
+    func testObservation4NillingPopulatability() {
+        do {
+            let instance = try runObservation4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
         }
     }
 
@@ -488,6 +528,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testObservation5NillingPopulatability() {
+        do {
+            let instance = try runObservation5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
+        }
+    }
+
     func testObservationRealm5(_ instance: FireKit.Observation) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -584,6 +634,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testObservation6NillingPopulatability() {
+        do {
+            let instance = try runObservation6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
+        }
+    }
+
     func testObservationRealm6(_ instance: FireKit.Observation) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -677,6 +737,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Observation successfully, but threw: \(error)")
+        }
+    }
+
+    func testObservation7NillingPopulatability() {
+        do {
+            let instance = try runObservation7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
         }
     }
 
@@ -779,6 +849,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Observation successfully, but threw: \(error)")
+        }
+    }
+
+    func testObservation8NillingPopulatability() {
+        do {
+            let instance = try runObservation8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
         }
     }
 
@@ -892,6 +972,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testObservation9NillingPopulatability() {
+        do {
+            let instance = try runObservation9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
+        }
+    }
+
     func testObservationRealm9(_ instance: FireKit.Observation) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -996,6 +1086,16 @@ class ObservationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Observation successfully, but threw: \(error)")
+        }
+    }
+
+    func testObservation10NillingPopulatability() {
+        do {
+            let instance = try runObservation10()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Observation()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Observation successfully, but threw: \(error)")
         }
     }
 

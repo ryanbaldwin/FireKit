@@ -2,10 +2,10 @@
 //  ProvenanceTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Provenance successfully, but threw: \(error)")
+        }
+    }
+
+    func testProvenance1NillingPopulatability() {
+        do {
+            let instance = try runProvenance1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Provenance()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Provenance successfully, but threw: \(error)")
         }
     }
 
@@ -162,6 +172,16 @@ class ProvenanceTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Provenance successfully, but threw: \(error)")
+        }
+    }
+
+    func testProvenance2NillingPopulatability() {
+        do {
+            let instance = try runProvenance2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Provenance()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Provenance successfully, but threw: \(error)")
         }
     }
 

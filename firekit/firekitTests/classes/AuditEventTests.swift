@@ -2,10 +2,10 @@
 //  AuditEventTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
+    func testAuditEvent1NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
         }
     }
 
@@ -164,6 +174,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testAuditEvent2NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
     func testAuditEventRealm2(_ instance: FireKit.AuditEvent) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -255,6 +275,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
+    func testAuditEvent3NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
         }
     }
 
@@ -377,6 +407,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testAuditEvent4NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
     func testAuditEventRealm4(_ instance: FireKit.AuditEvent) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -488,6 +528,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testAuditEvent5NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
     func testAuditEventRealm5(_ instance: FireKit.AuditEvent) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -587,6 +637,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testAuditEvent6NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
     func testAuditEventRealm6(_ instance: FireKit.AuditEvent) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -683,6 +743,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
+    func testAuditEvent7NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
         }
     }
 
@@ -826,6 +896,16 @@ class AuditEventTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test AuditEvent successfully, but threw: \(error)")
+        }
+    }
+
+    func testAuditEvent8NillingPopulatability() {
+        do {
+            let instance = try runAuditEvent8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.AuditEvent()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test AuditEvent successfully, but threw: \(error)")
         }
     }
 

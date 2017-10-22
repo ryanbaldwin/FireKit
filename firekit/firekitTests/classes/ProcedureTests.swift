@@ -2,10 +2,10 @@
 //  ProcedureTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Procedure successfully, but threw: \(error)")
+        }
+    }
+
+    func testProcedure1NillingPopulatability() {
+        do {
+            let instance = try runProcedure1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
         }
     }
 
@@ -158,6 +168,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Procedure successfully, but threw: \(error)")
+        }
+    }
+
+    func testProcedure2NillingPopulatability() {
+        do {
+            let instance = try runProcedure2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
         }
     }
 
@@ -258,6 +278,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testProcedure3NillingPopulatability() {
+        do {
+            let instance = try runProcedure3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
+        }
+    }
+
     func testProcedureRealm3(_ instance: FireKit.Procedure) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -352,6 +382,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Procedure successfully, but threw: \(error)")
+        }
+    }
+
+    func testProcedure4NillingPopulatability() {
+        do {
+            let instance = try runProcedure4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
         }
     }
 
@@ -452,6 +492,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testProcedure5NillingPopulatability() {
+        do {
+            let instance = try runProcedure5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
+        }
+    }
+
     func testProcedureRealm5(_ instance: FireKit.Procedure) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -549,6 +599,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testProcedure6NillingPopulatability() {
+        do {
+            let instance = try runProcedure6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
+        }
+    }
+
     func testProcedureRealm6(_ instance: FireKit.Procedure) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -643,6 +703,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testProcedure7NillingPopulatability() {
+        do {
+            let instance = try runProcedure7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
+        }
+    }
+
     func testProcedureRealm7(_ instance: FireKit.Procedure) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -729,6 +799,16 @@ class ProcedureTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Procedure successfully, but threw: \(error)")
+        }
+    }
+
+    func testProcedure8NillingPopulatability() {
+        do {
+            let instance = try runProcedure8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Procedure()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Procedure successfully, but threw: \(error)")
         }
     }
 

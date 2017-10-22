@@ -2,10 +2,10 @@
 //  VisionPrescriptionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test VisionPrescription successfully, but threw: \(error)")
+        }
+    }
+
+    func testVisionPrescription1NillingPopulatability() {
+        do {
+            let instance = try runVisionPrescription1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.VisionPrescription()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test VisionPrescription successfully, but threw: \(error)")
         }
     }
 
@@ -177,6 +187,16 @@ class VisionPrescriptionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test VisionPrescription successfully, but threw: \(error)")
+        }
+    }
+
+    func testVisionPrescription2NillingPopulatability() {
+        do {
+            let instance = try runVisionPrescription2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.VisionPrescription()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test VisionPrescription successfully, but threw: \(error)")
         }
     }
 

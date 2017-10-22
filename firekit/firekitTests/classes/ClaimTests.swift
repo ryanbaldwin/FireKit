@@ -2,10 +2,10 @@
 //  ClaimTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Claim successfully, but threw: \(error)")
+        }
+    }
+
+    func testClaim1NillingPopulatability() {
+        do {
+            let instance = try runClaim1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
         }
     }
 
@@ -170,6 +180,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Claim successfully, but threw: \(error)")
+        }
+    }
+
+    func testClaim2NillingPopulatability() {
+        do {
+            let instance = try runClaim2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
         }
     }
 
@@ -326,6 +346,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testClaim3NillingPopulatability() {
+        do {
+            let instance = try runClaim3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
+        }
+    }
+
     func testClaimRealm3(_ instance: FireKit.Claim) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -430,6 +460,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Claim successfully, but threw: \(error)")
+        }
+    }
+
+    func testClaim4NillingPopulatability() {
+        do {
+            let instance = try runClaim4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
         }
     }
 
@@ -640,6 +680,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testClaim5NillingPopulatability() {
+        do {
+            let instance = try runClaim5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
+        }
+    }
+
     func testClaimRealm5(_ instance: FireKit.Claim) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -743,6 +793,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testClaim6NillingPopulatability() {
+        do {
+            let instance = try runClaim6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
+        }
+    }
+
     func testClaimRealm6(_ instance: FireKit.Claim) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -843,6 +903,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Claim successfully, but threw: \(error)")
+        }
+    }
+
+    func testClaim7NillingPopulatability() {
+        do {
+            let instance = try runClaim7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
         }
     }
 
@@ -982,6 +1052,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testClaim8NillingPopulatability() {
+        do {
+            let instance = try runClaim8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
+        }
+    }
+
     func testClaimRealm8(_ instance: FireKit.Claim) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -1082,6 +1162,16 @@ class ClaimTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Claim successfully, but threw: \(error)")
+        }
+    }
+
+    func testClaim9NillingPopulatability() {
+        do {
+            let instance = try runClaim9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Claim()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Claim successfully, but threw: \(error)")
         }
     }
 

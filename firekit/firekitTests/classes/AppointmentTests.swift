@@ -2,10 +2,10 @@
 //  AppointmentTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Appointment successfully, but threw: \(error)")
+        }
+    }
+
+    func testAppointment1NillingPopulatability() {
+        do {
+            let instance = try runAppointment1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Appointment()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Appointment successfully, but threw: \(error)")
         }
     }
 
@@ -167,6 +177,16 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testAppointment2NillingPopulatability() {
+        do {
+            let instance = try runAppointment2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Appointment()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Appointment successfully, but threw: \(error)")
+        }
+    }
+
     func testAppointmentRealm2(_ instance: FireKit.Appointment) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -260,6 +280,16 @@ class AppointmentTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Appointment successfully, but threw: \(error)")
+        }
+    }
+
+    func testAppointment3NillingPopulatability() {
+        do {
+            let instance = try runAppointment3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Appointment()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Appointment successfully, but threw: \(error)")
         }
     }
 

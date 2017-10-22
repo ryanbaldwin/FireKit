@@ -2,10 +2,10 @@
 //  QuestionnaireResponseTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test QuestionnaireResponse successfully, but threw: \(error)")
+        }
+    }
+
+    func testQuestionnaireResponse1NillingPopulatability() {
+        do {
+            let instance = try runQuestionnaireResponse1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.QuestionnaireResponse()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test QuestionnaireResponse successfully, but threw: \(error)")
         }
     }
 
@@ -187,6 +197,16 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testQuestionnaireResponse2NillingPopulatability() {
+        do {
+            let instance = try runQuestionnaireResponse2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.QuestionnaireResponse()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test QuestionnaireResponse successfully, but threw: \(error)")
+        }
+    }
+
     func testQuestionnaireResponseRealm2(_ instance: FireKit.QuestionnaireResponse) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -294,6 +314,16 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testQuestionnaireResponse3NillingPopulatability() {
+        do {
+            let instance = try runQuestionnaireResponse3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.QuestionnaireResponse()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test QuestionnaireResponse successfully, but threw: \(error)")
+        }
+    }
+
     func testQuestionnaireResponseRealm3(_ instance: FireKit.QuestionnaireResponse) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -391,6 +421,16 @@ class QuestionnaireResponseTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test QuestionnaireResponse successfully, but threw: \(error)")
+        }
+    }
+
+    func testQuestionnaireResponse4NillingPopulatability() {
+        do {
+            let instance = try runQuestionnaireResponse4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.QuestionnaireResponse()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test QuestionnaireResponse successfully, but threw: \(error)")
         }
     }
 

@@ -2,10 +2,10 @@
 //  BundleTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Bundle successfully, but threw: \(error)")
+        }
+    }
+
+    func testBundle1NillingPopulatability() {
+        do {
+            let instance = try runBundle1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
         }
     }
 
@@ -154,6 +164,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Bundle successfully, but threw: \(error)")
+        }
+    }
+
+    func testBundle2NillingPopulatability() {
+        do {
+            let instance = try runBundle2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
         }
     }
 
@@ -262,6 +282,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testBundle3NillingPopulatability() {
+        do {
+            let instance = try runBundle3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
+        }
+    }
+
     func testBundleRealm3(_ instance: FireKit.Bundle) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -367,6 +397,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testBundle4NillingPopulatability() {
+        do {
+            let instance = try runBundle4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
+        }
+    }
+
     func testBundleRealm4(_ instance: FireKit.Bundle) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -463,6 +503,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Bundle successfully, but threw: \(error)")
+        }
+    }
+
+    func testBundle5NillingPopulatability() {
+        do {
+            let instance = try runBundle5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
         }
     }
 
@@ -571,6 +621,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testBundle6NillingPopulatability() {
+        do {
+            let instance = try runBundle6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
+        }
+    }
+
     func testBundleRealm6(_ instance: FireKit.Bundle) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -676,6 +736,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testBundle7NillingPopulatability() {
+        do {
+            let instance = try runBundle7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
+        }
+    }
+
     func testBundleRealm7(_ instance: FireKit.Bundle) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -778,6 +848,16 @@ class BundleTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Bundle successfully, but threw: \(error)")
+        }
+    }
+
+    func testBundle8NillingPopulatability() {
+        do {
+            let instance = try runBundle8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Bundle()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Bundle successfully, but threw: \(error)")
         }
     }
 

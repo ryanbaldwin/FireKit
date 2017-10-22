@@ -2,10 +2,10 @@
 //  ImmunizationTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Immunization successfully, but threw: \(error)")
+        }
+    }
+
+    func testImmunization1NillingPopulatability() {
+        do {
+            let instance = try runImmunization1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Immunization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Immunization successfully, but threw: \(error)")
         }
     }
 
@@ -152,6 +162,16 @@ class ImmunizationTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Immunization successfully, but threw: \(error)")
+        }
+    }
+
+    func testImmunization2NillingPopulatability() {
+        do {
+            let instance = try runImmunization2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Immunization()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Immunization successfully, but threw: \(error)")
         }
     }
 

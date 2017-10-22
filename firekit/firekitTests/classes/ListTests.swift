@@ -2,10 +2,10 @@
 //  ListTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test List successfully, but threw: \(error)")
+        }
+    }
+
+    func testList1NillingPopulatability() {
+        do {
+            let instance = try runList1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.List()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test List successfully, but threw: \(error)")
         }
     }
 
@@ -157,6 +167,16 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testList2NillingPopulatability() {
+        do {
+            let instance = try runList2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.List()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test List successfully, but threw: \(error)")
+        }
+    }
+
     func testListRealm2(_ instance: FireKit.List) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -244,6 +264,16 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testList3NillingPopulatability() {
+        do {
+            let instance = try runList3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.List()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test List successfully, but threw: \(error)")
+        }
+    }
+
     func testListRealm3(_ instance: FireKit.List) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -327,6 +357,16 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test List successfully, but threw: \(error)")
+        }
+    }
+
+    func testList4NillingPopulatability() {
+        do {
+            let instance = try runList4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.List()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test List successfully, but threw: \(error)")
         }
     }
 
@@ -432,6 +472,16 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testList5NillingPopulatability() {
+        do {
+            let instance = try runList5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.List()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test List successfully, but threw: \(error)")
+        }
+    }
+
     func testListRealm5(_ instance: FireKit.List) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -530,6 +580,16 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testList6NillingPopulatability() {
+        do {
+            let instance = try runList6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.List()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test List successfully, but threw: \(error)")
+        }
+    }
+
     func testListRealm6(_ instance: FireKit.List) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -619,6 +679,16 @@ class ListTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test List successfully, but threw: \(error)")
+        }
+    }
+
+    func testList7NillingPopulatability() {
+        do {
+            let instance = try runList7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.List()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test List successfully, but threw: \(error)")
         }
     }
 

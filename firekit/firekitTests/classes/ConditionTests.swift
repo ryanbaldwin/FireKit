@@ -2,10 +2,10 @@
 //  ConditionTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Condition successfully, but threw: \(error)")
+        }
+    }
+
+    func testCondition1NillingPopulatability() {
+        do {
+            let instance = try runCondition1()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
         }
     }
 
@@ -166,6 +176,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Condition successfully, but threw: \(error)")
+        }
+    }
+
+    func testCondition2NillingPopulatability() {
+        do {
+            let instance = try runCondition2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
         }
     }
 
@@ -270,6 +290,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testCondition3NillingPopulatability() {
+        do {
+            let instance = try runCondition3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
+        }
+    }
+
     func testConditionRealm3(_ instance: FireKit.Condition) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -365,6 +395,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Condition successfully, but threw: \(error)")
+        }
+    }
+
+    func testCondition4NillingPopulatability() {
+        do {
+            let instance = try runCondition4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
         }
     }
 
@@ -469,6 +509,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testCondition5NillingPopulatability() {
+        do {
+            let instance = try runCondition5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
+        }
+    }
+
     func testConditionRealm5(_ instance: FireKit.Condition) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -562,6 +612,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Condition successfully, but threw: \(error)")
+        }
+    }
+
+    func testCondition6NillingPopulatability() {
+        do {
+            let instance = try runCondition6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
         }
     }
 
@@ -661,6 +721,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Condition successfully, but threw: \(error)")
+        }
+    }
+
+    func testCondition7NillingPopulatability() {
+        do {
+            let instance = try runCondition7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
         }
     }
 
@@ -765,6 +835,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testCondition8NillingPopulatability() {
+        do {
+            let instance = try runCondition8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
+        }
+    }
+
     func testConditionRealm8(_ instance: FireKit.Condition) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -845,6 +925,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Condition successfully, but threw: \(error)")
+        }
+    }
+
+    func testCondition9NillingPopulatability() {
+        do {
+            let instance = try runCondition9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
         }
     }
 
@@ -931,6 +1021,16 @@ class ConditionTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Condition successfully, but threw: \(error)")
+        }
+    }
+
+    func testCondition10NillingPopulatability() {
+        do {
+            let instance = try runCondition10()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Condition()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Condition successfully, but threw: \(error)")
         }
     }
 

@@ -2,10 +2,10 @@
 //  PatientTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-06.
+//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-06
+// Updated for Realm support by Ryan Baldwin on 2017-10-22
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -67,6 +67,19 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Patient successfully, but threw: \(error)")
+        }
+    }
+
+    func testPatient1NillingPopulatability() {
+        do {
+            let instance = try runPatient1()
+            instance.meta = Meta()
+            instance.meta!.lastUpdated = Instant.now
+            instance.meta!.versionId = "1"
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
         }
     }
 
@@ -161,6 +174,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Patient successfully, but threw: \(error)")
+        }
+    }
+
+    func testPatient2NillingPopulatability() {
+        do {
+            let instance = try runPatient2()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
         }
     }
 
@@ -268,6 +291,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testPatient3NillingPopulatability() {
+        do {
+            let instance = try runPatient3()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
+        }
+    }
+
     func testPatientRealm3(_ instance: FireKit.Patient) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -356,6 +389,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Patient successfully, but threw: \(error)")
+        }
+    }
+
+    func testPatient4NillingPopulatability() {
+        do {
+            let instance = try runPatient4()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
         }
     }
 
@@ -448,6 +491,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testPatient5NillingPopulatability() {
+        do {
+            let instance = try runPatient5()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
+        }
+    }
+
     func testPatientRealm5(_ instance: FireKit.Patient) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -534,6 +587,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Patient successfully, but threw: \(error)")
+        }
+    }
+
+    func testPatient6NillingPopulatability() {
+        do {
+            let instance = try runPatient6()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
         }
     }
 
@@ -624,6 +687,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Patient successfully, but threw: \(error)")
+        }
+    }
+
+    func testPatient7NillingPopulatability() {
+        do {
+            let instance = try runPatient7()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
         }
     }
 
@@ -742,6 +815,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Patient successfully, but threw: \(error)")
+        }
+    }
+
+    func testPatient8NillingPopulatability() {
+        do {
+            let instance = try runPatient8()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
         }
     }
 
@@ -872,6 +955,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
     }
 
+    func testPatient9NillingPopulatability() {
+        do {
+            let instance = try runPatient9()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
+        }
+    }
+
     func testPatientRealm9(_ instance: FireKit.Patient) {
         // ensure we can write the instance, then fetch it, serialize it to JSON, then deserialize that JSON 
         // and ensure it passes the all the same tests.
@@ -949,6 +1042,16 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
         }
         catch let error {
             XCTAssertTrue(false, "Must populate an test Patient successfully, but threw: \(error)")
+        }
+    }
+
+    func testPatient10NillingPopulatability() {
+        do {
+            let instance = try runPatient10()
+            try! realm.write { realm.add(instance) }
+            try! realm.write { instance.populate(from: FireKit.Patient()) }
+        } catch let error {
+            XCTAssertTrue(false, "Must populate a test Patient successfully, but threw: \(error)")
         }
     }
 
