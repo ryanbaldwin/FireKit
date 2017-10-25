@@ -1,3 +1,1 @@
-# Realm
-github "realm/realm-cocoa" == 2.10.1
 github "smart-on-fhir/fhir-parser" "70f814c"
