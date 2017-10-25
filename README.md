@@ -103,7 +103,7 @@ You have 2 options:
 5. run `./generate`
 6. Open the `firekit.xcworkspace`
 7. Build and run the tests as you would for any other Xcode project.
-
+        
 # Modifying FireKit
 All classes and tests in FireKit are generated using [Pascal Pfiffner](https://github.com/p2)'s [smart-on-fhir/fhir-parser](https://github.com/smart-on-fhir/fhir-parser) and some old Swift3 templates he once had which I modified. Therefore, if you're interested in modifying the classes/tests, then it's best to modify the templates and re-generate the `*.swift` files using the `./generate` tool in step `5` above.
 
@@ -121,14 +121,15 @@ Welcome to Crazytown! There are a lot of moving parts when it comes to versionin
 - "Minor" version number is actually the Swift Version (`31` for `Swift 3.1`)
 - The build number is the typical build number, the _actual_ build number.
 
-Current of `FireKit` is `v2.40.04` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
+Current of `FireKit` is `v2.40.04` (or `v2.401.04` if you're on Xcode 9.0.1) and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
 
 ## Version Matrix
-| Swift Version | DSTU2        | STU3  |
-| :---          | :---:        | :---: |
-| 4.0           | `v2.40.04`   | n/a   |
-| 3.1           | `v2.31.03`   | n/a   |
-| 3.0.2         | `v0.2.3`     | n/a   |
+| Swift Version | DSTU2                     | STU3  |
+| :---          | :---:                     | :---: |
+| 4.0           | `Xcode 9: v2.40.04`       | n/a   |
+|               | `Xcode 9.0.1: v2.401.04`  | n/a   |
+| 3.1           | `v2.31.03`                | n/a   |
+| 3.0.2         | `v0.2.3`                  | n/a   |
 
 *Update*: I'm way behind on creating a version for STU3. I'm trying to get a lot of kinks out before splitting versions. Sorry. 😔
 
