@@ -13,15 +13,15 @@ specification_url = 'http://hl7.org/fhir/dstu2/'
 # Whether and where to put the generated class models
 tpl_source = "."
 write_resources = True
-tpl_resource_target_ptrn = '../../../firekit/classes/models/{}.swift'             # where to write the generated class files to, with one "{}" placeholder for the class name
+tpl_resource_target_ptrn = '../../../firekit/firekit/classes/models/{}.swift'             # where to write the generated class files to, with one "{}" placeholder for the class name
 
 # Whether and where to put the factory methods
 write_factory = write_resources        # required in Swift
-tpl_factory_target = '../../../firekit/classes/models/FHIRAbstractBase+Factory.swift'
+tpl_factory_target = '../../../firekit/firekit/classes/models/FHIRAbstractBase+Factory.swift'
 
 # Whether and where to write unit tests
 write_unittests = True
-tpl_unittest_target_ptrn = '../../../firekitTests/classes/{}Tests.swift'  # a pattern to determine the output files for unit tests; the one placeholder will be the class name
+tpl_unittest_target_ptrn = '../../../firekit/firekitTests/classes/{}Tests.swift'  # a pattern to determine the output files for unit tests; the one placeholder will be the class name
 
 
 ##
@@ -48,7 +48,7 @@ manual_profiles = [                                     # all these profiles sho
     (tpl_source + '/DateAndTime.swift', None, [
         'date', 'dateTime', 'time', 'instant',
     ]),
-    (tpl_source + '/CascadeDeletable.swift', None, [])
+    (tpl_source + '/CascadeDeletable.swift', None, []),
     (tpl_source + '/JSON-extensions.swift', None, []),
     (tpl_source + '/FHIRServer.swift', None, []),
     (tpl_source + '/FHIRServerResponse.swift', None, []),
