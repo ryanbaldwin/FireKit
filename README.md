@@ -91,8 +91,8 @@ You have 2 options:
 
 ## Carthage
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-2. Add `github "ryanbaldwin/FireKit" == 2.40.04` to the your `Cartfile` (see [Versioning](#versioning) for more info)
-3. Do a quick `carthage update` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
+2. Add `github "ryanbaldwin/FireKit" == 2.401.05` to the your `Cartfile` (see [Versioning](#versioning) for more info)
+3. Do a quick `carthage update --platform iOS --cache-builds` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
 
 ## Clone 'n Build
@@ -121,15 +121,14 @@ Welcome to Crazytown! There are a lot of moving parts when it comes to versionin
 - "Minor" version number is actually the Swift Version (`31` for `Swift 3.1`)
 - The build number is the typical build number, the _actual_ build number.
 
-Current of `FireKit` is `v2.40.04` (or `v2.401.04` if you're on Xcode 9.0.1) and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
+The current version of `FireKit` is `v2.401.05` and is based on the [FHIR DSTU2 spec](https://www.hl7.org/fhir/DSTU2/).
 
 ## Version Matrix
-| Swift Version | DSTU2                     | STU3  |
-| :---          | :---:                     | :---: |
-| 4.0           | `Xcode 9: v2.40.04`       | n/a   |
-|               | `Xcode 9.0.1: v2.401.04`  | n/a   |
-| 3.1           | `v2.31.03`                | n/a   |
-| 3.0.2         | `v0.2.3`                  | n/a   |
+| Swift Version | DSTU2        | STU3  |
+| :---          | :---:        | :---: |
+| 4.0           | `v2.401.05`  | n/a   |
+| 3.1           | `v2.31.03`   | n/a   |
+| 3.0.2         | `v0.2.3`     | n/a   |
 
 *Update*: I'm way behind on creating a version for STU3. I'm trying to get a lot of kinks out before splitting versions. Sorry. 😔
 
