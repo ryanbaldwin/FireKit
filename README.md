@@ -22,7 +22,7 @@
 - [State of the Union](#state-of-the-union)
 
 # FireKit
-FireKit, formerly known by the cumbersome name RealmSwiftFHIR, is an adaptation of [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR/), with one notable difference: All FHIR Resources and Elements are [Realm](https://realm.io) ready out of the box. No more annoying, horrible, terrible, mapping code between JSON, FHIR, some backing datamodel.
+FireKit is an adaptation of [smart-on-fhir/Swift-FHIR](https://github.com/smart-on-fhir/Swift-FHIR/), with one notable difference: All FHIR Resources and Elements are [Realm](https://realm.io) ready out of the box. No more annoying, horrible, terrible, mapping code between JSON, FHIR, some backing datamodel.
 
 ## Examples
 
@@ -94,6 +94,8 @@ You have 2 options:
 2. Add `github "ryanbaldwin/FireKit" == 2.401.05` to the your `Cartfile` (see [Versioning](#versioning) for more info)
 3. Do a quick `carthage update --platform iOS --cache-builds` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
+
+A generous pull request donated by @stupergenius has fixed the Carthage issues when using `--no-use-binaries`, or if your local Swift compiler version doesn't match that which was used to compile the binaries. As of FireKit `v2.401.05`, Carthage will now properly `pull` the branch and build it and its dependencies. So if you use FireKit, and you've been annoyed by my lack of mad Carthage skillz, then buy @stupergenius a beer or send him $5 or something, he's a good guy that guy.
 
 ## Clone 'n Build
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
