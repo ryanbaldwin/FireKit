@@ -91,7 +91,7 @@ You have 2 options:
 
 ## Carthage
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-2. Add `github "ryanbaldwin/FireKit" == 2.401.05` to the your `Cartfile` (see [Versioning](#versioning) for more info)
+2. Add `github "ryanbaldwin/FireKit" == 2.402.05` to the your `Cartfile` (see [Versioning](#versioning) for more info)
 3. Do a quick `carthage update --platform iOS --cache-builds` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
 
@@ -128,7 +128,8 @@ The current version of `FireKit` is `v2.401.05` and is based on the [FHIR DSTU2 
 ## Version Matrix
 | Swift Version | DSTU2        | STU3  |
 | :---          | :---:        | :---: |
-| 4.0           | `v2.401.05`  | n/a   |
+| 4.0.2         | `v2.402.05`  | n/a   |
+| 4.0.1         | `v2.401.05`  | n/a   |
 | 3.1           | `v2.31.03`   | n/a   |
 | 3.0.2         | `v0.2.3`     | n/a   |
 
