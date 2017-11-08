@@ -2,10 +2,10 @@
 //  ImplementationGuide.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImplementationGuide) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -154,7 +154,11 @@ open class ImplementationGuide: DomainResource {
 
         for (index, t) in o.binary.enumerated() {
             guard index < self.binary.count else {
-                self.binary.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.binary.append(val)
                 continue
             }
             self.binary[index].populate(from: t)
@@ -168,7 +172,11 @@ open class ImplementationGuide: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImplementationGuideContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -184,7 +192,11 @@ open class ImplementationGuide: DomainResource {
 
         for (index, t) in o.dependency.enumerated() {
             guard index < self.dependency.count else {
-                self.dependency.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImplementationGuideDependency()
+                val.populate(from: t)
+                self.dependency.append(val)
                 continue
             }
             self.dependency[index].populate(from: t)
@@ -201,7 +213,11 @@ open class ImplementationGuide: DomainResource {
 
         for (index, t) in o.global.enumerated() {
             guard index < self.global.count else {
-                self.global.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImplementationGuideGlobal()
+                val.populate(from: t)
+                self.global.append(val)
                 continue
             }
             self.global[index].populate(from: t)
@@ -216,7 +232,11 @@ open class ImplementationGuide: DomainResource {
 
         for (index, t) in o.package.enumerated() {
             guard index < self.package.count else {
-                self.package.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImplementationGuidePackage()
+                val.populate(from: t)
+                self.package.append(val)
                 continue
             }
             self.package[index].populate(from: t)
@@ -234,7 +254,11 @@ open class ImplementationGuide: DomainResource {
 
         for (index, t) in o.useContext.enumerated() {
             guard index < self.useContext.count else {
-                self.useContext.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.useContext.append(val)
                 continue
             }
             self.useContext[index].populate(from: t)
@@ -318,7 +342,11 @@ open class ImplementationGuideContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -571,7 +599,11 @@ open class ImplementationGuidePackage: BackboneElement {
 
         for (index, t) in o.resource.enumerated() {
             guard index < self.resource.count else {
-                self.resource.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImplementationGuidePackageResource()
+                val.populate(from: t)
+                self.resource.append(val)
                 continue
             }
             self.resource[index].populate(from: t)
@@ -795,7 +827,11 @@ open class ImplementationGuidePage: BackboneElement {
 
         for (index, t) in o.package.enumerated() {
             guard index < self.package.count else {
-                self.package.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.package.append(val)
                 continue
             }
             self.package[index].populate(from: t)
@@ -809,7 +845,11 @@ open class ImplementationGuidePage: BackboneElement {
 
         for (index, t) in o.page.enumerated() {
             guard index < self.page.count else {
-                self.page.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImplementationGuidePage()
+                val.populate(from: t)
+                self.page.append(val)
                 continue
             }
             self.page[index].populate(from: t)
@@ -824,7 +864,11 @@ open class ImplementationGuidePage: BackboneElement {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)

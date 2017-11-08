@@ -2,10 +2,10 @@
 //  Composition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Composition) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -161,7 +161,11 @@ open class Composition: DomainResource {
 
         for (index, t) in o.attester.enumerated() {
             guard index < self.attester.count else {
-                self.attester.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CompositionAttester()
+                val.populate(from: t)
+                self.attester.append(val)
                 continue
             }
             self.attester[index].populate(from: t)
@@ -175,7 +179,11 @@ open class Composition: DomainResource {
 
         for (index, t) in o.author.enumerated() {
             guard index < self.author.count else {
-                self.author.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.author.append(val)
                 continue
             }
             self.author[index].populate(from: t)
@@ -194,7 +202,11 @@ open class Composition: DomainResource {
 
         for (index, t) in o.event.enumerated() {
             guard index < self.event.count else {
-                self.event.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CompositionEvent()
+                val.populate(from: t)
+                self.event.append(val)
                 continue
             }
             self.event[index].populate(from: t)
@@ -209,7 +221,11 @@ open class Composition: DomainResource {
 
         for (index, t) in o.section.enumerated() {
             guard index < self.section.count else {
-                self.section.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CompositionSection()
+                val.populate(from: t)
+                self.section.append(val)
                 continue
             }
             self.section[index].populate(from: t)
@@ -308,7 +324,11 @@ open class CompositionAttester: BackboneElement {
 
         for (index, t) in o.mode.enumerated() {
             guard index < self.mode.count else {
-                self.mode.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.mode.append(val)
                 continue
             }
             self.mode[index].populate(from: t)
@@ -399,7 +419,11 @@ open class CompositionEvent: BackboneElement {
 
         for (index, t) in o.code.enumerated() {
             guard index < self.code.count else {
-                self.code.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.code.append(val)
                 continue
             }
             self.code[index].populate(from: t)
@@ -413,7 +437,11 @@ open class CompositionEvent: BackboneElement {
 
         for (index, t) in o.detail.enumerated() {
             guard index < self.detail.count else {
-                self.detail.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.detail.append(val)
                 continue
             }
             self.detail[index].populate(from: t)
@@ -534,7 +562,11 @@ open class CompositionSection: BackboneElement {
 
         for (index, t) in o.entry.enumerated() {
             guard index < self.entry.count else {
-                self.entry.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.entry.append(val)
                 continue
             }
             self.entry[index].populate(from: t)
@@ -550,7 +582,11 @@ open class CompositionSection: BackboneElement {
 
         for (index, t) in o.section.enumerated() {
             guard index < self.section.count else {
-                self.section.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CompositionSection()
+                val.populate(from: t)
+                self.section.append(val)
                 continue
             }
             self.section[index].populate(from: t)

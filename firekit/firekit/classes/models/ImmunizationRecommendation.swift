@@ -2,10 +2,10 @@
 //  ImmunizationRecommendation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImmunizationRecommendation) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -95,7 +95,11 @@ open class ImmunizationRecommendation: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -110,7 +114,11 @@ open class ImmunizationRecommendation: DomainResource {
 
         for (index, t) in o.recommendation.enumerated() {
             guard index < self.recommendation.count else {
-                self.recommendation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImmunizationRecommendationRecommendation()
+                val.populate(from: t)
+                self.recommendation.append(val)
                 continue
             }
             self.recommendation[index].populate(from: t)
@@ -232,7 +240,11 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 
         for (index, t) in o.dateCriterion.enumerated() {
             guard index < self.dateCriterion.count else {
-                self.dateCriterion.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImmunizationRecommendationRecommendationDateCriterion()
+                val.populate(from: t)
+                self.dateCriterion.append(val)
                 continue
             }
             self.dateCriterion[index].populate(from: t)
@@ -249,7 +261,11 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 
         for (index, t) in o.supportingImmunization.enumerated() {
             guard index < self.supportingImmunization.count else {
-                self.supportingImmunization.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.supportingImmunization.append(val)
                 continue
             }
             self.supportingImmunization[index].populate(from: t)
@@ -263,7 +279,11 @@ open class ImmunizationRecommendationRecommendation: BackboneElement {
 
         for (index, t) in o.supportingPatientInformation.enumerated() {
             guard index < self.supportingPatientInformation.count else {
-                self.supportingPatientInformation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.supportingPatientInformation.append(val)
                 continue
             }
             self.supportingPatientInformation[index].populate(from: t)

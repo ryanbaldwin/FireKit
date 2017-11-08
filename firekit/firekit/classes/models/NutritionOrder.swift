@@ -2,10 +2,10 @@
 //  NutritionOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/NutritionOrder) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -142,7 +142,11 @@ open class NutritionOrder: DomainResource {
 
         for (index, t) in o.allergyIntolerance.enumerated() {
             guard index < self.allergyIntolerance.count else {
-                self.allergyIntolerance.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.allergyIntolerance.append(val)
                 continue
             }
             self.allergyIntolerance[index].populate(from: t)
@@ -159,7 +163,11 @@ open class NutritionOrder: DomainResource {
 
         for (index, t) in o.excludeFoodModifier.enumerated() {
             guard index < self.excludeFoodModifier.count else {
-                self.excludeFoodModifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.excludeFoodModifier.append(val)
                 continue
             }
             self.excludeFoodModifier[index].populate(from: t)
@@ -173,7 +181,11 @@ open class NutritionOrder: DomainResource {
 
         for (index, t) in o.foodPreferenceModifier.enumerated() {
             guard index < self.foodPreferenceModifier.count else {
-                self.foodPreferenceModifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.foodPreferenceModifier.append(val)
                 continue
             }
             self.foodPreferenceModifier[index].populate(from: t)
@@ -187,7 +199,11 @@ open class NutritionOrder: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -205,7 +221,11 @@ open class NutritionOrder: DomainResource {
 
         for (index, t) in o.supplement.enumerated() {
             guard index < self.supplement.count else {
-                self.supplement.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = NutritionOrderSupplement()
+                val.populate(from: t)
+                self.supplement.append(val)
                 continue
             }
             self.supplement[index].populate(from: t)
@@ -333,7 +353,11 @@ open class NutritionOrderEnteralFormula: BackboneElement {
 
         for (index, t) in o.administration.enumerated() {
             guard index < self.administration.count else {
-                self.administration.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = NutritionOrderEnteralFormulaAdministration()
+                val.populate(from: t)
+                self.administration.append(val)
                 continue
             }
             self.administration[index].populate(from: t)
@@ -531,7 +555,11 @@ open class NutritionOrderOralDiet: BackboneElement {
 
         for (index, t) in o.fluidConsistencyType.enumerated() {
             guard index < self.fluidConsistencyType.count else {
-                self.fluidConsistencyType.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.fluidConsistencyType.append(val)
                 continue
             }
             self.fluidConsistencyType[index].populate(from: t)
@@ -546,7 +574,11 @@ open class NutritionOrderOralDiet: BackboneElement {
 
         for (index, t) in o.nutrient.enumerated() {
             guard index < self.nutrient.count else {
-                self.nutrient.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = NutritionOrderOralDietNutrient()
+                val.populate(from: t)
+                self.nutrient.append(val)
                 continue
             }
             self.nutrient[index].populate(from: t)
@@ -560,7 +592,11 @@ open class NutritionOrderOralDiet: BackboneElement {
 
         for (index, t) in o.schedule.enumerated() {
             guard index < self.schedule.count else {
-                self.schedule.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Timing()
+                val.populate(from: t)
+                self.schedule.append(val)
                 continue
             }
             self.schedule[index].populate(from: t)
@@ -574,7 +610,11 @@ open class NutritionOrderOralDiet: BackboneElement {
 
         for (index, t) in o.texture.enumerated() {
             guard index < self.texture.count else {
-                self.texture.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = NutritionOrderOralDietTexture()
+                val.populate(from: t)
+                self.texture.append(val)
                 continue
             }
             self.texture[index].populate(from: t)
@@ -588,7 +628,11 @@ open class NutritionOrderOralDiet: BackboneElement {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)
@@ -844,7 +888,11 @@ open class NutritionOrderSupplement: BackboneElement {
 
         for (index, t) in o.schedule.enumerated() {
             guard index < self.schedule.count else {
-                self.schedule.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Timing()
+                val.populate(from: t)
+                self.schedule.append(val)
                 continue
             }
             self.schedule[index].populate(from: t)

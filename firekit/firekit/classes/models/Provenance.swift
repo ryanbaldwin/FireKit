@@ -2,10 +2,10 @@
 //  Provenance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Provenance) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -135,7 +135,11 @@ open class Provenance: DomainResource {
 
         for (index, t) in o.agent.enumerated() {
             guard index < self.agent.count else {
-                self.agent.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ProvenanceAgent()
+                val.populate(from: t)
+                self.agent.append(val)
                 continue
             }
             self.agent[index].populate(from: t)
@@ -149,7 +153,11 @@ open class Provenance: DomainResource {
 
         for (index, t) in o.entity.enumerated() {
             guard index < self.entity.count else {
-                self.entity.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ProvenanceEntity()
+                val.populate(from: t)
+                self.entity.append(val)
                 continue
             }
             self.entity[index].populate(from: t)
@@ -165,7 +173,11 @@ open class Provenance: DomainResource {
 
         for (index, t) in o.policy.enumerated() {
             guard index < self.policy.count else {
-                self.policy.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.policy.append(val)
                 continue
             }
             self.policy[index].populate(from: t)
@@ -179,7 +191,11 @@ open class Provenance: DomainResource {
 
         for (index, t) in o.reason.enumerated() {
             guard index < self.reason.count else {
-                self.reason.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.reason.append(val)
                 continue
             }
             self.reason[index].populate(from: t)
@@ -194,7 +210,11 @@ open class Provenance: DomainResource {
 
         for (index, t) in o.signature.enumerated() {
             guard index < self.signature.count else {
-                self.signature.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Signature()
+                val.populate(from: t)
+                self.signature.append(val)
                 continue
             }
             self.signature[index].populate(from: t)
@@ -208,7 +228,11 @@ open class Provenance: DomainResource {
 
         for (index, t) in o.target.enumerated() {
             guard index < self.target.count else {
-                self.target.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.target.append(val)
                 continue
             }
             self.target[index].populate(from: t)
@@ -316,7 +340,11 @@ open class ProvenanceAgent: BackboneElement {
 
         for (index, t) in o.relatedAgent.enumerated() {
             guard index < self.relatedAgent.count else {
-                self.relatedAgent.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ProvenanceAgentRelatedAgent()
+                val.populate(from: t)
+                self.relatedAgent.append(val)
                 continue
             }
             self.relatedAgent[index].populate(from: t)

@@ -2,10 +2,10 @@
 //  Signature.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Signature) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -114,7 +114,11 @@ open class Signature: Element {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)

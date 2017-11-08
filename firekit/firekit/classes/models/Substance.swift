@@ -2,10 +2,10 @@
 //  Substance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Substance) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -103,7 +103,11 @@ open class Substance: DomainResource {
 
         for (index, t) in o.category.enumerated() {
             guard index < self.category.count else {
-                self.category.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.category.append(val)
                 continue
             }
             self.category[index].populate(from: t)
@@ -119,7 +123,11 @@ open class Substance: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -133,7 +141,11 @@ open class Substance: DomainResource {
 
         for (index, t) in o.ingredient.enumerated() {
             guard index < self.ingredient.count else {
-                self.ingredient.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = SubstanceIngredient()
+                val.populate(from: t)
+                self.ingredient.append(val)
                 continue
             }
             self.ingredient[index].populate(from: t)
@@ -147,7 +159,11 @@ open class Substance: DomainResource {
 
         for (index, t) in o.instance.enumerated() {
             guard index < self.instance.count else {
-                self.instance.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = SubstanceInstance()
+                val.populate(from: t)
+                self.instance.append(val)
                 continue
             }
             self.instance[index].populate(from: t)

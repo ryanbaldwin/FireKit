@@ -11,7 +11,11 @@
 
         for (index, t) in o.{{prop.name}}.enumerated() {
             guard index < self.{{prop.name}}.count else {
-                self.{{prop.name}}.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = {{prop|realm_listify}}()
+                val.populate(from: t)
+                self.{{prop.name}}.append(val)
                 continue
             }
             self.{{prop.name}}[index].populate(from: t)

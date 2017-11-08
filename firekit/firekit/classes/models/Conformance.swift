@@ -2,10 +2,10 @@
 //  Conformance.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Conformance) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -174,7 +174,11 @@ open class Conformance: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -191,7 +195,11 @@ open class Conformance: DomainResource {
 
         for (index, t) in o.document.enumerated() {
             guard index < self.document.count else {
-                self.document.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceDocument()
+                val.populate(from: t)
+                self.document.append(val)
                 continue
             }
             self.document[index].populate(from: t)
@@ -207,7 +215,11 @@ open class Conformance: DomainResource {
 
         for (index, t) in o.format.enumerated() {
             guard index < self.format.count else {
-                self.format.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.format.append(val)
                 continue
             }
             self.format[index].populate(from: t)
@@ -223,7 +235,11 @@ open class Conformance: DomainResource {
 
         for (index, t) in o.messaging.enumerated() {
             guard index < self.messaging.count else {
-                self.messaging.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceMessaging()
+                val.populate(from: t)
+                self.messaging.append(val)
                 continue
             }
             self.messaging[index].populate(from: t)
@@ -238,7 +254,11 @@ open class Conformance: DomainResource {
 
         for (index, t) in o.profile.enumerated() {
             guard index < self.profile.count else {
-                self.profile.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.profile.append(val)
                 continue
             }
             self.profile[index].populate(from: t)
@@ -254,7 +274,11 @@ open class Conformance: DomainResource {
 
         for (index, t) in o.rest.enumerated() {
             guard index < self.rest.count else {
-                self.rest.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRest()
+                val.populate(from: t)
+                self.rest.append(val)
                 continue
             }
             self.rest[index].populate(from: t)
@@ -341,7 +365,11 @@ open class ConformanceContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -600,7 +628,11 @@ open class ConformanceMessaging: BackboneElement {
 
         for (index, t) in o.endpoint.enumerated() {
             guard index < self.endpoint.count else {
-                self.endpoint.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceMessagingEndpoint()
+                val.populate(from: t)
+                self.endpoint.append(val)
                 continue
             }
             self.endpoint[index].populate(from: t)
@@ -614,7 +646,11 @@ open class ConformanceMessaging: BackboneElement {
 
         for (index, t) in o.event.enumerated() {
             guard index < self.event.count else {
-                self.event.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceMessagingEvent()
+                val.populate(from: t)
+                self.event.append(val)
                 continue
             }
             self.event[index].populate(from: t)
@@ -929,7 +965,11 @@ open class ConformanceRest: BackboneElement {
 
         for (index, t) in o.compartment.enumerated() {
             guard index < self.compartment.count else {
-                self.compartment.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.compartment.append(val)
                 continue
             }
             self.compartment[index].populate(from: t)
@@ -944,7 +984,11 @@ open class ConformanceRest: BackboneElement {
 
         for (index, t) in o.interaction.enumerated() {
             guard index < self.interaction.count else {
-                self.interaction.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRestInteraction()
+                val.populate(from: t)
+                self.interaction.append(val)
                 continue
             }
             self.interaction[index].populate(from: t)
@@ -959,7 +1003,11 @@ open class ConformanceRest: BackboneElement {
 
         for (index, t) in o.operation.enumerated() {
             guard index < self.operation.count else {
-                self.operation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRestOperation()
+                val.populate(from: t)
+                self.operation.append(val)
                 continue
             }
             self.operation[index].populate(from: t)
@@ -973,7 +1021,11 @@ open class ConformanceRest: BackboneElement {
 
         for (index, t) in o.resource.enumerated() {
             guard index < self.resource.count else {
-                self.resource.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRestResource()
+                val.populate(from: t)
+                self.resource.append(val)
                 continue
             }
             self.resource[index].populate(from: t)
@@ -987,7 +1039,11 @@ open class ConformanceRest: BackboneElement {
 
         for (index, t) in o.searchParam.enumerated() {
             guard index < self.searchParam.count else {
-                self.searchParam.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRestResourceSearchParam()
+                val.populate(from: t)
+                self.searchParam.append(val)
                 continue
             }
             self.searchParam[index].populate(from: t)
@@ -1280,7 +1336,11 @@ open class ConformanceRestResource: BackboneElement {
 
         for (index, t) in o.interaction.enumerated() {
             guard index < self.interaction.count else {
-                self.interaction.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRestResourceInteraction()
+                val.populate(from: t)
+                self.interaction.append(val)
                 continue
             }
             self.interaction[index].populate(from: t)
@@ -1296,7 +1356,11 @@ open class ConformanceRestResource: BackboneElement {
 
         for (index, t) in o.searchInclude.enumerated() {
             guard index < self.searchInclude.count else {
-                self.searchInclude.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.searchInclude.append(val)
                 continue
             }
             self.searchInclude[index].populate(from: t)
@@ -1310,7 +1374,11 @@ open class ConformanceRestResource: BackboneElement {
 
         for (index, t) in o.searchParam.enumerated() {
             guard index < self.searchParam.count else {
-                self.searchParam.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRestResourceSearchParam()
+                val.populate(from: t)
+                self.searchParam.append(val)
                 continue
             }
             self.searchParam[index].populate(from: t)
@@ -1324,7 +1392,11 @@ open class ConformanceRestResource: BackboneElement {
 
         for (index, t) in o.searchRevInclude.enumerated() {
             guard index < self.searchRevInclude.count else {
-                self.searchRevInclude.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.searchRevInclude.append(val)
                 continue
             }
             self.searchRevInclude[index].populate(from: t)
@@ -1513,7 +1585,11 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 
         for (index, t) in o.chain.enumerated() {
             guard index < self.chain.count else {
-                self.chain.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.chain.append(val)
                 continue
             }
             self.chain[index].populate(from: t)
@@ -1529,7 +1605,11 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 
         for (index, t) in o.modifier.enumerated() {
             guard index < self.modifier.count else {
-                self.modifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.modifier.append(val)
                 continue
             }
             self.modifier[index].populate(from: t)
@@ -1544,7 +1624,11 @@ open class ConformanceRestResourceSearchParam: BackboneElement {
 
         for (index, t) in o.target.enumerated() {
             guard index < self.target.count else {
-                self.target.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.target.append(val)
                 continue
             }
             self.target[index].populate(from: t)
@@ -1635,7 +1719,11 @@ open class ConformanceRestSecurity: BackboneElement {
 
         for (index, t) in o.certificate.enumerated() {
             guard index < self.certificate.count else {
-                self.certificate.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConformanceRestSecurityCertificate()
+                val.populate(from: t)
+                self.certificate.append(val)
                 continue
             }
             self.certificate[index].populate(from: t)
@@ -1651,7 +1739,11 @@ open class ConformanceRestSecurity: BackboneElement {
 
         for (index, t) in o.service.enumerated() {
             guard index < self.service.count else {
-                self.service.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.service.append(val)
                 continue
             }
             self.service[index].populate(from: t)

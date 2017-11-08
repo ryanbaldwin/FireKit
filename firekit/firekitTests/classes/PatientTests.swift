@@ -2,10 +2,10 @@
 //  PatientTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-22
+// Updated for Realm support by Ryan Baldwin on 2017-11-07
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 
@@ -73,9 +73,6 @@ class PatientTests: XCTestCase, RealmPersistenceTesting {
     func testPatient1NillingPopulatability() {
         do {
             let instance = try runPatient1()
-            instance.meta = Meta()
-            instance.meta!.lastUpdated = Instant.now
-            instance.meta!.versionId = "1"
             try! realm.write { realm.add(instance) }
             try! realm.write { instance.populate(from: FireKit.Patient()) }
         } catch let error {

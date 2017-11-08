@@ -2,10 +2,10 @@
 //  Person.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Person) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -119,7 +119,11 @@ open class Person: DomainResource {
 
         for (index, t) in o.address.enumerated() {
             guard index < self.address.count else {
-                self.address.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Address()
+                val.populate(from: t)
+                self.address.append(val)
                 continue
             }
             self.address[index].populate(from: t)
@@ -135,7 +139,11 @@ open class Person: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -149,7 +157,11 @@ open class Person: DomainResource {
 
         for (index, t) in o.link.enumerated() {
             guard index < self.link.count else {
-                self.link.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = PersonLink()
+                val.populate(from: t)
+                self.link.append(val)
                 continue
             }
             self.link[index].populate(from: t)
@@ -164,7 +176,11 @@ open class Person: DomainResource {
 
         for (index, t) in o.name.enumerated() {
             guard index < self.name.count else {
-                self.name.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = HumanName()
+                val.populate(from: t)
+                self.name.append(val)
                 continue
             }
             self.name[index].populate(from: t)
@@ -179,7 +195,11 @@ open class Person: DomainResource {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)

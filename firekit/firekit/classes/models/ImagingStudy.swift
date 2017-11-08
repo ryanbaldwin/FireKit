@@ -2,10 +2,10 @@
 //  ImagingStudy.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingStudy) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -163,7 +163,11 @@ open class ImagingStudy: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -178,7 +182,11 @@ open class ImagingStudy: DomainResource {
 
         for (index, t) in o.modalityList.enumerated() {
             guard index < self.modalityList.count else {
-                self.modalityList.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.modalityList.append(val)
                 continue
             }
             self.modalityList[index].populate(from: t)
@@ -194,7 +202,11 @@ open class ImagingStudy: DomainResource {
 
         for (index, t) in o.order.enumerated() {
             guard index < self.order.count else {
-                self.order.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.order.append(val)
                 continue
             }
             self.order[index].populate(from: t)
@@ -209,7 +221,11 @@ open class ImagingStudy: DomainResource {
 
         for (index, t) in o.procedure.enumerated() {
             guard index < self.procedure.count else {
-                self.procedure.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.procedure.append(val)
                 continue
             }
             self.procedure[index].populate(from: t)
@@ -224,7 +240,11 @@ open class ImagingStudy: DomainResource {
 
         for (index, t) in o.series.enumerated() {
             guard index < self.series.count else {
-                self.series.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImagingStudySeries()
+                val.populate(from: t)
+                self.series.append(val)
                 continue
             }
             self.series[index].populate(from: t)
@@ -365,7 +385,11 @@ open class ImagingStudySeries: BackboneElement {
 
         for (index, t) in o.instance.enumerated() {
             guard index < self.instance.count else {
-                self.instance.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImagingStudySeriesInstance()
+                val.populate(from: t)
+                self.instance.append(val)
                 continue
             }
             self.instance[index].populate(from: t)
@@ -477,7 +501,11 @@ open class ImagingStudySeriesInstance: BackboneElement {
 
         for (index, t) in o.content.enumerated() {
             guard index < self.content.count else {
-                self.content.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Attachment()
+                val.populate(from: t)
+                self.content.append(val)
                 continue
             }
             self.content[index].populate(from: t)

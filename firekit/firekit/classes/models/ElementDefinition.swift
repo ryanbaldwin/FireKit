@@ -2,10 +2,10 @@
 //  ElementDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ElementDefinition) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -1285,7 +1285,11 @@ open class ElementDefinition: Element {
 
         for (index, t) in o.alias.enumerated() {
             guard index < self.alias.count else {
-                self.alias.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.alias.append(val)
                 continue
             }
             self.alias[index].populate(from: t)
@@ -1301,7 +1305,11 @@ open class ElementDefinition: Element {
 
         for (index, t) in o.code.enumerated() {
             guard index < self.code.count else {
-                self.code.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.code.append(val)
                 continue
             }
             self.code[index].populate(from: t)
@@ -1316,7 +1324,11 @@ open class ElementDefinition: Element {
 
         for (index, t) in o.condition.enumerated() {
             guard index < self.condition.count else {
-                self.condition.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.condition.append(val)
                 continue
             }
             self.condition[index].populate(from: t)
@@ -1330,7 +1342,11 @@ open class ElementDefinition: Element {
 
         for (index, t) in o.constraint.enumerated() {
             guard index < self.constraint.count else {
-                self.constraint.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ElementDefinitionConstraint()
+                val.populate(from: t)
+                self.constraint.append(val)
                 continue
             }
             self.constraint[index].populate(from: t)
@@ -1447,7 +1463,11 @@ open class ElementDefinition: Element {
 
         for (index, t) in o.mapping.enumerated() {
             guard index < self.mapping.count else {
-                self.mapping.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ElementDefinitionMapping()
+                val.populate(from: t)
+                self.mapping.append(val)
                 continue
             }
             self.mapping[index].populate(from: t)
@@ -1568,7 +1588,11 @@ open class ElementDefinition: Element {
 
         for (index, t) in o.representation.enumerated() {
             guard index < self.representation.count else {
-                self.representation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.representation.append(val)
                 continue
             }
             self.representation[index].populate(from: t)
@@ -1585,7 +1609,11 @@ open class ElementDefinition: Element {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ElementDefinitionType()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)
@@ -2038,7 +2066,11 @@ open class ElementDefinitionSlicing: Element {
 
         for (index, t) in o.discriminator.enumerated() {
             guard index < self.discriminator.count else {
-                self.discriminator.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.discriminator.append(val)
                 continue
             }
             self.discriminator[index].populate(from: t)
@@ -2132,7 +2164,11 @@ open class ElementDefinitionType: Element {
 
         for (index, t) in o.aggregation.enumerated() {
             guard index < self.aggregation.count else {
-                self.aggregation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.aggregation.append(val)
                 continue
             }
             self.aggregation[index].populate(from: t)
@@ -2147,7 +2183,11 @@ open class ElementDefinitionType: Element {
 
         for (index, t) in o.profile.enumerated() {
             guard index < self.profile.count else {
-                self.profile.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.profile.append(val)
                 continue
             }
             self.profile[index].populate(from: t)

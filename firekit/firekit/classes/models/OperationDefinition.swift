@@ -2,10 +2,10 @@
 //  OperationDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationDefinition) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -165,7 +165,11 @@ open class OperationDefinition: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = OperationDefinitionContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -187,7 +191,11 @@ open class OperationDefinition: DomainResource {
 
         for (index, t) in o.parameter.enumerated() {
             guard index < self.parameter.count else {
-                self.parameter.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = OperationDefinitionParameter()
+                val.populate(from: t)
+                self.parameter.append(val)
                 continue
             }
             self.parameter[index].populate(from: t)
@@ -205,7 +213,11 @@ open class OperationDefinition: DomainResource {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)
@@ -290,7 +302,11 @@ open class OperationDefinitionContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -420,7 +436,11 @@ open class OperationDefinitionParameter: BackboneElement {
 
         for (index, t) in o.part.enumerated() {
             guard index < self.part.count else {
-                self.part.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = OperationDefinitionParameter()
+                val.populate(from: t)
+                self.part.append(val)
                 continue
             }
             self.part[index].populate(from: t)

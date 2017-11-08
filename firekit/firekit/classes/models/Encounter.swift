@@ -2,10 +2,10 @@
 //  Encounter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Encounter) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -181,7 +181,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.episodeOfCare.enumerated() {
             guard index < self.episodeOfCare.count else {
-                self.episodeOfCare.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.episodeOfCare.append(val)
                 continue
             }
             self.episodeOfCare[index].populate(from: t)
@@ -196,7 +200,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -210,7 +218,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.incomingReferral.enumerated() {
             guard index < self.incomingReferral.count else {
-                self.incomingReferral.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.incomingReferral.append(val)
                 continue
             }
             self.incomingReferral[index].populate(from: t)
@@ -224,7 +236,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.indication.enumerated() {
             guard index < self.indication.count else {
-                self.indication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.indication.append(val)
                 continue
             }
             self.indication[index].populate(from: t)
@@ -239,7 +255,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.location.enumerated() {
             guard index < self.location.count else {
-                self.location.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = EncounterLocation()
+                val.populate(from: t)
+                self.location.append(val)
                 continue
             }
             self.location[index].populate(from: t)
@@ -254,7 +274,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.participant.enumerated() {
             guard index < self.participant.count else {
-                self.participant.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = EncounterParticipant()
+                val.populate(from: t)
+                self.participant.append(val)
                 continue
             }
             self.participant[index].populate(from: t)
@@ -271,7 +295,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.reason.enumerated() {
             guard index < self.reason.count else {
-                self.reason.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.reason.append(val)
                 continue
             }
             self.reason[index].populate(from: t)
@@ -287,7 +315,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.statusHistory.enumerated() {
             guard index < self.statusHistory.count else {
-                self.statusHistory.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = EncounterStatusHistory()
+                val.populate(from: t)
+                self.statusHistory.append(val)
                 continue
             }
             self.statusHistory[index].populate(from: t)
@@ -301,7 +333,11 @@ open class Encounter: DomainResource {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)
@@ -436,7 +472,11 @@ open class EncounterHospitalization: BackboneElement {
 
         for (index, t) in o.admittingDiagnosis.enumerated() {
             guard index < self.admittingDiagnosis.count else {
-                self.admittingDiagnosis.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.admittingDiagnosis.append(val)
                 continue
             }
             self.admittingDiagnosis[index].populate(from: t)
@@ -451,7 +491,11 @@ open class EncounterHospitalization: BackboneElement {
 
         for (index, t) in o.dietPreference.enumerated() {
             guard index < self.dietPreference.count else {
-                self.dietPreference.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.dietPreference.append(val)
                 continue
             }
             self.dietPreference[index].populate(from: t)
@@ -465,7 +509,11 @@ open class EncounterHospitalization: BackboneElement {
 
         for (index, t) in o.dischargeDiagnosis.enumerated() {
             guard index < self.dischargeDiagnosis.count else {
-                self.dischargeDiagnosis.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.dischargeDiagnosis.append(val)
                 continue
             }
             self.dischargeDiagnosis[index].populate(from: t)
@@ -483,7 +531,11 @@ open class EncounterHospitalization: BackboneElement {
 
         for (index, t) in o.specialArrangement.enumerated() {
             guard index < self.specialArrangement.count else {
-                self.specialArrangement.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.specialArrangement.append(val)
                 continue
             }
             self.specialArrangement[index].populate(from: t)
@@ -497,7 +549,11 @@ open class EncounterHospitalization: BackboneElement {
 
         for (index, t) in o.specialCourtesy.enumerated() {
             guard index < self.specialCourtesy.count else {
-                self.specialCourtesy.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.specialCourtesy.append(val)
                 continue
             }
             self.specialCourtesy[index].populate(from: t)
@@ -678,7 +734,11 @@ open class EncounterParticipant: BackboneElement {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)

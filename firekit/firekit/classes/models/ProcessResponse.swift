@@ -2,10 +2,10 @@
 //  ProcessResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ProcessResponse) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -150,7 +150,11 @@ open class ProcessResponse: DomainResource {
 
         for (index, t) in o.error.enumerated() {
             guard index < self.error.count else {
-                self.error.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.error.append(val)
                 continue
             }
             self.error[index].populate(from: t)
@@ -165,7 +169,11 @@ open class ProcessResponse: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -179,7 +187,11 @@ open class ProcessResponse: DomainResource {
 
         for (index, t) in o.notes.enumerated() {
             guard index < self.notes.count else {
-                self.notes.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ProcessResponseNotes()
+                val.populate(from: t)
+                self.notes.append(val)
                 continue
             }
             self.notes[index].populate(from: t)

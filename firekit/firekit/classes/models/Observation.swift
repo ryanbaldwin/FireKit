@@ -2,10 +2,10 @@
 //  Observation.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Observation) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -257,7 +257,11 @@ open class Observation: DomainResource {
 
         for (index, t) in o.component.enumerated() {
             guard index < self.component.count else {
-                self.component.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ObservationComponent()
+                val.populate(from: t)
+                self.component.append(val)
                 continue
             }
             self.component[index].populate(from: t)
@@ -276,7 +280,11 @@ open class Observation: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -293,7 +301,11 @@ open class Observation: DomainResource {
 
         for (index, t) in o.performer.enumerated() {
             guard index < self.performer.count else {
-                self.performer.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.performer.append(val)
                 continue
             }
             self.performer[index].populate(from: t)
@@ -307,7 +319,11 @@ open class Observation: DomainResource {
 
         for (index, t) in o.referenceRange.enumerated() {
             guard index < self.referenceRange.count else {
-                self.referenceRange.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ObservationReferenceRange()
+                val.populate(from: t)
+                self.referenceRange.append(val)
                 continue
             }
             self.referenceRange[index].populate(from: t)
@@ -321,7 +337,11 @@ open class Observation: DomainResource {
 
         for (index, t) in o.related.enumerated() {
             guard index < self.related.count else {
-                self.related.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ObservationRelated()
+                val.populate(from: t)
+                self.related.append(val)
                 continue
             }
             self.related[index].populate(from: t)
@@ -497,7 +517,11 @@ open class ObservationComponent: BackboneElement {
 
         for (index, t) in o.referenceRange.enumerated() {
             guard index < self.referenceRange.count else {
-                self.referenceRange.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ObservationReferenceRange()
+                val.populate(from: t)
+                self.referenceRange.append(val)
                 continue
             }
             self.referenceRange[index].populate(from: t)

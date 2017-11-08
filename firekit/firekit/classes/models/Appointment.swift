@@ -2,10 +2,10 @@
 //  Appointment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Appointment) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -135,7 +135,11 @@ open class Appointment: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -150,7 +154,11 @@ open class Appointment: DomainResource {
 
         for (index, t) in o.participant.enumerated() {
             guard index < self.participant.count else {
-                self.participant.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = AppointmentParticipant()
+                val.populate(from: t)
+                self.participant.append(val)
                 continue
             }
             self.participant[index].populate(from: t)
@@ -166,7 +174,11 @@ open class Appointment: DomainResource {
 
         for (index, t) in o.slot.enumerated() {
             guard index < self.slot.count else {
-                self.slot.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.slot.append(val)
                 continue
             }
             self.slot[index].populate(from: t)
@@ -271,7 +283,11 @@ open class AppointmentParticipant: BackboneElement {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)

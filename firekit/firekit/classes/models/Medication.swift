@@ -2,10 +2,10 @@
 //  Medication.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Medication) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -182,7 +182,11 @@ open class MedicationPackage: BackboneElement {
 
         for (index, t) in o.content.enumerated() {
             guard index < self.content.count else {
-                self.content.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = MedicationPackageContent()
+                val.populate(from: t)
+                self.content.append(val)
                 continue
             }
             self.content[index].populate(from: t)
@@ -353,7 +357,11 @@ open class MedicationProduct: BackboneElement {
 
         for (index, t) in o.batch.enumerated() {
             guard index < self.batch.count else {
-                self.batch.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = MedicationProductBatch()
+                val.populate(from: t)
+                self.batch.append(val)
                 continue
             }
             self.batch[index].populate(from: t)
@@ -368,7 +376,11 @@ open class MedicationProduct: BackboneElement {
 
         for (index, t) in o.ingredient.enumerated() {
             guard index < self.ingredient.count else {
-                self.ingredient.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = MedicationProductIngredient()
+                val.populate(from: t)
+                self.ingredient.append(val)
                 continue
             }
             self.ingredient[index].populate(from: t)

@@ -2,10 +2,10 @@
 //  BackboneElement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/BackboneElement) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -76,7 +76,11 @@ open class BackboneElement: Element {
 
         for (index, t) in o.modifierExtension.enumerated() {
             guard index < self.modifierExtension.count else {
-                self.modifierExtension.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Extension()
+                val.populate(from: t)
+                self.modifierExtension.append(val)
                 continue
             }
             self.modifierExtension[index].populate(from: t)

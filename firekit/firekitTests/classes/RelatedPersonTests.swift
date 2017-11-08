@@ -2,10 +2,10 @@
 //  RelatedPersonTests.swift
 //  FireKit
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-10-22
+// Updated for Realm support by Ryan Baldwin on 2017-11-07
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 // 
 

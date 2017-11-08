@@ -2,10 +2,10 @@
 //  DeviceUseStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DeviceUseStatement) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -152,7 +152,11 @@ open class DeviceUseStatement: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -166,7 +170,11 @@ open class DeviceUseStatement: DomainResource {
 
         for (index, t) in o.indication.enumerated() {
             guard index < self.indication.count else {
-                self.indication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.indication.append(val)
                 continue
             }
             self.indication[index].populate(from: t)
@@ -180,7 +188,11 @@ open class DeviceUseStatement: DomainResource {
 
         for (index, t) in o.notes.enumerated() {
             guard index < self.notes.count else {
-                self.notes.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.notes.append(val)
                 continue
             }
             self.notes[index].populate(from: t)

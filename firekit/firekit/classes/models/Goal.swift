@@ -2,10 +2,10 @@
 //  Goal.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Goal) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -162,7 +162,11 @@ open class Goal: DomainResource {
 
         for (index, t) in o.addresses.enumerated() {
             guard index < self.addresses.count else {
-                self.addresses.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.addresses.append(val)
                 continue
             }
             self.addresses[index].populate(from: t)
@@ -177,7 +181,11 @@ open class Goal: DomainResource {
 
         for (index, t) in o.category.enumerated() {
             guard index < self.category.count else {
-                self.category.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.category.append(val)
                 continue
             }
             self.category[index].populate(from: t)
@@ -192,7 +200,11 @@ open class Goal: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -206,7 +218,11 @@ open class Goal: DomainResource {
 
         for (index, t) in o.note.enumerated() {
             guard index < self.note.count else {
-                self.note.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Annotation()
+                val.populate(from: t)
+                self.note.append(val)
                 continue
             }
             self.note[index].populate(from: t)
@@ -220,7 +236,11 @@ open class Goal: DomainResource {
 
         for (index, t) in o.outcome.enumerated() {
             guard index < self.outcome.count else {
-                self.outcome.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = GoalOutcome()
+                val.populate(from: t)
+                self.outcome.append(val)
                 continue
             }
             self.outcome[index].populate(from: t)

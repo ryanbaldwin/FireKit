@@ -2,10 +2,10 @@
 //  MedicationStatement.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationStatement) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -180,7 +180,11 @@ open class MedicationStatement: DomainResource {
 
         for (index, t) in o.dosage.enumerated() {
             guard index < self.dosage.count else {
-                self.dosage.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = MedicationStatementDosage()
+                val.populate(from: t)
+                self.dosage.append(val)
                 continue
             }
             self.dosage[index].populate(from: t)
@@ -196,7 +200,11 @@ open class MedicationStatement: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -217,7 +225,11 @@ open class MedicationStatement: DomainResource {
 
         for (index, t) in o.reasonNotTaken.enumerated() {
             guard index < self.reasonNotTaken.count else {
-                self.reasonNotTaken.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.reasonNotTaken.append(val)
                 continue
             }
             self.reasonNotTaken[index].populate(from: t)
@@ -232,7 +244,11 @@ open class MedicationStatement: DomainResource {
 
         for (index, t) in o.supportingInformation.enumerated() {
             guard index < self.supportingInformation.count else {
-                self.supportingInformation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.supportingInformation.append(val)
                 continue
             }
             self.supportingInformation[index].populate(from: t)

@@ -2,10 +2,10 @@
 //  OperationOutcome.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/OperationOutcome) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -82,7 +82,11 @@ open class OperationOutcome: DomainResource {
 
         for (index, t) in o.issue.enumerated() {
             guard index < self.issue.count else {
-                self.issue.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = OperationOutcomeIssue()
+                val.populate(from: t)
+                self.issue.append(val)
                 continue
             }
             self.issue[index].populate(from: t)
@@ -189,7 +193,11 @@ open class OperationOutcomeIssue: BackboneElement {
 
         for (index, t) in o.location.enumerated() {
             guard index < self.location.count else {
-                self.location.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.location.append(val)
                 continue
             }
             self.location[index].populate(from: t)

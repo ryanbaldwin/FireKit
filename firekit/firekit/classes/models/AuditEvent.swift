@@ -2,10 +2,10 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -104,7 +104,11 @@ open class AuditEvent: DomainResource {
 
         for (index, t) in o.object.enumerated() {
             guard index < self.object.count else {
-                self.object.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = AuditEventObject()
+                val.populate(from: t)
+                self.object.append(val)
                 continue
             }
             self.object[index].populate(from: t)
@@ -118,7 +122,11 @@ open class AuditEvent: DomainResource {
 
         for (index, t) in o.participant.enumerated() {
             guard index < self.participant.count else {
-                self.participant.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = AuditEventParticipant()
+                val.populate(from: t)
+                self.participant.append(val)
                 continue
             }
             self.participant[index].populate(from: t)
@@ -235,7 +243,11 @@ open class AuditEventEvent: BackboneElement {
 
         for (index, t) in o.purposeOfEvent.enumerated() {
             guard index < self.purposeOfEvent.count else {
-                self.purposeOfEvent.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.purposeOfEvent.append(val)
                 continue
             }
             self.purposeOfEvent[index].populate(from: t)
@@ -249,7 +261,11 @@ open class AuditEventEvent: BackboneElement {
 
         for (index, t) in o.subtype.enumerated() {
             guard index < self.subtype.count else {
-                self.subtype.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.subtype.append(val)
                 continue
             }
             self.subtype[index].populate(from: t)
@@ -378,7 +394,11 @@ open class AuditEventObject: BackboneElement {
 
         for (index, t) in o.detail.enumerated() {
             guard index < self.detail.count else {
-                self.detail.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = AuditEventObjectDetail()
+                val.populate(from: t)
+                self.detail.append(val)
                 continue
             }
             self.detail[index].populate(from: t)
@@ -398,7 +418,11 @@ open class AuditEventObject: BackboneElement {
 
         for (index, t) in o.securityLabel.enumerated() {
             guard index < self.securityLabel.count else {
-                self.securityLabel.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.securityLabel.append(val)
                 continue
             }
             self.securityLabel[index].populate(from: t)
@@ -616,7 +640,11 @@ open class AuditEventParticipant: BackboneElement {
 
         for (index, t) in o.policy.enumerated() {
             guard index < self.policy.count else {
-                self.policy.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.policy.append(val)
                 continue
             }
             self.policy[index].populate(from: t)
@@ -630,7 +658,11 @@ open class AuditEventParticipant: BackboneElement {
 
         for (index, t) in o.purposeOfUse.enumerated() {
             guard index < self.purposeOfUse.count else {
-                self.purposeOfUse.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.purposeOfUse.append(val)
                 continue
             }
             self.purposeOfUse[index].populate(from: t)
@@ -646,7 +678,11 @@ open class AuditEventParticipant: BackboneElement {
 
         for (index, t) in o.role.enumerated() {
             guard index < self.role.count else {
-                self.role.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.role.append(val)
                 continue
             }
             self.role[index].populate(from: t)
@@ -812,7 +848,11 @@ open class AuditEventSource: BackboneElement {
 
         for (index, t) in o.type.enumerated() {
             guard index < self.type.count else {
-                self.type.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.type.append(val)
                 continue
             }
             self.type[index].populate(from: t)

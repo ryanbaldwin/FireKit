@@ -2,10 +2,10 @@
 //  Bundle.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Bundle) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -101,7 +101,11 @@ open class Bundle: Resource {
 
         for (index, t) in o.entry.enumerated() {
             guard index < self.entry.count else {
-                self.entry.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = BundleEntry()
+                val.populate(from: t)
+                self.entry.append(val)
                 continue
             }
             self.entry[index].populate(from: t)
@@ -115,7 +119,11 @@ open class Bundle: Resource {
 
         for (index, t) in o.link.enumerated() {
             guard index < self.link.count else {
-                self.link.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = BundleLink()
+                val.populate(from: t)
+                self.link.append(val)
                 continue
             }
             self.link[index].populate(from: t)
@@ -234,7 +242,11 @@ open class BundleEntry: BackboneElement {
 
         for (index, t) in o.link.enumerated() {
             guard index < self.link.count else {
-                self.link.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = BundleLink()
+                val.populate(from: t)
+                self.link.append(val)
                 continue
             }
             self.link[index].populate(from: t)

@@ -2,10 +2,10 @@
 //  TestScript.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/TestScript) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -177,7 +177,11 @@ open class TestScript: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -195,7 +199,11 @@ open class TestScript: DomainResource {
 
         for (index, t) in o.fixture.enumerated() {
             guard index < self.fixture.count else {
-                self.fixture.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptFixture()
+                val.populate(from: t)
+                self.fixture.append(val)
                 continue
             }
             self.fixture[index].populate(from: t)
@@ -213,7 +221,11 @@ open class TestScript: DomainResource {
 
         for (index, t) in o.profile.enumerated() {
             guard index < self.profile.count else {
-                self.profile.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.profile.append(val)
                 continue
             }
             self.profile[index].populate(from: t)
@@ -232,7 +244,11 @@ open class TestScript: DomainResource {
 
         for (index, t) in o.test.enumerated() {
             guard index < self.test.count else {
-                self.test.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptTest()
+                val.populate(from: t)
+                self.test.append(val)
                 continue
             }
             self.test[index].populate(from: t)
@@ -247,7 +263,11 @@ open class TestScript: DomainResource {
 
         for (index, t) in o.useContext.enumerated() {
             guard index < self.useContext.count else {
-                self.useContext.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.useContext.append(val)
                 continue
             }
             self.useContext[index].populate(from: t)
@@ -261,7 +281,11 @@ open class TestScript: DomainResource {
 
         for (index, t) in o.variable.enumerated() {
             guard index < self.variable.count else {
-                self.variable.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptVariable()
+                val.populate(from: t)
+                self.variable.append(val)
                 continue
             }
             self.variable[index].populate(from: t)
@@ -345,7 +369,11 @@ open class TestScriptContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -511,7 +539,11 @@ open class TestScriptMetadata: BackboneElement {
 
         for (index, t) in o.capability.enumerated() {
             guard index < self.capability.count else {
-                self.capability.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptMetadataCapability()
+                val.populate(from: t)
+                self.capability.append(val)
                 continue
             }
             self.capability[index].populate(from: t)
@@ -525,7 +557,11 @@ open class TestScriptMetadata: BackboneElement {
 
         for (index, t) in o.link.enumerated() {
             guard index < self.link.count else {
-                self.link.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptMetadataLink()
+                val.populate(from: t)
+                self.link.append(val)
                 continue
             }
             self.link[index].populate(from: t)
@@ -635,7 +671,11 @@ open class TestScriptMetadataCapability: BackboneElement {
 
         for (index, t) in o.link.enumerated() {
             guard index < self.link.count else {
-                self.link.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.link.append(val)
                 continue
             }
             self.link[index].populate(from: t)
@@ -802,7 +842,11 @@ open class TestScriptSetup: BackboneElement {
 
         for (index, t) in o.action.enumerated() {
             guard index < self.action.count else {
-                self.action.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptSetupAction()
+                val.populate(from: t)
+                self.action.append(val)
                 continue
             }
             self.action[index].populate(from: t)
@@ -1169,7 +1213,11 @@ open class TestScriptSetupActionOperation: BackboneElement {
 
         for (index, t) in o.requestHeader.enumerated() {
             guard index < self.requestHeader.count else {
-                self.requestHeader.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptSetupActionOperationRequestHeader()
+                val.populate(from: t)
+                self.requestHeader.append(val)
                 continue
             }
             self.requestHeader[index].populate(from: t)
@@ -1336,7 +1384,11 @@ open class TestScriptTeardown: BackboneElement {
 
         for (index, t) in o.action.enumerated() {
             guard index < self.action.count else {
-                self.action.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptTeardownAction()
+                val.populate(from: t)
+                self.action.append(val)
                 continue
             }
             self.action[index].populate(from: t)
@@ -1501,7 +1553,11 @@ open class TestScriptTest: BackboneElement {
 
         for (index, t) in o.action.enumerated() {
             guard index < self.action.count else {
-                self.action.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = TestScriptTestAction()
+                val.populate(from: t)
+                self.action.append(val)
                 continue
             }
             self.action[index].populate(from: t)

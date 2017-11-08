@@ -2921,6 +2921,7 @@
 		C2AF6DAE1E37D5C000EE1AEE /* xdsdocumentreference-questionnaire.canonical.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF63371E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.canonical.json */; };
 		C2AF6DAF1E37D5C000EE1AEE /* xdsdocumentreference-questionnaire.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF63381E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.json */; };
 		C2AF6DB01E37D5C000EE1AEE /* xdsdocumentreference.profile.json in Resources */ = {isa = PBXBuildFile; fileRef = C2AF63391E37D5BB00EE1AEE /* xdsdocumentreference.profile.json */; };
+		C2E0C73E1FB35DCB00F3B14D /* FHIRAbstractBaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2E0C73D1FB35DCB00F3B14D /* FHIRAbstractBaseTests.swift */; };
 		C2FFA2B11F7147EC0052021D /* PopulatableTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2FFA2B01F7147EC0052021D /* PopulatableTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -5852,6 +5853,7 @@
 		C2AF63371E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.canonical.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "xdsdocumentreference-questionnaire.canonical.json"; sourceTree = "<group>"; };
 		C2AF63381E37D5BB00EE1AEE /* xdsdocumentreference-questionnaire.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "xdsdocumentreference-questionnaire.json"; sourceTree = "<group>"; };
 		C2AF63391E37D5BB00EE1AEE /* xdsdocumentreference.profile.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = xdsdocumentreference.profile.json; sourceTree = "<group>"; };
+		C2E0C73D1FB35DCB00F3B14D /* FHIRAbstractBaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FHIRAbstractBaseTests.swift; sourceTree = "<group>"; };
 		C2FFA2B01F7147EC0052021D /* PopulatableTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopulatableTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -6167,6 +6169,7 @@
 				C2AF43731E37CCBF00EE1AEE /* VisionPrescriptionTests.swift */,
 				C2AF43741E37CCBF00EE1AEE /* XCTestCase+FHIR.swift */,
 				C2ADFE8C1F86C8E0005DFF45 /* RealmUpsertTests.swift */,
+				C2E0C73D1FB35DCB00F3B14D /* FHIRAbstractBaseTests.swift */,
 			);
 			name = models;
 			sourceTree = "<group>";
@@ -11844,6 +11847,7 @@
 				C2AF438A1E37CCBF00EE1AEE /* DataElementTests.swift in Sources */,
 				C2AF43901E37CCBF00EE1AEE /* DeviceUseRequestTests.swift in Sources */,
 				C2AF43761E37CCBF00EE1AEE /* AllergyIntoleranceTests.swift in Sources */,
+				C2E0C73E1FB35DCB00F3B14D /* FHIRAbstractBaseTests.swift in Sources */,
 				C2AF43861E37CCBF00EE1AEE /* ConditionTests.swift in Sources */,
 				C2AF43851E37CCBF00EE1AEE /* ConceptMapTests.swift in Sources */,
 				C2AF43891E37CCBF00EE1AEE /* CoverageTests.swift in Sources */,

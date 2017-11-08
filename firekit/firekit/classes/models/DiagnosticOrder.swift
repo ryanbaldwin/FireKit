@@ -2,10 +2,10 @@
 //  DiagnosticOrder.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticOrder) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -136,7 +136,11 @@ open class DiagnosticOrder: DomainResource {
 
         for (index, t) in o.event.enumerated() {
             guard index < self.event.count else {
-                self.event.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DiagnosticOrderEvent()
+                val.populate(from: t)
+                self.event.append(val)
                 continue
             }
             self.event[index].populate(from: t)
@@ -150,7 +154,11 @@ open class DiagnosticOrder: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -164,7 +172,11 @@ open class DiagnosticOrder: DomainResource {
 
         for (index, t) in o.item.enumerated() {
             guard index < self.item.count else {
-                self.item.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DiagnosticOrderItem()
+                val.populate(from: t)
+                self.item.append(val)
                 continue
             }
             self.item[index].populate(from: t)
@@ -178,7 +190,11 @@ open class DiagnosticOrder: DomainResource {
 
         for (index, t) in o.note.enumerated() {
             guard index < self.note.count else {
-                self.note.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Annotation()
+                val.populate(from: t)
+                self.note.append(val)
                 continue
             }
             self.note[index].populate(from: t)
@@ -194,7 +210,11 @@ open class DiagnosticOrder: DomainResource {
 
         for (index, t) in o.reason.enumerated() {
             guard index < self.reason.count else {
-                self.reason.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.reason.append(val)
                 continue
             }
             self.reason[index].populate(from: t)
@@ -208,7 +228,11 @@ open class DiagnosticOrder: DomainResource {
 
         for (index, t) in o.specimen.enumerated() {
             guard index < self.specimen.count else {
-                self.specimen.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.specimen.append(val)
                 continue
             }
             self.specimen[index].populate(from: t)
@@ -224,7 +248,11 @@ open class DiagnosticOrder: DomainResource {
 
         for (index, t) in o.supportingInformation.enumerated() {
             guard index < self.supportingInformation.count else {
-                self.supportingInformation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.supportingInformation.append(val)
                 continue
             }
             self.supportingInformation[index].populate(from: t)
@@ -427,7 +455,11 @@ open class DiagnosticOrderItem: BackboneElement {
 
         for (index, t) in o.event.enumerated() {
             guard index < self.event.count else {
-                self.event.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DiagnosticOrderEvent()
+                val.populate(from: t)
+                self.event.append(val)
                 continue
             }
             self.event[index].populate(from: t)
@@ -441,7 +473,11 @@ open class DiagnosticOrderItem: BackboneElement {
 
         for (index, t) in o.specimen.enumerated() {
             guard index < self.specimen.count else {
-                self.specimen.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.specimen.append(val)
                 continue
             }
             self.specimen[index].populate(from: t)

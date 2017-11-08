@@ -2,10 +2,10 @@
 //  QuestionnaireResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/QuestionnaireResponse) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -232,7 +232,11 @@ open class QuestionnaireResponseGroup: BackboneElement {
 
         for (index, t) in o.group.enumerated() {
             guard index < self.group.count else {
-                self.group.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = QuestionnaireResponseGroup()
+                val.populate(from: t)
+                self.group.append(val)
                 continue
             }
             self.group[index].populate(from: t)
@@ -247,7 +251,11 @@ open class QuestionnaireResponseGroup: BackboneElement {
 
         for (index, t) in o.question.enumerated() {
             guard index < self.question.count else {
-                self.question.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = QuestionnaireResponseGroupQuestion()
+                val.populate(from: t)
+                self.question.append(val)
                 continue
             }
             self.question[index].populate(from: t)
@@ -336,7 +344,11 @@ open class QuestionnaireResponseGroupQuestion: BackboneElement {
 
         for (index, t) in o.answer.enumerated() {
             guard index < self.answer.count else {
-                self.answer.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = QuestionnaireResponseGroupQuestionAnswer()
+                val.populate(from: t)
+                self.answer.append(val)
                 continue
             }
             self.answer[index].populate(from: t)
@@ -480,7 +492,11 @@ open class QuestionnaireResponseGroupQuestionAnswer: BackboneElement {
 
         for (index, t) in o.group.enumerated() {
             guard index < self.group.count else {
-                self.group.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = QuestionnaireResponseGroup()
+                val.populate(from: t)
+                self.group.append(val)
                 continue
             }
             self.group[index].populate(from: t)

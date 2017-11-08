@@ -2,10 +2,10 @@
 //  Specimen.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Specimen) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -132,7 +132,11 @@ open class Specimen: DomainResource {
 
         for (index, t) in o.container.enumerated() {
             guard index < self.container.count else {
-                self.container.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = SpecimenContainer()
+                val.populate(from: t)
+                self.container.append(val)
                 continue
             }
             self.container[index].populate(from: t)
@@ -146,7 +150,11 @@ open class Specimen: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -160,7 +168,11 @@ open class Specimen: DomainResource {
 
         for (index, t) in o.parent.enumerated() {
             guard index < self.parent.count else {
-                self.parent.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.parent.append(val)
                 continue
             }
             self.parent[index].populate(from: t)
@@ -177,7 +189,11 @@ open class Specimen: DomainResource {
 
         for (index, t) in o.treatment.enumerated() {
             guard index < self.treatment.count else {
-                self.treatment.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = SpecimenTreatment()
+                val.populate(from: t)
+                self.treatment.append(val)
                 continue
             }
             self.treatment[index].populate(from: t)
@@ -299,7 +315,11 @@ open class SpecimenCollection: BackboneElement {
 
         for (index, t) in o.comment.enumerated() {
             guard index < self.comment.count else {
-                self.comment.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.comment.append(val)
                 continue
             }
             self.comment[index].populate(from: t)
@@ -423,7 +443,11 @@ open class SpecimenContainer: BackboneElement {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -514,7 +538,11 @@ open class SpecimenTreatment: BackboneElement {
 
         for (index, t) in o.additive.enumerated() {
             guard index < self.additive.count else {
-                self.additive.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.additive.append(val)
                 continue
             }
             self.additive[index].populate(from: t)
