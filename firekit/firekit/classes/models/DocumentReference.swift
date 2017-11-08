@@ -2,10 +2,10 @@
 //  DocumentReference.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentReference) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -174,7 +174,11 @@ open class DocumentReference: DomainResource {
 
         for (index, t) in o.author.enumerated() {
             guard index < self.author.count else {
-                self.author.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.author.append(val)
                 continue
             }
             self.author[index].populate(from: t)
@@ -189,7 +193,11 @@ open class DocumentReference: DomainResource {
 
         for (index, t) in o.content.enumerated() {
             guard index < self.content.count else {
-                self.content.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DocumentReferenceContent()
+                val.populate(from: t)
+                self.content.append(val)
                 continue
             }
             self.content[index].populate(from: t)
@@ -208,7 +216,11 @@ open class DocumentReference: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -224,7 +236,11 @@ open class DocumentReference: DomainResource {
 
         for (index, t) in o.relatesTo.enumerated() {
             guard index < self.relatesTo.count else {
-                self.relatesTo.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DocumentReferenceRelatesTo()
+                val.populate(from: t)
+                self.relatesTo.append(val)
                 continue
             }
             self.relatesTo[index].populate(from: t)
@@ -238,7 +254,11 @@ open class DocumentReference: DomainResource {
 
         for (index, t) in o.securityLabel.enumerated() {
             guard index < self.securityLabel.count else {
-                self.securityLabel.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.securityLabel.append(val)
                 continue
             }
             self.securityLabel[index].populate(from: t)
@@ -333,7 +353,11 @@ open class DocumentReferenceContent: BackboneElement {
 
         for (index, t) in o.format.enumerated() {
             guard index < self.format.count else {
-                self.format.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.format.append(val)
                 continue
             }
             self.format[index].populate(from: t)
@@ -451,7 +475,11 @@ open class DocumentReferenceContext: BackboneElement {
 
         for (index, t) in o.event.enumerated() {
             guard index < self.event.count else {
-                self.event.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.event.append(val)
                 continue
             }
             self.event[index].populate(from: t)
@@ -468,7 +496,11 @@ open class DocumentReferenceContext: BackboneElement {
 
         for (index, t) in o.related.enumerated() {
             guard index < self.related.count else {
-                self.related.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DocumentReferenceContextRelated()
+                val.populate(from: t)
+                self.related.append(val)
                 continue
             }
             self.related[index].populate(from: t)

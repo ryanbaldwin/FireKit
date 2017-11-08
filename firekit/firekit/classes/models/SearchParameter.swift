@@ -2,10 +2,10 @@
 //  SearchParameter.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/SearchParameter) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -145,7 +145,11 @@ open class SearchParameter: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = SearchParameterContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -166,7 +170,11 @@ open class SearchParameter: DomainResource {
 
         for (index, t) in o.target.enumerated() {
             guard index < self.target.count else {
-                self.target.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.target.append(val)
                 continue
             }
             self.target[index].populate(from: t)
@@ -253,7 +261,11 @@ open class SearchParameterContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)

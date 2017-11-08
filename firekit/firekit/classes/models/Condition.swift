@@ -2,10 +2,10 @@
 //  Condition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Condition) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -228,7 +228,11 @@ open class Condition: DomainResource {
 
         for (index, t) in o.bodySite.enumerated() {
             guard index < self.bodySite.count else {
-                self.bodySite.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.bodySite.append(val)
                 continue
             }
             self.bodySite[index].populate(from: t)
@@ -247,7 +251,11 @@ open class Condition: DomainResource {
 
         for (index, t) in o.evidence.enumerated() {
             guard index < self.evidence.count else {
-                self.evidence.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ConditionEvidence()
+                val.populate(from: t)
+                self.evidence.append(val)
                 continue
             }
             self.evidence[index].populate(from: t)
@@ -261,7 +269,11 @@ open class Condition: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -357,7 +369,11 @@ open class ConditionEvidence: BackboneElement {
 
         for (index, t) in o.detail.enumerated() {
             guard index < self.detail.count else {
-                self.detail.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.detail.append(val)
                 continue
             }
             self.detail[index].populate(from: t)
@@ -442,7 +458,11 @@ open class ConditionStage: BackboneElement {
 
         for (index, t) in o.assessment.enumerated() {
             guard index < self.assessment.count else {
-                self.assessment.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.assessment.append(val)
                 continue
             }
             self.assessment[index].populate(from: t)

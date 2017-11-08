@@ -2,10 +2,10 @@
 //  Questionnaire.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Questionnaire) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -117,7 +117,11 @@ open class Questionnaire: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -133,7 +137,11 @@ open class Questionnaire: DomainResource {
 
         for (index, t) in o.subjectType.enumerated() {
             guard index < self.subjectType.count else {
-                self.subjectType.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.subjectType.append(val)
                 continue
             }
             self.subjectType[index].populate(from: t)
@@ -147,7 +155,11 @@ open class Questionnaire: DomainResource {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -254,7 +266,11 @@ open class QuestionnaireGroup: BackboneElement {
 
         for (index, t) in o.concept.enumerated() {
             guard index < self.concept.count else {
-                self.concept.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.concept.append(val)
                 continue
             }
             self.concept[index].populate(from: t)
@@ -268,7 +284,11 @@ open class QuestionnaireGroup: BackboneElement {
 
         for (index, t) in o.group.enumerated() {
             guard index < self.group.count else {
-                self.group.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = QuestionnaireGroup()
+                val.populate(from: t)
+                self.group.append(val)
                 continue
             }
             self.group[index].populate(from: t)
@@ -283,7 +303,11 @@ open class QuestionnaireGroup: BackboneElement {
 
         for (index, t) in o.question.enumerated() {
             guard index < self.question.count else {
-                self.question.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = QuestionnaireGroupQuestion()
+                val.populate(from: t)
+                self.question.append(val)
                 continue
             }
             self.question[index].populate(from: t)
@@ -400,7 +424,11 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 
         for (index, t) in o.concept.enumerated() {
             guard index < self.concept.count else {
-                self.concept.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.concept.append(val)
                 continue
             }
             self.concept[index].populate(from: t)
@@ -414,7 +442,11 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 
         for (index, t) in o.group.enumerated() {
             guard index < self.group.count else {
-                self.group.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = QuestionnaireGroup()
+                val.populate(from: t)
+                self.group.append(val)
                 continue
             }
             self.group[index].populate(from: t)
@@ -429,7 +461,11 @@ open class QuestionnaireGroupQuestion: BackboneElement {
 
         for (index, t) in o.option.enumerated() {
             guard index < self.option.count else {
-                self.option.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.option.append(val)
                 continue
             }
             self.option[index].populate(from: t)

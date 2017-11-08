@@ -2,10 +2,10 @@
 //  RiskAssessment.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/RiskAssessment) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -130,7 +130,11 @@ open class RiskAssessment: DomainResource {
 
         for (index, t) in o.basis.enumerated() {
             guard index < self.basis.count else {
-                self.basis.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.basis.append(val)
                 continue
             }
             self.basis[index].populate(from: t)
@@ -151,7 +155,11 @@ open class RiskAssessment: DomainResource {
 
         for (index, t) in o.prediction.enumerated() {
             guard index < self.prediction.count else {
-                self.prediction.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RiskAssessmentPrediction()
+                val.populate(from: t)
+                self.prediction.append(val)
                 continue
             }
             self.prediction[index].populate(from: t)

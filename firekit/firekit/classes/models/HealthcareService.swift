@@ -2,10 +2,10 @@
 //  HealthcareService.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/HealthcareService) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -181,7 +181,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.availableTime.enumerated() {
             guard index < self.availableTime.count else {
-                self.availableTime.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = HealthcareServiceAvailableTime()
+                val.populate(from: t)
+                self.availableTime.append(val)
                 continue
             }
             self.availableTime[index].populate(from: t)
@@ -195,7 +199,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.characteristic.enumerated() {
             guard index < self.characteristic.count else {
-                self.characteristic.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.characteristic.append(val)
                 continue
             }
             self.characteristic[index].populate(from: t)
@@ -210,7 +218,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.coverageArea.enumerated() {
             guard index < self.coverageArea.count else {
-                self.coverageArea.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.coverageArea.append(val)
                 continue
             }
             self.coverageArea[index].populate(from: t)
@@ -227,7 +239,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -242,7 +258,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.notAvailable.enumerated() {
             guard index < self.notAvailable.count else {
-                self.notAvailable.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = HealthcareServiceNotAvailable()
+                val.populate(from: t)
+                self.notAvailable.append(val)
                 continue
             }
             self.notAvailable[index].populate(from: t)
@@ -257,7 +277,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.programName.enumerated() {
             guard index < self.programName.count else {
-                self.programName.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.programName.append(val)
                 continue
             }
             self.programName[index].populate(from: t)
@@ -273,7 +297,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.referralMethod.enumerated() {
             guard index < self.referralMethod.count else {
-                self.referralMethod.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.referralMethod.append(val)
                 continue
             }
             self.referralMethod[index].populate(from: t)
@@ -289,7 +317,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.serviceProvisionCode.enumerated() {
             guard index < self.serviceProvisionCode.count else {
-                self.serviceProvisionCode.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.serviceProvisionCode.append(val)
                 continue
             }
             self.serviceProvisionCode[index].populate(from: t)
@@ -303,7 +335,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.serviceType.enumerated() {
             guard index < self.serviceType.count else {
-                self.serviceType.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = HealthcareServiceServiceType()
+                val.populate(from: t)
+                self.serviceType.append(val)
                 continue
             }
             self.serviceType[index].populate(from: t)
@@ -317,7 +353,11 @@ open class HealthcareService: DomainResource {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -410,7 +450,11 @@ open class HealthcareServiceAvailableTime: BackboneElement {
 
         for (index, t) in o.daysOfWeek.enumerated() {
             guard index < self.daysOfWeek.count else {
-                self.daysOfWeek.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.daysOfWeek.append(val)
                 continue
             }
             self.daysOfWeek[index].populate(from: t)
@@ -580,7 +624,11 @@ open class HealthcareServiceServiceType: BackboneElement {
 
         for (index, t) in o.specialty.enumerated() {
             guard index < self.specialty.count else {
-                self.specialty.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.specialty.append(val)
                 continue
             }
             self.specialty[index].populate(from: t)

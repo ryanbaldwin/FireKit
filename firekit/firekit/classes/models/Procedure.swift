@@ -2,10 +2,10 @@
 //  Procedure.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Procedure) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -203,7 +203,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.bodySite.enumerated() {
             guard index < self.bodySite.count else {
-                self.bodySite.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.bodySite.append(val)
                 continue
             }
             self.bodySite[index].populate(from: t)
@@ -219,7 +223,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.complication.enumerated() {
             guard index < self.complication.count else {
-                self.complication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.complication.append(val)
                 continue
             }
             self.complication[index].populate(from: t)
@@ -234,7 +242,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.focalDevice.enumerated() {
             guard index < self.focalDevice.count else {
-                self.focalDevice.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ProcedureFocalDevice()
+                val.populate(from: t)
+                self.focalDevice.append(val)
                 continue
             }
             self.focalDevice[index].populate(from: t)
@@ -248,7 +260,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.followUp.enumerated() {
             guard index < self.followUp.count else {
-                self.followUp.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.followUp.append(val)
                 continue
             }
             self.followUp[index].populate(from: t)
@@ -262,7 +278,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -278,7 +298,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.notes.enumerated() {
             guard index < self.notes.count else {
-                self.notes.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Annotation()
+                val.populate(from: t)
+                self.notes.append(val)
                 continue
             }
             self.notes[index].populate(from: t)
@@ -295,7 +319,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.performer.enumerated() {
             guard index < self.performer.count else {
-                self.performer.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ProcedurePerformer()
+                val.populate(from: t)
+                self.performer.append(val)
                 continue
             }
             self.performer[index].populate(from: t)
@@ -310,7 +338,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.reasonNotPerformed.enumerated() {
             guard index < self.reasonNotPerformed.count else {
-                self.reasonNotPerformed.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.reasonNotPerformed.append(val)
                 continue
             }
             self.reasonNotPerformed[index].populate(from: t)
@@ -325,7 +357,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.report.enumerated() {
             guard index < self.report.count else {
-                self.report.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.report.append(val)
                 continue
             }
             self.report[index].populate(from: t)
@@ -342,7 +378,11 @@ open class Procedure: DomainResource {
 
         for (index, t) in o.used.enumerated() {
             guard index < self.used.count else {
-                self.used.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.used.append(val)
                 continue
             }
             self.used[index].populate(from: t)

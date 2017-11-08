@@ -2,10 +2,10 @@
 //  ValueSet.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ValueSet) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -168,7 +168,11 @@ open class ValueSet: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -196,7 +200,11 @@ open class ValueSet: DomainResource {
 
         for (index, t) in o.useContext.enumerated() {
             guard index < self.useContext.count else {
-                self.useContext.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.useContext.append(val)
                 continue
             }
             self.useContext[index].populate(from: t)
@@ -296,7 +304,11 @@ open class ValueSetCodeSystem: BackboneElement {
 
         for (index, t) in o.concept.enumerated() {
             guard index < self.concept.count else {
-                self.concept.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetCodeSystemConcept()
+                val.populate(from: t)
+                self.concept.append(val)
                 continue
             }
             self.concept[index].populate(from: t)
@@ -405,7 +417,11 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 
         for (index, t) in o.concept.enumerated() {
             guard index < self.concept.count else {
-                self.concept.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetCodeSystemConcept()
+                val.populate(from: t)
+                self.concept.append(val)
                 continue
             }
             self.concept[index].populate(from: t)
@@ -420,7 +436,11 @@ open class ValueSetCodeSystemConcept: BackboneElement {
 
         for (index, t) in o.designation.enumerated() {
             guard index < self.designation.count else {
-                self.designation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetCodeSystemConceptDesignation()
+                val.populate(from: t)
+                self.designation.append(val)
                 continue
             }
             self.designation[index].populate(from: t)
@@ -593,7 +613,11 @@ open class ValueSetCompose: BackboneElement {
 
         for (index, t) in o.exclude.enumerated() {
             guard index < self.exclude.count else {
-                self.exclude.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetComposeInclude()
+                val.populate(from: t)
+                self.exclude.append(val)
                 continue
             }
             self.exclude[index].populate(from: t)
@@ -607,7 +631,11 @@ open class ValueSetCompose: BackboneElement {
 
         for (index, t) in o.import_fhir.enumerated() {
             guard index < self.import_fhir.count else {
-                self.import_fhir.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.import_fhir.append(val)
                 continue
             }
             self.import_fhir[index].populate(from: t)
@@ -621,7 +649,11 @@ open class ValueSetCompose: BackboneElement {
 
         for (index, t) in o.include.enumerated() {
             guard index < self.include.count else {
-                self.include.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetComposeInclude()
+                val.populate(from: t)
+                self.include.append(val)
                 continue
             }
             self.include[index].populate(from: t)
@@ -715,7 +747,11 @@ open class ValueSetComposeInclude: BackboneElement {
 
         for (index, t) in o.concept.enumerated() {
             guard index < self.concept.count else {
-                self.concept.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetComposeIncludeConcept()
+                val.populate(from: t)
+                self.concept.append(val)
                 continue
             }
             self.concept[index].populate(from: t)
@@ -729,7 +765,11 @@ open class ValueSetComposeInclude: BackboneElement {
 
         for (index, t) in o.filter.enumerated() {
             guard index < self.filter.count else {
-                self.filter.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetComposeIncludeFilter()
+                val.populate(from: t)
+                self.filter.append(val)
                 continue
             }
             self.filter[index].populate(from: t)
@@ -824,7 +864,11 @@ open class ValueSetComposeIncludeConcept: BackboneElement {
 
         for (index, t) in o.designation.enumerated() {
             guard index < self.designation.count else {
-                self.designation.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetCodeSystemConceptDesignation()
+                val.populate(from: t)
+                self.designation.append(val)
                 continue
             }
             self.designation[index].populate(from: t)
@@ -992,7 +1036,11 @@ open class ValueSetContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -1098,7 +1146,11 @@ open class ValueSetExpansion: BackboneElement {
 
         for (index, t) in o.contains.enumerated() {
             guard index < self.contains.count else {
-                self.contains.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetExpansionContains()
+                val.populate(from: t)
+                self.contains.append(val)
                 continue
             }
             self.contains[index].populate(from: t)
@@ -1114,7 +1166,11 @@ open class ValueSetExpansion: BackboneElement {
 
         for (index, t) in o.parameter.enumerated() {
             guard index < self.parameter.count else {
-                self.parameter.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetExpansionParameter()
+                val.populate(from: t)
+                self.parameter.append(val)
                 continue
             }
             self.parameter[index].populate(from: t)
@@ -1216,7 +1272,11 @@ open class ValueSetExpansionContains: BackboneElement {
 
         for (index, t) in o.contains.enumerated() {
             guard index < self.contains.count else {
-                self.contains.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ValueSetExpansionContains()
+                val.populate(from: t)
+                self.contains.append(val)
                 continue
             }
             self.contains[index].populate(from: t)

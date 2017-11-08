@@ -2,10 +2,10 @@
 //  ClinicalImpression.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClinicalImpression) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -170,7 +170,11 @@ open class ClinicalImpression: DomainResource {
 
         for (index, t) in o.action.enumerated() {
             guard index < self.action.count else {
-                self.action.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.action.append(val)
                 continue
             }
             self.action[index].populate(from: t)
@@ -187,7 +191,11 @@ open class ClinicalImpression: DomainResource {
 
         for (index, t) in o.finding.enumerated() {
             guard index < self.finding.count else {
-                self.finding.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClinicalImpressionFinding()
+                val.populate(from: t)
+                self.finding.append(val)
                 continue
             }
             self.finding[index].populate(from: t)
@@ -201,7 +209,11 @@ open class ClinicalImpression: DomainResource {
 
         for (index, t) in o.investigations.enumerated() {
             guard index < self.investigations.count else {
-                self.investigations.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClinicalImpressionInvestigations()
+                val.populate(from: t)
+                self.investigations.append(val)
                 continue
             }
             self.investigations[index].populate(from: t)
@@ -216,7 +228,11 @@ open class ClinicalImpression: DomainResource {
 
         for (index, t) in o.plan.enumerated() {
             guard index < self.plan.count else {
-                self.plan.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.plan.append(val)
                 continue
             }
             self.plan[index].populate(from: t)
@@ -231,7 +247,11 @@ open class ClinicalImpression: DomainResource {
 
         for (index, t) in o.problem.enumerated() {
             guard index < self.problem.count else {
-                self.problem.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.problem.append(val)
                 continue
             }
             self.problem[index].populate(from: t)
@@ -247,7 +267,11 @@ open class ClinicalImpression: DomainResource {
 
         for (index, t) in o.resolved.enumerated() {
             guard index < self.resolved.count else {
-                self.resolved.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.resolved.append(val)
                 continue
             }
             self.resolved[index].populate(from: t)
@@ -261,7 +285,11 @@ open class ClinicalImpression: DomainResource {
 
         for (index, t) in o.ruledOut.enumerated() {
             guard index < self.ruledOut.count else {
-                self.ruledOut.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClinicalImpressionRuledOut()
+                val.populate(from: t)
+                self.ruledOut.append(val)
                 continue
             }
             self.ruledOut[index].populate(from: t)
@@ -438,7 +466,11 @@ open class ClinicalImpressionInvestigations: BackboneElement {
 
         for (index, t) in o.item.enumerated() {
             guard index < self.item.count else {
-                self.item.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.item.append(val)
                 continue
             }
             self.item[index].populate(from: t)

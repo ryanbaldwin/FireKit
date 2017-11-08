@@ -2,10 +2,10 @@
 //  Contract.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Contract) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -163,7 +163,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.action.enumerated() {
             guard index < self.action.count else {
-                self.action.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.action.append(val)
                 continue
             }
             self.action[index].populate(from: t)
@@ -177,7 +181,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.actionReason.enumerated() {
             guard index < self.actionReason.count else {
-                self.actionReason.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.actionReason.append(val)
                 continue
             }
             self.actionReason[index].populate(from: t)
@@ -191,7 +199,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.actor.enumerated() {
             guard index < self.actor.count else {
-                self.actor.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractActor()
+                val.populate(from: t)
+                self.actor.append(val)
                 continue
             }
             self.actor[index].populate(from: t)
@@ -206,7 +218,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.authority.enumerated() {
             guard index < self.authority.count else {
-                self.authority.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.authority.append(val)
                 continue
             }
             self.authority[index].populate(from: t)
@@ -222,7 +238,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.domain.enumerated() {
             guard index < self.domain.count else {
-                self.domain.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.domain.append(val)
                 continue
             }
             self.domain[index].populate(from: t)
@@ -236,7 +256,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.friendly.enumerated() {
             guard index < self.friendly.count else {
-                self.friendly.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractFriendly()
+                val.populate(from: t)
+                self.friendly.append(val)
                 continue
             }
             self.friendly[index].populate(from: t)
@@ -252,7 +276,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.legal.enumerated() {
             guard index < self.legal.count else {
-                self.legal.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractLegal()
+                val.populate(from: t)
+                self.legal.append(val)
                 continue
             }
             self.legal[index].populate(from: t)
@@ -266,7 +294,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.rule.enumerated() {
             guard index < self.rule.count else {
-                self.rule.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractRule()
+                val.populate(from: t)
+                self.rule.append(val)
                 continue
             }
             self.rule[index].populate(from: t)
@@ -280,7 +312,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.signer.enumerated() {
             guard index < self.signer.count else {
-                self.signer.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractSigner()
+                val.populate(from: t)
+                self.signer.append(val)
                 continue
             }
             self.signer[index].populate(from: t)
@@ -294,7 +330,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.subType.enumerated() {
             guard index < self.subType.count else {
-                self.subType.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.subType.append(val)
                 continue
             }
             self.subType[index].populate(from: t)
@@ -308,7 +348,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.subject.enumerated() {
             guard index < self.subject.count else {
-                self.subject.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.subject.append(val)
                 continue
             }
             self.subject[index].populate(from: t)
@@ -322,7 +366,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.term.enumerated() {
             guard index < self.term.count else {
-                self.term.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractTerm()
+                val.populate(from: t)
+                self.term.append(val)
                 continue
             }
             self.term[index].populate(from: t)
@@ -337,7 +385,11 @@ open class Contract: DomainResource {
 
         for (index, t) in o.valuedItem.enumerated() {
             guard index < self.valuedItem.count else {
-                self.valuedItem.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractValuedItem()
+                val.populate(from: t)
+                self.valuedItem.append(val)
                 continue
             }
             self.valuedItem[index].populate(from: t)
@@ -429,7 +481,11 @@ open class ContractActor: BackboneElement {
 
         for (index, t) in o.role.enumerated() {
             guard index < self.role.count else {
-                self.role.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.role.append(val)
                 continue
             }
             self.role[index].populate(from: t)
@@ -907,7 +963,11 @@ open class ContractTerm: BackboneElement {
 
         for (index, t) in o.action.enumerated() {
             guard index < self.action.count else {
-                self.action.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.action.append(val)
                 continue
             }
             self.action[index].populate(from: t)
@@ -921,7 +981,11 @@ open class ContractTerm: BackboneElement {
 
         for (index, t) in o.actionReason.enumerated() {
             guard index < self.actionReason.count else {
-                self.actionReason.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.actionReason.append(val)
                 continue
             }
             self.actionReason[index].populate(from: t)
@@ -935,7 +999,11 @@ open class ContractTerm: BackboneElement {
 
         for (index, t) in o.actor.enumerated() {
             guard index < self.actor.count else {
-                self.actor.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractTermActor()
+                val.populate(from: t)
+                self.actor.append(val)
                 continue
             }
             self.actor[index].populate(from: t)
@@ -950,7 +1018,11 @@ open class ContractTerm: BackboneElement {
 
         for (index, t) in o.group.enumerated() {
             guard index < self.group.count else {
-                self.group.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractTerm()
+                val.populate(from: t)
+                self.group.append(val)
                 continue
             }
             self.group[index].populate(from: t)
@@ -970,7 +1042,11 @@ open class ContractTerm: BackboneElement {
 
         for (index, t) in o.valuedItem.enumerated() {
             guard index < self.valuedItem.count else {
-                self.valuedItem.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContractTermValuedItem()
+                val.populate(from: t)
+                self.valuedItem.append(val)
                 continue
             }
             self.valuedItem[index].populate(from: t)
@@ -1062,7 +1138,11 @@ open class ContractTermActor: BackboneElement {
 
         for (index, t) in o.role.enumerated() {
             guard index < self.role.count else {
-                self.role.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.role.append(val)
                 continue
             }
             self.role[index].populate(from: t)

@@ -2,10 +2,10 @@
 //  Parameters.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Parameters) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -77,7 +77,11 @@ open class Parameters: Resource {
 
         for (index, t) in o.parameter.enumerated() {
             guard index < self.parameter.count else {
-                self.parameter.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ParametersParameter()
+                val.populate(from: t)
+                self.parameter.append(val)
                 continue
             }
             self.parameter[index].populate(from: t)
@@ -360,7 +364,11 @@ open class ParametersParameter: BackboneElement {
 
         for (index, t) in o.part.enumerated() {
             guard index < self.part.count else {
-                self.part.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ParametersParameter()
+                val.populate(from: t)
+                self.part.append(val)
                 continue
             }
             self.part[index].populate(from: t)

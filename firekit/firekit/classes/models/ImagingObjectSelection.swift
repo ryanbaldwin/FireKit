@@ -2,10 +2,10 @@
 //  ImagingObjectSelection.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ImagingObjectSelection) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -128,7 +128,11 @@ open class ImagingObjectSelection: DomainResource {
 
         for (index, t) in o.study.enumerated() {
             guard index < self.study.count else {
-                self.study.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImagingObjectSelectionStudy()
+                val.populate(from: t)
+                self.study.append(val)
                 continue
             }
             self.study[index].populate(from: t)
@@ -231,7 +235,11 @@ open class ImagingObjectSelectionStudy: BackboneElement {
 
         for (index, t) in o.series.enumerated() {
             guard index < self.series.count else {
-                self.series.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImagingObjectSelectionStudySeries()
+                val.populate(from: t)
+                self.series.append(val)
                 continue
             }
             self.series[index].populate(from: t)
@@ -325,7 +333,11 @@ open class ImagingObjectSelectionStudySeries: BackboneElement {
 
         for (index, t) in o.instance.enumerated() {
             guard index < self.instance.count else {
-                self.instance.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImagingObjectSelectionStudySeriesInstance()
+                val.populate(from: t)
+                self.instance.append(val)
                 continue
             }
             self.instance[index].populate(from: t)
@@ -425,7 +437,11 @@ open class ImagingObjectSelectionStudySeriesInstance: BackboneElement {
 
         for (index, t) in o.frames.enumerated() {
             guard index < self.frames.count else {
-                self.frames.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ImagingObjectSelectionStudySeriesInstanceFrames()
+                val.populate(from: t)
+                self.frames.append(val)
                 continue
             }
             self.frames[index].populate(from: t)
@@ -517,7 +533,11 @@ open class ImagingObjectSelectionStudySeriesInstanceFrames: BackboneElement {
 
         for (index, t) in o.frameNumbers.enumerated() {
             guard index < self.frameNumbers.count else {
-                self.frameNumbers.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmInt()
+                val.populate(from: t)
+                self.frameNumbers.append(val)
                 continue
             }
             self.frameNumbers[index].populate(from: t)

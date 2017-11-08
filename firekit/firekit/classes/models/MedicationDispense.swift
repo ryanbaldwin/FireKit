@@ -2,10 +2,10 @@
 //  MedicationDispense.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MedicationDispense) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -179,7 +179,11 @@ open class MedicationDispense: DomainResource {
 
         for (index, t) in o.authorizingPrescription.enumerated() {
             guard index < self.authorizingPrescription.count else {
-                self.authorizingPrescription.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.authorizingPrescription.append(val)
                 continue
             }
             self.authorizingPrescription[index].populate(from: t)
@@ -196,7 +200,11 @@ open class MedicationDispense: DomainResource {
 
         for (index, t) in o.dosageInstruction.enumerated() {
             guard index < self.dosageInstruction.count else {
-                self.dosageInstruction.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = MedicationDispenseDosageInstruction()
+                val.populate(from: t)
+                self.dosageInstruction.append(val)
                 continue
             }
             self.dosageInstruction[index].populate(from: t)
@@ -216,7 +224,11 @@ open class MedicationDispense: DomainResource {
 
         for (index, t) in o.receiver.enumerated() {
             guard index < self.receiver.count else {
-                self.receiver.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.receiver.append(val)
                 continue
             }
             self.receiver[index].populate(from: t)
@@ -484,7 +496,11 @@ open class MedicationDispenseSubstitution: BackboneElement {
 
         for (index, t) in o.reason.enumerated() {
             guard index < self.reason.count else {
-                self.reason.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.reason.append(val)
                 continue
             }
             self.reason[index].populate(from: t)
@@ -498,7 +514,11 @@ open class MedicationDispenseSubstitution: BackboneElement {
 
         for (index, t) in o.responsibleParty.enumerated() {
             guard index < self.responsibleParty.count else {
-                self.responsibleParty.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.responsibleParty.append(val)
                 continue
             }
             self.responsibleParty[index].populate(from: t)

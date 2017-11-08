@@ -2,10 +2,10 @@
 //  Practitioner.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Practitioner) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -120,7 +120,11 @@ open class Practitioner: DomainResource {
 
         for (index, t) in o.address.enumerated() {
             guard index < self.address.count else {
-                self.address.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Address()
+                val.populate(from: t)
+                self.address.append(val)
                 continue
             }
             self.address[index].populate(from: t)
@@ -135,7 +139,11 @@ open class Practitioner: DomainResource {
 
         for (index, t) in o.communication.enumerated() {
             guard index < self.communication.count else {
-                self.communication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.communication.append(val)
                 continue
             }
             self.communication[index].populate(from: t)
@@ -150,7 +158,11 @@ open class Practitioner: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -165,7 +177,11 @@ open class Practitioner: DomainResource {
 
         for (index, t) in o.photo.enumerated() {
             guard index < self.photo.count else {
-                self.photo.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Attachment()
+                val.populate(from: t)
+                self.photo.append(val)
                 continue
             }
             self.photo[index].populate(from: t)
@@ -179,7 +195,11 @@ open class Practitioner: DomainResource {
 
         for (index, t) in o.practitionerRole.enumerated() {
             guard index < self.practitionerRole.count else {
-                self.practitionerRole.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = PractitionerPractitionerRole()
+                val.populate(from: t)
+                self.practitionerRole.append(val)
                 continue
             }
             self.practitionerRole[index].populate(from: t)
@@ -193,7 +213,11 @@ open class Practitioner: DomainResource {
 
         for (index, t) in o.qualification.enumerated() {
             guard index < self.qualification.count else {
-                self.qualification.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = PractitionerQualification()
+                val.populate(from: t)
+                self.qualification.append(val)
                 continue
             }
             self.qualification[index].populate(from: t)
@@ -207,7 +231,11 @@ open class Practitioner: DomainResource {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -314,7 +342,11 @@ open class PractitionerPractitionerRole: BackboneElement {
 
         for (index, t) in o.healthcareService.enumerated() {
             guard index < self.healthcareService.count else {
-                self.healthcareService.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.healthcareService.append(val)
                 continue
             }
             self.healthcareService[index].populate(from: t)
@@ -328,7 +360,11 @@ open class PractitionerPractitionerRole: BackboneElement {
 
         for (index, t) in o.location.enumerated() {
             guard index < self.location.count else {
-                self.location.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.location.append(val)
                 continue
             }
             self.location[index].populate(from: t)
@@ -345,7 +381,11 @@ open class PractitionerPractitionerRole: BackboneElement {
 
         for (index, t) in o.specialty.enumerated() {
             guard index < self.specialty.count else {
-                self.specialty.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.specialty.append(val)
                 continue
             }
             self.specialty[index].populate(from: t)
@@ -449,7 +489,11 @@ open class PractitionerQualification: BackboneElement {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)

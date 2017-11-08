@@ -267,4 +267,17 @@ final public class ContainedResource: Resource {
         resourceType = o.resourceType
         json = o.json
     }
+
+    
+    public override func copy(with zone: NSZone? = nil) -> Any {
+        let copy = ContainedResource()
+        copy._versionId = _versionId
+        copy.id = id
+        copy.implicitRules = implicitRules
+        copy.language = language
+        copy.upsert(meta: meta)
+        copy.resourceType = resourceType
+        copy.json = json
+        return copy
+    }
 }

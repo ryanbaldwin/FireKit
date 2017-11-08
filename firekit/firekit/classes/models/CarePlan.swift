@@ -2,10 +2,10 @@
 //  CarePlan.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/CarePlan) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -155,7 +155,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.activity.enumerated() {
             guard index < self.activity.count else {
-                self.activity.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CarePlanActivity()
+                val.populate(from: t)
+                self.activity.append(val)
                 continue
             }
             self.activity[index].populate(from: t)
@@ -169,7 +173,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.addresses.enumerated() {
             guard index < self.addresses.count else {
-                self.addresses.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.addresses.append(val)
                 continue
             }
             self.addresses[index].populate(from: t)
@@ -183,7 +191,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.author.enumerated() {
             guard index < self.author.count else {
-                self.author.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.author.append(val)
                 continue
             }
             self.author[index].populate(from: t)
@@ -197,7 +209,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.category.enumerated() {
             guard index < self.category.count else {
-                self.category.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.category.append(val)
                 continue
             }
             self.category[index].populate(from: t)
@@ -213,7 +229,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.goal.enumerated() {
             guard index < self.goal.count else {
-                self.goal.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.goal.append(val)
                 continue
             }
             self.goal[index].populate(from: t)
@@ -227,7 +247,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -243,7 +267,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.participant.enumerated() {
             guard index < self.participant.count else {
-                self.participant.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CarePlanParticipant()
+                val.populate(from: t)
+                self.participant.append(val)
                 continue
             }
             self.participant[index].populate(from: t)
@@ -258,7 +286,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.relatedPlan.enumerated() {
             guard index < self.relatedPlan.count else {
-                self.relatedPlan.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CarePlanRelatedPlan()
+                val.populate(from: t)
+                self.relatedPlan.append(val)
                 continue
             }
             self.relatedPlan[index].populate(from: t)
@@ -274,7 +306,11 @@ open class CarePlan: DomainResource {
 
         for (index, t) in o.support.enumerated() {
             guard index < self.support.count else {
-                self.support.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.support.append(val)
                 continue
             }
             self.support[index].populate(from: t)
@@ -371,7 +407,11 @@ open class CarePlanActivity: BackboneElement {
 
         for (index, t) in o.actionResulting.enumerated() {
             guard index < self.actionResulting.count else {
-                self.actionResulting.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.actionResulting.append(val)
                 continue
             }
             self.actionResulting[index].populate(from: t)
@@ -386,7 +426,11 @@ open class CarePlanActivity: BackboneElement {
 
         for (index, t) in o.progress.enumerated() {
             guard index < self.progress.count else {
-                self.progress.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Annotation()
+                val.populate(from: t)
+                self.progress.append(val)
                 continue
             }
             self.progress[index].populate(from: t)
@@ -574,7 +618,11 @@ open class CarePlanActivityDetail: BackboneElement {
 
         for (index, t) in o.goal.enumerated() {
             guard index < self.goal.count else {
-                self.goal.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.goal.append(val)
                 continue
             }
             self.goal[index].populate(from: t)
@@ -589,7 +637,11 @@ open class CarePlanActivityDetail: BackboneElement {
 
         for (index, t) in o.performer.enumerated() {
             guard index < self.performer.count else {
-                self.performer.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.performer.append(val)
                 continue
             }
             self.performer[index].populate(from: t)
@@ -607,7 +659,11 @@ open class CarePlanActivityDetail: BackboneElement {
 
         for (index, t) in o.reasonCode.enumerated() {
             guard index < self.reasonCode.count else {
-                self.reasonCode.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.reasonCode.append(val)
                 continue
             }
             self.reasonCode[index].populate(from: t)
@@ -621,7 +677,11 @@ open class CarePlanActivityDetail: BackboneElement {
 
         for (index, t) in o.reasonReference.enumerated() {
             guard index < self.reasonReference.count else {
-                self.reasonReference.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.reasonReference.append(val)
                 continue
             }
             self.reasonReference[index].populate(from: t)

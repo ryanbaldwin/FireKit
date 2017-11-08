@@ -2,10 +2,10 @@
 //  DocumentManifest.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DocumentManifest) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -134,7 +134,11 @@ open class DocumentManifest: DomainResource {
 
         for (index, t) in o.author.enumerated() {
             guard index < self.author.count else {
-                self.author.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.author.append(val)
                 continue
             }
             self.author[index].populate(from: t)
@@ -148,7 +152,11 @@ open class DocumentManifest: DomainResource {
 
         for (index, t) in o.content.enumerated() {
             guard index < self.content.count else {
-                self.content.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DocumentManifestContent()
+                val.populate(from: t)
+                self.content.append(val)
                 continue
             }
             self.content[index].populate(from: t)
@@ -164,7 +172,11 @@ open class DocumentManifest: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -179,7 +191,11 @@ open class DocumentManifest: DomainResource {
 
         for (index, t) in o.recipient.enumerated() {
             guard index < self.recipient.count else {
-                self.recipient.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.recipient.append(val)
                 continue
             }
             self.recipient[index].populate(from: t)
@@ -193,7 +209,11 @@ open class DocumentManifest: DomainResource {
 
         for (index, t) in o.related.enumerated() {
             guard index < self.related.count else {
-                self.related.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DocumentManifestRelated()
+                val.populate(from: t)
+                self.related.append(val)
                 continue
             }
             self.related[index].populate(from: t)

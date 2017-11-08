@@ -2,10 +2,10 @@
 //  Patient.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Patient) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -159,7 +159,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.address.enumerated() {
             guard index < self.address.count else {
-                self.address.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Address()
+                val.populate(from: t)
+                self.address.append(val)
                 continue
             }
             self.address[index].populate(from: t)
@@ -175,7 +179,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.careProvider.enumerated() {
             guard index < self.careProvider.count else {
-                self.careProvider.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.careProvider.append(val)
                 continue
             }
             self.careProvider[index].populate(from: t)
@@ -189,7 +197,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.communication.enumerated() {
             guard index < self.communication.count else {
-                self.communication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = PatientCommunication()
+                val.populate(from: t)
+                self.communication.append(val)
                 continue
             }
             self.communication[index].populate(from: t)
@@ -203,7 +215,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = PatientContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -220,7 +236,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -234,7 +254,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.link.enumerated() {
             guard index < self.link.count else {
-                self.link.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = PatientLink()
+                val.populate(from: t)
+                self.link.append(val)
                 continue
             }
             self.link[index].populate(from: t)
@@ -252,7 +276,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.name.enumerated() {
             guard index < self.name.count else {
-                self.name.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = HumanName()
+                val.populate(from: t)
+                self.name.append(val)
                 continue
             }
             self.name[index].populate(from: t)
@@ -266,7 +294,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.photo.enumerated() {
             guard index < self.photo.count else {
-                self.photo.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Attachment()
+                val.populate(from: t)
+                self.photo.append(val)
                 continue
             }
             self.photo[index].populate(from: t)
@@ -280,7 +312,11 @@ open class Patient: DomainResource {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -566,7 +602,11 @@ open class PatientContact: BackboneElement {
 
         for (index, t) in o.relationship.enumerated() {
             guard index < self.relationship.count else {
-                self.relationship.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.relationship.append(val)
                 continue
             }
             self.relationship[index].populate(from: t)
@@ -580,7 +620,11 @@ open class PatientContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)

@@ -2,10 +2,10 @@
 //  DiagnosticReport.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/DiagnosticReport) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -180,7 +180,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.codedDiagnosis.enumerated() {
             guard index < self.codedDiagnosis.count else {
-                self.codedDiagnosis.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.codedDiagnosis.append(val)
                 continue
             }
             self.codedDiagnosis[index].populate(from: t)
@@ -198,7 +202,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -212,7 +220,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.image.enumerated() {
             guard index < self.image.count else {
-                self.image.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = DiagnosticReportImage()
+                val.populate(from: t)
+                self.image.append(val)
                 continue
             }
             self.image[index].populate(from: t)
@@ -226,7 +238,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.imagingStudy.enumerated() {
             guard index < self.imagingStudy.count else {
-                self.imagingStudy.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.imagingStudy.append(val)
                 continue
             }
             self.imagingStudy[index].populate(from: t)
@@ -242,7 +258,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.presentedForm.enumerated() {
             guard index < self.presentedForm.count else {
-                self.presentedForm.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Attachment()
+                val.populate(from: t)
+                self.presentedForm.append(val)
                 continue
             }
             self.presentedForm[index].populate(from: t)
@@ -256,7 +276,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.request.enumerated() {
             guard index < self.request.count else {
-                self.request.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.request.append(val)
                 continue
             }
             self.request[index].populate(from: t)
@@ -270,7 +294,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.result.enumerated() {
             guard index < self.result.count else {
-                self.result.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.result.append(val)
                 continue
             }
             self.result[index].populate(from: t)
@@ -284,7 +312,11 @@ open class DiagnosticReport: DomainResource {
 
         for (index, t) in o.specimen.enumerated() {
             guard index < self.specimen.count else {
-                self.specimen.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.specimen.append(val)
                 continue
             }
             self.specimen[index].populate(from: t)

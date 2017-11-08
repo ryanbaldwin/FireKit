@@ -2,10 +2,10 @@
 //  Element.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/Element) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -82,7 +82,11 @@ open class Element: FHIRAbstractBase {
 
         for (index, t) in o.extension_fhir.enumerated() {
             guard index < self.extension_fhir.count else {
-                self.extension_fhir.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Extension()
+                val.populate(from: t)
+                self.extension_fhir.append(val)
                 continue
             }
             self.extension_fhir[index].populate(from: t)

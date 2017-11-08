@@ -2,10 +2,10 @@
 //  MessageHeader.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/MessageHeader) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -151,7 +151,11 @@ open class MessageHeader: DomainResource {
 
         for (index, t) in o.data.enumerated() {
             guard index < self.data.count else {
-                self.data.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Reference()
+                val.populate(from: t)
+                self.data.append(val)
                 continue
             }
             self.data[index].populate(from: t)
@@ -165,7 +169,11 @@ open class MessageHeader: DomainResource {
 
         for (index, t) in o.destination.enumerated() {
             guard index < self.destination.count else {
-                self.destination.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = MessageHeaderDestination()
+                val.populate(from: t)
+                self.destination.append(val)
                 continue
             }
             self.destination[index].populate(from: t)

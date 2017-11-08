@@ -2,10 +2,10 @@
 //  StructureDefinition.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/StructureDefinition) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -191,7 +191,11 @@ open class StructureDefinition: DomainResource {
 
         for (index, t) in o.code.enumerated() {
             guard index < self.code.count else {
-                self.code.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Coding()
+                val.populate(from: t)
+                self.code.append(val)
                 continue
             }
             self.code[index].populate(from: t)
@@ -206,7 +210,11 @@ open class StructureDefinition: DomainResource {
 
         for (index, t) in o.contact.enumerated() {
             guard index < self.contact.count else {
-                self.contact.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = StructureDefinitionContact()
+                val.populate(from: t)
+                self.contact.append(val)
                 continue
             }
             self.contact[index].populate(from: t)
@@ -220,7 +228,11 @@ open class StructureDefinition: DomainResource {
 
         for (index, t) in o.context.enumerated() {
             guard index < self.context.count else {
-                self.context.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.context.append(val)
                 continue
             }
             self.context[index].populate(from: t)
@@ -242,7 +254,11 @@ open class StructureDefinition: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -257,7 +273,11 @@ open class StructureDefinition: DomainResource {
 
         for (index, t) in o.mapping.enumerated() {
             guard index < self.mapping.count else {
-                self.mapping.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = StructureDefinitionMapping()
+                val.populate(from: t)
+                self.mapping.append(val)
                 continue
             }
             self.mapping[index].populate(from: t)
@@ -277,7 +297,11 @@ open class StructureDefinition: DomainResource {
 
         for (index, t) in o.useContext.enumerated() {
             guard index < self.useContext.count else {
-                self.useContext.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = CodeableConcept()
+                val.populate(from: t)
+                self.useContext.append(val)
                 continue
             }
             self.useContext[index].populate(from: t)
@@ -361,7 +385,11 @@ open class StructureDefinitionContact: BackboneElement {
 
         for (index, t) in o.telecom.enumerated() {
             guard index < self.telecom.count else {
-                self.telecom.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ContactPoint()
+                val.populate(from: t)
+                self.telecom.append(val)
                 continue
             }
             self.telecom[index].populate(from: t)
@@ -446,7 +474,11 @@ open class StructureDefinitionDifferential: BackboneElement {
 
         for (index, t) in o.element.enumerated() {
             guard index < self.element.count else {
-                self.element.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ElementDefinition()
+                val.populate(from: t)
+                self.element.append(val)
                 continue
             }
             self.element[index].populate(from: t)
@@ -617,7 +649,11 @@ open class StructureDefinitionSnapshot: BackboneElement {
 
         for (index, t) in o.element.enumerated() {
             guard index < self.element.count else {
-                self.element.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ElementDefinition()
+                val.populate(from: t)
+                self.element.append(val)
                 continue
             }
             self.element[index].populate(from: t)

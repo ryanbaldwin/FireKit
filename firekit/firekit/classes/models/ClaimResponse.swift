@@ -2,10 +2,10 @@
 //  ClaimResponse.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-10-22.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/ClaimResponse) on 2017-11-07.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-10-22
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation
@@ -224,7 +224,11 @@ open class ClaimResponse: DomainResource {
 
         for (index, t) in o.addItem.enumerated() {
             guard index < self.addItem.count else {
-                self.addItem.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseAddItem()
+                val.populate(from: t)
+                self.addItem.append(val)
                 continue
             }
             self.addItem[index].populate(from: t)
@@ -238,7 +242,11 @@ open class ClaimResponse: DomainResource {
 
         for (index, t) in o.coverage.enumerated() {
             guard index < self.coverage.count else {
-                self.coverage.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseCoverage()
+                val.populate(from: t)
+                self.coverage.append(val)
                 continue
             }
             self.coverage[index].populate(from: t)
@@ -254,7 +262,11 @@ open class ClaimResponse: DomainResource {
 
         for (index, t) in o.error.enumerated() {
             guard index < self.error.count else {
-                self.error.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseError()
+                val.populate(from: t)
+                self.error.append(val)
                 continue
             }
             self.error[index].populate(from: t)
@@ -269,7 +281,11 @@ open class ClaimResponse: DomainResource {
 
         for (index, t) in o.identifier.enumerated() {
             guard index < self.identifier.count else {
-                self.identifier.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = Identifier()
+                val.populate(from: t)
+                self.identifier.append(val)
                 continue
             }
             self.identifier[index].populate(from: t)
@@ -283,7 +299,11 @@ open class ClaimResponse: DomainResource {
 
         for (index, t) in o.item.enumerated() {
             guard index < self.item.count else {
-                self.item.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseItem()
+                val.populate(from: t)
+                self.item.append(val)
                 continue
             }
             self.item[index].populate(from: t)
@@ -297,7 +317,11 @@ open class ClaimResponse: DomainResource {
 
         for (index, t) in o.note.enumerated() {
             guard index < self.note.count else {
-                self.note.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseNote()
+                val.populate(from: t)
+                self.note.append(val)
                 continue
             }
             self.note[index].populate(from: t)
@@ -424,7 +448,11 @@ open class ClaimResponseAddItem: BackboneElement {
 
         for (index, t) in o.adjudication.enumerated() {
             guard index < self.adjudication.count else {
-                self.adjudication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseAddItemAdjudication()
+                val.populate(from: t)
+                self.adjudication.append(val)
                 continue
             }
             self.adjudication[index].populate(from: t)
@@ -438,7 +466,11 @@ open class ClaimResponseAddItem: BackboneElement {
 
         for (index, t) in o.detail.enumerated() {
             guard index < self.detail.count else {
-                self.detail.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseAddItemDetail()
+                val.populate(from: t)
+                self.detail.append(val)
                 continue
             }
             self.detail[index].populate(from: t)
@@ -453,7 +485,11 @@ open class ClaimResponseAddItem: BackboneElement {
 
         for (index, t) in o.noteNumberLinkId.enumerated() {
             guard index < self.noteNumberLinkId.count else {
-                self.noteNumberLinkId.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmInt()
+                val.populate(from: t)
+                self.noteNumberLinkId.append(val)
                 continue
             }
             self.noteNumberLinkId[index].populate(from: t)
@@ -467,7 +503,11 @@ open class ClaimResponseAddItem: BackboneElement {
 
         for (index, t) in o.sequenceLinkId.enumerated() {
             guard index < self.sequenceLinkId.count else {
-                self.sequenceLinkId.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmInt()
+                val.populate(from: t)
+                self.sequenceLinkId.append(val)
                 continue
             }
             self.sequenceLinkId[index].populate(from: t)
@@ -653,7 +693,11 @@ open class ClaimResponseAddItemDetail: BackboneElement {
 
         for (index, t) in o.adjudication.enumerated() {
             guard index < self.adjudication.count else {
-                self.adjudication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseAddItemDetailAdjudication()
+                val.populate(from: t)
+                self.adjudication.append(val)
                 continue
             }
             self.adjudication[index].populate(from: t)
@@ -874,7 +918,11 @@ open class ClaimResponseCoverage: BackboneElement {
 
         for (index, t) in o.preAuthRef.enumerated() {
             guard index < self.preAuthRef.count else {
-                self.preAuthRef.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmString()
+                val.populate(from: t)
+                self.preAuthRef.append(val)
                 continue
             }
             self.preAuthRef[index].populate(from: t)
@@ -1061,7 +1109,11 @@ open class ClaimResponseItem: BackboneElement {
 
         for (index, t) in o.adjudication.enumerated() {
             guard index < self.adjudication.count else {
-                self.adjudication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseItemAdjudication()
+                val.populate(from: t)
+                self.adjudication.append(val)
                 continue
             }
             self.adjudication[index].populate(from: t)
@@ -1075,7 +1127,11 @@ open class ClaimResponseItem: BackboneElement {
 
         for (index, t) in o.detail.enumerated() {
             guard index < self.detail.count else {
-                self.detail.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseItemDetail()
+                val.populate(from: t)
+                self.detail.append(val)
                 continue
             }
             self.detail[index].populate(from: t)
@@ -1089,7 +1145,11 @@ open class ClaimResponseItem: BackboneElement {
 
         for (index, t) in o.noteNumber.enumerated() {
             guard index < self.noteNumber.count else {
-                self.noteNumber.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = RealmInt()
+                val.populate(from: t)
+                self.noteNumber.append(val)
                 continue
             }
             self.noteNumber[index].populate(from: t)
@@ -1269,7 +1329,11 @@ open class ClaimResponseItemDetail: BackboneElement {
 
         for (index, t) in o.adjudication.enumerated() {
             guard index < self.adjudication.count else {
-                self.adjudication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseItemDetailAdjudication()
+                val.populate(from: t)
+                self.adjudication.append(val)
                 continue
             }
             self.adjudication[index].populate(from: t)
@@ -1284,7 +1348,11 @@ open class ClaimResponseItemDetail: BackboneElement {
 
         for (index, t) in o.subDetail.enumerated() {
             guard index < self.subDetail.count else {
-                self.subDetail.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseItemDetailSubDetail()
+                val.populate(from: t)
+                self.subDetail.append(val)
                 continue
             }
             self.subDetail[index].populate(from: t)
@@ -1459,7 +1527,11 @@ open class ClaimResponseItemDetailSubDetail: BackboneElement {
 
         for (index, t) in o.adjudication.enumerated() {
             guard index < self.adjudication.count else {
-                self.adjudication.append(t)
+                // we should always copy in case the same source is being used across several targets
+                // in a single transaction.
+                let val = ClaimResponseItemDetailSubDetailAdjudication()
+                val.populate(from: t)
+                self.adjudication.append(val)
                 continue
             }
             self.adjudication[index].populate(from: t)
