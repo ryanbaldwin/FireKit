@@ -8,12 +8,7 @@ from pprint import pprint
 import re
 
 # A map of Swift types that require a custom Realm* type for Lists.
-realm_listable_types = {
-	'Bool': 'RealmBool',
-	'Int': 'RealmInt',
-	'String': 'RealmString',
-	'NSNumber': 'RealmDecimal'
-}
+realm_listable_types = {}
 
 def requires_realm_listable_type(prop):
 	return realm_listable_types.get(prop.class_name) is not None

@@ -2,16 +2,16 @@
 set -eo pipefail
 
 echo "copying mappings..."
-cp fhir-parser-resources/fhir-1.6.0/$1/mappings.py fhir-parser/
+cp fhir-parser-resources/$1/mappings.py fhir-parser/
 
 echo "copying settings..."
-cp fhir-parser-resources/fhir-1.6.0/$1/settings.py fhir-parser/
+cp fhir-parser-resources/$1/settings.py fhir-parser/
 
 echo "copying templates..."
-cp fhir-parser-resources/fhir-1.6.0/$1/*.swift fhir-parser/
+cp fhir-parser-resources/$1/*.swift fhir-parser/
 
 echo "copying custom Jinja2 environment configurations..."
-cp fhir-parser-resources/fhir-1.6.0/$1/env.py fhir-parser/
+cp fhir-parser-resources/$1/env.py fhir-parser/
 
 echo "switching directories..."
 cd fhir-parser

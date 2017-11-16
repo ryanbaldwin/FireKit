@@ -6,7 +6,7 @@ from env import *
 from mappings import *
 
 # Base URL for where to load specification data from
-specification_url = 'http://hl7.org/fhir/dstu2/'
+specification_url = 'http://hl7.org/fhir/STU3/'
 #specification_url = 'http://hl7.org/fhir/2016May/'
 #specification_url = 'http://hl7-fhir.github.io'
 
@@ -28,6 +28,11 @@ tpl_unittest_target_ptrn = '../../../firekit/firekitTests/classes/{}Tests.swift'
 ##  Know what you do when changing the following settings
 ##
 
+# Settings for classes and resources
+resource_modules_lowercase = False        # whether all resource paths (i.e. modules) should be lowercase
+camelcase_classes = True                  # whether class name generation should use CamelCase
+camelcase_enums = True                    # whether names for enums should be camelCased
+backbone_class_adds_parent = True         # if True, backbone class names prepend their parent's class name
 
 # classes/resources
 default_base = {
