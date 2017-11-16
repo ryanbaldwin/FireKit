@@ -2,723 +2,21 @@
 //  FHIRAbstractBase+Factory.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 on 2017-11-07.
+//  Generated from FHIR 1.0.2.7202 on 2017-11-13.
 //  2017, SMART Health IT.
 //
-// Updated for Realm support by Ryan Baldwin on 2017-11-07
+// Updated for Realm support by Ryan Baldwin on 2017-11-13
 // Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 //
 import Foundation
 import RealmSwift
 
-extension FHIRAbstractBase {
-  public class func resourceType(from className: String) -> FHIRAbstractBase.Type {
-    switch className {
-      case "Account":
-      return Account.self
-      case "Address":
-      return Address.self
-      case "Age":
-      return Age.self
-      case "AllergyIntolerance":
-      return AllergyIntolerance.self
-      case "AllergyIntoleranceReaction":
-      return AllergyIntoleranceReaction.self
-      case "Annotation":
-      return Annotation.self
-      case "Appointment":
-      return Appointment.self
-      case "AppointmentParticipant":
-      return AppointmentParticipant.self
-      case "AppointmentResponse":
-      return AppointmentResponse.self
-      case "Attachment":
-      return Attachment.self
-      case "AuditEvent":
-      return AuditEvent.self
-      case "AuditEventEvent":
-      return AuditEventEvent.self
-      case "AuditEventObject":
-      return AuditEventObject.self
-      case "AuditEventObjectDetail":
-      return AuditEventObjectDetail.self
-      case "AuditEventParticipant":
-      return AuditEventParticipant.self
-      case "AuditEventParticipantNetwork":
-      return AuditEventParticipantNetwork.self
-      case "AuditEventSource":
-      return AuditEventSource.self
-      case "BackboneElement":
-      return BackboneElement.self
-      case "Basic":
-      return Basic.self
-      case "Binary":
-      return Binary.self
-      case "BodySite":
-      return BodySite.self
-      case "Bundle":
-      return Bundle.self
-      case "BundleEntry":
-      return BundleEntry.self
-      case "BundleEntryRequest":
-      return BundleEntryRequest.self
-      case "BundleEntryResponse":
-      return BundleEntryResponse.self
-      case "BundleEntrySearch":
-      return BundleEntrySearch.self
-      case "BundleLink":
-      return BundleLink.self
-      case "CarePlan":
-      return CarePlan.self
-      case "CarePlanActivity":
-      return CarePlanActivity.self
-      case "CarePlanActivityDetail":
-      return CarePlanActivityDetail.self
-      case "CarePlanParticipant":
-      return CarePlanParticipant.self
-      case "CarePlanRelatedPlan":
-      return CarePlanRelatedPlan.self
-      case "Claim":
-      return Claim.self
-      case "ClaimCoverage":
-      return ClaimCoverage.self
-      case "ClaimDiagnosis":
-      return ClaimDiagnosis.self
-      case "ClaimItem":
-      return ClaimItem.self
-      case "ClaimItemDetail":
-      return ClaimItemDetail.self
-      case "ClaimItemDetailSubDetail":
-      return ClaimItemDetailSubDetail.self
-      case "ClaimItemProsthesis":
-      return ClaimItemProsthesis.self
-      case "ClaimMissingTeeth":
-      return ClaimMissingTeeth.self
-      case "ClaimPayee":
-      return ClaimPayee.self
-      case "ClaimResponse":
-      return ClaimResponse.self
-      case "ClaimResponseAddItem":
-      return ClaimResponseAddItem.self
-      case "ClaimResponseAddItemAdjudication":
-      return ClaimResponseAddItemAdjudication.self
-      case "ClaimResponseAddItemDetail":
-      return ClaimResponseAddItemDetail.self
-      case "ClaimResponseAddItemDetailAdjudication":
-      return ClaimResponseAddItemDetailAdjudication.self
-      case "ClaimResponseCoverage":
-      return ClaimResponseCoverage.self
-      case "ClaimResponseError":
-      return ClaimResponseError.self
-      case "ClaimResponseItem":
-      return ClaimResponseItem.self
-      case "ClaimResponseItemAdjudication":
-      return ClaimResponseItemAdjudication.self
-      case "ClaimResponseItemDetail":
-      return ClaimResponseItemDetail.self
-      case "ClaimResponseItemDetailAdjudication":
-      return ClaimResponseItemDetailAdjudication.self
-      case "ClaimResponseItemDetailSubDetail":
-      return ClaimResponseItemDetailSubDetail.self
-      case "ClaimResponseItemDetailSubDetailAdjudication":
-      return ClaimResponseItemDetailSubDetailAdjudication.self
-      case "ClaimResponseNote":
-      return ClaimResponseNote.self
-      case "ClinicalImpression":
-      return ClinicalImpression.self
-      case "ClinicalImpressionFinding":
-      return ClinicalImpressionFinding.self
-      case "ClinicalImpressionInvestigations":
-      return ClinicalImpressionInvestigations.self
-      case "ClinicalImpressionRuledOut":
-      return ClinicalImpressionRuledOut.self
-      case "CodeableConcept":
-      return CodeableConcept.self
-      case "Coding":
-      return Coding.self
-      case "Communication":
-      return Communication.self
-      case "CommunicationPayload":
-      return CommunicationPayload.self
-      case "CommunicationRequest":
-      return CommunicationRequest.self
-      case "CommunicationRequestPayload":
-      return CommunicationRequestPayload.self
-      case "Composition":
-      return Composition.self
-      case "CompositionAttester":
-      return CompositionAttester.self
-      case "CompositionEvent":
-      return CompositionEvent.self
-      case "CompositionSection":
-      return CompositionSection.self
-      case "ConceptMap":
-      return ConceptMap.self
-      case "ConceptMapContact":
-      return ConceptMapContact.self
-      case "ConceptMapElement":
-      return ConceptMapElement.self
-      case "ConceptMapElementTarget":
-      return ConceptMapElementTarget.self
-      case "ConceptMapElementTargetDependsOn":
-      return ConceptMapElementTargetDependsOn.self
-      case "Condition":
-      return Condition.self
-      case "ConditionEvidence":
-      return ConditionEvidence.self
-      case "ConditionStage":
-      return ConditionStage.self
-      case "Conformance":
-      return Conformance.self
-      case "ConformanceContact":
-      return ConformanceContact.self
-      case "ConformanceDocument":
-      return ConformanceDocument.self
-      case "ConformanceImplementation":
-      return ConformanceImplementation.self
-      case "ConformanceMessaging":
-      return ConformanceMessaging.self
-      case "ConformanceMessagingEndpoint":
-      return ConformanceMessagingEndpoint.self
-      case "ConformanceMessagingEvent":
-      return ConformanceMessagingEvent.self
-      case "ConformanceRest":
-      return ConformanceRest.self
-      case "ConformanceRestInteraction":
-      return ConformanceRestInteraction.self
-      case "ConformanceRestOperation":
-      return ConformanceRestOperation.self
-      case "ConformanceRestResource":
-      return ConformanceRestResource.self
-      case "ConformanceRestResourceInteraction":
-      return ConformanceRestResourceInteraction.self
-      case "ConformanceRestResourceSearchParam":
-      return ConformanceRestResourceSearchParam.self
-      case "ConformanceRestSecurity":
-      return ConformanceRestSecurity.self
-      case "ConformanceRestSecurityCertificate":
-      return ConformanceRestSecurityCertificate.self
-      case "ConformanceSoftware":
-      return ConformanceSoftware.self
-      case "ContactPoint":
-      return ContactPoint.self
-      case "Contract":
-      return Contract.self
-      case "ContractActor":
-      return ContractActor.self
-      case "ContractFriendly":
-      return ContractFriendly.self
-      case "ContractLegal":
-      return ContractLegal.self
-      case "ContractRule":
-      return ContractRule.self
-      case "ContractSigner":
-      return ContractSigner.self
-      case "ContractTerm":
-      return ContractTerm.self
-      case "ContractTermActor":
-      return ContractTermActor.self
-      case "ContractTermValuedItem":
-      return ContractTermValuedItem.self
-      case "ContractValuedItem":
-      return ContractValuedItem.self
-      case "Count":
-      return Count.self
-      case "Coverage":
-      return Coverage.self
-      case "DataElement":
-      return DataElement.self
-      case "DataElementContact":
-      return DataElementContact.self
-      case "DataElementMapping":
-      return DataElementMapping.self
-      case "DetectedIssue":
-      return DetectedIssue.self
-      case "DetectedIssueMitigation":
-      return DetectedIssueMitigation.self
-      case "Device":
-      return Device.self
-      case "DeviceComponent":
-      return DeviceComponent.self
-      case "DeviceComponentProductionSpecification":
-      return DeviceComponentProductionSpecification.self
-      case "DeviceMetric":
-      return DeviceMetric.self
-      case "DeviceMetricCalibration":
-      return DeviceMetricCalibration.self
-      case "DeviceUseRequest":
-      return DeviceUseRequest.self
-      case "DeviceUseStatement":
-      return DeviceUseStatement.self
-      case "DiagnosticOrder":
-      return DiagnosticOrder.self
-      case "DiagnosticOrderEvent":
-      return DiagnosticOrderEvent.self
-      case "DiagnosticOrderItem":
-      return DiagnosticOrderItem.self
-      case "DiagnosticReport":
-      return DiagnosticReport.self
-      case "DiagnosticReportImage":
-      return DiagnosticReportImage.self
-      case "Distance":
-      return Distance.self
-      case "DocumentManifest":
-      return DocumentManifest.self
-      case "DocumentManifestContent":
-      return DocumentManifestContent.self
-      case "DocumentManifestRelated":
-      return DocumentManifestRelated.self
-      case "DocumentReference":
-      return DocumentReference.self
-      case "DocumentReferenceContent":
-      return DocumentReferenceContent.self
-      case "DocumentReferenceContext":
-      return DocumentReferenceContext.self
-      case "DocumentReferenceContextRelated":
-      return DocumentReferenceContextRelated.self
-      case "DocumentReferenceRelatesTo":
-      return DocumentReferenceRelatesTo.self
-      case "DomainResource":
-      return DomainResource.self
-      case "Duration":
-      return Duration.self
-      case "Element":
-      return Element.self
-      case "ElementDefinition":
-      return ElementDefinition.self
-      case "ElementDefinitionBase":
-      return ElementDefinitionBase.self
-      case "ElementDefinitionBinding":
-      return ElementDefinitionBinding.self
-      case "ElementDefinitionConstraint":
-      return ElementDefinitionConstraint.self
-      case "ElementDefinitionMapping":
-      return ElementDefinitionMapping.self
-      case "ElementDefinitionSlicing":
-      return ElementDefinitionSlicing.self
-      case "ElementDefinitionType":
-      return ElementDefinitionType.self
-      case "EligibilityRequest":
-      return EligibilityRequest.self
-      case "EligibilityResponse":
-      return EligibilityResponse.self
-      case "Encounter":
-      return Encounter.self
-      case "EncounterHospitalization":
-      return EncounterHospitalization.self
-      case "EncounterLocation":
-      return EncounterLocation.self
-      case "EncounterParticipant":
-      return EncounterParticipant.self
-      case "EncounterStatusHistory":
-      return EncounterStatusHistory.self
-      case "EnrollmentRequest":
-      return EnrollmentRequest.self
-      case "EnrollmentResponse":
-      return EnrollmentResponse.self
-      case "EpisodeOfCare":
-      return EpisodeOfCare.self
-      case "EpisodeOfCareCareTeam":
-      return EpisodeOfCareCareTeam.self
-      case "EpisodeOfCareStatusHistory":
-      return EpisodeOfCareStatusHistory.self
-      case "ExplanationOfBenefit":
-      return ExplanationOfBenefit.self
-      case "Extension":
-      return Extension.self
-      case "FamilyMemberHistory":
-      return FamilyMemberHistory.self
-      case "FamilyMemberHistoryCondition":
-      return FamilyMemberHistoryCondition.self
-      case "Flag":
-      return Flag.self
-      case "Goal":
-      return Goal.self
-      case "GoalOutcome":
-      return GoalOutcome.self
-      case "Group":
-      return Group.self
-      case "GroupCharacteristic":
-      return GroupCharacteristic.self
-      case "GroupMember":
-      return GroupMember.self
-      case "HealthcareService":
-      return HealthcareService.self
-      case "HealthcareServiceAvailableTime":
-      return HealthcareServiceAvailableTime.self
-      case "HealthcareServiceNotAvailable":
-      return HealthcareServiceNotAvailable.self
-      case "HealthcareServiceServiceType":
-      return HealthcareServiceServiceType.self
-      case "HumanName":
-      return HumanName.self
-      case "Identifier":
-      return Identifier.self
-      case "ImagingObjectSelection":
-      return ImagingObjectSelection.self
-      case "ImagingObjectSelectionStudy":
-      return ImagingObjectSelectionStudy.self
-      case "ImagingObjectSelectionStudySeries":
-      return ImagingObjectSelectionStudySeries.self
-      case "ImagingObjectSelectionStudySeriesInstance":
-      return ImagingObjectSelectionStudySeriesInstance.self
-      case "ImagingObjectSelectionStudySeriesInstanceFrames":
-      return ImagingObjectSelectionStudySeriesInstanceFrames.self
-      case "ImagingStudy":
-      return ImagingStudy.self
-      case "ImagingStudySeries":
-      return ImagingStudySeries.self
-      case "ImagingStudySeriesInstance":
-      return ImagingStudySeriesInstance.self
-      case "Immunization":
-      return Immunization.self
-      case "ImmunizationExplanation":
-      return ImmunizationExplanation.self
-      case "ImmunizationReaction":
-      return ImmunizationReaction.self
-      case "ImmunizationRecommendation":
-      return ImmunizationRecommendation.self
-      case "ImmunizationRecommendationRecommendation":
-      return ImmunizationRecommendationRecommendation.self
-      case "ImmunizationRecommendationRecommendationDateCriterion":
-      return ImmunizationRecommendationRecommendationDateCriterion.self
-      case "ImmunizationRecommendationRecommendationProtocol":
-      return ImmunizationRecommendationRecommendationProtocol.self
-      case "ImmunizationVaccinationProtocol":
-      return ImmunizationVaccinationProtocol.self
-      case "ImplementationGuide":
-      return ImplementationGuide.self
-      case "ImplementationGuideContact":
-      return ImplementationGuideContact.self
-      case "ImplementationGuideDependency":
-      return ImplementationGuideDependency.self
-      case "ImplementationGuideGlobal":
-      return ImplementationGuideGlobal.self
-      case "ImplementationGuidePackage":
-      return ImplementationGuidePackage.self
-      case "ImplementationGuidePackageResource":
-      return ImplementationGuidePackageResource.self
-      case "ImplementationGuidePage":
-      return ImplementationGuidePage.self
-      case "List":
-      return List.self
-      case "ListEntry":
-      return ListEntry.self
-      case "Location":
-      return Location.self
-      case "LocationPosition":
-      return LocationPosition.self
-      case "Media":
-      return Media.self
-      case "Medication":
-      return Medication.self
-      case "MedicationAdministration":
-      return MedicationAdministration.self
-      case "MedicationAdministrationDosage":
-      return MedicationAdministrationDosage.self
-      case "MedicationDispense":
-      return MedicationDispense.self
-      case "MedicationDispenseDosageInstruction":
-      return MedicationDispenseDosageInstruction.self
-      case "MedicationDispenseSubstitution":
-      return MedicationDispenseSubstitution.self
-      case "MedicationOrder":
-      return MedicationOrder.self
-      case "MedicationOrderDispenseRequest":
-      return MedicationOrderDispenseRequest.self
-      case "MedicationOrderDosageInstruction":
-      return MedicationOrderDosageInstruction.self
-      case "MedicationOrderSubstitution":
-      return MedicationOrderSubstitution.self
-      case "MedicationPackage":
-      return MedicationPackage.self
-      case "MedicationPackageContent":
-      return MedicationPackageContent.self
-      case "MedicationProduct":
-      return MedicationProduct.self
-      case "MedicationProductBatch":
-      return MedicationProductBatch.self
-      case "MedicationProductIngredient":
-      return MedicationProductIngredient.self
-      case "MedicationStatement":
-      return MedicationStatement.self
-      case "MedicationStatementDosage":
-      return MedicationStatementDosage.self
-      case "MessageHeader":
-      return MessageHeader.self
-      case "MessageHeaderDestination":
-      return MessageHeaderDestination.self
-      case "MessageHeaderResponse":
-      return MessageHeaderResponse.self
-      case "MessageHeaderSource":
-      return MessageHeaderSource.self
-      case "Meta":
-      return Meta.self
-      case "Money":
-      return Money.self
-      case "NamingSystem":
-      return NamingSystem.self
-      case "NamingSystemContact":
-      return NamingSystemContact.self
-      case "NamingSystemUniqueId":
-      return NamingSystemUniqueId.self
-      case "Narrative":
-      return Narrative.self
-      case "NutritionOrder":
-      return NutritionOrder.self
-      case "NutritionOrderEnteralFormula":
-      return NutritionOrderEnteralFormula.self
-      case "NutritionOrderEnteralFormulaAdministration":
-      return NutritionOrderEnteralFormulaAdministration.self
-      case "NutritionOrderOralDiet":
-      return NutritionOrderOralDiet.self
-      case "NutritionOrderOralDietNutrient":
-      return NutritionOrderOralDietNutrient.self
-      case "NutritionOrderOralDietTexture":
-      return NutritionOrderOralDietTexture.self
-      case "NutritionOrderSupplement":
-      return NutritionOrderSupplement.self
-      case "Observation":
-      return Observation.self
-      case "ObservationComponent":
-      return ObservationComponent.self
-      case "ObservationReferenceRange":
-      return ObservationReferenceRange.self
-      case "ObservationRelated":
-      return ObservationRelated.self
-      case "OperationDefinition":
-      return OperationDefinition.self
-      case "OperationDefinitionContact":
-      return OperationDefinitionContact.self
-      case "OperationDefinitionParameter":
-      return OperationDefinitionParameter.self
-      case "OperationDefinitionParameterBinding":
-      return OperationDefinitionParameterBinding.self
-      case "OperationOutcome":
-      return OperationOutcome.self
-      case "OperationOutcomeIssue":
-      return OperationOutcomeIssue.self
-      case "Order":
-      return Order.self
-      case "OrderResponse":
-      return OrderResponse.self
-      case "OrderWhen":
-      return OrderWhen.self
-      case "Organization":
-      return Organization.self
-      case "OrganizationContact":
-      return OrganizationContact.self
-      case "Parameters":
-      return Parameters.self
-      case "ParametersParameter":
-      return ParametersParameter.self
-      case "Patient":
-      return Patient.self
-      case "PatientAnimal":
-      return PatientAnimal.self
-      case "PatientCommunication":
-      return PatientCommunication.self
-      case "PatientContact":
-      return PatientContact.self
-      case "PatientLink":
-      return PatientLink.self
-      case "PaymentNotice":
-      return PaymentNotice.self
-      case "PaymentReconciliation":
-      return PaymentReconciliation.self
-      case "PaymentReconciliationDetail":
-      return PaymentReconciliationDetail.self
-      case "PaymentReconciliationNote":
-      return PaymentReconciliationNote.self
-      case "Period":
-      return Period.self
-      case "Person":
-      return Person.self
-      case "PersonLink":
-      return PersonLink.self
-      case "Practitioner":
-      return Practitioner.self
-      case "PractitionerPractitionerRole":
-      return PractitionerPractitionerRole.self
-      case "PractitionerQualification":
-      return PractitionerQualification.self
-      case "Procedure":
-      return Procedure.self
-      case "ProcedureFocalDevice":
-      return ProcedureFocalDevice.self
-      case "ProcedurePerformer":
-      return ProcedurePerformer.self
-      case "ProcedureRequest":
-      return ProcedureRequest.self
-      case "ProcessRequest":
-      return ProcessRequest.self
-      case "ProcessRequestItem":
-      return ProcessRequestItem.self
-      case "ProcessResponse":
-      return ProcessResponse.self
-      case "ProcessResponseNotes":
-      return ProcessResponseNotes.self
-      case "Provenance":
-      return Provenance.self
-      case "ProvenanceAgent":
-      return ProvenanceAgent.self
-      case "ProvenanceAgentRelatedAgent":
-      return ProvenanceAgentRelatedAgent.self
-      case "ProvenanceEntity":
-      return ProvenanceEntity.self
-      case "Quantity":
-      return Quantity.self
-      case "Questionnaire":
-      return Questionnaire.self
-      case "QuestionnaireGroup":
-      return QuestionnaireGroup.self
-      case "QuestionnaireGroupQuestion":
-      return QuestionnaireGroupQuestion.self
-      case "QuestionnaireResponse":
-      return QuestionnaireResponse.self
-      case "QuestionnaireResponseGroup":
-      return QuestionnaireResponseGroup.self
-      case "QuestionnaireResponseGroupQuestion":
-      return QuestionnaireResponseGroupQuestion.self
-      case "QuestionnaireResponseGroupQuestionAnswer":
-      return QuestionnaireResponseGroupQuestionAnswer.self
-      case "Range":
-      return Range.self
-      case "Ratio":
-      return Ratio.self
-      case "Reference":
-      return Reference.self
-      case "ReferralRequest":
-      return ReferralRequest.self
-      case "RelatedPerson":
-      return RelatedPerson.self
-      case "Resource":
-      return Resource.self
-      case "RiskAssessment":
-      return RiskAssessment.self
-      case "RiskAssessmentPrediction":
-      return RiskAssessmentPrediction.self
-      case "SampledData":
-      return SampledData.self
-      case "Schedule":
-      return Schedule.self
-      case "SearchParameter":
-      return SearchParameter.self
-      case "SearchParameterContact":
-      return SearchParameterContact.self
-      case "Signature":
-      return Signature.self
-      case "Slot":
-      return Slot.self
-      case "Specimen":
-      return Specimen.self
-      case "SpecimenCollection":
-      return SpecimenCollection.self
-      case "SpecimenContainer":
-      return SpecimenContainer.self
-      case "SpecimenTreatment":
-      return SpecimenTreatment.self
-      case "StructureDefinition":
-      return StructureDefinition.self
-      case "StructureDefinitionContact":
-      return StructureDefinitionContact.self
-      case "StructureDefinitionDifferential":
-      return StructureDefinitionDifferential.self
-      case "StructureDefinitionMapping":
-      return StructureDefinitionMapping.self
-      case "StructureDefinitionSnapshot":
-      return StructureDefinitionSnapshot.self
-      case "Subscription":
-      return Subscription.self
-      case "SubscriptionChannel":
-      return SubscriptionChannel.self
-      case "Substance":
-      return Substance.self
-      case "SubstanceIngredient":
-      return SubstanceIngredient.self
-      case "SubstanceInstance":
-      return SubstanceInstance.self
-      case "SupplyDelivery":
-      return SupplyDelivery.self
-      case "SupplyRequest":
-      return SupplyRequest.self
-      case "SupplyRequestWhen":
-      return SupplyRequestWhen.self
-      case "TestScript":
-      return TestScript.self
-      case "TestScriptContact":
-      return TestScriptContact.self
-      case "TestScriptFixture":
-      return TestScriptFixture.self
-      case "TestScriptMetadata":
-      return TestScriptMetadata.self
-      case "TestScriptMetadataCapability":
-      return TestScriptMetadataCapability.self
-      case "TestScriptMetadataLink":
-      return TestScriptMetadataLink.self
-      case "TestScriptSetup":
-      return TestScriptSetup.self
-      case "TestScriptSetupAction":
-      return TestScriptSetupAction.self
-      case "TestScriptSetupActionAssert":
-      return TestScriptSetupActionAssert.self
-      case "TestScriptSetupActionOperation":
-      return TestScriptSetupActionOperation.self
-      case "TestScriptSetupActionOperationRequestHeader":
-      return TestScriptSetupActionOperationRequestHeader.self
-      case "TestScriptTeardown":
-      return TestScriptTeardown.self
-      case "TestScriptTeardownAction":
-      return TestScriptTeardownAction.self
-      case "TestScriptTest":
-      return TestScriptTest.self
-      case "TestScriptTestAction":
-      return TestScriptTestAction.self
-      case "TestScriptVariable":
-      return TestScriptVariable.self
-      case "Timing":
-      return Timing.self
-      case "TimingRepeat":
-      return TimingRepeat.self
-      case "ValueSet":
-      return ValueSet.self
-      case "ValueSetCodeSystem":
-      return ValueSetCodeSystem.self
-      case "ValueSetCodeSystemConcept":
-      return ValueSetCodeSystemConcept.self
-      case "ValueSetCodeSystemConceptDesignation":
-      return ValueSetCodeSystemConceptDesignation.self
-      case "ValueSetCompose":
-      return ValueSetCompose.self
-      case "ValueSetComposeInclude":
-      return ValueSetComposeInclude.self
-      case "ValueSetComposeIncludeConcept":
-      return ValueSetComposeIncludeConcept.self
-      case "ValueSetComposeIncludeFilter":
-      return ValueSetComposeIncludeFilter.self
-      case "ValueSetContact":
-      return ValueSetContact.self
-      case "ValueSetExpansion":
-      return ValueSetExpansion.self
-      case "ValueSetExpansionContains":
-      return ValueSetExpansionContains.self
-      case "ValueSetExpansionParameter":
-      return ValueSetExpansionParameter.self
-      case "VisionPrescription":
-      return VisionPrescription.self
-      case "VisionPrescriptionDispense":
-      return VisionPrescriptionDispense.self
-      default:
-      return FHIRAbstractBase.self
-    }
-  }
-}
-
 struct UnknownFhirDecodingTypeError: Error {
   var className: String
 }
+
 extension KeyedDecodingContainerProtocol {
-  func decodeFHIRAbstractBaseIfPresent(_ className: String, forKey key: Self.Key) throws -> FHIRAbstractBase? {
+  public func decodeFHIRAbstractBaseIfPresent(_ className: String, forKey key: Self.Key) throws -> FHIRAbstractBase? {
     switch className {
       case "Account":
       return try decodeIfPresent(Account.self, forKey: key)
@@ -1421,7 +719,7 @@ extension KeyedDecodingContainerProtocol {
 }
 
 extension UnkeyedDecodingContainer {
-  mutating func decodeFHIRAbstractBase(_ className: String) throws -> FHIRAbstractBase {
+  public mutating func decodeFHIRAbstractBase(_ className: String) throws -> FHIRAbstractBase {
     switch className {
       case "Account":
       return try decode(Account.self)
@@ -2124,8 +1422,8 @@ extension UnkeyedDecodingContainer {
 }
 
 extension JSONDecoder {
-  func decode(_ resourceClassName: String, from data: Data) throws -> FHIRAbstractBase {
-    switch resourceClassName {
+  public func decode(_ classname: String, from data: Data) throws -> FHIRAbstractBase {
+    switch classname {
       case "Account":
       return try decode(Account.self, from: data)
       case "Address":
@@ -2821,7 +2119,196 @@ extension JSONDecoder {
       case "VisionPrescriptionDispense":
       return try decode(VisionPrescriptionDispense.self, from: data)
       default:
-      throw UnknownFhirDecodingTypeError(className: resourceClassName)
+      throw UnknownFhirDecodingTypeError(className: classname)
+    }
+  }
+
+  public func decodeResource(_ classname: String, from data: Data) throws -> Resource {
+    switch classname {
+      case "Account":
+      return try decode(Account.self, from: data)
+      case "AllergyIntolerance":
+      return try decode(AllergyIntolerance.self, from: data)
+      case "Appointment":
+      return try decode(Appointment.self, from: data)
+      case "AppointmentResponse":
+      return try decode(AppointmentResponse.self, from: data)
+      case "AuditEvent":
+      return try decode(AuditEvent.self, from: data)
+      case "Basic":
+      return try decode(Basic.self, from: data)
+      case "BodySite":
+      return try decode(BodySite.self, from: data)
+      case "CarePlan":
+      return try decode(CarePlan.self, from: data)
+      case "Claim":
+      return try decode(Claim.self, from: data)
+      case "ClaimResponse":
+      return try decode(ClaimResponse.self, from: data)
+      case "ClinicalImpression":
+      return try decode(ClinicalImpression.self, from: data)
+      case "Communication":
+      return try decode(Communication.self, from: data)
+      case "CommunicationRequest":
+      return try decode(CommunicationRequest.self, from: data)
+      case "Composition":
+      return try decode(Composition.self, from: data)
+      case "ConceptMap":
+      return try decode(ConceptMap.self, from: data)
+      case "Condition":
+      return try decode(Condition.self, from: data)
+      case "Conformance":
+      return try decode(Conformance.self, from: data)
+      case "Contract":
+      return try decode(Contract.self, from: data)
+      case "Coverage":
+      return try decode(Coverage.self, from: data)
+      case "DataElement":
+      return try decode(DataElement.self, from: data)
+      case "DetectedIssue":
+      return try decode(DetectedIssue.self, from: data)
+      case "Device":
+      return try decode(Device.self, from: data)
+      case "DeviceComponent":
+      return try decode(DeviceComponent.self, from: data)
+      case "DeviceMetric":
+      return try decode(DeviceMetric.self, from: data)
+      case "DeviceUseRequest":
+      return try decode(DeviceUseRequest.self, from: data)
+      case "DeviceUseStatement":
+      return try decode(DeviceUseStatement.self, from: data)
+      case "DiagnosticOrder":
+      return try decode(DiagnosticOrder.self, from: data)
+      case "DiagnosticReport":
+      return try decode(DiagnosticReport.self, from: data)
+      case "DocumentManifest":
+      return try decode(DocumentManifest.self, from: data)
+      case "DocumentReference":
+      return try decode(DocumentReference.self, from: data)
+      case "EligibilityRequest":
+      return try decode(EligibilityRequest.self, from: data)
+      case "EligibilityResponse":
+      return try decode(EligibilityResponse.self, from: data)
+      case "Encounter":
+      return try decode(Encounter.self, from: data)
+      case "EnrollmentRequest":
+      return try decode(EnrollmentRequest.self, from: data)
+      case "EnrollmentResponse":
+      return try decode(EnrollmentResponse.self, from: data)
+      case "EpisodeOfCare":
+      return try decode(EpisodeOfCare.self, from: data)
+      case "ExplanationOfBenefit":
+      return try decode(ExplanationOfBenefit.self, from: data)
+      case "FamilyMemberHistory":
+      return try decode(FamilyMemberHistory.self, from: data)
+      case "Flag":
+      return try decode(Flag.self, from: data)
+      case "Goal":
+      return try decode(Goal.self, from: data)
+      case "Group":
+      return try decode(Group.self, from: data)
+      case "HealthcareService":
+      return try decode(HealthcareService.self, from: data)
+      case "ImagingObjectSelection":
+      return try decode(ImagingObjectSelection.self, from: data)
+      case "ImagingStudy":
+      return try decode(ImagingStudy.self, from: data)
+      case "Immunization":
+      return try decode(Immunization.self, from: data)
+      case "ImmunizationRecommendation":
+      return try decode(ImmunizationRecommendation.self, from: data)
+      case "ImplementationGuide":
+      return try decode(ImplementationGuide.self, from: data)
+      case "List":
+      return try decode(List.self, from: data)
+      case "Location":
+      return try decode(Location.self, from: data)
+      case "Media":
+      return try decode(Media.self, from: data)
+      case "Medication":
+      return try decode(Medication.self, from: data)
+      case "MedicationAdministration":
+      return try decode(MedicationAdministration.self, from: data)
+      case "MedicationDispense":
+      return try decode(MedicationDispense.self, from: data)
+      case "MedicationOrder":
+      return try decode(MedicationOrder.self, from: data)
+      case "MedicationStatement":
+      return try decode(MedicationStatement.self, from: data)
+      case "MessageHeader":
+      return try decode(MessageHeader.self, from: data)
+      case "NamingSystem":
+      return try decode(NamingSystem.self, from: data)
+      case "NutritionOrder":
+      return try decode(NutritionOrder.self, from: data)
+      case "Observation":
+      return try decode(Observation.self, from: data)
+      case "OperationDefinition":
+      return try decode(OperationDefinition.self, from: data)
+      case "OperationOutcome":
+      return try decode(OperationOutcome.self, from: data)
+      case "Order":
+      return try decode(Order.self, from: data)
+      case "OrderResponse":
+      return try decode(OrderResponse.self, from: data)
+      case "Organization":
+      return try decode(Organization.self, from: data)
+      case "Patient":
+      return try decode(Patient.self, from: data)
+      case "PaymentNotice":
+      return try decode(PaymentNotice.self, from: data)
+      case "PaymentReconciliation":
+      return try decode(PaymentReconciliation.self, from: data)
+      case "Person":
+      return try decode(Person.self, from: data)
+      case "Practitioner":
+      return try decode(Practitioner.self, from: data)
+      case "Procedure":
+      return try decode(Procedure.self, from: data)
+      case "ProcedureRequest":
+      return try decode(ProcedureRequest.self, from: data)
+      case "ProcessRequest":
+      return try decode(ProcessRequest.self, from: data)
+      case "ProcessResponse":
+      return try decode(ProcessResponse.self, from: data)
+      case "Provenance":
+      return try decode(Provenance.self, from: data)
+      case "Questionnaire":
+      return try decode(Questionnaire.self, from: data)
+      case "QuestionnaireResponse":
+      return try decode(QuestionnaireResponse.self, from: data)
+      case "ReferralRequest":
+      return try decode(ReferralRequest.self, from: data)
+      case "RelatedPerson":
+      return try decode(RelatedPerson.self, from: data)
+      case "RiskAssessment":
+      return try decode(RiskAssessment.self, from: data)
+      case "Schedule":
+      return try decode(Schedule.self, from: data)
+      case "SearchParameter":
+      return try decode(SearchParameter.self, from: data)
+      case "Slot":
+      return try decode(Slot.self, from: data)
+      case "Specimen":
+      return try decode(Specimen.self, from: data)
+      case "StructureDefinition":
+      return try decode(StructureDefinition.self, from: data)
+      case "Subscription":
+      return try decode(Subscription.self, from: data)
+      case "Substance":
+      return try decode(Substance.self, from: data)
+      case "SupplyDelivery":
+      return try decode(SupplyDelivery.self, from: data)
+      case "SupplyRequest":
+      return try decode(SupplyRequest.self, from: data)
+      case "TestScript":
+      return try decode(TestScript.self, from: data)
+      case "ValueSet":
+      return try decode(ValueSet.self, from: data)
+      case "VisionPrescription":
+      return try decode(VisionPrescription.self, from: data)
+      default:
+      throw UnknownFhirDecodingTypeError(className: classname)
     }
   }
 }

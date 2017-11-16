@@ -2,10 +2,10 @@
 //  AuditEvent.swift
 //  SwiftFHIR
 //
-//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-11-07.
+//  Generated from FHIR 1.0.2.7202 (http://hl7.org/fhir/StructureDefinition/AuditEvent) on 2017-11-13.
 //  2017, SMART Health IT.
 //
-// 	Updated for Realm support by Ryan Baldwin on 2017-11-07
+// 	Updated for Realm support by Ryan Baldwin on 2017-11-13
 // 	Copyright @ 2017 Bunnyhug. All rights fall under Apache 2
 
 import Foundation

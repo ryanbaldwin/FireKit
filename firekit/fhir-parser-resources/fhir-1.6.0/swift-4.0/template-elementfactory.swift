@@ -11,24 +11,12 @@
 import Foundation
 import RealmSwift
 
-extension FHIRAbstractBase {
-  public class func resourceType(from className: String) -> FHIRAbstractBase.Type {
-    switch className {
-      {%- for klass in classes %}{% if klass.resource_name %}
-      case "{{ klass.resource_name }}":
-      return {{ klass.name }}.self
-      {%- endif %}{% endfor %}
-      default:
-      return FHIRAbstractBase.self
-    }
-  }
-}
-
 struct UnknownFhirDecodingTypeError: Error {
   var className: String
 }
+
 extension KeyedDecodingContainerProtocol {
-  func decodeFHIRAbstractBaseIfPresent(_ className: String, forKey key: Self.Key) throws -> FHIRAbstractBase? {
+  public func decodeFHIRAbstractBaseIfPresent(_ className: String, forKey key: Self.Key) throws -> FHIRAbstractBase? {
     switch className {
       {%- for klass in classes %}{% if klass.resource_name %}
       case "{{ klass.resource_name }}":
@@ -41,7 +29,7 @@ extension KeyedDecodingContainerProtocol {
 }
 
 extension UnkeyedDecodingContainer {
-  mutating func decodeFHIRAbstractBase(_ className: String) throws -> FHIRAbstractBase {
+  public mutating func decodeFHIRAbstractBase(_ className: String) throws -> FHIRAbstractBase {
     switch className {
       {%- for klass in classes %}{% if klass.resource_name %}
       case "{{ klass.resource_name }}":
@@ -54,14 +42,25 @@ extension UnkeyedDecodingContainer {
 }
 
 extension JSONDecoder {
-  func decode(_ resourceClassName: String, from data: Data) throws -> FHIRAbstractBase {
-    switch resourceClassName {
+  public func decode(_ classname: String, from data: Data) throws -> FHIRAbstractBase {
+    switch classname {
       {%- for klass in classes %}{% if klass.resource_name %}
       case "{{ klass.resource_name }}":
       return try decode({{ klass.name }}.self, from: data)
       {%- endif %}{% endfor %}
       default:
-      throw UnknownFhirDecodingTypeError(className: resourceClassName)
+      throw UnknownFhirDecodingTypeError(className: classname)
+    }
+  }
+
+  public func decodeResource(_ classname: String, from data: Data) throws -> Resource {
+    switch classname {
+      {%- for klass in classes %}{% if klass.superclass.name == "DomainResource" %}
+      case "{{ klass.resource_name }}":
+      return try decode({{ klass.name }}.self, from: data)
+      {%- endif %}{% endfor %}
+      default:
+      throw UnknownFhirDecodingTypeError(className: classname)
     }
   }
 }

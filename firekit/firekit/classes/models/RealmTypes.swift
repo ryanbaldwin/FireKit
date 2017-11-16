@@ -42,14 +42,6 @@ extension RealmString: Populatable {
     }
 }
 
-extension RealmString: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let copy = RealmString()
-        copy.value = value
-        return copy
-    }
-}
-
 final public class RealmInt: Object, Codable {
     @objc public dynamic var pk: String = UUID().uuidString
     @objc public dynamic var value: Int = 0
@@ -79,14 +71,6 @@ extension RealmInt: Populatable {
             return
         }
         value = o.value
-    }
-}
-
-extension RealmInt: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let copy = RealmInt()
-        copy.value = value
-        return copy
     }
 }
 
@@ -165,14 +149,6 @@ extension RealmDecimal: Populatable {
     }
 }
 
-extension RealmDecimal: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let copy = RealmDecimal()
-        copy.value = value
-        return copy
-    }
-}
-
 final public class RealmURL: Object, Codable {
     @objc public dynamic var pk: String = UUID().uuidString
     @objc private dynamic var _value: String?
@@ -217,14 +193,6 @@ extension RealmURL: Populatable {
             return
         }
         _value = o._value
-    }
-}
-
-extension RealmURL: NSCopying {
-    public func copy(with zone: NSZone? = nil) -> Any {
-        let copy = RealmURL()
-        copy.value = value
-        return copy
     }
 }
 
@@ -299,6 +267,7 @@ final public class ContainedResource: Resource {
         resourceType = o.resourceType
         json = o.json
     }
+
     
     public override func copy(with zone: NSZone? = nil) -> Any {
         let copy = ContainedResource()
