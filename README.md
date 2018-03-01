@@ -91,7 +91,7 @@ You have 2 options:
 
 ## Carthage
 1. [Install Carthage](https://github.com/Carthage/Carthage), if you haven't already.
-2. Add `github "ryanbaldwin/FireKit" == 2.402.06` to the your `Cartfile` (see [Versioning](#versioning) for more info)
+2. Add `github "ryanbaldwin/FireKit" == 2.402.07` to the your `Cartfile` (see [Versioning](#versioning) for more info)
 3. Do a quick `carthage update --platform iOS --cache-builds` and add the [framework to your project](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application) as you normally would.
 4. Build a kick ass health app and never worry about your datamodel again.
 
