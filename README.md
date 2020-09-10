@@ -1,3 +1,6 @@
+# No longer maintained or supported
+I think it goes without saying...
+
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![BuddyBuild](https://dashboard.buddybuild.com/api/statusImage?appID=58e3099fe888150001b71db1&branch=master&build=latest)](https://dashboard.buddybuild.com/apps/58e3099fe888150001b71db1/build/latest?branch=master)
 
